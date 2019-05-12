@@ -1,0 +1,46 @@
+{
+  "name": "cezerin2-monorepo",
+  "version": "0.33.0",
+  "description": "Cezerin2 is React and Node.js based eCommerce platform. https://cezerin.com",
+  "keywords": [
+    "cezerin2",
+    "cezerin",
+    "ecommerce",
+    "shopping cart",
+    "shop",
+    "cms"
+  ],
+  "homepage": "https://cezerin.com",
+  "bugs": "https://github.com/cezerin2/cezerin2/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Luke Busstra <luke.busstra@gmail.com>",
+    "url": "https://github.com/lubuss"
+  },
+  "contributors": [
+    {
+      "name": "Luke Busstra <luke.busstra@gmail.com>",
+      "url": "https://github.com/lubuss"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cezerin2/cezerin2-mono"
+  },
+  "scripts": {
+    "build": "concurrently \"cd cezerin2-admin && npm run build\" \"cd cezerin2-store && npm run build\"",
+    "build:watch": "concurrently \"cd cezerin2-admin && npm run build:watch\" \"cd cezerin2-store && npm run build:watch\"",
+    "start": "concurrently \"cd cezerin2 && pm2 start process.json\" \"cd cezerin2-admin && pm2 start process.json\" \"cd cezerin2-store && pm2 start process.json\""
+  },
+  "dependencies": {
+    "cezerin2": "file:cezerin2",
+    "cezerin2-admin": "file:cezerin2-admin",
+    "cezerin2-store": "file:cezerin2-store",
+    "concurrently": "^4.1.0",
+    "pm2": "^3.5.0"
+  },
+  "engines": {
+    "node": "^8.0.0",
+    "npm": "^5.0.0"
+  }
+}

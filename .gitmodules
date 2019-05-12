@@ -1,0 +1,9 @@
+[submodule "cezerin2"]
+	path = cezerin2
+	url = https://github.com/Cezerin2/cezerin2.git
+[submodule "cezerin2-store"]
+	path = cezerin2-store
+	url = https://github.com/Cezerin2/cezerin2-store
+[submodule "cezerin2-admin"]
+	path = cezerin2-admin
+	url = https://github.com/Cezerin2/cezerin2-admin.git
