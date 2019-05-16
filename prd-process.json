@@ -7,6 +7,11 @@
 			"exec_mode": "fork",
 			"node_args": "-r esm",
 			"env": {
+				"API_BASE_URL": "http://localhost:3001/api/v1",
+				"STORE_BASE_URL": "http://localhost:3000",
+				"ADMIN_BASE_URL": "http://localhost:3002",
+				"ASSETS_BASE_URL": "http://localhost:3001",
+				"DEVELOPER_MODE": false,
 			  "NODE_ENV": "production"
 			}
 		}, {
@@ -15,7 +20,12 @@
 			"script": "serve",
 			"env": {
 				"PM2_SERVE_PATH": "./dist",
-				"PM2_SERVE_PORT": 3002
+				"PM2_SERVE_PORT": 3002,
+				"API_BASE_URL": "http://localhost:3001/api/v1",
+				"ASSETS_BASE_URL": "http://localhost:3001",
+				"API_WEB_SOCKET_URL": "ws://localhost:3001",
+				"DEVELOPER_MODE": false,
+			  "NODE_ENV": "production"
 			}
 		}, {
 			"name": "store",
@@ -25,6 +35,9 @@
 			"instances": "1",
 			"exec_mode": "fork",
 			"env": {
+				"AJAX_BASE_URL": "http://localhost:3001/ajax",
+				"API_BASE_URL": "http://localhost:3001/api/v1",
+				"ASSETS_BASE_URL": "http://localhost:3001",
 			  "NODE_ENV": "production"
 			}
 		}]

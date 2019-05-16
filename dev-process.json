@@ -2,9 +2,10 @@
 	"apps": [
 		{
 			"name": "api",
-			"script": "./cezerin2/src/index.js",
+			"script": "./src/index.js",
+			"cwd": "./cezerin2",
 			"node_args": "-r esm",
-			"watch": ["./cezerin2/config/server.js", "./cezerin2/src/"],
+			"watch": ["./config/server.js", "./src/"],
 			"instances": "1",
 			"exec_mode": "fork",
 			"watch_options": {
@@ -15,9 +16,10 @@
 		{
 			"name": "admin",
 			"script": "serve",
-			"watch": ["./cezerin2-admin/config/admin.js", "./cezerin2-admin/dist/"],
+			"cwd": "./cezerin2-admin",
+			"watch": ["./config/admin.js", "./dist/"],
 			"env": {
-				"PM2_SERVE_PATH": "./cezerin2-admin/dist",
+				"PM2_SERVE_PATH": "./dist",
 				"PM2_SERVE_PORT": 3002
 			},
 			"watch_options": {
@@ -27,13 +29,14 @@
 		},
 		{
 			"name": "store",
-			"script": "./cezerin2-store/dist/server/index.js",
+			"script": "./dist/server/index.js",
+			"cwd": "./cezerin2-store",
 			"node_args": "-r esm",
 			"watch": [
-				"./cezerin2-store/config/store.js",
-				"./cezerin2-store/dist/store/",
-				"./cezerin2-store/theme/dist/",
-				"./cezerin2-store/theme/assets/index.html"
+				"./config/store.js",
+				"./dist/store/",
+				"./theme/dist/",
+				"./theme/assets/index.html"
 			],
 			"instances": "1",
 			"exec_mode": "fork",
