@@ -1,0 +1,31 @@
+{
+	"apps": [{
+			"name": "api",
+			"script": "./src/index.js",
+			"cwd": "./cezerin2",
+			"instances": "1",
+			"exec_mode": "fork",
+			"node_args": "-r esm",
+			"env": {
+			  "NODE_ENV": "production"
+			}
+		}, {
+			"name": "admin",
+			"cwd": "./cezerin2-admin",
+			"script": "serve",
+			"env": {
+				"PM2_SERVE_PATH": "./dist",
+				"PM2_SERVE_PORT": 3002
+			}
+		}, {
+			"name": "store",
+			"script": "./dist/server/index.js",
+			"cwd": "./cezerin2-store",
+			"node_args": "-r esm",
+			"instances": "1",
+			"exec_mode": "fork",
+			"env": {
+			  "NODE_ENV": "production"
+			}
+		}]
+}

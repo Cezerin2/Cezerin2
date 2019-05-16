@@ -30,7 +30,8 @@
   "scripts": {
     "build": "concurrently \"cd cezerin2-admin && npm run build\" \"cd cezerin2-store && npm run build\"",
     "build:watch": "concurrently \"cd cezerin2-admin && npm run build:watch\" \"cd cezerin2-store && npm run build:watch\"",
-    "start": "concurrently \"cd cezerin2 && pm2 start process.json\" \"cd cezerin2-admin && pm2 start process.json\" \"cd cezerin2-store && pm2 start process.json\""
+    "start:pm2:watch": "pm2 start dev-process.json",
+    "start:pm2": "pm2 start prd-process.json --no-daemon"
   },
   "dependencies": {
     "cezerin2": "file:cezerin2",
