@@ -5,7 +5,6 @@ import { TextField, SelectField, DatePicker } from 'redux-form-material-ui';
 
 import { CustomToggle } from 'modules/shared/form';
 import messages from 'lib/text';
-import style from './style.css';
 import data from 'lib/data';
 
 import Paper from 'material-ui/Paper';
@@ -15,20 +14,17 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
 import { List, ListItem } from 'material-ui/List';
+import style from './style.css';
 
 class GeneralSettings extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		this.props.onLoad();
 	}
 
 	render() {
-		let { handleSubmit, pristine, submitting, initialValues } = this.props;
+		const { handleSubmit, pristine, submitting, initialValues } = this.props;
 
-		let currencyItems = [];
+		const currencyItems = [];
 		for (const key in data.currencies) {
 			currencyItems.push(
 				<MenuItem
@@ -39,9 +35,20 @@ class GeneralSettings extends React.Component {
 			);
 		}
 
-		let timezoneItems = [];
+		const taxItems = [];
+		for (const key in data.taxs) {
+			taxItems.push(
+				<MenuItem
+					value={key}
+					key={key}
+					primaryText={`${key} - ${data.taxs[key]}`}
+				/>
+			);
+		}
+
+		const timezoneItems = [];
 		for (const key in data.timezones) {
-			const utc = data.timezones[key].utc;
+			const { utc } = data.timezones[key];
 			const utcPretty = `${utc.slice(0, -2)}:${utc.slice(-2)}`;
 			timezoneItems.push(
 				<MenuItem
@@ -52,7 +59,7 @@ class GeneralSettings extends React.Component {
 			);
 		}
 
-		let countryItems = [];
+		const countryItems = [];
 		for (const key in data.countries) {
 			countryItems.push(
 				<MenuItem value={key} key={key} primaryText={data.countries[key]} />
@@ -68,90 +75,42 @@ class GeneralSettings extends React.Component {
 				}}
 			>
 				<Paper className="paper-box" zDepth={1}>
-					<div style={{ width: '100%' }}>
-						<List>
-							<Link
-								to={'/admin/settings/general/commerceform'}
-								style={{ textDecoration: 'none' }}
-							>
-								<ListItem
-									rightIcon={
-										<FontIcon className="material-icons">
-											keyboard_arrow_right
-										</FontIcon>
-									}
-									primaryText={messages.commerce_form}
-								/>
-							</Link>
-							<Divider />
-						</List>
-					</div>
-					<div style={{ width: '100%' }}>
-						<List>
-							<Link
-								to={'/admin/settings/general/logo'}
-								style={{ textDecoration: 'none' }}
-							>
-								<ListItem
-									rightIcon={
-										<FontIcon className="material-icons">
-											keyboard_arrow_right
-										</FontIcon>
-									}
-									primaryText={messages.logo}
-								/>
-							</Link>
-							<Divider />
-						</List>
-					</div>
-
 					<div className={style.innerBox}>
-						<div className="row between-xs middle-xs">
-							<div className="col-xs-12 col-sm-6">{messages.company}</div>
-							<div className="col-xs-12 col-sm-6">
-								<Field
-									component={TextField}
-									fullWidth={true}
-									name="store_name"
-									type="string"
-									placeholder="Name of the company / store"
-								/>
-							</div>
+						<div style={{ width: '100%' }}>
+							<List>
+								<Link
+									to="/admin/settings/general/logo"
+									style={{ textDecoration: 'none' }}
+								>
+									<ListItem
+										rightIcon={
+											<FontIcon className="material-icons">
+												keyboard_arrow_right
+											</FontIcon>
+										}
+										primaryText={messages.logo}
+									/>
+								</Link>
+								<Divider />
+							</List>
 						</div>
 
-						<Divider
-							style={{
-								marginTop: 10,
-								marginBottom: 10
-							}}
-						/>
 						<div className="row between-xs middle-xs">
-							<div className="col-xs-12 col-sm-6">{messages.language}</div>
 							<div className="col-xs-12 col-sm-6">
-								<Field
-									component={TextField}
-									fullWidth={true}
-									name="language"
-									type="string"
-									placeholder="Language"
-								/>
+								{messages.settings_storeName}
+							</div>
+							<div className="col-xs-12 col-sm-6">
+								<Field component={TextField} fullWidth name="store_name" />
 							</div>
 						</div>
-
-						<Divider
-							style={{
-								marginTop: 10,
-								marginBottom: 10
-							}}
-						/>
 
 						<div className="row between-xs middle-xs">
 							<div className="col-xs-12 col-sm-6">{messages.currency}</div>
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="currency_code"
 								>
 									{currencyItems}
@@ -173,23 +132,23 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="currency_format"
 									floatingLabelText={messages.settings_currencyFormatting}
 								/>
 
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="currency_symbol"
 									floatingLabelText={messages.settings_currencySymbol}
 								/>
 
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									floatingLabelFixed={true}
-									fullWidth={true}
+									autoWidth
+									floatingLabelFixed
+									fullWidth
 									name="thousand_separator"
 									floatingLabelText={messages.settings_thousandSeparator}
 								>
@@ -201,8 +160,8 @@ class GeneralSettings extends React.Component {
 
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="decimal_separator"
 									floatingLabelText={messages.settings_decimalSeparator}
 								>
@@ -212,8 +171,8 @@ class GeneralSettings extends React.Component {
 
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="decimal_number"
 									floatingLabelText={messages.settings_numberOfDecimal}
 								>
@@ -233,6 +192,42 @@ class GeneralSettings extends React.Component {
 							}}
 						/>
 
+						<Field
+							component={CustomToggle}
+							name="tax_included"
+							label={messages.settings_taxIncluded}
+							style={{ paddingTop: 16, paddingBottom: 16 }}
+						/>
+
+						<Divider
+							style={{
+								marginTop: 10,
+								marginBottom: 10
+							}}
+						/>
+
+						<div className="row between-xs middle-xs">
+							<div className="col-xs-12 col-sm-6">
+								{messages.settings_taxRate}
+							</div>
+							<div className="col-xs-12 col-sm-6">
+								<Field
+									component={TextField}
+									fullWidth
+									name="tax_rate"
+									type="number"
+									placeholder="0"
+								/>
+							</div>
+						</div>
+
+						<Divider
+							style={{
+								marginTop: 10,
+								marginBottom: 10
+							}}
+						/>
+
 						<div className="row between-xs middle-xs">
 							<div className="col-xs-12 col-sm-6">
 								{messages.settings_timezone}
@@ -240,8 +235,8 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="timezone"
 								>
 									{timezoneItems}
@@ -263,8 +258,8 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="date_format"
 								>
 									<MenuItem
@@ -296,8 +291,8 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="time_format"
 								>
 									<MenuItem value="h:mm a" primaryText="2:30 pm" />
@@ -321,25 +316,25 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="weight_unit"
 								>
 									<MenuItem
 										value="g"
-										primaryText={messages.settings_gram + ' (g)'}
+										primaryText={`${messages.settings_gram} (g)`}
 									/>
 									<MenuItem
 										value="kg"
-										primaryText={messages.settings_kilogram + ' (kg)'}
+										primaryText={`${messages.settings_kilogram} (kg)`}
 									/>
 									<MenuItem
 										value="lb"
-										primaryText={messages.settings_pound + ' (lb)'}
+										primaryText={`${messages.settings_pound} (lb)`}
 									/>
 									<MenuItem
 										value="oz"
-										primaryText={messages.settings_ounce + ' (oz)'}
+										primaryText={`${messages.settings_ounce} (oz)`}
 									/>
 								</Field>
 							</div>
@@ -359,17 +354,17 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="length_unit"
 								>
 									<MenuItem
 										value="cm"
-										primaryText={messages.settings_centimeter + ' (cm)'}
+										primaryText={`${messages.settings_centimeter} (cm)`}
 									/>
 									<MenuItem
 										value="in"
-										primaryText={messages.settings_inch + ' (in)'}
+										primaryText={`${messages.settings_inch} (in)`}
 									/>
 								</Field>
 							</div>
@@ -389,7 +384,7 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="default_product_sorting"
 									placeholder="-position,stock_status,price"
 								/>
@@ -408,7 +403,7 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="product_fields"
 									placeholder="id,path,name,price, ..."
 								/>
@@ -427,7 +422,7 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="products_limit"
 									type="number"
 									placeholder="30"
@@ -449,8 +444,8 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={SelectField}
-									autoWidth={true}
-									fullWidth={true}
+									autoWidth
+									fullWidth
 									name="default_shipping_country"
 								>
 									{countryItems}
@@ -472,7 +467,7 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="default_shipping_state"
 								/>
 							</div>
@@ -492,7 +487,7 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="default_shipping_city"
 								/>
 							</div>
@@ -524,7 +519,7 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="domain"
 									placeholder="https://domain.com"
 								/>
@@ -545,7 +540,7 @@ class GeneralSettings extends React.Component {
 							<div className="col-xs-12 col-sm-6">
 								<Field
 									component={TextField}
-									fullWidth={true}
+									fullWidth
 									name="order_confirmation_copy_to"
 								/>
 							</div>
@@ -555,7 +550,7 @@ class GeneralSettings extends React.Component {
 						<RaisedButton
 							type="submit"
 							label={messages.save}
-							primary={true}
+							primary
 							className={style.button}
 							disabled={pristine || submitting}
 						/>
