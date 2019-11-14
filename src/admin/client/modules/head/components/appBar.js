@@ -22,11 +22,11 @@ import WebhooksListHead from 'modules/settings/webhooks/list/head';
 import WebhooksEditHead from 'modules/settings/webhooks/edit/head';
 import AppsHead from 'modules/apps/head';
 import FileListHead from 'modules/files/list/head';
-import DrawerMenu from './drawer';
 
 import FontIcon from 'material-ui/FontIcon';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
+import DrawerMenu from './drawer';
 
 export default class AppBarTop extends React.Component {
 	constructor(props) {
@@ -35,6 +35,7 @@ export default class AppBarTop extends React.Component {
 	}
 
 	handleToggle = () => this.setState({ open: !this.state.open });
+
 	handleClose = () => this.setState({ open: false });
 
 	render() {
@@ -48,9 +49,9 @@ export default class AppBarTop extends React.Component {
 			orderStatusName,
 			orderNumber
 		} = this.props;
-		const pathname = location.pathname;
+		const { pathname } = location;
 
-		if (pathname === '/admin/login' || pathname === '/admin/logout') {
+		if (pathname === '/admin/login' || pathname === '/logout') {
 			return null;
 		}
 
@@ -114,7 +115,7 @@ export default class AppBarTop extends React.Component {
 			}
 
 			rightElements = <ProductsHead />;
-		} 
+		}
 		if (pathname === '/admin/orders') {
 			title = messages.orders_title;
 
@@ -186,7 +187,7 @@ export default class AppBarTop extends React.Component {
 			const productId = pathname.split('/')[3];
 			title = messages.editProductOption;
 			leftButton = (
-				<Link to={`/admin/product/${productId}`}>
+				<Link to={`/product/${productId}`}>
 					<IconButton>
 						<FontIcon color="#fff" className="material-icons">
 							arrow_back
@@ -284,9 +285,7 @@ export default class AppBarTop extends React.Component {
 					</IconButton>
 				</Link>
 			);
-		} else if (
-			pathname === '/admin/settings/email/templates/customer_registration'
-		) {
+		} else if (pathname === '/admin/settings/email/templates/register_doi_en') {
 			title = messages.settings_customerRegistration;
 			leftButton = (
 				<Link to="/admin/settings/email">
@@ -298,7 +297,7 @@ export default class AppBarTop extends React.Component {
 				</Link>
 			);
 		} else if (
-			pathname === '/admin/settings/email/templates/customer_recovery'
+			pathname === '/admin/settings/email/templates/forgot_password_en'
 		) {
 			title = messages.settings_customerRecovery;
 			leftButton = (
@@ -314,8 +313,87 @@ export default class AppBarTop extends React.Component {
 			title = messages.settings_themeSettings;
 		} else if (pathname === '/admin/settings/checkout') {
 			title = messages.settings_checkoutSettings;
+		} else if (pathname === '/admin/settings/import') {
+			title = messages.drawer_importing;
 		} else if (pathname === '/admin/settings/checkout/fields/email') {
 			title = messages.email;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/first_name') {
+			title = messages.first_name;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/last_name') {
+			title = messages.last_name;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/password') {
+			title = messages.password;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/password_verify') {
+			title = messages.password_verify;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/address1') {
+			title = messages.address1;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/address2') {
+			title = messages.address2;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/postal_code') {
+			title = messages.postal_code;
 			leftButton = (
 				<Link to="/admin/settings/checkout">
 					<IconButton>
@@ -360,6 +438,17 @@ export default class AppBarTop extends React.Component {
 			);
 		} else if (pathname === '/admin/settings/checkout/fields/city') {
 			title = messages.city;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/comments') {
+			title = messages.comments;
 			leftButton = (
 				<Link to="/admin/settings/checkout">
 					<IconButton>
@@ -423,22 +512,11 @@ export default class AppBarTop extends React.Component {
 			rightElements = <PaymentMethodHead />;
 		} else if (
 			pathname === '/admin/settings/general' ||
-			pathname === '/admin/settings'
+			pathname === '/settings'
 		) {
 			title = messages.settings_generalSettings;
 		} else if (pathname === '/admin/settings/general/logo') {
 			title = messages.logo;
-			leftButton = (
-				<Link to="/admin/settings">
-					<IconButton>
-						<FontIcon color="#fff" className="material-icons">
-							arrow_back
-						</FontIcon>
-					</IconButton>
-				</Link>
-			);
-		} else if (pathname === '/admin/settings/general/commerceform') {
-			title = messages.commerce_form;
 			leftButton = (
 				<Link to="/admin/settings">
 					<IconButton>
