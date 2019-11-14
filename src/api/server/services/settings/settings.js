@@ -13,7 +13,7 @@ class SettingsService {
 		this.defaultSettings = {
 			store_name: '',
 			domain: '',
-			logo_file: null,
+			logo_file: 'logo.png',
 			language: 'en',
 			currency_code: 'USD',
 			currency_symbol: '$',
