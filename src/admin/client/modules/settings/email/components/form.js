@@ -3,15 +3,10 @@ import { Link } from 'react-router-dom';
 import messages from 'lib/text';
 
 import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
 import FontIcon from 'material-ui/FontIcon';
 import { List, ListItem } from 'material-ui/List';
 
 export default class EmailSettings extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		this.props.onLoad();
 	}
@@ -75,18 +70,84 @@ export default class EmailSettings extends React.Component {
 									primaryText={messages.settings_orderConfirmation}
 								/>
 							</Link>
-							{/* <ListItem
-                  rightIcon={<FontIcon className="material-icons">keyboard_arrow_right</FontIcon>}
-                  primaryText={messages.settings_customerRegistration}
-                  onClick={() => { pushUrl('/admin/settings/email/templates/customer_registration') }}
-                />
-                <Divider />
-                <ListItem
-                  rightIcon={<FontIcon className="material-icons">keyboard_arrow_right</FontIcon>}
-                  primaryText={messages.settings_customerRecovery}
-                  onClick={() => { pushUrl('/admin/settings/email/templates/customer_recovery') }}
-                />
-                <Divider /> */}
+							<Link
+								to="/admin/settings/email/templates/register_doi_en"
+								style={{ textDecoration: 'none' }}
+							>
+								<ListItem
+									rightIcon={
+										<FontIcon className="material-icons">
+											keyboard_arrow_right
+										</FontIcon>
+									}
+									primaryText={messages.settings_customerRegistration}
+								/>
+							</Link>
+							{/* <Link
+								to="/admin/settings/email/templates/register_doi_de"
+								style={{ textDecoration: 'none' }}
+							>
+								<ListItem
+									rightIcon={
+										<FontIcon className="material-icons">
+											keyboard_arrow_right
+										</FontIcon>
+									}
+									primaryText={messages.settings_customerRegistration}
+								/>
+							</Link>
+							<Link
+								to="/admin/settings/email/templates/register_doi_ru"
+								style={{ textDecoration: 'none' }}
+							>
+								<ListItem
+									rightIcon={
+										<FontIcon className="material-icons">
+											keyboard_arrow_right
+										</FontIcon>
+									}
+									primaryText={messages.settings_customerRegistration}
+								/>
+							</Link> */}
+							<Link
+								to="/admin/settings/email/templates/forgot_password_en"
+								style={{ textDecoration: 'none' }}
+							>
+								<ListItem
+									rightIcon={
+										<FontIcon className="material-icons">
+											keyboard_arrow_right
+										</FontIcon>
+									}
+									primaryText={messages.settings_customerRecovery}
+								/>
+							</Link>
+							{/* <Link
+								to="/admin/settings/email/templates/forgot_password_de"
+								style={{ textDecoration: 'none' }}
+							>
+								<ListItem
+									rightIcon={
+										<FontIcon className="material-icons">
+											keyboard_arrow_right
+										</FontIcon>
+									}
+									primaryText={messages.settings_customerRecovery}
+								/>
+							</Link>
+							<Link
+								to="/admin/settings/email/templates/forgot_password_ru"
+								style={{ textDecoration: 'none' }}
+							>
+								<ListItem
+									rightIcon={
+										<FontIcon className="material-icons">
+											keyboard_arrow_right
+										</FontIcon>
+									}
+									primaryText={messages.settings_customerRecovery}
+								/>
+							</Link> */}
 						</List>
 					</div>
 				</Paper>
