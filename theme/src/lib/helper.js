@@ -129,9 +129,7 @@ export const getPaymentMethodFromOrder = (order, paymentMethods) => {
 		paymentMethods &&
 		paymentMethods.length > 0
 	) {
-		return paymentMethods.find(
-			method => method.id === order.payment_method_id
-		);
+		return paymentMethods.find(method => method.id === order.payment_method_id);
 	}
 	return null;
 };
@@ -139,7 +137,7 @@ export const getPaymentMethodFromOrder = (order, paymentMethods) => {
 export const getFieldLabelByKey = key => {
 	switch (key) {
 		case 'full_name':
-			return text.full_name;
+			return text.fullName;
 		case 'address1':
 			return text.address1;
 		case 'address2':
@@ -167,7 +165,7 @@ export const getFieldLabelByKey = key => {
 	}
 };
 
-export const getShippingFieldLabelOrderSuccess = ( key ) => getFieldLabelByKey(key);
+export const getShippingFieldLabelOrderSuccess = key => getFieldLabelByKey(key);
 
 export const getShippingFieldLabel = ({ label, key }) =>
 	label && label.length > 0 ? label : getFieldLabelByKey(key);

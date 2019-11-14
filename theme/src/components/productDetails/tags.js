@@ -13,9 +13,8 @@ const Tags = ({ tags }) => {
 				))}
 			</div>
 		);
-	} else {
-		return null;
 	}
+	return null;
 };
 
 export default Tags;

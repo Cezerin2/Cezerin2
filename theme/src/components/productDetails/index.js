@@ -41,7 +41,7 @@ export default class ProductDetails extends React.Component {
 	}
 
 	onOptionChange(optionId, valueId) {
-		let { selectedOptions } = this.state;
+		const { selectedOptions } = this.state;
 
 		if (valueId === '') {
 			delete selectedOptions[optionId];
@@ -49,7 +49,7 @@ export default class ProductDetails extends React.Component {
 			selectedOptions[optionId] = valueId;
 		}
 
-		this.setState({ selectedOptions: selectedOptions });
+		this.setState({ selectedOptions });
 		this.findVariantBySelectedOptions();
 		this.checkSelectedOptions();
 	}
@@ -72,16 +72,16 @@ export default class ProductDetails extends React.Component {
 	}
 
 	setQuantity = quantity => {
-		this.setState({ quantity: quantity });
+		this.setState({ quantity });
 	};
 
 	addToCart() {
 		const { product, addCartItem } = this.props;
 		const { selectedVariant, quantity } = this.state;
 
-		let item = {
+		const item = {
 			product_id: product.id,
-			quantity: quantity
+			quantity
 		};
 
 		if (selectedVariant) {
@@ -107,10 +107,10 @@ export default class ProductDetails extends React.Component {
 			product.stock_status === 'discontinued'
 				? 0
 				: product.stock_backorder
-					? themeSettings.maxCartItemQty
-					: selectedVariant
-						? selectedVariant.stock_quantity
-						: product.stock_quantity;
+				? themeSettings.maxCartItemQty
+				: selectedVariant
+				? selectedVariant.stock_quantity
+				: product.stock_quantity;
 
 		if (product) {
 			return (
@@ -208,8 +208,7 @@ export default class ProductDetails extends React.Component {
 						)}
 				</Fragment>
 			);
-		} else {
-			return null;
 		}
+		return null;
 	}
 }

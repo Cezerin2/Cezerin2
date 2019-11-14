@@ -53,13 +53,13 @@ export default class Gallery extends React.Component {
 						items={imagesArray}
 						showThumbnails={showThumbnails}
 						onClick={this.openLightbox}
-						lazyLoad={true}
+						lazyLoad
 						slideInterval={2000}
 						showNav={themeSettings.product_gallery_shownav === true}
 						showBullets={showThumbnails}
 						showPlayButton={false}
 						showFullscreenButton={false}
-						slideOnThumbnailHover={true}
+						slideOnThumbnailHover
 						thumbnailPosition={themeSettings.product_thumbnail_position}
 						onSlide={this.setPhotoIndex}
 					/>
@@ -94,8 +94,7 @@ export default class Gallery extends React.Component {
 					)}
 				</Fragment>
 			);
-		} else {
-			return <div className="large-image-placeholder" />;
 		}
+		return <div className="large-image-placeholder" />;
 	}
 }

@@ -20,8 +20,8 @@ export default class CustomPageList extends React.Component {
 
 	fetchData = ({ tags, sort }) => {
 		const filter = {
-			tags: tags,
-			sort: sort
+			tags,
+			sort
 		};
 
 		api.ajax.pages.list(filter).then(({ status, json }) => {

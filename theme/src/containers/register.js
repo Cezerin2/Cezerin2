@@ -5,7 +5,7 @@ import Register from '../components/register';
 
 const RegisterContainer = props => {
 	const {
-		state: { pageDetails, settings}
+		state: { pageDetails, settings }
 	} = props;
 
 	return (

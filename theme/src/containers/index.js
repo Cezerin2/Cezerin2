@@ -23,20 +23,19 @@ const IndexContainer = props => {
 
 			<HomeSlider images={themeSettings.home_slider} />
 
-			{pageDetails.content &&
-				pageDetails.content.length > 10 && (
-					<section className="section">
-						<div className="container">
-							<div className="content">
-								<div
-									dangerouslySetInnerHTML={{
-										__html: pageDetails.content
-									}}
-								/>
-							</div>
+			{pageDetails.content && pageDetails.content.length > 10 && (
+				<section className="section">
+					<div className="container">
+						<div className="content">
+							<div
+								dangerouslySetInnerHTML={{
+									__html: pageDetails.content
+								}}
+							/>
 						</div>
-					</section>
-				)}
+					</div>
+				</section>
+			)}
 
 			<section className="section">
 				<div className="container">

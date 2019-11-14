@@ -5,7 +5,7 @@ import ResetPassword from '../components/resetPassword/index';
 
 const ResetPasswordContainer = props => {
 	const {
-		state: { pageDetails, loginUser}
+		state: { pageDetails, loginUser }
 	} = props;
 
 	return (

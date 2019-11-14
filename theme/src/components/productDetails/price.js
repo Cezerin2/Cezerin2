@@ -17,12 +17,12 @@ const NewAndOldPrices = ({ newPrice, oldPrice, settings }) => (
 );
 
 const Price = ({ product, variant, isAllOptionsSelected, settings }) => {
-	let priceStyle = {};
+	const priceStyle = {};
 	if (
 		themeSettings.details_price_size &&
 		themeSettings.details_price_size > 0
 	) {
-		priceStyle.fontSize = themeSettings.details_price_size + 'px';
+		priceStyle.fontSize = `${themeSettings.details_price_size}px`;
 	}
 	if (
 		themeSettings.details_price_color &&
@@ -52,13 +52,12 @@ const Price = ({ product, variant, isAllOptionsSelected, settings }) => {
 				oldPrice={oldPrice}
 			/>
 		);
-	} else {
-		return (
-			<div className="product-price" style={priceStyle}>
-				<FormattedCurrency settings={settings} number={price} />
-			</div>
-		);
 	}
+	return (
+		<div className="product-price" style={priceStyle}>
+			<FormattedCurrency settings={settings} number={price} />
+		</div>
+	);
 };
 
 export default Price;

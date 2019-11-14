@@ -4,8 +4,9 @@ const InputField = field => (
 	<div className={field.className}>
 		<label htmlFor={field.id}>
 			{field.label}
-			{field.meta.touched &&
-				field.meta.error && <span className="error">{field.meta.error}</span>}
+			{field.meta.touched && field.meta.error && (
+				<span className="error">{field.meta.error}</span>
+			)}
 		</label>
 		<input
 			{...field.input}

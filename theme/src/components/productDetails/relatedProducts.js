@@ -6,7 +6,7 @@ export default class RelatedProducts extends React.PureComponent {
 	render() {
 		const { ids, settings, addCartItem, limit } = this.props;
 		if (ids && ids.length > 0) {
-			let title =
+			const title =
 				themeSettings.related_products_title &&
 				themeSettings.related_products_title.length > 0
 					? themeSettings.related_products_title
@@ -20,15 +20,14 @@ export default class RelatedProducts extends React.PureComponent {
 							ids={ids}
 							sort={null}
 							limit={limit}
-							isCentered={true}
+							isCentered
 							settings={settings}
 							addCartItem={addCartItem}
 						/>
 					</div>
 				</section>
 			);
-		} else {
-			return null;
 		}
+		return null;
 	}
 }

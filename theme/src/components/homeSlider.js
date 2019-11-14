@@ -31,7 +31,7 @@ const HomeSlider = ({ images }) => {
 
 		return (
 			<section className="section" style={{ padding: 0 }}>
-				<div>
+				<div className="container">
 					<div className="home-slider">
 						<ImageGallery
 							items={items}

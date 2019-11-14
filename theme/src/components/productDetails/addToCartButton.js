@@ -8,7 +8,7 @@ const AddToCartButton = ({
 	addCartItem,
 	isAllOptionsSelected
 }) => {
-	let buttonStyle = {};
+	const buttonStyle = {};
 	if (
 		themeSettings.button_addtocart_bg &&
 		themeSettings.button_addtocart_bg.length > 0
@@ -22,7 +22,7 @@ const AddToCartButton = ({
 		buttonStyle.color = themeSettings.button_addtocart_color;
 	}
 
-	let addToCartText =
+	const addToCartText =
 		themeSettings.button_addtocart_text &&
 		themeSettings.button_addtocart_text.length > 0
 			? themeSettings.button_addtocart_text
@@ -38,7 +38,8 @@ const AddToCartButton = ({
 				{text.discontinued}
 			</button>
 		);
-	} else if (product.variable && variant && variant.stock_quantity > 0) {
+	}
+	if (product.variable && variant && variant.stock_quantity > 0) {
 		return (
 			<button
 				className="button is-success is-fullwidth"
@@ -48,7 +49,8 @@ const AddToCartButton = ({
 				{addToCartText}
 			</button>
 		);
-	} else if (product.variable && !isAllOptionsSelected) {
+	}
+	if (product.variable && !isAllOptionsSelected) {
 		return (
 			<button
 				className="button is-success is-fullwidth"
@@ -58,7 +60,8 @@ const AddToCartButton = ({
 				{text.optionsRequired}
 			</button>
 		);
-	} else if (product.variable && !product.stock_backorder) {
+	}
+	if (product.variable && !product.stock_backorder) {
 		return (
 			<button
 				className="button is-success is-fullwidth"
@@ -68,7 +71,8 @@ const AddToCartButton = ({
 				{text.outOfStock}
 			</button>
 		);
-	} else if (product.stock_status === 'available') {
+	}
+	if (product.stock_status === 'available') {
 		return (
 			<button
 				className="button is-success is-fullwidth"
@@ -78,7 +82,8 @@ const AddToCartButton = ({
 				{addToCartText}
 			</button>
 		);
-	} else if (product.stock_status === 'out_of_stock') {
+	}
+	if (product.stock_status === 'out_of_stock') {
 		return (
 			<button
 				className="button is-success is-fullwidth"
@@ -88,9 +93,8 @@ const AddToCartButton = ({
 				{text.outOfStock}
 			</button>
 		);
-	} else {
-		return null;
 	}
+	return null;
 };
 
 export default AddToCartButton;

@@ -36,9 +36,7 @@ const Item = ({
 
 	return (
 		<div
-			className={`column is-${columnSizeOnMobile}-mobile is-${columnSizeOnTablet}-tablet is-${columnSizeOnDesktop}-desktop is-${columnSizeOnWidescreen}-widescreen is-${columnSizeOnFullhd}-fullhd ${
-				product.stock_status
-			}`}
+			className={`column is-${columnSizeOnMobile}-mobile is-${columnSizeOnTablet}-tablet is-${columnSizeOnDesktop}-desktop is-${columnSizeOnWidescreen}-widescreen is-${columnSizeOnFullhd}-fullhd ${product.stock_status}`}
 		>
 			<NavLink to={product.path}>
 				<figure className="image" style={{ height: imageHeight }}>

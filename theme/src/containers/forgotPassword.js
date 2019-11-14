@@ -5,7 +5,7 @@ import ForgotPassword from '../components/forgotPassword/index';
 
 const ForgotPasswordContainer = props => {
 	const {
-		state: { pageDetails, loginUser}
+		state: { pageDetails, loginUser }
 	} = props;
 
 	return (

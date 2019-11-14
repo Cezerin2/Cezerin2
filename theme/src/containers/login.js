@@ -5,7 +5,7 @@ import Login from '../components/login/index';
 
 const LoginContainer = props => {
 	const {
-		state: { pageDetails, loginUser}
+		state: { pageDetails, loginUser }
 	} = props;
 
 	return (

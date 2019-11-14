@@ -71,11 +71,9 @@ class HeadMenuItem extends React.Component {
 				</div>
 				{hasItems && (
 					<ul
-						className={
-							(level === 1 ? 'columns is-gapless is-multiline' : '') +
-							' nav-level-' +
-							level
-						}
+						className={`${
+							level === 1 ? 'columns is-gapless is-multiline' : ''
+						} nav-level-${level}`}
 					>
 						{items}
 					</ul>

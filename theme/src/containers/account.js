@@ -5,7 +5,7 @@ import Account from '../components/account/index';
 
 const AccountContainer = props => {
 	const {
-		state: { pageDetails, loginUser}
+		state: { pageDetails, loginUser }
 	} = props;
 
 	return (

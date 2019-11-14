@@ -11,28 +11,27 @@ const validateEmail = value =>
 		? text.emailInvalid
 		: undefined;
 
-const ReadOnlyField = ({ name, value }) => {
-	return (
-		<div className="checkout-field-preview">
-			<div className="name">{name}</div>
-			<div className="value">{value}</div>
-		</div>
-	);
-};
+const ReadOnlyField = ({ name, value }) => (
+	<div className="checkout-field-preview">
+		<div className="name">{name}</div>
+		<div className="value">{value}</div>
+	</div>
+);
 
 const InputField = field => (
 	<div className={field.className}>
 		<label htmlFor={field.id}>
 			{field.label}
-			{field.meta.touched &&
-				field.meta.error && <span className="error">{field.meta.error}</span>}
+			{field.meta.touched && field.meta.error && (
+				<span className="error">{field.meta.error}</span>
+			)}
 		</label>
 		<input
 			{...field.input}
 			placeholder={field.placeholder}
 			type={field.type}
 			id={field.id}
-			disabled={field.disabled} 
+			disabled={field.disabled}
 			className={field.meta.touched && field.meta.error ? 'invalid' : ''}
 		/>
 	</div>
@@ -41,8 +40,8 @@ const InputField = field => (
 const initialData = {
 	status: false,
 	isRightToken: null,
-	isCustomerSaved : null
-}
+	isCustomerSaved: null
+};
 
 class Register extends React.Component {
 	constructor(props) {
@@ -50,12 +49,12 @@ class Register extends React.Component {
 
 		this.state = {
 			comparePassword: ''
-		}
+		};
 	}
 
 	passwordTemp = value => {
-		this.setState( {comparePassword: value.currentTarget.defaultValue} );
-	}
+		this.setState({ comparePassword: value.currentTarget.defaultValue });
+	};
 
 	getField = fieldName => {
 		const fields = this.props.checkoutFields || [];
@@ -68,17 +67,13 @@ class Register extends React.Component {
 		return field && field.status ? field.status : 'required';
 	};
 
-	isFieldOptional = fieldName => {
-		return this.getFieldStatus(fieldName) === 'optional';
-	};
+	isFieldOptional = fieldName => this.getFieldStatus(fieldName) === 'optional';
 
-	isFieldHidden = fieldName => {
-		return this.getFieldStatus(fieldName) === 'hidden';
-	};
+	isFieldHidden = fieldName => this.getFieldStatus(fieldName) === 'hidden';
 
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
-		let validatorsArray = [];
+		const validatorsArray = [];
 		if (!isOptional) {
 			validatorsArray.push(validateRequired);
 		}
@@ -93,11 +88,11 @@ class Register extends React.Component {
 	};
 
 	confirmPassword = value => {
-		if(value !== this.state.comparePassword ) {
+		if (value !== this.state.comparePassword) {
 			return text.password_verify_failed;
 		}
 		return undefined;
-	}
+	};
 
 	getFieldPlaceholder = fieldName => {
 		const field = this.getField(fieldName);
@@ -110,26 +105,25 @@ class Register extends React.Component {
 		const field = this.getField(fieldName);
 		if (field && field.label && field.label.length > 0) {
 			return field.label;
-		} else {
-			switch (fieldName) {
-				case 'first_name':
-					return text.first_name;
-					break;
-				case 'last_name':
-					return text.last_name;
-					break;
-				case 'email':
-					return text.email;
-					break;
-				case 'password':
-					return text.password;
-					break;
-				case 'password_verify':
-					return text.password_verify;
-					break;
-				default:
-					return 'Unnamed field';
-			}
+		}
+		switch (fieldName) {
+			case 'first_name':
+				return text.first_name;
+				break;
+			case 'last_name':
+				return text.last_name;
+				break;
+			case 'email':
+				return text.email;
+				break;
+			case 'password':
+				return text.password;
+				break;
+			case 'password_verify':
+				return text.password_verify;
+				break;
+			default:
+				return 'Unnamed field';
 		}
 	};
 
@@ -141,12 +135,10 @@ class Register extends React.Component {
 	};
 
 	render() {
-		let {
-			handleSubmit,
-			registerProperties
-		} = this.props;
+		let { handleSubmit, registerProperties } = this.props;
 
-		registerProperties = registerProperties === undefined ? initialData : registerProperties;
+		registerProperties =
+			registerProperties === undefined ? initialData : registerProperties;
 
 		const registerButtonClassName = 'account-button button';
 		const inputClassName = 'login-input-field';
@@ -158,14 +150,32 @@ class Register extends React.Component {
 			<div className="login-container">
 				<form onSubmit={handleSubmit} className="login-form">
 					<div className="register-section">
-						<h2 className={titleClassName}>
-							{text.register_title}
-						</h2>
+						<h2 className={titleClassName}>{text.register_title}</h2>
 
-						{!registerProperties.status && !registerProperties.isCustomerSaved && registerProperties.isCustomerSaved !== null && registerProperties.isRightToken ? <p className={errorAlertText}>{text.registry_failed}</p> : ''}
-						{registerProperties.status ? <p className={successAlertText}>{text.registry_doi_success}</p> : ''}
-						{registerProperties.isCustomerSaved ? <p className={successAlertText}>{text.registry_completed}</p> : ''}
-						{!registerProperties.isRightToken && registerProperties.isRightToken !== null ? <p className={errorAlertText}>{text.registry_wrong_token}</p> : ''}
+						{!registerProperties.status &&
+						!registerProperties.isCustomerSaved &&
+						registerProperties.isCustomerSaved !== null &&
+						registerProperties.isRightToken ? (
+							<p className={errorAlertText}>{text.registry_failed}</p>
+						) : (
+							''
+						)}
+						{registerProperties.status ? (
+							<p className={successAlertText}>{text.registry_doi_success}</p>
+						) : (
+							''
+						)}
+						{registerProperties.isCustomerSaved ? (
+							<p className={successAlertText}>{text.registry_completed}</p>
+						) : (
+							''
+						)}
+						{!registerProperties.isRightToken &&
+						registerProperties.isRightToken !== null ? (
+							<p className={errorAlertText}>{text.registry_wrong_token}</p>
+						) : (
+							''
+						)}
 						{!registerProperties.isCustomerSaved && (
 							<Field
 								className={inputClassName}
@@ -173,7 +183,11 @@ class Register extends React.Component {
 								id="customer.first_name"
 								component={InputField}
 								type="text"
-								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
+								props={
+									registerProperties !== undefined && registerProperties.status
+										? { disabled: true }
+										: this.value
+								}
 								label={this.getFieldLabel('first_name')}
 								validate={this.getFieldValidators('first_name')}
 								placeholder={this.getFieldPlaceholder('first_name')}
@@ -187,7 +201,11 @@ class Register extends React.Component {
 								id="customer.last_name"
 								component={InputField}
 								type="text"
-								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
+								props={
+									registerProperties !== undefined && registerProperties.status
+										? { disabled: true }
+										: this.value
+								}
 								label={this.getFieldLabel('last_name')}
 								validate={this.getFieldValidators('last_name')}
 								placeholder={this.getFieldPlaceholder('last_name')}
@@ -201,7 +219,11 @@ class Register extends React.Component {
 								id="customer.reg_email"
 								component={InputField}
 								type="email"
-								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
+								props={
+									registerProperties !== undefined && registerProperties.status
+										? { disabled: true }
+										: this.value
+								}
 								label={this.getFieldLabel('email')}
 								validate={this.getFieldValidators('email')}
 								placeholder={this.getFieldPlaceholder('email')}
@@ -215,7 +237,11 @@ class Register extends React.Component {
 								id="customer.reg_password"
 								component={InputField}
 								type="password"
-								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
+								props={
+									registerProperties !== undefined && registerProperties.status
+										? { disabled: true }
+										: this.value
+								}
 								label={this.getFieldLabel('password')}
 								onBlur={this.passwordTemp}
 								validate={this.getFieldValidators('password')}
@@ -230,7 +256,11 @@ class Register extends React.Component {
 								id="customer.reg_password_verify"
 								component={InputField}
 								type="password"
-								props={registerProperties !== undefined && registerProperties.status ? {disabled: true} : this.value}
+								props={
+									registerProperties !== undefined && registerProperties.status
+										? { disabled: true }
+										: this.value
+								}
 								label={this.getFieldLabel('password_verify')}
 								validate={this.getFieldValidators('password_verify')}
 								placeholder={this.getFieldPlaceholder('password_verify')}
@@ -238,14 +268,28 @@ class Register extends React.Component {
 						)}
 
 						<div className="login-button-wrap">
-							{!registerProperties.isCustomerSaved && <button
-								type="submit"
-								className={registerButtonClassName}
-								disabled={registerProperties !== undefined && registerProperties.status}
-							>
-								{text.register}
-							</button>}
-							{registerProperties.isCustomerSaved && <Link  to="/login" style={{textDecoration:'none'}} key={'back-to-login'} className={loginButtonClass}>{text.back_to_login}</Link>}
+							{!registerProperties.isCustomerSaved && (
+								<button
+									type="submit"
+									className={registerButtonClassName}
+									disabled={
+										registerProperties !== undefined &&
+										registerProperties.status
+									}
+								>
+									{text.register}
+								</button>
+							)}
+							{registerProperties.isCustomerSaved && (
+								<Link
+									to="/login"
+									style={{ textDecoration: 'none' }}
+									key="back-to-login"
+									className={loginButtonClass}
+								>
+									{text.back_to_login}
+								</Link>
+							)}
 						</div>
 					</div>
 				</form>

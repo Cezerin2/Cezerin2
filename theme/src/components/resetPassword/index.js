@@ -9,11 +9,11 @@ export default class ResetPasswordForm extends React.Component {
 
 		this.state = {
 			verifiedToken: false
-		}
+		};
 	}
 
 	verifyToken() {
-		this.setState( {verifiedToken: true } );
+		this.setState({ verifiedToken: true });
 		this.props.resetPassword({
 			token: this.props.location.search.split('=')[1]
 		});
@@ -21,10 +21,10 @@ export default class ResetPasswordForm extends React.Component {
 
 	handleFormSubmit = values => {
 		const userId = this.props.state.resetPasswordProperties.id;
-        this.props.resetPassword({
+		this.props.resetPassword({
 			id: userId,
 			password: values.password,
-            history: this.props.history
+			history: this.props.history
 		});
 	};
 
@@ -34,33 +34,41 @@ export default class ResetPasswordForm extends React.Component {
 		const {
 			settings,
 			forgotPasswordProperties,
-			resetPasswordProperties,
+			resetPasswordProperties
 		} = this.props.state;
 
-		if (this.props.location.search === '' || this.props.location.search.indexOf('?token=') === -1 || resetPasswordProperties && !resetPasswordProperties.status) {
+		if (
+			this.props.location.search === '' ||
+			this.props.location.search.indexOf('?token=') === -1 ||
+			(resetPasswordProperties && !resetPasswordProperties.status)
+		) {
 			return (
-				<Redirect to={{
-					pathname: '/'
-				}}/>
-			)
+				<Redirect
+					to={{
+						pathname: '/'
+					}}
+				/>
+			);
 		}
 
 		const {
 			checkoutInputClass = 'checkout-field',
-			checkoutButtonClass = 'checkout-button',
+			checkoutButtonClass = 'checkout-button'
 		} = themeSettings;
 
 		return (
 			<div>
-				{resetPasswordProperties && <ResetPassword
-					inputClassName={checkoutInputClass}
-					buttonClassName={checkoutButtonClass}
-					settings={settings}
-					forgotPasswordProperties={forgotPasswordProperties}
-					resetPasswordProperties={resetPasswordProperties}
-					onSubmit={this.handleFormSubmit}
-				/>}
-			</div>	
+				{resetPasswordProperties && (
+					<ResetPassword
+						inputClassName={checkoutInputClass}
+						buttonClassName={checkoutButtonClass}
+						settings={settings}
+						forgotPasswordProperties={forgotPasswordProperties}
+						resetPasswordProperties={resetPasswordProperties}
+						onSubmit={this.handleFormSubmit}
+					/>
+				)}
+			</div>
 		);
 	}
 }

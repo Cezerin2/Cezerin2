@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 
-const pad = number => (number < 10 ? '0' + number : number);
+const pad = number => (number < 10 ? `0${number}` : number);
 const formatDate = date =>
 	`${pad(date.getDate())}.${pad(date.getMonth() + 1)}.${date.getFullYear()}`;
 

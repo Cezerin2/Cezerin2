@@ -13,8 +13,8 @@ const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
 	const maxQty = item.stock_backorder
 		? themeSettings.maxCartItemQty
 		: item.stock_quantity >= themeSettings.maxCartItemQty
-			? themeSettings.maxCartItemQty
-			: item.stock_quantity;
+		? themeSettings.maxCartItemQty
+		: item.stock_quantity;
 
 	for (let i = 0; i <= maxQty; i++) {
 		const optionText = i === 0 ? text.remove : i;
@@ -98,6 +98,16 @@ const OrderSummary = props => {
 				<hr className="separator" />
 				{items}
 				<div className="columns is-mobile is-gapless is-multiline summary-block">
+					{cart.tax_total > 0 && cart.item_tax_included && (
+						<div className="column is-7">{text.included_tax}</div>
+					)}
+
+					{cart.tax_total > 0 && cart.item_tax_included && (
+						<div className="column is-5 has-text-right price">
+							{helper.formatCurrency(cart.tax_total, settings)}
+						</div>
+					)}
+
 					<div className="column is-7">{text.subtotal}</div>
 					<div className="column is-5 has-text-right price">
 						{helper.formatCurrency(cart.subtotal, settings)}
@@ -113,6 +123,16 @@ const OrderSummary = props => {
 					{cart.discount_total > 0 && (
 						<div className="column is-5 has-text-right price">
 							{helper.formatCurrency(cart.discount_total, settings)}
+						</div>
+					)}
+
+					{cart.tax_total > 0 && !cart.item_tax_included && (
+						<div className="column is-7">{text.tax}</div>
+					)}
+
+					{cart.tax_total > 0 && !cart.item_tax_included && (
+						<div className="column is-5 has-text-right price">
+							{helper.formatCurrency(cart.tax_total, settings)}
 						</div>
 					)}
 

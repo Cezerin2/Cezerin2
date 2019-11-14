@@ -62,7 +62,8 @@ export default class PaymentForm extends React.Component {
 
 		if (loading) {
 			return null;
-		} else if (formSettings && gateway && gateway !== '') {
+		}
+		if (formSettings && gateway && gateway !== '') {
 			switch (gateway) {
 				case 'paypal-checkout':
 					return (
