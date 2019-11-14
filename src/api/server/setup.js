@@ -52,13 +52,13 @@ const addAllPages = async db => {
 	});
 	await addPage(db, {
 		slug: 'login',
-		meta_title: 'Login or Register',
+		meta_title: 'Login',
 		enabled: true,
 		is_system: true
 	});
 	await addPage(db, {
 		slug: 'register',
-		meta_title: 'Login or Register',
+		meta_title: 'Register',
 		enabled: true,
 		is_system: true
 	});
@@ -145,7 +145,7 @@ const addAllProducts = async db => {
 			slug: 'product-a',
 			category_id: catA.insertedId,
 			regular_price: 950,
-			stock_quantity: 1,
+			stock_quantity: 999,
 			enabled: true,
 			discontinued: false,
 			attributes: [
@@ -159,7 +159,7 @@ const addAllProducts = async db => {
 			slug: 'product-b',
 			category_id: catA.insertedId,
 			regular_price: 1250,
-			stock_quantity: 1,
+			stock_quantity: 999,
 			enabled: true,
 			discontinued: false,
 			attributes: [
@@ -256,7 +256,29 @@ const addForgotPasswordEmailTemplates_en = async db => {
 		  </div>`
 		});
 
-		winston.info('- Added email template for Order Confirmation');
+		winston.info('- Added email template for Password Reset English');
+	}
+};
+
+const addForgotPasswordEmailTemplates_ru = async db => {
+	const emailTemplatesCount = await db
+		.collection('emailTemplates')
+		.countDocuments({ name: 'forgot_password_ru' });
+	const emailTemplatesNotExists = emailTemplatesCount === 0;
+	if (emailTemplatesNotExists) {
+		await db.collection('emailTemplates').insertOne({
+			name: 'forgot_password_ru',
+			link: 'Сбросить пароль',
+			subject: `Сброс пароля`,
+			body: `<div style="line-height: 30px">
+			<div><b>Вы запросили сброс пароля.</b><div>
+			<div><b>Пожалуйста, перейдите по указанной ссылке для сброса пароля.</b><div>
+			<div><b>Ссылка:</b> {{forgot_password_link}}<div>
+
+		  </div>`
+		});
+
+		winston.info('- Added email template for Password Reset Russian');
 	}
 };
 
@@ -283,7 +305,7 @@ const addForgotPasswordEmailTemplates_de = async db => {
 		  </div>`
 		});
 
-		winston.info('- Added email template for Order Confirmation');
+		winston.info('- Added email template for Password Reset German');
 	}
 };
 
@@ -303,7 +325,7 @@ const addRegisterDoiEmailTemplates_en = async db => {
 			<div><b>Link:</b><br />
 			{{register_doi_link}}
 			<br />
-			<div><b>If you have any questions please don't hasitate and call our customerservice.</b></div>
+			<div><b>If you have any questions please dont hasitate and call our customerservice.</b></div>
 			<br />
 			<div><b>Best regards</b></div>
 			<br />
@@ -312,7 +334,32 @@ const addRegisterDoiEmailTemplates_en = async db => {
 		  </div>`
 		});
 
-		winston.info('- Added email template for Order Confirmation');
+		winston.info('- Added email template for Account Activation English');
+	}
+};
+
+const addRegisterDoiEmailTemplates_ru = async db => {
+	const emailTemplatesCount = await db
+		.collection('emailTemplates')
+		.countDocuments({ name: 'register_doi_ru' });
+	const emailTemplatesNotExists = emailTemplatesCount === 0;
+	if (emailTemplatesNotExists) {
+		await db.collection('emailTemplates').insertOne({
+			name: 'register_doi_ru',
+			link: 'Активировать аккаунт',
+			subject: `Регистрация`,
+			body: `<div style="line-height: 30px">
+			<div><b>Вы успешно зарегистрировались в нашем магазине.</b><div>
+			<div><b>Пожалуйста, перейдите по указанной ссылке для активации Вашего аккаунта.</b><div>
+			<div><b>Ссылка:</b><br />
+			{{register_doi_link}}
+			<br />
+			<div><b>Если у Вас есть какие-либо вопросы, задайте нам их в ответном письме.</b></div>
+
+		  </div>`
+		});
+
+		winston.info('- Added email template for Account Activation Russian');
 	}
 };
 
@@ -340,7 +387,7 @@ const addRegisterDoiEmailTemplates_de = async db => {
 		  </div>`
 		});
 
-		winston.info('- Added email template for Order Confirmation');
+		winston.info('- Added email template for Account Activation German');
 	}
 };
 
@@ -351,7 +398,7 @@ const addShippingMethods = async db => {
 	const shippingMethodsNotExists = shippingMethodsCount === 0;
 	if (shippingMethodsNotExists) {
 		await db.collection('shippingMethods').insertOne({
-			name: 'Shipping method A',
+			name: 'Courier Service',
 			enabled: true,
 			conditions: {
 				countries: [],
@@ -374,7 +421,7 @@ const addPaymentMethods = async db => {
 	const paymentMethodsNotExists = paymentMethodsCount === 0;
 	if (paymentMethodsNotExists) {
 		await db.collection('paymentMethods').insertOne({
-			name: 'PayPal',
+			name: 'Cash On Delivery',
 			enabled: true,
 			conditions: {
 				countries: [],
@@ -531,10 +578,7 @@ const addSettings = async (db, { domain }) => {
 	let db = null;
 
 	try {
-		client = await MongoClient.connect(
-			mongodbConnection,
-			CONNECT_OPTIONS
-		);
+		client = await MongoClient.connect(mongodbConnection, CONNECT_OPTIONS);
 		db = client.db(dbName);
 		winston.info(`Successfully connected to ${mongodbConnection}`);
 	} catch (e) {
@@ -551,8 +595,10 @@ const addSettings = async (db, { domain }) => {
 	await addAllProducts(db);
 	await addOrderConfirmationEmailTemplates(db);
 	await addForgotPasswordEmailTemplates_en(db);
+	await addForgotPasswordEmailTemplates_ru(db);
 	await addForgotPasswordEmailTemplates_de(db);
 	await addRegisterDoiEmailTemplates_en(db);
+	await addRegisterDoiEmailTemplates_ru(db);
 	await addRegisterDoiEmailTemplates_de(db);
 	await addShippingMethods(db);
 	await addPaymentMethods(db);
