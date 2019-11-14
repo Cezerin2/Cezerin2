@@ -1,0 +1,59 @@
+import React from 'react';
+import AuthHeader from '../../../../src/api/server/lib/auth-header';
+import { Redirect } from 'react-router-dom';
+import { themeSettings, text } from '../../lib/settings';
+import Register from './register';
+
+export default class RegisterForm extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.handleContactsSubmit = values => {
+			this.props.registerUser({
+				first_name: values.first_name,
+				last_name: values.last_name,
+				email: values.email,
+				password: AuthHeader.encodeUserPassword(values.password),
+				history: this.props.history
+			});
+		};
+
+		this.state = {
+			verifiedToken: false
+		};
+	}
+
+	verifyToken() {
+		this.setState({ verifiedToken: true });
+		this.props.registerUser({
+			token: this.props.location.search.split('=')[1]
+		});
+	}
+
+	render() {
+
+		const {
+			settings,
+			registerProperties
+		} = this.props.state;
+
+		if (this.props.location.search !== '' && this.props.location.search.indexOf('?token=') !== -1) {
+			!this.state.verifiedToken ? this.verifyToken() : '';
+		}
+
+		const {
+			checkoutInputClass = 'checkout-field',
+			checkoutButtonClass = 'checkout-button',
+			checkoutEditButtonClass = 'checkout-button-edit'
+		} = themeSettings;
+
+		return React.createElement(Register, {
+			inputClassName: checkoutInputClass,
+			buttonClassName: checkoutButtonClass,
+			editButtonClassName: checkoutEditButtonClass,
+			settings: settings,
+			registerProperties: registerProperties,
+			onSubmit: this.handleContactsSubmit
+		});
+	}
+}
