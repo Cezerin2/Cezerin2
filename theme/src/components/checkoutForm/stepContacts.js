@@ -307,7 +307,7 @@ class CheckoutStepContacts extends React.Component {
 							value={initialValues.email}
 						/>
 					)}
-					{this.isFieldHidden('mobile') && (
+					{!this.isFieldHidden('mobile') && (
 						<ReadOnlyField
 							step={step}
 							name={text.mobile}
@@ -510,7 +510,7 @@ class CheckoutStepContacts extends React.Component {
 							)
 						)}
 
-						{this.isFieldHidden('mobile') && (
+						{!this.isFieldHidden('mobile') && (
 							<Field
 								className={inputClassName}
 								name="mobile"
