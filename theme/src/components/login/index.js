@@ -1,6 +1,7 @@
 import React from 'react';
-import Lscache from 'lscache';
+import AuthHeader from '../../../../src/api/server/lib/auth-header';
 import { themeSettings, text } from '../../lib/settings';
+import Lscache from 'lscache';
 import Login from './login';
 
 export default class LoginForm extends React.Component {
@@ -24,9 +25,9 @@ export default class LoginForm extends React.Component {
 
 		this.props.loginUser({
 			email: values.email,
-			password: values.password,
+			password: AuthHeader.encodeUserPassword(values.password),
 			history: this.props.history,
-			cartLayer
+			cartLayer: cartLayer
 		});
 	};
 
@@ -39,14 +40,13 @@ export default class LoginForm extends React.Component {
 
 		if (this.props.state.customerProperties !== undefined) {
 			if (this.props.state.customerProperties.authenticated) {
-				const expiryMilliseconds = 1000; // time units is seconds
+				const expiryMilliseconds = 1000; //time units is seconds
 				Lscache.setExpiryMilliseconds(expiryMilliseconds);
 				Lscache.set(
 					'auth_data',
 					this.props.state.customerProperties.token,
 					6000
 				);
-				Lscache.set('customer_data', this.props.state.customerProperties, 6000);
 			}
 		}
 

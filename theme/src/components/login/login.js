@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { themeSettings, text } from '../../lib/settings';
 import { Link, Redirect, NavLink } from 'react-router-dom';
 import Lscache from 'lscache';
-import { themeSettings, text } from '../../lib/settings';
 
 const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required;
@@ -12,12 +12,14 @@ const validateEmail = value =>
 		? text.emailInvalid
 		: undefined;
 
-const ReadOnlyField = ({ name, value }) => (
-	<div className="checkout-field-preview">
-		<div className="name">{name}</div>
-		<div className="value">{value}</div>
-	</div>
-);
+const ReadOnlyField = ({ name, value }) => {
+	return (
+		<div className="checkout-field-preview">
+			<div className="name">{name}</div>
+			<div className="value">{value}</div>
+		</div>
+	);
+};
 
 const InputField = field => (
 	<div className={field.className}>
@@ -60,13 +62,17 @@ class Login extends React.Component {
 		return field && field.status ? field.status : 'required';
 	};
 
-	isFieldOptional = fieldName => this.getFieldStatus(fieldName) === 'optional';
+	isFieldOptional = fieldName => {
+		return this.getFieldStatus(fieldName) === 'optional';
+	};
 
-	isFieldHidden = fieldName => this.getFieldStatus(fieldName) === 'hidden';
+	isFieldHidden = fieldName => {
+		return this.getFieldStatus(fieldName) === 'hidden';
+	};
 
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
-		const validatorsArray = [];
+		let validatorsArray = [];
 		if (!isOptional) {
 			validatorsArray.push(validateRequired);
 		}
@@ -88,16 +94,17 @@ class Login extends React.Component {
 		const field = this.getField(fieldName);
 		if (field && field.label && field.label.length > 0) {
 			return field.label;
-		}
-		switch (fieldName) {
-			case 'email':
-				return text.email;
-				break;
-			case 'password':
-				return text.password;
-				break;
-			default:
-				return 'Unnamed field';
+		} else {
+			switch (fieldName) {
+				case 'email':
+					return text.email;
+					break;
+				case 'password':
+					return text.password;
+					break;
+				default:
+					return 'Unnamed field';
+			}
 		}
 	};
 
@@ -149,24 +156,6 @@ class Login extends React.Component {
 
 		return (
 			<div className="login-container">
-				{this.props.cartlayerBtnInitialized !== undefined &&
-					this.props.cartlayerBtnInitialized && (
-						<div className="login-guest-checkout">
-							<div className={loginSectionGuest}>
-								<h2>{text.continue_guest_headline}</h2>
-								<p>{text.continue_guest_text}</p>
-								<div className="login-button-wrap">
-									<NavLink
-										className="button loginButtonClass"
-										style={{ textTransform: 'uppercase' }}
-										to="/checkout"
-									>
-										{text.proceedToCheckout}
-									</NavLink>
-								</div>
-							</div>
-						</div>
-					)}
 				<form onSubmit={handleSubmit} className={loginForm}>
 					<div className="login-section">
 						<h2 className={titleClassName}>{text.login_title}</h2>
@@ -223,6 +212,20 @@ class Login extends React.Component {
 						</NavLink>
 					</div>
 				</form>
+				{this.props.cartlayerBtnInitialized !== undefined &&
+					this.props.cartlayerBtnInitialized && (
+						<div className={loginSectionGuest}>
+							<h2>{text.continue_guest_headline}</h2>
+							<p>{text.continue_guest_text}</p>
+							<NavLink
+								className="button loginButtonClass"
+								style={{ textTransform: 'uppercase' }}
+								to="/checkout"
+							>
+								{text.proceedToCheckout}
+							</NavLink>
+						</div>
+					)}
 			</div>
 		);
 	}

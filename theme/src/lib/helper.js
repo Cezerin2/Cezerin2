@@ -137,7 +137,7 @@ export const getPaymentMethodFromOrder = (order, paymentMethods) => {
 export const getFieldLabelByKey = key => {
 	switch (key) {
 		case 'full_name':
-			return text.fullName;
+			return text.full_name;
 		case 'address1':
 			return text.address1;
 		case 'address2':

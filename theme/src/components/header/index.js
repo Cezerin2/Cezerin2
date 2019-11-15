@@ -126,8 +126,10 @@ export default class Header extends React.Component {
 	handleSearch = search => {
 		if (this.props.state.currentPage.path === '/search') {
 			this.props.setSearch(search);
-		} else if (search && search !== '') {
-			this.props.setLocation(`/search?search=${search}`);
+		} else {
+			if (search && search !== '') {
+				this.props.setLocation('/search?search=' + search);
+			}
 		}
 	};
 
@@ -233,9 +235,10 @@ export default class Header extends React.Component {
 					onClick={this.closeAll}
 				/>
 				<div
-					className={`mobile-nav is-hidden-tablet${
-						this.state.mobileMenuIsActive ? ' mobile-nav-open' : ''
-					}`}
+					className={
+						'mobile-nav is-hidden-tablet' +
+						(this.state.mobileMenuIsActive ? ' mobile-nav-open' : '')
+					}
 				>
 					<HeadMenu
 						isMobile={true}

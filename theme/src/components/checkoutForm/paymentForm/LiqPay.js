@@ -33,15 +33,15 @@ export default class PayPalButton extends React.Component {
 			embedTo: '#liqpay_checkout',
 			mode: 'embed'
 		})
-			.on('liqpay.callback', data => {
+			.on('liqpay.callback', function(data) {
 				if (data.status === 'success') {
 					onPayment();
 				}
 			})
-			.on('liqpay.ready', data => {
+			.on('liqpay.ready', function(data) {
 				// ready
 			})
-			.on('liqpay.close', data => {
+			.on('liqpay.close', function(data) {
 				// close
 			});
 	};

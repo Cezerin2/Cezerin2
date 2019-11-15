@@ -23,7 +23,6 @@ const LoginIcon = () => {
 export default class Login extends React.PureComponent {
 	render() {
 		const { login, onClick } = this.props;
-
 		return (
 			<span className="login-button" onClick={onClick}>
 				<LoginIcon />

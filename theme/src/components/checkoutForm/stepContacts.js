@@ -1,9 +1,9 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
 import { formatCurrency } from '../../lib/helper';
 import InputField from './inputField';
+import Lscache from 'lscache';
 
 const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required;
@@ -13,12 +13,20 @@ const validateEmail = value =>
 		? text.emailInvalid
 		: undefined;
 
-const ReadOnlyField = ({ name, value }) => (
-	<div className="checkout-field-preview">
-		<div className="name">{name}</div>
-		<div className="value">{value}</div>
-	</div>
-);
+const ReadOnlyField = ({ step, name, value }) => {
+	return (
+		<div
+			className={
+				step > 1
+					? 'checkout-field-preview'
+					: 'checkout-field-preview checkout-field-preview--stepcontacts'
+			}
+		>
+			<div className="name">{name}</div>
+			<div className="value">{value}</div>
+		</div>
+	);
+};
 
 class CheckoutStepContacts extends React.Component {
 	constructor(props) {
@@ -136,13 +144,17 @@ class CheckoutStepContacts extends React.Component {
 		return field && field.status ? field.status : 'required';
 	};
 
-	isFieldOptional = fieldName => this.getFieldStatus(fieldName) === 'optional';
+	isFieldOptional = fieldName => {
+		return this.getFieldStatus(fieldName) === 'optional';
+	};
 
-	isFieldHidden = fieldName => this.getFieldStatus(fieldName) === 'hidden';
+	isFieldHidden = fieldName => {
+		return this.getFieldStatus(fieldName) === 'hidden';
+	};
 
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
-		const validatorsArray = [];
+		let validatorsArray = [];
 		if (!isOptional) {
 			validatorsArray.push(validateRequired);
 		}
@@ -174,46 +186,47 @@ class CheckoutStepContacts extends React.Component {
 		const field = this.getField(fieldName);
 		if (field && field.label && field.label.length > 0) {
 			return field.label;
-		}
-		switch (fieldName) {
-			case 'first_name':
-				return text.first_name;
-				break;
-			case 'last_name':
-				return text.last_name;
-				break;
-			case 'email':
-				return text.email;
-				break;
-			case 'mobile':
-				return text.mobile;
-				break;
-			case 'password':
-				return text.password;
-				break;
-			case 'password_verify':
-				return text.password_verify;
-				break;
-			case 'address1':
-				return text.address1;
-				break;
-			case 'address2':
-				return text.address2;
-				break;
-			case 'country':
-				return text.country;
-				break;
-			case 'state':
-				return text.state;
-				break;
-			case 'city':
-				return text.city;
-				break;
-			case 'postal_code':
-				return text.postal_code;
-				break;
-			default:
-				return 'Unnamed field';
+		} else {
+			switch (fieldName) {
+				case 'first_name':
+					return text.first_name;
+					break;
+				case 'last_name':
+					return text.last_name;
+					break;
+				case 'email':
+					return text.email;
+					break;
+				case 'mobile':
+					return text.mobile;
+					break;
+				case 'password':
+					return text.password;
+					break;
+				case 'password_verify':
+					return text.password_verify;
+					break;
+				case 'address1':
+					return text.address1;
+					break;
+				case 'address2':
+					return text.address2;
+					break;
+				case 'country':
+					return text.country;
+					break;
+				case 'state':
+					return text.state;
+					break;
+				case 'city':
+					return text.city;
+					break;
+				case 'postal_code':
+					return text.postal_code;
+					break;
+				default:
+					return 'Unnamed field';
+			}
 		}
 	};
 
@@ -228,6 +241,7 @@ class CheckoutStepContacts extends React.Component {
 		const {
 			handleSubmit,
 			customerProperties,
+			step,
 			pristine,
 			invalid,
 			valid,
@@ -265,65 +279,90 @@ class CheckoutStepContacts extends React.Component {
 						<span>1</span>
 						{title}
 					</h1>
-					{!this.isFieldHidden('first_name') && (
+					{!this.isFieldHidden('full_name') && (
 						<ReadOnlyField
+							step={step}
+							name={text.full_name}
+							value={`${initialValues.first_name} ${initialValues.last_name}`}
+						/>
+					)}
+					{this.isFieldHidden('first_name') && (
+						<ReadOnlyField
+							step={step}
 							name={text.first_name}
 							value={initialValues.first_name}
 						/>
 					)}
-					{!this.isFieldHidden('last_name') && (
+					{this.isFieldHidden('last_name') && (
 						<ReadOnlyField
+							step={step}
 							name={text.last_name}
 							value={initialValues.last_name}
 						/>
 					)}
 					{!this.isFieldHidden('email') && (
-						<ReadOnlyField name={text.email} value={initialValues.email} />
+						<ReadOnlyField
+							step={step}
+							name={text.email}
+							value={initialValues.email}
+						/>
 					)}
-					{!this.isFieldHidden('mobile') && (
-						<ReadOnlyField name={text.mobile} value={initialValues.mobile} />
+					{this.isFieldHidden('mobile') && (
+						<ReadOnlyField
+							step={step}
+							name={text.mobile}
+							value={initialValues.mobile}
+						/>
 					)}
 					{!this.isFieldHidden('address1') && (
 						<ReadOnlyField
+							step={step}
 							name={text.address1}
 							value={initialValues.shipping_address.address1}
 						/>
 					)}
 					{!this.isFieldHidden('address2') && (
 						<ReadOnlyField
+							step={step}
 							name={text.address2}
 							value={initialValues.shipping_address.address2}
 						/>
 					)}
 					{!this.isFieldHidden('country') && (
 						<ReadOnlyField
+							step={step}
 							name={text.country}
 							value={initialValues.shipping_address.country}
 						/>
 					)}
 					{!this.isFieldHidden('state') && (
 						<ReadOnlyField
+							step={step}
 							name={text.state}
 							value={initialValues.shipping_address.state}
 						/>
 					)}
 					{!this.isFieldHidden('postal_code') && (
 						<ReadOnlyField
+							step={step}
 							name={text.postal_code}
 							value={initialValues.shipping_address.postal_code}
 						/>
 					)}
 					{!this.isFieldHidden('city') && (
 						<ReadOnlyField
+							step={step}
 							name={text.city}
 							value={initialValues.shipping_address.city}
 						/>
 					)}
 					<ReadOnlyField
+						step={step}
 						name={text.shippingMethod}
 						value={initialValues.shipping_method}
 					/>
 					<ReadOnlyField
+						step={step}
 						name={text.paymentMethod}
 						value={initialValues.payment_method}
 					/>
@@ -346,11 +385,12 @@ class CheckoutStepContacts extends React.Component {
 						{shippingMethods.map((method, index) => (
 							<label
 								key={index}
-								className={`shipping-method${
-									method.id === initialValues.shipping_method_id
+								className={
+									'shipping-method' +
+									(method.id === initialValues.shipping_method_id
 										? ' active'
-										: ''
-								}`}
+										: '')
+								}
 							>
 								<Field
 									name="shipping_method_id"
@@ -382,9 +422,12 @@ class CheckoutStepContacts extends React.Component {
 						{paymentMethods.map((method, index) => (
 							<label
 								key={index}
-								className={`payment-method${
-									method.id === initialValues.payment_method_id ? ' active' : ''
-								}`}
+								className={
+									'payment-method' +
+									(method.id === initialValues.payment_method_id
+										? ' active'
+										: '')
+								}
 							>
 								<Field
 									name="payment_method_id"
@@ -408,222 +451,207 @@ class CheckoutStepContacts extends React.Component {
 					</div>
 				</div>
 			);
-		}
-		return (
-			<div className="checkout-step">
-				<h1>
-					<span>1</span>
-					{title}
-				</h1>
-				<form onSubmit={handleSubmit}>
-					{!this.isFieldHidden('first_name') && (
-						<Field
-							className={inputClassName}
-							name="first_name"
-							id="customer.first_name"
-							autoComplete="new-password"
-							component={InputField}
-							type="text"
-							label={this.getFieldLabel('first_name')}
-							validate={this.getFieldValidators('first_name')}
-							placeholder={this.getFieldPlaceholder('first_name')}
-						/>
-					)}
-
-					{!this.isFieldHidden('last_name') && (
-						<Field
-							className={inputClassName}
-							name="last_name"
-							id="customer.last_name"
-							autoComplete="new-password"
-							component={InputField}
-							type="text"
-							label={this.getFieldLabel('last_name')}
-							validate={this.getFieldValidators('last_name')}
-							placeholder={this.getFieldPlaceholder('last_name')}
-						/>
-					)}
-
-					{this.state.loggedin ? (
-						<ReadOnlyField
-							name={text.email}
-							value={this.state.emailValues}
-							className="logged-in-email-field"
-							label={this.getFieldLabel('email')}
-						/>
-					) : (
-						!this.isFieldHidden('email') && (
+		} else {
+			return (
+				<div className="checkout-step">
+					<h1>
+						<span>1</span>
+						{title}
+					</h1>
+					<form onSubmit={handleSubmit}>
+						{!this.isFieldHidden('first_name') && (
 							<Field
 								className={inputClassName}
-								name="email"
-								id="customer.email"
+								name="first_name"
+								id="customer.first_name"
 								autoComplete="new-password"
-								component={InputField} // this.state.loggedin
-								type="email"
-								label={this.getFieldLabel('email')}
-								validate={this.getFieldValidators('email')}
-								placeholder={this.getFieldPlaceholder('email')}
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('first_name')}
+								validate={this.getFieldValidators('first_name')}
+								placeholder={this.getFieldPlaceholder('first_name')}
 							/>
-						)
-					)}
+						)}
 
-					{!this.isFieldHidden('mobile') && (
-						<Field
-							className={inputClassName}
-							name="mobile"
-							id="customer.mobile"
-							autocomplete="new-password"
-							component={InputField}
-							type="tel"
-							label={this.getFieldLabel('mobile')}
-							validate={this.getFieldValidators('mobile')}
-							placeholder={this.getFieldPlaceholder('mobile')}
-						/>
-					)}
+						{!this.isFieldHidden('last_name') && (
+							<Field
+								className={inputClassName}
+								name="last_name"
+								id="customer.last_name"
+								autoComplete="new-password"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('last_name')}
+								validate={this.getFieldValidators('last_name')}
+								placeholder={this.getFieldPlaceholder('last_name')}
+							/>
+						)}
 
-					{this.state.loggedin
-						? this.isFieldHidden('password')
-						: !this.isFieldHidden('password') && (
+						{this.state.loggedin ? (
+							<ReadOnlyField
+								name={text.email}
+								value={this.state.emailValues}
+								className={'logged-in-email-field'}
+								label={this.getFieldLabel('email')}
+							/>
+						) : (
+							!this.isFieldHidden('email') && (
 								<Field
 									className={inputClassName}
-									name="password"
-									id="customer.password"
+									name="email"
+									id="customer.email"
 									autoComplete="new-password"
-									component={InputField}
-									type="password"
-									onBlur={this.passwordTemp}
-									label={
-										!this.state.loggedin ? this.getFieldLabel('password') : ''
-									}
-									validate={this.getFieldValidators('password')}
-									placeholder={this.getFieldPlaceholder('password')}
+									component={InputField} //this.state.loggedin
+									type="email"
+									label={this.getFieldLabel('email')}
+									validate={this.getFieldValidators('email')}
+									placeholder={this.getFieldPlaceholder('email')}
 								/>
-						  )}
+							)
+						)}
 
-					{this.state.loggedin
-						? this.isFieldHidden('password')
-						: !this.isFieldHidden('password') && (
-								<Field
-									className={inputClassName}
-									name="password_verify"
-									id="customer.password_verify"
-									autoComplete="new-password"
-									component={InputField}
-									type="password"
-									label={
-										!this.state.loggedin
-											? this.getFieldLabel('password_verify')
-											: ''
-									}
-									validate={this.getFieldValidators('password_verify')}
-									placeholder={this.getFieldPlaceholder('password_verify')}
-								/>
-						  )}
+						{this.isFieldHidden('mobile') && (
+							<Field
+								className={inputClassName}
+								name="mobile"
+								id="customer.mobile"
+								autocomplete="new-password"
+								component={InputField}
+								type="tel"
+								label={this.getFieldLabel('mobile')}
+								validate={this.getFieldValidators('mobile')}
+								placeholder={this.getFieldPlaceholder('mobile')}
+							/>
+						)}
 
-					{!this.isFieldHidden('address1') && (
-						<Field
-							className={inputClassName}
-							name="shipping_address.address1"
-							id="shipping_address.address1"
-							component={InputField}
-							type="text"
-							label={this.getFieldLabel('address1')}
-							validate={this.getFieldValidators('address1')}
-							placeholder={this.getFieldPlaceholder('address1')}
-							onBlur={(event, value) =>
-								setTimeout(() => saveShippingLocation({ address1: value }))
-							}
-						/>
-					)}
-					{!this.isFieldHidden('address2') && (
-						<Field
-							className={inputClassName}
-							name="shipping_address.address2"
-							id="shipping_address.address2"
-							component={InputField}
-							type="text"
-							label={this.getFieldLabel('address2')}
-							placeholder={this.getFieldPlaceholder('address2')}
-							onBlur={(event, value) =>
-								setTimeout(() => saveShippingLocation({ address2: value }))
-							}
-						/>
-					)}
+						{this.state.loggedin
+							? this.isFieldHidden('password')
+							: !this.isFieldHidden('password') && (
+									<Field
+										className={inputClassName}
+										name="password"
+										id="customer.password"
+										autoComplete="new-password"
+										component={InputField}
+										type="password"
+										onBlur={this.passwordTemp}
+										label={
+											!this.state.loggedin ? this.getFieldLabel('password') : ''
+										}
+										validate={this.getFieldValidators('password')}
+										placeholder={this.getFieldPlaceholder('password')}
+									/>
+							  )}
 
-					{!this.isFieldHidden('country') && (
-						<Field
-							className={inputClassName}
-							name="shipping_address.country"
-							id="shipping_address.country"
-							component={InputField}
-							type="text"
-							label={this.getFieldLabel('country')}
-							validate={this.getFieldValidators('country')}
-							placeholder={this.getFieldPlaceholder('country')}
-							onBlur={(event, value) =>
-								setTimeout(() => saveShippingLocation({ country: value }))
-							}
-						/>
-					)}
+						{this.state.loggedin
+							? this.isFieldHidden('password')
+							: !this.isFieldHidden('password') && (
+									<Field
+										className={inputClassName}
+										name="password_verify"
+										id="customer.password_verify"
+										autoComplete="new-password"
+										component={InputField}
+										type="password"
+										label={
+											!this.state.loggedin
+												? this.getFieldLabel('password_verify')
+												: ''
+										}
+										validate={this.getFieldValidators('password_verify')}
+										placeholder={this.getFieldPlaceholder('password_verify')}
+									/>
+							  )}
 
-					{!this.isFieldHidden('state') && (
-						<Field
-							className={inputClassName}
-							name="shipping_address.state"
-							id="shipping_address.state"
-							component={InputField}
-							type="text"
-							label={this.getFieldLabel('state')}
-							validate={this.getFieldValidators('state')}
-							placeholder={this.getFieldPlaceholder('state')}
-							onBlur={(event, value) =>
-								setTimeout(() => saveShippingLocation({ state: value }))
-							}
-						/>
-					)}
-					{!this.isFieldHidden('postal_code') && (
-						<Field
-							className={inputClassName}
-							name="shipping_address.postal_code"
-							id="shipping_address.postal_code"
-							component={InputField}
-							type="text"
-							label={this.getFieldLabel('postal_code')}
-							validate={this.getFieldValidators('postal_code')}
-							placeholder={this.getFieldPlaceholder('postal_code')}
-							onBlur={(event, value) =>
-								setTimeout(() => saveShippingLocation({ postal_code: value }))
-							}
-						/>
-					)}
-					{!this.isFieldHidden('city') && (
-						<Field
-							className={inputClassName}
-							name="shipping_address.city"
-							id="shipping_address.city"
-							component={InputField}
-							type="text"
-							label={this.getFieldLabel('city')}
-							validate={this.getFieldValidators('city')}
-							placeholder={this.getFieldPlaceholder('city')}
-							onBlur={(event, value) =>
-								setTimeout(() => saveShippingLocation({ city: value }))
-							}
-						/>
-					)}
+						<h2>{text.shippingTo}</h2>
 
-					<div className="checkout-button-wrap">
-						<button
-							type="submit"
-							disabled={invalid}
-							className={buttonClassName}
-						>
-							{text.next}
-						</button>
-					</div>
-				</form>
-			</div>
-		);
+						{!this.isFieldHidden('address1') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.address1"
+								id="shipping_address.address1"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('address1')}
+								validate={this.getFieldValidators('address1')}
+								placeholder={this.getFieldPlaceholder('address1')}
+							/>
+						)}
+						{!this.isFieldHidden('address2') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.address2"
+								id="shipping_address.address2"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('address2')}
+								placeholder={this.getFieldPlaceholder('address2')}
+							/>
+						)}
+
+						{!this.isFieldHidden('country') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.country"
+								id="shipping_address.country"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('country')}
+								validate={this.getFieldValidators('country')}
+								placeholder={this.getFieldPlaceholder('country')}
+							/>
+						)}
+
+						{!this.isFieldHidden('state') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.state"
+								id="shipping_address.state"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('state')}
+								validate={this.getFieldValidators('state')}
+								placeholder={this.getFieldPlaceholder('state')}
+							/>
+						)}
+						{!this.isFieldHidden('postal_code') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.postal_code"
+								id="shipping_address.postal_code"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('postal_code')}
+								validate={this.getFieldValidators('postal_code')}
+								placeholder={this.getFieldPlaceholder('postal_code')}
+							/>
+						)}
+						{!this.isFieldHidden('city') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.city"
+								id="shipping_address.city"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('city')}
+								validate={this.getFieldValidators('city')}
+								placeholder={this.getFieldPlaceholder('city')}
+							/>
+						)}
+
+						<div className="checkout-button-wrap">
+							<button
+								type="submit"
+								disabled={invalid}
+								className={buttonClassName}
+							>
+								{text.next}
+							</button>
+						</div>
+					</form>
+				</div>
+			);
+		}
 	}
 }
 

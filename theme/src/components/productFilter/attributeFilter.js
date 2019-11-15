@@ -23,9 +23,9 @@ class AttributeValue extends React.Component {
 			setFilterAttribute,
 			unsetFilterAttribute
 		} = this.props;
-		const { checked } = event.target;
+		const checked = event.target.checked;
 
-		this.setState({ checked });
+		this.setState({ checked: checked });
 
 		if (checked) {
 			setFilterAttribute(attributeName, valueName);
@@ -41,14 +41,14 @@ class AttributeValue extends React.Component {
 		const classDisabled = isDisabled ? 'attribute-disabled' : '';
 
 		return (
-			<label className={`${classChecked} ${classDisabled}`}>
+			<label className={classChecked + ' ' + classDisabled}>
 				<input
 					type="checkbox"
 					disabled={isDisabled}
 					onChange={this.onChange}
 					checked={this.state.checked}
 				/>
-				{valueName} ({count})
+				{valueName}
 			</label>
 		);
 	}

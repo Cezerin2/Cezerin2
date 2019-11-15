@@ -41,7 +41,7 @@ export default class ProductDetails extends React.Component {
 	}
 
 	onOptionChange(optionId, valueId) {
-		const { selectedOptions } = this.state;
+		let { selectedOptions } = this.state;
 
 		if (valueId === '') {
 			delete selectedOptions[optionId];
@@ -49,7 +49,7 @@ export default class ProductDetails extends React.Component {
 			selectedOptions[optionId] = valueId;
 		}
 
-		this.setState({ selectedOptions });
+		this.setState({ selectedOptions: selectedOptions });
 		this.findVariantBySelectedOptions();
 		this.checkSelectedOptions();
 	}
@@ -72,16 +72,16 @@ export default class ProductDetails extends React.Component {
 	}
 
 	setQuantity = quantity => {
-		this.setState({ quantity });
+		this.setState({ quantity: quantity });
 	};
 
 	addToCart() {
 		const { product, addCartItem } = this.props;
 		const { selectedVariant, quantity } = this.state;
 
-		const item = {
+		let item = {
 			product_id: product.id,
-			quantity
+			quantity: quantity
 		};
 
 		if (selectedVariant) {
@@ -208,7 +208,8 @@ export default class ProductDetails extends React.Component {
 						)}
 				</Fragment>
 			);
+		} else {
+			return null;
 		}
-		return null;
 	}
 }

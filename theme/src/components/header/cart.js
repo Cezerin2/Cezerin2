@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
-import Lscache from 'lscache';
 import { themeSettings, text } from '../../lib/settings';
+import Lscache from 'lscache';
 import * as helper from '../../lib/helper';
 
 const CartItem = ({ item, deleteCartItem, settings }) => {

@@ -17,6 +17,7 @@ const SharedContainer = props => {
 	return (
 		<Fragment>
 			<Header {...props} />
+
 			{children}
 			{!hideFooter && <Footer settings={settings} />}
 		</Fragment>

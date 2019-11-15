@@ -38,7 +38,8 @@ const Options = ({ options, onChange }) => {
 		));
 
 		return <div className="product-options">{items}</div>;
+	} else {
+		return null;
 	}
-	return null;
 };
 export default Options;

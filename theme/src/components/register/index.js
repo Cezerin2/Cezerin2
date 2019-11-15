@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthHeader from '../../../../src/api/server/lib/auth-header';
 import { Redirect } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 import Register from './register';
@@ -17,7 +18,7 @@ export default class RegisterForm extends React.Component {
 			first_name: values.first_name,
 			last_name: values.last_name,
 			email: values.email,
-			password: values.password,
+			password: AuthHeader.encodeUserPassword(values.password),
 			history: this.props.history
 		});
 	};

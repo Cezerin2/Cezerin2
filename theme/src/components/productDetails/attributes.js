@@ -20,7 +20,8 @@ const Attributes = ({ attributes }) => {
 				{items}
 			</div>
 		);
+	} else {
+		return null;
 	}
-	return null;
 };
 export default Attributes;

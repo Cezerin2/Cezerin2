@@ -45,18 +45,20 @@ const CommentsField = ({ order, checkoutFields }) => {
 
 const ShippingFields = ({ order, shippingMethod }) => {
 	let shippingFields = null;
-	if (
-		shippingMethod &&
-		shippingMethod.fields &&
-		shippingMethod.fields.length > 0
-	) {
-		shippingFields = shippingMethod.fields.map((field, index) => {
-			const fieldLabel = helper.getShippingFieldLabel(field);
-			const fieldValue = order.shipping_address[field.key];
+	if (shippingMethod) {
+		shippingFields = Object.keys(order.shipping_address).map((key, i) => {
+			const fieldLabel = helper.getShippingFieldLabelOrderSuccess(key);
+			const fieldValue = order.shipping_address[key];
 
-			return (
-				<ShippingFieldDiv key={index} label={fieldLabel} value={fieldValue} />
-			);
+			if (
+				key.indexOf('coordinates') === -1 &&
+				fieldValue !== '' &&
+				fieldLabel !== ''
+			) {
+				return (
+					<ShippingFieldDiv key={i} label={fieldLabel} value={fieldValue} />
+				);
+			}
 		});
 	}
 
@@ -159,13 +161,6 @@ const CheckoutSuccess = ({
 
 				<div className="columns">
 					<div className="column is-offset-7 checkout-success-totals">
-						{order.tax_total > 0 && order.item_tax_included && (
-							<div>
-								<span>{text.included_tax}:</span>
-								<span>{helper.formatCurrency(order.tax_total, settings)}</span>
-							</div>
-						)}
-
 						<div>
 							<span>{text.subtotal}:</span>
 							<span>{helper.formatCurrency(order.subtotal, settings)}</span>
@@ -176,14 +171,6 @@ const CheckoutSuccess = ({
 								{helper.formatCurrency(order.shipping_total, settings)}
 							</span>
 						</div>
-
-						{order.tax_total > 0 && !order.item_tax_included && (
-							<div>
-								<span>{text.tax}:</span>
-								<span>{helper.formatCurrency(order.tax_total, settings)}</span>
-							</div>
-						)}
-
 						<div>
 							<b>{text.grandTotal}:</b>
 							<b>{helper.formatCurrency(order.grand_total, settings)}</b>

@@ -12,9 +12,9 @@ export default class DiscountCountdown extends React.Component {
 	}
 
 	componentDidMount() {
-		const timer = setInterval(this.tick, 1000);
+		let timer = setInterval(this.tick, 1000);
 		this.setState({
-			timer
+			timer: timer
 		});
 	}
 
@@ -30,25 +30,27 @@ export default class DiscountCountdown extends React.Component {
 		);
 
 		this.setState({
-			diff
+			diff: diff
 		});
 	};
 
-	pad = num => (num < 10 ? `0${num}` : num);
+	pad = num => {
+		return num < 10 ? '0' + num : num;
+	};
 
 	render() {
 		const { product } = this.props;
 		const { diff } = this.state;
 
 		if (product) {
-			const days = Math.floor(diff / (24 * 60 * 60));
+			let days = Math.floor(diff / (24 * 60 * 60));
 			let leftSec = diff - days * 24 * 60 * 60;
 
-			const hrs = Math.floor(leftSec / (60 * 60));
-			leftSec -= hrs * 60 * 60;
+			let hrs = Math.floor(leftSec / (60 * 60));
+			leftSec = leftSec - hrs * 60 * 60;
 
-			const min = Math.floor(leftSec / 60);
-			leftSec -= min * 60;
+			let min = Math.floor(leftSec / 60);
+			leftSec = leftSec - min * 60;
 
 			return (
 				<div className="discount-countdown">
@@ -78,7 +80,8 @@ export default class DiscountCountdown extends React.Component {
 					</div>
 				</div>
 			);
+		} else {
+			return null;
 		}
-		return null;
 	}
 }

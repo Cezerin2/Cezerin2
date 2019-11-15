@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { themeSettings, text } from '../../lib/settings';
 import { Link, Redirect, NavLink } from 'react-router-dom';
 import Lscache from 'lscache';
-import { themeSettings, text } from '../../lib/settings';
 
 const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required;
@@ -54,13 +54,17 @@ class ResetPassword extends React.Component {
 		return field && field.status ? field.status : 'required';
 	};
 
-	isFieldOptional = fieldName => this.getFieldStatus(fieldName) === 'optional';
+	isFieldOptional = fieldName => {
+		return this.getFieldStatus(fieldName) === 'optional';
+	};
 
-	isFieldHidden = fieldName => this.getFieldStatus(fieldName) === 'hidden';
+	isFieldHidden = fieldName => {
+		return this.getFieldStatus(fieldName) === 'hidden';
+	};
 
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
-		const validatorsArray = [];
+		let validatorsArray = [];
 		if (!isOptional) {
 			validatorsArray.push(validateRequired);
 		}
@@ -92,16 +96,17 @@ class ResetPassword extends React.Component {
 		const field = this.getField(fieldName);
 		if (field && field.label && field.label.length > 0) {
 			return field.label;
-		}
-		switch (fieldName) {
-			case 'password':
-				return text.password;
-				break;
-			case 'password_verify':
-				return text.password_verify;
-				break;
-			default:
-				return 'Unnamed field';
+		} else {
+			switch (fieldName) {
+				case 'password':
+					return text.password;
+					break;
+				case 'password_verify':
+					return text.password_verify;
+					break;
+				default:
+					return 'Unnamed field';
+			}
 		}
 	};
 
@@ -179,7 +184,7 @@ class ResetPassword extends React.Component {
 								<Link
 									to="/login"
 									style={{ textDecoration: 'none' }}
-									key="back-to-login"
+									key={'back-to-login'}
 									className={loginButtonClass}
 								>
 									{text.back_to_login}
