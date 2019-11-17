@@ -22,7 +22,7 @@ module.exports = {
 			'material-ui'
 		]
 	},
-	
+
 	performance: {
 		hints: false
 	},
@@ -59,45 +59,50 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['env', 'react'],
-						plugins: ['transform-class-properties']
+				oneOf: [
+					{
+						test: /\.(js|jsx)$/,
+						exclude: /node_modules/,
+						use: {
+							loader: 'babel-loader',
+							options: {
+								presets: ['env', 'react'],
+								plugins: ['transform-class-properties']
+							}
+						}
+					},
+					{
+						test: /\.css$/,
+						include: [path.resolve(__dirname, 'public')],
+						exclude: [path.resolve(__dirname, 'src')],
+						use: [
+							MiniCssExtractPlugin.loader,
+							{
+								loader: 'css-loader',
+								options: {
+									modules: false,
+									importLoaders: true
+								}
+							},
+							'postcss-loader'
+						]
+					},
+					{
+						test: /\.css$/,
+						exclude: [path.resolve(__dirname, 'node_modules|public')],
+						use: [
+							MiniCssExtractPlugin.loader,
+							{
+								loader: 'css-loader',
+								options: {
+									modules: true,
+									importLoaders: true,
+									localIdentName: '[name]__[local]___[hash:base64:5]'
+								}
+							},
+							'postcss-loader'
+						]
 					}
-				}
-			},
-			{
-				test: /\.css$/,
-				include: [path.resolve(__dirname, 'public')],
-				use: [
-					MiniCssExtractPlugin.loader,
-					{
-						loader: 'css-loader',
-						options: {
-							modules: false,
-							importLoaders: true
-						}
-					},
-					'postcss-loader'
-				]
-			},
-			{
-				test: /\.css$/,
-				exclude: /node_modules|public/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					{
-						loader: 'css-loader',
-						options: {
-							modules: true,
-							importLoaders: true,
-							localIdentName: '[name]__[local]___[hash:base64:5]'
-						}
-					},
-					'postcss-loader'
 				]
 			}
 		]
