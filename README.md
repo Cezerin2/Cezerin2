@@ -1,6 +1,6 @@
 # Cezerin - Ecommerce Progressive Web Apps
 
-[![CircleCI](https://circleci.com/gh/cezerin/cezerin/tree/master.svg?style=svg)](https://circleci.com/gh/cezerin/cezerin/tree/master)
+[![CircleCI](https://circleci.com/gh/Cezerin2/cezerin2-mono/tree/master.svg?style=svg)](https://circleci.com/gh/Cezerin2/cezerin2-mono/tree/master)
 
 Cezerin is React and Node.js based eCommerce platform. Allows creating a Progressive Web Apps.
 
@@ -29,10 +29,10 @@ Single-Page Application with React server-side rendering. [Demo store](https://s
 
 ## Installation
 
-- [with GitHub](https://github.com/cezerin/cezerin/blob/master/docs/getting-started.md)
-- [with Docker](https://github.com/cezerin/cezerin/blob/master/docs/getting-started-docker.md)
-- [How to deploy a Cezerin on Ubuntu 16.04](https://github.com/cezerin/cezerin/blob/master/docs/how-to-deploy-a-cezerin-on-ubuntu-16-04.md)
-- [How to deploy a Cezerin on Ubuntu 18.04.1 (from GitHub)](https://github.com/cezerin/cezerin/blob/master/docs/how-to-deploy-a-cezerin-on-ubuntu-18-04-1-github.md)
+- [with GitHub](https://github.com/Cezerin2/cezerin2-mono/blob/master/docs/getting-started.md)
+- [with Docker](https://github.com/Cezerin2/cezerin2-mono/blob/master/docs/getting-started-docker.md)
+- [How to deploy a Cezerin on Ubuntu 16.04](https://github.com/Cezerin2/cezerin2-mono/blob/master/docs/how-to-deploy-a-cezerin-on-ubuntu-16-04.md)
+- [How to deploy a Cezerin on Ubuntu 18.04.1 (from GitHub)](https://github.com/Cezerin2/cezerin2-mono/blob/master/docs/how-to-deploy-a-cezerin-on-ubuntu-18-04-1-github.md)
 
 ### Requirements
 * Node.js >= 8
@@ -41,7 +41,7 @@ Single-Page Application with React server-side rendering. [Demo store](https://s
 
 ## Documentation
 
-[Documentation](https://github.com/cezerin/cezerin/tree/master/docs)
+[Documentation](https://github.com/Cezerin2/cezerin2-mono/tree/master/docs)
 
 
 ## Application Structure
@@ -75,7 +75,7 @@ Single-Page Application with React server-side rendering. [Demo store](https://s
 
 ## Sponsoring
 
-Cezerin is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome backers. [Become a backer or sponsor on OpenCollective](https://opencollective.com/cezerin).
+Cezerin2 is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome backers. [Become a backer or sponsor on OpenCollective] ...coming soon.
 
 
 ## Contributing
