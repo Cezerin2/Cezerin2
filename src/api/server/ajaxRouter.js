@@ -362,7 +362,8 @@ ajaxRouter.post('/register', async (req, res, next) => {
 			).userId;
 			const eMail = await AuthHeader.decodeUserLoginAuth(requestTokenArray[2])
 				.userId;
-			const passWord = requestTokenArray[3];
+			const passWord = await AuthHeader.decodeUserPassword(requestTokenArray[3])
+				.password;
 
 			if (
 				requestTokenArray.length < 1 ||
