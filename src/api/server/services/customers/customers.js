@@ -79,8 +79,8 @@ class CustomersService {
 		if (!ObjectID.isValid(id)) {
 			return Promise.reject('Invalid identifier');
 		}
-		return this.getCustomers({ id: id }).then(
-			items => (items.data.length > 0 ? items.data[0] : {})
+		return this.getCustomers({ id: id }).then(items =>
+			items.data.length > 0 ? items.data[0] : {}
 		);
 	}
 
@@ -91,7 +91,7 @@ class CustomersService {
 		if (customer.email && customer.email.length > 0) {
 			const customerCount = await db
 				.collection('customers')
-				.count({ email: customer.email });
+				.countDocuments({ email: customer.email });
 			if (customerCount > 0) {
 				return Promise.reject('Customer email must be unique');
 			}
@@ -118,7 +118,7 @@ class CustomersService {
 
 		// is email unique
 		if (customer.email && customer.email.length > 0) {
-			const customerCount = await db.collection('customers').count({
+			const customerCount = await db.collection('customers').countDocuments({
 				_id: {
 					$ne: customerObjectID
 				},
@@ -527,11 +527,13 @@ class CustomersService {
 
 	getAll() {
 		const requestOptions = {
-			method: 'GET',
+			method: 'GET'
 			//headers: authHeader()
 		};
 
-		return fetch(`${security.storeBaseUrl}/users`, requestOptions).then(handleResponse);
+		return fetch(`${security.storeBaseUrl}/users`, requestOptions).then(
+			handleResponse
+		);
 	}
 
 	handleResponse(response) {

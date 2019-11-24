@@ -3,16 +3,19 @@ import jwt from 'jsonwebtoken';
 import { ObjectID } from 'mongodb';
 import CezerinClient from 'cezerin2-client';
 import handlebars from 'handlebars';
+import bcrypt from 'bcrypt';
 import serverSettings from './lib/settings';
-import serverConfigs from '../../../config/server';
 import { db } from './lib/mongo';
 import AuthHeader from './lib/auth-header';
 import mailer from './lib/mailer';
 import EmailTemplatesService from './services/settings/emailTemplates';
 import SettingsService from './services/settings/settings';
+import OrderItemsService from './services/orders/orderItems';
+
+// cost factor for hashes
+const { saltRounds } = serverSettings;
 
 const ajaxRouter = express.Router();
-
 const TOKEN_PAYLOAD = { email: 'store', scopes: ['admin'] };
 const STORE_ACCESS_TOKEN = jwt.sign(TOKEN_PAYLOAD, serverSettings.jwtSecretKey);
 
@@ -47,19 +50,7 @@ const getIP = req => {
 	return ip;
 };
 
-const getUserAgent = req => {
-	return req.get('user-agent');
-};
-
-const getVariantFromProduct = (product, variantId) => {
-	if (product.variants && product.variants.length > 0) {
-		return product.variants.find(
-			variant => variant.id.toString() === variantId.toString()
-		);
-	} else {
-		return null;
-	}
-};
+const getUserAgent = req => req.get('user-agent');
 
 const fillCartItemWithProductData = (products, cartItem) => {
 	const product = products.find(p => p.id === cartItem.product_id);
@@ -72,7 +63,10 @@ const fillCartItemWithProductData = (products, cartItem) => {
 		cartItem.stock_backorder = product.stock_backorder;
 		cartItem.stock_preorder = product.stock_preorder;
 		if (cartItem.variant_id && cartItem.variant_id.length > 0) {
-			const variant = getVariantFromProduct(product, cartItem.variant_id);
+			const variant = OrderItemsService.getVariantFromProduct(
+				product,
+				cartItem.variant_id
+			);
 			cartItem.stock_quantity = variant ? variant.stock_quantity : 0;
 		} else {
 			cartItem.stock_quantity = product.stock_quantity;
@@ -82,7 +76,7 @@ const fillCartItemWithProductData = (products, cartItem) => {
 };
 
 const fillCartItems = cartResponse => {
-	let cart = cartResponse.json;
+	const cart = cartResponse.json;
 	if (cart && cart.items && cart.items.length > 0) {
 		const productIds = cart.items.map(item => item.product_id);
 		return api.products
@@ -98,98 +92,96 @@ const fillCartItems = cartResponse => {
 				cartResponse.json.items = newCartItem;
 				return cartResponse;
 			});
-	} else {
-		return Promise.resolve(cartResponse);
 	}
+	return Promise.resolve(cartResponse);
 };
 
-ajaxRouter.get('/products', (req, res, next) => {
-	let filter = req.query;
+ajaxRouter.get('/products', (req, res) => {
+	const filter = req.query;
 	filter.enabled = true;
-	api.products.list(filter).then(({ status, json }) => {
+	api.products.list(filter).then(({ status, json }) =>
 		res
 			.status(status)
 			.header('Cache-Control', PRODUCTS_CACHE_CONTROL)
-			.send(json);
-	});
+			.send(json)
+	);
 });
 
-ajaxRouter.get('/products/:id', (req, res, next) => {
-	api.products.retrieve(req.params.id).then(({ status, json }) => {
+ajaxRouter.get('/products/:id', (req, res) => {
+	api.products.retrieve(req.params.id).then(({ status, json }) =>
 		res
 			.status(status)
 			.header('Cache-Control', PRODUCT_DETAILS_CACHE_CONTROL)
-			.send(json);
-	});
+			.send(json)
+	);
 });
 
-ajaxRouter.get('/cart', (req, res, next) => {
-	const order_id = req.signedCookies.order_id;
+ajaxRouter.get('/cart', (req, res) => {
+	const { order_id } = req.signedCookies;
 	if (order_id) {
 		api.orders
 			.retrieve(order_id)
 			.then(cartResponse => fillCartItems(cartResponse))
 			.then(({ status, json }) => {
 				json.browser = undefined;
-				res.status(status).send(json);
+				return res.status(status).send(json);
 			});
 	} else {
-		res.end();
+		return res.end();
 	}
 });
 
 ajaxRouter.post('/reset-password', async (req, res, next) => {
-	const data = {
-		status: false,
-		id: null,
-		verified: false
-	};
+	await bcrypt.hash(req.body.password, saltRounds, async (err, hash) => {
+		const data = {
+			status: false,
+			id: null,
+			verified: false
+		};
 
-	const userId =
-		'token' in req.body
-			? AuthHeader.decodeUserLoginAuth(req.body.token)
-			: AuthHeader.decodeUserLoginAuth(req.body.id).userId.userId;
+		const userId =
+			'token' in req.body
+				? AuthHeader.decodeUserLoginAuth(req.body.token)
+				: AuthHeader.decodeUserLoginAuth(req.body.id).userId.userId;
 
-	const filter = {
-		id: userId
-	};
+		const filter = {
+			id: userId
+		};
+		const customerDraft = {
+			password: hash
+		};
 
-	const customerDraft = {
-		password: req.body.password
-	};
+		// update customer password after checking customer id
+		if ('id' in req.body) {
+			await api.customers
+				.update(userId, customerDraft)
+				.then(({ status, json }) => {
+					data.status = true;
+					data.id = userId;
+					data.verified = true;
+					return res.status(status).send(data);
+				});
+			return false;
+		}
 
-	// update customer password after checking customer id
-	if ('id' in req.body) {
-		await api.customers
-			.update(userId, customerDraft)
-			.then(({ status, json }) => {
-				data.status = true;
-				data.id = userId;
-				data.verified = true;
-				res.status(status).send(data);
-			});
-		return false;
-	}
+		if ('name' in userId && userId.name.indexOf('JsonWebTokenErro') !== -1) {
+			res.send(data);
+			return false;
+		}
 
-	if ('name' in userId && userId.name.indexOf('JsonWebTokenErro') !== -1) {
-		res.send(data);
-		return false;
-	}
-
-	// if customer email exists send status back
-	await api.customers.list(filter).then(({ status, json }) => {
+		// if customer email exists send status back
+		const { status, json } = await api.customers.list(filter);
 		if (json.total_count > 0) {
 			data.status = true;
 			data.id = AuthHeader.encodeUserLoginAuth(userId);
-			res.status(status).send(data);
 		}
-		res.status(status).send(data);
+		return res.status(status).send(data);
 	});
 });
 
 ajaxRouter.post('/forgot-password', async (req, res, next) => {
 	const filter = {
-		email: req.body.email
+		email: req.body.email.toLowerCase()
 	};
 	const data = {
 		status: true
@@ -200,14 +192,14 @@ ajaxRouter.post('/forgot-password', async (req, res, next) => {
 		const countryCode = undefined;
 		const [emailTemp] = await Promise.all([
 			EmailTemplatesService.getEmailTemplate(
-				`forgot_password_${serverConfigs.language}`
+				`forgot_password_${serverSettings.language}`
 			)
 		]);
-		await handlebars.registerHelper('forgot_password_link', function(obj) {
-			var url = `${serverConfigs.storeBaseUrl}${
+		await handlebars.registerHelper('forgot_password_link', obj => {
+			const url = `${serverSettings.storeBaseUrl}${
 				countryCode !== undefined ? `/${countryCode}/` : '/'
 			}reset-password?token=${AuthHeader.encodeUserLoginAuth(userId)}`;
-			var text = emailTemp.link;
+			let text = emailTemp.link;
 			if (text == undefined) {
 				text = url;
 			}
@@ -253,10 +245,11 @@ ajaxRouter.post('/customer-account', async (req, res, next) => {
 	if (req.body.token) {
 		customerData.token = AuthHeader.decodeUserLoginAuth(req.body.token);
 		if (customerData.token.userId !== undefined) {
-			const userId = JSON.stringify(customerData.token.userId).replace(
-				/["']/g,
-				''
-			);
+			const userId = null;
+			try {
+				userId = JSON.stringify(customerData.token.userId).replace(/["']/g, '');
+			} catch (erro) {}
+
 			const filter = {
 				customer_id: userId
 			};
@@ -272,9 +265,7 @@ ajaxRouter.post('/customer-account', async (req, res, next) => {
 			// retrieve orders data
 			await api.orders.list(filter).then(({ status, json }) => {
 				customerData.order_statuses = json;
-				let objJsonB64 = JSON.stringify(customerData);
-				objJsonB64 = Buffer.from(objJsonB64).toString('base64');
-				return res.status(status).send(JSON.stringify(objJsonB64));
+				return res.status(status).send(JSON.stringify(customerData));
 			});
 		}
 	}
@@ -289,48 +280,49 @@ ajaxRouter.post('/login', async (req, res, next) => {
 		order_statuses: null,
 		cartLayer: req.body.cartLayer !== undefined ? req.body.cartLayer : false
 	};
-
 	// check if customer exists in database and grant or denie access
 	await db
 		.collection('customers')
-		.find({
-			email: req.body.email,
-			password: AuthHeader.decodeUserPassword(req.body.password).password
-		})
+		.find({ email: req.body.email.toLowerCase() })
 		.limit(1)
-		.next(function getCustomerData(error, result) {
+		.next((error, result) => {
 			if (error) {
-				//alert
+				// alert
 				throw error;
 			}
 			if (!result) {
 				api.customers.list().then(({ status, json }) => {
 					customerData.loggedin_failed = true;
-					let objJsonB64 = JSON.stringify(customerData);
-					objJsonB64 = Buffer.from(objJsonB64).toString('base64');
-					res.status(status).send(JSON.stringify(objJsonB64));
+					return res.status(status).send(JSON.stringify(customerData));
 				});
 				return;
 			}
 
-			customerData.token = AuthHeader.encodeUserLoginAuth(result._id);
-			customerData.authenticated = true;
+			const customerPassword = result.password;
+			const inputPassword = AuthHeader.decodeUserPassword(req.body.password)
+				.password;
 
-			// retrieve all customer and orders data for the myaccount settings
-			api.customers.retrieve(result._id).then(({ status, json }) => {
-				customerData.customer_settings = json;
-				customerData.customer_settings.password = '*******';
+			bcrypt.compare(inputPassword, customerPassword, async (err, out) => {
+				if (out == true) {
+					customerData.token = AuthHeader.encodeUserLoginAuth(result._id);
+					customerData.authenticated = true;
 
-				const filter = {
-					customer_id: json.id
-				};
-				api.orders.list(filter).then(({ status, json }) => {
-					customerData.order_statuses = json;
+					await api.customers.retrieve(result._id).then(({ status, json }) => {
+						customerData.customer_settings = json;
+						customerData.customer_settings.password = '*******';
 
-					let objJsonB64 = JSON.stringify(customerData);
-					objJsonB64 = Buffer.from(objJsonB64).toString('base64');
-					res.status(status).send(JSON.stringify(objJsonB64));
-				});
+						const filter = {
+							customer_id: json.id
+						};
+						api.orders.list(filter).then(({ status, json }) => {
+							customerData.order_statuses = json;
+							return res.status(status).send(JSON.stringify(customerData));
+						});
+					});
+					return true;
+				}
+				customerData.loggedin_failed = true;
+				res.status(200).send(JSON.stringify(customerData));
 			});
 		});
 });
@@ -372,7 +364,12 @@ ajaxRouter.post('/register', async (req, res, next) => {
 			const passWord = await AuthHeader.decodeUserPassword(requestTokenArray[3])
 				.password;
 
-			if (requestTokenArray.length < 1 || !/\S+@\S+\.\S+/.test(eMail)) {
+			if (
+				requestTokenArray.length < 1 ||
+				!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+					eMail
+				)
+			) {
 				data.isRightToken = false;
 				res.status('200').send(data);
 				return false;
@@ -380,30 +377,37 @@ ajaxRouter.post('/register', async (req, res, next) => {
 
 			// check once if customer email is existig in database
 			filter.email = eMail;
-			await api.customers.list(filter).then(({ status, json }) => {
-				if (json.total_count > 0) {
-					data.isCustomerSaved = true;
-					res.status(status).send(data);
-					return false;
-				}
-			});
+			await api.customers
+				.list(filter)
+				.then(({ status, json }) => {
+					if (json.total_count > 0) {
+						data.isCustomerSaved = true;
+						return false;
+					}
+				})
+				.catch(error => {
+					console.log(error);
+				});
+			// generate password-hash
+			const salt = bcrypt.genSaltSync(saltRounds);
+			const hashPassword = bcrypt.hashSync(passWord, salt);
 
-			// create new customer in database
 			const customerDraft = {
 				full_name: `${firstName} ${lastName}`,
 				first_name: firstName,
 				last_name: lastName,
-				email: eMail,
-				password: passWord
+				email: eMail.toLowerCase(),
+				password: hashPassword
 			};
 
-			await api.customers.create(customerDraft).then(({ status, json }) => {
-				data.isCustomerSaved = true;
-				res.status(status).send(data);
+			// create new customer in database
+			await api.customers.create(customerDraft).catch(error => {
+				console.log(error);
 			});
-
-			return true;
 		})();
+		data.isCustomerSaved = true;
+		res.status('200').send(data);
+		return true;
 	}
 
 	// send customer a doi email
@@ -412,14 +416,14 @@ ajaxRouter.post('/register', async (req, res, next) => {
 			const countryCode = undefined;
 			const [emailTemp] = await Promise.all([
 				EmailTemplatesService.getEmailTemplate(
-					`register_doi_${serverConfigs.language}`
+					`register_doi_${serverSettings.language}`
 				)
 			]);
-			await handlebars.registerHelper('register_doi_link', function(obj) {
-				var url = `${serverConfigs.storeBaseUrl}${
+			await handlebars.registerHelper('register_doi_link', obj => {
+				const url = `${serverSettings.storeBaseUrl}${
 					countryCode !== undefined ? `/${countryCode}/` : '/'
 				}register?token=${tokenConcatString}`;
-				var text = emailTemp.link;
+				let text = emailTemp.link;
 				if (text == undefined) {
 					text = url;
 				}
@@ -453,21 +457,34 @@ ajaxRouter.post('/register', async (req, res, next) => {
 	}
 	// check if customer exist in database
 	if (!requestToken) {
-		await api.customers.list(filter).then(({ status, json }) => {
-			if (json.total_count > 0) {
-				res.status(status).send(data);
-				return false;
-			}
-			data.status = true;
-			registerCustomer();
-		});
+		await api.customers
+			.list(filter)
+			.then(({ status, json }) => {
+				if (json.total_count > 0) {
+					res.status(status).send(data);
+					return false;
+				}
+				data.status = true;
+				registerCustomer();
+			})
+			.catch(error => {
+				console.log(error);
+			});
 	}
 });
 
 ajaxRouter.put('/customer-account', async (req, res, next) => {
 	const customerData = req.body;
 	const token = AuthHeader.decodeUserLoginAuth(req.body.token);
-	const userId = JSON.stringify(token.userId).replace(/["']/g, '');
+	const userId = null;
+	try {
+		userId = JSON.stringify(token.userId).replace(/["']/g, '');
+	} catch (erro) {}
+
+	// generate password-hash
+	const inputPassword = customerData.password;
+	const salt = bcrypt.genSaltSync(saltRounds);
+	const hashPassword = bcrypt.hashSync(inputPassword, salt);
 
 	// setup objects and filter
 	const customerDataObj = {
@@ -480,8 +497,8 @@ ajaxRouter.put('/customer-account', async (req, res, next) => {
 		full_name: `${customerData.first_name} ${customerData.last_name}`,
 		first_name: customerData.first_name,
 		last_name: customerData.last_name,
-		email: customerData.email,
-		password: AuthHeader.decodeUserPassword(customerData.password).password,
+		email: customerData.email.toLowerCase(),
+		password: hashPassword,
 		addresses: [customerData.billing_address, customerData.shipping_address]
 	};
 	const filter = {
@@ -496,51 +513,51 @@ ajaxRouter.put('/customer-account', async (req, res, next) => {
 	});
 	try {
 		// update customer
-		await db
-			.collection('customers')
-			.updateMany(
-				{ _id: ObjectID(userId) },
-				{ $set: customerDraftObj },
-				{ ordered: false },
-				async function(error, result) {
-					if (error) {
-						//alert
-						res.status('200').send(error);
-					}
-					customerDataObj.customer_settings = result;
-					customerDataObj.customer_settings.password = '*******';
-					customerDataObj.token = AuthHeader.encodeUserLoginAuth(userId);
-					customerData.authenticated = false;
+		await db.collection('customers').updateMany(
+			{ _id: ObjectID(userId) },
+			{
+				$set: customerDraftObj
+			},
+			{ ordered: false },
+			async (error, result) => {
+				if (error) {
+					// alert
+					res.status('200').send(error);
+				}
+				customerDataObj.customer_settings = result;
+				customerDataObj.customer_settings.password = '*******';
+				customerDataObj.token = AuthHeader.encodeUserLoginAuth(userId);
+				customerData.authenticated = false;
 
-					if (customerData.saved_addresses === 0) {
+				if (customerData.saved_addresses === 0) {
+					let objJsonB64 = JSON.stringify(customerDataObj);
+					objJsonB64 = Buffer.from(objJsonB64).toString('base64');
+					res.status('200').send(JSON.stringify(objJsonB64));
+					return false;
+				}
+
+				// update orders
+				await db.collection('orders').updateMany(
+					{ customer_id: ObjectID(userId) },
+					{
+						$set: {
+							shipping_address: customerData.shipping_address,
+							billing_address: customerData.billing_address
+						}
+					},
+					(error, result) => {
+						if (error) {
+							// alert
+							res.status('200').send(error);
+						}
+						customerDataObj.order_statuses = result;
 						let objJsonB64 = JSON.stringify(customerDataObj);
 						objJsonB64 = Buffer.from(objJsonB64).toString('base64');
 						res.status('200').send(JSON.stringify(objJsonB64));
-						return false;
 					}
-
-					// update orders
-					await db.collection('orders').updateMany(
-						{ customer_id: ObjectID(userId) },
-						{
-							$set: {
-								shipping_address: customerData.shipping_address,
-								billing_address: customerData.billing_address
-							}
-						},
-						function(error, result) {
-							if (error) {
-								//alert
-								res.status('200').send(error);
-							}
-							customerDataObj.order_statuses = result;
-							let objJsonB64 = JSON.stringify(customerDataObj);
-							objJsonB64 = Buffer.from(objJsonB64).toString('base64');
-							res.status('200').send(JSON.stringify(objJsonB64));
-						}
-					);
-				}
-			);
+				);
+			}
+		);
 	} catch (error) {}
 });
 
@@ -548,7 +565,7 @@ ajaxRouter.post('/cart/items', (req, res, next) => {
 	const isHttps = req.protocol === 'https';
 	const CART_COOKIE_OPTIONS = getCartCookieOptions(isHttps);
 
-	const order_id = req.signedCookies.order_id;
+	const { order_id } = req.signedCookies;
 	const item = req.body;
 	if (order_id) {
 		api.orders.items
@@ -558,7 +575,7 @@ ajaxRouter.post('/cart/items', (req, res, next) => {
 				res.status(status).send(json);
 			});
 	} else {
-		let orderDraft = {
+		const orderDraft = {
 			draft: true,
 			referrer_url: req.signedCookies.referrer_url,
 			landing_url: req.signedCookies.landing_url,
@@ -573,8 +590,6 @@ ajaxRouter.post('/cart/items', (req, res, next) => {
 			.retrieve()
 			.then(settingsResponse => {
 				const storeSettings = settingsResponse.json;
-				orderDraft.shipping_address.full_name =
-					storeSettings.default_shipping_full_name;
 				orderDraft.shipping_address.address1 =
 					storeSettings.default_shipping_address1;
 				orderDraft.shipping_address.address2 =
@@ -584,6 +599,8 @@ ajaxRouter.post('/cart/items', (req, res, next) => {
 				orderDraft.shipping_address.state =
 					storeSettings.default_shipping_state;
 				orderDraft.shipping_address.city = storeSettings.default_shipping_city;
+				orderDraft.item_tax_included = storeSettings.tax_included;
+				orderDraft.tax_rate = storeSettings.tax_rate;
 				return orderDraft;
 			})
 			.then(orderDraft => {
@@ -602,9 +619,8 @@ ajaxRouter.post('/cart/items', (req, res, next) => {
 });
 
 ajaxRouter.delete('/cart/items/:item_id', (req, res, next) => {
-	const order_id = req.signedCookies.order_id;
-	const item_id = req.params.item_id;
-
+	const { order_id } = req.signedCookies;
+	const { item_id } = req.params;
 	if (order_id && item_id) {
 		api.orders.items
 			.delete(order_id, item_id)
@@ -618,10 +634,9 @@ ajaxRouter.delete('/cart/items/:item_id', (req, res, next) => {
 });
 
 ajaxRouter.put('/cart/items/:item_id', (req, res, next) => {
-	const order_id = req.signedCookies.order_id;
-	const item_id = req.params.item_id;
+	const { order_id } = req.signedCookies;
+	const { item_id } = req.params;
 	const item = req.body;
-
 	if (order_id && item_id) {
 		api.orders.items
 			.update(order_id, item_id, item)
@@ -635,7 +650,7 @@ ajaxRouter.put('/cart/items/:item_id', (req, res, next) => {
 });
 
 ajaxRouter.put('/cart/checkout', (req, res, next) => {
-	const order_id = req.signedCookies.order_id;
+	const { order_id } = req.signedCookies;
 
 	if (order_id) {
 		api.orders
@@ -662,7 +677,7 @@ ajaxRouter.put('/cart/checkout', (req, res, next) => {
 	}
 });
 
-ajaxRouter.put('/cart', async (req, res, next) => {
+ajaxRouter.put('/cart', async (req, res) => {
 	const cartData = req.body;
 	const {
 		shipping_address: shippingAddress,
@@ -688,8 +703,8 @@ ajaxRouter.put('/cart', async (req, res, next) => {
 	}
 });
 
-ajaxRouter.put('/cart/shipping_address', (req, res, next) => {
-	const order_id = req.signedCookies.order_id;
+ajaxRouter.put('/cart/shipping_address', (req, res) => {
+	const { order_id } = req.signedCookies;
 	if (order_id) {
 		api.orders
 			.updateShippingAddress(order_id, req.body)
@@ -702,8 +717,8 @@ ajaxRouter.put('/cart/shipping_address', (req, res, next) => {
 	}
 });
 
-ajaxRouter.put('/cart/billing_address', (req, res, next) => {
-	const order_id = req.signedCookies.order_id;
+ajaxRouter.put('/cart/billing_address', (req, res) => {
+	const { order_id } = req.signedCookies;
 	if (order_id) {
 		api.orders
 			.updateBillingAddress(order_id, req.body)
@@ -716,10 +731,10 @@ ajaxRouter.put('/cart/billing_address', (req, res, next) => {
 	}
 });
 
-ajaxRouter.post('/cart/charge', async (req, res, next) => {
-	const order_id = req.signedCookies.order_id;
+ajaxRouter.post('/cart/charge', async (req, res) => {
+	const { order_id } = req.signedCookies;
 	if (order_id) {
-		const client = api.orders.client;
+		const { client } = api.orders;
 		const chargeResponse = await client.post(`/orders/${order_id}/charge`);
 		res.status(chargeResponse.status).send(chargeResponse.json);
 	} else {
@@ -727,7 +742,7 @@ ajaxRouter.post('/cart/charge', async (req, res, next) => {
 	}
 });
 
-ajaxRouter.get('/pages', (req, res, next) => {
+ajaxRouter.get('/pages', (req, res) => {
 	api.pages.list(req.query).then(({ status, json }) => {
 		res
 			.status(status)
@@ -736,7 +751,7 @@ ajaxRouter.get('/pages', (req, res, next) => {
 	});
 });
 
-ajaxRouter.get('/pages/:id', (req, res, next) => {
+ajaxRouter.get('/pages/:id', (req, res) => {
 	api.pages.retrieve(req.params.id).then(({ status, json }) => {
 		res
 			.status(status)
@@ -745,9 +760,9 @@ ajaxRouter.get('/pages/:id', (req, res, next) => {
 	});
 });
 
-ajaxRouter.get('/sitemap', async (req, res, next) => {
+ajaxRouter.get('/sitemap', async (req, res) => {
 	let result = null;
-	let filter = req.query;
+	const filter = req.query;
 	filter.enabled = true;
 
 	const sitemapResponse = await api.sitemap.retrieve(req.query);
@@ -769,7 +784,7 @@ ajaxRouter.get('/sitemap', async (req, res, next) => {
 		.send(result);
 });
 
-ajaxRouter.get('/payment_methods', (req, res, next) => {
+ajaxRouter.get('/payment_methods', (req, res) => {
 	const filter = {
 		enabled: true,
 		order_id: req.signedCookies.order_id
@@ -784,7 +799,7 @@ ajaxRouter.get('/payment_methods', (req, res, next) => {
 	});
 });
 
-ajaxRouter.get('/shipping_methods', (req, res, next) => {
+ajaxRouter.get('/shipping_methods', (req, res) => {
 	const filter = {
 		enabled: true,
 		order_id: req.signedCookies.order_id
@@ -794,8 +809,8 @@ ajaxRouter.get('/shipping_methods', (req, res, next) => {
 	});
 });
 
-ajaxRouter.get('/payment_form_settings', (req, res, next) => {
-	const order_id = req.signedCookies.order_id;
+ajaxRouter.get('/payment_form_settings', (req, res) => {
+	const { order_id } = req.signedCookies;
 	if (order_id) {
 		api.orders.getPaymentFormSettings(order_id).then(({ status, json }) => {
 			res.status(status).send(json);

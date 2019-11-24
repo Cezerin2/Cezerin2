@@ -63,5 +63,9 @@ module.exports = {
 	// used by API
 	orderStartNumber: 1000,
 
+	// cost factor, controls how much time is needed to calculate a single BCrypt hash
+	// for production: recommended salRounds > 12
+	saltRounds: process.env.SALT_ROUNDS || 12,
+
 	developerMode: true
 };
