@@ -245,10 +245,11 @@ ajaxRouter.post('/customer-account', async (req, res, next) => {
 	if (req.body.token) {
 		customerData.token = AuthHeader.decodeUserLoginAuth(req.body.token);
 		if (customerData.token.userId !== undefined) {
-			const userId = JSON.stringify(customerData.token.userId).replace(
-				/["']/g,
-				''
-			);
+			const userId = null;
+			try {
+				userId = JSON.stringify(customerData.token.userId).replace(/["']/g, '');
+			} catch (erro) {}
+
 			const filter = {
 				customer_id: userId
 			};
@@ -282,9 +283,7 @@ ajaxRouter.post('/login', async (req, res, next) => {
 	// check if customer exists in database and grant or denie access
 	await db
 		.collection('customers')
-		.find({
-			email: req.body.email.toLowerCase()
-		})
+		.find({ email: req.body.email.toLowerCase() })
 		.limit(1)
 		.next((error, result) => {
 			if (error) {
@@ -371,7 +370,6 @@ ajaxRouter.post('/register', async (req, res, next) => {
 					eMail
 				)
 			) {
-				// if (requestTokenArray.length < 1) {
 				data.isRightToken = false;
 				res.status('200').send(data);
 				return false;
@@ -379,13 +377,17 @@ ajaxRouter.post('/register', async (req, res, next) => {
 
 			// check once if customer email is existig in database
 			filter.email = eMail;
-			await api.customers.list(filter).then(({ status, json }) => {
-				if (json.total_count > 0) {
-					data.isCustomerSaved = true;
-					res.status(status).send(data);
-					return false;
-				}
-			});
+			await api.customers
+				.list(filter)
+				.then(({ status, json }) => {
+					if (json.total_count > 0) {
+						data.isCustomerSaved = true;
+						return false;
+					}
+				})
+				.catch(error => {
+					console.log(error);
+				});
 			// generate password-hash
 			const salt = bcrypt.genSaltSync(saltRounds);
 			const hashPassword = bcrypt.hashSync(passWord, salt);
@@ -399,12 +401,13 @@ ajaxRouter.post('/register', async (req, res, next) => {
 			};
 
 			// create new customer in database
-			await api.customers.create(customerDraft).then(({ status, json }) => {
-				data.isCustomerSaved = true;
-				return res.status(status).send(data);
+			await api.customers.create(customerDraft).catch(error => {
+				console.log(error);
 			});
-			return true;
 		})();
+		data.isCustomerSaved = true;
+		res.status('200').send(data);
+		return true;
 	}
 
 	// send customer a doi email
@@ -454,21 +457,29 @@ ajaxRouter.post('/register', async (req, res, next) => {
 	}
 	// check if customer exist in database
 	if (!requestToken) {
-		await api.customers.list(filter).then(({ status, json }) => {
-			if (json.total_count > 0) {
-				res.status(status).send(data);
-				return false;
-			}
-			data.status = true;
-			registerCustomer();
-		});
+		await api.customers
+			.list(filter)
+			.then(({ status, json }) => {
+				if (json.total_count > 0) {
+					res.status(status).send(data);
+					return false;
+				}
+				data.status = true;
+				registerCustomer();
+			})
+			.catch(error => {
+				console.log(error);
+			});
 	}
 });
 
 ajaxRouter.put('/customer-account', async (req, res, next) => {
 	const customerData = req.body;
 	const token = AuthHeader.decodeUserLoginAuth(req.body.token);
-	const userId = JSON.stringify(token.userId).replace(/["']/g, '');
+	const userId = null;
+	try {
+		userId = JSON.stringify(token.userId).replace(/["']/g, '');
+	} catch (erro) {}
 
 	// generate password-hash
 	const inputPassword = customerData.password;
