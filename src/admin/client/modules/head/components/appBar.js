@@ -189,7 +189,7 @@ export default class AppBarTop extends React.Component {
 			const productId = pathname.split('/')[3];
 			title = messages.editProductOption;
 			leftButton = (
-				<Link to={`/product/${productId}`}>
+				<Link to={`/admin/product/${productId}`}>
 					<IconButton>
 						<FontIcon color="#fff" className="material-icons">
 							arrow_back
