@@ -1,6 +1,7 @@
 import * as t from './actionTypes';
 import api from 'lib/api';
 import messages from 'lib/text';
+
 const push = () => {};
 
 function requestCustomer() {
@@ -102,6 +103,12 @@ function setGroupSuccess() {
 	};
 }
 
+function createCustomerSuccess() {
+	return {
+		type: t.CUSTOMER_CREATE_SUCCESS
+	};
+}
+
 const getFilter = (state, offset = 0) => {
 	let filter = {
 		limit: 50,
@@ -157,6 +164,53 @@ export function fetchMoreCustomers() {
 					dispatch(receiveCustomersError(error));
 				});
 		}
+	};
+}
+
+export function createDraftCustomer(ownProps) {
+	const defaultEmail = 'temporary.email@localhost';
+	let filter = {
+		limit: 50,
+		offset: 0,
+		search: defaultEmail
+	};
+
+	return (dispatch, getState) => {
+		const state = getState();
+		api.customers
+			.list(filter)
+			.then(lookupResponse => {
+				console.log('Lookup response %O', lookupResponse);
+				let customer =
+					lookupResponse.json.data.length > 0
+						? lookupResponse.json.data[0]
+						: {};
+
+				if (Object.keys(customer).length === 0) {
+					console.log('No customer');
+					return api.customers.create({ email: defaultEmail }).catch(error => {
+						console.log(error);
+					});
+				} else {
+					return customer;
+				}
+			})
+			.then(customerResponse => {
+				console.log('Customer response %O', customerResponse);
+				let draftCustomerId;
+				// Case customer object
+				if (customerResponse.hasOwnProperty('id')) {
+					draftCustomerId = customerResponse.id;
+				} else {
+					draftCustomerId = customerResponse.json.id;
+				}
+
+				dispatch(createCustomerSuccess());
+				ownProps.history.push(`/admin/customer/${draftCustomerId}`);
+			})
+			.catch(error => {
+				console.log(error);
+			});
 	};
 }
 
