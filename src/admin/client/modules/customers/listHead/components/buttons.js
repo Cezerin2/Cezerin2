@@ -55,7 +55,14 @@ export default class Buttons extends React.Component {
 	};
 
 	render() {
-		const { search, setSearch, selectedCount, onDelete, onCreate } = this.props;
+		const {
+			search,
+			setSearch,
+			selectedCount,
+			onDelete,
+			onCreate,
+			onEdit
+		} = this.props;
 
 		const actionsSetGroup = [
 			<FlatButton
@@ -76,6 +83,18 @@ export default class Buttons extends React.Component {
 				<Search value={search} setSearch={setSearch} />
 				{selectedCount > 0 && (
 					<Fragment>
+						{selectedCount == 1 && (
+							<IconButton
+								touch={true}
+								tooltipPosition="bottom-left"
+								tooltip={messages.actions_edit}
+								onClick={this.onEdit}
+							>
+								<FontIcon color="#fff" className="material-icons">
+									edit
+								</FontIcon>
+							</IconButton>
+						)}
 						<IconButton
 							touch={true}
 							tooltipPosition="bottom-left"

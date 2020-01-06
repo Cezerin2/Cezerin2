@@ -231,6 +231,17 @@ export function deleteCustomers() {
 	};
 }
 
+export function editCustomer(ownProps) {
+	return (dispatch, getState) => {
+		const state = getState();
+		let customer = state.customers.editCustomer;
+
+		if (customer && customer.id) {
+			ownProps.history.push(`/admin/customer/${customer.id}`);
+		}
+	};
+}
+
 export function deleteCurrentCustomer() {
 	return (dispatch, getState) => {
 		const state = getState();

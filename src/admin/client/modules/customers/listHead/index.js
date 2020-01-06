@@ -32,6 +32,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		},
 		onCreate: () => {
 			dispatch(createDraftCustomer(ownProps));
+		},
+		onEdit: () => {
+			dispatch(editCustomer(ownProps));
 		}
 	};
 };
