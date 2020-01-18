@@ -16,10 +16,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			dispatch(
 				updateProduct({
 					id: values.id,
-					regular_price: values.regular_price,
-					sale_price: values.sale_price,
-					date_sale_from: values.date_sale_from,
-					date_sale_to: values.date_sale_to,
 					sku: values.sku,
 					stock_quantity: values.stock_quantity,
 					weight: values.weight,
@@ -36,8 +32,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default withRouter(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(ProductInventoryForm)
+	connect(mapStateToProps, mapDispatchToProps)(ProductInventoryForm)
 );

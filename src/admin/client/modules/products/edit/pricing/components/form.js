@@ -16,7 +16,7 @@ import Divider from 'material-ui/Divider';
 const validate = values => {
 	const errors = {};
 	const requiredFields = ['name'];
-	const numberFields = ['stock_quantity', 'weight'];
+	const numberFields = ['regular_price', 'sale_price'];
 
 	requiredFields.map(field => {
 		if (values && !values[field]) {
@@ -75,7 +75,7 @@ const asyncValidate = values => {
 	);
 };
 
-const ProductInventoryForm = ({
+const ProductPricingForm = ({
 	handleSubmit,
 	pristine,
 	reset,
@@ -89,93 +89,50 @@ const ProductInventoryForm = ({
 				<div className={style.innerBox}>
 					<div className="row" style={{ marginBottom: 50 }}>
 						<div className="col-xs-12">
-							<Field
-								name="sku"
-								component={TextField}
-								floatingLabelText={messages.products_sku}
-								fullWidth={true}
-							/>
-
 							<div className="row">
 								<div className="col-xs-6">
 									<Field
-										name="stock_quantity"
-										component={TextField}
-										floatingLabelText={messages.products_stockQuantity}
-										fullWidth={true}
-									/>
-								</div>
-								<div className="col-xs-6">
-									<Field
-										name="weight"
+										name="regular_price"
 										component={TextField}
 										floatingLabelText={
-											messages.products_weight + ` (${settings.weight_unit})`
+											messages.products_regularPrice +
+											` (${settings.currency_symbol})`
 										}
 										fullWidth={true}
 									/>
 								</div>
+								<div className="col-xs-6">
+									<Field
+										name="sale_price"
+										component={TextField}
+										floatingLabelText={
+											messages.products_salePrice +
+											` (${settings.currency_symbol})`
+										}
+										fullWidth={true}
+									/>
+								</div>
+								<div className="col-xs-6">
+									<Field
+										name="date_sale_from"
+										component={DatePicker}
+										textFieldStyle={{ width: '100%' }}
+										format={(value, name) => (value === '' ? null : value)}
+										floatingLabelText={messages.products_dateSaleFrom}
+									/>
+								</div>
+								<div className="col-xs-6">
+									<Field
+										name="date_sale_to"
+										component={DatePicker}
+										textFieldStyle={{ width: '100%' }}
+										format={(value, name) => (value === '' ? null : value)}
+										floatingLabelText={messages.products_dateSaleTo}
+									/>
+								</div>
 							</div>
-
-							<Field
-								name="date_stock_expected"
-								component={DatePicker}
-								textFieldStyle={{ width: '100%' }}
-								format={(value, name) => (value === '' ? null : value)}
-								floatingLabelText={messages.products_dateStockExpected}
-							/>
 						</div>
 					</div>
-
-					<Field
-						name="stock_tracking"
-						component={CustomToggle}
-						label={messages.products_stockTracking}
-					/>
-					<Divider
-						style={{
-							marginTop: 10,
-							marginBottom: 10
-						}}
-					/>
-					<Field
-						name="stock_preorder"
-						component={CustomToggle}
-						label={messages.products_stockPreorder}
-					/>
-					<Divider
-						style={{
-							marginTop: 10,
-							marginBottom: 10
-						}}
-					/>
-					<Field
-						name="stock_backorder"
-						component={CustomToggle}
-						label={messages.products_stockBackorder}
-					/>
-					<Divider
-						style={{
-							marginTop: 10,
-							marginBottom: 10
-						}}
-					/>
-					<Field
-						name="discontinued"
-						component={CustomToggle}
-						label={messages.products_discontinued}
-					/>
-					<Divider
-						style={{
-							marginTop: 10,
-							marginBottom: 10
-						}}
-					/>
-					<Field
-						name="enabled"
-						component={CustomToggle}
-						label={messages.enabled}
-					/>
 				</div>
 				<div
 					className={
@@ -203,9 +160,9 @@ const ProductInventoryForm = ({
 };
 
 export default reduxForm({
-	form: 'ProductInventoryForm',
+	form: 'ProductPricingForm',
 	validate,
 	asyncValidate,
 	asyncBlurFields: ['sku'],
 	enableReinitialize: true
-})(ProductInventoryForm);
+})(ProductPricingForm);

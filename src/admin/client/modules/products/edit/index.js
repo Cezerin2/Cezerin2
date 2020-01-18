@@ -4,6 +4,7 @@ import messages from 'lib/text';
 import ProductVariants from 'modules/products/edit/variants';
 import ProductAttributes from 'modules/products/edit/attributes';
 import ProductInventory from 'modules/products/edit/inventory';
+import ProductPricing from 'modules/products/edit/pricing';
 import ProductImages from 'modules/products/edit/images';
 import ProductGeneral from 'modules/products/edit/general';
 import ProductAdditional from 'modules/products/edit/additional';
@@ -28,6 +29,11 @@ class ProductEditContainer extends React.Component {
 					{messages.description}
 				</div>
 				<ProductGeneral />
+
+				<div style={{ margin: 20, color: 'rgba(0, 0, 0, 0.52)' }}>
+					{messages.products_pricing}
+				</div>
+				<ProductPricing />
 
 				<div style={{ margin: 20, color: 'rgba(0, 0, 0, 0.52)' }}>
 					{messages.products_inventory}
@@ -83,8 +89,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default withRouter(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(ProductEditContainer)
+	connect(mapStateToProps, mapDispatchToProps)(ProductEditContainer)
 );
