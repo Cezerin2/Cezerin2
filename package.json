@@ -1,7 +1,7 @@
 {
   "name": "cezerin",
   "version": "0.33.0",
-  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.com",
+  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.org",
   "keywords": [
     "cezerin",
     "ecommerce",
@@ -9,23 +9,13 @@
     "shop",
     "cms"
   ],
-  "homepage": "https://cezerin.com",
+  "homepage": "https://cezerin.org",
   "bugs": "https://github.com/cezerin/cezerin/issues",
   "license": "MIT",
   "author": {
     "name": "Restmount <jsonmount@gmail.com>",
     "url": "https://github.com/restmount"
   },
-  "contributors": [
-    {
-      "name": "Restmount <jsonmount@gmail.com>",
-      "url": "https://github.com/restmount"
-    },
-    {
-      "name": "Sergey Onufrienko <sergey@onufrienko.com>",
-      "url": "https://github.com/sonufrienko"
-    }
-  ],
   "main": "src/api/server/index.js",
   "repository": {
     "type": "git",
@@ -53,15 +43,14 @@
     "start": "concurrently npm:start-*"
   },
   "lint-staged": {
-    "*.js": [
+    "*.ts": [
       "prettier --write",
       "git add"
     ]
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.6",
+    "@babel/cli": "^6.26.0",
+    "@babel/core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-polyfill": "^6.26.0",
@@ -70,19 +59,12 @@
     "bcrypt": "^3.0.7",
     "body-parser": "^1.18.3",
     "cezerin2-client": "^0.36.0",
-    "chart.js": "^2.7.2",
+    "chart.js": "^2.9.3",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^4.0.1",
     "cookie-parser": "^1.4.3",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
-    "eslint": "^5.4.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.0.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.11.1",
     "esm": "^3.0.80",
     "express": "^4.16.3",
     "express-jwt": "^5.3.0",
@@ -140,7 +122,16 @@
     "winston": "^3.0.0",
     "workbox-webpack-plugin": "^3.4.1",
     "ws": "^6.0.0"
-  },
+  },"devDependencies": {
+    
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1"},
   "engines": {
     "node": "^8.0.0",
     "npm": "^5.0.0"

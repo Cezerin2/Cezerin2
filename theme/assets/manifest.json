@@ -1,29 +1,35 @@
 {
-  "name": "The Shop",
-  "short_name": "The Shop",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#F9F9F9",
-  "theme_color": "#f5f5f5",
-  "icons": [{
-    "src": "/assets/images/icons/icon-16.png",
-    "sizes": "16x16",
-    "type": "image/png"
-  },{
-    "src": "/assets/images/icons/icon-32.png",
-    "sizes": "32x32",
-    "type": "image/png"
-  },{
-    "src": "/assets/images/icons/icon-128.png",
-    "sizes": "128x128",
-    "type": "image/png"
-  },{
-    "src": "/assets/images/icons/icon-256.png",
-    "sizes": "256x256",
-    "type": "image/png"
-  },{
-    "src": "/assets/images/icons/icon-512.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }]
+    "name": "The Shop",
+    "short_name": "The Shop",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F9F9F9",
+    "theme_color": "#f5f5f5",
+    "icons": [
+        {
+            "src": "/assets/images/icons/icon-16.webp",
+            "sizes": "16x16",
+            "type": "image/webp"
+        },
+        {
+            "src": "/assets/images/icons/icon-32.webp",
+            "sizes": "32x32",
+            "type": "image/webp"
+        },
+        {
+            "src": "/assets/images/icons/icon-128.webp",
+            "sizes": "128x128",
+            "type": "image/webp"
+        },
+        {
+            "src": "/assets/images/icons/icon-256.webp",
+            "sizes": "256x256",
+            "type": "image/webp"
+        },
+        {
+            "src": "/assets/images/icons/icon-512.webp",
+            "sizes": "512x512",
+            "type": "image/webp"
+        }
+    ]
 }

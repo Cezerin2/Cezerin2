@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { TextField, SelectField } from 'redux-form-material-ui';
 
 import messages from 'lib/text';
-import style from './style.css';
+import './style.css';
 
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -11,16 +11,12 @@ import Divider from 'material-ui/Divider';
 import FontIcon from 'material-ui/FontIcon';
 import { List, ListItem } from 'material-ui/List';
 
-class EmailSettings extends React.Component {
+const EmailSettings = () => {
 	constructor(props) {
 		super(props);
 	}
+useEffect(()=>this.props.onLoad())
 
-	componentDidMount() {
-		this.props.onLoad();
-	}
-
-	render() {
 		let { handleSubmit, pristine, submitting, initialValues } = this.props;
 
 		return (
@@ -99,7 +95,7 @@ class EmailSettings extends React.Component {
 				</Paper>
 			</form>
 		);
-	}
+	
 }
 
 export default reduxForm({

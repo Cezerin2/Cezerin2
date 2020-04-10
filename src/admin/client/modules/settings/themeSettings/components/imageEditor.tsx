@@ -2,10 +2,7 @@ import React from 'react';
 import api from 'lib/api';
 import ImageUpload from 'modules/shared/imageUpload';
 
-export default class ThemeImageUpload extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+const ThemeImageUpload = () => {
 
 	onDelete = () => {
 		const fileName = this.props.input.value;
@@ -21,7 +18,6 @@ export default class ThemeImageUpload extends React.Component {
 		});
 	};
 
-	render() {
 		let { input, label } = this.props;
 		const imageUrl =
 			input.value && input.value.length > 0
@@ -41,3 +37,5 @@ export default class ThemeImageUpload extends React.Component {
 		);
 	}
 }
+
+export default ThemeImageUpload
