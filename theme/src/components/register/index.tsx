@@ -4,14 +4,10 @@ import { Redirect } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 import Register from './register';
 
-export default class RegisterForm extends React.Component {
-	constructor(props) {
-		super(props);
-
+const RegisterForm = () => {
 		this.state = {
 			verifiedToken: false
 		};
-	}
 
 	handleContactsSubmit = values => {
 		this.props.registerUser({
@@ -30,7 +26,6 @@ export default class RegisterForm extends React.Component {
 		});
 	}
 
-	render() {
 		const { settings, registerProperties } = this.props.state;
 
 		if (
@@ -57,4 +52,5 @@ export default class RegisterForm extends React.Component {
 			/>
 		);
 	}
-}
+
+export default RegisterForm

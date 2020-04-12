@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
-import { text } from '../lib/settings';
-import MetaTags from '../components/metaTags';
+import React from 'react'
+import { text } from '../lib/settings'
+import MetaTags from '../components/metaTags'
 
 const NotFoundContainer = () => (
-	<Fragment>
+	<>
 		<MetaTags title={text.title404} />
 		<section className="section">
 			<div className="container">
@@ -13,7 +13,7 @@ const NotFoundContainer = () => (
 				</div>
 			</div>
 		</section>
-	</Fragment>
-);
+	</>
+)
 
-export default NotFoundContainer;
+export default NotFoundContainer

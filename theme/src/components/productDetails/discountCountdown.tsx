@@ -1,22 +1,19 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
-import { themeSettings, text } from '../../lib/settings';
+import {  text } from '../../lib/settings';
 
-export default class DiscountCountdown extends React.Component {
-	constructor(props) {
-		super(props);
+const DiscountCountdown = () => {
 		this.state = {
 			timer: null,
 			diff: null
 		};
-	}
 
-	componentDidMount() {
+	useEffect(()=> {
 		let timer = setInterval(this.tick, 1000);
 		this.setState({
 			timer: timer
 		});
-	}
+	})
 
 	componentWillUnmount() {
 		clearInterval(this.state.timer);
@@ -38,7 +35,6 @@ export default class DiscountCountdown extends React.Component {
 		return num < 10 ? '0' + num : num;
 	};
 
-	render() {
 		const { product } = this.props;
 		const { diff } = this.state;
 
@@ -84,4 +80,5 @@ export default class DiscountCountdown extends React.Component {
 			return null;
 		}
 	}
-}
+
+export default DiscountCountdown

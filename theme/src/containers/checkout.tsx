@@ -1,16 +1,16 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import MetaTags from '../components/metaTags';
-import OrderSummary from '../components/orderSummary';
-import CheckoutForm from '../components/checkoutForm';
+import React from 'react'
+import PropTypes from 'prop-types'
+import MetaTags from '../components/metaTags'
+import OrderSummary from '../components/orderSummary'
+import CheckoutForm from '../components/checkoutForm'
 
-const CheckoutContainer = props => {
+const CheckoutContainer = (props) => {
 	const {
-		state: { pageDetails }
-	} = props;
+		state: { pageDetails },
+	} = props
 
 	return (
-		<Fragment>
+		<>
 			<MetaTags
 				title={pageDetails.meta_title}
 				description={pageDetails.meta_description}
@@ -31,14 +31,14 @@ const CheckoutContainer = props => {
 					</div>
 				</div>
 			</section>
-		</Fragment>
-	);
-};
+		</>
+	)
+}
 
 CheckoutContainer.propTypes = {
 	state: PropTypes.shape({
-		pageDetails: PropTypes.shape({})
-	}).isRequired
-};
+		pageDetails: PropTypes.shape({}),
+	}).isRequired,
+}
 
-export default CheckoutContainer;
+export default CheckoutContainer

@@ -1,10 +1,10 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { themeSettings, text } from '../../lib/settings';
-import * as helper from '../../lib/helper';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { text } from '../../lib/settings'
+import * as helper from '../../lib/helper'
 
 const ProductBreadcrumbs = ({ product, categories }) => {
-	const items = helper.getProductBreadcrumbs(product, categories);
+	const items = helper.getProductBreadcrumbs(product, categories)
 	return (
 		<nav
 			className="breadcrumb is-small product-breadcrumb"
@@ -17,7 +17,7 @@ const ProductBreadcrumbs = ({ product, categories }) => {
 				{items}
 			</ul>
 		</nav>
-	);
-};
+	)
+}
 
-export default ProductBreadcrumbs;
+export default ProductBreadcrumbs

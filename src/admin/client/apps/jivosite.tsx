@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import messages from 'lib/text';
 import api from 'lib/api';
 import TextField from 'material-ui/TextField';
@@ -11,13 +11,10 @@ export const Description = {
 	description: `JivoSite – чат для сайта и инструмент для общения с клиентами в социальных сетях, мессенджерах и мобильных приложениях. Зарабатывайте больше, не упуская ни одного обращения.`
 };
 
-export class App extends React.Component {
-	constructor(props) {
-		super(props);
+export App = () => {
 		this.state = {
 			code: ''
 		};
-	}
 
 	handleChange = event => {
 		this.setState({
@@ -48,36 +45,29 @@ export class App extends React.Component {
 			value: code
 		});
 	};
+	useEffect(()=>fetchSettings())
 
-	componentDidMount() {
-		this.fetchSettings();
-	}
-
-	render() {
 		return (
-			<div>
-				<div>Введите код JivoSite</div>
-
+			<>
+				<p>Введите код JivoSite</p>
 				<TextField
 					type="text"
 					multiLine={true}
 					fullWidth={true}
 					rows={10}
-					value={this.state.code}
-					onChange={this.handleChange}
+					value={state.code}
+					onChange={handleChange}
 					floatingLabelText="Код чата JivoSite"
 					hintText="<!-- BEGIN JIVOSITE CODE {literal} -->..."
 				/>
-
 				<div style={{ textAlign: 'right' }}>
 					<RaisedButton
 						label={messages.save}
 						primary={true}
 						disabled={false}
-						onClick={this.updateSettings}
+						onClick={updateSettings}
 					/>
 				</div>
-			</div>
+			</>
 		);
 	}
-}

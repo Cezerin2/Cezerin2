@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import messages from 'lib/text';
 import api from 'lib/api';
 import TextField from 'material-ui/TextField';
@@ -33,14 +33,10 @@ const GTAG_CODE = `<!-- Global site tag (gtag.js) - Google Analytics -->
   gtag('config', 'GA_TRACKING_ID');
 </script>`;
 
-export class App extends React.Component {
-	constructor(props) {
-		super(props);
+export const App = () => {
 		this.state = {
 			trackingId: ''
 		};
-	}
-
 	handleTrackingIdChange = event => {
 		this.setState({
 			trackingId: event.target.value
@@ -77,22 +73,17 @@ export class App extends React.Component {
 		});
 	};
 
-	componentDidMount() {
-		this.fetchSettings();
-	}
-
-	render() {
+	useEffect(()fetchSettings())
 		return (
 			<div>
 				<div>
 					Enter your Google Analytics Tracking ID to track page views and other
 					events.
 				</div>
-
 				<TextField
 					type="text"
-					value={this.state.trackingId}
-					onChange={this.handleTrackingIdChange}
+					value={state.trackingId}
+					onChange={handleTrackingIdChange}
 					floatingLabelText="Tracking ID"
 					hintText="UA-XXXXXXXX-X"
 				/>
@@ -102,10 +93,9 @@ export class App extends React.Component {
 						label={messages.save}
 						primary={true}
 						disabled={false}
-						onClick={this.updateSettings}
+						onClick={updateSettings}
 					/>
 				</div>
 			</div>
 		);
 	}
-}

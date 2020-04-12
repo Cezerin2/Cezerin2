@@ -2,14 +2,12 @@ import React from 'react';
 import { injectStripe } from 'react-stripe-elements';
 import CardSection from './CardSection';
 
-class CheckoutForm extends React.Component {
-	constructor(props) {
-		super(props);
+const CheckoutForm => {
 		this.state = {
 			inProgress: false
 		};
 		this.submit = this.submit.bind(this);
-	}
+	
 
 	async submit(ev) {
 		this.setState({
@@ -28,7 +26,6 @@ class CheckoutForm extends React.Component {
 		}
 	}
 
-	render() {
 		const { inProgress } = this.state;
 		return (
 			<div>

@@ -1,19 +1,11 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import messages from 'lib/text';
 import style from './style.css';
 import Account from './account';
 import Developer from './developer';
 
-export default class WebStoreAccountDetails extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	componentDidMount() {
-		this.props.fetchData();
-	}
-
-	render() {
+const WebStoreAccountDetails = () => {
+		useEffect(()=>props.fetchData())
 		const { account, onAccountSubmit, onDeveloperSubmit } = this.props;
 		const developerData = account ? account.developer : null;
 
@@ -35,3 +27,5 @@ export default class WebStoreAccountDetails extends React.Component {
 		}
 	}
 }
+
+export default WebStoreAccountDetails

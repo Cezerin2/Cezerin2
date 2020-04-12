@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import { themeSettings, text } from '../../lib/settings';
-import Item from './item';
-import LoadMore from './loadMore';
+import React from 'react'
+import { themeSettings, text } from '../../lib/settings'
+import Item from './item'
+import LoadMore from './loadMore'
 
 const ProductList = ({
 	products,
@@ -17,10 +17,10 @@ const ProductList = ({
 	columnCountOnTablet,
 	columnCountOnDesktop,
 	columnCountOnWidescreen,
-	columnCountOnFullhd
+	columnCountOnFullhd,
 }) => {
 	const items = products
-		? products.map(product => (
+		? products.map((product) => (
 				<Item
 					key={product.id}
 					product={product}
@@ -33,10 +33,10 @@ const ProductList = ({
 					columnCountOnFullhd={columnCountOnFullhd}
 				/>
 		  ))
-		: null;
+		: null
 
 	return (
-		<Fragment>
+		<>
 			<div
 				className={
 					className +
@@ -53,8 +53,8 @@ const ProductList = ({
 					loading={loadingMoreProducts}
 				/>
 			</div>
-		</Fragment>
-	);
-};
+		</>
+	)
+}
 
-export default ProductList;
+export default ProductList

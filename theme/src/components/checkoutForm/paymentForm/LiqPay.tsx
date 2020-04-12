@@ -1,11 +1,7 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 let scriptAdded = false;
-export default class PayPalButton extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
+const PayPalButton = () => {
 	addScript = () => {
 		if (scriptAdded) {
 			this.executeScript();
@@ -46,21 +42,17 @@ export default class PayPalButton extends React.Component {
 			});
 	};
 
-	componentDidMount() {
-		this.addScript();
-	}
+	useEffect(()=>addScript())
 
 	componentDidUpdate() {
 		this.executeScript();
 	}
 
-	render() {
 		const { formSettings, shopSettings, onPayment } = this.props;
 
 		return (
-			<div>
 				<div id="liqpay_checkout" />
-			</div>
 		);
 	}
-}
+
+export default PayPalButton

@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import PropTypes from 'prop-types';
 import api from '../../lib/api';
 import ProductList from '../productList';
 
-export default class CustomProducts extends React.Component {
+const CustomProducts = () => {
 	static propTypes = {
 		ids: PropTypes.oneOfType([
 			PropTypes.string,
@@ -57,10 +57,10 @@ export default class CustomProducts extends React.Component {
 		products: []
 	};
 
-	componentDidMount() {
+	useEffect(() => {
 		this.isCancelled = false;
 		this.fetchProducts(this.props);
-	}
+	})
 
 	componentWillReceiveProps(nextProps) {
 		this.fetchProducts(nextProps);
@@ -116,7 +116,6 @@ export default class CustomProducts extends React.Component {
 			.catch(() => {});
 	};
 
-	render() {
 		const {
 			settings,
 			addCartItem,
@@ -148,4 +147,5 @@ export default class CustomProducts extends React.Component {
 			/>
 		);
 	}
-}
+
+export default CustomProducts

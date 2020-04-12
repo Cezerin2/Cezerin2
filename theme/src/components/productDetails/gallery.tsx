@@ -1,18 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import ImageGallery from 'react-image-gallery';
 import Lightbox from 'react-image-lightbox';
 import * as helper from '../../lib/helper';
-import { themeSettings, text } from '../../lib/settings';
+import { themeSettings } from '../../lib/settings';
 
-export default class Gallery extends React.Component {
-	constructor(props) {
-		super(props);
+const Gallery = () => {
 		this.state = {
 			lightboxIsOpen: false,
 			lightboxPhotoIndex: 0
 		};
-	}
 
 	openLightbox = () => {
 		this.setState({ lightboxIsOpen: true });
@@ -26,7 +23,6 @@ export default class Gallery extends React.Component {
 		this.setState({ lightboxPhotoIndex: index });
 	};
 
-	render() {
 		const { images } = this.props;
 		const { lightboxIsOpen, lightboxPhotoIndex } = this.state;
 
@@ -48,7 +44,7 @@ export default class Gallery extends React.Component {
 			const showThumbnails = images.length > 1;
 
 			return (
-				<Fragment>
+				<>
 					<ImageGallery
 						items={imagesArray}
 						showThumbnails={showThumbnails}
@@ -92,10 +88,12 @@ export default class Gallery extends React.Component {
 							}
 						/>
 					)}
-				</Fragment>
+				</>
 			);
 		} else {
 			return <div className="large-image-placeholder" />;
 		}
 	}
 }
+
+export default Gallery

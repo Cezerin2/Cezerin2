@@ -5,7 +5,7 @@ import { themeSettings, text } from '../../lib/settings';
 import AuthHeader from '../../../../src/api/server/lib/auth-header';
 import Account from './account';
 
-export default class AccountForm extends React.Component {
+const AccountForm = () => {
 	constructor(props) {
 		super(props);
 	}
@@ -39,7 +39,6 @@ export default class AccountForm extends React.Component {
 		});
 	};
 
-	render() {
 		const {
 			settings,
 			cart,
@@ -98,3 +97,5 @@ export default class AccountForm extends React.Component {
 		}
 	}
 }
+
+export default AccountForm

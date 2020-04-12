@@ -33,15 +33,12 @@ const DeveloperForm = ({
 			>
 				<Paper style={{ margin: '0px 20px' }} zDepth={1}>
 					<div style={{ padding: '10px 30px 30px 30px' }}>
-						<div>
 							<Field
 								component={TextField}
 								fullWidth={true}
 								name="name"
 								floatingLabelText={messages.full_name}
 							/>
-						</div>
-						<div>
 							<Field
 								component={TextField}
 								fullWidth={true}
@@ -50,24 +47,18 @@ const DeveloperForm = ({
 								multiLine={true}
 								rows={1}
 							/>
-						</div>
-						<div>
 							<Field
 								component={TextField}
 								fullWidth={true}
 								name="website"
 								floatingLabelText={messages.website}
 							/>
-						</div>
-						<div>
 							<Field
 								component={TextField}
 								fullWidth={true}
 								name="email"
 								floatingLabelText={messages.email}
 							/>
-						</div>
-					</div>
 					<div
 						className="buttons-box"
 						style={{ display: pristine ? 'none' : 'block' }}
@@ -86,7 +77,4 @@ const DeveloperForm = ({
 	);
 };
 
-export default reduxForm({
-	form: 'WebStoreDeveloperForm',
-	enableReinitialize: true
-})(DeveloperForm);
+export default reduxForm({	form: 'WebStoreDeveloperForm',	enableReinitialize: true})(DeveloperForm);

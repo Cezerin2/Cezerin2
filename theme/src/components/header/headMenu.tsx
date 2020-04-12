@@ -1,14 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { themeSettings, text } from '../../lib/settings';
+import { themeSettings } from '../../lib/settings';
 
-class HeadMenuItem extends React.Component {
-	constructor(props) {
-		super(props);
+const HeadMenuItem = () => {
 		this.state = {
 			isActive: false
 		};
-	}
 
 	onMouseEnterHandler = () => {
 		if (!this.props.isMobile && this.props.level === 1) {
@@ -31,7 +28,6 @@ class HeadMenuItem extends React.Component {
 			isActive: !this.state.isActive
 		});
 
-	render() {
 		const { categories, category, onClick, level, isMobile } = this.props;
 		const items = categories
 			.filter(item => item.parent_id === category.id)
@@ -83,10 +79,8 @@ class HeadMenuItem extends React.Component {
 			</li>
 		);
 	}
-}
 
-export default class HeadMenu extends React.PureComponent {
-	render() {
+const HeadMenu = () => {
 		const { categories, onClick, isMobile } = this.props;
 		let addItemsToMenu = [];
 		if (themeSettings.header_menu && themeSettings.header_menu.length > 0) {
@@ -115,3 +109,4 @@ export default class HeadMenu extends React.PureComponent {
 		return <ul className="nav-level-0">{items}</ul>;
 	}
 }
+export default HeadMenu

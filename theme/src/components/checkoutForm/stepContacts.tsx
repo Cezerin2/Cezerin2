@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { themeSettings, text } from '../../lib/settings';
 import { formatCurrency } from '../../lib/helper';
@@ -28,10 +28,7 @@ const ReadOnlyField = ({ step, name, value }) => {
 	);
 };
 
-class CheckoutStepContacts extends React.Component {
-	constructor(props) {
-		super(props);
-
+const CheckoutStepContacts = () => {
 		this.state = {
 			loggedin: false,
 			reinitialized: false,
@@ -42,11 +39,11 @@ class CheckoutStepContacts extends React.Component {
 		this.setInitialValues = this.setInitialValues.bind(this);
 	}
 
-	componentDidMount() {
+	useEffect(() => {
 		if (Lscache.get('auth_data') !== null) {
 			this.setState({ loggedin: true });
 		}
-	}
+	})
 
 	setInitialValues() {
 		Lscache.flushExpired();
@@ -236,8 +233,6 @@ class CheckoutStepContacts extends React.Component {
 			? `${labelText} (${text.optional})`
 			: labelText;
 	};
-
-	render() {
 		const {
 			handleSubmit,
 			customerProperties,
@@ -651,7 +646,6 @@ class CheckoutStepContacts extends React.Component {
 			);
 		}
 	}
-}
 
 export default reduxForm({
 	form: 'CheckoutStepContacts',

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { text } from '../lib/settings';
-import * as helper from '../lib/helper';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
+import { text } from '../lib/settings'
+import * as helper from '../lib/helper'
 
 const CategoryBreadcrumbs = ({ currentCategory, categories }) => {
-	const items = helper.getCategoryBreadcrumbs(currentCategory.id, categories);
+	const items = helper.getCategoryBreadcrumbs(currentCategory.id, categories)
 	return (
 		<nav className="breadcrumb is-small" aria-label="breadcrumbs">
 			<ul>
@@ -20,12 +20,12 @@ const CategoryBreadcrumbs = ({ currentCategory, categories }) => {
 				</li>
 			</ul>
 		</nav>
-	);
-};
+	)
+}
 
 CategoryBreadcrumbs.propTypes = {
 	currentCategory: PropTypes.shape({}).isRequired,
-	categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
-};
+	categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+}
 
-export default CategoryBreadcrumbs;
+export default CategoryBreadcrumbs

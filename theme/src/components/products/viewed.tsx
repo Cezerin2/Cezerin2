@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { text } from '../../lib/settings';
 import CustomProductList from './custom';
 
-export default class ViewedProducts extends React.Component {
+const ViewedProducts = () => {
 	static propTypes = {
 		limit: PropTypes.number.isRequired,
 		settings: PropTypes.shape({}).isRequired,
@@ -15,7 +15,7 @@ export default class ViewedProducts extends React.Component {
 		viewedProducts: []
 	};
 
-	componentDidMount() {
+	useEffect(() => {
 		const { product } = this.props;
 		const viewedProducts = this.getArrayFromLocalStorage();
 		this.setState({ viewedProducts });
@@ -23,7 +23,7 @@ export default class ViewedProducts extends React.Component {
 		if (product && product.id) {
 			this.addProductIdToLocalStorage(product.id);
 		}
-	}
+	})
 
 	componentWillReceiveProps(nextProps) {
 		if (
@@ -74,7 +74,6 @@ export default class ViewedProducts extends React.Component {
 		}
 	};
 
-	render() {
 		const { limit, settings, addCartItem, product } = this.props;
 		let { viewedProducts } = this.state;
 
@@ -103,4 +102,5 @@ export default class ViewedProducts extends React.Component {
 		}
 		return null;
 	}
-}
+
+export default ViewedProducts

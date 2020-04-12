@@ -41,17 +41,13 @@ const InputField = field => (
 	</div>
 );
 
-class Account extends React.Component {
-	constructor(props) {
-		super(props);
-
+const Account = () => {
 		this.state = {
 			profileSection: 1,
 			profileEdit: false,
 			reinitialized: false,
 			cartLayer: false
 		};
-	}
 
 	setInitialValues() {
 		this.props.initialize({
@@ -271,7 +267,6 @@ class Account extends React.Component {
 		this.setState({ profileEdit: true });
 	};
 
-	render() {
 		const {
 			handleSubmit,
 			customerProperties,
@@ -888,7 +883,6 @@ class Account extends React.Component {
 			);
 		}
 	}
-}
 export default reduxForm({
 	form: 'Account',
 	enableReinitialize: true,

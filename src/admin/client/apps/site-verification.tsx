@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import messages from 'lib/text';
 import api from 'lib/api';
 import TextField from 'material-ui/TextField';
@@ -24,17 +24,13 @@ const BING_EXAMPLE = '<meta name="msvalidate.01" content="1234" />';
 const PINTEREST_EXAMPLE = '<meta name="p:domain_verify" content="1234" />';
 const YANDEX_EXAMPLE = '<meta name="yandex-verification" content="1234" />';
 
-export class App extends React.Component {
-	constructor(props) {
-		super(props);
+export const App = () => {
 		this.state = {
 			google: '',
 			bing: '',
 			pinterest: '',
 			yandex: ''
 		};
-	}
-
 	handleGoogleChange = event => {
 		this.setState({
 			google: event.target.value
@@ -97,18 +93,13 @@ export class App extends React.Component {
 			value: metaTags
 		});
 	};
-
-	componentDidMount() {
-		this.fetchSettings();
-	}
-
-	render() {
+	useEffect(() fetchSettings())
 		return (
-			<div>
+			<>
 				<TextField
 					type="text"
-					value={this.state.google}
-					onChange={this.handleGoogleChange}
+					value={state.google}
+					onChange={handleGoogleChange}
 					floatingLabelText="Google"
 					fullWidth={true}
 					hintText={GOOGLE_EXAMPLE}
@@ -116,8 +107,8 @@ export class App extends React.Component {
 
 				<TextField
 					type="text"
-					value={this.state.bing}
-					onChange={this.handleBingChange}
+					value={state.bing}
+					onChange={handleBingChange}
 					floatingLabelText="Bing"
 					fullWidth={true}
 					hintText={BING_EXAMPLE}
@@ -125,8 +116,8 @@ export class App extends React.Component {
 
 				<TextField
 					type="text"
-					value={this.state.pinterest}
-					onChange={this.handlePinterestChange}
+					value={state.pinterest}
+					onChange={handlePinterestChange}
 					floatingLabelText="Pinterest"
 					fullWidth={true}
 					hintText={PINTEREST_EXAMPLE}
@@ -134,8 +125,8 @@ export class App extends React.Component {
 
 				<TextField
 					type="text"
-					value={this.state.yandex}
-					onChange={this.handleYandexChange}
+					value={state.yandex}
+					onChange={handleYandexChange}
 					floatingLabelText="Yandex"
 					fullWidth={true}
 					hintText={YANDEX_EXAMPLE}
@@ -146,10 +137,9 @@ export class App extends React.Component {
 						label={messages.save}
 						primary={true}
 						disabled={false}
-						onClick={this.updateSettings}
+						onClick={updateSettings}
 					/>
 				</div>
-			</div>
+			</>
 		);
 	}
-}

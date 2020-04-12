@@ -1,26 +1,30 @@
-import React from 'react';
+import React from 'react'
 
-import messages from 'lib/text';
-import style from './style.css';
+import messages from 'lib/text'
+import './style.sass'
 
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
-import FontIcon from 'material-ui/FontIcon';
+import Paper from 'material-ui/Paper'
+import RaisedButton from 'material-ui/RaisedButton'
+import Divider from 'material-ui/Divider'
+import FontIcon from 'material-ui/FontIcon'
 
 const AppDescription = ({
 	name,
 	description,
 	coverUrl,
 	developer,
-	enabled
+	enabled,
 }) => (
 	<div style={{ maxWidth: 720, width: '100%' }}>
 		<Paper className="paper-box" zDepth={1}>
 			<div className={style.innerBox}>
 				<div className="row">
 					<div className="col-xs-4">
-						<img src={coverUrl} alt={name} className={style.cover} />
+						<img
+							src={coverUrl}
+							alt={name}
+							className={style.cover}
+						/>
 					</div>
 					<div className="col-xs-8">
 						<h1 className={style.title}>{name}</h1>
@@ -40,6 +44,6 @@ const AppDescription = ({
 			</div>
 		</Paper>
 	</div>
-);
+)
 
-export default AppDescription;
+export default AppDescription

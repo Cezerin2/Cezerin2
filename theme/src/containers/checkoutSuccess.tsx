@@ -1,20 +1,26 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import * as helper from '../lib/helper';
-import MetaTags from '../components/metaTags';
-import CheckoutSuccess from '../components/checkoutSuccess';
+import React from 'react'
+import PropTypes from 'prop-types'
+import * as helper from '../lib/helper'
+import MetaTags from '../components/metaTags'
+import CheckoutSuccess from '../components/checkoutSuccess'
 
-const CheckoutSuccessContainer = props => {
+const CheckoutSuccessContainer = (props) => {
 	const {
-		state: { pageDetails, order, settings, shippingMethods, checkoutFields }
-	} = props;
+		state: {
+			pageDetails,
+			order,
+			settings,
+			shippingMethods,
+			checkoutFields,
+		},
+	} = props
 	const shippingMethod = helper.getShippingMethodFromOrder(
 		order,
 		shippingMethods
-	);
+	)
 
 	return (
-		<Fragment>
+		<>
 			<MetaTags
 				title={pageDetails.meta_title}
 				description={pageDetails.meta_description}
@@ -40,9 +46,9 @@ const CheckoutSuccessContainer = props => {
 					</div>
 				</div>
 			</section>
-		</Fragment>
-	);
-};
+		</>
+	)
+}
 
 CheckoutSuccessContainer.propTypes = {
 	state: PropTypes.shape({
@@ -50,8 +56,8 @@ CheckoutSuccessContainer.propTypes = {
 		pageDetails: PropTypes.shape({}),
 		order: PropTypes.shape({}),
 		shippingMethods: PropTypes.arrayOf(PropTypes.shape({})),
-		checkoutFields: PropTypes.arrayOf(PropTypes.shape({}))
-	}).isRequired
-};
+		checkoutFields: PropTypes.arrayOf(PropTypes.shape({})),
+	}).isRequired,
+}
 
-export default CheckoutSuccessContainer;
+export default CheckoutSuccessContainer

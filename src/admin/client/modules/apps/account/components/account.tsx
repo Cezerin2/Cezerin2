@@ -28,37 +28,30 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
 			>
 				<Paper style={{ margin: '0px 20px' }} zDepth={1}>
 					<div style={{ padding: '10px 30px 30px 30px' }}>
-						<div>
 							<Field
 								component={TextField}
 								fullWidth={true}
 								name="email"
 								floatingLabelText={messages.email}
 							/>
-						</div>
-						<div>
 							<Field
 								component={TextField}
 								fullWidth={true}
 								name="shop_url"
 								floatingLabelText={messages.shopUrl}
 							/>
-						</div>
-						<div>
 							<Field
 								component={TextField}
 								fullWidth={true}
 								name="admin_url"
 								floatingLabelText={messages.adminUrl}
 							/>
-						</div>
 						<Field
 							component={CustomToggle}
 							name="is_developer"
 							label={messages.isDeveloper}
 							style={{ paddingTop: 16, paddingBottom: 16 }}
 						/>
-					</div>
 					<div
 						className="buttons-box"
 						style={{ display: pristine ? 'none' : 'block' }}
@@ -77,7 +70,4 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
 	);
 };
 
-export default reduxForm({
-	form: 'WebStoreAccountForm',
-	enableReinitialize: true
-})(AccountForm);
+export default reduxForm({form: 'WebStoreAccountForm',	enableReinitialize: true})(AccountForm);

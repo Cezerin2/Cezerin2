@@ -1,19 +1,16 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { themeSettings, text } from '../../lib/settings';
 import CheckoutStepContacts from './stepContacts';
 import CheckoutStepShipping from './stepShipping';
 import CheckoutStepPayment from './stepPayment';
 import Lscache from 'lscache';
 
-export default class CheckoutForm extends React.Component {
-	constructor(props) {
-		super(props);
+const CheckoutForm = () = {
 		this.state = {
 			step: 1
-		};
-	}
+		}
 
-	componentDidMount() {
+	useEffect(()=> {
 		this.props.loadShippingMethods();
 		this.props.loadPaymentMethods();
 		this.props.customerData({
@@ -23,7 +20,7 @@ export default class CheckoutForm extends React.Component {
 		this.props.cartLayerInitialized({
 			cartlayerBtnInitialized: false
 		});
-	}
+	})
 
 	changeStep = step => {
 		this.setState({ step: step });
@@ -231,4 +228,5 @@ export default class CheckoutForm extends React.Component {
 			return <p>{text.emptyCheckout}</p>;
 		}
 	}
-}
+
+export default CheckoutForm

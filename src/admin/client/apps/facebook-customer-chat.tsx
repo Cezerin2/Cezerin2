@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import messages from 'lib/text';
 import api from 'lib/api';
 import TextField from 'material-ui/TextField';
@@ -22,21 +22,19 @@ export const Description = {
 
 const CHAT_CODE = `<div class="fb-customerchat" page_id="PAGE_ID" minimized="IS_MINIMIZED"></div>`;
 
-export class App extends React.Component {
+export const App = () => {
 	constructor(props) {
-		super(props);
 		this.state = {
 			pageId: '',
 			minimized: 'false'
 		};
-	}
 
 	handlePageIdChange = event => {
-		this.setState({ pageId: event.target.value });
+		setState({ pageId: event.target.value });
 	};
 
 	handleMinimizedChange = event => {
-		this.setState({ minimized: event.target.value });
+		setState({ minimized: event.target.value });
 	};
 
 	fetchSettings = () => {
@@ -75,12 +73,7 @@ export class App extends React.Component {
 			value: htmlCode
 		});
 	};
-
-	componentDidMount() {
-		this.fetchSettings();
-	}
-
-	render() {
+useEffect(()=>fetchSettings())
 		return (
 			<div>
 				<TextField
@@ -111,4 +104,3 @@ export class App extends React.Component {
 			</div>
 		);
 	}
-}

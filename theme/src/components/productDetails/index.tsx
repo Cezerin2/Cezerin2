@@ -21,9 +21,7 @@ const Description = ({ description }) => (
 	/>
 );
 
-export default class ProductDetails extends React.Component {
-	constructor(props) {
-		super(props);
+const ProductDetails = () => {
 		this.state = {
 			selectedOptions: {},
 			selectedVariant: null,
@@ -37,7 +35,7 @@ export default class ProductDetails extends React.Component {
 		);
 		this.addToCart = this.addToCart.bind(this);
 		this.checkSelectedOptions = this.checkSelectedOptions.bind(this);
-	}
+
 
 	onOptionChange(optionId, valueId) {
 		let { selectedOptions } = this.state;
@@ -99,7 +97,6 @@ export default class ProductDetails extends React.Component {
 		this.setState({ isAllOptionsSelected: allOptionsSelected });
 	}
 
-	render() {
 		const { product, settings, categories } = this.props;
 		const { selectedVariant, isAllOptionsSelected } = this.state;
 		const maxQuantity =
@@ -113,7 +110,7 @@ export default class ProductDetails extends React.Component {
 
 		if (product) {
 			return (
-				<Fragment>
+				<>
 					<section className="section section-product">
 						<div className="container">
 							<div className="columns">
@@ -191,10 +188,11 @@ export default class ProductDetails extends React.Component {
 							limit={themeSettings.limit_viewed_products || 4}
 						/>
 					)}
-				</Fragment>
+				</>
 			);
 		} else {
 			return null;
 		}
 	}
-}
+
+export default ProductDetails

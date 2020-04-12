@@ -1,14 +1,14 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { themeSettings, text } from '../../lib/settings';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { themeSettings, text } from '../../lib/settings'
 
 const CartCount = ({ cart }) => {
 	if (cart && cart.items && cart.items.length > 0) {
-		const itemsCount = cart.items.reduce((a, b) => a + b.quantity, 0);
-		return <span className="cart-count">{itemsCount}</span>;
+		const itemsCount = cart.items.reduce((a, b) => a + b.quantity, 0)
+		return <span className="cart-count">{itemsCount}</span>
 	}
-	return null;
-};
+	return null
+}
 
 const CartIcon = ({ cartIsActive }) => {
 	if (cartIsActive) {
@@ -20,7 +20,7 @@ const CartIcon = ({ cartIsActive }) => {
 				title={text.close}
 				style={{ minWidth: 24, padding: 4 }}
 			/>
-		);
+		)
 	}
 	return (
 		<img
@@ -30,17 +30,17 @@ const CartIcon = ({ cartIsActive }) => {
 			title={text.cart}
 			style={{ minWidth: 24 }}
 		/>
-	);
-};
-
-export default class CartIndicator extends React.PureComponent {
-	render() {
-		const { cart, onClick, cartIsActive } = this.props;
-		return (
-			<span className="cart-button" onClick={onClick}>
-				<CartIcon cartIsActive={cartIsActive} />
-				<CartCount cart={cart} />
-			</span>
-		);
-	}
+	)
 }
+
+const CartIndicator = () => {
+	const { cart, onClick, cartIsActive } = this.props
+	return (
+		<span className="cart-button" onClick={onClick}>
+			<CartIcon cartIsActive={cartIsActive} />
+			<CartCount cart={cart} />
+		</span>
+	)
+}
+
+export default CartIndicator

@@ -1,54 +1,54 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { text } from '../lib/settings';
-import * as helper from '../lib/helper';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
+import { text } from '../lib/settings'
+import * as helper from '../lib/helper'
 
 const getCheckoutField = (checkoutFields, fieldName) => {
 	if (checkoutFields && checkoutFields.length > 0) {
 		return checkoutFields.find(
-			f => f.name === fieldName && f.status !== 'hidden'
-		);
+			(f) => f.name === fieldName && f.status !== 'hidden'
+		)
 	}
-	return null;
-};
+	return null
+}
 
 const MobileField = ({ order, checkoutFields }) => {
-	const checkoutField = getCheckoutField(checkoutFields, 'mobile');
+	const checkoutField = getCheckoutField(checkoutFields, 'mobile')
 	return checkoutField && order.mobile !== '' ? (
 		<ShippingFieldDiv
 			label={helper.getCheckoutFieldLabel(checkoutField)}
 			value={order.mobile}
 		/>
-	) : null;
-};
+	) : null
+}
 
 const CityField = ({ order, checkoutFields }) => {
-	const checkoutField = getCheckoutField(checkoutFields, 'city');
+	const checkoutField = getCheckoutField(checkoutFields, 'city')
 	return checkoutField && order.shipping_address.city !== '' ? (
 		<ShippingFieldDiv
 			label={helper.getCheckoutFieldLabel(checkoutField)}
 			value={order.shipping_address.city}
 		/>
-	) : null;
-};
+	) : null
+}
 
 const CommentsField = ({ order, checkoutFields }) => {
-	const checkoutField = getCheckoutField(checkoutFields, 'comments');
+	const checkoutField = getCheckoutField(checkoutFields, 'comments')
 	return checkoutField && order.comments !== '' ? (
 		<ShippingFieldDiv
 			label={helper.getCheckoutFieldLabel(checkoutField)}
 			value={order.comments}
 		/>
-	) : null;
-};
+	) : null
+}
 
 const ShippingFields = ({ order, shippingMethod }) => {
-	let shippingFields = null;
+	let shippingFields = null
 	if (shippingMethod) {
 		shippingFields = Object.keys(order.shipping_address).map((key, i) => {
-			const fieldLabel = helper.getShippingFieldLabelOrderSuccess(key);
-			const fieldValue = order.shipping_address[key];
+			const fieldLabel = helper.getShippingFieldLabelOrderSuccess(key)
+			const fieldValue = order.shipping_address[key]
 
 			if (
 				key.indexOf('coordinates') === -1 &&
@@ -56,21 +56,25 @@ const ShippingFields = ({ order, shippingMethod }) => {
 				fieldLabel !== ''
 			) {
 				return (
-					<ShippingFieldDiv key={i} label={fieldLabel} value={fieldValue} />
-				);
+					<ShippingFieldDiv
+						key={i}
+						label={fieldLabel}
+						value={fieldValue}
+					/>
+				)
 			}
-		});
+		})
 	}
 
-	return <div>{shippingFields}</div>;
-};
+	return <div>{shippingFields}</div>
+}
 
 const ShippingFieldDiv = ({ label, value }) => (
 	<div className="shipping-field">
 		<label>{label}: </label>
 		{value}
 	</div>
-);
+)
 
 const OrderItem = ({ item, settings }) => (
 	<div className="columns is-mobile is-gapless checkout-success-row">
@@ -87,24 +91,24 @@ const OrderItem = ({ item, settings }) => (
 			{helper.formatCurrency(item.price_total, settings)}
 		</div>
 	</div>
-);
+)
 
 const OrderItems = ({ items, settings }) => {
 	if (items && items.length > 0) {
-		const rows = items.map(item => (
+		const rows = items.map((item) => (
 			<OrderItem key={item.id} item={item} settings={settings} />
-		));
-		return <div>{rows}</div>;
+		))
+		return <div>{rows}</div>
 	}
-	return null;
-};
+	return null
+}
 
 const CheckoutSuccess = ({
 	order,
 	settings,
 	pageDetails,
 	shippingMethod,
-	checkoutFields
+	checkoutFields,
 }) => {
 	if (order && order.items && order.items.length > 0) {
 		return (
@@ -117,7 +121,7 @@ const CheckoutSuccess = ({
 
 				<div
 					dangerouslySetInnerHTML={{
-						__html: pageDetails.content
+						__html: pageDetails.content,
 					}}
 				/>
 
@@ -126,10 +130,22 @@ const CheckoutSuccess = ({
 				<div className="columns" style={{ marginBottom: '3rem' }}>
 					<div className="column is-6">
 						<b>{text.shipping}</b>
-						<MobileField order={order} checkoutFields={checkoutFields} />
-						<CityField order={order} checkoutFields={checkoutFields} />
-						<ShippingFields order={order} shippingMethod={shippingMethod} />
-						<CommentsField order={order} checkoutFields={checkoutFields} />
+						<MobileField
+							order={order}
+							checkoutFields={checkoutFields}
+						/>
+						<CityField
+							order={order}
+							checkoutFields={checkoutFields}
+						/>
+						<ShippingFields
+							order={order}
+							shippingMethod={shippingMethod}
+						/>
+						<CommentsField
+							order={order}
+							checkoutFields={checkoutFields}
+						/>
 					</div>
 
 					<div className="column is-6">
@@ -163,36 +179,49 @@ const CheckoutSuccess = ({
 					<div className="column is-offset-7 checkout-success-totals">
 						<div>
 							<span>{text.subtotal}:</span>
-							<span>{helper.formatCurrency(order.subtotal, settings)}</span>
+							<span>
+								{helper.formatCurrency(
+									order.subtotal,
+									settings
+								)}
+							</span>
 						</div>
 						<div>
 							<span>{text.shipping}:</span>
 							<span>
-								{helper.formatCurrency(order.shipping_total, settings)}
+								{helper.formatCurrency(
+									order.shipping_total,
+									settings
+								)}
 							</span>
 						</div>
 						<div>
 							<b>{text.grandTotal}:</b>
-							<b>{helper.formatCurrency(order.grand_total, settings)}</b>
+							<b>
+								{helper.formatCurrency(
+									order.grand_total,
+									settings
+								)}
+							</b>
 						</div>
 					</div>
 				</div>
 			</div>
-		);
+		)
 	}
-	return <div className="has-text-centered">{text.cartEmpty}</div>;
-};
+	return <div className="has-text-centered">{text.cartEmpty}</div>
+}
 
 CheckoutSuccess.propTypes = {
 	order: PropTypes.shape({}),
 	settings: PropTypes.shape({}).isRequired,
 	pageDetails: PropTypes.shape({}).isRequired,
 	shippingMethod: PropTypes.shape({}).isRequired,
-	checkoutFields: PropTypes.arrayOf(PropTypes.shape({})).isRequired
-};
+	checkoutFields: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+}
 
 CheckoutSuccess.defaultProps = {
-	order: null
-};
+	order: null,
+}
 
-export default CheckoutSuccess;
+export default CheckoutSuccess

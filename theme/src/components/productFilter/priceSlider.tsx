@@ -4,14 +4,11 @@ import { Range } from 'rc-slider';
 import { themeSettings, text } from '../../lib/settings';
 import * as helper from '../../lib/helper';
 
-export default class PriceSlider extends React.Component {
-	constructor(props) {
-		super(props);
+const PriceSlider = () => {
 		this.state = {
 			minValue: props.minValue > 0 ? props.minValue : props.minPrice,
 			maxValue: props.maxValue > 0 ? props.maxValue : props.maxPrice
 		};
-	}
 
 	componentWillReceiveProps(nextProps) {
 		if (
@@ -34,7 +31,6 @@ export default class PriceSlider extends React.Component {
 		}
 	};
 
-	render() {
 		const { minPrice, maxPrice, setPriceFromAndTo, settings } = this.props;
 
 		return (
@@ -62,4 +58,5 @@ export default class PriceSlider extends React.Component {
 			</div>
 		);
 	}
-}
+
+export default PriceSlider

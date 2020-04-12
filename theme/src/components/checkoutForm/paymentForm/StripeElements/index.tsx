@@ -1,14 +1,12 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { StripeProvider } from 'react-stripe-elements';
 import StoreCheckout from './StoreCheckout';
 
-export default class StripeElements extends React.Component {
-	constructor(props) {
-		super(props);
+const StripeElements = () => {
 		this.state = { stripe: null };
 	}
 
-	componentDidMount() {
+	useEffect(() => {
 		const SCRIPT_URL = 'https://js.stripe.com/v3/';
 		const container = document.body || document.head;
 		const script = document.createElement('script');
@@ -20,9 +18,8 @@ export default class StripeElements extends React.Component {
 			});
 		};
 		container.appendChild(script);
-	}
+	})
 
-	render() {
 		const { formSettings, shopSettings, onPayment, onCreateToken } = this.props;
 		return (
 			<StripeProvider stripe={this.state.stripe}>
@@ -35,4 +32,5 @@ export default class StripeElements extends React.Component {
 			</StripeProvider>
 		);
 	}
-}
+
+export default StripeElements

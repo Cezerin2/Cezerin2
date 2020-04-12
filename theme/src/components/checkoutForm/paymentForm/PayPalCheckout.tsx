@@ -1,7 +1,7 @@
 import React from 'react';
 
 let scriptAdded = false;
-export default class PayPalButton extends React.Component {
+const PayPalButton = () => {
 	constructor(props) {
 		super(props);
 	}
@@ -77,21 +77,13 @@ export default class PayPalButton extends React.Component {
 		);
 	};
 
-	componentDidMount() {
-		this.addScript();
-	}
+	useEffect(()=>addScript())
 
 	componentDidUpdate() {
 		this.executeScript();
 	}
-
-	render() {
 		const { formSettings, shopSettings, onPayment } = this.props;
-
-		return (
-			<div>
-				<div id="paypal-button-container" />
-			</div>
-		);
+		return (<div id="paypal-button-container" />);
 	}
-}
+
+export default PayPalButton
