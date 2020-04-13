@@ -20,7 +20,7 @@ const CheckoutForm = () = {
 		this.props.cartLayerInitialized({
 			cartlayerBtnInitialized: false
 		});
-	})
+	},[])
 
 	changeStep = step => {
 		this.setState({ step: step });

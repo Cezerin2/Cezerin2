@@ -45,7 +45,7 @@ export App = () => {
 			value: code
 		});
 	};
-	useEffect(()=>fetchSettings())
+	useEffect(()=>fetchSettings(),[])
 
 		return (
 			<>

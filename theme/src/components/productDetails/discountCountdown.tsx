@@ -13,7 +13,7 @@ const DiscountCountdown = () => {
 		this.setState({
 			timer: timer
 		});
-	})
+	},[])
 
 	componentWillUnmount() {
 		clearInterval(this.state.timer);

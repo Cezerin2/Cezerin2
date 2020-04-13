@@ -90,7 +90,7 @@ export const App = () => {
 		})
 	}
 
-	useEffect(() => fetchSettings)
+	useEffect(() => fetchSettings, [])
 	return (
 		<div>
 			<div>You can find App ID using the Facebook App Dashboard.</div>

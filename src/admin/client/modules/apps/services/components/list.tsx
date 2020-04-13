@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import messages from 'lib/text';
 import ServiceItem from './serviceItem';
@@ -7,16 +7,15 @@ import style from './style.css';
 import apps from 'src/apps';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class ServicesList extends React.Component {
+const ServicesList extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
-	componentDidMount() {
+	useEffect(() => {
 		this.props.fetchData();
-	}
+	},[])
 
-	render() {
 		const { services, webstoreAuthorized } = this.props;
 
 		let serviceItems = null;
@@ -53,4 +52,5 @@ export default class ServicesList extends React.Component {
 			</div>
 		);
 	}
-}
+
+export default ServicesList

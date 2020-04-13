@@ -60,7 +60,7 @@ const CustomProducts = () => {
 	useEffect(() => {
 		this.isCancelled = false;
 		this.fetchProducts(this.props);
-	})
+	},[])
 
 	componentWillReceiveProps(nextProps) {
 		this.fetchProducts(nextProps);

@@ -93,7 +93,7 @@ export const App = () => {
 			value: metaTags
 		});
 	};
-	useEffect(() fetchSettings())
+	useEffect(() fetchSettings(),[])
 		return (
 			<>
 				<TextField

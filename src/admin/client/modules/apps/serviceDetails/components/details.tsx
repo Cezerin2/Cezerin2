@@ -1,19 +1,17 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import ServiceDescription from './description';
 import ServiceSettings from './settings';
 import ServiceActions from './actions';
 import ServiceLogs from './logs';
 import style from './style.css';
 
-export default class ServiceDetails extends React.Component {
-	constructor(props) {
-		super(props);
+const ServiceDetails = () => {
 		this.state = {
 			timer: null
 		};
 	}
 
-	componentDidMount() {
+	useEffect(() => {
 		this.props.fetchData();
 
 		// refresh logs every 5 sec
@@ -25,13 +23,12 @@ export default class ServiceDetails extends React.Component {
 		}, 5000);
 
 		this.setState({ timer: timer });
-	}
+	},[])
 
 	componentWillUnmount() {
 		clearInterval(this.state.timer);
 	}
 
-	render() {
 		let {
 			serviceId,
 			service,
@@ -92,4 +89,5 @@ export default class ServiceDetails extends React.Component {
 			</div>
 		);
 	}
-}
+
+export default ServiceDetails

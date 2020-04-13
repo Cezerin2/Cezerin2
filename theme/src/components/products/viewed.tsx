@@ -23,7 +23,7 @@ const ViewedProducts = () => {
 		if (product && product.id) {
 			this.addProductIdToLocalStorage(product.id);
 		}
-	})
+	},[])
 
 	componentWillReceiveProps(nextProps) {
 		if (

@@ -31,7 +31,7 @@ const PaymentForm = () => {
 				console.log(e);
 			});
 	};
-	useEffect(()=>fetchFormSettings())
+	useEffect(()=>fetchFormSettings(),[])
 
 	componentWillReceiveProps(nextProps) {
 		if (

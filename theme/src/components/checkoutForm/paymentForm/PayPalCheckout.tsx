@@ -77,7 +77,7 @@ const PayPalButton = () => {
 		);
 	};
 
-	useEffect(()=>addScript())
+	useEffect(()=>addScript(),[])
 
 	componentDidUpdate() {
 		this.executeScript();

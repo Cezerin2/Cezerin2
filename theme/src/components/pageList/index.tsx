@@ -7,7 +7,7 @@ const CustomPageList = () => {
 			pages: []
 		};
 
-	useEffect(() =>fetchData(this.props))
+	useEffect(() =>fetchData(this.props),[])
 
 	componentWillReceiveProps(nextProps) {
 		this.fetchData(nextProps);

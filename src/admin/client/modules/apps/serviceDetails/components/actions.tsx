@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 
 import messages from 'lib/text';
@@ -10,32 +10,24 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
 import FontIcon from 'material-ui/FontIcon';
 
-class ActionComponent extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			loading: false
-		};
-	}
-
-	handleActionCall = () => {
+const ActionComponent = () => {
+	const [loading, setLoading] = useState(false)
+	consthandleActionCall = () => {
 		const { action, serviceId, fetchServiceLogs } = this.props;
-		this.setState({ loading: true });
+		setLoading(true)
 
 		return api.webstore.services.actions
 			.call(serviceId, action.id)
 			.then(({ status, json }) => {
-				this.setState({ loading: false });
+				setLoading(false)
 				fetchServiceLogs();
 			})
 			.catch(error => {
 				alert(error);
-				this.setState({ loading: false });
+				setLoading(false)
 				fetchServiceLogs();
 			});
 	};
-
-	render() {
 		const { action, serviceId } = this.props;
 		return (
 			<div className={style.action}>
@@ -47,8 +39,8 @@ class ActionComponent extends React.Component {
 						<RaisedButton
 							label={action.name}
 							primary={true}
-							disabled={this.state.loading}
-							onClick={this.handleActionCall}
+							disabled={loading}
+							onClick={handleActionCall}
 						/>
 					</div>
 				</div>

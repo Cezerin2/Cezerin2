@@ -5,7 +5,7 @@ import Account from './account';
 import Developer from './developer';
 
 const WebStoreAccountDetails = () => {
-		useEffect(()=>props.fetchData())
+		useEffect(()=>props.fetchData(),[])
 		const { account, onAccountSubmit, onDeveloperSubmit } = this.props;
 		const developerData = account ? account.developer : null;
 

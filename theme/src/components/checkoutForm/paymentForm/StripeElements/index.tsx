@@ -18,7 +18,7 @@ const StripeElements = () => {
 			});
 		};
 		container.appendChild(script);
-	})
+	},[])
 
 		const { formSettings, shopSettings, onPayment, onCreateToken } = this.props;
 		return (

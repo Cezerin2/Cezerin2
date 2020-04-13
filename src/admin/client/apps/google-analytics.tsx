@@ -73,7 +73,7 @@ export const App = () => {
 		});
 	};
 
-	useEffect(()fetchSettings())
+	useEffect(()fetchSettings(),[])
 		return (
 			<div>
 				<div>
