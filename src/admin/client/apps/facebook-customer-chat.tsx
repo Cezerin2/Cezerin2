@@ -73,7 +73,7 @@ export const App = () => {
 			value: htmlCode
 		});
 	};
-useEffect(()=>fetchSettings())
+useEffect(()=>fetchSettings(),[])
 		return (
 			<div>
 				<TextField

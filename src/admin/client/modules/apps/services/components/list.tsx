@@ -8,10 +8,6 @@ import apps from 'src/apps';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const ServicesList extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	useEffect(() => {
 		this.props.fetchData();
 	},[])
