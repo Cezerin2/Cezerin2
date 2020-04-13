@@ -1,9 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
 	entry: {
@@ -63,7 +63,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.scss$/,
+				test: /\.sass$/,
 				use: [
 					MiniCssExtractPlugin.loader,
 					'css-loader',
@@ -75,16 +75,16 @@ module.exports = {
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(
-			[
+		new CleanWebpackPlugin({
+			verbose: false,
+			cleanOnceBeforeBuildPatterns: [
 				'theme/assets/js/app-*.js',
 				'theme/assets/js/theme-*.js',
 				'theme/assets/css/bundle-*.css',
 				'theme/assets/sw.js',
 				'theme/assets/precache-manifest.*.js',
 			],
-			{ verbose: false }
-		),
+		}),
 		new MiniCssExtractPlugin({
 			filename: 'assets/css/bundle-[contenthash].css',
 			chunkFilename: 'assets/css/bundle-[contenthash].css',
@@ -96,7 +96,8 @@ module.exports = {
 		}),
 		new WorkboxPlugin.GenerateSW({
 			swDest: 'assets/sw.js',
-			precacheManifestFilename: 'assets/precache-manifest.[manifestHash].js',
+			precacheManifestFilename:
+				'assets/precache-manifest.[manifestHash].js',
 			clientsClaim: true,
 			skipWaiting: true,
 			exclude: [/\.html$/],
@@ -134,4 +135,4 @@ module.exports = {
 		entrypoints: false,
 		modules: false,
 	},
-};
+}

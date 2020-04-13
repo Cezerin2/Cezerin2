@@ -106,20 +106,29 @@ module.exports = {
 							'postcss-loader',
 						],
 					},
+					{
+						test: /\.sass$/,
+						use: [
+							MiniCssExtractPlugin.loader,
+							'css-loader',
+							'postcss-loader',
+							'sass-loader',
+						],
+					},
 				],
 			},
 		],
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(
-			[
+		new CleanWebpackPlugin({
+			verbose: false,
+			cleanOnceBeforeBuildPatterns: [
 				'public/admin-assets/js/app-*.js',
 				'public/admin-assets/js/vendor-*.js',
 				'public/admin-assets/css/bundle-*.css',
 			],
-			{ verbose: false }
-		),
+		}),
 		new webpack.DefinePlugin({
 			APPLICATION_CONFIG: JSON.stringify(applicationConfig),
 		}),
