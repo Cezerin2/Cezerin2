@@ -13,7 +13,7 @@
     "homepage": "https://cezerin.org",
     "author": "Himadu Sirimanna <himadusirimanna.1@gmail.com>",
     "bugs": "https://github.com/cezerin/cezerin2/issues",
-    "license": "UNLICENSE",
+    "license": "Unlicense",
     "main": "src/api/server/index.js",
     "repository": {
         "type": "git",
