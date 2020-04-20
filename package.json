@@ -1,21 +1,23 @@
 {
-    "name": "cezerin",
+    "name": "cezerin2-mono",
     "version": "0.33.0",
     "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.org",
     "keywords": [
         "cezerin",
+        "cezerin2",
         "ecommerce",
         "shopping cart",
         "shop",
         "cms"
     ],
     "homepage": "https://cezerin.org",
-    "bugs": "https://github.com/cezerin/cezerin/issues",
-    "license": "MIT",
+    "author": "Himadu Sirimanna <himadusirimanna.1@gmail.com>",
+    "bugs": "https://github.com/cezerin/cezerin2/issues",
+    "license": "UNLICENSE",
     "main": "src/api/server/index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/cezerin/cezerin"
+        "url": "https://github.com/cezerin2/cezerin"
     },
     "scripts": {
         "setup": "node -r esm src/api/server/setup.js",
@@ -45,13 +47,6 @@
         ]
     },
     "dependencies": {
-        "@babel/cli": "^7.8.4",
-        "@babel/core": "^7.9.0",
-        "babel-loader": "^8.1.0",
-        "babel-plugin-transform-class-properties": "^6.24.1",
-        "babel-polyfill": "^6.26.0",
-        "@babel/preset-env": "^7.9.5",
-        "@babel/preset-react": "^7.9.4",
         "bcrypt": "^4.0.1",
         "body-parser": "^1.19.0",
         "cezerin2-client": "^0.36.0",
@@ -119,6 +114,13 @@
         "ws": "^7.2.3"
     },
     "devDependencies": {
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.9.0",
+        "babel-loader": "^8.1.0",
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "babel-polyfill": "^6.26.0",
+        "@babel/preset-env": "^7.9.5",
+        "@babel/preset-react": "^7.9.4",
         "concurrently": "^5.1.0",
         "babel-eslint": "^10.1.0",
         "eslint": "^6.8.0",
