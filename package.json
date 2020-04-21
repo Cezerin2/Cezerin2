@@ -4,13 +4,15 @@
     "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.org",
     "keywords": [
         "cezerin",
+        "cezerin2",
+        "cezerin2-mono",
+        "mono",
         "ecommerce",
         "shopping cart",
         "shop",
         "cms"
     ],
     "homepage": "https://cezerin.org",
-    "author": "Restmount",
     "bugs": "https://github.com/Cezerin2/cezerin2-mono/issues",
     "license": "MIT",
     "main": "src/api/server/index.js",
