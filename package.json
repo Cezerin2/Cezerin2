@@ -4,20 +4,19 @@
     "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.org",
     "keywords": [
         "cezerin",
-        "cezerin2",
         "ecommerce",
         "shopping cart",
         "shop",
         "cms"
     ],
     "homepage": "https://cezerin.org",
-    "author": "Himadu Sirimanna <himadusirimanna.1@gmail.com>",
-    "bugs": "https://github.com/cezerin/cezerin2/issues",
-    "license": "Unlicense",
+    "author": "Restmount",
+    "bugs": "https://github.com/Cezerin2/cezerin2-mono/issues",
+    "license": "MIT",
     "main": "src/api/server/index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/cezerin2/cezerin"
+        "url": "https://github.com/Cezerin2/cezerin2-mono"
     },
     "scripts": {
         "setup": "node -r esm src/api/server/setup.js",
@@ -80,7 +79,6 @@
         "nodemailer": "^6.4.6",
         "nodemailer-smtp-transport": "^2.7.4",
         "postcss-loader": "^3.0.0",
-        "prettier": "^2.0.4",
         "prop-types": "^15.7.2",
         "query-string": "^6.12.1",
         "react": "^16.13.1",
@@ -121,6 +119,7 @@
         "babel-polyfill": "^6.26.0",
         "@babel/preset-env": "^7.9.5",
         "@babel/preset-react": "^7.9.4",
+        "prettier": "^2.0.4",
         "concurrently": "^5.1.0",
         "babel-eslint": "^10.1.0",
         "eslint": "^6.8.0",
