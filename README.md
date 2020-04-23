@@ -6,7 +6,7 @@ Cezerin2 is React and Node.js based eCommerce platform. Allows creating a Progre
 
 Built with:
 
-- Node.js v8.9
+- Node.js
 - React v16
 - Redux
 - Express

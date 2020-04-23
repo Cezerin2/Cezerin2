@@ -13,12 +13,12 @@
     "cms"
   ],
   "homepage": "https://cezerin.org",
-  "bugs": "https://github.com/Cezerin2/cezerin2-mono/issues",
+  "bugs": "https://github.com/cezerin2/cezerin2-mono/issues",
   "license": "MIT",
   "main": "src/api/server/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Cezerin2/cezerin2-mono"
+    "url": "https://github.com/cezerin2/cezerin2-mono"
   },
   "scripts": {
     "setup": "node -r esm src/api/server/setup.js",
