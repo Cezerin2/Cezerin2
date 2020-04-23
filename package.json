@@ -35,7 +35,7 @@
     "build:watch": "concurrently -n compile,webpackStore,webpackAdmin \"npm run compile:watch\" \"npm run webpack:store:watch\" \"npm run webpack:admin:watch\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prettier": "prettier --write \"src/**/*.js\" \"theme/**/*.js\" \"theme/**/*.ts\" \"theme/**/*.ts\"\"theme/**/*.tsx\"\"theme/**/*.tsx\"",
+    "prettier": "prettier --write .",
     "precommit": "lint-staged",
     "start-api": "node -r esm src/api/server/index.js",
     "start-store": "node -r esm dist/store/server/index.js",
@@ -43,6 +43,10 @@
   },
   "lint-staged": {
     "*.ts": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.tsx": [
       "prettier --write",
       "git add"
     ]
