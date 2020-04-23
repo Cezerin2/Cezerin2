@@ -1,6 +1,6 @@
-import React from 'react'
-import { themeSettings, text } from '../../lib/settings'
-import CustomProducts from '../products/custom'
+import React from "react"
+import { themeSettings, text } from "../../lib/settings"
+import CustomProducts from "../products/custom"
 
 const RelatedProducts = () => {
 	const { ids, settings, addCartItem, limit } = this.props

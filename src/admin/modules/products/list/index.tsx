@@ -1,14 +1,14 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
 import {
 	fetchProducts,
 	fetchMoreProducts,
 	selectProduct,
 	deselectProduct,
 	selectAllProduct,
-	deselectAllProduct
-} from '../actions';
-import List from './components/list';
+	deselectAllProduct,
+} from "../actions"
+import List from "./components/list"
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -17,43 +17,38 @@ const mapStateToProps = (state, ownProps) => {
 		selected: state.products.selected,
 		loadingItems: state.products.loadingItems,
 		hasMore: state.products.hasMore,
-		totalCount: state.products.totalCount
-	};
-};
+		totalCount: state.products.totalCount,
+	}
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		onLoad: () => {
-			dispatch(fetchProducts());
+			dispatch(fetchProducts())
 		},
 		onSelect: event => {
-			const productId = event.target.value;
-			const checked = event.target.checked;
+			const productId = event.target.value
+			const checked = event.target.checked
 
 			if (checked) {
-				dispatch(selectProduct(productId));
+				dispatch(selectProduct(productId))
 			} else {
-				dispatch(deselectProduct(productId));
+				dispatch(deselectProduct(productId))
 			}
 		},
 		onSelectAll: event => {
-			const checked = event.target.checked;
+			const checked = event.target.checked
 
 			if (checked) {
-				dispatch(selectAllProduct());
+				dispatch(selectAllProduct())
 			} else {
-				dispatch(deselectAllProduct());
+				dispatch(deselectAllProduct())
 			}
 		},
 		loadMore: () => {
-			dispatch(fetchMoreProducts());
-		}
-	};
-};
+			dispatch(fetchMoreProducts())
+		},
+	}
+}
 
-export default withRouter(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(List)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(List))

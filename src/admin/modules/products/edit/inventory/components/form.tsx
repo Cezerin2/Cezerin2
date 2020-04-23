@@ -1,84 +1,84 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-import { TextField, SelectField, DatePicker } from 'redux-form-material-ui';
-import { CustomToggle } from 'modules/shared/form';
+import React from "react"
+import { Link } from "react-router-dom"
+import { Field, reduxForm } from "redux-form"
+import { TextField, SelectField, DatePicker } from "redux-form-material-ui"
+import { CustomToggle } from "modules/shared/form"
 
-import messages from 'lib/text';
-import style from './style.css';
-import api from 'lib/api';
+import messages from "lib/text"
+import style from "./style.css"
+import api from "lib/api"
 
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
+import Paper from "material-ui/Paper"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
+import Divider from "material-ui/Divider"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['name'];
+	const errors = {}
+	const requiredFields = ["name"]
 	const numberFields = [
-		'regular_price',
-		'sale_price',
-		'stock_quantity',
-		'weight'
-	];
+		"regular_price",
+		"sale_price",
+		"stock_quantity",
+		"weight",
+	]
 
 	requiredFields.map(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
 	numberFields.map(field => {
 		if (values && values[field] && isNaN(parseFloat(values[field]))) {
-			errors[field] = messages.errors_number;
+			errors[field] = messages.errors_number
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 const slugExists = values => {
 	if (values.slug && values.slug.length > 0) {
 		return api.products
 			.slugExists(values.id, values.slug)
-			.then(response => response.status === 200);
+			.then(response => response.status === 200)
 	} else {
-		return Promise.resolve(false);
+		return Promise.resolve(false)
 	}
-};
+}
 
 const skuExists = values => {
 	if (values.sku && values.sku.length > 0) {
 		return api.products
 			.skuExists(values.id, values.sku)
-			.then(response => response.status === 200);
+			.then(response => response.status === 200)
 	} else {
-		return Promise.resolve(false);
+		return Promise.resolve(false)
 	}
-};
+}
 
 const asyncValidate = values => {
 	return Promise.all([slugExists(values), skuExists(values)]).then(
 		([isSlugExists, isSkuExists]) => {
-			let errors = {};
+			let errors = {}
 
 			if (isSlugExists) {
-				errors.slug = messages.errors_urlTaken;
+				errors.slug = messages.errors_urlTaken
 			}
 
 			if (isSkuExists) {
-				errors.sku = messages.skuTaken;
+				errors.sku = messages.skuTaken
 			}
 
 			if (Object.keys(errors).length > 0) {
-				return Promise.reject(errors);
+				return Promise.reject(errors)
 			} else {
-				return Promise.resolve();
+				return Promise.resolve()
 			}
 		}
-	);
-};
+	)
+}
 
 const ProductInventoryForm = ({
 	handleSubmit,
@@ -86,7 +86,7 @@ const ProductInventoryForm = ({
 	reset,
 	submitting,
 	initialValues,
-	settings
+	settings,
 }) => {
 	return (
 		<form onSubmit={handleSubmit}>
@@ -122,8 +122,8 @@ const ProductInventoryForm = ({
 									<Field
 										name="date_sale_from"
 										component={DatePicker}
-										textFieldStyle={{ width: '100%' }}
-										format={(value, name) => (value === '' ? null : value)}
+										textFieldStyle={{ width: "100%" }}
+										format={(value, name) => (value === "" ? null : value)}
 										floatingLabelText={messages.products_dateSaleFrom}
 									/>
 								</div>
@@ -131,8 +131,8 @@ const ProductInventoryForm = ({
 									<Field
 										name="date_sale_to"
 										component={DatePicker}
-										textFieldStyle={{ width: '100%' }}
-										format={(value, name) => (value === '' ? null : value)}
+										textFieldStyle={{ width: "100%" }}
+										format={(value, name) => (value === "" ? null : value)}
 										floatingLabelText={messages.products_dateSaleTo}
 									/>
 								</div>
@@ -173,8 +173,8 @@ const ProductInventoryForm = ({
 							<Field
 								name="date_stock_expected"
 								component={DatePicker}
-								textFieldStyle={{ width: '100%' }}
-								format={(value, name) => (value === '' ? null : value)}
+								textFieldStyle={{ width: "100%" }}
+								format={(value, name) => (value === "" ? null : value)}
 								floatingLabelText={messages.products_dateStockExpected}
 							/>
 						</div>
@@ -188,7 +188,7 @@ const ProductInventoryForm = ({
 					<Divider
 						style={{
 							marginTop: 10,
-							marginBottom: 10
+							marginBottom: 10,
 						}}
 					/>
 					<Field
@@ -199,7 +199,7 @@ const ProductInventoryForm = ({
 					<Divider
 						style={{
 							marginTop: 10,
-							marginBottom: 10
+							marginBottom: 10,
 						}}
 					/>
 					<Field
@@ -210,7 +210,7 @@ const ProductInventoryForm = ({
 					<Divider
 						style={{
 							marginTop: 10,
-							marginBottom: 10
+							marginBottom: 10,
 						}}
 					/>
 					<Field
@@ -221,7 +221,7 @@ const ProductInventoryForm = ({
 					<Divider
 						style={{
 							marginTop: 10,
-							marginBottom: 10
+							marginBottom: 10,
 						}}
 					/>
 					<Field
@@ -232,8 +232,8 @@ const ProductInventoryForm = ({
 				</div>
 				<div
 					className={
-						'buttons-box ' +
-						(pristine ? 'buttons-box-pristine' : 'buttons-box-show')
+						"buttons-box " +
+						(pristine ? "buttons-box-pristine" : "buttons-box-show")
 					}
 				>
 					<FlatButton
@@ -252,13 +252,13 @@ const ProductInventoryForm = ({
 				</div>
 			</Paper>
 		</form>
-	);
-};
+	)
+}
 
 export default reduxForm({
-	form: 'ProductInventoryForm',
+	form: "ProductInventoryForm",
 	validate,
 	asyncValidate,
-	asyncBlurFields: ['sku'],
-	enableReinitialize: true
-})(ProductInventoryForm);
+	asyncBlurFields: ["sku"],
+	enableReinitialize: true,
+})(ProductInventoryForm)

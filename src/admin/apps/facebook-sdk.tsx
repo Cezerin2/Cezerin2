@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import messages from 'lib/text'
-import api from 'lib/api'
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-import { fetchSettings } from '../modules/settings/actions'
+import React, { useState, useEffect } from "react"
+import messages from "lib/text"
+import api from "lib/api"
+import TextField from "material-ui/TextField"
+import RaisedButton from "material-ui/RaisedButton"
+import { fetchSettings } from "../modules/settings/actions"
 
 export const Description = {
-	key: 'facebook-sdk',
-	name: 'Facebook SDK',
-	coverUrl: '/admin-assets/images/apps/facebook.png',
+	key: "facebook-sdk",
+	name: "Facebook SDK",
+	coverUrl: "/admin-assets/images/apps/facebook.png",
 	description: `The Facebook SDK for JavaScript provides a rich set of client-side functionality that:
   <ol>
     <li>Enables you to use the Like Button and other Social Plugins on your site.</li>
@@ -41,21 +41,21 @@ const FACEBOOK_CODE = `<script>
 
 export const App = () => {
 	this.state = {
-		appId: '',
-		locale: 'en_US',
+		appId: "",
+		locale: "en_US",
 	}
 
-	handleAppIdChange = (event) => {
+	handleAppIdChange = event => {
 		this.setState({ appId: event.target.value })
 	}
 
-	handleLocaleChange = (event) => {
+	handleLocaleChange = event => {
 		this.setState({ locale: event.target.value })
 	}
 
 	fetchSettings = () => {
 		api.apps.settings
-			.retrieve('facebook-sdk')
+			.retrieve("facebook-sdk")
 			.then(({ status, json }) => {
 				const appSettings = json
 				if (appSettings) {
@@ -65,7 +65,7 @@ export const App = () => {
 					})
 				}
 			})
-			.catch((error) => {
+			.catch(error => {
 				console.log(error)
 			})
 	}
@@ -78,14 +78,14 @@ export const App = () => {
 						/YOUR_LOCALE/g,
 						locale
 				  )
-				: ''
+				: ""
 
-		api.apps.settings.update('facebook-sdk', {
+		api.apps.settings.update("facebook-sdk", {
 			appId: appId,
 			locale: locale,
 		})
-		api.theme.placeholders.update('facebook-sdk', {
-			place: 'body_start',
+		api.theme.placeholders.update("facebook-sdk", {
+			place: "body_start",
 			value: htmlCode,
 		})
 	}
@@ -111,7 +111,7 @@ export const App = () => {
 				hintText="en_US"
 			/>
 
-			<div style={{ textAlign: 'right' }}>
+			<div style={{ textAlign: "right" }}>
 				<RaisedButton
 					label={messages.save}
 					primary={true}

@@ -1,27 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import messages from 'lib/text';
-import { List, ListItem } from 'material-ui/List';
-import FontIcon from 'material-ui/FontIcon';
+import React from "react"
+import { Link } from "react-router-dom"
+import messages from "lib/text"
+import { List, ListItem } from "material-ui/List"
+import FontIcon from "material-ui/FontIcon"
 
 const styles = {
 	selectedItem: {
-		backgroundColor: 'rgba(0, 0, 0, 0.1)'
+		backgroundColor: "rgba(0, 0, 0, 0.1)",
 	},
 	innerItem: {
-		paddingLeft: 55
-	}
-};
+		paddingLeft: 55,
+	},
+}
 
-const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>;
+const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>
 
 export default class Groups extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
@@ -31,8 +31,8 @@ export default class Groups extends React.Component {
 			items,
 			showAll,
 			showRoot,
-			showManage
-		} = this.props;
+			showManage,
+		} = this.props
 
 		const rows = items.map(item => (
 			<ListItem
@@ -43,10 +43,10 @@ export default class Groups extends React.Component {
 				primaryText={item.name}
 				leftIcon={FolderIcon}
 				onClick={() => {
-					this.props.onSelect(item.id);
+					this.props.onSelect(item.id)
 				}}
 			/>
-		));
+		))
 
 		return (
 			<List>
@@ -54,11 +54,11 @@ export default class Groups extends React.Component {
 					<ListItem
 						className="treeItem"
 						primaryText={messages.customers_noGroup}
-						style={'root' === selectedId ? styles.selectedItem : null}
+						style={"root" === selectedId ? styles.selectedItem : null}
 						innerDivStyle={styles.innerItem}
 						leftIcon={<FontIcon className="material-icons">clear</FontIcon>}
 						onClick={() => {
-							onSelect('root');
+							onSelect("root")
 						}}
 					/>
 				)}
@@ -67,11 +67,11 @@ export default class Groups extends React.Component {
 					<ListItem
 						className="treeItem"
 						primaryText={messages.customerGroups_all}
-						style={'all' === selectedId ? styles.selectedItem : null}
+						style={"all" === selectedId ? styles.selectedItem : null}
 						innerDivStyle={styles.innerItem}
 						leftIcon={FolderIcon}
 						onClick={() => {
-							onSelect('all');
+							onSelect("all")
 						}}
 					/>
 				)}
@@ -79,7 +79,7 @@ export default class Groups extends React.Component {
 				{rows}
 
 				{showManage && (
-					<Link to="/admin/customers/groups" style={{ textDecoration: 'none' }}>
+					<Link to="/admin/customers/groups" style={{ textDecoration: "none" }}>
 						<ListItem
 							className="treeItem"
 							primaryText={messages.customerGroups_titleEditMany}
@@ -91,6 +91,6 @@ export default class Groups extends React.Component {
 					</Link>
 				)}
 			</List>
-		);
+		)
 	}
 }

@@ -1,9 +1,9 @@
-import React from 'react'
-import { themeSettings } from '../../lib/settings'
-import ForgotPassword from './forgotPassword'
+import React from "react"
+import { themeSettings } from "../../lib/settings"
+import ForgotPassword from "./forgotPassword"
 
 const ForgotPasswordForm = () => {
-	handleFormSubmit = (values) => {
+	handleFormSubmit = values => {
 		this.props.forgotPassword({
 			email: values.email,
 			history: this.props.history,
@@ -13,8 +13,8 @@ const ForgotPasswordForm = () => {
 	const { settings, forgotPasswordProperties } = this.props.state
 
 	const {
-		checkoutInputClass = 'checkout-field',
-		checkoutButtonClass = 'checkout-button',
+		checkoutInputClass = "checkout-field",
+		checkoutButtonClass = "checkout-button",
 	} = themeSettings
 
 	return (

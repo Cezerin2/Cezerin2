@@ -1,11 +1,11 @@
-import React from 'react'
-import AuthHeader from '../../../../src/api/server/lib/auth-header'
-import { themeSettings, text } from '../../lib/settings'
-import Lscache from 'lscache'
-import Login from './login'
+import React from "react"
+import AuthHeader from "../../../../src/api/server/lib/auth-header"
+import { themeSettings, text } from "../../lib/settings"
+import Lscache from "lscache"
+import Login from "./login"
 
 const LoginForm = () => {
-	handleFormSubmit = (values) => {
+	handleFormSubmit = values => {
 		let cartLayer = false
 		if (
 			this.props.location !== undefined &&
@@ -13,7 +13,7 @@ const LoginForm = () => {
 		) {
 			if (
 				this.props.location.state.cartLayer &&
-				Lscache.get('auth_data') === null
+				Lscache.get("auth_data") === null
 			) {
 				cartLayer = true
 			}
@@ -37,18 +37,14 @@ const LoginForm = () => {
 		if (this.props.state.customerProperties.authenticated) {
 			const expiryMilliseconds = 1000 //time units is seconds
 			Lscache.setExpiryMilliseconds(expiryMilliseconds)
-			Lscache.set(
-				'auth_data',
-				this.props.state.customerProperties.token,
-				6000
-			)
+			Lscache.set("auth_data", this.props.state.customerProperties.token, 6000)
 		}
 	}
 
 	const {
-		checkoutInputClass = 'checkout-field',
-		checkoutButtonClass = 'checkout-button',
-		checkoutEditButtonClass = 'checkout-button-edit',
+		checkoutInputClass = "checkout-field",
+		checkoutButtonClass = "checkout-button",
+		checkoutEditButtonClass = "checkout-button-edit",
 	} = themeSettings
 
 	return (

@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { themeSettings } from '../lib/settings'
-import MetaTags from '../components/metaTags'
-import PageList from '../components/pageList'
+import React from "react"
+import PropTypes from "prop-types"
+import { themeSettings } from "../lib/settings"
+import MetaTags from "../components/metaTags"
+import PageList from "../components/pageList"
 
-const PageContainer = (props) => {
+const PageContainer = props => {
 	const {
 		state: { pageDetails },
 	} = props

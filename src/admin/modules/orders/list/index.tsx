@@ -1,14 +1,14 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
 import {
 	fetchOrders,
 	selectOrder,
 	deselectOrder,
 	selectAllOrder,
 	deselectAllOrder,
-	fetchMoreOrders
-} from '../actions';
-import List from './components/list';
+	fetchMoreOrders,
+} from "../actions"
+import List from "./components/list"
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -16,38 +16,33 @@ const mapStateToProps = (state, ownProps) => {
 		items: state.orders.items,
 		selected: state.orders.selected,
 		loadingItems: state.orders.loadingItems,
-		hasMore: state.orders.hasMore
-	};
-};
+		hasMore: state.orders.hasMore,
+	}
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		onLoad: () => {
-			dispatch(fetchOrders());
+			dispatch(fetchOrders())
 		},
 		onSelect: (orderId, checked) => {
 			if (checked) {
-				dispatch(selectOrder(orderId));
+				dispatch(selectOrder(orderId))
 			} else {
-				dispatch(deselectOrder(orderId));
+				dispatch(deselectOrder(orderId))
 			}
 		},
 		onSelectAll: checked => {
 			if (checked) {
-				dispatch(selectAllOrder());
+				dispatch(selectAllOrder())
 			} else {
-				dispatch(deselectAllOrder());
+				dispatch(deselectAllOrder())
 			}
 		},
 		loadMore: () => {
-			dispatch(fetchMoreOrders());
-		}
-	};
-};
+			dispatch(fetchMoreOrders())
+		},
+	}
+}
 
-export default withRouter(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(List)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(List))

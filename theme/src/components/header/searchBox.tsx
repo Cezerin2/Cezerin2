@@ -1,6 +1,6 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { themeSettings, text } from '../../lib/settings'
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { themeSettings, text } from "../../lib/settings"
 
 const SearchBox = () => {
 	this.state = {
@@ -8,17 +8,17 @@ const SearchBox = () => {
 		hasFocus: false,
 	}
 
-	handleChange = (event) => {
+	handleChange = event => {
 		this.setState({ value: event.target.value })
 	}
 
-	handleKeyPress = (e) => {
+	handleKeyPress = e => {
 		if (e.keyCode === 13 || e.which === 13) {
 			this.handleSearch()
 		}
 	}
 
-	handleKeyDown = (e) => {
+	handleKeyDown = e => {
 		if (e.keyCode === 27) {
 			this.handleClear()
 		}
@@ -29,8 +29,8 @@ const SearchBox = () => {
 	}
 
 	handleClear = () => {
-		this.setState({ value: '' })
-		this.props.onSearch('')
+		this.setState({ value: "" })
+		this.props.onSearch("")
 	}
 
 	handleFocus = () => {
@@ -51,9 +51,7 @@ const SearchBox = () => {
 	return (
 		<div
 			className={
-				'search-box ' +
-				this.props.className +
-				(hasFocus ? ' has-focus' : '')
+				"search-box " + this.props.className + (hasFocus ? " has-focus" : "")
 			}
 		>
 			<input
@@ -74,7 +72,7 @@ const SearchBox = () => {
 				title={text.search}
 				onClick={this.handleSearch}
 			/>
-			{this.state.value && this.state.value !== '' && (
+			{this.state.value && this.state.value !== "" && (
 				<img
 					className="search-icon-clear"
 					src="/assets/images/close.svg"

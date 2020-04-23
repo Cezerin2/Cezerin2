@@ -1,35 +1,35 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
 
-import messages from 'lib/text';
-import { CustomToggle, MultiSelect } from 'modules/shared/form';
+import messages from "lib/text"
+import { CustomToggle, MultiSelect } from "modules/shared/form"
 
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import style from './style.css';
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import style from "./style.css"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['from', 'to'];
+	const errors = {}
+	const requiredFields = ["from", "to"]
 
 	requiredFields.map(field => {
 		if (!values.is_system && values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class EditRedirectForm extends React.Component {
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
-		const { handleSubmit, pristine, submitting, redirectId } = this.props;
-		const isAdd = redirectId === null || redirectId === undefined;
+		const { handleSubmit, pristine, submitting, redirectId } = this.props
+		const isAdd = redirectId === null || redirectId === undefined
 
 		return (
 			<div>
@@ -51,7 +51,7 @@ class EditRedirectForm extends React.Component {
 						</div>
 						<div
 							className={`buttons-box ${
-								pristine && !isAdd ? 'buttons-box-pristine' : 'buttons-box-show'
+								pristine && !isAdd ? "buttons-box-pristine" : "buttons-box-show"
 							}`}
 						>
 							<RaisedButton
@@ -65,12 +65,12 @@ class EditRedirectForm extends React.Component {
 					</Paper>
 				</form>
 			</div>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'EditRedirectForm',
+	form: "EditRedirectForm",
 	validate,
-	enableReinitialize: true
-})(EditRedirectForm);
+	enableReinitialize: true,
+})(EditRedirectForm)

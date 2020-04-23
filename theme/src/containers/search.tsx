@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { text } from '../lib/settings'
-import MetaTags from '../components/metaTags'
-import ProductList from '../components/productList'
+import React from "react"
+import PropTypes from "prop-types"
+import { text } from "../lib/settings"
+import MetaTags from "../components/metaTags"
+import ProductList from "../components/productList"
 
-const SearchContainer = (props) => {
+const SearchContainer = props => {
 	const {
 		addCartItem,
 		loadMoreProducts,
 		state: { products, settings, productFilter, productsHasMore },
 	} = props
-	const searchNotEmpty = productFilter.search && productFilter.search !== ''
+	const searchNotEmpty = productFilter.search && productFilter.search !== ""
 	const searchDescription = searchNotEmpty
 		? `${text.resultsFor} "${productFilter.search}"`
 		: text.search

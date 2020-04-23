@@ -1,58 +1,58 @@
-import React from 'react';
+import React from "react"
 
-import messages from 'lib/text';
-import style from './style.css';
-import api from 'lib/api';
-import ThemeSettings from 'modules/settings/themeSettings';
+import messages from "lib/text"
+import style from "./style.css"
+import api from "lib/api"
+import ThemeSettings from "modules/settings/themeSettings"
 
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import Divider from "material-ui/Divider"
 
 const styles = {
 	button: {
-		margin: 12
+		margin: 12,
 	},
 	exampleImageInput: {
-		cursor: 'pointer',
-		position: 'absolute',
+		cursor: "pointer",
+		position: "absolute",
 		top: 0,
 		bottom: 0,
 		right: 0,
 		left: 0,
-		width: '100%',
-		opacity: 0
-	}
-};
+		width: "100%",
+		opacity: 0,
+	},
+}
 
 export default class Theme extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	onExportClick() {
-		this.props.exportRequest();
+		this.props.exportRequest()
 		api.theme.export().then(({ satus, json }) => {
-			this.props.exportReceive();
+			this.props.exportReceive()
 			if (json.file) {
-				window.location = json.file;
+				window.location = json.file
 			} else {
-				alert('Error: ' + JSON.stringify(json));
+				alert("Error: " + JSON.stringify(json))
 			}
-		});
+		})
 	}
 
 	onImportFileChoose(e) {
-		this.props.installRequest();
-		const file = e.target.files[0];
-		var formData = new FormData();
-		formData.append('file', file);
+		this.props.installRequest()
+		const file = e.target.files[0]
+		var formData = new FormData()
+		formData.append("file", file)
 
-		api.theme.install(formData);
+		api.theme.install(formData)
 	}
 
 	render() {
-		const { exportInProcess, installInProcess } = this.props;
+		const { exportInProcess, installInProcess } = this.props
 
 		return (
 			<div>
@@ -62,7 +62,7 @@ export default class Theme extends React.Component {
 							<div className="col-xs-6">
 								{messages.settings_themeExportDesciption}
 							</div>
-							<div className="col-xs-4" style={{ textAlign: 'right' }}>
+							<div className="col-xs-4" style={{ textAlign: "right" }}>
 								<RaisedButton
 									label={
 										exportInProcess
@@ -81,7 +81,7 @@ export default class Theme extends React.Component {
 								marginTop: 30,
 								marginBottom: 30,
 								marginLeft: -30,
-								marginRight: -30
+								marginRight: -30,
 							}}
 						/>
 
@@ -89,7 +89,7 @@ export default class Theme extends React.Component {
 							<div className="col-xs-6">
 								{messages.settings_themeInstallDesciption}
 							</div>
-							<div className="col-xs-4" style={{ textAlign: 'right' }}>
+							<div className="col-xs-4" style={{ textAlign: "right" }}>
 								<RaisedButton
 									label={
 										installInProcess
@@ -115,6 +115,6 @@ export default class Theme extends React.Component {
 
 				<ThemeSettings />
 			</div>
-		);
+		)
 	}
 }

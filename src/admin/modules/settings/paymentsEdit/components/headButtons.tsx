@@ -1,39 +1,39 @@
-import React from 'react';
-import messages from 'lib/text';
-import DeleteConfirmation from 'modules/shared/deleteConfirmation';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import React from "react"
+import messages from "lib/text"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
+import Dialog from "material-ui/Dialog"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
 
 export default class Buttons extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			openDelete: false
-		};
+			openDelete: false,
+		}
 	}
 
 	showDelete = () => {
-		this.setState({ openDelete: true });
-	};
+		this.setState({ openDelete: true })
+	}
 
 	closeDelete = () => {
-		this.setState({ openDelete: false });
-	};
+		this.setState({ openDelete: false })
+	}
 
 	deleteGroup = () => {
-		this.setState({ openDelete: false });
-		this.props.onDelete(this.props.paymentMethod.id);
-	};
+		this.setState({ openDelete: false })
+		this.props.onDelete(this.props.paymentMethod.id)
+	}
 
 	render() {
-		const { paymentMethod, onDelete } = this.props;
+		const { paymentMethod, onDelete } = this.props
 		const methodName =
 			paymentMethod && paymentMethod.name && paymentMethod.name.length > 0
 				? paymentMethod.name
-				: 'Draft';
+				: "Draft"
 
 		return (
 			<span>
@@ -56,6 +56,6 @@ export default class Buttons extends React.Component {
 					onDelete={this.deleteGroup}
 				/>
 			</span>
-		);
+		)
 	}
 }

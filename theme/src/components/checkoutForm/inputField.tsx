@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 
 const InputField = field => (
 	<div className={field.className}>
@@ -14,9 +14,9 @@ const InputField = field => (
 			disabled={field.disabled}
 			type={field.type}
 			id={field.id}
-			className={field.meta.touched && field.meta.error ? 'invalid' : ''}
+			className={field.meta.touched && field.meta.error ? "invalid" : ""}
 		/>
 	</div>
-);
+)
 
-export default InputField;
+export default InputField

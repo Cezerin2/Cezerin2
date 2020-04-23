@@ -1,32 +1,32 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { themeSettings, text } from '../../lib/settings'
-import InputField from './inputField'
-import TextareaField from './textareaField'
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { themeSettings, text } from "../../lib/settings"
+import InputField from "./inputField"
+import TextareaField from "./textareaField"
 
-const validateRequired = (value) =>
+const validateRequired = value =>
 	value && value.length > 0 ? undefined : text.required
 
-const getFieldLabelByKey = (key) => {
+const getFieldLabelByKey = key => {
 	switch (key) {
-		case 'full_name':
+		case "full_name":
 			return text.full_name
-		case 'address1':
+		case "address1":
 			return text.address1
-		case 'address2':
+		case "address2":
 			return text.address2
-		case 'postal_code':
+		case "postal_code":
 			return text.postal_code
-		case 'phone':
+		case "phone":
 			return text.phone
-		case 'company':
+		case "company":
 			return text.company
 		default:
-			return ''
+			return ""
 	}
 }
 
-const getFieldLabel = (field) => {
+const getFieldLabel = field => {
 	const label =
 		field.label && field.label.length > 0
 			? field.label
@@ -39,7 +39,7 @@ const CheckoutStepShipping = () => {
 		billingAsShipping: true,
 	}
 
-	onChangeBillingAsShipping = (event) => {
+	onChangeBillingAsShipping = event => {
 		this.setState({
 			billingAsShipping: event.target.checked,
 		})
@@ -68,13 +68,13 @@ const CheckoutStepShipping = () => {
 	} = this.props
 
 	const hideBillingAddress = settings.hide_billing_address === true
-	const commentsField = checkoutFields.find((f) => f.name === 'comments')
+	const commentsField = checkoutFields.find(f => f.name === "comments")
 	const commentsFieldPlaceholder =
 		commentsField &&
 		commentsField.placeholder &&
 		commentsField.placeholder.length > 0
 			? commentsField.placeholder
-			: ''
+			: ""
 	const commentsFieldLabel =
 		commentsField && commentsField.label && commentsField.label.length > 0
 			? commentsField.label
@@ -84,8 +84,8 @@ const CheckoutStepShipping = () => {
 			? commentsField.status
 			: null
 	const commentsValidate =
-		commentsFieldStatus === 'required' ? validateRequired : null
-	const hideCommentsField = commentsFieldStatus === 'hidden'
+		commentsFieldStatus === "required" ? validateRequired : null
+	const hideCommentsField = commentsFieldStatus === "hidden"
 
 	if (!show) {
 		return (
@@ -128,7 +128,7 @@ const CheckoutStepShipping = () => {
 				</h1>
 				{shippingFields}
 
-				{!hideCommentsField && initialValues.comments !== '' && (
+				{!hideCommentsField && initialValues.comments !== "" && (
 					<div className="checkout-field-preview">
 						<div className="name">{commentsFieldLabel}</div>
 						<div className="value">{initialValues.comments}</div>
@@ -157,8 +157,7 @@ const CheckoutStepShipping = () => {
 				const fieldLabel = getFieldLabel(field)
 				const fieldId = `shipping_address.${field.key}`
 				const fieldClassName = `${inputClassName} shipping-${field.key}`
-				const validate =
-					field.required === true ? validateRequired : null
+				const validate = field.required === true ? validateRequired : null
 
 				return (
 					<Field
@@ -186,7 +185,7 @@ const CheckoutStepShipping = () => {
 
 					{!hideCommentsField && (
 						<Field
-							className={inputClassName + ' shipping-comments'}
+							className={inputClassName + " shipping-comments"}
 							name="comments"
 							id="customer.comments"
 							component={TextareaField}
@@ -208,17 +207,13 @@ const CheckoutStepShipping = () => {
 									onChange={this.onChangeBillingAsShipping}
 									checked={this.state.billingAsShipping}
 								/>
-								<label htmlFor="billingAsShipping">
-									{text.sameAsShipping}
-								</label>
+								<label htmlFor="billingAsShipping">{text.sameAsShipping}</label>
 							</div>
 
 							{!this.state.billingAsShipping && (
 								<>
 									<Field
-										className={
-											inputClassName + ' billing-fullname'
-										}
+										className={inputClassName + " billing-fullname"}
 										name="billing_address.full_name"
 										id="billing_address.full_name"
 										component={InputField}
@@ -227,9 +222,7 @@ const CheckoutStepShipping = () => {
 										validate={[validateRequired]}
 									/>
 									<Field
-										className={
-											inputClassName + ' billing-address1'
-										}
+										className={inputClassName + " billing-address1"}
 										name="billing_address.address1"
 										id="billing_address.address1"
 										component={InputField}
@@ -238,55 +231,36 @@ const CheckoutStepShipping = () => {
 										validate={[validateRequired]}
 									/>
 									<Field
-										className={
-											inputClassName + ' billing-address2'
-										}
+										className={inputClassName + " billing-address2"}
 										name="billing_address.address2"
 										id="billing_address.address2"
 										component={InputField}
 										type="text"
-										label={
-											text.address2 +
-											` (${text.optional})`
-										}
+										label={text.address2 + ` (${text.optional})`}
 									/>
 									<Field
-										className={
-											inputClassName +
-											' billing-postalcode'
-										}
+										className={inputClassName + " billing-postalcode"}
 										name="billing_address.postal_code"
 										id="billing_address.postal_code"
 										component={InputField}
 										type="text"
-										label={
-											text.postal_code +
-											` (${text.optional})`
-										}
+										label={text.postal_code + ` (${text.optional})`}
 									/>
 									<Field
-										className={
-											inputClassName + ' billing-phone'
-										}
+										className={inputClassName + " billing-phone"}
 										name="billing_address.phone"
 										id="billing_address.phone"
 										component={InputField}
 										type="text"
-										label={
-											text.phone + ` (${text.optional})`
-										}
+										label={text.phone + ` (${text.optional})`}
 									/>
 									<Field
-										className={
-											inputClassName + ' billing-company'
-										}
+										className={inputClassName + " billing-company"}
 										name="billing_address.company"
 										id="billing_address.company"
 										component={InputField}
 										type="text"
-										label={
-											text.company + ` (${text.optional})`
-										}
+										label={text.company + ` (${text.optional})`}
 									/>
 								</>
 							)}
@@ -304,7 +278,7 @@ const CheckoutStepShipping = () => {
 								initialValues.payment_method_id === null
 							}
 							className={`${buttonClassName}${
-								processingCheckout ? ' is-loading' : ''
+								processingCheckout ? " is-loading" : ""
 							}`}
 						>
 							{showPaymentForm ? text.next : text.orderSubmit}
@@ -317,7 +291,7 @@ const CheckoutStepShipping = () => {
 }
 
 export default reduxForm({
-	form: 'CheckoutStepShipping',
+	form: "CheckoutStepShipping",
 	enableReinitialize: true,
 	keepDirtyOnReinitialize: false,
 })(CheckoutStepShipping)

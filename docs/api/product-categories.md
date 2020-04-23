@@ -1,12 +1,12 @@
 # Product Categories
 
--   [List all categories](#list-all-categories)
--   [Retrieve a category](#retrieve-a-category)
--   [Create a category](#create-a-category)
--   [Update a category](#update-a-category)
--   [Delete a category](#delete-a-category)
--   [Upload a category image](#upload-a-category-image)
--   [Delete a category image](#delete-a-category-image)
+- [List all categories](#list-all-categories)
+- [Retrieve a category](#retrieve-a-category)
+- [Create a category](#create-a-category)
+- [Update a category](#update-a-category)
+- [Delete a category](#delete-a-category)
+- [Upload a category image](#upload-a-category-image)
+- [Delete a category image](#delete-a-category-image)
 
 ## List all categories
 

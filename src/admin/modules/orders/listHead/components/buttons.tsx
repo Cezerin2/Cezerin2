@@ -1,41 +1,41 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import messages from 'lib/text';
-import DeleteConfirmation from 'modules/shared/deleteConfirmation';
-import FontIcon from 'material-ui/FontIcon';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import MenuItem from 'material-ui/MenuItem';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import Search from './search';
-const Fragment = React.Fragment;
+import React from "react"
+import { Link } from "react-router-dom"
+import messages from "lib/text"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import FontIcon from "material-ui/FontIcon"
+import IconMenu from "material-ui/IconMenu"
+import IconButton from "material-ui/IconButton"
+import MenuItem from "material-ui/MenuItem"
+import Dialog from "material-ui/Dialog"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
+import TextField from "material-ui/TextField"
+import Search from "./search"
+const Fragment = React.Fragment
 
 export default class Buttons extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			openDelete: false
-		};
+			openDelete: false,
+		}
 	}
 
 	openDelete = () => {
-		this.setState({ openDelete: true });
-	};
+		this.setState({ openDelete: true })
+	}
 
 	closeDelete = () => {
-		this.setState({ openDelete: false });
-	};
+		this.setState({ openDelete: false })
+	}
 
 	deleteOrders = () => {
-		this.setState({ openDelete: false });
-		this.props.onDelete();
-	};
+		this.setState({ openDelete: false })
+		this.props.onDelete()
+	}
 
 	render() {
-		const { search, setSearch, selectedCount, onDelete, onCreate } = this.props;
+		const { search, setSearch, selectedCount, onDelete, onCreate } = this.props
 
 		return (
 			<Fragment>
@@ -72,6 +72,6 @@ export default class Buttons extends React.Component {
 					</FontIcon>
 				</IconButton>
 			</Fragment>
-		);
+		)
 	}
 }

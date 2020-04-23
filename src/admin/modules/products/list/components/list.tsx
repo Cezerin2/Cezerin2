@@ -1,20 +1,20 @@
-import React from 'react';
-import { List } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import Head from './head';
-import ProductsListItem from './item';
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
-import messages from 'lib/text';
-import style from './style.css';
+import React from "react"
+import { List } from "material-ui/List"
+import Divider from "material-ui/Divider"
+import Head from "./head"
+import ProductsListItem from "./item"
+import RaisedButton from "material-ui/RaisedButton"
+import FontIcon from "material-ui/FontIcon"
+import messages from "lib/text"
+import style from "./style.css"
 
 export default class ProductsList extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
@@ -28,11 +28,11 @@ export default class ProductsList extends React.Component {
 			loadMore,
 			settings,
 			hasMore,
-			totalCount
-		} = this.props;
+			totalCount,
+		} = this.props
 
 		const rows = items.map((item, index) => {
-			const itemSelected = selected.includes(item.id);
+			const itemSelected = selected.includes(item.id)
 			return (
 				<ProductsListItem
 					key={index}
@@ -41,8 +41,8 @@ export default class ProductsList extends React.Component {
 					onSelect={onSelect}
 					settings={settings}
 				/>
-			);
-		});
+			)
+		})
 
 		return (
 			<div className="product-list">
@@ -62,6 +62,6 @@ export default class ProductsList extends React.Component {
 					</div>
 				</List>
 			</div>
-		);
+		)
 	}
 }

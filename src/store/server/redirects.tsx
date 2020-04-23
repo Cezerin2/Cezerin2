@@ -1,14 +1,14 @@
-import api from './api';
+import api from "./api"
 
-const IGNORE_PATH = ['/'];
+const IGNORE_PATH = ["/"]
 
 const getRedirect = req => {
-	const absoluteUrl = `${req.protocol}://${req.hostname}${req.url}`;
-	const relativeUrl = req.url;
-	const relativePath = req.path;
+	const absoluteUrl = `${req.protocol}://${req.hostname}${req.url}`
+	const relativeUrl = req.url
+	const relativePath = req.path
 
 	return api.redirects.list().then(({ status, json }) => {
-		const items = json;
+		const items = json
 		if (items && items.length > 0) {
 			/*
       1. check absolute url
@@ -20,40 +20,40 @@ const getRedirect = req => {
 					item.from === absoluteUrl ||
 					item.from === relativeUrl ||
 					item.from === relativePath
-			);
-			return redirect;
+			)
+			return redirect
 		}
 
-		return null;
-	});
-};
+		return null
+	})
+}
 
 const redirectUrlIsValid = url => {
 	return (
 		url &&
 		url.length > 0 &&
-		(url.startsWith('/') ||
-			url.startsWith('https://') ||
-			url.startsWith('http://'))
-	);
-};
+		(url.startsWith("/") ||
+			url.startsWith("https://") ||
+			url.startsWith("http://"))
+	)
+}
 
 const redirects = (req, res, next) => {
 	if (IGNORE_PATH.includes(req.url)) {
-		next();
+		next()
 	} else {
 		getRedirect(req)
 			.then(redirect => {
 				if (redirect && redirectUrlIsValid(redirect.to)) {
-					res.redirect(redirect.status, redirect.to);
+					res.redirect(redirect.status, redirect.to)
 				} else {
-					next();
+					next()
 				}
 			})
 			.catch(() => {
-				next();
-			});
+				next()
+			})
 	}
-};
+}
 
-export default redirects;
+export default redirects

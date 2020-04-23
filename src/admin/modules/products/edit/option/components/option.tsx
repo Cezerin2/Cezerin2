@@ -1,38 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-import { TextField, SelectField } from 'redux-form-material-ui';
-import { CustomToggle } from 'modules/shared/form';
-import OptionValues from './values';
+import React from "react"
+import { Link } from "react-router-dom"
+import { Field, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
+import { CustomToggle } from "modules/shared/form"
+import OptionValues from "./values"
 
-import messages from 'lib/text';
-import style from './style.css';
+import messages from "lib/text"
+import style from "./style.css"
 
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import MenuItem from 'material-ui/MenuItem';
+import Paper from "material-ui/Paper"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
+import MenuItem from "material-ui/MenuItem"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['name'];
+	const errors = {}
+	const requiredFields = ["name"]
 
 	requiredFields.map(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class ProductOptionForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	componentDidMount() {
-		this.props.fetchData();
+		this.props.fetchData()
 	}
 
 	render() {
@@ -46,8 +46,8 @@ class ProductOptionForm extends React.Component {
 			optionValues,
 			createOptionValue,
 			updateOptionValue,
-			deleteOptionValue
-		} = this.props;
+			deleteOptionValue,
+		} = this.props
 
 		return (
 			<div>
@@ -122,12 +122,12 @@ class ProductOptionForm extends React.Component {
 					deleteOptionValue={deleteOptionValue}
 				/>
 			</div>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'ProductOptionForm',
+	form: "ProductOptionForm",
 	validate,
-	enableReinitialize: true
-})(ProductOptionForm);
+	enableReinitialize: true,
+})(ProductOptionForm)

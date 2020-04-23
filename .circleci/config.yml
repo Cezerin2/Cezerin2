@@ -1,25 +1,25 @@
 version: 2
 jobs:
-    build:
-        docker:
-            - image: circleci/node
+  build:
+    docker:
+      - image: circleci/node
 
-        working_directory: ~/repo
+    working_directory: ~/repo
 
-        steps:
-            - checkout
-            - restore_cache:
-                  key: dependency-cache-{{ checksum "package.json" }}
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
 
-            - run:
-                  name: Install Dependencies
-                  command: npm i
+      - run:
+          name: Install Dependencies
+          command: npm i
 
-            - save_cache:
-                  paths:
-                      - node_modules
-                  key: dependency-cache-{{ checksum "package.json" }}
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependency-cache-{{ checksum "package.json" }}
 
-            - run:
-                  name: Build
-                  command: npm run build
+      - run:
+          name: Build
+          command: npm run build

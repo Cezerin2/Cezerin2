@@ -1,22 +1,22 @@
-import React from 'react';
-import Dropzone from 'react-dropzone';
-import messages from 'lib/text';
-import style from './style.css';
+import React from "react"
+import Dropzone from "react-dropzone"
+import messages from "lib/text"
+import style from "./style.css"
 
-import Snackbar from 'material-ui/Snackbar';
-import FlatButton from 'material-ui/FlatButton';
+import Snackbar from "material-ui/Snackbar"
+import FlatButton from "material-ui/FlatButton"
 
 export default class MultiUploader extends React.Component {
 	onDrop = files => {
-		let form = new FormData();
+		let form = new FormData()
 		files.map(file => {
-			form.append('file', file);
-		});
-		this.props.onUpload(form);
-	};
+			form.append("file", file)
+		})
+		this.props.onUpload(form)
+	}
 
 	render() {
-		const { uploading } = this.props;
+		const { uploading } = this.props
 		return (
 			<div>
 				<Dropzone
@@ -24,10 +24,10 @@ export default class MultiUploader extends React.Component {
 					multiple={true}
 					disableClick={true}
 					ref={node => {
-						this.dropzone = node;
+						this.dropzone = node
 					}}
 					style={{}}
-					className={style.dropzone + (uploading ? ' ' + style.uploading : '')}
+					className={style.dropzone + (uploading ? " " + style.uploading : "")}
 					activeClassName={style.dropzoneActive}
 					rejectClassName={style.dropzoneReject}
 				>
@@ -37,7 +37,7 @@ export default class MultiUploader extends React.Component {
 							label={messages.chooseImage}
 							className={style.button}
 							onClick={() => {
-								this.dropzone.open();
+								this.dropzone.open()
 							}}
 						/>
 					</div>
@@ -45,6 +45,6 @@ export default class MultiUploader extends React.Component {
 
 				<Snackbar open={uploading} message={messages.messages_uploading} />
 			</div>
-		);
+		)
 	}
 }

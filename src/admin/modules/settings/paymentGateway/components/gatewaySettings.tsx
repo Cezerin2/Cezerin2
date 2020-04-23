@@ -1,27 +1,27 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField, SelectField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
 
-import { CustomToggle } from 'modules/shared/form';
-import messages from 'lib/text';
-import style from './style.css';
-import Checkbox from 'material-ui/Checkbox';
-import MenuItem from 'material-ui/MenuItem';
+import { CustomToggle } from "modules/shared/form"
+import messages from "lib/text"
+import style from "./style.css"
+import Checkbox from "material-ui/Checkbox"
+import MenuItem from "material-ui/MenuItem"
 
 const GatewaySettings = ({ gateway }) => {
 	switch (gateway) {
-		case 'paypal-checkout':
-			return <PayPalButton />;
-		case 'liqpay':
-			return <LiqPay />;
-		case 'stripe-elements':
-			return <StripeElements />;
+		case "paypal-checkout":
+			return <PayPalButton />
+		case "liqpay":
+			return <LiqPay />
+		case "stripe-elements":
+			return <StripeElements />
 		default:
-			return null;
+			return null
 	}
-};
+}
 
-export default GatewaySettings;
+export default GatewaySettings
 
 const PayPalButton = props => {
 	return (
@@ -89,8 +89,8 @@ const PayPalButton = props => {
 				fullWidth={true}
 			/>
 		</div>
-	);
-};
+	)
+}
 
 const LiqPay = props => {
 	return (
@@ -129,8 +129,8 @@ const LiqPay = props => {
 				fullWidth={true}
 			/>
 		</div>
-	);
-};
+	)
+}
 
 const StripeElements = props => {
 	return (
@@ -158,5 +158,5 @@ const StripeElements = props => {
 				fullWidth={true}
 			/>
 		</div>
-	);
-};
+	)
+}

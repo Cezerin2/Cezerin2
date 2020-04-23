@@ -1,194 +1,194 @@
-import * as t from './actionTypes';
-import api from 'lib/api';
-import messages from 'lib/text';
+import * as t from "./actionTypes"
+import api from "lib/api"
+import messages from "lib/text"
 
 export function exportRequest() {
 	return {
-		type: t.THEME_EXPORT_REQUEST
-	};
+		type: t.THEME_EXPORT_REQUEST,
+	}
 }
 
 export function exportReceive() {
 	return {
-		type: t.THEME_EXPORT_RECEIVE
-	};
+		type: t.THEME_EXPORT_RECEIVE,
+	}
 }
 
 export function installRequest() {
 	return {
-		type: t.THEME_INSTALL_REQUEST
-	};
+		type: t.THEME_INSTALL_REQUEST,
+	}
 }
 
 export function installReceive() {
 	return {
-		type: t.THEME_INSTALL_RECEIVE
-	};
+		type: t.THEME_INSTALL_RECEIVE,
+	}
 }
 
 function receiveSettings(settings) {
 	return {
 		type: t.SETTINGS_RECEIVE,
-		settings
-	};
+		settings,
+	}
 }
 
 function receiveEmailSettings(emailSettings) {
 	return {
 		type: t.EMAIL_SETTINGS_RECEIVE,
-		emailSettings
-	};
+		emailSettings,
+	}
 }
 
 function receiveImportSettings(importSettings) {
 	return {
 		type: t.IMPORT_SETTINGS_RECEIVE,
-		importSettings
-	};
+		importSettings,
+	}
 }
 
 function receiveEmailTemplate(emailTemplate) {
 	return {
 		type: t.EMAIL_TEMPLATE_RECEIVE,
-		emailTemplate
-	};
+		emailTemplate,
+	}
 }
 
 function requestEmailTemplate() {
 	return {
-		type: t.EMAIL_TEMPLATE_REQUEST
-	};
+		type: t.EMAIL_TEMPLATE_REQUEST,
+	}
 }
 
 function receiveCheckoutFields(checkoutFields) {
 	return {
 		type: t.CHECKOUT_FIELDS_RECEIVE,
-		checkoutFields
-	};
+		checkoutFields,
+	}
 }
 
 function receiveCheckoutField(checkoutField) {
 	return {
 		type: t.CHECKOUT_FIELD_RECEIVE,
-		checkoutField
-	};
+		checkoutField,
+	}
 }
 
 function requestCheckoutField() {
 	return {
-		type: t.CHECKOUT_FIELD_REQUEST
-	};
+		type: t.CHECKOUT_FIELD_REQUEST,
+	}
 }
 
 function receiveCommerceSettings(commerceSettings) {
 	return {
 		type: t.COMMERCE_SETTINGS_RECEIVE,
-		commerceSettings
-	};
+		commerceSettings,
+	}
 }
 
 function requestCommerceSettings() {
 	return {
-		type: t.COMMERCE_SETTINGS_REQUEST
-	};
+		type: t.COMMERCE_SETTINGS_REQUEST,
+	}
 }
 
 function receiveShippingMethods(shippingMethods) {
 	return {
 		type: t.SHIPPING_METHODS_RECEIVE,
-		shippingMethods
-	};
+		shippingMethods,
+	}
 }
 
 function receivePaymentMethods(paymentMethods) {
 	return {
 		type: t.PAYMENT_METHODS_RECEIVE,
-		paymentMethods
-	};
+		paymentMethods,
+	}
 }
 
 function receivePaymentGateway(paymentGatewayEdit) {
 	return {
 		type: t.PAYMENT_GATEWAY_RECEIVE,
-		paymentGatewayEdit
-	};
+		paymentGatewayEdit,
+	}
 }
 
 export function receiveShippingMethod(shippingMethodEdit) {
 	return {
 		type: t.SHIPPING_METHOD_RECEIVE,
-		shippingMethodEdit
-	};
+		shippingMethodEdit,
+	}
 }
 
 export function receivePaymentMethod(paymentMethodEdit) {
 	return {
 		type: t.PAYMENT_METHOD_RECEIVE,
-		paymentMethodEdit
-	};
+		paymentMethodEdit,
+	}
 }
 
 function receiveTokens(tokens) {
 	return {
 		type: t.TOKENS_RECEIVE,
-		tokens
-	};
+		tokens,
+	}
 }
 
 export function receiveToken(tokenEdit) {
 	return {
 		type: t.TOKEN_RECEIVE,
-		tokenEdit
-	};
+		tokenEdit,
+	}
 }
 
 export function receiveNewToken(newToken) {
 	return {
 		type: t.NEW_TOKEN_RECEIVE,
-		newToken
-	};
+		newToken,
+	}
 }
 
 export function receiveThemeSettings(settings) {
 	return {
 		type: t.THEME_SETTINGS_RECEIVE,
-		settings
-	};
+		settings,
+	}
 }
 
 export function receiveThemeSettingsSchema(schema) {
 	return {
 		type: t.THEME_SETTINGS_SCHEMA_RECEIVE,
-		schema
-	};
+		schema,
+	}
 }
 
 function receiveRedirects(redirects) {
 	return {
 		type: t.REDIRECTS_RECEIVE,
-		redirects
-	};
+		redirects,
+	}
 }
 
 export function receiveRedirect(redirectEdit) {
 	return {
 		type: t.REDIRECT_RECEIVE,
-		redirectEdit
-	};
+		redirectEdit,
+	}
 }
 
 function receiveWebhooks(webhooks) {
 	return {
 		type: t.WEBHOOKS_RECEIVE,
-		webhooks
-	};
+		webhooks,
+	}
 }
 
 export function receiveWebhook(webhookEdit) {
 	return {
 		type: t.WEBHOOK_RECEIVE,
-		webhookEdit
-	};
+		webhookEdit,
+	}
 }
 
 export function fetchSettings() {
@@ -198,11 +198,11 @@ export function fetchSettings() {
 			return api.settings
 				.retrieve()
 				.then(({ status, json }) => {
-					dispatch(receiveSettings(json));
+					dispatch(receiveSettings(json))
 				})
-				.catch(error => {});
+				.catch(error => {})
 		}
-	};
+	}
 }
 
 export function fetchEmailSettings() {
@@ -210,10 +210,10 @@ export function fetchEmailSettings() {
 		return api.settings
 			.retrieveEmailSettings()
 			.then(({ status, json }) => {
-				dispatch(receiveEmailSettings(json));
+				dispatch(receiveEmailSettings(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchImportSettings() {
@@ -221,10 +221,10 @@ export function fetchImportSettings() {
 		return api.settings
 			.retrieveImportSettings()
 			.then(({ status, json }) => {
-				dispatch(receiveImportSettings(json));
+				dispatch(receiveImportSettings(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function deleteLogo() {
@@ -233,28 +233,28 @@ export function deleteLogo() {
 			.deleteLogo()
 			.then(({ status, json }) => {
 				if (status === 200) {
-					dispatch(fetchSettings());
+					dispatch(fetchSettings())
 				} else {
-					throw status;
+					throw status
 				}
 			})
 			.catch(error => {
 				//dispatch error
-				console.log(error);
-			});
-	};
+				console.log(error)
+			})
+	}
 }
 
 export function updateSettings(settings) {
 	return (dispatch, getState) => {
-		delete settings.logo_file;
+		delete settings.logo_file
 		return api.settings
 			.update(settings)
 			.then(({ status, json }) => {
-				dispatch(receiveSettings(json));
+				dispatch(receiveSettings(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateEmailSettings(emailSettings) {
@@ -262,10 +262,10 @@ export function updateEmailSettings(emailSettings) {
 		return api.settings
 			.updateEmailSettings(emailSettings)
 			.then(({ status, json }) => {
-				dispatch(receiveEmailSettings(json));
+				dispatch(receiveEmailSettings(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateImportSettings(importSettings) {
@@ -273,23 +273,23 @@ export function updateImportSettings(importSettings) {
 		return api.settings
 			.updateImportSettings(importSettings)
 			.then(({ status, json }) => {
-				dispatch(receiveImportSettings(json));
+				dispatch(receiveImportSettings(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchEmailTemplate(templateName) {
 	return (dispatch, getState) => {
-		dispatch(requestEmailTemplate());
+		dispatch(requestEmailTemplate())
 		return api.settings
 			.retrieveEmailTemplate(templateName)
 			.then(({ status, json }) => {
-				json.templateName = templateName;
-				dispatch(receiveEmailTemplate(json));
+				json.templateName = templateName
+				dispatch(receiveEmailTemplate(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateEmailTemplate(emailTemplate) {
@@ -297,11 +297,11 @@ export function updateEmailTemplate(emailTemplate) {
 		return api.settings
 			.updateEmailTemplate(emailTemplate.templateName, emailTemplate)
 			.then(({ status, json }) => {
-				json.templateName = templateName;
-				dispatch(receiveEmailTemplate(json));
+				json.templateName = templateName
+				dispatch(receiveEmailTemplate(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchCheckoutFields() {
@@ -309,23 +309,23 @@ export function fetchCheckoutFields() {
 		return api.checkoutFields
 			.list()
 			.then(({ status, json }) => {
-				dispatch(receiveCheckoutFields(json));
+				dispatch(receiveCheckoutFields(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchCheckoutField(fieldName) {
 	return (dispatch, getState) => {
-		dispatch(requestCheckoutField());
+		dispatch(requestCheckoutField())
 		return api.checkoutFields
 			.retrieve(fieldName)
 			.then(({ status, json }) => {
-				json.fieldName = fieldName;
-				dispatch(receiveCheckoutField(json));
+				json.fieldName = fieldName
+				dispatch(receiveCheckoutField(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateCheckoutField(checkoutField) {
@@ -333,11 +333,11 @@ export function updateCheckoutField(checkoutField) {
 		return api.checkoutFields
 			.update(checkoutField.fieldName, checkoutField)
 			.then(({ status, json }) => {
-				json.fieldName = fieldName;
-				dispatch(receiveCheckoutField(json));
+				json.fieldName = fieldName
+				dispatch(receiveCheckoutField(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchCommerceSettings() {
@@ -345,10 +345,10 @@ export function fetchCommerceSettings() {
 		return api.settings
 			.retrieveCommerceSettings()
 			.then(({ status, json }) => {
-				dispatch(receiveCommerceSettings(json));
+				dispatch(receiveCommerceSettings(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateCommerceSettings(commerceSettings) {
@@ -356,10 +356,10 @@ export function updateCommerceSettings(commerceSettings) {
 		return api.settings
 			.updateCommerceSettings(commerceSettings)
 			.then(({ status, json }) => {
-				dispatch(receiveCommerceSettings(json));
+				dispatch(receiveCommerceSettings(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchShippingMethods() {
@@ -367,10 +367,10 @@ export function fetchShippingMethods() {
 		return api.shippingMethods
 			.list()
 			.then(({ status, json }) => {
-				dispatch(receiveShippingMethods(json));
+				dispatch(receiveShippingMethods(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchPaymentMethods() {
@@ -378,10 +378,10 @@ export function fetchPaymentMethods() {
 		return api.paymentMethods
 			.list()
 			.then(({ status, json }) => {
-				dispatch(receivePaymentMethods(json));
+				dispatch(receivePaymentMethods(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateShippingMethod(method) {
@@ -389,10 +389,10 @@ export function updateShippingMethod(method) {
 		return api.shippingMethods
 			.update(method.id, method)
 			.then(({ status, json }) => {
-				dispatch(fetchShippingMethods());
+				dispatch(fetchShippingMethods())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updatePaymentMethod(method) {
@@ -400,10 +400,10 @@ export function updatePaymentMethod(method) {
 		return api.paymentMethods
 			.update(method.id, method)
 			.then(({ status, json }) => {
-				dispatch(fetchPaymentMethods());
+				dispatch(fetchPaymentMethods())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchShippingMethod(id) {
@@ -411,10 +411,10 @@ export function fetchShippingMethod(id) {
 		return api.shippingMethods
 			.retrieve(id)
 			.then(({ status, json }) => {
-				dispatch(receiveShippingMethod(json));
+				dispatch(receiveShippingMethod(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchPaymentMethod(id) {
@@ -422,10 +422,10 @@ export function fetchPaymentMethod(id) {
 		return api.paymentMethods
 			.retrieve(id)
 			.then(({ status, json }) => {
-				dispatch(receivePaymentMethod(json));
+				dispatch(receivePaymentMethod(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function deleteShippingMethod(methodId) {
@@ -433,10 +433,10 @@ export function deleteShippingMethod(methodId) {
 		return api.shippingMethods
 			.delete(methodId)
 			.then(({ status, json }) => {
-				dispatch(fetchShippingMethods());
+				dispatch(fetchShippingMethods())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function deletePaymentMethod(methodId) {
@@ -444,10 +444,10 @@ export function deletePaymentMethod(methodId) {
 		return api.paymentMethods
 			.delete(methodId)
 			.then(({ status, json }) => {
-				dispatch(fetchPaymentMethods());
+				dispatch(fetchPaymentMethods())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function createShippingMethod(method) {
@@ -455,10 +455,10 @@ export function createShippingMethod(method) {
 		return api.shippingMethods
 			.create(method)
 			.then(({ status, json }) => {
-				dispatch(fetchShippingMethods());
+				dispatch(fetchShippingMethods())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function createPaymentMethod(method) {
@@ -466,10 +466,10 @@ export function createPaymentMethod(method) {
 		return api.paymentMethods
 			.create(method)
 			.then(({ status, json }) => {
-				dispatch(fetchPaymentMethods());
+				dispatch(fetchPaymentMethods())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchTokens() {
@@ -477,10 +477,10 @@ export function fetchTokens() {
 		return api.tokens
 			.list()
 			.then(({ status, json }) => {
-				dispatch(receiveTokens(json));
+				dispatch(receiveTokens(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchToken(id) {
@@ -488,10 +488,10 @@ export function fetchToken(id) {
 		return api.tokens
 			.retrieve(id)
 			.then(({ status, json }) => {
-				dispatch(receiveToken(json));
+				dispatch(receiveToken(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function createToken(token) {
@@ -499,12 +499,12 @@ export function createToken(token) {
 		return api.tokens
 			.create(token)
 			.then(({ status, json }) => {
-				console.log(json);
-				dispatch(fetchTokens());
-				dispatch(receiveNewToken(json.token));
+				console.log(json)
+				dispatch(fetchTokens())
+				dispatch(receiveNewToken(json.token))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateToken(token) {
@@ -512,10 +512,10 @@ export function updateToken(token) {
 		return api.tokens
 			.update(token.id, token)
 			.then(({ status, json }) => {
-				dispatch(fetchTokens());
+				dispatch(fetchTokens())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function deleteToken(tokenId) {
@@ -523,10 +523,10 @@ export function deleteToken(tokenId) {
 		return api.tokens
 			.delete(tokenId)
 			.then(({ status, json }) => {
-				dispatch(fetchTokens());
+				dispatch(fetchTokens())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchPaymentGateway(gatewayName) {
@@ -535,13 +535,13 @@ export function fetchPaymentGateway(gatewayName) {
 			return api.paymentGateways
 				.retrieve(gatewayName)
 				.then(({ status, json }) => {
-					dispatch(receivePaymentGateway(json));
+					dispatch(receivePaymentGateway(json))
 				})
-				.catch(error => {});
+				.catch(error => {})
 		} else {
-			dispatch(receivePaymentGateway(null));
+			dispatch(receivePaymentGateway(null))
 		}
-	};
+	}
 }
 
 export function updatePaymentGateway(gatewayName, data) {
@@ -549,10 +549,10 @@ export function updatePaymentGateway(gatewayName, data) {
 		return api.paymentGateways
 			.update(gatewayName, data)
 			.then(({ status, json }) => {
-				dispatch(receivePaymentGateway(json));
+				dispatch(receivePaymentGateway(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function uploadLogo(form) {
@@ -560,24 +560,24 @@ export function uploadLogo(form) {
 		return api.settings
 			.uploadLogo(form)
 			.then(() => {
-				dispatch(fetchSettings());
+				dispatch(fetchSettings())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchThemeSettings() {
 	return (dispatch, getState) => {
 		return Promise.all([
 			api.theme.settings.retrieve(),
-			api.theme.settings.retrieveSchema()
+			api.theme.settings.retrieveSchema(),
 		])
 			.then(([settingsResponse, schemaResponse]) => {
-				dispatch(receiveThemeSettings(settingsResponse.json));
-				dispatch(receiveThemeSettingsSchema(schemaResponse.json));
+				dispatch(receiveThemeSettings(settingsResponse.json))
+				dispatch(receiveThemeSettingsSchema(schemaResponse.json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateThemeSettings(settings) {
@@ -585,10 +585,10 @@ export function updateThemeSettings(settings) {
 		return api.theme.settings
 			.update(settings)
 			.then(() => {
-				dispatch(fetchThemeSettings());
+				dispatch(fetchThemeSettings())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchRedirects() {
@@ -596,10 +596,10 @@ export function fetchRedirects() {
 		return api.redirects
 			.list()
 			.then(({ status, json }) => {
-				dispatch(receiveRedirects(json));
+				dispatch(receiveRedirects(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchRedirect(id) {
@@ -607,10 +607,10 @@ export function fetchRedirect(id) {
 		return api.redirects
 			.retrieve(id)
 			.then(({ status, json }) => {
-				dispatch(receiveRedirect(json));
+				dispatch(receiveRedirect(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function createRedirect(redirect) {
@@ -618,10 +618,10 @@ export function createRedirect(redirect) {
 		return api.redirects
 			.create(redirect)
 			.then(({ status, json }) => {
-				dispatch(fetchRedirects());
+				dispatch(fetchRedirects())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateRedirect(redirect) {
@@ -629,10 +629,10 @@ export function updateRedirect(redirect) {
 		return api.redirects
 			.update(redirect.id, redirect)
 			.then(({ status, json }) => {
-				dispatch(fetchRedirects());
+				dispatch(fetchRedirects())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function deleteRedirect(redirectId) {
@@ -640,10 +640,10 @@ export function deleteRedirect(redirectId) {
 		return api.redirects
 			.delete(redirectId)
 			.then(({ status, json }) => {
-				dispatch(fetchRedirects());
+				dispatch(fetchRedirects())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchWebhooks() {
@@ -651,10 +651,10 @@ export function fetchWebhooks() {
 		return api.webhooks
 			.list()
 			.then(({ status, json }) => {
-				dispatch(receiveWebhooks(json));
+				dispatch(receiveWebhooks(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function fetchWebhook(id) {
@@ -662,10 +662,10 @@ export function fetchWebhook(id) {
 		return api.webhooks
 			.retrieve(id)
 			.then(({ status, json }) => {
-				dispatch(receiveWebhook(json));
+				dispatch(receiveWebhook(json))
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function createWebhook(webhook) {
@@ -673,10 +673,10 @@ export function createWebhook(webhook) {
 		return api.webhooks
 			.create(webhook)
 			.then(({ status, json }) => {
-				dispatch(fetchWebhooks());
+				dispatch(fetchWebhooks())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function updateWebhook(webhook) {
@@ -684,10 +684,10 @@ export function updateWebhook(webhook) {
 		return api.webhooks
 			.update(webhook.id, webhook)
 			.then(({ status, json }) => {
-				dispatch(fetchWebhooks());
+				dispatch(fetchWebhooks())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }
 
 export function deleteWebhook(webhookId) {
@@ -695,8 +695,8 @@ export function deleteWebhook(webhookId) {
 		return api.webhooks
 			.delete(webhookId)
 			.then(({ status, json }) => {
-				dispatch(fetchWebhooks());
+				dispatch(fetchWebhooks())
 			})
-			.catch(error => {});
-	};
+			.catch(error => {})
+	}
 }

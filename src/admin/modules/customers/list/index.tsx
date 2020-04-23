@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux"
 import {
 	fetchCustomers,
 	selectCustomer,
 	deselectCustomer,
 	selectAllCustomer,
 	deselectAllCustomer,
-	fetchMoreCustomers
-} from '../actions';
-import List from './components/list';
+	fetchMoreCustomers,
+} from "../actions"
+import List from "./components/list"
 
 const mapStateToProps = state => {
 	return {
@@ -15,36 +15,33 @@ const mapStateToProps = state => {
 		items: state.customers.items,
 		selected: state.customers.selected,
 		loadingItems: state.customers.loadingItems,
-		hasMore: state.customers.hasMore
-	};
-};
+		hasMore: state.customers.hasMore,
+	}
+}
 
 const mapDispatchToProps = dispatch => {
 	return {
 		onLoad: () => {
-			dispatch(fetchCustomers());
+			dispatch(fetchCustomers())
 		},
 		onSelect: (customerId, checked) => {
 			if (checked) {
-				dispatch(selectCustomer(customerId));
+				dispatch(selectCustomer(customerId))
 			} else {
-				dispatch(deselectCustomer(customerId));
+				dispatch(deselectCustomer(customerId))
 			}
 		},
 		onSelectAll: checked => {
 			if (checked) {
-				dispatch(selectAllCustomer());
+				dispatch(selectAllCustomer())
 			} else {
-				dispatch(deselectAllCustomer());
+				dispatch(deselectAllCustomer())
 			}
 		},
 		loadMore: () => {
-			dispatch(fetchMoreCustomers());
-		}
-	};
-};
+			dispatch(fetchMoreCustomers())
+		},
+	}
+}
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(List)

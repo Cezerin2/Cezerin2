@@ -1,15 +1,15 @@
 {
-    "name": "theme",
-    "version": "1.0.0",
-    "description": "Theme folder for cezerin2-store",
-    "main": "dist/index.js",
-    "author": "Himadu Sirimanna",
-    "license": "MIT",
-    "dependencies": {
-        "bulma": "^0.8.1",
-        "rc-slider": "^9.2.4",
-        "react-image-gallery": "^1.0.7",
-        "react-image-lightbox": "^5.1.1",
-        "react-lazyload": "^2.6.7"
-    }
+  "name": "theme",
+  "version": "1.0.0",
+  "description": "Theme folder for cezerin2-store",
+  "main": "dist/index.js",
+  "author": "Himadu Sirimanna",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.8.1",
+    "rc-slider": "^9.2.4",
+    "react-image-gallery": "^1.0.7",
+    "react-image-lightbox": "^5.1.1",
+    "react-lazyload": "^2.6.7"
+  }
 }

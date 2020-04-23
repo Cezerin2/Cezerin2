@@ -1,74 +1,74 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
 
-import messages from 'lib/text';
-import style from './style.css';
-import ConfirmationDialog from 'modules/shared/confirmation';
-import { MultiSelect } from 'modules/shared/form';
+import messages from "lib/text"
+import style from "./style.css"
+import ConfirmationDialog from "modules/shared/confirmation"
+import { MultiSelect } from "modules/shared/form"
 
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from "material-ui/Paper"
+import Divider from "material-ui/Divider"
+import RaisedButton from "material-ui/RaisedButton"
 
 const Scopes = [
-	'admin',
-	'dashboard',
-	'read:products',
-	'write:products',
-	'read:product_categories',
-	'write:product_categories',
-	'read:orders',
-	'write:orders',
-	'read:customers',
-	'write:customers',
-	'read:customer_groups',
-	'write:customer_groups',
-	'read:pages',
-	'write:pages',
-	'read:order_statuses',
-	'write:order_statuses',
-	'read:theme',
-	'write:theme',
-	'read:sitemap',
-	'',
-	'read:shipping_methods',
-	'write:shipping_methods',
-	'read:payment_methods',
-	'write:payment_methods',
-	'read:settings',
-	'write:settings',
-	'read:files',
-	'write:files'
-];
+	"admin",
+	"dashboard",
+	"read:products",
+	"write:products",
+	"read:product_categories",
+	"write:product_categories",
+	"read:orders",
+	"write:orders",
+	"read:customers",
+	"write:customers",
+	"read:customer_groups",
+	"write:customer_groups",
+	"read:pages",
+	"write:pages",
+	"read:order_statuses",
+	"write:order_statuses",
+	"read:theme",
+	"write:theme",
+	"read:sitemap",
+	"",
+	"read:shipping_methods",
+	"write:shipping_methods",
+	"read:payment_methods",
+	"write:payment_methods",
+	"read:settings",
+	"write:settings",
+	"read:files",
+	"write:files",
+]
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['name'];
+	const errors = {}
+	const requiredFields = ["name"]
 
 	requiredFields.map(field => {
 		if (!values.is_system && values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class EditTokenForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			showRevokeDialog: false
-		};
+			showRevokeDialog: false,
+		}
 	}
 
 	handleRevoke = () => {
-		this.setState({ showRevokeDialog: true });
-	};
+		this.setState({ showRevokeDialog: true })
+	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
@@ -79,10 +79,10 @@ class EditTokenForm extends React.Component {
 			initialValues,
 			tokenId,
 			newToken,
-			onDelete
-		} = this.props;
-		const isTokenAdded = !!newToken;
-		const isAdd = tokenId === null || tokenId === undefined;
+			onDelete,
+		} = this.props
+		const isTokenAdded = !!newToken
+		const isAdd = tokenId === null || tokenId === undefined
 
 		return (
 			<div>
@@ -123,7 +123,7 @@ class EditTokenForm extends React.Component {
 								<RaisedButton
 									label={messages.settings_revokeAccess}
 									secondary={true}
-									style={{ float: 'left' }}
+									style={{ float: "left" }}
 									onClick={this.handleRevoke}
 								/>
 							)}
@@ -156,12 +156,12 @@ class EditTokenForm extends React.Component {
 					cancelLabel={messages.cancel}
 				/>
 			</div>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'EditTokenForm',
+	form: "EditTokenForm",
 	validate,
-	enableReinitialize: true
-})(EditTokenForm);
+	enableReinitialize: true,
+})(EditTokenForm)

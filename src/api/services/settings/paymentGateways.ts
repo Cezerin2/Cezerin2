@@ -1,35 +1,35 @@
-import { db } from '../../lib/mongo';
+import { db } from "../../lib/mongo"
 
 class PaymentGatewaysService {
 	constructor() {}
 
 	getGateway(gatewayName) {
 		return db
-			.collection('paymentGateways')
+			.collection("paymentGateways")
 			.findOne({ name: gatewayName })
 			.then(data => {
-				return this.changeProperties(data);
-			});
+				return this.changeProperties(data)
+			})
 	}
 
 	updateGateway(gatewayName, data) {
 		if (Object.keys(data).length === 0) {
-			return this.getGateway(gatewayName);
+			return this.getGateway(gatewayName)
 		} else {
 			return db
-				.collection('paymentGateways')
+				.collection("paymentGateways")
 				.updateOne({ name: gatewayName }, { $set: data }, { upsert: true })
-				.then(res => this.getGateway(gatewayName));
+				.then(res => this.getGateway(gatewayName))
 		}
 	}
 
 	changeProperties(data) {
 		if (data) {
-			delete data._id;
-			delete data.name;
+			delete data._id
+			delete data.name
 		}
-		return data;
+		return data
 	}
 }
 
-export default new PaymentGatewaysService();
+export default new PaymentGatewaysService()

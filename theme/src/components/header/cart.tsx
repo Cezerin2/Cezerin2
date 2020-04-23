@@ -1,8 +1,8 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { themeSettings, text } from '../../lib/settings'
-import Lscache from 'lscache'
-import * as helper from '../../lib/helper'
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { themeSettings, text } from "../../lib/settings"
+import Lscache from "lscache"
+import * as helper from "../../lib/helper"
 
 const CartItem = ({ item, deleteCartItem, settings }) => {
 	const thumbnail = helper.getThumbnailUrl(
@@ -47,7 +47,7 @@ const Cart = () => {
 	const { cart, deleteCartItem, settings, cartToggle } = this.props
 
 	if (cart && cart.items && cart.items.length > 0) {
-		const items = cart.items.map((item) => (
+		const items = cart.items.map(item => (
 			<CartItem
 				key={item.id}
 				item={item}
@@ -70,12 +70,10 @@ const Cart = () => {
 				</div>
 				<NavLink
 					className="button is-primary is-fullwidth has-text-centered"
-					style={{ textTransform: 'uppercase' }}
+					style={{ textTransform: "uppercase" }}
 					to={{
 						pathname:
-							Lscache.get('auth_data') !== null
-								? '/checkout'
-								: '/login',
+							Lscache.get("auth_data") !== null ? "/checkout" : "/login",
 						state: { cartLayer: true },
 					}}
 					onClick={cartToggle}

@@ -1,6 +1,6 @@
-import React from 'react';
-import Edit from 'modules/orderStatuses/edit';
-import List from 'modules/orderStatuses/list';
+import React from "react"
+import Edit from "modules/orderStatuses/edit"
+import List from "modules/orderStatuses/list"
 
 export default () => (
 	<div className="row row--no-gutter col-full-height">
@@ -11,4 +11,4 @@ export default () => (
 			<Edit />
 		</div>
 	</div>
-);
+)

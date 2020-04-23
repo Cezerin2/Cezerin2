@@ -1,24 +1,24 @@
 # API Reference
 
--   [Apps](./apps.md)
--   [Products](./products.md)
--   [Product Categories](./product-categories.md)
--   Orders
--   Order Statuses
--   Customers
--   Customer Groups
--   Pages
--   Shipping Methods
--   Payment Methods
--   Payment Gateways
--   Payment Notifications
--   Files
--   Security
--   Settings
--   Site Map
--   Theme
--   [Redirects](./redirects.md)
--   [Webhooks](./webhooks.md)
+- [Apps](./apps.md)
+- [Products](./products.md)
+- [Product Categories](./product-categories.md)
+- Orders
+- Order Statuses
+- Customers
+- Customer Groups
+- Pages
+- Shipping Methods
+- Payment Methods
+- Payment Gateways
+- Payment Notifications
+- Files
+- Security
+- Settings
+- Site Map
+- Theme
+- [Redirects](./redirects.md)
+- [Webhooks](./webhooks.md)
 
 ## Overview
 

@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
 import {
 	fetchOrder,
 	updateOrder,
@@ -7,41 +7,41 @@ import {
 	updateOrderItem,
 	updateShippingAddress,
 	clearOrderDetails,
-	checkoutOrder
-} from '../actions';
-import OrderDetails from './components/details';
+	checkoutOrder,
+} from "../actions"
+import OrderDetails from "./components/details"
 
 const mapStateToProps = (state, ownProps) => {
 	return {
 		settings: state.settings.settings,
 		order: state.orders.editOrder,
-		processingCheckout: state.orders.processingCheckout
-	};
-};
+		processingCheckout: state.orders.processingCheckout,
+	}
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		fetchData: () => {
-			const { orderId } = ownProps.match.params;
-			dispatch(fetchOrder(orderId));
+			const { orderId } = ownProps.match.params
+			dispatch(fetchOrder(orderId))
 		},
 		clearData: () => {
-			dispatch(clearOrderDetails());
+			dispatch(clearOrderDetails())
 		},
 		onItemDelete: itemId => {
-			const { orderId } = ownProps.match.params;
-			dispatch(deleteOrderItem(orderId, itemId));
+			const { orderId } = ownProps.match.params
+			dispatch(deleteOrderItem(orderId, itemId))
 		},
 		onItemUpdate: (itemId, quantity, variantId) => {
-			const { orderId } = ownProps.match.params;
-			dispatch(updateOrderItem(orderId, itemId, quantity, variantId));
+			const { orderId } = ownProps.match.params
+			dispatch(updateOrderItem(orderId, itemId, quantity, variantId))
 		},
 		onShippingAddressUpdate: address => {
-			const { orderId } = ownProps.match.params;
-			dispatch(updateShippingAddress(orderId, address));
+			const { orderId } = ownProps.match.params
+			dispatch(updateShippingAddress(orderId, address))
 		},
 		onOrderSummaryUpdate: order => {
-			const { orderId } = ownProps.match.params;
+			const { orderId } = ownProps.match.params
 			dispatch(
 				updateOrder({
 					id: order.id,
@@ -52,20 +52,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 					comments: order.comments,
 					note: order.note,
 					email: order.email,
-					mobile: order.mobile
+					mobile: order.mobile,
 				})
-			);
+			)
 		},
 		onCheckout: () => {
-			const { orderId } = ownProps.match.params;
-			dispatch(checkoutOrder(orderId));
-		}
-	};
-};
+			const { orderId } = ownProps.match.params
+			dispatch(checkoutOrder(orderId))
+		},
+	}
+}
 
 export default withRouter(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(OrderDetails)
-);
+	connect(mapStateToProps, mapDispatchToProps)(OrderDetails)
+)

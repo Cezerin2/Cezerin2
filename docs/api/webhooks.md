@@ -1,10 +1,10 @@
 # Webhooks
 
--   [List all webhooks](#list-all-webhooks)
--   [Retrieve a webhook](#retrieve-a-webhook)
--   [Create a webhook](#create-a-webhook)
--   [Update a webhook](#update-a-webhook)
--   [Delete a webhook](#delete-a-webhook)
+- [List all webhooks](#list-all-webhooks)
+- [Retrieve a webhook](#retrieve-a-webhook)
+- [Create a webhook](#create-a-webhook)
+- [Update a webhook](#update-a-webhook)
+- [Delete a webhook](#delete-a-webhook)
 
 ## List all webhooks
 

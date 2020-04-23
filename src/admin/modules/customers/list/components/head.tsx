@@ -1,7 +1,7 @@
-import React from 'react';
-import Subheader from 'material-ui/Subheader';
-import Checkbox from 'material-ui/Checkbox';
-import messages from 'lib/text';
+import React from "react"
+import Subheader from "material-ui/Subheader"
+import Checkbox from "material-ui/Checkbox"
+import messages from "lib/text"
 
 export default ({ onSelectAll }) => (
 	<Subheader style={{ paddingRight: 16 }}>
@@ -9,7 +9,7 @@ export default ({ onSelectAll }) => (
 			<div className="col-xs-1">
 				<Checkbox
 					onCheck={(event, isInputChecked) => {
-						onSelectAll(isInputChecked);
+						onSelectAll(isInputChecked)
 					}}
 				/>
 			</div>
@@ -18,10 +18,10 @@ export default ({ onSelectAll }) => (
 			<div className="col-xs-1">{messages.customers_orders}</div>
 			<div
 				className="col-xs-2"
-				style={{ textAlign: 'right', paddingRight: 16 }}
+				style={{ textAlign: "right", paddingRight: 16 }}
 			>
 				{messages.customers_totalSpent}
 			</div>
 		</div>
 	</Subheader>
-);
+)

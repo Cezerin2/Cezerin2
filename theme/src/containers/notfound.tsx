@@ -1,6 +1,6 @@
-import React from 'react'
-import { text } from '../lib/settings'
-import MetaTags from '../components/metaTags'
+import React from "react"
+import { text } from "../lib/settings"
+import MetaTags from "../components/metaTags"
 
 const NotFoundContainer = () => (
 	<>

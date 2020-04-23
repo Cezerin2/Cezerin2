@@ -1,10 +1,10 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { themeSettings, text } from '../../lib/settings'
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { themeSettings, text } from "../../lib/settings"
 
-import Sort from '../sort'
-import PriceSlider from './priceSlider'
-import AttributeFilter from './attributeFilter'
+import Sort from "../sort"
+import PriceSlider from "./priceSlider"
+import AttributeFilter from "./attributeFilter"
 
 const ProductFilter = () => {
 	this.state = {
@@ -15,12 +15,12 @@ const ProductFilter = () => {
 		this.setState({
 			sidebarIsActive: !this.state.sidebarIsActive,
 		})
-		document.body.classList.toggle('noscroll')
+		document.body.classList.toggle("noscroll")
 	}
 
 	sidebarClose = () => {
 		this.setState({ sidebarIsActive: false })
-		document.body.classList.remove('noscroll')
+		document.body.classList.remove("noscroll")
 	}
 
 	const { sidebarIsActive } = this.state
@@ -37,30 +37,22 @@ const ProductFilter = () => {
 	return (
 		<>
 			<div className="is-hidden-tablet">
-				<button
-					className="button is-fullwidth"
-					onClick={this.sidebarToggle}
-				>
+				<button className="button is-fullwidth" onClick={this.sidebarToggle}>
 					{text.filterProducts}
 				</button>
 			</div>
 
 			<div
-				className={
-					sidebarIsActive ? 'modal is-active' : 'is-hidden-mobile'
-				}
+				className={sidebarIsActive ? "modal is-active" : "is-hidden-mobile"}
 				style={{ zIndex: 101 }}
 			>
 				<div
-					className={sidebarIsActive ? 'dark-overflow' : ''}
+					className={sidebarIsActive ? "dark-overflow" : ""}
 					onClick={this.sidebarClose}
 				/>
-				<div className={sidebarIsActive ? 'modal-content' : ''}>
-					<div className={sidebarIsActive ? 'box sidebar' : ''}>
-						<div
-							className="is-hidden-tablet"
-							style={{ marginBottom: 30 }}
-						>
+				<div className={sidebarIsActive ? "modal-content" : ""}>
+					<div className={sidebarIsActive ? "box sidebar" : ""}>
+						<div className="is-hidden-tablet" style={{ marginBottom: 30 }}>
 							<Sort
 								defaultSort={settings.default_product_sorting}
 								currentSort={productFilter.sort}
@@ -71,9 +63,7 @@ const ProductFilter = () => {
 						<AttributeFilter
 							attributes={productsAttributes}
 							setFilterAttribute={this.props.setFilterAttribute}
-							unsetFilterAttribute={
-								this.props.unsetFilterAttribute
-							}
+							unsetFilterAttribute={this.props.unsetFilterAttribute}
 						/>
 
 						<PriceSlider

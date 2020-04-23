@@ -1,24 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react"
+import { Link } from "react-router-dom"
 
-import messages from 'lib/text';
-import * as helper from 'lib/helper';
-import style from './style.css';
-import AddressForm from './addressForm.js';
-import ConfirmationDialog from 'modules/shared/confirmation';
+import messages from "lib/text"
+import * as helper from "lib/helper"
+import style from "./style.css"
+import AddressForm from "./addressForm.js"
+import ConfirmationDialog from "modules/shared/confirmation"
 
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import IconButton from 'material-ui/IconButton';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import SelectField from 'material-ui/SelectField';
-import Dialog from 'material-ui/Dialog';
+import Paper from "material-ui/Paper"
+import Divider from "material-ui/Divider"
+import IconButton from "material-ui/IconButton"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
+import FontIcon from "material-ui/FontIcon"
+import IconMenu from "material-ui/IconMenu"
+import MenuItem from "material-ui/MenuItem"
+import SelectField from "material-ui/SelectField"
+import Dialog from "material-ui/Dialog"
 
-let countRender = 0;
+let countRender = 0
 
 const Address = ({ address }) => {
 	return (
@@ -28,15 +28,15 @@ const Address = ({ address }) => {
 			<div>{address.address1}</div>
 			<div>{address.address2}</div>
 			<div>
-				{address.city},{' '}
-				{address.state && address.state.length > 0 ? address.state + ', ' : ''}
+				{address.city},{" "}
+				{address.state && address.state.length > 0 ? address.state + ", " : ""}
 				{address.postal_code}
 			</div>
 			<div>{address.country}</div>
 			<div>{address.phone}</div>
 		</div>
-	);
-};
+	)
+}
 
 const iconButtonElement = (
 	<IconButton touch={true}>
@@ -44,65 +44,66 @@ const iconButtonElement = (
 			more_vert
 		</FontIcon>
 	</IconButton>
-);
+)
 
 class CustomerAddress extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			openEdit: false,
-			openDelete: false
-		};
+			openDelete: false,
+		}
 	}
 
 	componentWillMount() {
-		countRender++;
+		countRender++
 	}
 
 	showEditForm = () => {
-		this.setState({ openEdit: true });
-	};
+		this.setState({ openEdit: true })
+	}
 
 	hideEditForm = () => {
-		this.setState({ openEdit: false });
-	};
+		this.setState({ openEdit: false })
+	}
 
 	handleEditForm = address => {
-		this.props.onUpdateAddress(address);
-		this.hideEditForm();
-	};
+		this.props.onUpdateAddress(address)
+		this.hideEditForm()
+	}
 
 	showDelete = () => {
-		this.setState({ openDelete: true });
-	};
+		this.setState({ openDelete: true })
+	}
 
 	hideDelete = () => {
-		this.setState({ openDelete: false });
-	};
+		this.setState({ openDelete: false })
+	}
 
 	handleDelete = () => {
-		this.props.onDeleteAddress(this.props.address.id);
-		this.hideDelete();
-	};
+		this.props.onDeleteAddress(this.props.address.id)
+		this.hideDelete()
+	}
 
 	handleSetDefaultBillingAddress = () => {
-		this.props.onSetDefaultBillingAddress(this.props.address.id);
-	};
+		this.props.onSetDefaultBillingAddress(this.props.address.id)
+	}
 
 	handleSetDefaultShippingAddress = () => {
-		this.props.onSetDefaultShippingAddress(this.props.address.id);
-	};
+		this.props.onSetDefaultShippingAddress(this.props.address.id)
+	}
 
 	render() {
-		const { address, onUpdateAddress } = this.props;
+		const { address, onUpdateAddress } = this.props
 
-		let title = countRender === 1 ? messages.billingAddress : messages.shippingAddress;
+		let title =
+			countRender === 1 ? messages.billingAddress : messages.shippingAddress
 		if (address.default_billing && address.default_shipping) {
-			title = `${messages.shippingAddress} / ${messages.billingAddress}`;
+			title = `${messages.shippingAddress} / ${messages.billingAddress}`
 		} else if (address.default_billing) {
-			title = messages.billingAddress;
+			title = messages.billingAddress
 		} else if (address.default_shipping) {
-			title = messages.shippingAddress;
+			title = messages.shippingAddress
 		}
 
 		return (
@@ -157,7 +158,7 @@ class CustomerAddress extends React.Component {
 					</Dialog>
 				</div>
 			</Paper>
-		);
+		)
 	}
 }
 
@@ -167,10 +168,10 @@ const CustomerAddresses = ({
 	onUpdateAddress,
 	onDeleteAddress,
 	onSetDefaultBillingAddress,
-	onSetDefaultShippingAddress
+	onSetDefaultShippingAddress,
 }) => {
 	if (customer && customer.addresses && customer.addresses.length > 0) {
-		console.log(customer.addresses);
+		console.log(customer.addresses)
 		const addresses = customer.addresses.map((address, index) => (
 			<CustomerAddress
 				key={index}
@@ -180,11 +181,11 @@ const CustomerAddresses = ({
 				onSetDefaultBillingAddress={onSetDefaultBillingAddress}
 				onSetDefaultShippingAddress={onSetDefaultShippingAddress}
 			/>
-		));
-		return <div>{addresses}</div>;
+		))
+		return <div>{addresses}</div>
 	} else {
-		return null;
+		return null
 	}
-};
+}
 
-export default CustomerAddresses;
+export default CustomerAddresses

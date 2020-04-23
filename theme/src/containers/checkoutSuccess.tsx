@@ -1,18 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import * as helper from '../lib/helper'
-import MetaTags from '../components/metaTags'
-import CheckoutSuccess from '../components/checkoutSuccess'
+import React from "react"
+import PropTypes from "prop-types"
+import * as helper from "../lib/helper"
+import MetaTags from "../components/metaTags"
+import CheckoutSuccess from "../components/checkoutSuccess"
 
-const CheckoutSuccessContainer = (props) => {
+const CheckoutSuccessContainer = props => {
 	const {
-		state: {
-			pageDetails,
-			order,
-			settings,
-			shippingMethods,
-			checkoutFields,
-		},
+		state: { pageDetails, order, settings, shippingMethods, checkoutFields },
 	} = props
 	const shippingMethod = helper.getShippingMethodFromOrder(
 		order,

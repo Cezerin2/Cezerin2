@@ -1,26 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Field, FieldArray, reduxForm } from 'redux-form';
-import { TextField, SelectField } from 'redux-form-material-ui';
+import React from "react"
+import { Link } from "react-router-dom"
+import { Field, FieldArray, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
 
-import { CustomToggle } from 'modules/shared/form';
-import messages from 'lib/text';
-import style from './style.css';
+import { CustomToggle } from "modules/shared/form"
+import messages from "lib/text"
+import style from "./style.css"
 
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import MenuItem from 'material-ui/MenuItem';
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import FontIcon from "material-ui/FontIcon"
+import IconMenu from "material-ui/IconMenu"
+import IconButton from "material-ui/IconButton"
+import MenuItem from "material-ui/MenuItem"
 
 const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
 	return (
 		<div>
 			{fields.map((field, index) => {
-				const fieldKey = `${field}.key`;
-				const fieldLabel = `${field}.label`;
-				const fieldRequired = `${field}.required`;
+				const fieldKey = `${field}.key`
+				const fieldLabel = `${field}.label`
+				const fieldRequired = `${field}.required`
 
 				return (
 					<Paper
@@ -29,9 +29,9 @@ const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
 						rounded={false}
 						key={index}
 						style={{
-							padding: '0px 20px',
-							margin: '10px 0px',
-							backgroundColor: '#f7f7f7'
+							padding: "0px 20px",
+							margin: "10px 0px",
+							backgroundColor: "#f7f7f7",
 						}}
 					>
 						<div className="row middle-xs center-xs">
@@ -63,8 +63,8 @@ const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
 							</div>
 							<div className="col-xs-1">
 								<IconMenu
-									targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-									anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+									targetOrigin={{ horizontal: "right", vertical: "top" }}
+									anchorOrigin={{ horizontal: "right", vertical: "top" }}
 									iconButtonElement={
 										<IconButton touch={true}>
 											<FontIcon color="#777" className="material-icons">
@@ -93,14 +93,14 @@ const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
 							</div>
 						</div>
 					</Paper>
-				);
+				)
 			})}
 
-			<div style={{ margin: '20px 0px' }}>
+			<div style={{ margin: "20px 0px" }}>
 				<RaisedButton label={messages.add} onClick={() => fields.push({})} />
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default FieldsEditor;
+export default FieldsEditor

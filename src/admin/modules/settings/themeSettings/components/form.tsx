@@ -1,24 +1,24 @@
-import React from 'react';
-import { Field, FieldArray, reduxForm } from 'redux-form';
+import React from "react"
+import { Field, FieldArray, reduxForm } from "redux-form"
 
-import messages from 'lib/text';
-import * as helper from 'lib/helper';
-import sortBy from 'lodash/sortBy';
-import style from './style.css';
-import DynamicEditControl from './dynamicEditControl';
-import ArrayEditor from './arrayEditor';
+import messages from "lib/text"
+import * as helper from "lib/helper"
+import sortBy from "lodash/sortBy"
+import style from "./style.css"
+import DynamicEditControl from "./dynamicEditControl"
+import ArrayEditor from "./arrayEditor"
 
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from "material-ui/Paper"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
 
 class ThemeSettings extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
@@ -28,20 +28,20 @@ class ThemeSettings extends React.Component {
 			submitting,
 			initialValues,
 			reset,
-			settingsSchema
-		} = this.props;
+			settingsSchema,
+		} = this.props
 		if (initialValues && settingsSchema) {
-			let lastSection = null;
-			const sortedSettingsSchema = sortBy(settingsSchema, ['section', 'label']);
+			let lastSection = null
+			const sortedSettingsSchema = sortBy(settingsSchema, ["section", "label"])
 
 			const fields = sortedSettingsSchema.map((item, index) => {
-				let sectionTitle = null;
+				let sectionTitle = null
 				if (item.section !== lastSection) {
-					lastSection = item.section;
+					lastSection = item.section
 					sectionTitle =
-						item.section && item.section !== '' ? (
+						item.section && item.section !== "" ? (
 							<div className={style.sectionTitle}>{item.section}</div>
-						) : null;
+						) : null
 				}
 
 				return (
@@ -55,18 +55,18 @@ class ThemeSettings extends React.Component {
 							properties={item.properties}
 						/>
 					</div>
-				);
-			});
+				)
+			})
 
 			return (
 				<form
 					onSubmit={handleSubmit}
 					style={{
-						display: 'initial',
-						width: '100%'
+						display: "initial",
+						width: "100%",
 					}}
 				>
-					<div style={{ margin: 20, color: 'rgba(0, 0, 0, 0.52)' }}>
+					<div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
 						{messages.themeSettings}
 					</div>
 					<Paper className="paper-box" zDepth={1}>
@@ -88,14 +88,14 @@ class ThemeSettings extends React.Component {
 						</div>
 					</Paper>
 				</form>
-			);
+			)
 		} else {
-			return null;
+			return null
 		}
 	}
 }
 
 export default reduxForm({
-	form: 'ThemeSettingsForm',
-	enableReinitialize: true
-})(ThemeSettings);
+	form: "ThemeSettingsForm",
+	enableReinitialize: true,
+})(ThemeSettings)

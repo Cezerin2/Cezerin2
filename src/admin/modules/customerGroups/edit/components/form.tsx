@@ -1,30 +1,30 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
 
-import messages from 'lib/text';
-import style from './style.css';
+import messages from "lib/text"
+import style from "./style.css"
 
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from "material-ui/Paper"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['name'];
+	const errors = {}
+	const requiredFields = ["name"]
 
 	requiredFields.forEach(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class Form extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	render() {
@@ -33,13 +33,13 @@ class Form extends React.Component {
 			pristine,
 			submitting,
 			isSaving,
-			initialValues
-		} = this.props;
+			initialValues,
+		} = this.props
 
-		let groupId = null;
+		let groupId = null
 
 		if (initialValues) {
-			groupId = initialValues.id;
+			groupId = initialValues.id
 		}
 
 		return (
@@ -49,7 +49,7 @@ class Form extends React.Component {
 						<Field
 							name="name"
 							component={TextField}
-							floatingLabelText={messages.customerGroups_name + ' *'}
+							floatingLabelText={messages.customerGroups_name + " *"}
 							fullWidth={true}
 						/>
 						<br />
@@ -78,12 +78,12 @@ class Form extends React.Component {
 					</div>
 				</form>
 			</Paper>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'FormCustomerGroup',
+	form: "FormCustomerGroup",
 	validate,
-	enableReinitialize: true
-})(Form);
+	enableReinitialize: true,
+})(Form)

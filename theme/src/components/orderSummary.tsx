@@ -1,28 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { themeSettings, text } from '../lib/settings';
-import * as helper from '../lib/helper';
+import React from "react"
+import PropTypes from "prop-types"
+import { NavLink } from "react-router-dom"
+import { themeSettings, text } from "../lib/settings"
+import * as helper from "../lib/helper"
 
 const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
 	const thumbnail = helper.getThumbnailUrl(
 		item.image_url,
 		themeSettings.cartThumbnailWidth
-	);
-	const qtyOptions = [];
+	)
+	const qtyOptions = []
 	const maxQty = item.stock_backorder
 		? themeSettings.maxCartItemQty
 		: item.stock_quantity >= themeSettings.maxCartItemQty
 		? themeSettings.maxCartItemQty
-		: item.stock_quantity;
+		: item.stock_quantity
 
 	for (let i = 0; i <= maxQty; i++) {
-		const optionText = i === 0 ? text.remove : i;
+		const optionText = i === 0 ? text.remove : i
 		qtyOptions.push(
 			<option key={i} value={i}>
 				{optionText}
 			</option>
-		);
+		)
 	}
 
 	return (
@@ -51,7 +51,7 @@ const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
 					<span className="select is-small">
 						<select
 							onChange={e => {
-								updateCartItemQuantiry(item.id, e.target.value);
+								updateCartItemQuantiry(item.id, e.target.value)
 							}}
 							value={item.quantity}
 						>
@@ -64,20 +64,20 @@ const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
 				{helper.formatCurrency(item.price_total, settings)}
 			</div>
 		</div>
-	);
-};
+	)
+}
 
 SummaryItem.propTypes = {
 	settings: PropTypes.shape({}).isRequired,
 	item: PropTypes.shape({}).isRequired,
-	updateCartItemQuantiry: PropTypes.func.isRequired
-};
+	updateCartItemQuantiry: PropTypes.func.isRequired,
+}
 
 const OrderSummary = props => {
 	const {
 		updateCartItemQuantiry,
-		state: { cart, settings }
-	} = props;
+		state: { cart, settings },
+	} = props
 
 	if (cart && cart.items && cart.items.length > 0) {
 		const items = cart.items.map(item => (
@@ -87,7 +87,7 @@ const OrderSummary = props => {
 				updateCartItemQuantiry={updateCartItemQuantiry}
 				settings={settings}
 			/>
-		));
+		))
 
 		return (
 			<div
@@ -125,17 +125,17 @@ const OrderSummary = props => {
 					</div>
 				</div>
 			</div>
-		);
+		)
 	}
-	return null;
-};
+	return null
+}
 
 OrderSummary.propTypes = {
 	updateCartItemQuantiry: PropTypes.func.isRequired,
 	state: PropTypes.shape({
 		cart: PropTypes.shape({}),
-		settings: PropTypes.shape({}).isRequired
-	}).isRequired
-};
+		settings: PropTypes.shape({}).isRequired,
+	}).isRequired,
+}
 
-export default OrderSummary;
+export default OrderSummary

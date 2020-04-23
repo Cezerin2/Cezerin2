@@ -1,36 +1,36 @@
-import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import React from "react"
+import Dialog from "material-ui/Dialog"
+import FlatButton from "material-ui/FlatButton"
 
 export default class ConfirmationDialog extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			open: props.open
-		};
+			open: props.open,
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.state.open !== nextProps.open) {
 			this.setState({
-				open: nextProps.open
-			});
+				open: nextProps.open,
+			})
 		}
 	}
 
 	handleCancel = () => {
-		this.setState({ open: false });
+		this.setState({ open: false })
 		if (this.props.onCancel) {
-			this.props.onCancel();
+			this.props.onCancel()
 		}
-	};
+	}
 
 	handleSubmit = () => {
-		this.setState({ open: false });
+		this.setState({ open: false })
 		if (this.props.onSubmit) {
-			this.props.onSubmit();
+			this.props.onSubmit()
 		}
-	};
+	}
 
 	render() {
 		const {
@@ -38,8 +38,8 @@ export default class ConfirmationDialog extends React.Component {
 			description,
 			submitLabel,
 			cancelLabel,
-			modal = false
-		} = this.props;
+			modal = false,
+		} = this.props
 
 		const actions = [
 			<FlatButton
@@ -52,8 +52,8 @@ export default class ConfirmationDialog extends React.Component {
 				primary={true}
 				keyboardFocused={true}
 				onClick={this.handleSubmit}
-			/>
-		];
+			/>,
+		]
 
 		return (
 			<Dialog
@@ -63,8 +63,8 @@ export default class ConfirmationDialog extends React.Component {
 				open={this.state.open}
 				onRequestClose={this.handleCancel}
 			>
-				<div style={{ wordWrap: 'break-word' }}>{description}</div>
+				<div style={{ wordWrap: "break-word" }}>{description}</div>
 			</Dialog>
-		);
+		)
 	}
 }

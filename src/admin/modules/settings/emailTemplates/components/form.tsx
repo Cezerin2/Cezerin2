@@ -1,27 +1,27 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
 
-import messages from 'lib/text';
+import messages from "lib/text"
 
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import style from './style.css';
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import style from "./style.css"
 
 class EmailTemplate extends React.Component {
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
-		const { handleSubmit, pristine, submitting, initialValues } = this.props;
+		const { handleSubmit, pristine, submitting, initialValues } = this.props
 
 		return (
 			<form
 				onSubmit={handleSubmit}
 				style={{
-					display: 'initial',
-					width: '100%'
+					display: "initial",
+					width: "100%",
 				}}
 			>
 				<Paper className="paper-box" zDepth={1}>
@@ -55,10 +55,10 @@ class EmailTemplate extends React.Component {
 					</div>
 				</Paper>
 			</form>
-		);
+		)
 	}
 }
 
-export default reduxForm({ form: 'EmailTemplate', enableReinitialize: true })(
+export default reduxForm({ form: "EmailTemplate", enableReinitialize: true })(
 	EmailTemplate
-);
+)

@@ -1,61 +1,61 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField, SelectField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
 
-import { CustomToggle } from 'modules/shared/form';
-import api from 'lib/api';
-import messages from 'lib/text';
-import style from './style.css';
+import { CustomToggle } from "modules/shared/form"
+import api from "lib/api"
+import messages from "lib/text"
+import style from "./style.css"
 
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import MenuItem from 'material-ui/MenuItem';
+import Divider from "material-ui/Divider"
+import RaisedButton from "material-ui/RaisedButton"
+import FlatButton from "material-ui/FlatButton"
+import MenuItem from "material-ui/MenuItem"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = [];
+	const errors = {}
+	const requiredFields = []
 
 	requiredFields.map(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class SummaryForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			shippingMethods: [],
 			paymentMethods: [],
-			orderStatuses: []
-		};
+			orderStatuses: [],
+		}
 	}
 
 	componentDidMount() {
-		this.fetchData(this.props.initialValues.id);
+		this.fetchData(this.props.initialValues.id)
 	}
 
 	fetchData = orderId => {
 		const filter = {
-			order_id: orderId
-		};
+			order_id: orderId,
+		}
 
 		api.orderStatuses.list().then(({ status, json }) => {
-			this.setState({ orderStatuses: json });
-		});
+			this.setState({ orderStatuses: json })
+		})
 
 		api.shippingMethods.list(filter).then(({ status, json }) => {
-			this.setState({ shippingMethods: json });
-		});
+			this.setState({ shippingMethods: json })
+		})
 
 		api.paymentMethods.list(filter).then(({ status, json }) => {
-			this.setState({ paymentMethods: json });
-		});
-	};
+			this.setState({ paymentMethods: json })
+		})
+	}
 
 	render() {
 		let {
@@ -63,29 +63,29 @@ class SummaryForm extends React.Component {
 			pristine,
 			submitting,
 			initialValues,
-			onCancel
-		} = this.props;
+			onCancel,
+		} = this.props
 
 		const statusItems = this.state.orderStatuses.map((item, index) => (
 			<MenuItem key={index} value={item.id} primaryText={item.name} />
-		));
+		))
 		const shippingItems = this.state.shippingMethods.map((item, index) => (
 			<MenuItem key={index} value={item.id} primaryText={item.name} />
-		));
+		))
 		const paymentItems = this.state.paymentMethods.map((item, index) => (
 			<MenuItem key={index} value={item.id} primaryText={item.name} />
-		));
+		))
 
 		statusItems.push(
 			<MenuItem key="none" value={null} primaryText={messages.noOrderStatus} />
-		);
+		)
 
 		return (
 			<form
 				onSubmit={handleSubmit}
 				style={{
-					display: 'initial',
-					width: '100%'
+					display: "initial",
+					width: "100%",
 				}}
 			>
 				<div>
@@ -172,12 +172,12 @@ class SummaryForm extends React.Component {
 					/>
 				</div>
 			</form>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'SummaryForm',
+	form: "SummaryForm",
 	validate,
-	enableReinitialize: true
-})(SummaryForm);
+	enableReinitialize: true,
+})(SummaryForm)

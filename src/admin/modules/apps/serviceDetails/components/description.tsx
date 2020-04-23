@@ -1,23 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react"
+import { Link } from "react-router-dom"
 
-import messages from 'lib/text';
-import style from './style.css';
+import messages from "lib/text"
+import style from "./style.css"
 
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
-import FontIcon from 'material-ui/FontIcon';
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import Divider from "material-ui/Divider"
+import FontIcon from "material-ui/FontIcon"
 
 const ServiceDescription = ({
 	service,
 	loadingEnableDisable,
 	enableService,
-	disableService
+	disableService,
 }) => {
 	if (service) {
 		return (
-			<div style={{ maxWidth: 720, width: '100%' }}>
+			<div style={{ maxWidth: 720, width: "100%" }}>
 				<Paper className="paper-box" zDepth={1}>
 					<div className={style.innerBox}>
 						<div className="row">
@@ -55,10 +55,10 @@ const ServiceDescription = ({
 					</div>
 				</Paper>
 			</div>
-		);
+		)
 	} else {
-		return null;
+		return null
 	}
-};
+}
 
-export default ServiceDescription;
+export default ServiceDescription

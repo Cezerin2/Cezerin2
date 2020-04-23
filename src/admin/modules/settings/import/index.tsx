@@ -1,22 +1,19 @@
-import { connect } from 'react-redux';
-import { fetchImportSettings } from '../actions';
-import Form from './components/form';
+import { connect } from "react-redux"
+import { fetchImportSettings } from "../actions"
+import Form from "./components/form"
 
 const mapStateToProps = state => {
 	return {
-		importSettings: state.settings.importSettings
-	};
-};
+		importSettings: state.settings.importSettings,
+	}
+}
 
 const mapDispatchToProps = dispatch => {
 	return {
 		onLoad: () => {
-			dispatch(fetchImportSettings());
-		}
-	};
-};
+			dispatch(fetchImportSettings())
+		},
+	}
+}
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

@@ -1,35 +1,35 @@
-import React from 'react';
-import { Field, FieldArray, reduxForm } from 'redux-form';
-import { TextField, SelectField } from 'redux-form-material-ui';
-import { CustomToggle } from 'modules/shared/form';
-import FieldsEditor from './fieldsEditor';
-import messages from 'lib/text';
-import style from './style.css';
+import React from "react"
+import { Field, FieldArray, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
+import { CustomToggle } from "modules/shared/form"
+import FieldsEditor from "./fieldsEditor"
+import messages from "lib/text"
+import style from "./style.css"
 
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from "material-ui/Paper"
+import Divider from "material-ui/Divider"
+import RaisedButton from "material-ui/RaisedButton"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['name'];
+	const errors = {}
+	const requiredFields = ["name"]
 
 	requiredFields.map(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class EditShippingMethodForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
@@ -39,9 +39,9 @@ class EditShippingMethodForm extends React.Component {
 			submitting,
 			initialValues,
 			methodId,
-			settings
-		} = this.props;
-		const isAdd = methodId === null || methodId === undefined;
+			settings,
+		} = this.props
+		const isAdd = methodId === null || methodId === undefined
 
 		return (
 			<form onSubmit={handleSubmit}>
@@ -96,7 +96,7 @@ class EditShippingMethodForm extends React.Component {
 							</div>
 						</div>
 
-						<div className="row" style={{ marginTop: '40px' }}>
+						<div className="row" style={{ marginTop: "40px" }}>
 							<div className="col-xs-12 col-sm-4">
 								<div className="blue-title">{messages.settings_conditions}</div>
 							</div>
@@ -185,7 +185,7 @@ class EditShippingMethodForm extends React.Component {
 							</div>
 						</div>
 
-						<div className="row" style={{ marginTop: '40px' }}>
+						<div className="row" style={{ marginTop: "40px" }}>
 							<div className="col-xs-12 col-sm-4">
 								<div className="blue-title">
 									{messages.settings_checkoutFields}
@@ -218,12 +218,12 @@ class EditShippingMethodForm extends React.Component {
 					</div>
 				</Paper>
 			</form>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'EditShippingMethodForm',
+	form: "EditShippingMethodForm",
 	validate,
-	enableReinitialize: true
-})(EditShippingMethodForm);
+	enableReinitialize: true,
+})(EditShippingMethodForm)

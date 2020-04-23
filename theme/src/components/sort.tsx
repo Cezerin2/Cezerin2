@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { themeSettings, text } from '../lib/settings';
+import React from "react"
+import PropTypes from "prop-types"
+import { themeSettings, text } from "../lib/settings"
 
 const Sort = ({ defaultSort, currentSort, setSort }) => (
 	<div className="columns is-mobile sort">
@@ -9,7 +9,7 @@ const Sort = ({ defaultSort, currentSort, setSort }) => (
 			<span className="select is-fullwidth">
 				<select
 					onChange={e => {
-						setSort(e.target.value);
+						setSort(e.target.value)
 					}}
 					value={currentSort}
 				>
@@ -25,12 +25,12 @@ const Sort = ({ defaultSort, currentSort, setSort }) => (
 			</span>
 		</div>
 	</div>
-);
+)
 
 Sort.propTypes = {
 	defaultSort: PropTypes.string.isRequired,
 	currentSort: PropTypes.string.isRequired,
-	setSort: PropTypes.func.isRequired
-};
+	setSort: PropTypes.func.isRequired,
+}
 
-export default Sort;
+export default Sort

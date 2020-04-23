@@ -1,42 +1,42 @@
-import React from 'react';
-import { Switch, Route, NavLink } from 'react-router-dom';
-import messages from 'lib/text';
+import React from "react"
+import { Switch, Route, NavLink } from "react-router-dom"
+import messages from "lib/text"
 
-import { List, ListItem } from 'material-ui/List';
-import FontIcon from 'material-ui/FontIcon';
+import { List, ListItem } from "material-ui/List"
+import FontIcon from "material-ui/FontIcon"
 
-import General from 'modules/settings/general';
-import GeneralLogo from 'modules/settings/generalLogo';
-import Theme from 'modules/settings/theme';
-import Shipping from 'modules/settings/shipping';
-import ShippingEdit from 'modules/settings/shippingEdit';
-import Payments from 'modules/settings/payments';
-import PaymentsEdit from 'modules/settings/paymentsEdit';
-import Tokens from 'modules/settings/tokens/list';
-import TokensEdit from 'modules/settings/tokens/edit';
-import Email from 'modules/settings/email';
-import Import from 'modules/settings/import';
-import GoogleSpredsheet from 'modules/settings/googlespreadsheet';
-import Smtp from 'modules/settings/smtp';
-import EmailTemplate from 'modules/settings/emailTemplates';
-import Checkout from 'modules/settings/checkout';
-import CheckoutFields from 'modules/settings/checkoutFields';
-import Redirects from 'modules/settings/redirects/list';
-import RedirectsEdit from 'modules/settings/redirects/edit';
-import Webhooks from 'modules/settings/webhooks/list';
-import WebhooksEdit from 'modules/settings/webhooks/edit';
+import General from "modules/settings/general"
+import GeneralLogo from "modules/settings/generalLogo"
+import Theme from "modules/settings/theme"
+import Shipping from "modules/settings/shipping"
+import ShippingEdit from "modules/settings/shippingEdit"
+import Payments from "modules/settings/payments"
+import PaymentsEdit from "modules/settings/paymentsEdit"
+import Tokens from "modules/settings/tokens/list"
+import TokensEdit from "modules/settings/tokens/edit"
+import Email from "modules/settings/email"
+import Import from "modules/settings/import"
+import GoogleSpredsheet from "modules/settings/googlespreadsheet"
+import Smtp from "modules/settings/smtp"
+import EmailTemplate from "modules/settings/emailTemplates"
+import Checkout from "modules/settings/checkout"
+import CheckoutFields from "modules/settings/checkoutFields"
+import Redirects from "modules/settings/redirects/list"
+import RedirectsEdit from "modules/settings/redirects/edit"
+import Webhooks from "modules/settings/webhooks/list"
+import WebhooksEdit from "modules/settings/webhooks/edit"
 
 const styles = {
 	link: {
-		color: 'inherit',
-		textDecoration: 'none',
-		fontWeight: 'inherit',
-		display: 'block'
+		color: "inherit",
+		textDecoration: "none",
+		fontWeight: "inherit",
+		display: "block",
 	},
 	linkActive: {
-		backgroundColor: 'rgba(0,0,0,0.1)'
-	}
-};
+		backgroundColor: "rgba(0,0,0,0.1)",
+	},
+}
 
 const SettingsMenu = () => (
 	<List>
@@ -147,7 +147,7 @@ const SettingsMenu = () => (
 		{/* <NavLink style={styles.link} activeStyle={styles.linkActive} to="/admin/settings/taxes"><ListItem primaryText={messages.settings_taxes} leftIcon={<FontIcon className="material-icons">attach_money</FontIcon>}/></NavLink>
     <NavLink style={styles.link} activeStyle={styles.linkActive} to="/admin/settings/security"><ListItem primaryText={messages.settings_security} leftIcon={<FontIcon className="material-icons">security</FontIcon>}/></NavLink> */}
 	</List>
-);
+)
 
 const Settings = ({ match }) => {
 	return (
@@ -230,7 +230,7 @@ const Settings = ({ match }) => {
 				</Switch>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Settings;
+export default Settings

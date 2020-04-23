@@ -1,6 +1,6 @@
-import React from 'react';
-import GroupEdit from 'modules/customerGroups/edit';
-import Groups from 'modules/customerGroups/list';
+import React from "react"
+import GroupEdit from "modules/customerGroups/edit"
+import Groups from "modules/customerGroups/list"
 
 export default () => (
 	<div className="row row--no-gutter col-full-height">
@@ -11,4 +11,4 @@ export default () => (
 			<GroupEdit />
 		</div>
 	</div>
-);
+)

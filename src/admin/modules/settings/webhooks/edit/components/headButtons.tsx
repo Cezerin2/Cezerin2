@@ -1,37 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import messages from 'lib/text';
-import DeleteConfirmation from 'modules/shared/deleteConfirmation';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
-import FlatButton from 'material-ui/FlatButton';
-const Fragment = React.Fragment;
+import React from "react"
+import { Link } from "react-router-dom"
+import messages from "lib/text"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
+import FlatButton from "material-ui/FlatButton"
+const Fragment = React.Fragment
 
 export default class Buttons extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			openDelete: false
-		};
+			openDelete: false,
+		}
 	}
 
 	openDelete = () => {
-		this.setState({ openDelete: true });
-	};
+		this.setState({ openDelete: true })
+	}
 
 	closeDelete = () => {
-		this.setState({ openDelete: false });
-	};
+		this.setState({ openDelete: false })
+	}
 
 	deletePage = () => {
-		this.setState({ openDelete: false });
-		this.props.onDelete(this.props.webhook.id);
-	};
+		this.setState({ openDelete: false })
+		this.props.onDelete(this.props.webhook.id)
+	}
 
 	render() {
-		const { webhook } = this.props;
+		const { webhook } = this.props
 		const webhookName =
-			webhook && webhook.url && webhook.url.length > 0 ? webhook.url : 'Draft';
+			webhook && webhook.url && webhook.url.length > 0 ? webhook.url : "Draft"
 
 		if (webhook) {
 			return (
@@ -55,9 +55,9 @@ export default class Buttons extends React.Component {
 						onDelete={this.deletePage}
 					/>
 				</Fragment>
-			);
+			)
 		} else {
-			return null;
+			return null
 		}
 	}
 }

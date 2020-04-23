@@ -1,21 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { themeSettings, text } from '../lib/settings'
-import MetaTags from '../components/metaTags'
-import ProductList from '../components/productList'
-import ProductFilter from '../components/productFilter'
-import Sort from '../components/sort'
-import CategoryBreadcrumbs from '../components/categoryBreadcrumbs'
-import * as helper from '../lib/helper'
+import React from "react"
+import PropTypes from "prop-types"
+import { themeSettings, text } from "../lib/settings"
+import MetaTags from "../components/metaTags"
+import ProductList from "../components/productList"
+import ProductFilter from "../components/productFilter"
+import Sort from "../components/sort"
+import CategoryBreadcrumbs from "../components/categoryBreadcrumbs"
+import * as helper from "../lib/helper"
 
-const getFilterAttributesSummary = (productFilter) => {
-	let attributesSummary = ''
+const getFilterAttributesSummary = productFilter => {
+	let attributesSummary = ""
 	if (productFilter.attributes) {
-		Object.keys(productFilter.attributes).forEach((attributeKey) => {
-			const attributeName = attributeKey.replace('attributes.', '')
+		Object.keys(productFilter.attributes).forEach(attributeKey => {
+			const attributeName = attributeKey.replace("attributes.", "")
 			const attributeValue = productFilter.attributes[attributeKey]
 			const attributeValueFormatted = Array.isArray(attributeValue)
-				? attributeValue.join(', ')
+				? attributeValue.join(", ")
 				: attributeValue
 			attributesSummary += `. ${attributeName}: ${attributeValueFormatted}`
 		})
@@ -24,12 +24,9 @@ const getFilterAttributesSummary = (productFilter) => {
 }
 
 const getFilterPriceSummary = (productFilter, settings) => {
-	let priceSummary = ''
+	let priceSummary = ""
 	if (productFilter.priceFrom > 0 && productFilter.priceTo > 0) {
-		const priceFrom = helper.formatCurrency(
-			productFilter.priceFrom,
-			settings
-		)
+		const priceFrom = helper.formatCurrency(productFilter.priceFrom, settings)
 		const priceTo = helper.formatCurrency(productFilter.priceTo, settings)
 		priceSummary = `. ${text.price}: ${priceFrom} - ${priceTo}`
 	}
@@ -63,7 +60,7 @@ CategoryHero.propTypes = {
 	categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 }
 
-const CategoryContainer = (props) => {
+const CategoryContainer = props => {
 	const {
 		setSort,
 		addCartItem,
@@ -108,10 +105,7 @@ const CategoryContainer = (props) => {
 				jsonld={jsonld}
 			/>
 
-			<CategoryHero
-				categoryDetails={categoryDetails}
-				categories={categories}
-			/>
+			<CategoryHero categoryDetails={categoryDetails} categories={categories} />
 
 			<section className="section section-category">
 				<div className="container">
@@ -127,9 +121,7 @@ const CategoryContainer = (props) => {
 								<div className="column" />
 								<div className="column is-5">
 									<Sort
-										defaultSort={
-											settings.default_product_sorting
-										}
+										defaultSort={settings.default_product_sorting}
 										currentSort={productFilter.sort}
 										setSort={setSort}
 									/>

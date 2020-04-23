@@ -2,11 +2,11 @@
 
 Redirects
 
--   [List all redirects](#list-all-redirects)
--   [Create a redirect](#create-a-redirect)
--   [Retrieve a redirect](#retrieve-a-redirect)
--   [Update a redirect](#update-a-redirect)
--   [Delete a redirect](#delete-a-redirect)
+- [List all redirects](#list-all-redirects)
+- [Create a redirect](#create-a-redirect)
+- [Retrieve a redirect](#retrieve-a-redirect)
+- [Update a redirect](#update-a-redirect)
+- [Delete a redirect](#delete-a-redirect)
 
 ## List all redirects
 

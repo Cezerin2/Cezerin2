@@ -1,7 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import * as helper from '../../lib/helper';
-import { themeSettings, text } from '../../lib/settings';
+import React from "react"
+import { NavLink } from "react-router-dom"
+import * as helper from "../../lib/helper"
+import { themeSettings, text } from "../../lib/settings"
 
 const Option = ({ option, onChange }) => {
 	const values = option.values
@@ -10,9 +10,9 @@ const Option = ({ option, onChange }) => {
 			<option key={index} value={value.id}>
 				{value.name}
 			</option>
-		));
+		))
 
-	const notSelectedTitle = `${text.selectOption} ${option.name}`;
+	const notSelectedTitle = `${text.selectOption} ${option.name}`
 
 	return (
 		<div className="product-option">
@@ -20,7 +20,7 @@ const Option = ({ option, onChange }) => {
 			<span className="select is-fullwidth">
 				<select
 					onChange={e => {
-						onChange(option.id, e.target.value);
+						onChange(option.id, e.target.value)
 					}}
 				>
 					<option value="">{notSelectedTitle}</option>
@@ -28,18 +28,18 @@ const Option = ({ option, onChange }) => {
 				</select>
 			</span>
 		</div>
-	);
-};
+	)
+}
 
 const Options = ({ options, onChange }) => {
 	if (options && options.length > 0) {
 		const items = options.map((option, index) => (
 			<Option key={index} option={option} onChange={onChange} />
-		));
+		))
 
-		return <div className="product-options">{items}</div>;
+		return <div className="product-options">{items}</div>
 	} else {
-		return null;
+		return null
 	}
-};
-export default Options;
+}
+export default Options

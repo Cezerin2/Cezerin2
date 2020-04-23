@@ -1,59 +1,59 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField, SelectField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
 
-import { CustomToggle } from 'modules/shared/form';
-import PaymentGateway from 'modules/settings/paymentGateway';
-import { AVAILABLE_PAYMENT_GATEWAYS } from 'modules/settings/paymentGateway/availablePaymentGateways';
-import SelectShippingMethodsField from './selectShipping.js';
-import messages from 'lib/text';
-import style from './style.css';
+import { CustomToggle } from "modules/shared/form"
+import PaymentGateway from "modules/settings/paymentGateway"
+import { AVAILABLE_PAYMENT_GATEWAYS } from "modules/settings/paymentGateway/availablePaymentGateways"
+import SelectShippingMethodsField from "./selectShipping.js"
+import messages from "lib/text"
+import style from "./style.css"
 
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-import MenuItem from 'material-ui/MenuItem';
-import { List, ListItem } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
+import Paper from "material-ui/Paper"
+import Divider from "material-ui/Divider"
+import RaisedButton from "material-ui/RaisedButton"
+import MenuItem from "material-ui/MenuItem"
+import { List, ListItem } from "material-ui/List"
+import Checkbox from "material-ui/Checkbox"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['name'];
+	const errors = {}
+	const requiredFields = ["name"]
 
 	requiredFields.map(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class EditPaymentMethodForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			gateway: null
-		};
+			gateway: null,
+		}
 	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.initialValues !== this.props.initialValues) {
 			this.setState({
-				gateway: nextProps.initialValues.gateway
-			});
+				gateway: nextProps.initialValues.gateway,
+			})
 		}
 	}
 
 	onGatewayChange = gateway => {
 		this.setState({
-			gateway: gateway
-		});
-	};
+			gateway: gateway,
+		})
+	}
 
 	render() {
 		let {
@@ -63,11 +63,11 @@ class EditPaymentMethodForm extends React.Component {
 			initialValues,
 			shippingMethods,
 			methodId,
-			settings
-		} = this.props;
-		const isAdd = methodId === null || methodId === undefined;
-		let paymentGateways = [];
-		paymentGateways.push(<MenuItem value="" key="none" primaryText="None" />);
+			settings,
+		} = this.props
+		const isAdd = methodId === null || methodId === undefined
+		let paymentGateways = []
+		paymentGateways.push(<MenuItem value="" key="none" primaryText="None" />)
 		for (const gateway of AVAILABLE_PAYMENT_GATEWAYS) {
 			paymentGateways.push(
 				<MenuItem
@@ -75,7 +75,7 @@ class EditPaymentMethodForm extends React.Component {
 					key={gateway.key}
 					primaryText={gateway.name}
 				/>
-			);
+			)
 		}
 
 		return (
@@ -96,7 +96,7 @@ class EditPaymentMethodForm extends React.Component {
 										floatingLabelFixed={true}
 										floatingLabelText={messages.paymentGateway}
 										onChange={(event, currentValue, prevValue) => {
-											this.onGatewayChange(currentValue);
+											this.onGatewayChange(currentValue)
 										}}
 									>
 										{paymentGateways}
@@ -106,7 +106,7 @@ class EditPaymentMethodForm extends React.Component {
 							</div>
 						</div>
 
-						<div className="row" style={{ marginTop: '40px' }}>
+						<div className="row" style={{ marginTop: "40px" }}>
 							<div className="col-xs-12 col-sm-4">
 								<div className="blue-title">{messages.description}</div>
 							</div>
@@ -140,7 +140,7 @@ class EditPaymentMethodForm extends React.Component {
 							</div>
 						</div>
 
-						<div className="row" style={{ marginTop: '40px' }}>
+						<div className="row" style={{ marginTop: "40px" }}>
 							<div className="col-xs-12 col-sm-4">
 								<div className="blue-title">{messages.settings_conditions}</div>
 							</div>
@@ -180,7 +180,7 @@ class EditPaymentMethodForm extends React.Component {
 										/>
 									</div>
 								</div>
-								<div className="gray-title" style={{ marginTop: '30px' }}>
+								<div className="gray-title" style={{ marginTop: "30px" }}>
 									{messages.settings_onlyShippingMethods}
 								</div>
 								<Field
@@ -202,12 +202,12 @@ class EditPaymentMethodForm extends React.Component {
 					</div>
 				</Paper>
 			</form>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'EditPaymentMethodForm',
+	form: "EditPaymentMethodForm",
 	validate,
-	enableReinitialize: true
-})(EditPaymentMethodForm);
+	enableReinitialize: true,
+})(EditPaymentMethodForm)

@@ -1,30 +1,30 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
-import { TextField, SelectField, DatePicker } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { Link } from "react-router-dom"
+import { TextField, SelectField, DatePicker } from "redux-form-material-ui"
 
-import { CustomToggle } from 'modules/shared/form';
-import messages from 'lib/text';
-import data from 'lib/data';
+import { CustomToggle } from "modules/shared/form"
+import messages from "lib/text"
+import data from "lib/data"
 
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import FontIcon from 'material-ui/FontIcon';
-import { List, ListItem } from 'material-ui/List';
-import style from './style.css';
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import Divider from "material-ui/Divider"
+import DropDownMenu from "material-ui/DropDownMenu"
+import MenuItem from "material-ui/MenuItem"
+import FontIcon from "material-ui/FontIcon"
+import { List, ListItem } from "material-ui/List"
+import style from "./style.css"
 
 class GeneralSettings extends React.Component {
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
-		const { handleSubmit, pristine, submitting, initialValues } = this.props;
+		const { handleSubmit, pristine, submitting, initialValues } = this.props
 
-		const currencyItems = [];
+		const currencyItems = []
 		for (const key in data.currencies) {
 			currencyItems.push(
 				<MenuItem
@@ -32,10 +32,10 @@ class GeneralSettings extends React.Component {
 					key={key}
 					primaryText={`${key} - ${data.currencies[key]}`}
 				/>
-			);
+			)
 		}
 
-		const taxItems = [];
+		const taxItems = []
 		for (const key in data.taxs) {
 			taxItems.push(
 				<MenuItem
@@ -43,44 +43,44 @@ class GeneralSettings extends React.Component {
 					key={key}
 					primaryText={`${key} - ${data.taxs[key]}`}
 				/>
-			);
+			)
 		}
 
-		const timezoneItems = [];
+		const timezoneItems = []
 		for (const key in data.timezones) {
-			const { utc } = data.timezones[key];
-			const utcPretty = `${utc.slice(0, -2)}:${utc.slice(-2)}`;
+			const { utc } = data.timezones[key]
+			const utcPretty = `${utc.slice(0, -2)}:${utc.slice(-2)}`
 			timezoneItems.push(
 				<MenuItem
 					value={key}
 					key={key}
 					primaryText={`(UTC${utcPretty}) ${key}`}
 				/>
-			);
+			)
 		}
 
-		const countryItems = [];
+		const countryItems = []
 		for (const key in data.countries) {
 			countryItems.push(
 				<MenuItem value={key} key={key} primaryText={data.countries[key]} />
-			);
+			)
 		}
 
 		return (
 			<form
 				onSubmit={handleSubmit}
 				style={{
-					display: 'initial',
-					width: '100%'
+					display: "initial",
+					width: "100%",
 				}}
 			>
 				<Paper className="paper-box" zDepth={1}>
 					<div className={style.innerBox}>
-						<div style={{ width: '100%' }}>
+						<div style={{ width: "100%" }}>
 							<List>
 								<Link
 									to="/admin/settings/general/logo"
-									style={{ textDecoration: 'none' }}
+									style={{ textDecoration: "none" }}
 								>
 									<ListItem
 										rightIcon={
@@ -121,7 +121,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -188,7 +188,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -202,7 +202,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -224,7 +224,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -247,7 +247,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -280,7 +280,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -305,7 +305,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -343,7 +343,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -373,7 +373,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -394,7 +394,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -413,7 +413,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -433,7 +433,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -456,7 +456,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -476,7 +476,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -496,7 +496,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -510,7 +510,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -529,7 +529,7 @@ class GeneralSettings extends React.Component {
 						<Divider
 							style={{
 								marginTop: 10,
-								marginBottom: 10
+								marginBottom: 10,
 							}}
 						/>
 
@@ -557,11 +557,11 @@ class GeneralSettings extends React.Component {
 					</div>
 				</Paper>
 			</form>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'GeneralSettingsForm',
-	enableReinitialize: true
-})(GeneralSettings);
+	form: "GeneralSettingsForm",
+	enableReinitialize: true,
+})(GeneralSettings)

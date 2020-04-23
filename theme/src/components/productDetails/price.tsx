@@ -1,6 +1,6 @@
-import React from 'react'
-import * as helper from '../../lib/helper'
-import { themeSettings, text } from '../../lib/settings'
+import React from "react"
+import * as helper from "../../lib/helper"
+import { themeSettings, text } from "../../lib/settings"
 
 const FormattedCurrency = ({ number, settings }) =>
 	helper.formatCurrency(number, settings)
@@ -22,7 +22,7 @@ const Price = ({ product, variant, isAllOptionsSelected, settings }) => {
 		themeSettings.details_price_size &&
 		themeSettings.details_price_size > 0
 	) {
-		priceStyle.fontSize = themeSettings.details_price_size + 'px'
+		priceStyle.fontSize = themeSettings.details_price_size + "px"
 	}
 	if (
 		themeSettings.details_price_color &&

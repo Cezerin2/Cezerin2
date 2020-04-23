@@ -1,15 +1,15 @@
-import React from 'react';
-import ImageUpload from 'modules/shared/imageUpload';
-import Paper from 'material-ui/Paper';
+import React from "react"
+import ImageUpload from "modules/shared/imageUpload"
+import Paper from "material-ui/Paper"
 
 export default class GeneralLogoSettingsForm extends React.Component {
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
-		const { onImageUpload, onImageDelete, settings } = this.props;
-		let imageUrl = settings && settings.logo ? settings.logo : '';
+		const { onImageUpload, onImageDelete, settings } = this.props
+		let imageUrl = settings && settings.logo ? settings.logo : ""
 
 		return (
 			<Paper className="paper-box" zDepth={1}>
@@ -22,6 +22,6 @@ export default class GeneralLogoSettingsForm extends React.Component {
 					/>
 				</div>
 			</Paper>
-		);
+		)
 	}
 }

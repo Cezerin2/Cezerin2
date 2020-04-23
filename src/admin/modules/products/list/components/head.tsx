@@ -1,6 +1,6 @@
-import React from 'react';
-import Subheader from 'material-ui/Subheader';
-import messages from 'lib/text';
+import React from "react"
+import Subheader from "material-ui/Subheader"
+import messages from "lib/text"
 
 const Head = ({ onSelectAll }) => (
 	<Subheader>
@@ -17,12 +17,12 @@ const Head = ({ onSelectAll }) => (
 			<div className="col-xs-2 col--no-gutter">{messages.products_stock}</div>
 			<div
 				className="col-xs-2 col--no-gutter"
-				style={{ textAlign: 'right', paddingRight: 23 }}
+				style={{ textAlign: "right", paddingRight: 23 }}
 			>
 				{messages.products_price}
 			</div>
 		</div>
 	</Subheader>
-);
+)
 
-export default Head;
+export default Head

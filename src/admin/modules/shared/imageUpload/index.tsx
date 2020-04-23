@@ -1,66 +1,64 @@
-import React from 'react';
-import messages from 'lib/text';
-import Dropzone from 'react-dropzone';
+import React from "react"
+import messages from "lib/text"
+import Dropzone from "react-dropzone"
 
-import Paper from 'material-ui/Paper';
-import Snackbar from 'material-ui/Snackbar';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
+import Paper from "material-ui/Paper"
+import Snackbar from "material-ui/Snackbar"
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
 
-import style from './style.css';
+import style from "./style.css"
 
 export default class ImageUpload extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			imagePreview: this.props.imageUrl
-		};
+			imagePreview: this.props.imageUrl,
+		}
 	}
 
 	onDelete = () => {
 		this.setState({
-			imagePreview: null
-		});
-		this.props.onDelete();
-	};
+			imagePreview: null,
+		})
+		this.props.onDelete()
+	}
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			imagePreview: nextProps.imageUrl
-		});
+			imagePreview: nextProps.imageUrl,
+		})
 	}
 
 	onDrop = files => {
-		let form = new FormData();
-		form.append('file', files[0]);
-		this.props.onUpload(form);
-	};
+		let form = new FormData()
+		form.append("file", files[0])
+		this.props.onUpload(form)
+	}
 
 	render() {
-		const { imagePreview } = this.state;
-		const { uploading } = this.props;
+		const { imagePreview } = this.state
+		const { uploading } = this.props
 
-		const hasPreview = imagePreview !== null && imagePreview !== '';
-		const previewIsFileUrl = hasPreview
-			? imagePreview.startsWith('http')
-			: null;
+		const hasPreview = imagePreview !== null && imagePreview !== ""
+		const previewIsFileUrl = hasPreview ? imagePreview.startsWith("http") : null
 
 		let htmlPreview = (
 			<div className={style.noImage}>
 				<FontIcon
-					style={{ fontSize: 90, color: '#cccccc' }}
+					style={{ fontSize: 90, color: "#cccccc" }}
 					className="material-icons"
 				>
 					photo_camera
 				</FontIcon>
 				<div className={style.dropText}>{messages.help_dropHere}</div>
 			</div>
-		);
+		)
 
 		if (hasPreview && previewIsFileUrl) {
-			htmlPreview = <img src={imagePreview} />;
+			htmlPreview = <img src={imagePreview} />
 		} else if (hasPreview && !previewIsFileUrl) {
-			htmlPreview = <img src={imagePreview} />;
+			htmlPreview = <img src={imagePreview} />
 		}
 
 		return (
@@ -71,7 +69,7 @@ export default class ImageUpload extends React.Component {
 					disableClick={hasPreview}
 					accept="image/*"
 					ref={node => {
-						this.dropzone = node;
+						this.dropzone = node
 					}}
 					style={{}}
 					className={style.dropzone}
@@ -86,7 +84,7 @@ export default class ImageUpload extends React.Component {
 						touch={true}
 						tooltip={messages.actions_upload}
 						onClick={() => {
-							this.dropzone.open();
+							this.dropzone.open()
 						}}
 						tooltipPosition="top-right"
 					>
@@ -109,6 +107,6 @@ export default class ImageUpload extends React.Component {
 				</div>
 				<Snackbar open={uploading} message={messages.messages_uploading} />
 			</Paper>
-		);
+		)
 	}
 }

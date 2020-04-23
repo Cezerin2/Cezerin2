@@ -1,47 +1,47 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
 
-import messages from 'lib/text';
-import style from './style.css';
-import { CustomToggle, MultiSelect } from 'modules/shared/form';
+import messages from "lib/text"
+import style from "./style.css"
+import { CustomToggle, MultiSelect } from "modules/shared/form"
 
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from "material-ui/Paper"
+import Divider from "material-ui/Divider"
+import RaisedButton from "material-ui/RaisedButton"
 
 const WEBHOOK_EVENTS = [
-	'order.created',
-	'order.updated',
-	'order.deleted',
-	'transaction.created',
-	'transaction.updated',
-	'transaction.deleted',
-	'customer.created',
-	'customer.updated',
-	'customer.deleted'
-];
+	"order.created",
+	"order.updated",
+	"order.deleted",
+	"transaction.created",
+	"transaction.updated",
+	"transaction.deleted",
+	"customer.created",
+	"customer.updated",
+	"customer.deleted",
+]
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['url'];
+	const errors = {}
+	const requiredFields = ["url"]
 
 	requiredFields.map(field => {
 		if (!values.is_system && values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class EditWebhookForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
@@ -50,9 +50,9 @@ class EditWebhookForm extends React.Component {
 			pristine,
 			submitting,
 			initialValues,
-			webhookId
-		} = this.props;
-		const isAdd = webhookId === null || webhookId === undefined;
+			webhookId,
+		} = this.props
+		const isAdd = webhookId === null || webhookId === undefined
 
 		return (
 			<div>
@@ -96,10 +96,10 @@ class EditWebhookForm extends React.Component {
 						</div>
 						<div
 							className={
-								'buttons-box ' +
+								"buttons-box " +
 								(pristine && !isAdd
-									? 'buttons-box-pristine'
-									: 'buttons-box-show')
+									? "buttons-box-pristine"
+									: "buttons-box-show")
 							}
 						>
 							<RaisedButton
@@ -113,12 +113,12 @@ class EditWebhookForm extends React.Component {
 					</Paper>
 				</form>
 			</div>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'EditWebhookForm',
+	form: "EditWebhookForm",
 	validate,
-	enableReinitialize: true
-})(EditWebhookForm);
+	enableReinitialize: true,
+})(EditWebhookForm)

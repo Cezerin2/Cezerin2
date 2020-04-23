@@ -1,37 +1,37 @@
-import React from 'react';
-import messages from 'lib/text';
-import DeleteConfirmation from 'modules/shared/deleteConfirmation';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
-const { Fragment } = React;
+import React from "react"
+import messages from "lib/text"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
+const { Fragment } = React
 
 export default class Buttons extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			openDelete: false
-		};
+			openDelete: false,
+		}
 	}
 
 	openDelete = () => {
-		this.setState({ openDelete: true });
-	};
+		this.setState({ openDelete: true })
+	}
 
 	closeDelete = () => {
-		this.setState({ openDelete: false });
-	};
+		this.setState({ openDelete: false })
+	}
 
 	deletePage = () => {
-		this.setState({ openDelete: false });
-		this.props.onDelete(this.props.redirect.id);
-	};
+		this.setState({ openDelete: false })
+		this.props.onDelete(this.props.redirect.id)
+	}
 
 	render() {
-		const { redirect } = this.props;
+		const { redirect } = this.props
 		const redirectName =
 			redirect && redirect.from && redirect.from.length > 0
 				? redirect.from
-				: 'Draft';
+				: "Draft"
 
 		if (redirect) {
 			return (
@@ -55,8 +55,8 @@ export default class Buttons extends React.Component {
 						onDelete={this.deletePage}
 					/>
 				</Fragment>
-			);
+			)
 		}
-		return null;
+		return null
 	}
 }

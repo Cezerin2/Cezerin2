@@ -1,7 +1,7 @@
-import React from 'react'
-import { themeSettings, text } from '../../lib/settings'
-import Item from './item'
-import LoadMore from './loadMore'
+import React from "react"
+import { themeSettings, text } from "../../lib/settings"
+import Item from "./item"
+import LoadMore from "./loadMore"
 
 const ProductList = ({
 	products,
@@ -12,7 +12,7 @@ const ProductList = ({
 	loadingProducts,
 	loadingMoreProducts,
 	isCentered,
-	className = 'columns is-multiline is-mobile products',
+	className = "columns is-multiline is-mobile products",
 	columnCountOnMobile,
 	columnCountOnTablet,
 	columnCountOnDesktop,
@@ -20,7 +20,7 @@ const ProductList = ({
 	columnCountOnFullhd,
 }) => {
 	const items = products
-		? products.map((product) => (
+		? products.map(product => (
 				<Item
 					key={product.id}
 					product={product}
@@ -40,8 +40,8 @@ const ProductList = ({
 			<div
 				className={
 					className +
-					(loadingProducts ? ' loading' : '') +
-					(isCentered ? ' is-centered' : '')
+					(loadingProducts ? " loading" : "") +
+					(isCentered ? " is-centered" : "")
 				}
 			>
 				{items}

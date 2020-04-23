@@ -1,4 +1,4 @@
-import * as t from './actionTypes';
+import * as t from "./actionTypes"
 
 const initialState = {
 	account: null,
@@ -6,30 +6,30 @@ const initialState = {
 	service: null,
 	serviceSettings: null,
 	serviceLogs: null,
-	loadingEnableDisableService: false
-};
+	loadingEnableDisableService: false,
+}
 
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case t.ACCOUNT_RECEIVE:
-			return Object.assign({}, state, { account: action.account });
+			return Object.assign({}, state, { account: action.account })
 		case t.SERVICES_RECEIVE:
-			return Object.assign({}, state, { services: action.services });
+			return Object.assign({}, state, { services: action.services })
 		case t.SERVICE_RECEIVE:
-			return Object.assign({}, state, { service: action.service });
+			return Object.assign({}, state, { service: action.service })
 		case t.SERVICE_SETTINGS_REQUEST:
-			return Object.assign({}, state, { serviceSettings: null });
+			return Object.assign({}, state, { serviceSettings: null })
 		case t.SERVICE_SETTINGS_RECEIVE:
 			return Object.assign({}, state, {
-				serviceSettings: action.serviceSettings
-			});
+				serviceSettings: action.serviceSettings,
+			})
 		case t.SERVICE_LOGS_RECEIVE:
-			return Object.assign({}, state, { serviceLogs: action.serviceLogs });
+			return Object.assign({}, state, { serviceLogs: action.serviceLogs })
 		case t.SERVICE_ENABLE_REQUEST:
-			return Object.assign({}, state, { loadingEnableDisableService: true });
+			return Object.assign({}, state, { loadingEnableDisableService: true })
 		case t.SERVICE_ENABLE_RECEIVE:
-			return Object.assign({}, state, { loadingEnableDisableService: false });
+			return Object.assign({}, state, { loadingEnableDisableService: false })
 		default:
-			return state;
+			return state
 	}
-};
+}

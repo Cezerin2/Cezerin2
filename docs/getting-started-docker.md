@@ -1,7 +1,7 @@
 # Getting Started with Docker
 
--   [Docker](#docker)
--   [Docker Compose](#docker-compose)
+- [Docker](#docker)
+- [Docker Compose](#docker-compose)
 
 ## Docker
 
@@ -38,32 +38,32 @@ API - http://localhost
 Create `docker-compose.yml` by examples.
 
 ```yml
-version: '3'
+version: "3"
 
 services:
-    app:
-        image: cezerin/cezerin
-        environment:
-            - DB_HOST=db
-            - DB_PORT=27017
-            - DB_NAME=shop
-            - DB_USER=
-            - DB_PASS=
-        ports:
-            - 4000:80
-        volumes:
-            - /var/www/store:/var/www/cezerin
-        depends_on:
-            - db
-        restart: always
+  app:
+    image: cezerin/cezerin
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - DB_NAME=shop
+      - DB_USER=
+      - DB_PASS=
+    ports:
+      - 4000:80
+    volumes:
+      - /var/www/store:/var/www/cezerin
+    depends_on:
+      - db
+    restart: always
 
-    db:
-        image: mongo
-        ports:
-            - 27017
-        volumes:
-            - /var/www/store-db:/data/db
-        restart: always
+  db:
+    image: mongo
+    ports:
+      - 27017
+    volumes:
+      - /var/www/store-db:/data/db
+    restart: always
 ```
 
 `/var/www/store` - folder with Cezerin  

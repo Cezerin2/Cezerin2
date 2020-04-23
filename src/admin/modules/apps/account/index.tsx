@@ -1,7 +1,7 @@
-import { connect } from 'react-redux'
-import { fetchAccount, updateAccount, updateDeveloperAccount } from '../actions'
-import Details from './components/details'
-import * as webstoreAuth from 'lib/webstoreAuth'
+import { connect } from "react-redux"
+import { fetchAccount, updateAccount, updateDeveloperAccount } from "../actions"
+import Details from "./components/details"
+import * as webstoreAuth from "lib/webstoreAuth"
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -16,13 +16,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			if (webstoreAuthorized) {
 				dispatch(fetchAccount())
 			} else {
-				ownProps.history.push('/admin/apps/login')
+				ownProps.history.push("/admin/apps/login")
 			}
 		},
-		onAccountSubmit: (values) => {
+		onAccountSubmit: values => {
 			dispatch(updateAccount(values))
 		},
-		onDeveloperSubmit: (values) => {
+		onDeveloperSubmit: values => {
 			dispatch(updateDeveloperAccount(values))
 		},
 	}

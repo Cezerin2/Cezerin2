@@ -1,42 +1,42 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField, SelectField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
 
-import { CustomToggle } from 'modules/shared/form';
-import api from 'lib/api';
-import messages from 'lib/text';
-import style from './style.css';
+import { CustomToggle } from "modules/shared/form"
+import api from "lib/api"
+import messages from "lib/text"
+import style from "./style.css"
 
-import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import MenuItem from 'material-ui/MenuItem';
+import Divider from "material-ui/Divider"
+import RaisedButton from "material-ui/RaisedButton"
+import FlatButton from "material-ui/FlatButton"
+import MenuItem from "material-ui/MenuItem"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['email', 'full_name'];
+	const errors = {}
+	const requiredFields = ["email", "full_name"]
 
 	requiredFields.map(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 class CustomerEditForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			groups: []
-		};
+			groups: [],
+		}
 	}
 
 	componentDidMount() {
 		api.customerGroups.list().then(({ status, json }) => {
-			this.setState({ groups: json });
-		});
+			this.setState({ groups: json })
+		})
 	}
 
 	render() {
@@ -45,26 +45,26 @@ class CustomerEditForm extends React.Component {
 			pristine,
 			submitting,
 			initialValues,
-			onCancel
-		} = this.props;
+			onCancel,
+		} = this.props
 
 		let groupItems = this.state.groups.map((item, index) => (
 			<MenuItem key={index} value={item.id} primaryText={item.name} />
-		));
+		))
 		groupItems.push(
 			<MenuItem
 				key="none"
 				value={null}
 				primaryText={messages.customers_noGroup}
 			/>
-		);
+		)
 
 		return (
 			<form
 				onSubmit={handleSubmit}
 				style={{
-					display: 'initial',
-					width: '100%'
+					display: "initial",
+					width: "100%",
 				}}
 			>
 				<div>
@@ -121,12 +121,12 @@ class CustomerEditForm extends React.Component {
 					/>
 				</div>
 			</form>
-		);
+		)
 	}
 }
 
 export default reduxForm({
-	form: 'CustomerEditForm',
+	form: "CustomerEditForm",
 	validate,
-	enableReinitialize: true
-})(CustomerEditForm);
+	enableReinitialize: true,
+})(CustomerEditForm)

@@ -1,8 +1,8 @@
-import React from 'react';
-import messages from 'lib/text';
-import style from './style.css';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import React from "react"
+import messages from "lib/text"
+import style from "./style.css"
+import SelectField from "material-ui/SelectField"
+import MenuItem from "material-ui/MenuItem"
 
 export default ({
 	isClosed,
@@ -16,7 +16,7 @@ export default ({
 	setDelivered,
 	setPaid,
 	setHold,
-	setDraft
+	setDraft,
 }) => {
 	return (
 		<div className={style.filter}>
@@ -25,7 +25,7 @@ export default ({
 				fullWidth={true}
 				value={isDraft}
 				onChange={(event, index, value) => {
-					setDraft(value);
+					setDraft(value)
 				}}
 				floatingLabelText={messages.orders_draft}
 			>
@@ -39,7 +39,7 @@ export default ({
 				fullWidth={true}
 				value={isHold}
 				onChange={(event, index, value) => {
-					setHold(value);
+					setHold(value)
 				}}
 				floatingLabelText={messages.orders_hold}
 			>
@@ -53,7 +53,7 @@ export default ({
 				fullWidth={true}
 				value={isPaid}
 				onChange={(event, index, value) => {
-					setPaid(value);
+					setPaid(value)
 				}}
 				floatingLabelText={messages.orders_paid}
 			>
@@ -67,7 +67,7 @@ export default ({
 				fullWidth={true}
 				value={isDelivered}
 				onChange={(event, index, value) => {
-					setDelivered(value);
+					setDelivered(value)
 				}}
 				floatingLabelText={messages.orders_delivered}
 			>
@@ -81,7 +81,7 @@ export default ({
 				fullWidth={true}
 				value={isCancelled}
 				onChange={(event, index, value) => {
-					setCancelled(value);
+					setCancelled(value)
 				}}
 				floatingLabelText={messages.orders_cancelled}
 			>
@@ -95,7 +95,7 @@ export default ({
 				fullWidth={true}
 				value={isClosed}
 				onChange={(event, index, value) => {
-					setClosed(value);
+					setClosed(value)
 				}}
 				floatingLabelText={messages.orders_closed}
 			>
@@ -104,5 +104,5 @@ export default ({
 				<MenuItem value={true} primaryText={messages.yes} />
 			</SelectField>
 		</div>
-	);
-};
+	)
+}

@@ -1,7 +1,7 @@
-import React from 'react';
-import ProductsList from 'modules/products/list';
-import ProductsFilter from 'modules/products/listFilter';
-import Categories from 'modules/productCategories/list';
+import React from "react"
+import ProductsList from "modules/products/list"
+import ProductsFilter from "modules/products/listFilter"
+import Categories from "modules/productCategories/list"
 
 export default () => (
 	<div className="row row--no-gutter col-full-height">
@@ -13,4 +13,4 @@ export default () => (
 			<ProductsList />
 		</div>
 	</div>
-);
+)

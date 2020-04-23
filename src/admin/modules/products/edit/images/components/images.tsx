@@ -1,44 +1,44 @@
-import React from 'react';
-import messages from 'lib/text';
-import Gallery from 'modules/shared/imageUploadMultiple';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import React from "react"
+import messages from "lib/text"
+import Gallery from "modules/shared/imageUploadMultiple"
+import Paper from "material-ui/Paper"
+import TextField from "material-ui/TextField"
+import Dialog from "material-ui/Dialog"
+import FlatButton from "material-ui/FlatButton"
 
 export default class ProductImages extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			openEdit: false,
-			imageData: null
-		};
+			imageData: null,
+		}
 	}
 
 	closeEdit = () => {
-		this.setState({ openEdit: false });
-	};
+		this.setState({ openEdit: false })
+	}
 
 	openEdit = () => {
-		this.setState({ openEdit: true });
-	};
+		this.setState({ openEdit: true })
+	}
 
 	handleEditOpen = image => {
-		this.setState({ imageData: image });
-		this.openEdit();
-	};
+		this.setState({ imageData: image })
+		this.openEdit()
+	}
 
 	handleEditSave = () => {
-		this.props.onImageUpdate(this.state.imageData);
-		this.closeEdit();
-	};
+		this.props.onImageUpdate(this.state.imageData)
+		this.closeEdit()
+	}
 
 	handleAltChange = (event, value) => {
 		const newImageData = Object.assign({}, this.state.imageData, {
-			alt: value
-		});
-		this.setState({ imageData: newImageData });
-	};
+			alt: value,
+		})
+		this.setState({ imageData: newImageData })
+	}
 
 	render() {
 		const {
@@ -47,10 +47,10 @@ export default class ProductImages extends React.Component {
 			onImageDelete,
 			onImageSort,
 			onImageUpload,
-			uploadingImages
-		} = this.props;
-		const { openEdit, imageData } = this.state;
-		const alt = imageData ? imageData.alt : '';
+			uploadingImages,
+		} = this.props
+		const { openEdit, imageData } = this.state
+		const alt = imageData ? imageData.alt : ""
 
 		const dialogButtons = [
 			<FlatButton
@@ -63,12 +63,12 @@ export default class ProductImages extends React.Component {
 				primary={true}
 				keyboardFocused={true}
 				onClick={this.handleEditSave}
-			/>
-		];
+			/>,
+		]
 
 		return (
 			<Paper className="paper-box" zDepth={1}>
-				<div style={{ padding: '10px 10px 30px 10px' }}>
+				<div style={{ padding: "10px 10px 30px 10px" }}>
 					<Gallery
 						productId={productId}
 						images={images}
@@ -96,6 +96,6 @@ export default class ProductImages extends React.Component {
 					</Dialog>
 				</div>
 			</Paper>
-		);
+		)
 	}
 }

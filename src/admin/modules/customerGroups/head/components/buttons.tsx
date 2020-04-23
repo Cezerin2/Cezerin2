@@ -1,42 +1,42 @@
-import React from 'react';
-import messages from 'lib/text';
-import DeleteConfirmation from 'modules/shared/deleteConfirmation';
-import FontIcon from 'material-ui/FontIcon';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import MenuItem from 'material-ui/MenuItem';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-const Fragment = React.Fragment;
+import React from "react"
+import messages from "lib/text"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import FontIcon from "material-ui/FontIcon"
+import IconMenu from "material-ui/IconMenu"
+import IconButton from "material-ui/IconButton"
+import MenuItem from "material-ui/MenuItem"
+import Dialog from "material-ui/Dialog"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
+const Fragment = React.Fragment
 
 export default class Buttons extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			openDelete: false
-		};
+			openDelete: false,
+		}
 	}
 
 	showDelete = () => {
-		this.setState({ openDelete: true });
-	};
+		this.setState({ openDelete: true })
+	}
 
 	closeDelete = () => {
-		this.setState({ openDelete: false });
-	};
+		this.setState({ openDelete: false })
+	}
 
 	deleteGroup = () => {
-		this.setState({ openDelete: false });
-		this.props.onDelete(this.props.selected.id);
-	};
+		this.setState({ openDelete: false })
+		this.props.onDelete(this.props.selected.id)
+	}
 
 	render() {
-		const { selected, onDelete, onCreate } = this.props;
+		const { selected, onDelete, onCreate } = this.props
 		const groupName =
 			selected && selected.name && selected.name.length > 0
 				? selected.name
-				: 'Draft';
+				: "Draft"
 
 		return (
 			<span>
@@ -73,6 +73,6 @@ export default class Buttons extends React.Component {
 					</FontIcon>
 				</IconButton>
 			</span>
-		);
+		)
 	}
 }

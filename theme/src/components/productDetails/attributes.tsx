@@ -1,5 +1,5 @@
-import React from 'react'
-import { text } from '../../lib/settings'
+import React from "react"
+import { text } from "../../lib/settings"
 
 const Attribute = ({ name, value }) => (
 	<div className="columns is-gapless is-mobile product-attribute">
@@ -11,11 +11,7 @@ const Attribute = ({ name, value }) => (
 const Attributes = ({ attributes }) => {
 	if (attributes && attributes.length > 0) {
 		const items = attributes.map((attribute, index) => (
-			<Attribute
-				key={index}
-				name={attribute.name}
-				value={attribute.value}
-			/>
+			<Attribute key={index} name={attribute.name} value={attribute.value} />
 		))
 
 		return (

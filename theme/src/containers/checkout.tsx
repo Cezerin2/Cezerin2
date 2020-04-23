@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import MetaTags from '../components/metaTags'
-import OrderSummary from '../components/orderSummary'
-import CheckoutForm from '../components/checkoutForm'
+import React from "react"
+import PropTypes from "prop-types"
+import MetaTags from "../components/metaTags"
+import OrderSummary from "../components/orderSummary"
+import CheckoutForm from "../components/checkoutForm"
 
-const CheckoutContainer = (props) => {
+const CheckoutContainer = props => {
 	const {
 		state: { pageDetails },
 	} = props

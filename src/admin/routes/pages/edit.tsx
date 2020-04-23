@@ -1,6 +1,6 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import PageEdit from 'modules/pages/edit';
+import React from "react"
+import { Route } from "react-router-dom"
+import PageEdit from "modules/pages/edit"
 
 const ProductDetails = props => {
 	return (
@@ -9,7 +9,7 @@ const ProductDetails = props => {
 				<PageEdit {...props} />
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default ProductDetails;
+export default ProductDetails

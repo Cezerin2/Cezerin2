@@ -1,16 +1,16 @@
 # Getting Started
 
--   [Installation](#1-installation)
--   [Run Application](#2-run-application)
--   [Configuration](#3-configuration)
--   [Preparing Database](#4-preparing-database)
+- [Installation](#1-installation)
+- [Run Application](#2-run-application)
+- [Configuration](#3-configuration)
+- [Preparing Database](#4-preparing-database)
 
 ## 1. Installation
 
 ### Requirements
 
--   Node.js >= 8
--   MongoDB >= 3.2
+- Node.js >= 8
+- MongoDB >= 3.2
 
 ```shell
 git clone https://github.com/cezerin/cezerin.git cezerin
@@ -64,9 +64,9 @@ npm start
 
 This script will:
 
--   test MongoDB connection
--   add default data
--   create basic indexes
+- test MongoDB connection
+- add default data
+- create basic indexes
 
 ```
 npm run setup

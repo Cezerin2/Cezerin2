@@ -1,7 +1,7 @@
-import React from 'react';
-import Paper from 'material-ui/Paper';
-import { Bar } from 'react-chartjs-2';
-import style from './style.css';
+import React from "react"
+import Paper from "material-ui/Paper"
+import { Bar } from "react-chartjs-2"
+import style from "./style.css"
 
 const BarChart = ({ data, title, subTitle, legendDisplay }) => (
 	<div className="row row--no-gutter">
@@ -16,7 +16,7 @@ const BarChart = ({ data, title, subTitle, legendDisplay }) => (
 						height={200}
 						options={{
 							legend: {
-								display: legendDisplay
+								display: legendDisplay,
 							},
 							scales: {
 								xAxes: [
@@ -26,14 +26,14 @@ const BarChart = ({ data, title, subTitle, legendDisplay }) => (
 										categoryPercentage: 0.99,
 										gridLines: {
 											display: false,
-											drawBorder: false
+											drawBorder: false,
 										},
 										ticks: {
 											display: true,
-											fontColor: 'rgba(0,0,0,0.3)',
-											padding: 0
-										}
-									}
+											fontColor: "rgba(0,0,0,0.3)",
+											padding: 0,
+										},
+									},
 								],
 								yAxes: [
 									{
@@ -41,23 +41,23 @@ const BarChart = ({ data, title, subTitle, legendDisplay }) => (
 										gridLines: {
 											display: true,
 											drawBorder: false,
-											color: 'rgba(0,0,0,0.08)'
+											color: "rgba(0,0,0,0.08)",
 										},
 										ticks: {
 											maxTicksLimit: 4,
 											display: true,
 											padding: 10,
-											fontColor: 'rgba(0,0,0,0.3)'
-										}
-									}
-								]
-							}
+											fontColor: "rgba(0,0,0,0.3)",
+										},
+									},
+								],
+							},
 						}}
 					/>
 				</div>
 			</Paper>
 		</div>
 	</div>
-);
+)
 
-export default BarChart;
+export default BarChart

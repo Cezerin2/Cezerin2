@@ -1,9 +1,9 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { themeSettings, text } from '../../lib/settings';
-import ItemTags from './itemTags';
-import ItemImage from './itemImage';
-import ItemPrice from './itemPrice';
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { themeSettings, text } from "../../lib/settings"
+import ItemTags from "./itemTags"
+import ItemImage from "./itemImage"
+import ItemPrice from "./itemPrice"
 
 const Item = ({
 	product,
@@ -13,26 +13,26 @@ const Item = ({
 	columnCountOnTablet = 3,
 	columnCountOnDesktop = 4,
 	columnCountOnWidescreen = 4,
-	columnCountOnFullhd = 4
+	columnCountOnFullhd = 4,
 }) => {
-	const columnCount = 12;
+	const columnCount = 12
 
-	const columnSizeOnMobile = columnCount / columnCountOnMobile;
-	const columnSizeOnTablet = columnCount / columnCountOnTablet;
-	const columnSizeOnDesktop = columnCount / columnCountOnDesktop;
-	const columnSizeOnWidescreen = columnCount / columnCountOnWidescreen;
-	const columnSizeOnFullhd = columnCount / columnCountOnFullhd;
+	const columnSizeOnMobile = columnCount / columnCountOnMobile
+	const columnSizeOnTablet = columnCount / columnCountOnTablet
+	const columnSizeOnDesktop = columnCount / columnCountOnDesktop
+	const columnSizeOnWidescreen = columnCount / columnCountOnWidescreen
+	const columnSizeOnFullhd = columnCount / columnCountOnFullhd
 
 	const imageHeight =
 		themeSettings.list_image_max_height &&
 		themeSettings.list_image_max_height > 0
 			? themeSettings.list_image_max_height
-			: 'auto';
+			: "auto"
 	const placeholderHeight =
 		themeSettings.list_image_max_height &&
 		themeSettings.list_image_max_height > 0
 			? themeSettings.list_image_max_height
-			: 200;
+			: 200
 
 	return (
 		<div
@@ -53,7 +53,7 @@ const Item = ({
 				</div>
 			</NavLink>
 		</div>
-	);
-};
+	)
+}
 
-export default Item;
+export default Item

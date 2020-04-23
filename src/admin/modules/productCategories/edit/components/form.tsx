@@ -1,53 +1,53 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
-import Editor from 'modules/shared/editor';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
+import Editor from "modules/shared/editor"
 
-import { CustomToggle } from 'modules/shared/form';
-import ImageUpload from 'modules/shared/imageUpload';
-import messages from 'lib/text';
-import style from './style.css';
-import settings from 'lib/settings';
-import api from 'lib/api';
+import { CustomToggle } from "modules/shared/form"
+import ImageUpload from "modules/shared/imageUpload"
+import messages from "lib/text"
+import style from "./style.css"
+import settings from "lib/settings"
+import api from "lib/api"
 
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from "material-ui/Paper"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['name'];
+	const errors = {}
+	const requiredFields = ["name"]
 
 	requiredFields.forEach(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 const asyncValidate = values => {
 	return new Promise((resolve, reject) => {
 		if (values.slug && values.slug.length > 0) {
 			api.sitemap
-				.retrieve({ path: '/' + values.slug })
+				.retrieve({ path: "/" + values.slug })
 				.then(({ status, json }) => {
 					if (status === 404) {
-						resolve();
+						resolve()
 					} else {
 						if (json && !Object.is(json.resource, values.id)) {
-							reject({ slug: messages.errors_urlTaken });
+							reject({ slug: messages.errors_urlTaken })
 						} else {
-							resolve();
+							resolve()
 						}
 					}
-				});
+				})
 		} else {
-			resolve();
+			resolve()
 		}
-	});
-};
+	})
+}
 
 const ProductCategoryEditForm = ({
 	uploadingImage,
@@ -58,14 +58,14 @@ const ProductCategoryEditForm = ({
 	onImageUpload,
 	onImageDelete,
 	isSaving,
-	initialValues
+	initialValues,
 }) => {
-	let imageUrl = null;
-	let categoryId = null;
+	let imageUrl = null
+	let categoryId = null
 
 	if (initialValues) {
-		categoryId = initialValues.id;
-		imageUrl = initialValues.image;
+		categoryId = initialValues.id
+		imageUrl = initialValues.image
 	}
 
 	if (categoryId) {
@@ -76,7 +76,7 @@ const ProductCategoryEditForm = ({
 						<Field
 							name="name"
 							component={TextField}
-							floatingLabelText={messages.productCategories_name + ' *'}
+							floatingLabelText={messages.productCategories_name + " *"}
 							fullWidth={true}
 						/>
 						<div className="field-hint" style={{ marginTop: 40 }}>
@@ -124,8 +124,8 @@ const ProductCategoryEditForm = ({
 					</div>
 					<div
 						className={
-							'buttons-box ' +
-							(pristine ? 'buttons-box-pristine' : 'buttons-box-show')
+							"buttons-box " +
+							(pristine ? "buttons-box-pristine" : "buttons-box-show")
 						}
 					>
 						<FlatButton
@@ -144,16 +144,16 @@ const ProductCategoryEditForm = ({
 					</div>
 				</form>
 			</Paper>
-		);
+		)
 	} else {
-		return null;
+		return null
 	}
-};
+}
 
 export default reduxForm({
-	form: 'ProductCategoryEditForm',
+	form: "ProductCategoryEditForm",
 	validate,
 	asyncValidate,
-	asyncBlurFields: ['slug'],
-	enableReinitialize: true
-})(ProductCategoryEditForm);
+	asyncBlurFields: ["slug"],
+	enableReinitialize: true,
+})(ProductCategoryEditForm)

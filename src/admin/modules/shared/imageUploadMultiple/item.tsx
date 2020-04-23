@@ -1,10 +1,10 @@
-import React from 'react';
-import messages from 'lib/text';
-import style from './style.css';
+import React from "react"
+import messages from "lib/text"
+import style from "./style.css"
 
-import Paper from 'material-ui/Paper';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
+import Paper from "material-ui/Paper"
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
 
 const GalleryItem = ({ url, alt, id, onDelete, onImageEdit }) => (
 	<Paper zDepth={1} rounded={false}>
@@ -27,7 +27,7 @@ const GalleryItem = ({ url, alt, id, onDelete, onImageEdit }) => (
 				tooltip={messages.actions_delete}
 				tooltipPosition="top-right"
 				onClick={() => {
-					onDelete(id);
+					onDelete(id)
 				}}
 			>
 				<FontIcon color="rgba(0,0,0,0.5)" className="material-icons">
@@ -36,6 +36,6 @@ const GalleryItem = ({ url, alt, id, onDelete, onImageEdit }) => (
 			</IconButton>
 		</div>
 	</Paper>
-);
+)
 
-export default GalleryItem;
+export default GalleryItem

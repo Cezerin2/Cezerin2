@@ -2,42 +2,42 @@
 
 Products
 
--   [List all products](#list-all-products)
--   [Create a product](#create-a-product)
--   [Retrieve a product](#retrieve-a-product)
--   [Update a product](#update-a-product)
--   [Delete a product](#delete-a-product)
+- [List all products](#list-all-products)
+- [Create a product](#create-a-product)
+- [Retrieve a product](#retrieve-a-product)
+- [Update a product](#update-a-product)
+- [Delete a product](#delete-a-product)
 
 Images of the product
 
--   [List all images of the product](#list-all-images-of-the-product)
--   [Upload images to the product](#upload-images-to-the-product)
--   [Update an image](#update-an-image)
--   [Delete an image](#delete-an-image)
+- [List all images of the product](#list-all-images-of-the-product)
+- [Upload images to the product](#upload-images-to-the-product)
+- [Update an image](#update-an-image)
+- [Delete an image](#delete-an-image)
 
 Product options
 
--   [List all product options](#list-all-product-options)
--   [Retrieve an option](#retrieve-an-option)
--   [Create an option](#create-an-option)
--   [Update an option](#update-an-option)
--   [Delete an option](#delete-an-option)
+- [List all product options](#list-all-product-options)
+- [Retrieve an option](#retrieve-an-option)
+- [Create an option](#create-an-option)
+- [Update an option](#update-an-option)
+- [Delete an option](#delete-an-option)
 
 Option values
 
--   [List all values of the product option](#list-all-values-of-the-product-option)
--   [Retrieve a value](#retrieve-a-value)
--   [Create a value](#create-a-value)
--   [Update a value](#update-a-value)
--   [Delete a value](#delete-a-value)
+- [List all values of the product option](#list-all-values-of-the-product-option)
+- [Retrieve a value](#retrieve-a-value)
+- [Create a value](#create-a-value)
+- [Update a value](#update-a-value)
+- [Delete a value](#delete-a-value)
 
 Product variants
 
--   [List all product variants](#list-all-product-variants)
--   [Create a variant](#create-a-variant)
--   [Update a variant](#update-a-variant)
--   [Delete a variant](#delete-a-variant)
--   [Set an option value to the product variant](#set-an-option-value-to-the-product-variant)
+- [List all product variants](#list-all-product-variants)
+- [Create a variant](#create-a-variant)
+- [Update a variant](#update-a-variant)
+- [Delete a variant](#delete-a-variant)
+- [Set an option value to the product variant](#set-an-option-value-to-the-product-variant)
 
 ## List all products
 

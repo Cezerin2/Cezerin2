@@ -1,5 +1,5 @@
-import React from 'react';
-import List from 'modules/files/list';
+import React from "react"
+import List from "modules/files/list"
 
 export default () => (
 	<div className="row row--no-gutter col-full-height scroll">
@@ -7,4 +7,4 @@ export default () => (
 			<List />
 		</div>
 	</div>
-);
+)

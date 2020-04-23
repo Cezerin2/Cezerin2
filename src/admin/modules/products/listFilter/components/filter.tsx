@@ -1,26 +1,26 @@
-import React from 'react';
-import messages from 'lib/text';
-import style from './style.css';
+import React from "react"
+import messages from "lib/text"
+import style from "./style.css"
 
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import Toggle from 'material-ui/Toggle';
+import SelectField from "material-ui/SelectField"
+import MenuItem from "material-ui/MenuItem"
+import Toggle from "material-ui/Toggle"
 
 const Filter = ({
 	filter,
 	setEnabled,
 	setDiscontinued,
 	setOnSale,
-	setStock
+	setStock,
 }) => {
-	const { enabled, discontinued, onSale, stockStatus } = filter;
+	const { enabled, discontinued, onSale, stockStatus } = filter
 
 	return (
 		<div className={style.filter}>
 			<SelectField
 				value={enabled}
 				onChange={(event, index, value) => {
-					setEnabled(value);
+					setEnabled(value)
 				}}
 				floatingLabelText={messages.enabled}
 				fullWidth={true}
@@ -33,7 +33,7 @@ const Filter = ({
 			<SelectField
 				value={discontinued}
 				onChange={(event, index, value) => {
-					setDiscontinued(value);
+					setDiscontinued(value)
 				}}
 				floatingLabelText={messages.products_discontinued}
 				fullWidth={true}
@@ -46,7 +46,7 @@ const Filter = ({
 			<SelectField
 				value={onSale}
 				onChange={(event, index, value) => {
-					setOnSale(value);
+					setOnSale(value)
 				}}
 				floatingLabelText={messages.products_onSale}
 				fullWidth={true}
@@ -59,29 +59,29 @@ const Filter = ({
 			<SelectField
 				value={stockStatus}
 				onChange={(event, index, value) => {
-					setStock(value);
+					setStock(value)
 				}}
 				floatingLabelText={messages.products_stockStatus}
 				fullWidth={true}
 			>
 				<MenuItem value={null} primaryText={messages.all} label=" " />
-				<MenuItem value={'available'} primaryText={messages.products_inStock} />
+				<MenuItem value={"available"} primaryText={messages.products_inStock} />
 				<MenuItem
-					value={'out_of_stock'}
+					value={"out_of_stock"}
 					primaryText={messages.products_outOfStock}
 				/>
 				<MenuItem
-					value={'backorder'}
+					value={"backorder"}
 					primaryText={messages.products_backorder}
 				/>
-				<MenuItem value={'preorder'} primaryText={messages.products_preorder} />
+				<MenuItem value={"preorder"} primaryText={messages.products_preorder} />
 				<MenuItem
-					value={'discontinued'}
+					value={"discontinued"}
 					primaryText={messages.products_discontinued}
 				/>
 			</SelectField>
 		</div>
-	);
-};
+	)
+}
 
-export default Filter;
+export default Filter

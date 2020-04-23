@@ -1,38 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react"
+import { Link } from "react-router-dom"
 
-import messages from 'lib/text';
-import style from './style.css';
+import messages from "lib/text"
+import style from "./style.css"
 
-import Paper from 'material-ui/Paper';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
+import Paper from "material-ui/Paper"
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
 
 class OptionValueEdit extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			value: props.value.name
-		};
-		this.onChange = this.onChange.bind(this);
-		this.onBlur = this.onBlur.bind(this);
-		this.onDelete = this.onDelete.bind(this);
+			value: props.value.name,
+		}
+		this.onChange = this.onChange.bind(this)
+		this.onBlur = this.onBlur.bind(this)
+		this.onDelete = this.onDelete.bind(this)
 	}
 
 	onChange = e => {
-		this.setState({ value: e.target.value });
-	};
+		this.setState({ value: e.target.value })
+	}
 
 	onBlur = e => {
-		this.props.onChange(this.props.value.id, this.state.value);
-	};
+		this.props.onChange(this.props.value.id, this.state.value)
+	}
 
 	onDelete = () => {
-		this.props.onDelete(this.props.value.id);
-	};
+		this.props.onDelete(this.props.value.id)
+	}
 
 	render() {
-		const { value } = this.state;
+		const { value } = this.state
 
 		return (
 			<div className={style.gridRow}>
@@ -57,40 +57,40 @@ class OptionValueEdit extends React.Component {
 					</IconButton>
 				</div>
 			</div>
-		);
+		)
 	}
 }
 
 class OptionValueAdd extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			value: ''
-		};
-		this.onChange = this.onChange.bind(this);
-		this.onCreate = this.onCreate.bind(this);
-		this.handleKeyPress = this.handleKeyPress.bind(this);
+			value: "",
+		}
+		this.onChange = this.onChange.bind(this)
+		this.onCreate = this.onCreate.bind(this)
+		this.handleKeyPress = this.handleKeyPress.bind(this)
 	}
 
 	onChange = e => {
-		this.setState({ value: e.target.value });
-	};
+		this.setState({ value: e.target.value })
+	}
 
 	onCreate = () => {
-		if (this.state.value !== '') {
-			this.props.onCreate(this.state.value);
-			this.setState({ value: '' });
+		if (this.state.value !== "") {
+			this.props.onCreate(this.state.value)
+			this.setState({ value: "" })
 		}
-	};
+	}
 
 	handleKeyPress(e) {
 		if (e.keyCode === 13 || e.which === 13) {
-			this.onCreate();
+			this.onCreate()
 		}
 	}
 
 	render() {
-		const { value } = this.state;
+		const { value } = this.state
 
 		return (
 			<div className={style.gridRow}>
@@ -116,7 +116,7 @@ class OptionValueAdd extends React.Component {
 					</IconButton>
 				</div>
 			</div>
-		);
+		)
 	}
 }
 
@@ -124,7 +124,7 @@ const OptionValues = ({
 	optionValues,
 	createOptionValue,
 	updateOptionValue,
-	deleteOptionValue
+	deleteOptionValue,
 }) => {
 	const valueRows = optionValues.map((value, index) => (
 		<OptionValueEdit
@@ -133,11 +133,11 @@ const OptionValues = ({
 			onChange={updateOptionValue}
 			onDelete={deleteOptionValue}
 		/>
-	));
+	))
 
 	return (
 		<Paper className="paper-box" zDepth={1}>
-			<div className="blue-title" style={{ padding: '20px 30px' }}>
+			<div className="blue-title" style={{ padding: "20px 30px" }}>
 				{messages.optionValues}
 			</div>
 			<div className={style.grid}>
@@ -145,7 +145,7 @@ const OptionValues = ({
 				<OptionValueAdd onCreate={createOptionValue} />
 			</div>
 		</Paper>
-	);
-};
+	)
+}
 
-export default OptionValues;
+export default OptionValues

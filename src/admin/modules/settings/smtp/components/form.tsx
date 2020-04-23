@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { TextField, SelectField } from 'redux-form-material-ui'
+import React, { useEffect } from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
 
-import messages from 'lib/text'
-import './style.css'
+import messages from "lib/text"
+import "./style.css"
 
-import Paper from 'material-ui/Paper'
-import RaisedButton from 'material-ui/RaisedButton'
-import Divider from 'material-ui/Divider'
-import FontIcon from 'material-ui/FontIcon'
-import { List, ListItem } from 'material-ui/List'
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import Divider from "material-ui/Divider"
+import FontIcon from "material-ui/FontIcon"
+import { List, ListItem } from "material-ui/List"
 
 const EmailSettings = () => {
 	useEffect(() => this.props.onLoad(), [])
@@ -20,8 +20,8 @@ const EmailSettings = () => {
 		<form
 			onSubmit={handleSubmit}
 			style={{
-				display: 'initial',
-				width: '100%',
+				display: "initial",
+				width: "100%",
 			}}
 		>
 			<Paper className="paper-box" zDepth={1}>
@@ -76,9 +76,7 @@ const EmailSettings = () => {
 							fullWidth={true}
 							name="from_address"
 							type="email"
-							floatingLabelText={
-								messages.settings_emailFromAddress
-							}
+							floatingLabelText={messages.settings_emailFromAddress}
 						/>
 					</div>
 				</div>
@@ -97,6 +95,6 @@ const EmailSettings = () => {
 }
 
 export default reduxForm({
-	form: 'EmailSettingsForm',
+	form: "EmailSettingsForm",
 	enableReinitialize: false,
 })(EmailSettings)

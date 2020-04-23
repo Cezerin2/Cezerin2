@@ -1,47 +1,47 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { TextField, SelectField } from 'redux-form-material-ui';
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField, SelectField } from "redux-form-material-ui"
 
-import GatewaySettings from './gatewaySettings.js';
-import { AVAILABLE_PAYMENT_GATEWAYS } from '../availablePaymentGateways';
-import messages from 'lib/text';
-import style from './style.css';
+import GatewaySettings from "./gatewaySettings.js"
+import { AVAILABLE_PAYMENT_GATEWAYS } from "../availablePaymentGateways"
+import messages from "lib/text"
+import style from "./style.css"
 
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from "material-ui/Dialog"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
 
 class EditPaymentGatewayForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			open: false
-		};
+			open: false,
+		}
 	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.gateway !== this.props.gateway) {
-			this.props.onLoad(nextProps.gateway);
+			this.props.onLoad(nextProps.gateway)
 		}
 	}
 
 	handleOpen = () => {
-		this.setState({ open: true });
-	};
+		this.setState({ open: true })
+	}
 
 	handleClose = () => {
-		this.setState({ open: false });
-	};
+		this.setState({ open: false })
+	}
 
 	render() {
-		let { handleSubmit, pristine, submitting, initialValues } = this.props;
+		let { handleSubmit, pristine, submitting, initialValues } = this.props
 		const gatewayDetails = AVAILABLE_PAYMENT_GATEWAYS.find(
 			item => item.key === this.props.gateway
-		);
+		)
 
 		if (this.props.gateway && this.props.gateway.length > 0) {
 			return (
@@ -49,7 +49,7 @@ class EditPaymentGatewayForm extends React.Component {
 					<RaisedButton
 						onClick={this.handleOpen}
 						label={messages.drawer_settings}
-						style={{ margin: '15px 0 30px 0' }}
+						style={{ margin: "15px 0 30px 0" }}
 					/>
 
 					<Dialog
@@ -62,7 +62,7 @@ class EditPaymentGatewayForm extends React.Component {
 					>
 						<form
 							onSubmit={handleSubmit}
-							style={{ display: 'initial', width: '100%' }}
+							style={{ display: "initial", width: "100%" }}
 						>
 							<GatewaySettings gateway={this.props.gateway} />
 
@@ -83,14 +83,14 @@ class EditPaymentGatewayForm extends React.Component {
 						</form>
 					</Dialog>
 				</div>
-			);
+			)
 		} else {
-			return null;
+			return null
 		}
 	}
 }
 
 export default reduxForm({
-	form: 'EditPaymentGatewayForm',
-	enableReinitialize: true
-})(EditPaymentGatewayForm);
+	form: "EditPaymentGatewayForm",
+	enableReinitialize: true,
+})(EditPaymentGatewayForm)

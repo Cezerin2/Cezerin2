@@ -1,32 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import messages from 'lib/text';
+import React from "react"
+import { Link } from "react-router-dom"
+import messages from "lib/text"
 
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import FontIcon from 'material-ui/FontIcon';
-import { List, ListItem } from 'material-ui/List';
+import Paper from "material-ui/Paper"
+import Divider from "material-ui/Divider"
+import FontIcon from "material-ui/FontIcon"
+import { List, ListItem } from "material-ui/List"
 
 export default class ImportSettings extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	componentDidMount() {
-		this.props.onLoad();
+		this.props.onLoad()
 	}
 
 	render() {
-		const { importSettings } = this.props;
+		const { importSettings } = this.props
 
 		return (
 			<div>
 				<Paper className="paper-box" zDepth={1}>
-					<div style={{ width: '100%' }}>
+					<div style={{ width: "100%" }}>
 						<List style={{ padding: 0 }}>
 							<Link
 								to="/admin/settings/import/googlespreadsheet"
-								style={{ textDecoration: 'none' }}
+								style={{ textDecoration: "none" }}
 							>
 								<ListItem
 									rightIcon={
@@ -47,6 +47,6 @@ export default class ImportSettings extends React.Component {
 					</div>
 				</Paper>
 			</div>
-		);
+		)
 	}
 }

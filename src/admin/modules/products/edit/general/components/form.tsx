@@ -1,62 +1,62 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
-import Editor from 'modules/shared/editor';
+import React from "react"
+import { Link } from "react-router-dom"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
+import Editor from "modules/shared/editor"
 
-import messages from 'lib/text';
-import style from './style.css';
-import api from 'lib/api';
+import messages from "lib/text"
+import style from "./style.css"
+import api from "lib/api"
 
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from "material-ui/Paper"
+import FlatButton from "material-ui/FlatButton"
+import RaisedButton from "material-ui/RaisedButton"
 
 const validate = values => {
-	const errors = {};
-	const requiredFields = ['name'];
+	const errors = {}
+	const requiredFields = ["name"]
 
 	requiredFields.map(field => {
 		if (values && !values[field]) {
-			errors[field] = messages.errors_required;
+			errors[field] = messages.errors_required
 		}
-	});
+	})
 
-	return errors;
-};
+	return errors
+}
 
 const slugExists = values => {
 	if (values.slug && values.slug.length > 0) {
 		return api.products
 			.slugExists(values.id, values.slug)
-			.then(response => response.status === 200);
+			.then(response => response.status === 200)
 	} else {
-		return Promise.resolve(false);
+		return Promise.resolve(false)
 	}
-};
+}
 
 const asyncValidate = values => {
 	return Promise.all([slugExists(values)]).then(([isSlugExists]) => {
-		let errors = {};
+		let errors = {}
 
 		if (isSlugExists) {
-			errors.slug = messages.errors_urlTaken;
+			errors.slug = messages.errors_urlTaken
 		}
 
 		if (Object.keys(errors).length > 0) {
-			return Promise.reject(errors);
+			return Promise.reject(errors)
 		} else {
-			return Promise.resolve();
+			return Promise.resolve()
 		}
-	});
-};
+	})
+}
 
 const ProductGeneralForm = ({
 	handleSubmit,
 	pristine,
 	reset,
 	submitting,
-	initialValues
+	initialValues,
 }) => {
 	if (initialValues) {
 		return (
@@ -66,7 +66,7 @@ const ProductGeneralForm = ({
 						<Field
 							name="name"
 							component={TextField}
-							floatingLabelText={messages.products_name + ' *'}
+							floatingLabelText={messages.products_name + " *"}
 							fullWidth={true}
 						/>
 						<Field
@@ -95,8 +95,8 @@ const ProductGeneralForm = ({
 					</div>
 					<div
 						className={
-							'buttons-box ' +
-							(pristine ? 'buttons-box-pristine' : 'buttons-box-show')
+							"buttons-box " +
+							(pristine ? "buttons-box-pristine" : "buttons-box-show")
 						}
 					>
 						<FlatButton
@@ -115,16 +115,16 @@ const ProductGeneralForm = ({
 					</div>
 				</Paper>
 			</form>
-		);
+		)
 	} else {
-		return null;
+		return null
 	}
-};
+}
 
 export default reduxForm({
-	form: 'ProductGeneralForm',
+	form: "ProductGeneralForm",
 	validate,
 	asyncValidate,
-	asyncBlurFields: ['slug'],
-	enableReinitialize: true
-})(ProductGeneralForm);
+	asyncBlurFields: ["slug"],
+	enableReinitialize: true,
+})(ProductGeneralForm)

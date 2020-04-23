@@ -1,21 +1,21 @@
-import * as t from './actionTypes';
+import * as t from "./actionTypes"
 
 const initialState = {
 	exportInProcess: false,
 	installInProcess: false,
 	settings: {
-		language: 'en',
-		currency_code: 'USD',
-		currency_symbol: '$',
-		currency_format: '${amount}',
-		thousand_separator: '',
-		decimal_separator: '.',
+		language: "en",
+		currency_code: "USD",
+		currency_symbol: "$",
+		currency_format: "${amount}",
+		thousand_separator: "",
+		decimal_separator: ".",
 		decimal_number: 2,
-		timezone: 'Asia/Singapore',
-		date_format: 'MMMM D, YYYY',
-		time_format: 'h:mm a',
-		weight_unit: 'kg',
-		length_unit: 'cm'
+		timezone: "Asia/Singapore",
+		date_format: "MMMM D, YYYY",
+		time_format: "h:mm a",
+		weight_unit: "kg",
+		length_unit: "cm",
 	},
 	emailSettings: null,
 	importSettings: null,
@@ -36,87 +36,87 @@ const initialState = {
 	webhooks: [],
 	webhookEdit: {},
 	themeSettings: null,
-	themeSettingsSchema: null
-};
+	themeSettingsSchema: null,
+}
 
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case t.THEME_EXPORT_REQUEST:
-			return Object.assign({}, state, { exportInProcess: true });
+			return Object.assign({}, state, { exportInProcess: true })
 		case t.THEME_EXPORT_RECEIVE:
-			return Object.assign({}, state, { exportInProcess: false });
+			return Object.assign({}, state, { exportInProcess: false })
 		case t.THEME_INSTALL_REQUEST:
-			return Object.assign({}, state, { installInProcess: true });
+			return Object.assign({}, state, { installInProcess: true })
 		case t.THEME_INSTALL_RECEIVE:
-			return Object.assign({}, state, { installInProcess: false });
+			return Object.assign({}, state, { installInProcess: false })
 		case t.SETTINGS_RECEIVE:
-			return Object.assign({}, state, { settings: action.settings });
+			return Object.assign({}, state, { settings: action.settings })
 		case t.EMAIL_SETTINGS_RECEIVE:
-			return Object.assign({}, state, { emailSettings: action.emailSettings });
+			return Object.assign({}, state, { emailSettings: action.emailSettings })
 		case t.IMPORT_SETTINGS_RECEIVE:
 			return Object.assign({}, state, {
-				importSettings: action.importSettings
-			});
+				importSettings: action.importSettings,
+			})
 		case t.EMAIL_TEMPLATE_REQUEST:
-			return Object.assign({}, state, { emailTemplate: null });
+			return Object.assign({}, state, { emailTemplate: null })
 		case t.EMAIL_TEMPLATE_RECEIVE:
-			return Object.assign({}, state, { emailTemplate: action.emailTemplate });
+			return Object.assign({}, state, { emailTemplate: action.emailTemplate })
 		case t.SHIPPING_METHODS_RECEIVE:
 			return Object.assign({}, state, {
-				shippingMethods: action.shippingMethods
-			});
+				shippingMethods: action.shippingMethods,
+			})
 		case t.PAYMENT_METHODS_RECEIVE:
 			return Object.assign({}, state, {
-				paymentMethods: action.paymentMethods
-			});
+				paymentMethods: action.paymentMethods,
+			})
 		case t.SHIPPING_METHOD_RECEIVE:
 			return Object.assign({}, state, {
-				shippingMethodEdit: action.shippingMethodEdit
-			});
+				shippingMethodEdit: action.shippingMethodEdit,
+			})
 		case t.PAYMENT_METHOD_RECEIVE:
 			return Object.assign({}, state, {
-				paymentMethodEdit: action.paymentMethodEdit
-			});
+				paymentMethodEdit: action.paymentMethodEdit,
+			})
 		case t.PAYMENT_GATEWAY_RECEIVE:
 			return Object.assign({}, state, {
-				paymentGatewayEdit: action.paymentGatewayEdit
-			});
+				paymentGatewayEdit: action.paymentGatewayEdit,
+			})
 		case t.CHECKOUT_FIELD_REQUEST:
-			return Object.assign({}, state, { checkoutField: null });
+			return Object.assign({}, state, { checkoutField: null })
 		case t.CHECKOUT_FIELD_RECEIVE:
-			return Object.assign({}, state, { checkoutField: action.checkoutField });
+			return Object.assign({}, state, { checkoutField: action.checkoutField })
 		case t.COMMERCE_SETTINGS_REQUEST:
-			return Object.assign({}, state, { commerceSettings: null });
+			return Object.assign({}, state, { commerceSettings: null })
 		case t.COMMERCE_SETTINGS_RECEIVE:
 			return Object.assign({}, state, {
-				commerceSettings: action.commerceSettings
-			});
+				commerceSettings: action.commerceSettings,
+			})
 		case t.CHECKOUT_FIELDS_RECEIVE:
 			return Object.assign({}, state, {
-				checkoutFields: action.checkoutFields
-			});
+				checkoutFields: action.checkoutFields,
+			})
 		case t.TOKENS_RECEIVE:
-			return Object.assign({}, state, { tokens: action.tokens });
+			return Object.assign({}, state, { tokens: action.tokens })
 		case t.TOKEN_RECEIVE:
 			return Object.assign({}, state, {
 				tokenEdit: action.tokenEdit,
-				newToken: null
-			});
+				newToken: null,
+			})
 		case t.NEW_TOKEN_RECEIVE:
-			return Object.assign({}, state, { newToken: action.newToken });
+			return Object.assign({}, state, { newToken: action.newToken })
 		case t.THEME_SETTINGS_RECEIVE:
-			return Object.assign({}, state, { themeSettings: action.settings });
+			return Object.assign({}, state, { themeSettings: action.settings })
 		case t.THEME_SETTINGS_SCHEMA_RECEIVE:
-			return Object.assign({}, state, { themeSettingsSchema: action.schema });
+			return Object.assign({}, state, { themeSettingsSchema: action.schema })
 		case t.REDIRECTS_RECEIVE:
-			return Object.assign({}, state, { redirects: action.redirects });
+			return Object.assign({}, state, { redirects: action.redirects })
 		case t.REDIRECT_RECEIVE:
-			return Object.assign({}, state, { redirectEdit: action.redirectEdit });
+			return Object.assign({}, state, { redirectEdit: action.redirectEdit })
 		case t.WEBHOOKS_RECEIVE:
-			return Object.assign({}, state, { webhooks: action.webhooks });
+			return Object.assign({}, state, { webhooks: action.webhooks })
 		case t.WEBHOOK_RECEIVE:
-			return Object.assign({}, state, { webhookEdit: action.webhookEdit });
+			return Object.assign({}, state, { webhookEdit: action.webhookEdit })
 		default:
-			return state;
+			return state
 	}
-};
+}

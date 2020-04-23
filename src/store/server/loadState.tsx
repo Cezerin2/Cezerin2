@@ -1,78 +1,78 @@
-import api from './api';
-import queryString from 'query-string';
+import api from "./api"
+import queryString from "query-string"
 import {
 	getParsedProductFilter,
 	getProductFilterForCategory,
-	getProductFilterForSearch
-} from '../shared/actions';
-import * as themeLocales from './themeLocales';
+	getProductFilterForSearch,
+} from "../shared/actions"
+import * as themeLocales from "./themeLocales"
 import {
 	PAGE,
 	PRODUCT_CATEGORY,
 	PRODUCT,
 	RESERVED,
-	SEARCH
-} from '../shared/pageTypes';
+	SEARCH,
+} from "../shared/pageTypes"
 
 const PRODUCT_FIELDS =
-	'path,id,name,category_id,category_ids,category_name,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags,position';
+	"path,id,name,category_id,category_ids,category_name,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags,position"
 const CATEGORIES_FIELDS =
-	'image,name,description,meta_description,meta_title,sort,parent_id,position,slug,id';
+	"image,name,description,meta_description,meta_title,sort,parent_id,position,slug,id"
 
 const getCurrentPage = path => {
 	return api.sitemap
 		.retrieve({ path: path, enabled: true })
 		.then(sitemapResponse => {
 			if (sitemapResponse.status === 200) {
-				return sitemapResponse.json;
+				return sitemapResponse.json
 			} else if (sitemapResponse.status === 404) {
 				return {
 					type: 404,
 					path: path,
-					resource: null
-				};
+					resource: null,
+				}
 			} else {
-				return Promise.reject(`Page response code = ${sitemapResponse.status}`);
+				return Promise.reject(`Page response code = ${sitemapResponse.status}`)
 			}
-		});
-};
+		})
+}
 
 const getProducts = (currentPage, productFilter) => {
 	if (currentPage.type === PRODUCT_CATEGORY || currentPage.type === SEARCH) {
-		let filter = getParsedProductFilter(productFilter);
-		filter.enabled = true;
-		return api.products.list(filter).then(({ status, json }) => json);
+		let filter = getParsedProductFilter(productFilter)
+		filter.enabled = true
+		return api.products.list(filter).then(({ status, json }) => json)
 	} else {
-		return null;
+		return null
 	}
-};
+}
 
 const getProduct = currentPage => {
 	if (currentPage.type === PRODUCT) {
 		return api.products
 			.retrieve(currentPage.resource)
-			.then(({ status, json }) => json);
+			.then(({ status, json }) => json)
 	} else {
-		return {};
+		return {}
 	}
-};
+}
 
 const getPage = currentPage => {
 	if (currentPage.type === PAGE) {
 		return api.pages
 			.retrieve(currentPage.resource)
-			.then(({ status, json }) => json);
+			.then(({ status, json }) => json)
 	} else {
-		return {};
+		return {}
 	}
-};
+}
 
 const getThemeSettings = () => {
 	return api.theme.settings
 		.retrieve()
 		.then(({ status, json }) => json)
-		.catch(err => ({}));
-};
+		.catch(err => ({}))
+}
 
 const getAllData = (currentPage, productFilter, cookie) => {
 	return Promise.all([
@@ -84,7 +84,7 @@ const getAllData = (currentPage, productFilter, cookie) => {
 		getProducts(currentPage, productFilter),
 		getProduct(currentPage),
 		getPage(currentPage),
-		getThemeSettings()
+		getThemeSettings(),
 	]).then(
 		([
 			checkoutFields,
@@ -93,11 +93,11 @@ const getAllData = (currentPage, productFilter, cookie) => {
 			products,
 			product,
 			page,
-			themeSettings
+			themeSettings,
 		]) => {
-			let categoryDetails = null;
+			let categoryDetails = null
 			if (currentPage.type === PRODUCT_CATEGORY) {
-				categoryDetails = categories.find(c => c.id === currentPage.resource);
+				categoryDetails = categories.find(c => c.id === currentPage.resource)
 			}
 			return {
 				checkoutFields,
@@ -107,11 +107,11 @@ const getAllData = (currentPage, productFilter, cookie) => {
 				product,
 				page,
 				categoryDetails,
-				themeSettings
-			};
+				themeSettings,
+			}
 		}
-	);
-};
+	)
+}
 
 const getState = (currentPage, settings, allData, location, productFilter) => {
 	const {
@@ -122,23 +122,23 @@ const getState = (currentPage, settings, allData, location, productFilter) => {
 		product,
 		page,
 		categoryDetails,
-		themeSettings
-	} = allData;
+		themeSettings,
+	} = allData
 
-	let productsTotalCount = 0;
-	let productsHasMore = false;
-	let productsMinPrice = 0;
-	let productsMaxPrice = 0;
-	let productsAttributes = [];
+	let productsTotalCount = 0
+	let productsHasMore = false
+	let productsMinPrice = 0
+	let productsMaxPrice = 0
+	let productsAttributes = []
 
 	if (products) {
-		productsTotalCount = products.total_count;
-		productsHasMore = products.has_more;
-		productsAttributes = products.attributes;
+		productsTotalCount = products.total_count
+		productsHasMore = products.has_more
+		productsAttributes = products.attributes
 
 		if (products.price) {
-			productsMinPrice = products.price.min;
-			productsMaxPrice = products.price.max;
+			productsMinPrice = products.price.min
+			productsMaxPrice = products.price.max
 		}
 	}
 
@@ -166,76 +166,76 @@ const getState = (currentPage, settings, allData, location, productFilter) => {
 			processingCheckout: false,
 			productFilter: {
 				onSale: null,
-				search: productFilter.search || '',
+				search: productFilter.search || "",
 				categoryId: productFilter.categoryId,
 				priceFrom: productFilter.priceFrom || 0,
 				priceTo: productFilter.priceTo || 0,
 				attributes: productFilter.attributes,
 				sort: settings.default_product_sorting,
 				fields:
-					settings.product_fields && settings.product_fields !== ''
+					settings.product_fields && settings.product_fields !== ""
 						? settings.product_fields
 						: PRODUCT_FIELDS,
 				limit:
 					settings.products_limit && settings.products_limit !== 0
 						? settings.products_limit
-						: 30
+						: 30,
 			},
 			cart: cart,
 			order: null,
 			checkoutFields: checkoutFields,
-			themeSettings: themeSettings
-		}
-	};
+			themeSettings: themeSettings,
+		},
+	}
 
-	return state;
-};
+	return state
+}
 
 const getFilter = (currentPage, urlQuery, settings) => {
-	let productFilter = {};
+	let productFilter = {}
 
 	if (currentPage.type === PRODUCT_CATEGORY) {
 		productFilter = getProductFilterForCategory(
 			urlQuery,
 			settings.default_product_sorting
-		);
-		productFilter.categoryId = currentPage.resource;
+		)
+		productFilter.categoryId = currentPage.resource
 	} else if (currentPage.type === SEARCH) {
-		productFilter = getProductFilterForSearch(urlQuery);
+		productFilter = getProductFilterForSearch(urlQuery)
 	}
 
 	productFilter.fields =
-		settings.product_fields && settings.product_fields !== ''
+		settings.product_fields && settings.product_fields !== ""
 			? settings.product_fields
-			: PRODUCT_FIELDS;
+			: PRODUCT_FIELDS
 	productFilter.limit =
 		settings.products_limit && settings.products_limit !== 0
 			? settings.products_limit
-			: 30;
+			: 30
 
-	return productFilter;
-};
+	return productFilter
+}
 
 export const loadState = (req, language) => {
-	const cookie = req.get('cookie');
-	const urlPath = req.path;
-	const urlQuery = req.url.includes('?')
-		? req.url.substring(req.url.indexOf('?'))
-		: '';
+	const cookie = req.get("cookie")
+	const urlPath = req.path
+	const urlQuery = req.url.includes("?")
+		? req.url.substring(req.url.indexOf("?"))
+		: ""
 	const location = {
 		hasHistory: false,
 		pathname: urlPath,
 		search: urlQuery,
-		hash: ''
-	};
+		hash: "",
+	}
 
 	return Promise.all([
 		getCurrentPage(req.path),
 		api.settings.retrieve().then(({ status, json }) => json),
 		themeLocales.getText(language),
-		api.theme.placeholders.list()
+		api.theme.placeholders.list(),
 	]).then(([currentPage, settings, themeText, placeholdersResponse]) => {
-		const productFilter = getFilter(currentPage, urlQuery, settings);
+		const productFilter = getFilter(currentPage, urlQuery, settings)
 
 		return getAllData(currentPage, productFilter, cookie).then(allData => {
 			const state = getState(
@@ -244,12 +244,12 @@ export const loadState = (req, language) => {
 				allData,
 				location,
 				productFilter
-			);
+			)
 			return {
 				state: state,
 				themeText: themeText,
-				placeholders: placeholdersResponse.json
-			};
-		});
-	});
-};
+				placeholders: placeholdersResponse.json,
+			}
+		})
+	})
+}

@@ -1,58 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import messages from 'lib/text';
-import CategorySelect from 'modules/productCategories/select';
-import DeleteConfirmation from 'modules/shared/deleteConfirmation';
-import FontIcon from 'material-ui/FontIcon';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import Search from './search';
-const Fragment = React.Fragment;
+import React from "react"
+import { Link } from "react-router-dom"
+import messages from "lib/text"
+import CategorySelect from "modules/productCategories/select"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import FontIcon from "material-ui/FontIcon"
+import IconMenu from "material-ui/IconMenu"
+import IconButton from "material-ui/IconButton"
+import Dialog from "material-ui/Dialog"
+import FlatButton from "material-ui/FlatButton"
+import Search from "./search"
+const Fragment = React.Fragment
 
 export default class Buttons extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			categoryIdMoveTo: null,
 			openMoveTo: false,
-			openDelete: false
-		};
+			openDelete: false,
+		}
 	}
 
 	showMoveTo = () => {
-		this.setState({ openMoveTo: true });
-	};
+		this.setState({ openMoveTo: true })
+	}
 
 	openDelete = () => {
-		this.setState({ openDelete: true });
-	};
+		this.setState({ openDelete: true })
+	}
 
 	closeDelete = () => {
-		this.setState({ openDelete: false });
-	};
+		this.setState({ openDelete: false })
+	}
 
 	deleteProduct = () => {
-		this.setState({ openDelete: false });
-		this.props.onDelete();
-	};
+		this.setState({ openDelete: false })
+		this.props.onDelete()
+	}
 
 	closeMoveTo = () => {
-		this.setState({ openMoveTo: false });
-	};
+		this.setState({ openMoveTo: false })
+	}
 
 	saveMoveTo = () => {
-		this.setState({ openMoveTo: false });
-		this.props.onMoveTo(this.state.categoryIdMoveTo);
-	};
+		this.setState({ openMoveTo: false })
+		this.props.onMoveTo(this.state.categoryIdMoveTo)
+	}
 
 	selectMoveTo = categoryId => {
-		this.setState({ categoryIdMoveTo: categoryId });
-	};
+		this.setState({ categoryIdMoveTo: categoryId })
+	}
 
 	render() {
-		const { search, setSearch, selectedCount, onDelete, onCreate, onImportProducts } = this.props;
+		const {
+			search,
+			setSearch,
+			selectedCount,
+			onDelete,
+			onCreate,
+			onImportProducts,
+		} = this.props
 
 		const actionsMoveTo = [
 			<FlatButton
@@ -65,8 +72,8 @@ export default class Buttons extends React.Component {
 				primary={true}
 				keyboardFocused={true}
 				onClick={this.saveMoveTo}
-			/>
-		];
+			/>,
+		]
 
 		return (
 			<Fragment>
@@ -127,6 +134,6 @@ export default class Buttons extends React.Component {
 					</FontIcon>
 				</IconButton>
 			</Fragment>
-		);
+		)
 	}
 }

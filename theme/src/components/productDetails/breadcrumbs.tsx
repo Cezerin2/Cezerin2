@@ -1,7 +1,7 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { text } from '../../lib/settings'
-import * as helper from '../../lib/helper'
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { text } from "../../lib/settings"
+import * as helper from "../../lib/helper"
 
 const ProductBreadcrumbs = ({ product, categories }) => {
 	const items = helper.getProductBreadcrumbs(product, categories)

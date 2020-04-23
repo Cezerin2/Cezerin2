@@ -1,25 +1,25 @@
-const path = require('path')
-const webpack = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const applicationConfig = require('./config/admin.js')
+const path = require("path")
+const webpack = require("webpack")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CleanWebpackPlugin = require("clean-webpack-plugin")
+const applicationConfig = require("./config/admin.js")
 const applicationText = require(`./locales/${applicationConfig.language}.json`)
 
 module.exports = {
 	entry: {
-		app: path.resolve(__dirname, 'src/admin/client/index.js'),
+		app: path.resolve(__dirname, "src/admin/client/index.js"),
 		vendor: [
-			'react',
-			'react-dom',
-			'react-redux',
-			'redux-thunk',
-			'react-router-dom',
-			'react-dropzone',
-			'redux',
-			'redux-form',
-			'redux-form-material-ui',
-			'material-ui',
+			"react",
+			"react-dom",
+			"react-redux",
+			"redux-thunk",
+			"react-router-dom",
+			"react-dropzone",
+			"redux",
+			"redux-form",
+			"redux-form-material-ui",
+			"material-ui",
 		],
 	},
 
@@ -28,19 +28,19 @@ module.exports = {
 	},
 
 	output: {
-		publicPath: '/',
-		path: path.resolve(__dirname, 'public'),
-		filename: 'admin-assets/js/[name]-[chunkhash].js',
-		chunkFilename: 'admin-assets/js/[name]-[chunkhash].js',
+		publicPath: "/",
+		path: path.resolve(__dirname, "public"),
+		filename: "admin-assets/js/[name]-[chunkhash].js",
+		chunkFilename: "admin-assets/js/[name]-[chunkhash].js",
 	},
 
 	optimization: {
 		splitChunks: {
 			cacheGroups: {
 				vendor: {
-					chunks: 'initial',
-					name: 'vendor',
-					test: 'vendor',
+					chunks: "initial",
+					name: "vendor",
+					test: "vendor",
 					enforce: true,
 				},
 			},
@@ -49,10 +49,10 @@ module.exports = {
 
 	resolve: {
 		alias: {
-			src: path.resolve(__dirname, 'src/admin/client'),
-			routes: path.resolve(__dirname, 'src/admin/client/routes'),
-			modules: path.resolve(__dirname, 'src/admin/client/modules'),
-			lib: path.resolve(__dirname, 'src/admin/client/lib'),
+			src: path.resolve(__dirname, "src/admin/client"),
+			routes: path.resolve(__dirname, "src/admin/client/routes"),
+			modules: path.resolve(__dirname, "src/admin/client/modules"),
+			lib: path.resolve(__dirname, "src/admin/client/lib"),
 		},
 	},
 
@@ -64,55 +64,52 @@ module.exports = {
 						test: /\.(js|jsx)$/,
 						exclude: /node_modules/,
 						use: {
-							loader: 'babel-loader',
+							loader: "babel-loader",
 							options: {
-								presets: ['env', 'react'],
-								plugins: ['transform-class-properties'],
+								presets: ["env", "react"],
+								plugins: ["transform-class-properties"],
 							},
 						},
 					},
 					{
 						test: /\.css$/,
-						include: [path.resolve(__dirname, 'public')],
-						exclude: [path.resolve(__dirname, 'src')],
+						include: [path.resolve(__dirname, "public")],
+						exclude: [path.resolve(__dirname, "src")],
 						use: [
 							MiniCssExtractPlugin.loader,
 							{
-								loader: 'css-loader',
+								loader: "css-loader",
 								options: {
 									modules: false,
 									importLoaders: true,
 								},
 							},
-							'postcss-loader',
+							"postcss-loader",
 						],
 					},
 					{
 						test: /\.css$/,
-						exclude: [
-							path.resolve(__dirname, 'node_modules|public'),
-						],
+						exclude: [path.resolve(__dirname, "node_modules|public")],
 						use: [
 							MiniCssExtractPlugin.loader,
 							{
-								loader: 'css-loader',
+								loader: "css-loader",
 								options: {
 									modules: true,
 									importLoaders: true,
-									localIdentName:
-										'[name]__[local]___[hash:base64:5]',
+									localIdentName: "[name]__[local]___[hash:base64:5]",
 								},
 							},
-							'postcss-loader',
+							"postcss-loader",
 						],
 					},
 					{
 						test: /\.sass$/,
 						use: [
 							MiniCssExtractPlugin.loader,
-							'css-loader',
-							'postcss-loader',
-							'sass-loader',
+							"css-loader",
+							"postcss-loader",
+							"sass-loader",
 						],
 					},
 				],
@@ -124,9 +121,9 @@ module.exports = {
 		new CleanWebpackPlugin({
 			verbose: false,
 			cleanOnceBeforeBuildPatterns: [
-				'public/admin-assets/js/app-*.js',
-				'public/admin-assets/js/vendor-*.js',
-				'public/admin-assets/css/bundle-*.css',
+				"public/admin-assets/js/app-*.js",
+				"public/admin-assets/js/vendor-*.js",
+				"public/admin-assets/css/bundle-*.css",
 			],
 		}),
 		new webpack.DefinePlugin({
@@ -136,14 +133,14 @@ module.exports = {
 			APPLICATION_TEXT: JSON.stringify(applicationText),
 		}),
 		new MiniCssExtractPlugin({
-			filename: 'admin-assets/css/bundle-[contenthash].css',
-			chunkFilename: 'admin-assets/css/bundle-[contenthash].css',
+			filename: "admin-assets/css/bundle-[contenthash].css",
+			chunkFilename: "admin-assets/css/bundle-[contenthash].css",
 		}),
 		new HtmlWebpackPlugin({
-			template: 'src/admin/client/index.html',
+			template: "src/admin/client/index.html",
 			language: applicationConfig.language,
-			inject: 'body',
-			filename: 'admin/index.html',
+			inject: "body",
+			filename: "admin/index.html",
 		}),
 		new webpack.BannerPlugin({
 			banner: `Created: ${new Date().toUTCString()}`,

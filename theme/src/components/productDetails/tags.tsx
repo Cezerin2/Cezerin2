@@ -1,6 +1,6 @@
-import React from 'react';
-import * as helper from '../../lib/helper';
-import { themeSettings, text } from '../../lib/settings';
+import React from "react"
+import * as helper from "../../lib/helper"
+import { themeSettings, text } from "../../lib/settings"
 
 const Tags = ({ tags }) => {
 	if (tags && tags.length > 0) {
@@ -12,10 +12,10 @@ const Tags = ({ tags }) => {
 					</span>
 				))}
 			</div>
-		);
+		)
 	} else {
-		return null;
+		return null
 	}
-};
+}
 
-export default Tags;
+export default Tags

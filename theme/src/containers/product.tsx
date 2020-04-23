@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import MetaTags from '../components/metaTags'
-import ProductDetails from '../components/productDetails'
+import React from "react"
+import PropTypes from "prop-types"
+import MetaTags from "../components/metaTags"
+import ProductDetails from "../components/productDetails"
 
-const ProductContainer = (props) => {
+const ProductContainer = props => {
 	const {
 		addCartItem,
 		getJSONLD,

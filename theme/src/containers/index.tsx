@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { themeSettings } from '../lib/settings'
-import MetaTags from '../components/metaTags'
-import CustomProducts from '../components/products/custom'
-import HomeSlider from '../components/homeSlider'
+import React from "react"
+import PropTypes from "prop-types"
+import { themeSettings } from "../lib/settings"
+import MetaTags from "../components/metaTags"
+import CustomProducts from "../components/products/custom"
+import HomeSlider from "../components/homeSlider"
 
-const IndexContainer = (props) => {
+const IndexContainer = props => {
 	const {
 		addCartItem,
 		state: { pageDetails, settings },

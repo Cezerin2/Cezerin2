@@ -52,22 +52,19 @@
 		<script>
 			function resizeElements() {
 				if (window.innerWidth >= 769) {
-					var allHeaders = document.getElementsByTagName('header')
+					var allHeaders = document.getElementsByTagName("header")
 					var header =
-						allHeaders && allHeaders.length > 0
-							? allHeaders[0]
-							: null
+						allHeaders && allHeaders.length > 0 ? allHeaders[0] : null
 
 					if (header) {
-						document.getElementsByTagName(
-							'body'
-						)[0].style.marginTop = header.clientHeight + 'px'
+						document.getElementsByTagName("body")[0].style.marginTop =
+							header.clientHeight + "px"
 					}
 				}
 			}
 			resizeElements()
-			window.addEventListener('resize', resizeElements)
-			window.addEventListener('load', resizeElements)
+			window.addEventListener("resize", resizeElements)
+			window.addEventListener("load", resizeElements)
 		</script>
 
 		<script charset="UTF-8">

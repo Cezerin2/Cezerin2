@@ -1,5 +1,5 @@
-import React from 'react';
-import Item from './item';
+import React from "react"
+import Item from "./item"
 
 const ServiceItem = ({ app }) => {
 	return (
@@ -8,7 +8,7 @@ const ServiceItem = ({ app }) => {
 			coverUrl={app.coverUrl}
 			title={app.name}
 		/>
-	);
-};
+	)
+}
 
-export default ServiceItem;
+export default ServiceItem
