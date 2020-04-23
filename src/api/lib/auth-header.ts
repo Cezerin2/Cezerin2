@@ -1,28 +1,28 @@
-import jwt from 'jsonwebtoken';
-import serverConfigs from '../../../../config/server';
+import jwt from "jsonwebtoken"
+import serverConfigs from "../../../../config/server"
 
-const cert = serverConfigs.jwtSecretKey;
+const cert = serverConfigs.jwtSecretKey
 class AuthHeader {
-    constructor() {}
-    
-    encodeUserLoginAuth(userId) {
-        return jwt.sign({ userId: userId }, cert);
-    }
+	constructor() {}
 
-    decodeUserLoginAuth(token) {
-        try {
-            return jwt.verify(token, cert);
-        } catch(error) {
-            return error;
-        }
-    }
+	encodeUserLoginAuth(userId) {
+		return jwt.sign({ userId: userId }, cert)
+	}
 
-    encodeUserPassword(token) {
-        return jwt.sign({ password: token }, cert);
-    }
+	decodeUserLoginAuth(token) {
+		try {
+			return jwt.verify(token, cert)
+		} catch (error) {
+			return error
+		}
+	}
 
-    decodeUserPassword(token) {
-        return jwt.verify(token, cert);
-    }
+	encodeUserPassword(token) {
+		return jwt.sign({ password: token }, cert)
+	}
+
+	decodeUserPassword(token) {
+		return jwt.verify(token, cert)
+	}
 }
-export default new AuthHeader();
+export default new AuthHeader()
