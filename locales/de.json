@@ -380,5 +380,7 @@
   "themeInstalled": "Installation abgeschlossen",
   "category": "Kategorie",
   "additionalCategories": "Weitere Kategorien",
-  "alt": "Alternativer Text"
+  "alt": "Alternativer Text",
+  "cookie_banner": "Cookie Banner",
+  "cookie_banner_info": "Hier können Sie den HTML Content für den Cookie Banner pflegen. Sie können die Sichtbarkeit des Cookie Banner unter: Settings -> General -> Cookie Banner, steuern. Bitte beachten Sie - für den Cookies Akzeptieren Button (OK) muss die Klasse (set-cookies) beibehalten werden."
 }

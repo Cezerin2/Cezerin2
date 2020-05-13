@@ -17,6 +17,7 @@ import TokensEdit from 'modules/settings/tokens/edit';
 import Email from 'modules/settings/email';
 import Import from 'modules/settings/import';
 import GoogleSpredsheet from 'modules/settings/googlespreadsheet';
+import CookieBanner from 'modules/settings/cookieBanner';
 import Smtp from 'modules/settings/smtp';
 import EmailTemplate from 'modules/settings/emailTemplates';
 import Checkout from 'modules/settings/checkout';
@@ -127,6 +128,19 @@ const SettingsMenu = () => (
 		<NavLink
 			style={styles.link}
 			activeStyle={styles.linkActive}
+			to="/admin/settings/cookiebanner"
+			exact={true}
+		>
+			<ListItem
+				primaryText={messages.cookie_banner}
+				leftIcon={
+					<FontIcon className="material-icons">call_to_action</FontIcon>
+				}
+			/>
+		</NavLink>
+		<NavLink
+			style={styles.link}
+			activeStyle={styles.linkActive}
 			to="/admin/settings/webhooks"
 		>
 			<ListItem
@@ -201,6 +215,11 @@ const Settings = ({ match }) => {
 						path="/admin/settings/import/googlespreadsheet"
 						exact
 						component={GoogleSpredsheet}
+					/>
+					<Route
+						path="/admin/settings/cookiebanner"
+						exact
+						component={CookieBanner}
 					/>
 					<Route path="/admin/settings/checkout" exact component={Checkout} />
 					<Route

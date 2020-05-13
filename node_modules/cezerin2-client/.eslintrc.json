@@ -1,0 +1,18 @@
+{
+	"parser": "babel-eslint",
+	"extends": ["airbnb", "prettier"],
+	"plugins": ["prettier", "import"],
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true,
+		"jest": true
+	},
+	"rules": {
+		"prettier/prettier": ["error", { "singleQuote": true }],
+		"class-methods-use-this": 0
+	}
+}

@@ -382,5 +382,7 @@
   "themeInstalled": "安装完成",
   "category": "类别",
   "additionalCategories": "其他类别",
-  "alt": "替代文本"
+  "alt": "替代文本",
+  "cookie_banner": "Cookie横幅",
+  "cookie_banner_info": "您可以在此处设置Cookie标语的HTML。 Cookie横幅的可见性可以在以下位置进行设置：设置->常规-> Cookie横幅。请注意-如果类（set-cookie）保留，则使用cookie接受按钮（OK）。"
 }

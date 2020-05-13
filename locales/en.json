@@ -382,5 +382,7 @@
   "themeInstalled": "installation completed",
   "category": "Category",
   "additionalCategories": "Additional Categories",
-  "alt": "Alternative text"
+  "alt": "Alternative text",
+  "cookie_banner": "Cookie Banner",
+  "cookie_banner_info": "Here you can set the HTML for the Cookie Banner. The visibility of the Cookie Banner is to set in: Settings -> General -> Cookie Banner. Please note - for the cookie accept button (OK) should the class (set-cookie) remain."
 }

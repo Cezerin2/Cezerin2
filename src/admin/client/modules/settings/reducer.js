@@ -19,6 +19,7 @@ const initialState = {
 	},
 	emailSettings: null,
 	importSettings: null,
+	cookieBanner: null,
 	emailTemplate: null,
 	checkoutField: null,
 	checkoutFields: [],
@@ -57,6 +58,10 @@ export default (state = initialState, action) => {
 			return Object.assign({}, state, {
 				importSettings: action.importSettings
 			});
+		case t.COOKIE_BANNER_REQUEST:
+			return Object.assign({}, state, { cookieBanner: action.cookieBanner });
+		case t.COOKIE_BANNER_RECEIVE:
+			return Object.assign({}, state, { cookieBanner: action.cookieBanner });
 		case t.EMAIL_TEMPLATE_REQUEST:
 			return Object.assign({}, state, { emailTemplate: null });
 		case t.EMAIL_TEMPLATE_RECEIVE:

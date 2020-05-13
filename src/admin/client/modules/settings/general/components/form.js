@@ -514,6 +514,20 @@ class GeneralSettings extends React.Component {
 							}}
 						/>
 
+						<Field
+							component={CustomToggle}
+							name="cookie_banner"
+							label={messages.cookie_banner}
+							style={{ paddingTop: 16, paddingBottom: 16 }}
+						/>
+
+						<Divider
+							style={{
+								marginTop: 10,
+								marginBottom: 10
+							}}
+						/>
+
 						<div className="row between-xs middle-xs">
 							<div className="col-xs-12 col-sm-6">{messages.domain}</div>
 							<div className="col-xs-12 col-sm-6">

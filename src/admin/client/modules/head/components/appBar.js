@@ -263,6 +263,8 @@ export default class AppBarTop extends React.Component {
 			rightElements = <CustomerGroupHead />;
 		} else if (pathname === '/admin/settings/email') {
 			title = messages.settings_emailSettings;
+		} else if (pathname === '/admin/settings/cookiebanner') {
+			title = messages.cookie_banner;
 		} else if (pathname === '/admin/settings/email/smtp') {
 			title = messages.settings_smtpSettings;
 			leftButton = (

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../lib/settings';
@@ -87,11 +88,52 @@ const Contacts = ({ contacts }) => {
 
 export default class Footer extends React.PureComponent {
 	static propTypes = {
-		settings: PropTypes.shape({}).isRequired
+		settings: PropTypes.shape({}).isRequired,
+		cookieBannerContent: PropTypes.func.isRequired
+	};
+
+	componentDidMount() {
+		this.getCookieBannerContent();
+		let child = null;
+		const node = ReactDOM.findDOMNode(this);
+		// Get child nodes
+		if (node instanceof HTMLElement) {
+			child = node.querySelector('.cookie-banner-wrapper');
+			setTimeout(() => {
+				const cookieOkButton = node.querySelector('.set-cookie');
+				if (cookieOkButton === null) {
+					return;
+				}
+				cookieOkButton.addEventListener(
+					'click',
+					this.setCookie.bind(null, this)
+				);
+			}, 500);
+		}
+	}
+
+	getCookieBannerContent = () => {
+		this.props.cookieBannerContent({
+			setCookie: false
+		});
+	};
+
+	setCookie = () => {
+		this.props.cookieBannerContent({
+			setCookie: true
+		});
 	};
 
 	render() {
-		const { settings } = this.props;
+		const { settings, cookieBannerContent, cookiebanner } = this.props;
+		let cookieBannerVisibility =
+			settings.cookie_banner ||
+			(cookiebanner !== undefined &&
+				'setCookie' in cookiebanner &&
+				!cookiebanner.setCookie);
+		let cookieBanner =
+			cookiebanner !== undefined && cookiebanner.body ? cookiebanner.body : '';
+
 		const footerLogoUrl =
 			themeSettings.footer_logo_url && themeSettings.footer_logo_url.length > 0
 				? '/assets/images/' + themeSettings.footer_logo_url
@@ -128,6 +170,16 @@ export default class Footer extends React.PureComponent {
 							</div>
 						</div>
 					</div>
+					<div
+						className={
+							cookieBannerVisibility
+								? 'cookie-banner-wrapper'
+								: 'cookie-banner-wrapper--hidden'
+						}
+						dangerouslySetInnerHTML={{
+							__html: cookieBanner
+						}}
+					/>
 				</footer>
 			</section>
 		);

@@ -50,6 +50,14 @@ const getIP = req => {
 	return ip;
 };
 
+const getBannerCookieOptions = isHttps => ({
+	maxAge: 1000 * 60 * 60 * 1000, // 40 days
+	httpOnly: true,
+	signed: true,
+	secure: isHttps,
+	sameSite: 'strict'
+});
+
 const getUserAgent = req => req.get('user-agent');
 
 const fillCartItemWithProductData = (products, cartItem) => {
@@ -560,6 +568,52 @@ ajaxRouter.put('/customer-account', async (req, res, next) => {
 		);
 	} catch (error) {}
 });
+
+ajaxRouter.post('/', async (req, res, next) => {
+	const isCookieSet = {
+		_id: null,
+		name: null,
+		body: null,
+		set: false
+	};
+	const cookies = getCookies(req);
+	if (cookies['cookie_banner_id'] !== undefined) {
+		isCookieSet.set = true;
+		res.status(200).send(JSON.stringify(isCookieSet));
+		return;
+	}
+	const { setCookie } = req.body;
+	if (setCookie) {
+		const isHttps = req.protocol === 'https';
+		const BANNER_COOKIE_OPTIONS = getBannerCookieOptions(isHttps);
+		res.cookie('cookie_banner_id', '1', BANNER_COOKIE_OPTIONS);
+		isCookieSet.set = true;
+		res.status(200).send(JSON.stringify(isCookieSet));
+		return;
+	}
+
+	await db
+		.collection('cookieBanner')
+		.find({ name: 'cookie_banner' })
+		.limit(1)
+		.next((error, result) => {
+			if (error) {
+				// alert
+				throw error;
+			}
+			res.status(200).send(JSON.stringify(result));
+		});
+});
+
+var getCookies = req => {
+	var cookies = {};
+	req.headers &&
+		req.headers.cookie.split(';').forEach(function(cookie) {
+			var parts = cookie.match(/(.*?)=(.*)$/);
+			cookies[parts[1].trim()] = (parts[2] || '').trim();
+		});
+	return cookies;
+};
 
 ajaxRouter.post('/cart/items', (req, res, next) => {
 	const isHttps = req.protocol === 'https';
