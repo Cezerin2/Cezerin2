@@ -1,1 +1,1 @@
-export { api as default } from './settings';
+export { api as default } from "./settings"

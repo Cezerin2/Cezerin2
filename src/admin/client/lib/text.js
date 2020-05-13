@@ -1,1 +1,1 @@
-export default APPLICATION_TEXT;
+export default APPLICATION_TEXT

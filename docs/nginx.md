@@ -94,11 +94,12 @@ server {
 
 # Nginx with SSL routing config file
 
-* Please confirm first your domain directory on Nginx
-* Usually is it /home/admin/web/yourdomain/ but in some cases it could be /var/www/
-* Replace it along the code
+- Please confirm first your domain directory on Nginx
+- Usually is it /home/admin/web/yourdomain/ but in some cases it could be /var/www/
+- Replace it along the code
 
 ### locate the yourdomain.nginx.ssl.conf file in /home/admin/conf/web/
+
 ### open it and edit
 
 ```nginx
