@@ -2,8 +2,8 @@
 
 Client-side apps on the dashboard.
 
-* [Retrieve settings](#retrieve-settings)
-* [Update settings](#update-settings)
+- [Retrieve settings](#retrieve-settings)
+- [Update settings](#update-settings)
 
 ## Retrieve settings
 

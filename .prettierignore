@@ -1,6 +1,3 @@
 dist/
 theme/assets/
 theme/dist/
-package-lock.json
-package.json
-yarn.lock
