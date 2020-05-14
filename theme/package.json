@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "author": "",
-  "license": "Unlicense",
+  "license": "MIT",
   "dependencies": {
     "bulma": "^0.6.2",
     "rc-slider": "^8.6.1",
