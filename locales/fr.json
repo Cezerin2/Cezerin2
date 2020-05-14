@@ -382,5 +382,7 @@
   "themeInstalled": "installation terminée",
   "category": "Catégorie",
   "additionalCategories": "Catégories aditionnelles",
-  "alt": "Text alternatif"
+  "alt": "Text alternatif",
+  "cookie_banner": "Bannière de cookie",
+  "cookie_banner_info": "Ici, vous pouvez définir le code HTML pour la bannière de cookie. La visibilité de la bannière de cookie est définie dans: Paramètres -> Général -> Bannière de cookie. Veuillez noter - pour le bouton d'acceptation des cookies (OK) si la classe (set-cookie) reste."
   }

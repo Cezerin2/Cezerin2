@@ -380,5 +380,7 @@
   "themeInstalled": "Instalação completa",
   "category": "Categoria",
   "additionalCategories": "Categorias Adicionais",
-  "alt": "Texto Alternativo"
+  "alt": "Texto Alternativo",
+  "cookie_banner": "Banner de Cookies",
+  "cookie_banner_info": "Aqui você pode definir o HTML para o banner de cookie. A visibilidade do banner de cookies deve ser definida em: Configurações -> Geral -> Banner de cookies. Observe - para o botão de aceitação de cookie (OK), a classe (set-cookie) deve permanecer."
 }

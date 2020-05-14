@@ -172,6 +172,20 @@ const addAllProducts = async db => {
 	}
 };
 
+const addCookieBanner = async db => {
+	const cookieBannerCount = await db
+		.collection('cookieBanner')
+		.countDocuments({ name: 'cookie_banner' });
+	const cookieBannerNotExists = cookieBannerCount === 0;
+	if (cookieBannerNotExists) {
+		await db.collection('cookieBanner').insertOne({
+			name: 'cookie_banner',
+			body: '<div></div>'
+		});
+		winston.info('- Added Cookie Banner');
+	}
+};
+
 const addOrderConfirmationEmailTemplates = async db => {
 	const emailTemplatesCount = await db
 		.collection('emailTemplates')
@@ -593,6 +607,7 @@ const addSettings = async (db, { domain }) => {
 	await db.createCollection('orders');
 	await addAllPages(db);
 	await addAllProducts(db);
+	await addCookieBanner(db);
 	await addOrderConfirmationEmailTemplates(db);
 	await addForgotPasswordEmailTemplates_en(db);
 	await addForgotPasswordEmailTemplates_ru(db);

@@ -7,7 +7,8 @@ import Footer from '../components/footer';
 const SharedContainer = props => {
 	const {
 		children,
-		state: { currentPage, settings }
+		cookieBannerContent,
+		state: { currentPage, settings, cookiebanner }
 	} = props;
 	const hideFooter =
 		(currentPage.path === '/checkout-success' ||
@@ -17,9 +18,14 @@ const SharedContainer = props => {
 	return (
 		<Fragment>
 			<Header {...props} />
-
 			{children}
-			{!hideFooter && <Footer settings={settings} />}
+			{!hideFooter && (
+				<Footer
+					settings={settings}
+					cookieBannerContent={cookieBannerContent}
+					cookiebanner={cookiebanner}
+				/>
+			)}
 		</Fragment>
 	);
 };
@@ -28,7 +34,8 @@ SharedContainer.propTypes = {
 	children: PropTypes.element.isRequired,
 	state: PropTypes.shape({
 		currentPage: PropTypes.shape({}),
-		settings: PropTypes.shape({})
+		settings: PropTypes.shape({}),
+		cookiebanner: PropTypes.shape({})
 	}).isRequired
 };
 

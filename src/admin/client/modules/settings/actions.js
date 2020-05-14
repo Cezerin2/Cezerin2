@@ -47,6 +47,20 @@ function receiveImportSettings(importSettings) {
 	};
 }
 
+function receiveCookieBanner(cookieBanner) {
+	return {
+		type: t.COOKIE_BANNER_RECEIVE,
+		cookieBanner
+	};
+}
+
+function requestCookieBanner(cookieBanner) {
+	return {
+		type: t.COOKIE_BANNER_REQUEST,
+		cookieBanner
+	};
+}
+
 function receiveEmailTemplate(emailTemplate) {
 	return {
 		type: t.EMAIL_TEMPLATE_RECEIVE,
@@ -274,6 +288,31 @@ export function updateImportSettings(importSettings) {
 			.updateImportSettings(importSettings)
 			.then(({ status, json }) => {
 				dispatch(receiveImportSettings(json));
+			})
+			.catch(error => {});
+	};
+}
+
+export function fetchCookieBanner(cookieBanner) {
+	return (dispatch, getState) => {
+		dispatch(requestCookieBanner());
+		return api.settings
+			.retrieveCookieBanner(cookieBanner)
+			.then(({ status, json }) => {
+				console.log(json);
+				dispatch(receiveCookieBanner(json));
+			})
+			.catch(error => {});
+	};
+}
+
+export function updateCookieBanner(cookieBanner) {
+	return (dispatch, getState) => {
+		return api.settings
+			.updateCookieBanner(cookieBanner)
+			.then(({ status, json }) => {
+				console.log(cookieBanner);
+				dispatch(receiveCookieBanner(json));
 			})
 			.catch(error => {});
 	};

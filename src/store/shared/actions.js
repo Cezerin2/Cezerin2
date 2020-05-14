@@ -433,6 +433,21 @@ export const setCurrentPage = location => async (dispatch, getState) => {
 	}
 };
 
+function requestCookieBanner(data) {
+	return { type: t.COOKIE_BANNER_REQUEST, data };
+}
+
+function receiveCookieBanner(data) {
+	return { type: t.COOKIE_BANNER_RECEIVE, data };
+}
+
+export const cookieBannerContent = data => async (dispatch, getState) => {
+	dispatch(requestCookieBanner(data));
+	const response = await api.ajax.cookieBanner.retrieve(data);
+	const cookiebanner = response.json;
+	dispatch(receiveCookieBanner(cookiebanner));
+};
+
 const fetchDataOnCurrentPageChange = currentPage => (dispatch, getState) => {
 	const { app } = getState();
 	let productFilter = null;

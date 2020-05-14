@@ -34,6 +34,7 @@ class SettingsService {
 			weight_unit: 'kg',
 			length_unit: 'cm',
 			hide_billing_address: false,
+			cookie_banner: false,
 			order_confirmation_copy_to: ''
 		};
 	}
@@ -179,6 +180,13 @@ class SettingsService {
 		if (data.hide_billing_address !== undefined) {
 			settings.hide_billing_address = parse.getBooleanIfValid(
 				data.hide_billing_address,
+				false
+			);
+		}
+
+		if (data.cookie_banner !== undefined) {
+			settings.cookie_banner = parse.getBooleanIfValid(
+				data.cookie_banner,
 				false
 			);
 		}

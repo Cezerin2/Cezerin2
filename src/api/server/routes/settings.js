@@ -2,6 +2,7 @@ import security from '../lib/security';
 import SettingsService from '../services/settings/settings';
 import EmailSettingsService from '../services/settings/email';
 import ImportSettingsService from '../services/settings/import';
+import CookieBannerService from '../services/settings/cookieBanner';
 import CommerceSettingsService from '../services/settings/commerce';
 import EmailTemplatesService from '../services/settings/emailTemplates';
 import CheckoutFieldsService from '../services/settings/checkoutFields';
@@ -42,6 +43,16 @@ class SettingsRoute {
 			'/v1/settings/import',
 			security.checkUserScope.bind(this, security.scope.WRITE_SETTINGS),
 			this.updateImportSettings.bind(this)
+		);
+		this.router.get(
+			'/v1/settings/cookiebanner',
+			security.checkUserScope.bind(this, security.scope.READ_SETTINGS),
+			this.getCookieBanner.bind(this)
+		);
+		this.router.put(
+			'/v1/settings/cookiebanner',
+			security.checkUserScope.bind(this, security.scope.WRITE_SETTINGS),
+			this.updateCookieBanner.bind(this)
 		);
 		this.router.get(
 			'/v1/settings/commerceform',
@@ -140,6 +151,27 @@ class SettingsRoute {
 
 	updateImportSettings(req, res, next) {
 		ImportSettingsService.updateImportSettings(req.body)
+			.then(data => {
+				if (data) {
+					res.send(data);
+				} else {
+					res.status(404).end();
+				}
+			})
+			.catch(next);
+	}
+
+	getCookieBanner(req, res, next) {
+		CookieBannerService.retrieveCookieBanner()
+			.then(data => {
+				res.send(data);
+			})
+			.catch(next);
+	}
+
+	updateCookieBanner(req, res, next) {
+		console.log(req.body);
+		CookieBannerService.updateCookieBanner(req.body)
 			.then(data => {
 				if (data) {
 					res.send(data);

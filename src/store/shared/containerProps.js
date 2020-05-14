@@ -17,7 +17,8 @@ import {
 	registerUser,
 	cartLayerInitialized,
 	forgotPassword,
-	resetPassword
+	resetPassword,
+	cookieBannerContent
 } from './actions';
 
 const setQuery = (history, query) => {
@@ -36,6 +37,9 @@ export const mapStateToProps = (state, ownProps) => {
 
 export const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
+		cookieBannerContent: (data, callback) => {
+			dispatch(cookieBannerContent(data, callback));
+		},
 		addCartItem: item => {
 			dispatch(addCartItem(item));
 		},
