@@ -1,9 +1,8 @@
 import React from 'react';
-import api from '../../../dist/lib/api';
 import { Redirect, Link } from 'react-router-dom';
-import FontIcon from 'material-ui/FontIcon';
 import Lscache from 'lscache';
 import { Field, reduxForm } from 'redux-form';
+import api from '../../../dist/lib/api';
 import { themeSettings, text } from '../../lib/settings';
 
 const validateRequired = value =>
@@ -14,14 +13,12 @@ const validateEmail = value =>
 		? text.emailInvalid
 		: undefined;
 
-const ReadOnlyField = ({ name, value }) => {
-	return (
-		<div className="checkout-field-preview">
-			<div className="name">{name}</div>
-			<div className="value">{value}</div>
-		</div>
-	);
-};
+const ReadOnlyField = ({ name, value }) => (
+	<div className="checkout-field-preview">
+		<div className="name">{name}</div>
+		<div className="value">{value}</div>
+	</div>
+);
 
 const InputField = field => (
 	<div className={field.className}>
@@ -59,65 +56,159 @@ class Account extends React.Component {
 			last_name: this.props.customerProperties.customer_settings.last_name,
 			email: this.props.customerProperties.customer_settings.email,
 			password: this.props.customerProperties.customer_settings.password,
+			mobile:
+				typeof this.props.customerProperties.customer_settings.mobile !==
+					'undefined' &&
+				this.props.customerProperties.customer_settings.mobile !== null
+					? this.props.customerProperties.customer_settings.mobile
+					: '',
 			billing_address: {
 				address1:
-					this.props.customerProperties.customer_settings.addresses.length > 0
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address1 !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address1 !== null
 						? this.props.customerProperties.customer_settings.addresses[0]
 								.address1
 						: '',
 				address2:
-					this.props.customerProperties.customer_settings.addresses.length > 0
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address2 !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address2 !== null
 						? this.props.customerProperties.customer_settings.addresses[0]
 								.address2
 						: '',
 				city:
-					this.props.customerProperties.customer_settings.addresses.length > 0
-						? this.props.customerProperties.customer_settings.addresses[0].city
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.city !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.city !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.city
 						: '',
 				postal_code:
-					this.props.customerProperties.customer_settings.addresses.length > 0
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.postal_code !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.postal_code !== null
 						? this.props.customerProperties.customer_settings.addresses[0]
 								.postal_code
 						: '',
 				state:
-					this.props.customerProperties.customer_settings.addresses.length > 0
-						? this.props.customerProperties.customer_settings.addresses[0].state
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.state !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.state !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.state
 						: '',
 				country:
-					this.props.customerProperties.customer_settings.addresses.length > 0
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.country !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.country !== null
 						? this.props.customerProperties.customer_settings.addresses[0]
 								.country
 						: ''
 			},
 			shipping_address: {
 				address1:
-					this.props.customerProperties.customer_settings.addresses.length > 0
-						? this.props.customerProperties.customer_settings.addresses[1]
-								.address1
-						: '',
-				address2:
-					this.props.customerProperties.customer_settings.addresses.length > 0
-						? this.props.customerProperties.customer_settings.addresses[1]
-								.address2
-						: '',
-				city:
-					this.props.customerProperties.customer_settings.addresses.length > 0
-						? this.props.customerProperties.customer_settings.addresses[1].city
-						: '',
-				postal_code:
-					this.props.customerProperties.customer_settings.addresses.length > 0
-						? this.props.customerProperties.customer_settings.addresses[1]
-								.postal_code
-						: '',
-				state:
-					this.props.customerProperties.customer_settings.addresses.length > 0
-						? this.props.customerProperties.customer_settings.addresses[1].state
-						: '',
-				country:
-					this.props.customerProperties.customer_settings.addresses.length > 0
-						? this.props.customerProperties.customer_settings.addresses[1]
-								.country
-						: ''
+				typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.address1 !== 'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.address1 !== null
+					? this.props.customerProperties.customer_settings.addresses[0]
+							.address1
+					: '',
+			address2:
+				typeof this.props.customerProperties.customer_settings.addresses !==
+					'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.address2 !== 'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.address2 !== null
+					? this.props.customerProperties.customer_settings.addresses[0]
+							.address2
+					: '',
+			city:
+				typeof this.props.customerProperties.customer_settings.addresses !==
+					'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.city !== 'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.city !== null
+					? this.props.customerProperties.customer_settings.addresses[0]
+							.city
+					: '',
+			postal_code:
+				typeof this.props.customerProperties.customer_settings.addresses !==
+					'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.postal_code !== 'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.postal_code !== null
+					? this.props.customerProperties.customer_settings.addresses[0]
+							.postal_code
+					: '',
+			state:
+				typeof this.props.customerProperties.customer_settings.addresses !==
+					'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.state !== 'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.state !== null
+					? this.props.customerProperties.customer_settings.addresses[0]
+							.state
+					: '',
+			country:
+				typeof this.props.customerProperties.customer_settings.addresses !==
+					'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.country !== 'undefined' &&
+				this.props.customerProperties.customer_settings.addresses.length > 0 &&
+				this.props.customerProperties.customer_settings.addresses[0]
+					.country !== null
+					? this.props.customerProperties.customer_settings.addresses[0]
+							.country
+					: ''
 			}
 		});
 		this.setState({ reinitialized: true });
@@ -137,17 +228,13 @@ class Account extends React.Component {
 		return field && field.status ? field.status : 'required';
 	};
 
-	isFieldOptional = fieldName => {
-		return this.getFieldStatus(fieldName) === 'optional';
-	};
+	isFieldOptional = fieldName => this.getFieldStatus(fieldName) === 'optional';
 
-	isFieldHidden = fieldName => {
-		return this.getFieldStatus(fieldName) === 'hidden';
-	};
+	isFieldHidden = fieldName => this.getFieldStatus(fieldName) === 'hidden';
 
 	getFieldValidators = fieldName => {
 		const isOptional = this.isFieldOptional(fieldName);
-		let validatorsArray = [];
+		const validatorsArray = [];
 		if (!isOptional) {
 			validatorsArray.push(validateRequired);
 		}
@@ -169,47 +256,61 @@ class Account extends React.Component {
 		const field = this.getField(fieldName);
 		if (field && field.label && field.label.length > 0) {
 			return field.label;
-		} else {
-			switch (fieldName) {
-				case 'first_name':
+		}
+		switch (fieldName) {
+			case 'first_name':
+				if (typeof text.first_name !== 'undefined' && text.first_name != null)
 					return text.first_name;
-					break;
-				case 'last_name':
+				return '';
+			case 'last_name':
+				if (typeof text.last_name !== 'undefined' && text.last_name != null)
 					return text.last_name;
-					break;
-				case 'email':
+				return '';
+			case 'email':
+				if (typeof text.email !== 'undefined' && text.email != null)
 					return text.email;
-					break;
-				case 'mobile':
+				return '';
+			case 'mobile':
+				if (typeof text.mobile !== 'undefined' && text.mobile != null)
 					return text.mobile;
-					break;
-				case 'password':
+				return '';
+			case 'password':
+				if (typeof text.password !== 'undefined' && text.password != null)
 					return text.password;
-					break;
-				case 'password_verify':
+				return '';
+			case 'password_verify':
+				if (
+					typeof text.password_verify !== 'undefined' &&
+					text.password_verify != null
+				)
 					return text.password_verify;
-					break;
-				case 'address1':
+				return '';
+			case 'address1':
+				if (typeof text.address1 !== 'undefined' && text.address1 != null)
 					return text.address1;
-					break;
-				case 'address2':
+				return '';
+			case 'address2':
+				if (typeof text.address2 !== 'undefined' && text.address2 != null)
 					return text.address2;
-					break;
-				case 'country':
+				return '';
+			case 'country':
+				if (typeof text.country !== 'undefined' && text.country != null)
 					return text.country;
-					break;
-				case 'state':
+				return '';
+			case 'state':
+				if (typeof text.state !== 'undefined' && text.state != null)
 					return text.state;
-					break;
-				case 'city':
+				return '';
+			case 'city':
+				if (typeof text.city !== 'undefined' && text.city != null)
 					return text.city;
-					break;
-				case 'postal_code':
+				return '';
+			case 'postal_code':
+				if (typeof text.postal_code !== 'undefined' && text.postal_code != null)
 					return text.postal_code;
-					break;
-				default:
-					return 'Unnamed field';
-			}
+				return '';
+			default:
+				return 'Unnamed field';
 		}
 	};
 
@@ -217,10 +318,8 @@ class Account extends React.Component {
 		switch (tableHeaderLabel) {
 			case 'product_image':
 				return text.product_image;
-			case 'id':
-				return text.order_line_id;
 			case 'product_id':
-				return text.product_id;
+				return text.order_line_id;
 			case 'variant_id':
 				return text.product_variant_id;
 			case 'quantity':
@@ -296,8 +395,8 @@ class Account extends React.Component {
 		const accountProfileHeadline = 'account-profile-headline';
 		const isActive = 'is-active';
 
-		let billingAddress = {};
-		let shippingAddress = {};
+		const billingAddress = {};
+		const shippingAddress = {};
 		let orderHistory = {};
 		const list = [];
 		let tableStyle = null;
@@ -330,34 +429,37 @@ class Account extends React.Component {
 
 		if (customerProperties !== undefined) {
 			if (
-				customerProperties.customer_settings !== null &&
-				'addresses' in customerProperties.customer_settings
+				customerProperties.customer_settings &&
+				customerProperties.customer_settings.addresses
 			) {
 				[].slice
 					.call(customerProperties.customer_settings.addresses)
-					.forEach(function(key, i) {
+					.forEach((key, i) => {
 						if (i < 1) {
-							billingAddress['address1'] = key.address1;
-							billingAddress['address2'] = key.address2;
-							billingAddress['city'] = key.city;
-							billingAddress['postal_code'] = key.postal_code;
-							billingAddress['state'] = key.state;
-							billingAddress['country'] = key.country;
+							billingAddress.address1 = key.address1;
+							billingAddress.address2 = key.address2;
+							billingAddress.city = key.city;
+							billingAddress.postal_code = key.postal_code;
+							billingAddress.state = key.state;
+							billingAddress.country = key.country;
 						}
 						if (i > 0) {
-							shippingAddress['address1'] = key.address1;
-							shippingAddress['address2'] = key.address2;
-							shippingAddress['city'] = key.city;
-							shippingAddress['postal_code'] = key.postal_code;
-							shippingAddress['state'] = key.state;
-							shippingAddress['country'] = key.country;
+							shippingAddress.address1 = key.address1;
+							shippingAddress.address2 = key.address2;
+							shippingAddress.city = key.city;
+							shippingAddress.postal_code = key.postal_code;
+							shippingAddress.state = key.state;
+							shippingAddress.country = key.country;
 						}
 					});
 
 				orderHistory = customerProperties.order_statuses.data
 					.filter(obj => obj.draft !== true)
-					.reduce(function(map, obj, i) {
-						map['ordered_items' + i] = obj.items;
+					.reduce((map, obj, i) => {
+						obj.items.forEach(element => {
+							element.product_id = obj.number;
+						});
+						map[`ordered_items${i}`] = obj.items;
 						return map;
 					}, {});
 			}
@@ -370,11 +472,13 @@ class Account extends React.Component {
 						return (
 							<tr className="tr-header" key={keyCounter}>
 								{Object.keys(p).map((k, l) => {
-									return (
-										<th className="td-header" key={keyCounter + l}>
-											{this.getTableHeaderLabel(k)}
-										</th>
-									);
+									if (!['id', 'variant_id'].includes(k)) {
+										return (
+											<th className="td-header" key={keyCounter + l}>
+												{this.getTableHeaderLabel(k)}
+											</th>
+										);
+									}
 								})}
 							</tr>
 						);
@@ -385,71 +489,63 @@ class Account extends React.Component {
 			keyCounter = 0;
 			for (var i in orderHistory) {
 				list.push(
-					orderHistory[i].map(p => {
-						return (
-							<tr className="tr-body" key={p.id + '' + i}>
-								{Object.keys(p).map((k, d) => {
-									if (k.indexOf('product_image') !== -1) {
-										const setCounter = i.replace(/^\D+/g, '');
-										let urlContent = customerProperties.order_statuses.data[
-											setCounter
-										].landing_url.split(',');
-										console.log(p.product_image);
-										if (p.product_image.length === 0) {
-											return (
-												<td className="td-body" key={p.id + '' + k}>
-													<div
-														suppressContentEditableWarning="true"
-														contentEditable="false"
-														value={k}
+					orderHistory[i].map(p => (
+						<tr className="tr-body" key={`${p.id}${i}`}>
+							{Object.keys(p).map((k, d) => {
+								if (k.indexOf('product_image') !== -1) {
+									const setCounter = i.replace(/^\D+/g, '');
+									const urlContent = customerProperties.order_statuses.data[
+										setCounter
+									].landing_url.split(',');
+									if (p.product_image === null) {
+										return (
+											<td className="td-body" key={`${p.id}${k}`}>
+												<div
+													suppressContentEditableWarning="true"
+													contentEditable="false"
+													value={k}
+												>
+													<a
+														href={
+															urlContent.length <= 1
+																? customerProperties.order_statuses.data[
+																		setCounter
+																  ].landing_url
+																: urlContent[keyCounter++]
+														}
 													>
-														<a
-															href={
-																urlContent.length <= 1
-																	? customerProperties.order_statuses.data[
-																			setCounter
-																	  ].landing_url
-																	: urlContent[keyCounter++]
-															}
-														>
-															<img
-																src="/assets/images/icons/photo_camera.svg"
-																alt="person-icon"
-																className="person-icon"
-																style={{ width: 25, height: 20 }}
-															/>
-														</a>
-													</div>
-												</td>
-											);
-										}
-										if (p.product_image.length !== 0) {
-											return (
-												<td className="td-body" key={p.id + '' + k}>
-													<div
-														suppressContentEditableWarning="true"
-														contentEditable="false"
-														value={k}
-													>
-														<a
-															href={
-																urlContent.length <= 1
-																	? customerProperties.order_statuses.data[
-																			setCounter
-																	  ].landing_url
-																	: urlContent[keyCounter++]
-															}
-														>
-															<img src={p[k][0].url} alt="thumbnail" />
-														</a>
-													</div>
-												</td>
-											);
-										}
+														<span key={`${p.id}${k}`}>{text.no_image}</span>
+													</a>
+												</div>
+											</td>
+										);
 									}
-
 									return (
-										<td className="td-body" key={p.id + '' + k}>
+										<td className="td-body" key={`${p.id}${k}`}>
+											<div
+												suppressContentEditableWarning="true"
+												contentEditable="false"
+												value={k}
+											>
+												<a
+													href={
+														urlContent.length <= 1
+															? customerProperties.order_statuses.data[
+																	setCounter
+															  ].landing_url
+															: urlContent[keyCounter++]
+													}
+												>
+													<img src={p[k][0].url} alt="thumbnail" />
+												</a>
+											</div>
+										</td>
+									);
+								}
+
+								if (!['id', 'variant_id'].includes(k)) {
+									return (
+										<td className="td-body" key={`${p.id}${k}`}>
 											<div
 												suppressContentEditableWarning="true"
 												contentEditable="false"
@@ -459,10 +555,10 @@ class Account extends React.Component {
 											</div>
 										</td>
 									);
-								})}
-							</tr>
-						);
-					})
+								}
+							})}
+						</tr>
+					))
 				);
 			}
 
@@ -499,7 +595,7 @@ class Account extends React.Component {
 								<Link
 									to="/"
 									style={{ textDecoration: 'none' }}
-									key={'logout'}
+									key="logout"
 									onClick={this.handleLogout}
 								>
 									{text.logout}
@@ -656,7 +752,7 @@ class Account extends React.Component {
 									name="email"
 									id="customer.email"
 									autoComplete="new-password"
-									component={InputField} //this.state.loggedin
+									component={InputField} // this.state.loggedin
 									type="email"
 									label={this.getFieldLabel('email')}
 									validate={this.getFieldValidators('email')}
@@ -817,7 +913,7 @@ class Account extends React.Component {
 								<div className="checkout-button-wrap">
 									<button
 										type="submit"
-										//disabled={invalid}
+										// disabled={invalid}
 										className={accountEditButtonClass}
 									>
 										{text.save}
@@ -853,7 +949,7 @@ class Account extends React.Component {
 											<table
 												cellPadding="0"
 												cellSpacing="0"
-												className={'orders-history-table'}
+												className="orders-history-table"
 												style={tableStyle}
 											>
 												<tbody>{list}</tbody>
@@ -878,7 +974,7 @@ class Account extends React.Component {
 							<Link
 								to="/"
 								style={{ textDecoration: 'none' }}
-								key={'account-continue-shopping'}
+								key="account-continue-shopping"
 							>
 								{text.continueshopping}
 							</Link>
