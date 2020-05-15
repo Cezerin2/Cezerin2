@@ -1,6 +1,6 @@
 dist/
 theme/assets/
 theme/dist/
-package-lock.json
-package.json
-yarn.lock
+# for error in the theme folder.
+*.html
+public\admin-assets\tinymce\tinymce-4.7.5.min.js

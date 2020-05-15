@@ -1,4 +1,4 @@
-import React from 'react';
-import CustomerDetails from 'modules/customers/edit';
+import React from "react"
+import CustomerDetails from "modules/customers/edit"
 
-export default CustomerDetails;
+export default CustomerDetails

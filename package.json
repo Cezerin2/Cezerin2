@@ -1,7 +1,7 @@
 {
-  "name": "cezerin",
+  "name": "cezerin2-mono",
   "version": "0.33.0",
-  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.com",
+  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.org",
   "keywords": [
     "cezerin",
     "ecommerce",
@@ -9,27 +9,14 @@
     "shop",
     "cms"
   ],
-  "homepage": "https://cezerin.com",
-  "bugs": "https://github.com/cezerin/cezerin/issues",
-  "license": "MIT",
-  "author": {
-    "name": "Restmount <jsonmount@gmail.com>",
-    "url": "https://github.com/restmount"
-  },
-  "contributors": [
-    {
-      "name": "Restmount <jsonmount@gmail.com>",
-      "url": "https://github.com/restmount"
-    },
-    {
-      "name": "Sergey Onufrienko <sergey@onufrienko.com>",
-      "url": "https://github.com/sonufrienko"
-    }
-  ],
+  "homepage": "https://cezerin.org",
+  "bugs": "https://github.com/Cezerin2/cezerin/issues",
+  "license": "Unlicense",
+  "author": "Restmount, Himadu, Community",
   "main": "src/api/server/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cezerin/cezerin"
+    "url": "https://github.com/Cezerin2/cezerin"
   },
   "scripts": {
     "setup": "node -r esm src/api/server/setup.js",
@@ -76,13 +63,6 @@
     "cookie-parser": "^1.4.3",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
-    "eslint": "^5.4.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.0.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.11.1",
     "esm": "^3.0.80",
     "express": "^4.16.3",
     "express-jwt": "^5.3.0",
@@ -108,7 +88,6 @@
     "nodemailer": "^4.6.8",
     "nodemailer-smtp-transport": "^2.7.4",
     "postcss-loader": "^3.0.0",
-    "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
     "query-string": "^6.1.0",
     "react": "^16.4.2",
@@ -140,6 +119,17 @@
     "winston": "^3.0.0",
     "workbox-webpack-plugin": "^3.4.1",
     "ws": "^6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.14.2",
+    "typescript": "^3.9.2"
   },
   "engines": {
     "node": "^8.0.0",
