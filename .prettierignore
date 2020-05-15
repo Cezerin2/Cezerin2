@@ -1,6 +1,5 @@
 dist/
 theme/assets/
 theme/dist/
-package-lock.json
-package.json
-yarn.lock
+# for error in the theme folder.
+*.html
