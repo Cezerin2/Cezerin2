@@ -1,1 +1,1 @@
-export { default } from './components/TinyMCE';
+export { default } from "./components/TinyMCE"

@@ -17,3 +17,4 @@ dist/*
 logs/*
 npm-debug.log*
 *.zip
+public\admin-assets\tinymce\tinymce-4.7.5.min.js

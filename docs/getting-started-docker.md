@@ -1,18 +1,20 @@
 # Getting Started with Docker
 
-* [Docker](#docker)
-* [Docker Compose](#docker-compose)
+- [Docker](#docker)
+- [Docker Compose](#docker-compose)
 
 ## Docker
 
 We'll use `cezerin/cezerin` image. [About image](https://github.com/cezerin/docker-cezerin).
 
 1. Run MongoDB
+
 ```shell
 docker run --name store-db -v /var/www/store-db:/data/db -d mongo:latest
 ```
 
 2. Run Cezerin
+
 ```shell
 docker run -d \
 --name store \
@@ -36,7 +38,7 @@ API - http://localhost
 Create `docker-compose.yml` by examples.
 
 ```yml
-version: '3'
+version: "3"
 
 services:
   app:

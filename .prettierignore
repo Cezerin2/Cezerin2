@@ -3,3 +3,4 @@ theme/assets/
 theme/dist/
 # for error in the theme folder.
 *.html
+public\admin-assets\tinymce\tinymce-4.7.5.min.js

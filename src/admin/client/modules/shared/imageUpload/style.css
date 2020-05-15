@@ -9,7 +9,7 @@
 }
 
 .footer {
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .dropzone {
@@ -20,14 +20,14 @@
   font-size: 14px;
 }
 .dropzoneActive {
-  background-color: rgba(18,179,117, 0.4);
+  background-color: rgba(18, 179, 117, 0.4);
 }
 .dropzoneReject {
-  background-color: rgba(244,67,54,0.8);
+  background-color: rgba(244, 67, 54, 0.8);
 }
 .dropzoneReject .preview img,
 .dropzoneActive .preview img {
-  opacity: 0.3
+  opacity: 0.3;
 }
 
 .noImage {
