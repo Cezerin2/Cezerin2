@@ -180,7 +180,8 @@ const addCookieBanner = async db => {
   if (cookieBannerNotExists) {
     await db.collection("cookieBanner").insertOne({
       name: "cookie_banner",
-      body: "<div></div>"
+      body:
+        "<div style='display: flex; justify-content: center; width: 100%; background-color: #c2c2c2; opacity: .9;'><p style='width: 70%; height: 100%; padding: 10px; font-size: 11px; color: #fff;'>We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services</p><button style='margin: 10px; width: 100px; height: 50px;'>Privacy Policy</button><button style='margin: 10px; width: 100px; height: 50px;' class='set-cookie'>Ok</button></div>"
     })
     winston.info("- Added Cookie Banner")
   }
