@@ -42,8 +42,8 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 
 - [with GitHub](https://github.com/cezerin2/cezerin2-mono/blob/master/docs/using-source-code.md)
 - [with Docker](https://github.com/cezerin2/cezerin2/blob/master/docs/using-docker.md)
-- [How to deploy a Cezerin2-mono on Ubuntu 16.04](https://github.com/cezerin2/cezerin2-mono/blob/master/docs/how-to-deploy-a-cezerin-on-ubuntu-16-04.md)
-- [How to deploy a Cezerin2-mono on Ubuntu 18.04.1 (from GitHub)](https://github.com/cezerin2/cezerin2-mono/blob/master/docs/how-to-deploy-a-cezerin-on-ubuntu-18-04-1-github.md)
+- [How to deploy a Cezerin2-mono on Ubuntu 16.04](https://github.com/cezerin2/cezerin2-mono/blob/master/docs/how-to-deploy-cezerin2-mono-on-ubuntu-16-04.md)
+- [How to deploy a Cezerin2-mono on Ubuntu 18.04.1 (from GitHub)](https://github.com/cezerin2/cezerin2-mono/blob/master/docs/how-to-deploy-cezerin2-mono-on-ubuntu-18-04-1-github.md)
 
 ### Requirements
 
