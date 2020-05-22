@@ -233,7 +233,10 @@ const handleRegisterProperties = data => ({
   type: t.REGISTER_PROPERTIES,
   data
 })
-const handleAccountProperties = data => ({ type: t.ACCOUNT_RECEIVE, data })
+const handleAccountProperties = data => ({
+  type: t.ACCOUNT_RECEIVE,
+  data
+})
 const handleCartLayerInitialized = data => ({
   type: t.CART_LAYER_INITIALIZED,
   data
@@ -343,7 +346,7 @@ export const changecustomerProperties = (data, callback) => async (
   getState
 ) => {
   const response = await api.ajax.account.update(data)
-  dispatch(handleAccountProperties())
+  dispatch(handleAccountProperties(response.json))
 }
 
 export const cartLayerInitialized = (data, callback) => async (

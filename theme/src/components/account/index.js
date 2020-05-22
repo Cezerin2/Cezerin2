@@ -37,6 +37,8 @@ export default class AccountForm extends React.Component {
       payment_method_id: null,
       shipping_method_id: null
     })
+
+    window.location.reload()
   }
 
   render() {
