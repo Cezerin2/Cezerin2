@@ -1,4 +1,3 @@
-const DefaultOptions = require("./default")
 // config used by server side only
 const dbHost = process.env.DB_HOST || "127.0.0.1"
 const dbPort = process.env.DB_PORT || 27017
@@ -41,7 +40,7 @@ module.exports = {
     fromAddress: "vam@test.com"
   },
   // key to sign tokens
-  jwtSecretKey: process.env.JWT_SECRET_KEY || DefaultOptions.jwtSecretKey,
+  jwtSecretKey: process.env.JWT_SECRET_KEY || 14,
   // key to sign store cookies
   cookieSecretKey: "-",
 
@@ -65,7 +64,9 @@ module.exports = {
 
   // cost factor, controls how much time is needed to calculate a single BCrypt hash
   // for production: recommended salRounds > 12
-  saltRounds: process.env.SALT_ROUNDS || DefaultOptions.saltRounds,
+  saltRounds:
+    process.env.SALT_ROUNDS ||
+    "bgbswOX9jQY!R6dU5T#RN32DtNis$QbRSlMasuxXliAlXEkX%H^edDNhO9bcRI%t5AqDX280k*3$tNEpb2KMhM0hjYYZ%vI66$w",
 
   developerMode: true
 }
