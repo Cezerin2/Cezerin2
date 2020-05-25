@@ -37,7 +37,9 @@
     "precommit": "lint-staged",
     "start-api": "node -r esm src/api/server/index.js",
     "start-store": "node -r esm dist/store/server/index.js",
-    "start": "concurrently npm:start-*"
+    "start": "concurrently npm:start-*",
+    "quickstart": "yarn && yarn compile && yarn build && yarn start",
+    "quickstartnpm": "npm i && npm run compile && npm run build && npm run start"
   },
   "lint-staged": {
     "*.js": [
@@ -112,7 +114,7 @@
     "sitemap": "^1.13.0",
     "slug": "^0.9.1",
     "stripe": "^6.7.0",
-    "theme": "file:theme",
+    "theme": "./theme",
     "ua-parser-js": "^0.7.18",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
