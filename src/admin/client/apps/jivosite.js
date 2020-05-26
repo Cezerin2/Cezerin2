@@ -42,7 +42,7 @@ export class App extends React.Component {
   updateSettings = () => {
     const { code } = this.state
 
-    api.apps.settings.update("jivosite", { code: code })
+    api.apps.settings.update("jivosite", { code })
     api.theme.placeholders.update("jivosite", {
       place: "body_end",
       value: code
@@ -60,8 +60,8 @@ export class App extends React.Component {
 
         <TextField
           type="text"
-          multiLine={true}
-          fullWidth={true}
+          multiLine
+          fullWidth
           rows={10}
           value={this.state.code}
           onChange={this.handleChange}
@@ -72,7 +72,7 @@ export class App extends React.Component {
         <div style={{ textAlign: "right" }}>
           <RaisedButton
             label={messages.save}
-            primary={true}
+            primary
             disabled={false}
             onClick={this.updateSettings}
           />

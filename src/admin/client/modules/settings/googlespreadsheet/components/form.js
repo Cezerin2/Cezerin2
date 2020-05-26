@@ -3,13 +3,13 @@ import { Field, reduxForm } from "redux-form"
 import { TextField, SelectField } from "redux-form-material-ui"
 
 import messages from "lib/text"
-import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
+import style from "./style.css"
 
 class EmailSettings extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class EmailSettings extends React.Component {
   }
 
   render() {
-    let { handleSubmit, pristine, submitting, initialValues } = this.props
+    const { handleSubmit, pristine, submitting, initialValues } = this.props
 
     return (
       <form
@@ -36,7 +36,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="apikey"
                 hintText="..apiKey"
                 floatingLabelText={messages.settings_apikey}
@@ -45,7 +45,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="sheetid"
                 hintText="..sheet-id"
                 floatingLabelText={messages.settings_sheetid}
@@ -54,7 +54,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="range"
                 floatingLabelText={messages.settings_tablename}
               />
@@ -64,7 +64,7 @@ class EmailSettings extends React.Component {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

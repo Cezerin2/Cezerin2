@@ -22,10 +22,10 @@ export default class ThemeImageUpload extends React.Component {
   }
 
   render() {
-    let { input, label } = this.props
+    const { input, label } = this.props
     const imageUrl =
       input.value && input.value.length > 0
-        ? "/assets/images/" + input.value
+        ? `/assets/images/${input.value}`
         : null
 
     return (

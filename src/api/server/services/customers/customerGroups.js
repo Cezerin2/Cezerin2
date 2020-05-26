@@ -18,7 +18,7 @@ class CustomerGroupsService {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    let groupObjectID = new ObjectID(id)
+    const groupObjectID = new ObjectID(id)
 
     return db
       .collection("customerGroups")
@@ -60,13 +60,11 @@ class CustomerGroupsService {
     return db
       .collection("customerGroups")
       .deleteOne({ _id: groupObjectID })
-      .then(deleteResponse => {
-        return deleteResponse.deletedCount > 0
-      })
+      .then(deleteResponse => deleteResponse.deletedCount > 0)
   }
 
   getValidDocumentForInsert(data) {
-    let group = {
+    const group = {
       date_created: new Date()
     }
 
@@ -81,7 +79,7 @@ class CustomerGroupsService {
       return new Error("Required fields are missing")
     }
 
-    let group = {
+    const group = {
       date_updated: new Date()
     }
 

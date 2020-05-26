@@ -76,33 +76,30 @@ class SwitchContainers extends React.Component {
         }
         if (locationPathname === "/") {
           return <IndexContainer />
-        } else if (locationPathname === "/checkout") {
+        }
+        if (locationPathname === "/checkout") {
           return <CheckoutContainer />
         }
         if (locationPathname === "/checkout-success") {
           return <CheckoutSuccessContainer />
-        } else {
-          return <PageContainer />
         }
+        return <PageContainer />
+
       default:
         return <NotFoundContainer />
     }
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    currentPage: state.app.currentPage
-  }
-}
+const mapStateToProps = (state, ownProps) => ({
+  currentPage: state.app.currentPage
+})
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    setCurrentPage: location => {
-      dispatch(setCurrentPage(location))
-    }
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  setCurrentPage: location => {
+    dispatch(setCurrentPage(location))
   }
-}
+})
 
 const SwitchContainersConnected = connect(
   mapStateToProps,

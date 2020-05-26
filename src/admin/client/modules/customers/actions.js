@@ -1,6 +1,6 @@
-import * as t from "./actionTypes"
 import api from "lib/api"
 import messages from "lib/text"
+import * as t from "./actionTypes"
 const push = () => {}
 
 function requestCustomer() {
@@ -103,9 +103,9 @@ function setGroupSuccess() {
 }
 
 const getFilter = (state, offset = 0) => {
-  let filter = {
+  const filter = {
     limit: 50,
-    offset: offset
+    offset
   }
 
   if (state.customers.search && state.customers.search !== "") {
@@ -126,7 +126,7 @@ export function fetchCustomers() {
       dispatch(requestCustomers())
       dispatch(deselectAllCustomer())
 
-      let filter = getFilter(state)
+      const filter = getFilter(state)
 
       return api.customers
         .list(filter)
@@ -146,7 +146,7 @@ export function fetchMoreCustomers() {
     if (!state.customers.loadingItems) {
       dispatch(requestMoreCustomers())
 
-      let filter = getFilter(state, state.customers.items.length)
+      const filter = getFilter(state, state.customers.items.length)
 
       return api.customers
         .list(filter)
@@ -163,7 +163,7 @@ export function fetchMoreCustomers() {
 export function deleteCustomers() {
   return (dispatch, getState) => {
     const state = getState()
-    let promises = state.customers.selected.map(customerId =>
+    const promises = state.customers.selected.map(customerId =>
       api.customers.delete(customerId)
     )
 
@@ -180,7 +180,7 @@ export function deleteCustomers() {
 export function deleteCurrentCustomer() {
   return (dispatch, getState) => {
     const state = getState()
-    let customer = state.customers.editCustomer
+    const customer = state.customers.editCustomer
 
     if (customer && customer.id) {
       return api.customers.delete(customer.id).catch(err => {
@@ -193,8 +193,8 @@ export function deleteCurrentCustomer() {
 export function setGroup(group_id) {
   return (dispatch, getState) => {
     const state = getState()
-    let promises = state.customers.selected.map(customerId =>
-      api.customers.update(customerId, { group_id: group_id })
+    const promises = state.customers.selected.map(customerId =>
+      api.customers.update(customerId, { group_id })
     )
 
     return Promise.all(promises)
@@ -208,14 +208,13 @@ export function setGroup(group_id) {
 }
 
 export function updateCustomer(data) {
-  return (dispatch, getState) => {
-    return api.customers
+  return (dispatch, getState) =>
+    api.customers
       .update(data.id, data)
       .then(customerResponse => {
         dispatch(receiveCustomer(customerResponse.json))
       })
       .catch(error => {})
-  }
 }
 
 export function fetchCustomer(customerId) {
@@ -232,45 +231,41 @@ export function fetchCustomer(customerId) {
 }
 
 export function updateAddress(customerId, addressId, data) {
-  return (dispatch, getState) => {
-    return api.customers
+  return (dispatch, getState) =>
+    api.customers
       .updateAddress(customerId, addressId, data)
       .then(customerResponse => {
         dispatch(fetchCustomer(customerId))
       })
       .catch(error => {})
-  }
 }
 
 export function deleteAddress(customerId, addressId) {
-  return (dispatch, getState) => {
-    return api.customers
+  return (dispatch, getState) =>
+    api.customers
       .deleteAddress(customerId, addressId)
       .then(customerResponse => {
         dispatch(fetchCustomer(customerId))
       })
       .catch(error => {})
-  }
 }
 
 export function setDefaultBillingAddress(customerId, addressId) {
-  return (dispatch, getState) => {
-    return api.customers
+  return (dispatch, getState) =>
+    api.customers
       .setDefaultBillingAddress(customerId, addressId)
       .then(customerResponse => {
         dispatch(fetchCustomer(customerId))
       })
       .catch(error => {})
-  }
 }
 
 export function setDefaultShippingAddress(customerId, addressId) {
-  return (dispatch, getState) => {
-    return api.customers
+  return (dispatch, getState) =>
+    api.customers
       .setDefaultShippingAddress(customerId, addressId)
       .then(customerResponse => {
         dispatch(fetchCustomer(customerId))
       })
       .catch(error => {})
-  }
 }

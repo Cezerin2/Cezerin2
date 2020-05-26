@@ -18,20 +18,17 @@ const transparentize = (color, opacity) => {
     .rgbString()
 }
 
-const getOrdersByDate = (orders, dateMoment) => {
-  return orders.filter(order =>
-    moment(order.date_placed).isSame(dateMoment, "day")
-  )
-}
+const getOrdersByDate = (orders, dateMoment) =>
+  orders.filter(order => moment(order.date_placed).isSame(dateMoment, "day"))
 
 const filterSuccessOrders = order =>
   order.paid === true || order.closed === true
 const filterNewOrders = order => !order.paid && !order.closed
 
 export const getReportDataFromOrders = ordersResponse => {
-  let reportItems = []
-  let dateFrom = moment().subtract(1, "months")
-  let dateTo = moment()
+  const reportItems = []
+  const dateFrom = moment().subtract(1, "months")
+  const dateTo = moment()
   const daysDiff = dateFrom.diff(dateTo, "days")
 
   for (let i = daysDiff; i < 1; i++) {
@@ -46,9 +43,7 @@ export const getReportDataFromOrders = ordersResponse => {
     const newOrdersCount = ordersPlacedThisDate.filter(filterNewOrders).length
     const successOrdersRevenue = ordersPlacedThisDate
       .filter(filterSuccessOrders)
-      .reduce((a, b) => {
-        return a + b.grand_total
-      }, 0)
+      .reduce((a, b) => a + b.grand_total, 0)
 
     reportItems.push({
       date: reportingDate.format("D MMM"),
@@ -68,7 +63,7 @@ export const getOrdersDataFromReportData = reportData => {
   const newData = reportData.map(item => item.new)
 
   return {
-    labels: labels,
+    labels,
     datasets: [
       {
         label: messages.closedAndPaidOrders,
@@ -91,7 +86,7 @@ export const getSalesDataFromReportData = reportData => {
   const revenueData = reportData.map(item => item.revenue)
 
   return {
-    labels: labels,
+    labels,
     datasets: [
       {
         label: messages.closedAndPaidOrders,

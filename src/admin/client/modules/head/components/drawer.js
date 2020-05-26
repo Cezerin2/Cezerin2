@@ -110,7 +110,7 @@ const DrawerMenu = ({ open, onClose, currentUrl }) => {
       <NavLink
         to={item.url}
         key={index}
-        exact={true}
+        exact
         style={styles.link}
         activeStyle={styles.linkActive}
       >
@@ -147,7 +147,7 @@ const DrawerMenu = ({ open, onClose, currentUrl }) => {
           </IconButton>
         }
       />
-      <Menu listStyle={styles.menu} disableAutoFocus={true}>
+      <Menu listStyle={styles.menu} disableAutoFocus>
         {items}
       </Menu>
     </Drawer>

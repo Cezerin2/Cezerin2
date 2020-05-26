@@ -34,9 +34,7 @@ export default class SelectShippingMethodsField extends React.Component {
     this.props.input.onChange(ids)
   }
 
-  isCheckboxChecked = methodId => {
-    return this.state.selectedIds.includes(methodId)
-  }
+  isCheckboxChecked = methodId => this.state.selectedIds.includes(methodId)
 
   render() {
     const items = this.props.shippingMethods.map(method => (

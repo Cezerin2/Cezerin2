@@ -3,12 +3,12 @@ import { Field, reduxForm } from "redux-form"
 import { TextField, RadioButtonGroup } from "redux-form-material-ui"
 
 import messages from "lib/text"
-import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import Divider from "material-ui/Divider"
 import RaisedButton from "material-ui/RaisedButton"
 import { RadioButton } from "material-ui/RadioButton"
+import style from "./style.css"
 
 const radioButtonStyle = {
   marginTop: 14,
@@ -25,7 +25,7 @@ class CheckoutFieldForm extends React.Component {
   }
 
   render() {
-    let { handleSubmit, pristine, submitting, initialValues } = this.props
+    const { handleSubmit, pristine, submitting, initialValues } = this.props
 
     return (
       <form
@@ -40,7 +40,7 @@ class CheckoutFieldForm extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="label"
                 floatingLabelText={messages.settings_fieldLabel}
               />
@@ -48,7 +48,7 @@ class CheckoutFieldForm extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="placeholder"
                 floatingLabelText={messages.settings_fieldPlaceholder}
               />
@@ -78,7 +78,7 @@ class CheckoutFieldForm extends React.Component {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

@@ -56,9 +56,8 @@ export const checkoutSuccess = ({ order }) => {
 const findMethodById = ({ methodId, allMethods }) => {
   if (methodId && allMethods && allMethods.length > 0) {
     return allMethods.find(m => m.id === methodId)
-  } else {
-    return null
   }
+  return null
 }
 
 export const setPaymentMethod = ({ methodId, allMethods }) => {

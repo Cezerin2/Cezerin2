@@ -1,6 +1,6 @@
-import * as t from "./actionTypes"
 import api from "lib/api"
 import messages from "lib/text"
+import * as t from "./actionTypes"
 
 function receiveFiles(files) {
   return {
@@ -22,14 +22,13 @@ function filesUploadEnd() {
 }
 
 export function fetchFiles() {
-  return (dispatch, getState) => {
-    return api.files
+  return (dispatch, getState) =>
+    api.files
       .list()
       .then(({ status, json }) => {
         dispatch(receiveFiles(json))
       })
       .catch(error => {})
-  }
 }
 
 export function uploadFiles(form) {
@@ -48,12 +47,11 @@ export function uploadFiles(form) {
 }
 
 export function deleteFile(fileName) {
-  return (dispatch, getState) => {
-    return api.files
+  return (dispatch, getState) =>
+    api.files
       .delete(fileName)
       .then(() => {
         dispatch(fetchFiles())
       })
       .catch(error => {})
-  }
 }

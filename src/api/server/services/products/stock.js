@@ -85,7 +85,7 @@ class ProductStockService {
   }
 
   getVariantQuantityFromProduct(product, variantId) {
-    const variants = product.variants
+    const { variants } = product
     if (variants && variants.length > 0) {
       const variant = variants.find(
         v => v.id.toString() === variantId.toString()
@@ -120,9 +120,8 @@ class ProductStockService {
     const order = await this.getOrder(orderId)
     if (order && order.items.length > 0) {
       return order.items.find(item => item.id.toString() === itemId.toString())
-    } else {
-      return null
     }
+    return null
   }
 }
 

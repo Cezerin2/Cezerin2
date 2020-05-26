@@ -6,19 +6,19 @@ import { CustomToggle } from "modules/shared/form"
 import Editor from "modules/shared/editor"
 import TagsInput from "react-tagsinput"
 import messages from "lib/text"
-import style from "./style.css"
 import api from "lib/api"
 
 import Paper from "material-ui/Paper"
 import Divider from "material-ui/Divider"
 import RaisedButton from "material-ui/RaisedButton"
+import style from "./style.css"
 
 const TagsField = ({ input, placeholder }) => {
   const tagsArray = input.value && Array.isArray(input.value) ? input.value : []
   return (
     <TagsInput
       value={tagsArray}
-      inputProps={{ placeholder: placeholder }}
+      inputProps={{ placeholder }}
       onChange={tags => {
         input.onChange(tags)
       }}
@@ -39,25 +39,22 @@ const validate = values => {
   return errors
 }
 
-const asyncValidate = (values /*, dispatch */) => {
-  return new Promise((resolve, reject) => {
+const asyncValidate = (values /* , dispatch */) =>
+  new Promise((resolve, reject) => {
     if (!values.slug && values.is_system) {
       resolve()
     } else {
       api.sitemap.retrieve({ path: values.slug }).then(({ status, json }) => {
         if (status === 404) {
           resolve()
+        } else if (json && !Object.is(json.resource, values.id)) {
+          reject({ slug: messages.errors_urlTaken })
         } else {
-          if (json && !Object.is(json.resource, values.id)) {
-            reject({ slug: messages.errors_urlTaken })
-          } else {
-            resolve()
-          }
+          resolve()
         }
       })
     }
   })
-}
 
 class EditPageForm extends React.Component {
   constructor(props) {
@@ -73,7 +70,7 @@ class EditPageForm extends React.Component {
   }
 
   render() {
-    let {
+    const {
       handleSubmit,
       pristine,
       submitting,
@@ -91,14 +88,14 @@ class EditPageForm extends React.Component {
                 name="meta_title"
                 component={TextField}
                 floatingLabelText={messages.pageTitle}
-                fullWidth={true}
+                fullWidth
               />
               <br />
               <Field
                 name="slug"
                 component={TextField}
                 floatingLabelText={messages.slug}
-                fullWidth={true}
+                fullWidth
                 disabled={initialValues.is_system}
               />
               <p className="field-hint">{messages.help_slug}</p>
@@ -106,7 +103,7 @@ class EditPageForm extends React.Component {
                 name="meta_description"
                 component={TextField}
                 floatingLabelText={messages.metaDescription}
-                fullWidth={true}
+                fullWidth
               />
               <div className="field-hint" style={{ marginTop: 40 }}>
                 {messages.content}
@@ -131,17 +128,14 @@ class EditPageForm extends React.Component {
               </div>
             </div>
             <div
-              className={
-                "buttons-box " +
-                (pristine && !isAdd
-                  ? "buttons-box-pristine"
-                  : "buttons-box-show")
-              }
+              className={`buttons-box ${
+                pristine && !isAdd ? "buttons-box-pristine" : "buttons-box-show"
+              }`}
             >
               <RaisedButton
                 type="submit"
                 label={isAdd ? messages.add : messages.save}
-                primary={true}
+                primary
                 className={style.button}
                 disabled={pristine || submitting}
               />
@@ -149,9 +143,8 @@ class EditPageForm extends React.Component {
           </Paper>
         </form>
       )
-    } else {
-      return null
     }
+    return null
   }
 }
 

@@ -2,14 +2,14 @@ import React from "react"
 import { Field, reduxForm } from "redux-form"
 import { TextField, SelectField } from "redux-form-material-ui"
 
-import GatewaySettings from "./gatewaySettings.js"
-import { AVAILABLE_PAYMENT_GATEWAYS } from "../availablePaymentGateways"
 import messages from "lib/text"
-import style from "./style.css"
 
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
+import style from "./style.css"
+import { AVAILABLE_PAYMENT_GATEWAYS } from "../availablePaymentGateways"
+import GatewaySettings from "./gatewaySettings.js"
 
 class EditPaymentGatewayForm extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class EditPaymentGatewayForm extends React.Component {
   }
 
   render() {
-    let { handleSubmit, pristine, submitting, initialValues } = this.props
+    const { handleSubmit, pristine, submitting, initialValues } = this.props
     const gatewayDetails = AVAILABLE_PAYMENT_GATEWAYS.find(
       item => item.key === this.props.gateway
     )
@@ -56,7 +56,7 @@ class EditPaymentGatewayForm extends React.Component {
             title={gatewayDetails.name}
             modal={false}
             open={this.state.open}
-            autoScrollBodyContent={true}
+            autoScrollBodyContent
             contentStyle={{ width: 600 }}
             onRequestClose={this.handleClose}
           >
@@ -73,7 +73,7 @@ class EditPaymentGatewayForm extends React.Component {
                 />
                 <FlatButton
                   label={messages.save}
-                  primary={true}
+                  primary
                   type="submit"
                   onClick={this.handleClose}
                   style={{ marginLeft: 12 }}
@@ -84,9 +84,8 @@ class EditPaymentGatewayForm extends React.Component {
           </Dialog>
         </div>
       )
-    } else {
-      return null
     }
+    return null
   }
 }
 

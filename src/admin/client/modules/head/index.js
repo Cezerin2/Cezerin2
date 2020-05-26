@@ -23,12 +23,10 @@ const mapStateToProps = state => {
     productCategoryName: productCategory ? productCategory.name : null,
     customerGroupName: customerGroup ? customerGroup.name : null,
     orderStatusName: orderStatus ? orderStatus.name : null,
-    orderNumber: orderNumber
+    orderNumber
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
+const mapDispatchToProps = dispatch => ({})
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppBar))

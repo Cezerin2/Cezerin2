@@ -8,7 +8,7 @@ import MenuItem from "material-ui/MenuItem"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
-const Fragment = React.Fragment
+const { Fragment } = React
 
 export default class Buttons extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class Buttons extends React.Component {
         {selected && (
           <Fragment>
             <IconButton
-              touch={true}
+              touch
               tooltip={messages.actions_delete}
               tooltipPosition="bottom-left"
               onClick={this.showDelete}
@@ -54,7 +54,7 @@ export default class Buttons extends React.Component {
             </IconButton>
             <DeleteConfirmation
               open={this.state.openDelete}
-              isSingle={true}
+              isSingle
               itemsCount={1}
               itemName={statusName}
               onCancel={this.closeDelete}
@@ -63,7 +63,7 @@ export default class Buttons extends React.Component {
           </Fragment>
         )}
         <IconButton
-          touch={true}
+          touch
           tooltipPosition="bottom-left"
           tooltip={messages.addOrderStatus}
           onClick={onCreate}

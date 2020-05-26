@@ -7,36 +7,32 @@ const slugConfig = {
   lower: true // result in lower case
 }
 
-const cleanSlug = text => {
-  return slug(text || "", slugConfig)
-}
+const cleanSlug = text => slug(text || "", slugConfig)
 
-const getAvailableSlug = (path, resource, enableCleanPath = true) => {
-  return SitemapService.getPaths().then(paths => {
+const getAvailableSlug = (path, resource, enableCleanPath = true) =>
+  SitemapService.getPaths().then(paths => {
     if (enableCleanPath) {
       path = cleanSlug(path)
     }
 
     let pathExists = paths.find(
-      e => e.path === "/" + path && e.resource != resource
+      e => e.path === `/${path}` && e.resource != resource
     )
     while (pathExists) {
       path += "-2"
       pathExists = paths.find(
-        e => e.path === "/" + path && e.resource != resource
+        e => e.path === `/${path}` && e.resource != resource
       )
     }
     return path
   })
-}
 
 const getCorrectFileName = filename => {
   if (filename) {
     // replace unsafe characters
     return filename.replace(/[\s*/:;&?@$()<>#%\{\}|\\\^\~\[\]]/g, "-")
-  } else {
-    return filename
   }
+  return filename
 }
 
 const getProjectionFromFields = fields => {
@@ -45,8 +41,8 @@ const getProjectionFromFields = fields => {
 }
 
 export default {
-  cleanSlug: cleanSlug,
-  getAvailableSlug: getAvailableSlug,
-  getCorrectFileName: getCorrectFileName,
-  getProjectionFromFields: getProjectionFromFields
+  cleanSlug,
+  getAvailableSlug,
+  getCorrectFileName,
+  getProjectionFromFields
 }
