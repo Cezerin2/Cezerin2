@@ -2,11 +2,11 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 import messages from "lib/text"
-import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
+import style from "./style.css"
 
 class OptionValueEdit extends React.Component {
   constructor(props) {

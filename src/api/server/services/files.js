@@ -9,7 +9,7 @@ const CONTENT_PATH = path.resolve(settings.filesUploadPath)
 
 class FilesService {
   getFileData(fileName) {
-    const filePath = CONTENT_PATH + "/" + fileName
+    const filePath = `${CONTENT_PATH}/${fileName}`
     const stats = fs.statSync(filePath)
     if (stats.isFile()) {
       return {
@@ -17,9 +17,8 @@ class FilesService {
         size: stats.size,
         modified: stats.mtime
       }
-    } else {
-      return null
     }
+    return null
   }
 
   getFilesData(files) {
@@ -44,7 +43,7 @@ class FilesService {
 
   deleteFile(fileName) {
     return new Promise((resolve, reject) => {
-      const filePath = CONTENT_PATH + "/" + fileName
+      const filePath = `${CONTENT_PATH}/${fileName}`
       if (fs.existsSync(filePath)) {
         fs.unlink(filePath, err => {
           resolve()
@@ -58,9 +57,9 @@ class FilesService {
   uploadFile(req, res, next) {
     const uploadDir = CONTENT_PATH
 
-    let form = new formidable.IncomingForm(),
-      file_name = null,
-      file_size = 0
+    const form = new formidable.IncomingForm()
+    let file_name = null
+    let file_size = 0
 
     form.uploadDir = uploadDir
 
@@ -68,9 +67,9 @@ class FilesService {
       .on("fileBegin", (name, file) => {
         // Emitted whenever a field / value pair has been received.
         file.name = utils.getCorrectFileName(file.name)
-        file.path = uploadDir + "/" + file.name
+        file.path = `${uploadDir}/${file.name}`
       })
-      .on("file", function(name, file) {
+      .on("file", (name, file) => {
         // every time a file has been uploaded successfully,
         file_name = file.name
         file_size = file.size
@@ -79,7 +78,7 @@ class FilesService {
         res.status(500).send(this.getErrorMessage(err))
       })
       .on("end", () => {
-        //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
+        // Emitted when the entire request has been received, and all contained files have finished flushing to disk.
         if (file_name) {
           res.send({ file: file_name, size: file_size })
         } else {

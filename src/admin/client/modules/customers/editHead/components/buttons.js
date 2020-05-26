@@ -5,7 +5,7 @@ import DeleteConfirmation from "modules/shared/deleteConfirmation"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import FlatButton from "material-ui/FlatButton"
-const Fragment = React.Fragment
+const { Fragment } = React
 
 export default class Buttons extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ export default class Buttons extends React.Component {
     return (
       <Fragment>
         <IconButton
-          touch={true}
+          touch
           tooltipPosition="bottom-left"
           tooltip={messages.actions_delete}
           onClick={this.openDelete}
@@ -49,7 +49,7 @@ export default class Buttons extends React.Component {
         </IconButton>
         <DeleteConfirmation
           open={this.state.openDelete}
-          isSingle={true}
+          isSingle
           itemsCount={1}
           itemName={customerName}
           onCancel={this.closeDelete}

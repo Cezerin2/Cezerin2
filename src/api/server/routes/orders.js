@@ -252,7 +252,7 @@ class OrdersRoute {
 
   updateItem(req, res, next) {
     const order_id = req.params.id
-    const item_id = req.params.item_id
+    const { item_id } = req.params
     OrderItemsService.updateItem(order_id, item_id, req.body)
       .then(data => {
         if (data) {
@@ -266,7 +266,7 @@ class OrdersRoute {
 
   deleteItem(req, res, next) {
     const order_id = req.params.id
-    const item_id = req.params.item_id
+    const { item_id } = req.params
     OrderItemsService.deleteItem(order_id, item_id)
       .then(data => {
         res.send(data)

@@ -6,11 +6,11 @@ let wss = null
 
 const listen = server => {
   wss = new WebSocket.Server({
-    path: "/ws/dashboard", //Accept only connections matching this path
-    maxPayload: 1024, //The maximum allowed message size
-    backlog: 100, //The maximum length of the queue of pending connections.
-    verifyClient: verifyClient, //An hook to reject connections
-    server //A pre-created HTTP/S server to use
+    path: "/ws/dashboard", // Accept only connections matching this path
+    maxPayload: 1024, // The maximum allowed message size
+    backlog: 100, // The maximum length of the queue of pending connections.
+    verifyClient, // An hook to reject connections
+    server // A pre-created HTTP/S server to use
   })
 
   wss.on("connection", onConnection)
@@ -67,7 +67,7 @@ const events = {
 }
 
 export default {
-  listen: listen,
-  send: send,
-  events: events
+  listen,
+  send,
+  events
 }

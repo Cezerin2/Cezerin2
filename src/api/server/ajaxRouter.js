@@ -241,7 +241,7 @@ ajaxRouter.post("/forgot-password", async (req, res, next) => {
 })
 
 ajaxRouter.post("/customer-account", async (req, res, next) => {
-  let customerData = {
+  const customerData = {
     token: "",
     authenticated: false,
     customer_settings: null,
@@ -579,7 +579,7 @@ ajaxRouter.post("/", async (req, res, next) => {
     set: false
   }
   const cookies = getCookies(req)
-  if (cookies["cookie_banner_id"] !== undefined) {
+  if (cookies.cookie_banner_id !== undefined) {
     isCookieSet.set = true
     res.status(200).send(JSON.stringify(isCookieSet))
     return
@@ -608,10 +608,10 @@ ajaxRouter.post("/", async (req, res, next) => {
 })
 
 var getCookies = req => {
-  var cookies = {}
+  const cookies = {}
   req.headers &&
-    req.headers.cookie.split(";").forEach(function(cookie) {
-      var parts = cookie.match(/(.*?)=(.*)$/)
+    req.headers.cookie.split(";").forEach(cookie => {
+      const parts = cookie.match(/(.*?)=(.*)$/)
       cookies[parts[1].trim()] = (parts[2] || "").trim()
     })
   return cookies

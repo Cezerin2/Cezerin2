@@ -66,7 +66,7 @@ const getAppHtml = (store, location, context = {}) => {
 }
 
 const getPlaceholder = placeholders => {
-  let placeholder = {
+  const placeholder = {
     head_start: "",
     head_end: "",
     body_start: "",

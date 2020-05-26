@@ -1,16 +1,16 @@
 import React from "react"
 import { Field, reduxForm } from "redux-form"
 import { TextField, SelectField } from "redux-form-material-ui"
-import TextAreaField from "./textareaField"
 
 import messages from "lib/text"
-import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
+import style from "./style.css"
+import TextAreaField from "./textareaField"
 
 class CookieBannerForm extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class CookieBannerForm extends React.Component {
   }
 
   render() {
-    let {
+    const {
       handleSubmit,
       pristine,
       submitting,
@@ -52,9 +52,9 @@ class CookieBannerForm extends React.Component {
           <div className={style.innerBox}>
             <div>
               <Field
-                className={"cookie-banner-inputfield"}
+                className="cookie-banner-inputfield"
                 component={TextAreaField}
-                fullWidth={true}
+                fullWidth
                 type="text"
                 name="body"
                 placeholder="..HTML"
@@ -70,7 +70,7 @@ class CookieBannerForm extends React.Component {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

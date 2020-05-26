@@ -1,11 +1,11 @@
 import React from "react"
 import { List } from "material-ui/List"
 import Divider from "material-ui/Divider"
-import Head from "./head"
-import OrdersListItem from "./item"
 import RaisedButton from "material-ui/RaisedButton"
 import FontIcon from "material-ui/FontIcon"
 import messages from "lib/text"
+import OrdersListItem from "./item"
+import Head from "./head"
 import style from "./style.css"
 
 export default class OrdersList extends React.Component {

@@ -1,13 +1,13 @@
 import React from "react"
 import { Field, FieldArray, reduxForm } from "redux-form"
 import messages from "lib/text"
-import style from "./style.css"
 import CategoryMultiselect from "modules/productCategories/components/multiselectList"
 import FontIcon from "material-ui/FontIcon"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
-const Fragment = React.Fragment
+import style from "./style.css"
+const { Fragment } = React
 
 const CategoryItemActions = ({ fields, index }) => (
   <a
@@ -47,7 +47,6 @@ export default class ProductCategoryMultiSelect extends React.Component {
       this.props.fields.forEach((name, index, fields) => {
         if (fields.get(index) === categoryId) {
           fields.remove(index)
-          return
         }
       })
     } else {
@@ -73,8 +72,8 @@ export default class ProductCategoryMultiSelect extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.close}
       />
     ]
@@ -103,7 +102,7 @@ export default class ProductCategoryMultiSelect extends React.Component {
             modal={false}
             open={open}
             onRequestClose={this.close}
-            autoScrollBodyContent={true}
+            autoScrollBodyContent
           >
             <CategoryMultiselect
               items={categories}

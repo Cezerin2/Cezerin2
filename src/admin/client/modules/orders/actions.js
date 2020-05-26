@@ -1,6 +1,6 @@
-import * as t from "./actionTypes"
 import api from "lib/api"
 import messages from "lib/text"
+import * as t from "./actionTypes"
 
 function requestOrder() {
   return {
@@ -104,7 +104,7 @@ export function selectAllOrder() {
 export function setFilter(filter) {
   return {
     type: t.ORDERS_SET_FILTER,
-    filter: filter
+    filter
   }
 }
 
@@ -159,9 +159,9 @@ function failOrderUpdate(error) {
 
 const getFilter = (state, offset = 0) => {
   const filterState = state.orders.filter
-  let filter = {
+  const filter = {
     limit: 50,
-    offset: offset
+    offset
   }
 
   if (filterState.search !== null && filterState.search !== "") {
@@ -206,7 +206,7 @@ export function fetchOrders() {
       dispatch(requestOrders())
       dispatch(deselectAllOrder())
 
-      let filter = getFilter(state)
+      const filter = getFilter(state)
 
       return api.orders
         .list(filter)
@@ -226,7 +226,7 @@ export function fetchMoreOrders() {
     if (!state.orders.loadingItems) {
       dispatch(requestMoreOrders())
 
-      let filter = getFilter(state, state.orders.items.length)
+      const filter = getFilter(state, state.orders.items.length)
 
       return api.orders
         .list(filter)
@@ -244,7 +244,7 @@ export function bulkUpdate(dataToSet) {
   return (dispatch, getState) => {
     dispatch(requestBulkUpdate())
     const state = getState()
-    let promises = state.orders.selected.map(orderId =>
+    const promises = state.orders.selected.map(orderId =>
       api.orders.update(orderId, dataToSet)
     )
 
@@ -263,7 +263,7 @@ export function bulkUpdate(dataToSet) {
 export function deleteOrders() {
   return (dispatch, getState) => {
     const state = getState()
-    let promises = state.orders.selected.map(orderId =>
+    const promises = state.orders.selected.map(orderId =>
       api.orders.delete(orderId)
     )
 
@@ -282,7 +282,7 @@ export function deleteOrders() {
 export function deleteCurrentOrder() {
   return (dispatch, getState) => {
     const state = getState()
-    let order = state.orders.editOrder
+    const order = state.orders.editOrder
 
     if (order && order.id) {
       return api.orders.delete(order.id).catch(err => {
@@ -386,7 +386,7 @@ export function updateOrderItem(orderId, orderItemId, quantity, variantId) {
 
     api.orders.items
       .update(orderId, orderItemId, {
-        quantity: quantity,
+        quantity,
         variant_id: variantId
       })
       .then(orderResponse => orderResponse.json)
@@ -417,8 +417,8 @@ export function updateOrder(data) {
 }
 
 export function closeOrder(orderId) {
-  return (dispatch, getState) => {
-    return api.orders
+  return (dispatch, getState) =>
+    api.orders
       .close(orderId)
       .then(orderResponse => orderResponse.json)
       .then(fetchOrderAdditionalData)
@@ -426,12 +426,11 @@ export function closeOrder(orderId) {
         dispatch(receiveOrder(order))
       })
       .catch(error => {})
-  }
 }
 
 export function cancelOrder(orderId) {
-  return (dispatch, getState) => {
-    return api.orders
+  return (dispatch, getState) =>
+    api.orders
       .cancel(orderId)
       .then(orderResponse => orderResponse.json)
       .then(fetchOrderAdditionalData)
@@ -439,12 +438,11 @@ export function cancelOrder(orderId) {
         dispatch(receiveOrder(order))
       })
       .catch(error => {})
-  }
 }
 
 export function updateShippingAddress(orderId, address) {
-  return (dispatch, getState) => {
-    return api.orders
+  return (dispatch, getState) =>
+    api.orders
       .updateShippingAddress(orderId, address)
       .then(orderResponse => orderResponse.json)
       .then(fetchOrderAdditionalData)
@@ -452,7 +450,6 @@ export function updateShippingAddress(orderId, address) {
         dispatch(receiveOrder(order))
       })
       .catch(error => {})
-  }
 }
 
 export function createOrder(history) {

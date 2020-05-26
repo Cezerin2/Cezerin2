@@ -14,9 +14,7 @@ class ImportSettingsService {
     return db
       .collection("importSettings")
       .findOne()
-      .then(settings => {
-        return this.changeProperties(settings)
-      })
+      .then(settings => this.changeProperties(settings))
   }
 
   updateImportSettings(data) {
@@ -42,8 +40,6 @@ class ImportSettingsService {
       .then(count => {
         if (count === 0) {
           return db.collection("importSettings").insertOne(this.defaultSettings)
-        } else {
-          return
         }
       })
   }
@@ -53,7 +49,7 @@ class ImportSettingsService {
       return new Error("Required fields are missing")
     }
 
-    let settings = {}
+    const settings = {}
 
     if (data.apikey !== undefined) {
       settings.apikey = parse.getString(data.apikey)

@@ -24,7 +24,7 @@ export default class ServiceDetails extends React.Component {
       }
     }, 5000)
 
-    this.setState({ timer: timer })
+    this.setState({ timer })
   }
 
   componentWillUnmount() {
@@ -32,7 +32,7 @@ export default class ServiceDetails extends React.Component {
   }
 
   render() {
-    let {
+    const {
       serviceId,
       service,
       serviceSettings,
@@ -55,7 +55,7 @@ export default class ServiceDetails extends React.Component {
     }
 
     return (
-      <div className={style.detailsContainer + " scroll col-full-height"}>
+      <div className={`${style.detailsContainer} scroll col-full-height`}>
         <ServiceDescription
           service={service}
           loadingEnableDisable={loadingEnableDisable}

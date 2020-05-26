@@ -54,7 +54,7 @@ export default class Groups extends React.Component {
           <ListItem
             className="treeItem"
             primaryText={messages.customers_noGroup}
-            style={"root" === selectedId ? styles.selectedItem : null}
+            style={selectedId === "root" ? styles.selectedItem : null}
             innerDivStyle={styles.innerItem}
             leftIcon={<FontIcon className="material-icons">clear</FontIcon>}
             onClick={() => {
@@ -67,7 +67,7 @@ export default class Groups extends React.Component {
           <ListItem
             className="treeItem"
             primaryText={messages.customerGroups_all}
-            style={"all" === selectedId ? styles.selectedItem : null}
+            style={selectedId === "all" ? styles.selectedItem : null}
             innerDivStyle={styles.innerItem}
             leftIcon={FolderIcon}
             onClick={() => {

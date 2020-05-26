@@ -100,7 +100,7 @@ export const setCheckoutOption = ({ step, option, value }) => {
     eventParameters: {
       checkout_step: step,
       checkout_option: option,
-      value: value
+      value
     }
   })
 }
@@ -158,9 +158,7 @@ export const purchase = ({ order }) => {
   })
 }
 
-const isGtagInstalled = () => {
-  return typeof gtag !== "undefined"
-}
+const isGtagInstalled = () => typeof gtag !== "undefined"
 
 const logEvent = ({ eventName, eventParameters }) => {
   if (isGtagInstalled()) {

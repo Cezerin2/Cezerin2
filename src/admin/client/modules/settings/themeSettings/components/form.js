@@ -4,13 +4,12 @@ import { Field, FieldArray, reduxForm } from "redux-form"
 import messages from "lib/text"
 import * as helper from "lib/helper"
 import sortBy from "lodash/sortBy"
-import style from "./style.css"
-import DynamicEditControl from "./dynamicEditControl"
-import ArrayEditor from "./arrayEditor"
-
 import Paper from "material-ui/Paper"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
+import style from "./style.css"
+import DynamicEditControl from "./dynamicEditControl"
+import ArrayEditor from "./arrayEditor"
 
 class ThemeSettings extends React.Component {
   constructor(props) {
@@ -22,7 +21,7 @@ class ThemeSettings extends React.Component {
   }
 
   render() {
-    let {
+    const {
       handleSubmit,
       pristine,
       submitting,
@@ -81,7 +80,7 @@ class ThemeSettings extends React.Component {
               <RaisedButton
                 type="submit"
                 label={messages.save}
-                primary={true}
+                primary
                 className={style.button}
                 disabled={pristine || submitting}
               />
@@ -89,9 +88,8 @@ class ThemeSettings extends React.Component {
           </Paper>
         </form>
       )
-    } else {
-      return null
     }
+    return null
   }
 }
 

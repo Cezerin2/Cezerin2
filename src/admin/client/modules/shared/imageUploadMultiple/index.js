@@ -58,8 +58,8 @@ const Gallery = ({
             }}
             onImageEdit={onImageEdit}
             onSortEnd={({ oldIndex, newIndex }) => {
-              let sortedItems = arrayMove(images, oldIndex, newIndex)
-              let withNewPosition = sortedItems.map((image, index) => {
+              const sortedItems = arrayMove(images, oldIndex, newIndex)
+              const withNewPosition = sortedItems.map((image, index) => {
                 image.position = index
                 return image
               })
@@ -69,9 +69,8 @@ const Gallery = ({
         </div>
       </MultiUploader>
     )
-  } else {
-    return <MultiUploader onUpload={onImageUpload} uploading={uploading} />
   }
+  return <MultiUploader onUpload={onImageUpload} uploading={uploading} />
 }
 
 export default Gallery

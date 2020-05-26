@@ -76,9 +76,8 @@ export default class Categories extends React.Component {
       return allItems
         .filter(item => item.parent_id === id)
         .map(item => this.getItem(selectedIds, allItems, item, opened))
-    } else {
-      return []
     }
+    return []
   }
 
   render() {
