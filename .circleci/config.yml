@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:14
 
     working_directory: ~/repo
 
@@ -13,7 +13,7 @@ jobs:
 
       - run:
           name: Install Dependencies
-          command: npm i
+          command: yarn
 
       - save_cache:
           paths:
@@ -22,4 +22,4 @@ jobs:
 
       - run:
           name: Build
-          command: npm run build
+          command: yarn build
