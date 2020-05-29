@@ -11,15 +11,21 @@ const dbCred =
 const dbUrl =
   process.env.DB_URL || `mongodb://${dbCred}${dbHost}:${dbPort}/${dbName}`
 
+let development = true
+// checking for production mode.
+if (process.env.DEV_MODE == "false") {
+  development = false
+}
+
 module.exports = {
   // used by Store (server side)
-  apiBaseUrl: `http://localhost:3001/api/v1`,
+  apiBaseUrl: process.env.apiBaseUrl || `http://localhost:3001/api/v1`,
 
   // used by Store (server and client side)
-  ajaxBaseUrl: `http://localhost:3001/ajax`,
+  ajaxBaseUrl: process.env.ajaxBaseUrl || `http://localhost:3001/ajax`,
 
   // Access-Control-Allow-Origin
-  storeBaseUrl: `http://localhost:3000`,
+  storeBaseUrl: process.env.storeBaseUrl || `http://localhost:3000`,
 
   // used by API
   adminLoginUrl: "/admin/login",
@@ -32,18 +38,18 @@ module.exports = {
 
   // your shop smtp settings
   smtpServer: {
-    host: "",
+    host: process.env.SMTP_HOST || "",
     port: 465,
     secure: true,
-    user: "",
-    pass: "",
-    fromName: "Cezerin",
-    fromAddress: "vam@test.com"
+    user: process.env.SMTP_USER || "",
+    pass: process.env.SMTP_PASS || "",
+    fromName: process.env.SMTP_FROM_NAME || "Cezerin",
+    fromAddress: process.env.SMTP_FROM_ADDRESS || "vam@test.com"
   },
   // key to sign tokens
   jwtSecretKey: process.env.JWT_SECRET_KEY || DefaultOptions.jwtSecretKey,
   // key to sign store cookies
-  cookieSecretKey: "-",
+  cookieSecretKey: process.env.cookieSecretKey || "-",
 
   // path to uploads
   categoriesUploadPath: "public/content/images/categories",
@@ -58,7 +64,7 @@ module.exports = {
   themeAssetsUploadUrl: "/assets/images",
 
   // store UI language
-  language: "en",
+  language: process.env.language || "en",
 
   // used by API
   orderStartNumber: 1000,
@@ -67,5 +73,5 @@ module.exports = {
   // for production: recommended salRounds > 12
   saltRounds: process.env.SALT_ROUNDS || DefaultOptions.saltRounds,
 
-  developerMode: true
+  developerMode: development
 }
