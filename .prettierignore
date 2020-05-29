@@ -1,4 +1,4 @@
 dist/
 theme/assets/
 theme/dist/
-public\admin-assets\tinymce\tinymce-4.7.5.min.js
+*.min.*
