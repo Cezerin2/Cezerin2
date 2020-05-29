@@ -1,0 +1,6 @@
+# Add 'Editing Docs' to any changes within 'docs' folder or any subfolders
+Editing Docs:
+  - docs/**/*
+
+# Add 'Source Code Edit' to any file changes within 'src' folder
+Source Code Edit: src/*
