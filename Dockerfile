@@ -26,6 +26,7 @@ RUN yarn build
 
 # Exposing store and admin as 3000 and 3002 respectively
 EXPOSE 3000
+EXPOSE 3001
 EXPOSE 3002
 
 # starting up the app when needed
