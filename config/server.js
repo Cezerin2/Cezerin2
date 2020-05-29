@@ -64,7 +64,7 @@ module.exports = {
   themeAssetsUploadUrl: "/assets/images",
 
   // store UI language
-  language: "en",
+  language: process.env.language || "en",
 
   // used by API
   orderStartNumber: 1000,
