@@ -1,3 +1,6 @@
 // config used by dashboard client side only
-export const language = "en"
-export const apiBaseUrl = "/api/v1"
+module.exports = {
+  // dashboard UI language
+  language: "en",
+  apiBaseUrl: "/api/v1"
+}

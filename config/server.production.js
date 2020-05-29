@@ -10,31 +10,56 @@ const dbCred =
 const dbUrl =
   process.env.DB_URL || `mongodb://${dbCred}${dbHost}:${dbPort}/${dbName}`
 
-export const apiBaseUrl = `http://localhost:3001/api/v1`
-export const ajaxBaseUrl = `http://localhost:3001/ajax`
-export const storeBaseUrl = "*"
-export const adminLoginUrl = "/admin/login"
-export const apiListenPort = 3001
-export const storeListenPort = 3000
-export const mongodbServerUrl = dbUrl
-export const smtpServer = {
-  host: "",
-  port: 0,
-  secure: true,
-  user: "",
-  pass: "",
-  fromName: "",
-  fromAddress: ""
+module.exports = {
+  // used by Store (server side)
+  apiBaseUrl: `http://localhost:3001/api/v1`,
+
+  // used by Store (server and client side)
+  ajaxBaseUrl: `http://localhost:3001/ajax`,
+
+  // Access-Control-Allow-Origin
+  storeBaseUrl: "*",
+
+  // used by API
+  adminLoginUrl: "/admin/login",
+
+  apiListenPort: 3001,
+  storeListenPort: 3000,
+
+  // used by API
+  mongodbServerUrl: dbUrl,
+
+  smtpServer: {
+    host: "",
+    port: 0,
+    secure: true,
+    user: "",
+    pass: "",
+    fromName: "",
+    fromAddress: ""
+  },
+
+  // key to sign tokens
+  jwtSecretKey: "SP69kXFR3znRi7kL8Max2GTB24wOtEQj",
+
+  // key to sign store cookies
+  cookieSecretKey: "8669X9P5yI1DAEthy1chc3M9EncyS7SM",
+
+  // path to uploads
+  categoriesUploadPath: "public/content/images/categories",
+  productsUploadPath: "public/content/images/products",
+  filesUploadPath: "public/content",
+  themeAssetsUploadPath: "theme/assets/images",
+
+  // url to uploads
+  categoriesUploadUrl: "/images/categories",
+  productsUploadUrl: "/images/products",
+  filesUploadUrl: "",
+  themeAssetsUploadUrl: "/assets/images",
+
+  // store UI language
+  language: "en",
+
+  // used by API
+  orderStartNumber: 1000
 }
-export const jwtSecretKey = "SP69kXFR3znRi7kL8Max2GTB24wOtEQj"
-export const cookieSecretKey = "8669X9P5yI1DAEthy1chc3M9EncyS7SM"
-export const categoriesUploadPath = "public/content/images/categories"
-export const productsUploadPath = "public/content/images/products"
-export const filesUploadPath = "public/content"
-export const themeAssetsUploadPath = "theme/assets/images"
-export const categoriesUploadUrl = "/images/categories"
-export const productsUploadUrl = "/images/products"
-export const filesUploadUrl = ""
-export const themeAssetsUploadUrl = "/assets/images"
-export const language = "en"
-export const orderStartNumber = 1000
