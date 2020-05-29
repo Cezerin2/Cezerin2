@@ -11,6 +11,12 @@ const dbCred =
 const dbUrl =
   process.env.DB_URL || `mongodb://${dbCred}${dbHost}:${dbPort}/${dbName}`
 
+let development = true
+// checking for production mode.
+if (process.env.DEV_MODE == "false") {
+  development = false
+}
+
 module.exports = {
   // used by Store (server side)
   apiBaseUrl: `http://localhost:3001/api/v1`,
@@ -67,5 +73,5 @@ module.exports = {
   // for production: recommended salRounds > 12
   saltRounds: process.env.SALT_ROUNDS || DefaultOptions.saltRounds,
 
-  developerMode: true
+  developerMode: development
 }
