@@ -2,5 +2,5 @@
 module.exports = {
   // store UI language
   language: "en",
-  ajaxBaseUrl: process.env.ajaxBaseUrl || "http://localhost:3001/ajax"
+  ajaxBaseUrl: "http://localhost:3001/ajax"
 }
