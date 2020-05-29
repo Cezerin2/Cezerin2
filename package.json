@@ -58,7 +58,7 @@
     "babel-preset-react": "^6.24.1",
     "bcrypt": "^3.0.7",
     "body-parser": "^1.18.3",
-    "cezerin2-client": "^0.37.0",
+    "cezerin2-client": "^0.38.0",
     "chart.js": "^2.7.2",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^4.0.1",
