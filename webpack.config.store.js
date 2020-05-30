@@ -8,18 +8,18 @@ const WorkboxPlugin = require("workbox-webpack-plugin")
 module.exports = {
   entry: {
     app: ["@babel/polyfill", "./src/store/client/index.js"],
-    theme: ["theme"]
+    theme: ["theme"],
   },
 
   performance: {
-    hints: false
+    hints: false,
   },
 
   output: {
     publicPath: "/",
     path: path.resolve(__dirname, "theme"),
     filename: "assets/js/[name]-[chunkhash].js",
-    chunkFilename: "assets/js/[name]-[chunkhash].js"
+    chunkFilename: "assets/js/[name]-[chunkhash].js",
   },
 
   optimization: {
@@ -29,10 +29,10 @@ module.exports = {
           chunks: "initial",
           name: "theme",
           test: "theme",
-          enforce: true
-        }
-      }
-    }
+          enforce: true,
+        },
+      },
+    },
   },
 
   module: {
@@ -44,9 +44,9 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: ["env", "react"],
-            plugins: ["transform-class-properties"]
-          }
-        }
+            plugins: ["transform-class-properties"],
+          },
+        },
       },
       {
         test: /\.css$/,
@@ -56,11 +56,11 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: false,
-              importLoaders: true
-            }
+              importLoaders: true,
+            },
           },
-          "postcss-loader"
-        ]
+          "postcss-loader",
+        ],
       },
       {
         test: /\.scss$/,
@@ -68,31 +68,31 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
-          "sass-loader"
-        ]
-      }
-    ]
+          "sass-loader",
+        ],
+      },
+    ],
   },
 
   plugins: [
-    new CleanWebpackPlugin(
-      [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
         "theme/assets/js/app-*.js",
         "theme/assets/js/theme-*.js",
         "theme/assets/css/bundle-*.css",
         "theme/assets/sw.js",
-        "theme/assets/precache-manifest.*.js"
+        "theme/assets/precache-manifest.*.js",
       ],
-      { verbose: false }
-    ),
+      verbose: false,
+    }),
     new MiniCssExtractPlugin({
       filename: "assets/css/bundle-[contenthash].css",
-      chunkFilename: "assets/css/bundle-[contenthash].css"
+      chunkFilename: "assets/css/bundle-[contenthash].css",
     }),
     new HtmlWebpackPlugin({
       template: "theme/index.html",
       inject: "body",
-      filename: "assets/index.html"
+      filename: "assets/index.html",
     }),
     new WorkboxPlugin.GenerateSW({
       swDest: "assets/sw.js",
@@ -103,35 +103,35 @@ module.exports = {
       runtimeCaching: [
         {
           urlPattern: new RegExp("/(images|assets|admin-assets)/"),
-          handler: "cacheFirst"
+          handler: "cacheFirst",
         },
         {
           urlPattern: new RegExp("/api/"),
-          handler: "networkOnly"
+          handler: "networkOnly",
         },
         {
           urlPattern: new RegExp("/ajax/payment_form_settings"),
-          handler: "networkOnly"
+          handler: "networkOnly",
         },
         {
           urlPattern: new RegExp("/"),
           handler: "networkFirst",
           options: {
-            networkTimeoutSeconds: 10
-          }
-        }
-      ]
+            networkTimeoutSeconds: 10,
+          },
+        },
+      ],
     }),
     new webpack.BannerPlugin({
       banner: `Created: ${new Date().toUTCString()}`,
       raw: false,
-      entryOnly: false
-    })
+      entryOnly: false,
+    }),
   ],
 
   stats: {
     children: false,
     entrypoints: false,
-    modules: false
-  }
+    modules: false,
+  },
 }
