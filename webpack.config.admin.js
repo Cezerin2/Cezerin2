@@ -109,14 +109,14 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(
-      [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
         "public/admin-assets/js/app-*.js",
         "public/admin-assets/js/vendor-*.js",
         "public/admin-assets/css/bundle-*.css"
       ],
-      { verbose: false }
-    ),
+      verbose: false
+    }),
     new webpack.DefinePlugin({
       APPLICATION_CONFIG: JSON.stringify(applicationConfig)
     }),

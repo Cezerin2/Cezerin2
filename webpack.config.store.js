@@ -7,7 +7,7 @@ const WorkboxPlugin = require("workbox-webpack-plugin")
 
 module.exports = {
   entry: {
-    app: ["babel-polyfill", "./src/store/client/index.js"],
+    app: ["@babel/polyfill", "./src/store/client/index.js"],
     theme: ["theme"]
   },
 
