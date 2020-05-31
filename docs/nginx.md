@@ -1,5 +1,6 @@
 # Nginx config file
 
+<!-- prettier-ignore -->
 ```nginx
 server {
         # Dynamic image resizing server

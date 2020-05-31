@@ -14,11 +14,12 @@ import { loadState } from "./loadState"
 import { indexHtml } from "./readIndexHtml"
 import App from "../shared/app"
 
+// prettier-ignore
 initOnServer({
   language: serverSettings.language,
   api: new CezerinClient({
-    ajaxBaseUrl: serverSettings.ajaxBaseUrl,
-  }),
+    ajaxBaseUrl: serverSettings.ajaxBaseUrl
+  })
 })
 
 const getHead = () => {
