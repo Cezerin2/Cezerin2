@@ -87,7 +87,7 @@
     "mongodb": "^3.5.8",
     "node-fetch": "^2.2.0",
     "node-sass": "^4.9.3",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.4.8",
     "nodemailer-smtp-transport": "^2.7.4",
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.6.2",
