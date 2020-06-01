@@ -103,19 +103,19 @@ module.exports = {
       runtimeCaching: [
         {
           urlPattern: new RegExp("/(images|assets|admin-assets)/"),
-          handler: "cacheFirst",
+          handler: "CacheFirst",
         },
         {
           urlPattern: new RegExp("/api/"),
-          handler: "networkOnly",
+          handler: "NetworkOnly",
         },
         {
           urlPattern: new RegExp("/ajax/payment_form_settings"),
-          handler: "networkOnly",
+          handler: "NetworkOnly",
         },
         {
           urlPattern: new RegExp("/"),
-          handler: "networkFirst",
+          handler: "NetworkFirst",
           options: {
             networkTimeoutSeconds: 10,
           },
