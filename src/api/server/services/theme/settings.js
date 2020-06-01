@@ -3,9 +3,9 @@ import path from "path"
 import lruCache from "lru-cache"
 import serverSettings from "../../lib/settings"
 
-const cache = new lruCache({
+const cache = lruCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24, // 24h
+  maxAge: 1000 * 60 * 60 * 24 // 24h
 })
 
 const THEME_SETTINGS_CACHE_KEY = "themesettings"

@@ -6,7 +6,7 @@ import { renderToString } from "react-dom/server"
 import { createStore, applyMiddleware } from "redux"
 import thunkMiddleware from "redux-thunk"
 import { Provider } from "react-redux"
-import { Helmet } from "react-helmet"
+import Helmet from "react-helmet"
 import { initOnServer } from "theme"
 import serverSettings from "./settings"
 import reducers from "../shared/reducers"
@@ -17,8 +17,8 @@ import App from "../shared/app"
 initOnServer({
   language: serverSettings.language,
   api: new CezerinClient({
-    ajaxBaseUrl: serverSettings.ajaxBaseUrl,
-  }),
+    ajaxBaseUrl: serverSettings.ajaxBaseUrl
+  })
 })
 
 const getHead = () => {
@@ -31,7 +31,7 @@ const getHead = () => {
     style: helmet.style.toString(),
     htmlAttributes: helmet.htmlAttributes.toString(),
     base: helmet.base.toString(),
-    noscript: helmet.noscript.toString(),
+    noscript: helmet.noscript.toString()
   }
 }
 
@@ -40,7 +40,7 @@ const getReferrerCookieOptions = isHttps => ({
   httpOnly: true,
   signed: true,
   secure: isHttps,
-  sameSite: "strict",
+  sameSite: "strict"
 })
 
 const renderError = (req, res, err) => {
@@ -70,7 +70,7 @@ const getPlaceholder = placeholders => {
     head_start: "",
     head_end: "",
     body_start: "",
-    body_end: "",
+    body_end: ""
   }
 
   if (placeholders && placeholders.length > 0) {
@@ -138,7 +138,7 @@ const pageRendering = (req, res) => {
     .then(({ state, themeText, placeholders }) => {
       initOnServer({
         themeSettings: state.app.themeSettings,
-        text: themeText,
+        text: themeText
       })
       const store = createStore(
         reducers,

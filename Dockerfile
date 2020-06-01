@@ -13,7 +13,7 @@ COPY yarn.lock ./
 COPY ./theme ./theme
 
 # installing packages (yarn causes problems here)
-RUN yarn
+RUN npm i
 
 # If you are building your code for production
 # RUN npm ci --only=production

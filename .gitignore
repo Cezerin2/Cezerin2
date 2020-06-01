@@ -17,4 +17,3 @@ dist/*
 logs/*
 npm-debug.log*
 *.zip
-theme/assets/workbox-83223c85.js
