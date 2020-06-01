@@ -11,9 +11,9 @@ import settings from "../../lib/settings"
 import mailer from "../../lib/mailer"
 import SettingsService from "../settings/settings"
 
-const cache = lruCache({
+const cache = new lruCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24 // 24h
+  maxAge: 1000 * 60 * 60 * 24, // 24h
 })
 
 const BLACKLIST_CACHE_KEY = "blacklist"
@@ -23,7 +23,7 @@ class SecurityTokensService {
 
   getTokens(params = {}) {
     const filter = {
-      is_revoked: false
+      is_revoked: false,
     }
     const id = parse.getObjectIDIfValid(params.id)
     if (id) {
@@ -52,7 +52,7 @@ class SecurityTokensService {
       .collection("tokens")
       .find(
         {
-          is_revoked: true
+          is_revoked: true,
         },
         { _id: 1 }
       )
@@ -102,7 +102,7 @@ class SecurityTokensService {
       .collection("tokens")
       .updateOne(
         {
-          _id: tokenObjectID
+          _id: tokenObjectID,
         },
         { $set: token }
       )
@@ -118,13 +118,13 @@ class SecurityTokensService {
       .collection("tokens")
       .updateOne(
         {
-          _id: tokenObjectID
+          _id: tokenObjectID,
         },
         {
           $set: {
             is_revoked: true,
-            date_created: new Date()
-          }
+            date_created: new Date(),
+          },
         }
       )
       .then(res => {
@@ -149,7 +149,7 @@ class SecurityTokensService {
     return this.checkTokenEmailUnique(email).then(email => {
       const token = {
         is_revoked: false,
-        date_created: new Date()
+        date_created: new Date(),
       }
 
       token.name = parse.getString(data.name)
@@ -169,7 +169,7 @@ class SecurityTokensService {
     }
 
     const token = {
-      date_updated: new Date()
+      date_updated: new Date(),
     }
 
     if (data.name !== undefined) {
@@ -199,7 +199,7 @@ class SecurityTokensService {
 
       const payload = {
         scopes: token.scopes,
-        jti: token.id
+        jti: token.id,
       }
 
       if (token.email && token.email.length > 0) {
@@ -298,14 +298,14 @@ class SecurityTokensService {
       const message = {
         to: email,
         subject: this.getTextFromHandlebars(this.getSigninMailSubject(), {
-          from: userAgent.os.name
+          from: userAgent.os.name,
         }),
         html: this.getTextFromHandlebars(this.getSigninMailBody(), {
           link,
           email,
           domain,
-          requestFrom
-        })
+          requestFrom,
+        }),
       }
       const emailSent = await mailer.send(message)
       return { sent: emailSent, error: null }

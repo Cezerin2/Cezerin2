@@ -4,9 +4,9 @@ import { db } from "../lib/mongo"
 import utils from "../lib/utils"
 import parse from "../lib/parse"
 
-const cache = lruCache({
+const cache = new lruCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24 // 24h
+  maxAge: 1000 * 60 * 60 * 24, // 24h
 })
 
 const WEBHOOKS_CACHE_KEY = "webhooks"
@@ -20,10 +20,7 @@ class WebhooksService {
     if (webhooksFromCache) {
       return webhooksFromCache
     }
-    const items = await db
-      .collection("webhooks")
-      .find()
-      .toArray()
+    const items = await db.collection("webhooks").find().toArray()
     const result = items.map(item => this.changeProperties(item))
     cache.set(WEBHOOKS_CACHE_KEY, result)
     return result
@@ -60,10 +57,10 @@ class WebhooksService {
 
     const res = await db.collection("webhooks").updateOne(
       {
-        _id: webhookObjectID
+        _id: webhookObjectID,
       },
       {
-        $set: webhook
+        $set: webhook,
       }
     )
 
@@ -86,7 +83,7 @@ class WebhooksService {
 
   getValidDocumentForInsert(data) {
     const webhook = {
-      date_created: new Date()
+      date_created: new Date(),
     }
 
     webhook.description = parse.getString(data.description)
@@ -104,7 +101,7 @@ class WebhooksService {
     }
 
     const webhook = {
-      date_updated: new Date()
+      date_updated: new Date(),
     }
 
     if (data.description !== undefined) {

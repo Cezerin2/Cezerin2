@@ -4,9 +4,9 @@ import { db } from "../lib/mongo"
 import utils from "../lib/utils"
 import parse from "../lib/parse"
 
-const cache = lruCache({
+const cache = new lruCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24 // 24h
+  maxAge: 1000 * 60 * 60 * 24, // 24h
 })
 
 const REDIRECTS_CACHE_KEY = "redirects"
@@ -65,7 +65,7 @@ class RedirectsService {
       .collection("redirects")
       .updateOne(
         {
-          _id: redirectObjectID
+          _id: redirectObjectID,
         },
         { $set: redirect }
       )
@@ -93,7 +93,7 @@ class RedirectsService {
     const redirect = {
       from: parse.getString(data.from),
       to: parse.getString(data.to),
-      status: 301
+      status: 301,
     }
 
     return redirect
