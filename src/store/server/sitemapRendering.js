@@ -1,4 +1,4 @@
-import { sm } from "sitemap"
+import { createSitemapsAndIndex } from "sitemap"
 import winston from "winston"
 import api from "./api"
 
@@ -34,7 +34,7 @@ const sitemapRendering = (req, res) => {
           !SITEMAP_EXCLUDE_PATH.includes(item.path)
       )
       .map(item => item.path)
-    const sitemap = sm.createSitemap({ hostname, urls })
+    const sitemap = createSitemapsAndIndex({ hostname, urls })
     sitemap.toXML((err, xml) => {
       if (err) {
         winston.error(err.message ? err.message : err)
