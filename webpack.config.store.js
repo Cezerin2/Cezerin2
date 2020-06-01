@@ -97,25 +97,26 @@ module.exports = {
     }),
     new WorkboxPlugin.GenerateSW({
       swDest: "assets/sw.js",
+      precacheManifestFilename: "assets/precache-manifest.[manifestHash].js",
       clientsClaim: true,
       skipWaiting: true,
       exclude: [/\.html$/],
       runtimeCaching: [
         {
           urlPattern: new RegExp("/(images|assets|admin-assets)/"),
-          handler: "CacheFirst",
+          handler: "cacheFirst",
         },
         {
           urlPattern: new RegExp("/api/"),
-          handler: "NetworkOnly",
+          handler: "networkOnly",
         },
         {
           urlPattern: new RegExp("/ajax/payment_form_settings"),
-          handler: "NetworkOnly",
+          handler: "networkOnly",
         },
         {
           urlPattern: new RegExp("/"),
-          handler: "NetworkFirst",
+          handler: "networkFirst",
           options: {
             networkTimeoutSeconds: 10,
           },
