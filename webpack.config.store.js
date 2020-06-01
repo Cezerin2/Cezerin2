@@ -97,7 +97,7 @@ module.exports = {
     }),
     new WorkboxPlugin.GenerateSW({
       swDest: "assets/sw.js",
-      precacheManifestFilename: "assets/precache-manifest.[manifestHash].js",
+      // precacheManifestFilename: "assets/precache-manifest.[manifestHash].js",
       clientsClaim: true,
       skipWaiting: true,
       exclude: [/\.html$/],
