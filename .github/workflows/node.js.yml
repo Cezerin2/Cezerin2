@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
+      - run: yarn remove theme
       - run: yarn add ./theme
       - run: yarn build #--if-present
     #- run: npm test
