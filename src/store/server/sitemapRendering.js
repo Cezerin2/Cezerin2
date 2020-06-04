@@ -1,4 +1,4 @@
-import { createSitemapsAndIndex } from "sitemap"
+import sm from "sitemap"
 import winston from "winston"
 import api from "./api"
 
@@ -11,13 +11,13 @@ const SITEMAP_EXCLUDE_PATH = [
   "/login",
   "/logout",
   "/register",
-  "/customer-account",
+  "/customer-account"
 ]
 
 const sitemapRendering = (req, res) => {
   Promise.all([
     api.sitemap.list({ enabled: true }),
-    api.settings.retrieve(),
+    api.settings.retrieve()
   ]).then(([sitemapResponse, settingsResponse]) => {
     const sitemapArray = sitemapResponse.json
     const settings = settingsResponse.json
@@ -34,7 +34,7 @@ const sitemapRendering = (req, res) => {
           !SITEMAP_EXCLUDE_PATH.includes(item.path)
       )
       .map(item => item.path)
-    const sitemap = createSitemapsAndIndex({ hostname, urls })
+    const sitemap = sm.createSitemap({ hostname, urls })
     sitemap.toXML((err, xml) => {
       if (err) {
         winston.error(err.message ? err.message : err)

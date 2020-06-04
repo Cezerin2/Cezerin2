@@ -27,7 +27,7 @@ export default class LoginForm extends React.Component {
       email: values.email,
       password: AuthHeader.encodeUserPassword(values.password),
       history: this.props.history,
-      cartLayer: cartLayer,
+      cartLayer: cartLayer
     })
   }
 
@@ -35,7 +35,7 @@ export default class LoginForm extends React.Component {
     const {
       settings,
       customerProperties,
-      cartlayerBtnInitialized,
+      cartlayerBtnInitialized
     } = this.props.state
 
     if (this.props.state.customerProperties !== undefined) {
@@ -53,7 +53,7 @@ export default class LoginForm extends React.Component {
     const {
       checkoutInputClass = "checkout-field",
       checkoutButtonClass = "checkout-button",
-      checkoutEditButtonClass = "checkout-button-edit",
+      checkoutEditButtonClass = "checkout-button-edit"
     } = themeSettings
 
     return (
