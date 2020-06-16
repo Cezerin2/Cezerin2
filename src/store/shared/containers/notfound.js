@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
-import { NotFoundContainer } from "theme"
+import { NotFoundContainer } from "cezerin2-theme"
 import { mapStateToProps, mapDispatchToProps } from "../containerProps"
 
 export default withRouter(

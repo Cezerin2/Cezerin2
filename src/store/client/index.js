@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
 import thunkMiddleware from "redux-thunk"
 import { BrowserRouter } from "react-router-dom"
-import { initOnClient } from "theme"
+import { initOnClient } from "cezerin2-theme"
 import clientSettings from "./settings"
 import reducers from "../shared/reducers"
 import * as analytics from "../shared/analytics"
@@ -18,7 +18,7 @@ initOnClient({
   themeSettings: initialState.app.themeSettings,
   text: themeText,
   language: clientSettings.language,
-  api
+  api,
 })
 
 const store = createStore(
