@@ -9193,6 +9193,8 @@ text-table@^0.2.0:
 theme@./theme:
   version "1.0.0"
   dependencies:
+    "@babel/cli" "^7.10.1"
+    "@babel/core" "^7.10.2"
     bulma "^0.6.2"
     rc-slider "^8.6.1"
     react-image-gallery "^0.8.7"

@@ -28,7 +28,7 @@
     "webpack:store:watch": "webpack --config webpack.config.store.js --mode development --watch",
     "theme:install": "./scripts/theme-install.sh",
     "theme:export": "./scripts/theme-export.sh",
-    "theme:build": "babel theme/src -d theme/dist --presets @babel/react --plugins transform-class-properties --quiet && npm run webpack:store",
+    "theme:build": "npm run webpack:store",
     "build": "npm run compile && npm run theme:build && npm run webpack:admin",
     "build:watch": "concurrently -n compile,webpackStore,webpackAdmin \"npm run compile:watch\" \"npm run webpack:store:watch\" \"npm run webpack:admin:watch\"",
     "lint": "eslint .",

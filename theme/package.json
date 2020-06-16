@@ -5,7 +5,12 @@
   "main": "dist/index.js",
   "author": "",
   "license": "Unlicense",
+  "scripts": {
+    "install": "babel src -d dist --presets @babel/react --plugins transform-class-properties --quiet"
+  },
   "dependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
     "bulma": "^0.6.2",
     "rc-slider": "^8.6.1",
     "react-image-gallery": "^0.8.7",
