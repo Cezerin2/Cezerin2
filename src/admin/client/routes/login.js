@@ -54,7 +54,7 @@ export default class LoginForm extends React.Component {
           isFetching: false,
           isAuthorized: false,
           emailIsSent: false,
-          error: error
+          error
         })
       })
   }
@@ -62,6 +62,7 @@ export default class LoginForm extends React.Component {
   componentWillMount() {
     auth.checkTokenFromUrl()
   }
+
   componentDidMount() {}
 
   render() {
@@ -93,14 +94,14 @@ export default class LoginForm extends React.Component {
                 onChange={this.handleChange}
                 onKeyPress={this.handleKeyPress}
                 label={messages.email}
-                fullWidth={true}
+                fullWidth
                 hintStyle={{ width: "100%" }}
                 hintText={messages.email}
               />
             </div>
             <RaisedButton
               label={messages.loginButton}
-              primary={true}
+              primary
               disabled={isFetching || emailIsSent}
               onClick={this.handleSubmit}
             />

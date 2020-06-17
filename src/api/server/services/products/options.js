@@ -9,7 +9,7 @@ class ProductOptionsService {
     if (!ObjectID.isValid(productId)) {
       return Promise.reject("Invalid identifier")
     }
-    let productObjectID = new ObjectID(productId)
+    const productObjectID = new ObjectID(productId)
 
     return db
       .collection("products")
@@ -19,9 +19,8 @@ class ProductOptionsService {
           return product.options
             .map(option => this.changeProperties(option))
             .sort((a, b) => a.position - b.position)
-        } else {
-          return []
         }
+        return []
       })
   }
 
@@ -35,8 +34,8 @@ class ProductOptionsService {
     if (!ObjectID.isValid(productId) || !ObjectID.isValid(optionId)) {
       return Promise.reject("Invalid identifier")
     }
-    let productObjectID = new ObjectID(productId)
-    let optionObjectID = new ObjectID(optionId)
+    const productObjectID = new ObjectID(productId)
+    const optionObjectID = new ObjectID(optionId)
 
     return db
       .collection("products")
@@ -59,7 +58,7 @@ class ProductOptionsService {
     if (!ObjectID.isValid(productId)) {
       return Promise.reject("Invalid identifier")
     }
-    let productObjectID = new ObjectID(productId)
+    const productObjectID = new ObjectID(productId)
 
     const optionData = this.getValidDocumentForInsert(data)
 
@@ -73,8 +72,8 @@ class ProductOptionsService {
     if (!ObjectID.isValid(productId) || !ObjectID.isValid(optionId)) {
       return Promise.reject("Invalid identifier")
     }
-    let productObjectID = new ObjectID(productId)
-    let optionObjectID = new ObjectID(optionId)
+    const productObjectID = new ObjectID(productId)
+    const optionObjectID = new ObjectID(optionId)
 
     const optionData = this.getValidDocumentForUpdate(data)
 
@@ -91,7 +90,7 @@ class ProductOptionsService {
   }
 
   getValidDocumentForInsert(data) {
-    let option = {
+    const option = {
       id: new ObjectID(),
       name: parse.getString(data.name),
       control: parse.getString(data.control),
@@ -112,7 +111,7 @@ class ProductOptionsService {
       return new Error("Required fields are missing")
     }
 
-    let option = {}
+    const option = {}
 
     if (data.name !== undefined) {
       option["options.$.name"] = parse.getString(data.name)

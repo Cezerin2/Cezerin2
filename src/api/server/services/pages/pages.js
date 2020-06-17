@@ -12,7 +12,7 @@ class PagesService {
   constructor() {}
 
   getFilter(params = {}) {
-    let filter = {}
+    const filter = {}
     const id = parse.getObjectIDIfValid(params.id)
     const tags = parse.getString(params.tags)
     if (id) {
@@ -36,9 +36,8 @@ class PagesService {
             : 1
         }))
       )
-    } else {
-      return DEFAULT_SORT
     }
+    return DEFAULT_SORT
   }
 
   async getPages(params = {}) {
@@ -46,10 +45,10 @@ class PagesService {
     const sortQuery = this.getSortQuery(params)
     const projection = utils.getProjectionFromFields(params.fields)
     const generalSettings = await SettingsService.getSettings()
-    const domain = generalSettings.domain
+    const { domain } = generalSettings
     const items = await db
       .collection("pages")
-      .find(filter, { projection: projection })
+      .find(filter, { projection })
       .sort(sortQuery)
       .toArray()
     const result = items.map(page => this.changeProperties(page, domain))
@@ -60,9 +59,9 @@ class PagesService {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    return this.getPages({ id: id }).then(pages => {
-      return pages.length > 0 ? pages[0] : null
-    })
+    return this.getPages({ id }).then(pages =>
+      pages.length > 0 ? pages[0] : null
+    )
   }
 
   addPage(data) {
@@ -96,13 +95,11 @@ class PagesService {
     return db
       .collection("pages")
       .deleteOne({ _id: pageObjectID, is_system: false })
-      .then(deleteResponse => {
-        return deleteResponse.deletedCount > 0
-      })
+      .then(deleteResponse => deleteResponse.deletedCount > 0)
   }
 
   getValidDocumentForInsert(data) {
-    let page = {
+    const page = {
       is_system: false,
       date_created: new Date()
     }
@@ -113,62 +110,59 @@ class PagesService {
     page.enabled = parse.getBooleanIfValid(data.enabled, true)
     page.tags = parse.getArrayIfValid(data.tags) || []
 
-    let slug =
+    const slug =
       !data.slug || data.slug.length === 0 ? data.meta_title : data.slug
     if (!slug || slug.length === 0) {
       return Promise.resolve(page)
-    } else {
-      return utils.getAvailableSlug(slug, null, false).then(newSlug => {
-        page.slug = newSlug
-        return page
-      })
     }
+    return utils.getAvailableSlug(slug, null, false).then(newSlug => {
+      page.slug = newSlug
+      return page
+    })
   }
 
   getValidDocumentForUpdate(id, data) {
     if (Object.keys(data).length === 0) {
       return Promise.reject("Required fields are missing")
-    } else {
-      return this.getSinglePage(id).then(prevPageData => {
-        let page = {
-          date_updated: new Date()
-        }
-
-        if (data.content !== undefined) {
-          page.content = parse.getString(data.content)
-        }
-
-        if (data.meta_description !== undefined) {
-          page.meta_description = parse.getString(data.meta_description)
-        }
-
-        if (data.meta_title !== undefined) {
-          page.meta_title = parse.getString(data.meta_title)
-        }
-
-        if (data.enabled !== undefined && !prevPageData.is_system) {
-          page.enabled = parse.getBooleanIfValid(data.enabled, true)
-        }
-
-        if (data.tags !== undefined) {
-          page.tags = parse.getArrayIfValid(data.tags) || []
-        }
-
-        if (data.slug !== undefined && !prevPageData.is_system) {
-          let slug = data.slug
-          if (!slug || slug.length === 0) {
-            slug = data.meta_title
-          }
-
-          return utils.getAvailableSlug(slug, id, false).then(newSlug => {
-            page.slug = newSlug
-            return page
-          })
-        } else {
-          return page
-        }
-      })
     }
+    return this.getSinglePage(id).then(prevPageData => {
+      const page = {
+        date_updated: new Date()
+      }
+
+      if (data.content !== undefined) {
+        page.content = parse.getString(data.content)
+      }
+
+      if (data.meta_description !== undefined) {
+        page.meta_description = parse.getString(data.meta_description)
+      }
+
+      if (data.meta_title !== undefined) {
+        page.meta_title = parse.getString(data.meta_title)
+      }
+
+      if (data.enabled !== undefined && !prevPageData.is_system) {
+        page.enabled = parse.getBooleanIfValid(data.enabled, true)
+      }
+
+      if (data.tags !== undefined) {
+        page.tags = parse.getArrayIfValid(data.tags) || []
+      }
+
+      if (data.slug !== undefined && !prevPageData.is_system) {
+        let { slug } = data
+        if (!slug || slug.length === 0) {
+          slug = data.meta_title
+        }
+
+        return utils.getAvailableSlug(slug, id, false).then(newSlug => {
+          page.slug = newSlug
+          return page
+        })
+      }
+      return page
+    })
   }
 
   changeProperties(item, domain) {

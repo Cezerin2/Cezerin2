@@ -14,7 +14,7 @@ class SitemapService {
       this.getSlugArrayFromProducts(slug, onlyEnabled),
       this.getSlugArrayFromPages(slug, onlyEnabled)
     ]).then(([reserved, productCategories, products, pages]) => {
-      let paths = [...reserved, ...productCategories, ...products, ...pages]
+      const paths = [...reserved, ...productCategories, ...products, ...pages]
       return paths
     })
   }
@@ -25,7 +25,7 @@ class SitemapService {
       this.getSlugArrayFromProductCategories(slug, onlyEnabled),
       this.getSlugArrayFromPages(slug, onlyEnabled)
     ]).then(([reserved, productCategories, pages]) => {
-      let paths = [...reserved, ...productCategories, ...pages]
+      const paths = [...reserved, ...productCategories, ...pages]
       return paths
     })
   }
@@ -35,13 +35,13 @@ class SitemapService {
       this.getSlugArrayFromProducts(slug, onlyEnabled),
       this.getSlugArrayFromPages(slug, onlyEnabled)
     ]).then(([products, pages]) => {
-      let paths = [...products, ...pages]
+      const paths = [...products, ...pages]
       return paths
     })
   }
 
   getSlugArrayFromReserved() {
-    let paths = []
+    const paths = []
 
     paths.push({ path: "/api", type: "reserved" })
     paths.push({ path: "/ajax", type: "reserved" })
@@ -97,8 +97,8 @@ class SitemapService {
         .find(productFilter)
         .project({ slug: 1, category_id: 1 })
         .toArray()
-    ]).then(([categories, products]) => {
-      return products.map(product => {
+    ]).then(([categories, products]) =>
+      products.map(product => {
         const category = categories.find(
           c => c._id.toString() === (product.category_id || "").toString()
         )
@@ -109,7 +109,7 @@ class SitemapService {
           resource: product._id
         }
       })
-    })
+    )
   }
 
   getSlugArrayFromPages(slug, onlyEnabled) {
@@ -154,10 +154,9 @@ class SitemapService {
 
   getFilterWithoutSlashes(slug) {
     if (slug) {
-      return { slug: slug }
-    } else {
-      return {}
+      return { slug }
     }
+    return {}
   }
 
   getSinglePath(path, onlyEnabled = false) {
@@ -169,12 +168,11 @@ class SitemapService {
       return this.getPathsWithSlash(slug, onlyEnabled).then(paths =>
         paths.find(e => e.path === path)
       )
-    } else {
-      // slug = slug
-      return this.getPathsWithoutSlashes(slug, onlyEnabled).then(paths =>
-        paths.find(e => e.path === path)
-      )
     }
+    // slug = slug
+    return this.getPathsWithoutSlashes(slug, onlyEnabled).then(paths =>
+      paths.find(e => e.path === path)
+    )
   }
 }
 

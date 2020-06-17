@@ -10,13 +10,13 @@ import style from "./style.css"
 
 const CustomersListItem = ({ customer, onSelect, selected, settings }) => {
   const checked = selected.includes(customer.id)
-  let totalSpentFormatted = helper.formatCurrency(
+  const totalSpentFormatted = helper.formatCurrency(
     customer.total_spent,
     settings
   )
 
   return (
-    <div className={"customers-item" + (checked === true ? " selected" : "")}>
+    <div className={`customers-item${checked === true ? " selected" : ""}`}>
       <ListItem
         style={{ cursor: "normal" }}
         primaryText={
@@ -31,7 +31,7 @@ const CustomersListItem = ({ customer, onSelect, selected, settings }) => {
             </div>
             <div className="col-xs-5">
               <Link
-                to={"/admin/customer/" + customer.id}
+                to={`/admin/customer/${customer.id}`}
                 className={style.customerName}
               >
                 {customer.full_name}
@@ -39,7 +39,7 @@ const CustomersListItem = ({ customer, onSelect, selected, settings }) => {
                 <small>{customer.group_name}</small>
               </Link>
             </div>
-            <div className={"col-xs-3 " + style.location}>
+            <div className={`col-xs-3 ${style.location}`}>
               {customer.shipping && customer.shipping.city && (
                 <span>
                   <FontIcon

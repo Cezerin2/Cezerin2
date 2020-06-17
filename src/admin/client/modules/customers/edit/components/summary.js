@@ -4,8 +4,6 @@ import moment from "moment"
 
 import messages from "lib/text"
 import * as helper from "lib/helper"
-import style from "./style.css"
-import SummaryForm from "./summaryForm.js"
 
 import Paper from "material-ui/Paper"
 import Divider from "material-ui/Divider"
@@ -17,6 +15,8 @@ import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
 import Dialog from "material-ui/Dialog"
+import SummaryForm from "./summaryForm.js"
+import style from "./style.css"
 
 export default class CustomerSummary extends React.Component {
   constructor(props) {
@@ -56,32 +56,32 @@ export default class CustomerSummary extends React.Component {
             </div>
           </div>
 
-          <div className={style.summaryRow + " row"}>
+          <div className={`${style.summaryRow} row`}>
             <div className="col-xs-5">
               <span>{messages.email}</span>
             </div>
             <div className="col-xs-7">
-              <a href={"MailTo:" + customer.email} className={style.link}>
+              <a href={`MailTo:${customer.email}`} className={style.link}>
                 {customer.email}
               </a>
             </div>
           </div>
 
-          <div className={style.summaryRow + " row"}>
+          <div className={`${style.summaryRow} row`}>
             <div className="col-xs-5">
               <span>{messages.mobile}</span>
             </div>
             <div className="col-xs-7">{customer.mobile}</div>
           </div>
 
-          <div className={style.summaryRow + " row"}>
+          <div className={`${style.summaryRow} row`}>
             <div className="col-xs-5">
               <span>{messages.customers_totalSpent}</span>
             </div>
             <div className="col-xs-7">{totalSpent}</div>
           </div>
 
-          <div className={style.summaryRow + " row"}>
+          <div className={`${style.summaryRow} row`}>
             <div className="col-xs-5">
               <span>{messages.note}</span>
             </div>

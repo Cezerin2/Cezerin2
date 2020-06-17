@@ -12,9 +12,7 @@ class CookieBannerService {
     return db
       .collection("cookieBanner")
       .findOne()
-      .then(body => {
-        return this.changeProperties(body)
-      })
+      .then(body => this.changeProperties(body))
   }
 
   updateCookieBanner(data) {
@@ -38,8 +36,6 @@ class CookieBannerService {
       .then(count => {
         if (count === 0) {
           return db.collection("cookieBanner").insertOne(this.defaultSettings)
-        } else {
-          return
         }
       })
   }
@@ -49,7 +45,7 @@ class CookieBannerService {
       return new Error("Required fields are missing")
     }
 
-    let cookieBanner = {}
+    const cookieBanner = {}
 
     if (data.body !== undefined) {
       cookieBanner.body = parse.getString(data.body)

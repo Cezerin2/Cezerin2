@@ -119,7 +119,7 @@ class CustomersRoute {
 
   updateAddress(req, res, next) {
     const customer_id = req.params.id
-    const address_id = req.params.address_id
+    const { address_id } = req.params
     CustomersService.updateAddress(customer_id, address_id, req.body)
       .then(data => {
         res.end()
@@ -129,7 +129,7 @@ class CustomersRoute {
 
   deleteAddress(req, res, next) {
     const customer_id = req.params.id
-    const address_id = req.params.address_id
+    const { address_id } = req.params
     CustomersService.deleteAddress(customer_id, address_id)
       .then(data => {
         res.end()
@@ -139,7 +139,7 @@ class CustomersRoute {
 
   setDefaultBilling(req, res, next) {
     const customer_id = req.params.id
-    const address_id = req.params.address_id
+    const { address_id } = req.params
     CustomersService.setDefaultBilling(customer_id, address_id)
       .then(data => {
         res.end()
@@ -149,7 +149,7 @@ class CustomersRoute {
 
   setDefaultShipping(req, res, next) {
     const customer_id = req.params.id
-    const address_id = req.params.address_id
+    const { address_id } = req.params
     CustomersService.setDefaultShipping(customer_id, address_id)
       .then(data => {
         res.end()

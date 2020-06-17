@@ -2,7 +2,7 @@ import React from "react"
 import { Redirect } from "react-router-dom"
 import Lscache from "lscache"
 import { themeSettings, text } from "../../lib/settings"
-import AuthHeader from "../../../../src/api/server/lib/auth-header"
+import AuthHeader from "../../../../../src/api/server/lib/auth-header"
 import Account from "./account"
 
 export default class AccountForm extends React.Component {
@@ -12,7 +12,7 @@ export default class AccountForm extends React.Component {
 
   handlecustomerProperties = () => {
     this.props.customerData({
-      token: Lscache.get("auth_data")
+      token: Lscache.get("auth_data"),
     })
   }
 
@@ -28,15 +28,17 @@ export default class AccountForm extends React.Component {
       billing_address,
       saved_addresses: this.props.state.customerProperties.order_statuses
         .total_count,
-      history: this.props.history
+      history: this.props.history,
     })
 
     this.props.updateCart({
       shipping_address: shipping_address,
       billing_address: billing_address,
       payment_method_id: null,
-      shipping_method_id: null
+      shipping_method_id: null,
     })
+
+    window.location.reload()
   }
 
   render() {
@@ -45,7 +47,7 @@ export default class AccountForm extends React.Component {
       cart,
       customerProperties,
       initialValues,
-      cartlayerBtnInitialized
+      cartlayerBtnInitialized,
     } = this.props.state
 
     Lscache.flushExpired()
@@ -55,7 +57,7 @@ export default class AccountForm extends React.Component {
       return (
         <Redirect
           to={{
-            pathname: "/login"
+            pathname: "/login",
           }}
         />
       )
@@ -68,7 +70,7 @@ export default class AccountForm extends React.Component {
         return (
           <Redirect
             to={{
-              pathname: "/login"
+              pathname: "/login",
             }}
           />
         )
@@ -77,7 +79,7 @@ export default class AccountForm extends React.Component {
       const {
         checkoutInputClass = "checkout-field",
         checkoutButtonClass = "checkout-button",
-        checkoutEditButtonClass = "checkout-button-edit"
+        checkoutEditButtonClass = "checkout-button-edit",
       } = themeSettings
 
       return (

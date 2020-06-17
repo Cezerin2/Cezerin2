@@ -5,12 +5,12 @@ import { TextField, SelectField } from "redux-form-material-ui"
 import { CustomToggle } from "modules/shared/form"
 import api from "lib/api"
 import messages from "lib/text"
-import style from "./style.css"
 
 import Divider from "material-ui/Divider"
 import RaisedButton from "material-ui/RaisedButton"
 import FlatButton from "material-ui/FlatButton"
 import MenuItem from "material-ui/MenuItem"
+import style from "./style.css"
 
 const validate = values => {
   const errors = {}
@@ -40,7 +40,7 @@ class CustomerEditForm extends React.Component {
   }
 
   render() {
-    let {
+    const {
       handleSubmit,
       pristine,
       submitting,
@@ -48,7 +48,7 @@ class CustomerEditForm extends React.Component {
       onCancel
     } = this.props
 
-    let groupItems = this.state.groups.map((item, index) => (
+    const groupItems = this.state.groups.map((item, index) => (
       <MenuItem key={index} value={item.id} primaryText={item.name} />
     ))
     groupItems.push(
@@ -71,14 +71,14 @@ class CustomerEditForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="full_name"
               floatingLabelText={messages.full_name}
             />
           </div>
           <Field
             component={SelectField}
-            fullWidth={true}
+            fullWidth
             name="group_id"
             floatingLabelText={messages.group}
           >
@@ -87,7 +87,7 @@ class CustomerEditForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="email"
               floatingLabelText={messages.email}
             />
@@ -95,7 +95,7 @@ class CustomerEditForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="mobile"
               floatingLabelText={messages.mobile}
             />
@@ -103,10 +103,10 @@ class CustomerEditForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="note"
               floatingLabelText={messages.note}
-              multiLine={true}
+              multiLine
             />
           </div>
         </div>
@@ -114,7 +114,7 @@ class CustomerEditForm extends React.Component {
           <FlatButton label={messages.cancel} onClick={onCancel} />
           <FlatButton
             label={messages.save}
-            primary={true}
+            primary
             type="submit"
             style={{ marginLeft: 12 }}
             disabled={pristine || submitting}

@@ -6,23 +6,23 @@ Cezerin2 is React and Node.js based eCommerce platform. Allows creating a Progre
 
 Built with:
 
-- Node.js v8.9
+- Node.js >=v10
 - React v16
 - Redux
 - Express
 - Babel
-- WebPack 4
+- WebPack >=4
 - MongoDB
 
 ## Links
 
-- [GitHub](https://github.com/cezerin2/cezerin2)
+- [GitHub](https://github.com/cezerin2/cezerin2-mono)
 - [Community Site](https://cezerin.org)
 - [Demo Store](https://demo.cezerin.net)
 - [Telegram Chat: Cezerin](https://t.me/cezerin)
-- [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs)
+- [Docs](https://github.com/cezerin2/cezerin2-mono/blob/master/docs)
 - [Facebook](https://facebook.com/cezerin)
-- [Twitter](https://twitter.com/cezerin2)
+- [Twitter](https://twitter.com/cezerin2-mono)
 
 ## Dashboard
 
@@ -40,10 +40,10 @@ Single-Page Application with React server-side rendering. [Demo store](https://d
 
 ## Installation
 
-- [with GitHub](https://github.com/cezerin2/cezerin2/blob/master/docs/using-source-code.md)
+- [with GitHub](https://github.com/cezerin2/cezerin2-mono/blob/master/docs/using-source-code.md)
 - [with Docker](https://github.com/cezerin2/cezerin2/blob/master/docs/using-docker.md)
-- [How to deploy a Cezerin2 on Ubuntu 16.04](https://github.com/cezerin2/cezerin2/blob/master/docs/how-to-deploy-a-cezerin2-on-ubuntu-16-04.md)
-- [How to deploy a Cezerin2 on Ubuntu 18.04.1 (from GitHub)](https://github.com/cezerin2/cezerin2/blob/master/docs/how-to-deploy-a-cezerin2-on-ubuntu-18-04-1-github.md)
+- [How to deploy a Cezerin2-mono on Ubuntu 16.04](https://github.com/cezerin2/cezerin2-mono/blob/master/docs/how-to-deploy-cezerin2-mono-on-ubuntu-16-04.md)
+- [How to deploy a Cezerin2-mono on Ubuntu 18.04.1 (from GitHub)](https://github.com/cezerin2/cezerin2-mono/blob/master/docs/how-to-deploy-cezerin2-mono-on-ubuntu-18-04-1-github.md)
 
 ### Requirements
 

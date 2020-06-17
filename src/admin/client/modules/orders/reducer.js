@@ -62,9 +62,9 @@ export default (state = initialState, action) => {
         selected: []
       })
     case t.ORDERS_SELECT_ALL:
-      let selected = state.items.map(item => item.id)
+      const selected = state.items.map(item => item.id)
       return Object.assign({}, state, {
-        selected: selected
+        selected
       })
     case t.ORDERS_SET_FILTER:
       const newFilter = Object.assign({}, state.filter, action.filter)

@@ -20,10 +20,8 @@ class CheckoutFieldsService {
   getCheckoutField(name) {
     return db
       .collection("checkoutFields")
-      .findOne({ name: name })
-      .then(field => {
-        return this.changeProperties(field)
-      })
+      .findOne({ name })
+      .then(field => this.changeProperties(field))
   }
 
   updateCheckoutField(name, data) {
@@ -31,7 +29,7 @@ class CheckoutFieldsService {
     return db
       .collection("checkoutFields")
       .updateOne(
-        { name: name },
+        { name },
         {
           $set: field
         },
@@ -45,7 +43,7 @@ class CheckoutFieldsService {
       return new Error("Required fields are missing")
     }
 
-    let field = {}
+    const field = {}
 
     if (data.status !== undefined) {
       field.status = parse.getString(data.status)

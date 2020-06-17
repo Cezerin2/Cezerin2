@@ -2,12 +2,12 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 import messages from "lib/text"
-import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
+import style from "./style.css"
 
 const ServiceDescription = ({
   service,
@@ -34,7 +34,7 @@ const ServiceDescription = ({
                 {!service.enabled && (
                   <RaisedButton
                     label={messages.enable}
-                    primary={true}
+                    primary
                     disabled={loadingEnableDisable}
                     onClick={enableService}
                   />
@@ -56,9 +56,8 @@ const ServiceDescription = ({
         </Paper>
       </div>
     )
-  } else {
-    return null
   }
+  return null
 }
 
 export default ServiceDescription

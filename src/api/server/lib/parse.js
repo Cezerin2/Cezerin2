@@ -7,16 +7,13 @@ const getDateIfValid = value => {
   return isNaN(date) ? null : new Date(date)
 }
 
-const getArrayIfValid = value => {
-  return Array.isArray(value) ? value : null
-}
+const getArrayIfValid = value => (Array.isArray(value) ? value : null)
 
 const getArrayOfObjectID = value => {
   if (Array.isArray(value) && value.length > 0) {
     return value.map(id => getObjectIDIfValid(id)).filter(id => !!id)
-  } else {
-    return []
   }
+  return []
 }
 
 const isNumber = value => !isNaN(parseFloat(value)) && isFinite(value)
@@ -31,17 +28,15 @@ const getNumberIfPositive = value => {
 const getBooleanIfValid = (value, defaultValue = null) => {
   if (value === "true" || value === "false") {
     return value === "true"
-  } else {
-    return typeof value === "boolean" ? value : defaultValue
   }
+  return typeof value === "boolean" ? value : defaultValue
 }
 
-const getObjectIDIfValid = value => {
-  return ObjectID.isValid(value) ? new ObjectID(value) : null
-}
+const getObjectIDIfValid = value =>
+  ObjectID.isValid(value) ? new ObjectID(value) : null
 
-const getBrowser = browser => {
-  return browser
+const getBrowser = browser =>
+  browser
     ? {
         ip: getString(browser.ip),
         user_agent: getString(browser.user_agent)
@@ -50,10 +45,9 @@ const getBrowser = browser => {
         ip: "",
         user_agent: ""
       }
-}
 
 const getCustomerAddress = address => {
-  let coordinates = {
+  const coordinates = {
     latitude: "",
     longitude: ""
   }
@@ -76,7 +70,7 @@ const getCustomerAddress = address => {
         phone: getString(address.phone),
         company: getString(address.company),
         tax_number: getString(address.tax_number),
-        coordinates: coordinates,
+        coordinates,
         details: address.details,
         default_billing: false,
         default_shipping: false
@@ -85,7 +79,7 @@ const getCustomerAddress = address => {
 }
 
 const getOrderAddress = address => {
-  let coordinates = {
+  const coordinates = {
     latitude: "",
     longitude: ""
   }
@@ -106,7 +100,7 @@ const getOrderAddress = address => {
     phone: "",
     company: "",
     tax_number: "",
-    coordinates: coordinates,
+    coordinates,
     details: null
   }
 
@@ -124,7 +118,7 @@ const getOrderAddress = address => {
           phone: getString(address.phone),
           company: getString(address.company),
           tax_number: getString(address.tax_number),
-          coordinates: coordinates,
+          coordinates,
           details: address.details
         },
         address
@@ -133,15 +127,15 @@ const getOrderAddress = address => {
 }
 
 export default {
-  getString: getString,
-  getObjectIDIfValid: getObjectIDIfValid,
-  getDateIfValid: getDateIfValid,
-  getArrayIfValid: getArrayIfValid,
-  getArrayOfObjectID: getArrayOfObjectID,
-  getNumberIfValid: getNumberIfValid,
-  getNumberIfPositive: getNumberIfPositive,
-  getBooleanIfValid: getBooleanIfValid,
-  getBrowser: getBrowser,
-  getCustomerAddress: getCustomerAddress,
-  getOrderAddress: getOrderAddress
+  getString,
+  getObjectIDIfValid,
+  getDateIfValid,
+  getArrayIfValid,
+  getArrayOfObjectID,
+  getNumberIfValid,
+  getNumberIfPositive,
+  getBooleanIfValid,
+  getBrowser,
+  getCustomerAddress,
+  getOrderAddress
 }

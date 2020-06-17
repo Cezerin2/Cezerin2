@@ -4,9 +4,9 @@ import { db } from "../lib/mongo"
 import utils from "../lib/utils"
 import parse from "../lib/parse"
 
-const cache = lruCache({
+const cache = new lruCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24 // 24h
+  maxAge: 1000 * 60 * 60 * 24, // 24h
 })
 
 const REDIRECTS_CACHE_KEY = "redirects"
@@ -19,24 +19,23 @@ class RedirectsService {
 
     if (redirectsFromCache) {
       return Promise.resolve(redirectsFromCache)
-    } else {
-      return db
-        .collection("redirects")
-        .find()
-        .toArray()
-        .then(items => items.map(item => this.changeProperties(item)))
-        .then(items => {
-          cache.set(REDIRECTS_CACHE_KEY, items)
-          return items
-        })
     }
+    return db
+      .collection("redirects")
+      .find()
+      .toArray()
+      .then(items => items.map(item => this.changeProperties(item)))
+      .then(items => {
+        cache.set(REDIRECTS_CACHE_KEY, items)
+        return items
+      })
   }
 
   getSingleRedirect(id) {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    let redirectObjectID = new ObjectID(id)
+    const redirectObjectID = new ObjectID(id)
 
     return db
       .collection("redirects")
@@ -66,7 +65,7 @@ class RedirectsService {
       .collection("redirects")
       .updateOne(
         {
-          _id: redirectObjectID
+          _id: redirectObjectID,
         },
         { $set: redirect }
       )
@@ -91,10 +90,10 @@ class RedirectsService {
   }
 
   getValidDocumentForInsert(data) {
-    let redirect = {
+    const redirect = {
       from: parse.getString(data.from),
       to: parse.getString(data.to),
-      status: 301
+      status: 301,
     }
 
     return redirect
@@ -105,7 +104,7 @@ class RedirectsService {
       return new Error("Required fields are missing")
     }
 
-    let redirect = {}
+    const redirect = {}
 
     if (data.from !== undefined) {
       redirect.from = parse.getString(data.from)

@@ -18,7 +18,7 @@ initOnClient({
   themeSettings: initialState.app.themeSettings,
   text: themeText,
   language: clientSettings.language,
-  api: api
+  api
 })
 
 const store = createStore(

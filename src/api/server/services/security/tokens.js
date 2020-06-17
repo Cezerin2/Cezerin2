@@ -11,9 +11,9 @@ import settings from "../../lib/settings"
 import mailer from "../../lib/mailer"
 import SettingsService from "../settings/settings"
 
-const cache = lruCache({
+const cache = new lruCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24 // 24h
+  maxAge: 1000 * 60 * 60 * 24, // 24h
 })
 
 const BLACKLIST_CACHE_KEY = "blacklist"
@@ -22,8 +22,8 @@ class SecurityTokensService {
   constructor() {}
 
   getTokens(params = {}) {
-    let filter = {
-      is_revoked: false
+    const filter = {
+      is_revoked: false,
     }
     const id = parse.getObjectIDIfValid(params.id)
     if (id) {
@@ -47,37 +47,36 @@ class SecurityTokensService {
 
     if (blacklistFromCache) {
       return Promise.resolve(blacklistFromCache)
-    } else {
-      return db
-        .collection("tokens")
-        .find(
-          {
-            is_revoked: true
-          },
-          { _id: 1 }
-        )
-        .toArray()
-        .then(items => {
-          const blacklistFromDB = items.map(item => item._id.toString())
-          cache.set(BLACKLIST_CACHE_KEY, blacklistFromDB)
-          return blacklistFromDB
-        })
     }
+    return db
+      .collection("tokens")
+      .find(
+        {
+          is_revoked: true,
+        },
+        { _id: 1 }
+      )
+      .toArray()
+      .then(items => {
+        const blacklistFromDB = items.map(item => item._id.toString())
+        cache.set(BLACKLIST_CACHE_KEY, blacklistFromDB)
+        return blacklistFromDB
+      })
   }
 
   getSingleToken(id) {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    return this.getTokens({ id: id }).then(items => {
-      return items.length > 0 ? items[0] : null
-    })
+    return this.getTokens({ id }).then(items =>
+      items.length > 0 ? items[0] : null
+    )
   }
 
   getSingleTokenByEmail(email) {
-    return this.getTokens({ email }).then(items => {
-      return items.length > 0 ? items[0] : null
-    })
+    return this.getTokens({ email }).then(items =>
+      items.length > 0 ? items[0] : null
+    )
   }
 
   addToken(data) {
@@ -103,7 +102,7 @@ class SecurityTokensService {
       .collection("tokens")
       .updateOne(
         {
-          _id: tokenObjectID
+          _id: tokenObjectID,
         },
         { $set: token }
       )
@@ -119,13 +118,13 @@ class SecurityTokensService {
       .collection("tokens")
       .updateOne(
         {
-          _id: tokenObjectID
+          _id: tokenObjectID,
         },
         {
           $set: {
             is_revoked: true,
-            date_created: new Date()
-          }
+            date_created: new Date(),
+          },
         }
       )
       .then(res => {
@@ -137,21 +136,20 @@ class SecurityTokensService {
     if (email && email.length > 0) {
       return db
         .collection("tokens")
-        .count({ email: email, is_revoked: false })
+        .count({ email, is_revoked: false })
         .then(count =>
           count === 0 ? email : Promise.reject("Token email must be unique")
         )
-    } else {
-      return Promise.resolve(email)
     }
+    return Promise.resolve(email)
   }
 
   getValidDocumentForInsert(data) {
     const email = parse.getString(data.email)
     return this.checkTokenEmailUnique(email).then(email => {
-      let token = {
+      const token = {
         is_revoked: false,
-        date_created: new Date()
+        date_created: new Date(),
       }
 
       token.name = parse.getString(data.name)
@@ -170,8 +168,8 @@ class SecurityTokensService {
       return new Error("Required fields are missing")
     }
 
-    let token = {
-      date_updated: new Date()
+    const token = {
+      date_updated: new Date(),
     }
 
     if (data.name !== undefined) {
@@ -199,9 +197,9 @@ class SecurityTokensService {
     return new Promise((resolve, reject) => {
       const jwtOptions = {}
 
-      let payload = {
+      const payload = {
         scopes: token.scopes,
-        jti: token.id
+        jti: token.id,
       }
 
       if (token.email && token.email.length > 0) {
@@ -234,9 +232,8 @@ class SecurityTokensService {
             )
             return `${loginUrl}?token=${signedToken}`
           })
-        } else {
-          return null
         }
+        return null
       })
     )
   }
@@ -280,7 +277,7 @@ class SecurityTokensService {
   }
 
   async sendDashboardSigninUrl(req) {
-    const email = req.body.email
+    const { email } = req.body
     const userAgent = uaParser(req.get("user-agent"))
     const country = req.get("cf-ipcountry") || ""
     const ip = this.getIP(req)
@@ -291,7 +288,7 @@ class SecurityTokensService {
       const linkObj = url.parse(link)
       const domain = `${linkObj.protocol}//${linkObj.host}`
       const device = userAgent.device.vendor
-        ? userAgent.device.vendor + " " + userAgent.device.model + ", "
+        ? `${userAgent.device.vendor} ${userAgent.device.model}, `
         : ""
       const requestFrom = `${device}${userAgent.os.name}, ${userAgent.browser.name}<br />
       ${date}<br />
@@ -301,20 +298,19 @@ class SecurityTokensService {
       const message = {
         to: email,
         subject: this.getTextFromHandlebars(this.getSigninMailSubject(), {
-          from: userAgent.os.name
+          from: userAgent.os.name,
         }),
         html: this.getTextFromHandlebars(this.getSigninMailBody(), {
           link,
           email,
           domain,
-          requestFrom
-        })
+          requestFrom,
+        }),
       }
       const emailSent = await mailer.send(message)
       return { sent: emailSent, error: null }
-    } else {
-      return { sent: false, error: "Access Denied" }
     }
+    return { sent: false, error: "Access Denied" }
   }
 }
 

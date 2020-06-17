@@ -1,5 +1,5 @@
 import React from "react"
-import AuthHeader from "../../../../src/api/server/lib/auth-header"
+import AuthHeader from "../../../../../src/api/server/lib/auth-header"
 import { Redirect } from "react-router-dom"
 import { themeSettings, text } from "../../lib/settings"
 import Register from "./register"
@@ -9,7 +9,7 @@ export default class RegisterForm extends React.Component {
     super(props)
 
     this.state = {
-      verifiedToken: false
+      verifiedToken: false,
     }
   }
 
@@ -19,14 +19,14 @@ export default class RegisterForm extends React.Component {
       last_name: values.last_name,
       email: values.email,
       password: AuthHeader.encodeUserPassword(values.password),
-      history: this.props.history
+      history: this.props.history,
     })
   }
 
   verifyToken() {
     this.setState({ verifiedToken: true })
     this.props.registerUser({
-      token: this.props.location.search.split("=")[1]
+      token: this.props.location.search.split("=")[1],
     })
   }
 
@@ -43,7 +43,7 @@ export default class RegisterForm extends React.Component {
     const {
       checkoutInputClass = "checkout-field",
       checkoutButtonClass = "checkout-button",
-      checkoutEditButtonClass = "checkout-button-edit"
+      checkoutEditButtonClass = "checkout-button-edit",
     } = themeSettings
 
     return (

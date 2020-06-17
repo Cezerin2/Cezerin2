@@ -251,7 +251,7 @@ ajaxRouter.post("/customer-account", async (req, res, next) => {
   if (req.body.token) {
     customerData.token = AuthHeader.decodeUserLoginAuth(req.body.token)
     if (customerData.token.userId !== undefined) {
-      const userId = null
+      let userId = null
       try {
         userId = JSON.stringify(customerData.token.userId).replace(/["']/g, "")
       } catch (erro) {}
@@ -265,7 +265,7 @@ ajaxRouter.post("/customer-account", async (req, res, next) => {
         customerData.customer_settings = json
         customerData.customer_settings.password = "*******"
         customerData.token = AuthHeader.encodeUserLoginAuth(userId)
-        customerData.authenticated = false
+        customerData.authenticated = true
       })
 
       // retrieve orders data
@@ -482,15 +482,20 @@ ajaxRouter.post("/register", async (req, res, next) => {
 ajaxRouter.put("/customer-account", async (req, res, next) => {
   const customerData = req.body
   const token = AuthHeader.decodeUserLoginAuth(req.body.token)
-  const userId = null
+  let userId = null
+
   try {
     userId = JSON.stringify(token.userId).replace(/["']/g, "")
   } catch (erro) {}
 
   // generate password-hash
-  const inputPassword = customerData.password
-  const salt = bcrypt.genSaltSync(saltRounds)
-  const hashPassword = bcrypt.hashSync(inputPassword, salt)
+  let inputPassword = AuthHeader.decodeUserPassword(customerData.password)
+  let hashPassword = null
+  try {
+    inputPassword = JSON.stringify(inputPassword.password).replace(/["']/g, "")
+    const salt = bcrypt.genSaltSync(saltRounds)
+    hashPassword = bcrypt.hashSync(inputPassword, salt)
+  } catch (error) {}
 
   // setup objects and filter
   const customerDataObj = {
@@ -510,6 +515,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
   const filter = {
     email: customerData.email
   }
+
   // update customer profile and addresses
   await api.customers.list(filter).then(({ status, json }) => {
     // if customer email exists already do not update
@@ -530,17 +536,11 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
           // alert
           res.status("200").send(error)
         }
-        customerDataObj.customer_settings = result
+        customerDataObj.customer_settings = customerDraftObj
         customerDataObj.customer_settings.password = "*******"
-        customerDataObj.token = AuthHeader.encodeUserLoginAuth(userId)
-        customerData.authenticated = false
-
-        if (customerData.saved_addresses === 0) {
-          let objJsonB64 = JSON.stringify(customerDataObj)
-          objJsonB64 = Buffer.from(objJsonB64).toString("base64")
-          res.status("200").send(JSON.stringify(objJsonB64))
-          return false
-        }
+        customerDataObj.token = req.body.token
+        customerDataObj.authenticated = true
+        customerDataObj.loggedin_failed = false
 
         // update orders
         await db.collection("orders").updateMany(
@@ -551,20 +551,24 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
               billing_address: customerData.billing_address
             }
           },
-          (error, result) => {
+          async (error, result) => {
             if (error) {
               // alert
               res.status("200").send(error)
             }
-            customerDataObj.order_statuses = result
-            let objJsonB64 = JSON.stringify(customerDataObj)
-            objJsonB64 = Buffer.from(objJsonB64).toString("base64")
-            res.status("200").send(JSON.stringify(objJsonB64))
+
+            // retrieve customer and orders data
+            await api.orders.list(userId).then(({ status, json }) => {
+              customerDataObj.order_statuses = json
+              return res.status(status).send(JSON.stringify(customerDataObj))
+            })
           }
         )
       }
     )
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 ajaxRouter.post("/", async (req, res, next) => {
@@ -575,7 +579,7 @@ ajaxRouter.post("/", async (req, res, next) => {
     set: false
   }
   const cookies = getCookies(req)
-  if (cookies["cookie_banner_id"] !== undefined) {
+  if (cookies.cookie_banner_id !== undefined) {
     isCookieSet.set = true
     res.status(200).send(JSON.stringify(isCookieSet))
     return
@@ -604,10 +608,10 @@ ajaxRouter.post("/", async (req, res, next) => {
 })
 
 var getCookies = req => {
-  var cookies = {}
+  const cookies = {}
   req.headers &&
-    req.headers.cookie.split(";").forEach(function(cookie) {
-      var parts = cookie.match(/(.*?)=(.*)$/)
+    req.headers.cookie.split(";").forEach(cookie => {
+      const parts = cookie.match(/(.*?)=(.*)$/)
       cookies[parts[1].trim()] = (parts[2] || "").trim()
     })
   return cookies

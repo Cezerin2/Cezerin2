@@ -5,12 +5,12 @@ import { TextField } from "redux-form-material-ui"
 import Editor from "modules/shared/editor"
 
 import messages from "lib/text"
-import style from "./style.css"
 import api from "lib/api"
 
 import Paper from "material-ui/Paper"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
+import style from "./style.css"
 
 const validate = values => {
   const errors = {}
@@ -30,14 +30,13 @@ const slugExists = values => {
     return api.products
       .slugExists(values.id, values.slug)
       .then(response => response.status === 200)
-  } else {
-    return Promise.resolve(false)
   }
+  return Promise.resolve(false)
 }
 
-const asyncValidate = values => {
-  return Promise.all([slugExists(values)]).then(([isSlugExists]) => {
-    let errors = {}
+const asyncValidate = values =>
+  Promise.all([slugExists(values)]).then(([isSlugExists]) => {
+    const errors = {}
 
     if (isSlugExists) {
       errors.slug = messages.errors_urlTaken
@@ -45,11 +44,9 @@ const asyncValidate = values => {
 
     if (Object.keys(errors).length > 0) {
       return Promise.reject(errors)
-    } else {
-      return Promise.resolve()
     }
+    return Promise.resolve()
   })
-}
 
 const ProductGeneralForm = ({
   handleSubmit,
@@ -66,27 +63,27 @@ const ProductGeneralForm = ({
             <Field
               name="name"
               component={TextField}
-              floatingLabelText={messages.products_name + " *"}
-              fullWidth={true}
+              floatingLabelText={`${messages.products_name} *`}
+              fullWidth
             />
             <Field
               name="slug"
               component={TextField}
               floatingLabelText={messages.slug}
-              fullWidth={true}
+              fullWidth
             />
             <p className="field-hint">{messages.help_slug}</p>
             <Field
               name="meta_title"
               component={TextField}
               floatingLabelText={messages.pageTitle}
-              fullWidth={true}
+              fullWidth
             />
             <Field
               name="meta_description"
               component={TextField}
               floatingLabelText={messages.metaDescription}
-              fullWidth={true}
+              fullWidth
             />
             <div className="field-hint" style={{ marginTop: 40 }}>
               {messages.description}
@@ -94,10 +91,9 @@ const ProductGeneralForm = ({
             <Field name="description" component={Editor} />
           </div>
           <div
-            className={
-              "buttons-box " +
-              (pristine ? "buttons-box-pristine" : "buttons-box-show")
-            }
+            className={`buttons-box ${
+              pristine ? "buttons-box-pristine" : "buttons-box-show"
+            }`}
           >
             <FlatButton
               label={messages.cancel}
@@ -108,7 +104,7 @@ const ProductGeneralForm = ({
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />
@@ -116,9 +112,8 @@ const ProductGeneralForm = ({
         </Paper>
       </form>
     )
-  } else {
-    return null
   }
+  return null
 }
 
 export default reduxForm({

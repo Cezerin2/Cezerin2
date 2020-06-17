@@ -43,9 +43,7 @@ class SettingsService {
     return db
       .collection("settings")
       .findOne()
-      .then(settings => {
-        return this.changeProperties(settings)
-      })
+      .then(settings => this.changeProperties(settings))
   }
 
   updateSettings(data) {
@@ -71,8 +69,6 @@ class SettingsService {
       .then(count => {
         if (count === 0) {
           return db.collection("settings").insertOne(this.defaultSettings)
-        } else {
-          return
         }
       })
   }
@@ -82,7 +78,7 @@ class SettingsService {
       return new Error("Required fields are missing")
     }
 
-    let settings = {}
+    const settings = {}
 
     if (data.store_name !== undefined) {
       settings.store_name = parse.getString(data.store_name)
@@ -211,7 +207,7 @@ class SettingsService {
     if (data.logo_file && data.logo_file.length > 0) {
       data.logo = url.resolve(
         data.domain,
-        settings.filesUploadUrl + "/" + data.logo_file
+        `${settings.filesUploadUrl}/${data.logo_file}`
       )
     } else {
       data.logo = null
@@ -222,8 +218,8 @@ class SettingsService {
   deleteLogo() {
     return this.getSettings().then(data => {
       if (data.logo_file && data.logo_file.length > 0) {
-        let filePath = path.resolve(
-          settings.filesUploadPath + "/" + data.logo_file
+        const filePath = path.resolve(
+          `${settings.filesUploadPath}/${data.logo_file}`
         )
         fs.unlink(filePath, err => {
           this.updateSettings({ logo_file: null })
@@ -233,12 +229,12 @@ class SettingsService {
   }
 
   uploadLogo(req, res, next) {
-    let uploadDir = path.resolve(settings.filesUploadPath)
+    const uploadDir = path.resolve(settings.filesUploadPath)
     fse.ensureDirSync(uploadDir)
 
-    let form = new formidable.IncomingForm(),
-      file_name = null,
-      file_size = 0
+    const form = new formidable.IncomingForm()
+    let file_name = null
+    let file_size = 0
 
     form.uploadDir = uploadDir
 
@@ -246,9 +242,9 @@ class SettingsService {
       .on("fileBegin", (name, file) => {
         // Emitted whenever a field / value pair has been received.
         file.name = utils.getCorrectFileName(file.name)
-        file.path = uploadDir + "/" + file.name
+        file.path = `${uploadDir}/${file.name}`
       })
-      .on("file", function(field, file) {
+      .on("file", (field, file) => {
         // every time a file has been uploaded successfully,
         file_name = file.name
         file_size = file.size
@@ -257,7 +253,7 @@ class SettingsService {
         res.status(500).send(this.getErrorMessage(err))
       })
       .on("end", () => {
-        //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
+        // Emitted when the entire request has been received, and all contained files have finished flushing to disk.
         if (file_name) {
           this.updateSettings({ logo_file: file_name })
           res.send({ file: file_name, size: file_size })
