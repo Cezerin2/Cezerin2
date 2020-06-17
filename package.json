@@ -115,6 +115,8 @@
     "sitemap": "^6.1.5",
     "slug": "^3.3.0",
     "stripe": "^8.63.0",
+    "theme": "./theme",
+    "auth-header": "./src/api/server/lib/auth-header",
     "ua-parser-js": "^0.7.18",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",

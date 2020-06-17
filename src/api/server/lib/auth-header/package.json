@@ -1,0 +1,10 @@
+{
+    "name": "auth-header",
+    "version": "1.0.0",
+    "description": "",
+    "main": "",
+    "author": "vajda",
+    "license": "Unlicense",
+    "dependencies": {
+    }
+  }
