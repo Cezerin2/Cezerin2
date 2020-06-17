@@ -59,7 +59,7 @@
     "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "cezerin2-client": "^0.38.0",
-    "cezerin2-theme": "^1.3.0",
+    "cezerin2-theme": "^1.0.0",
     "chart.js": "^2.7.2",
     "clean-webpack-plugin": "^3.0.0",
     "concurrently": "^5.2.0",

@@ -1591,6 +1591,9 @@ attr-accept@^2.0.0:
   resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.1.0.tgz#a231a854385d36ff7a99647bb77b33c8a5175aee"
   integrity sha512-sLzVM3zCCmmDtDNhI0i96k6PUztkotSOXqE4kDGQt/6iDi5M+H0srjeF+QC6jN581l4X/Zq3Zu/tgcErEssavg==
 
+auth-header@./src/api/server/lib/auth-header:
+  version "1.0.0"
+
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -2173,10 +2176,10 @@ cezerin2-client@^0.38.0:
     query-string "^6.1.0"
     typescript "^3.9.2"
 
-cezerin2-theme@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/cezerin2-theme/-/cezerin2-theme-1.3.0.tgz#a06d1170e2104c9d94abf90cbd9e1280d86dc771"
-  integrity sha512-832xIuebph5Q3FgA3psOiMFd87maswBXMlFsc65yzJEGcm6mhWOmTk5pyMGw4r7iCNmDVBMZ2QsP7bqpKOVu2Q==
+cezerin2-theme@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/cezerin2-theme/-/cezerin2-theme-1.0.0.tgz#9d54135ecbdf72a7d216feba72529bc1a9b33d91"
+  integrity sha512-xXMZylKa4EJhQAm77DWaaRsmN2Djpr/thw8XO4EqD8BrgeRnwCZzPL2w1NPeoUPNRCp1bcpL3TNvLpvzhW8TNA==
   dependencies:
     "@babel/cli" "^7.10.1"
     "@babel/core" "^7.10.2"
@@ -9205,6 +9208,17 @@ text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
+
+theme@./theme:
+  version "1.0.0"
+  dependencies:
+    "@babel/cli" "^7.10.1"
+    "@babel/core" "^7.10.2"
+    bulma "^0.6.2"
+    rc-slider "^8.6.1"
+    react-image-gallery "^0.8.7"
+    react-image-lightbox "^4.6.0"
+    react-lazyload "^2.3.0"
 
 through2@^2.0.0:
   version "2.0.5"
