@@ -22,7 +22,7 @@ const imageFilesArray = []
  *
  * @returns {undefined}
  */
-class ProductImport extends React.Component {
+export default class ProductImport extends React.Component {
   constructor(props) {
     super()
     this.state = {
@@ -592,4 +592,4 @@ class ProductImport extends React.Component {
 /*ProductImport.propTypes = {
 	onStartImportProducts: PropTypes.func.isRequired
 }*/
-module.exports = ProductImport
+
