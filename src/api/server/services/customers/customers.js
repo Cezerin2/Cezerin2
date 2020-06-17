@@ -4,7 +4,7 @@ import utils from "../../lib/utils"
 import parse from "../../lib/parse"
 import webhooks from "../../lib/webhooks"
 import CustomerGroupsService from "./customerGroups"
-import AuthHeader from "../../lib/auth-header"
+import AuthHeader from "auth-header/auth-header"
 import security from "../../lib/security"
 
 class CustomersService {

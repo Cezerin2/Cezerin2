@@ -117,8 +117,6 @@ const requestCart = () => ({ type: t.CART_REQUEST })
 
 const receiveCart = cart => ({ type: t.CART_RECEIVE, cart })
 
-const receiveCustomer = data => ({ type: t.CUSTOMER_RECEIVE, data })
-
 export const addCartItem = item => async (dispatch, getState) => {
   dispatch(requestAddCartItem())
   const response = await api.ajax.cart.addItem(item)
