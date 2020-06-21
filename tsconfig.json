@@ -10,7 +10,8 @@
     "esModuleInterop": true,
     "noEmitOnError": false,
     "removeComments": true,
-    "jsx": "react"
+    "jsx": "react",
+    "allowJs": true
   },
   "compileOnSave": true,
   "include": ["src"]
