@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "outDir": "build",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+    "esModuleInterop": true,
+    "noEmitOnError": false,
+    "removeComments": true,
+    "jsx": "react"
+  },
+  "compileOnSave": true,
+  "include": ["src"]
+}

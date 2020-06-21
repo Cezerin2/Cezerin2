@@ -39,7 +39,8 @@
     "start-store": "node -r esm dist/store/server/index.js",
     "start": "concurrently npm:start-*",
     "quickstart": "yarn && yarn compile && yarn build && yarn start",
-    "quickstartnpm": "npm i && npm run compile && npm run build && npm run start"
+    "quickstartnpm": "npm i && npm run compile && npm run build && npm run start",
+    "tscompile": "tsc"
   },
   "lint-staged": {
     "*.js": [
