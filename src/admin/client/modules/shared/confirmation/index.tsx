@@ -1,19 +1,19 @@
-import React from "react"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
+import React from "react"
 
-export default class ConfirmationDialog extends React.Component {
+class ConfirmationDialog extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      open: props.open
+      open: props.open,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.open !== nextProps.open) {
       this.setState({
-        open: nextProps.open
+        open: nextProps.open,
       })
     }
   }
@@ -38,7 +38,7 @@ export default class ConfirmationDialog extends React.Component {
       description,
       submitLabel,
       cancelLabel,
-      modal = false
+      modal = false,
     } = this.props
 
     const actions = [
@@ -52,7 +52,7 @@ export default class ConfirmationDialog extends React.Component {
         primary
         keyboardFocused
         onClick={this.handleSubmit}
-      />
+      />,
     ]
 
     return (
@@ -68,3 +68,4 @@ export default class ConfirmationDialog extends React.Component {
     )
   }
 }
+export default ConfirmationDialog

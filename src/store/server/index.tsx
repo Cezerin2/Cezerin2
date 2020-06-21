@@ -1,21 +1,20 @@
+import cookieParser from "cookie-parser"
 import express from "express"
 import helmet from "helmet"
-import responseTime from "response-time"
 import path from "path"
-import cookieParser from "cookie-parser"
+import responseTime from "response-time"
 import winston from "winston"
 import settings from "../../../config/server"
-import logger from "./logger"
+import pageRendering from "./pageRendering"
+import redirects from "./redirects"
 import robotsRendering from "./robotsRendering"
 import sitemapRendering from "./sitemapRendering"
-import redirects from "./redirects"
-import pageRendering from "./pageRendering"
 
 const app = express()
 
 const ADMIN_INDEX_PATH = path.resolve("public/admin/index.html")
 const STATIC_OPTIONS = {
-  maxAge: 31536000000 // One year
+  maxAge: 31536000000, // One year
 }
 
 app.set("trust proxy", 1)

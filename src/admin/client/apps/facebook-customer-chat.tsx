@@ -1,8 +1,8 @@
-import React from "react"
-import messages from "lib/text"
 import api from "lib/api"
-import TextField from "material-ui/TextField"
+import messages from "lib/text"
 import RaisedButton from "material-ui/RaisedButton"
+import TextField from "material-ui/TextField"
+import React from "react"
 
 export const Description = {
   key: "facebook-customer-chat",
@@ -17,7 +17,7 @@ export const Description = {
     <li>Click the About tab.</li>
     <li>Scroll down to the bottom of the Page Info section.</li>
     <li>Next to Facebook Page ID, you can find your page ID.</li>
-  </ol>`
+  </ol>`,
 }
 
 const CHAT_CODE = `<div class="fb-customerchat" page_id="PAGE_ID" minimized="IS_MINIMIZED"></div>`
@@ -27,7 +27,7 @@ export class App extends React.Component {
     super(props)
     this.state = {
       pageId: "",
-      minimized: "false"
+      minimized: "false",
     }
   }
 
@@ -47,7 +47,7 @@ export class App extends React.Component {
         if (appSettings) {
           this.setState({
             pageId: appSettings.pageId,
-            minimized: appSettings.minimized
+            minimized: appSettings.minimized,
           })
         }
       })
@@ -68,11 +68,11 @@ export class App extends React.Component {
 
     api.apps.settings.update("facebook-customer-chat", {
       pageId,
-      minimized
+      minimized,
     })
     api.theme.placeholders.update("facebook-customer-chat", {
       place: "body_end",
-      value: htmlCode
+      value: htmlCode,
     })
   }
 

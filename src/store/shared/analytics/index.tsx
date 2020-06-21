@@ -1,4 +1,4 @@
-import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "../pageTypes"
+import { PAGE, PRODUCT, SEARCH } from "../pageTypes"
 import * as googleAnalytics from "./googleAnalytics"
 
 export const onPageLoad = ({ state }) => {
@@ -66,7 +66,7 @@ export const setPaymentMethod = ({ methodId, allMethods }) => {
     googleAnalytics.setCheckoutOption({
       step: 1,
       option: "payment method",
-      value: method.name
+      value: method.name,
     })
   }
 }
@@ -77,7 +77,7 @@ export const setShippingMethod = ({ methodId, allMethods }) => {
     googleAnalytics.setCheckoutOption({
       step: 1,
       option: "shipping method",
-      value: method.name
+      value: method.name,
     })
   }
 }

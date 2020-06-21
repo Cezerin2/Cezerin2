@@ -1,21 +1,11 @@
-import React from "react"
-
-import messages from "lib/text"
 import api from "lib/api"
 import * as helper from "lib/helper"
-
+import messages from "lib/text"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
+import { Table, TableBody, TableRow, TableRowColumn } from "material-ui/Table"
 import TextField from "material-ui/TextField"
-import {
-  Table,
-  TableBody,
-  TableFooter,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from "material-ui/Table"
+import React from "react"
 
 const SearchBox = ({ text, onChange }) => (
   <TextField
@@ -62,14 +52,14 @@ export default class ConfirmationDialog extends React.Component {
       open: props.open,
       products: [],
       search: "",
-      selectedId: null
+      selectedId: null,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.open !== nextProps.open) {
       this.setState({
-        open: nextProps.open
+        open: nextProps.open,
       })
     }
   }
@@ -96,7 +86,7 @@ export default class ConfirmationDialog extends React.Component {
           ? this.state.products[selectedIndex].id
           : null
       this.setState({
-        selectedId: selectedProductId
+        selectedId: selectedProductId,
       })
     }
   }
@@ -111,12 +101,12 @@ export default class ConfirmationDialog extends React.Component {
         discontinued: false,
         fields:
           "id,name,category_id,category_name,sku,enabled,discontinued,price,on_sale,regular_price",
-        search: value
+        search: value,
       })
       .then(productsResponse => {
         console.log(productsResponse.json.data)
         this.setState({
-          products: productsResponse.json.data
+          products: productsResponse.json.data,
         })
       })
   }
@@ -127,7 +117,7 @@ export default class ConfirmationDialog extends React.Component {
       submitLabel,
       cancelLabel,
       modal = false,
-      settings
+      settings,
     } = this.props
 
     const actions = [
@@ -136,7 +126,7 @@ export default class ConfirmationDialog extends React.Component {
         onClick={this.handleCancel}
         style={{ marginRight: 10 }}
       />,
-      <FlatButton label={submitLabel} primary onClick={this.handleSubmit} />
+      <FlatButton label={submitLabel} primary onClick={this.handleSubmit} />,
     ]
 
     return (

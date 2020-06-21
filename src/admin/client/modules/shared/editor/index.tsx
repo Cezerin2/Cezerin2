@@ -1,5 +1,6 @@
-import React from "react"
+import EditorJS from "@editorjs/editorjs"
 import settings from "lib/settings"
+import React from "react"
 import TinyMCE from "../tinymce"
 
 const config = {
@@ -7,26 +8,26 @@ const config = {
   plugins: [
     "autolink lists link image charmap preview anchor",
     "searchreplace visualblocks code fullscreen",
-    "media table paste code textcolor directionality"
+    "media table paste code textcolor directionality",
   ],
   toolbar1:
     "image media | styleselect | bold italic bullist numlist link alignleft aligncenter alignright alignjustify",
   toolbar2:
-    "undo redo | forecolor paste removeformat table | outdent indent | preview code"
+    "undo redo | forecolor paste removeformat table | outdent indent | preview code",
 }
 
-export default class Editor extends React.Component {
+class Editor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: props.input.value
+      value: props.input.value,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.value !== nextProps.input.value) {
       this.setState({
-        value: nextProps.input.value
+        value: nextProps.input.value,
       })
     }
   }
@@ -56,10 +57,16 @@ export default class Editor extends React.Component {
           plugins: config.plugins,
           toolbar1: config.toolbar1,
           toolbar2: config.toolbar2,
-          menubar: false
+          menubar: false,
         }}
         onChange={this.onChange}
       />
     )
   }
 }
+export default new EditorJS({
+  /**
+   * Id of Element that should contain Editor instance
+   */
+  holder: "editorjs",
+})

@@ -1,18 +1,11 @@
-import queryString from "query-string"
-import api from "./api"
 import {
   getParsedProductFilter,
   getProductFilterForCategory,
-  getProductFilterForSearch
+  getProductFilterForSearch,
 } from "../shared/actions"
+import { PAGE, PRODUCT, PRODUCT_CATEGORY, SEARCH } from "../shared/pageTypes"
+import api from "./api"
 import * as themeLocales from "./themeLocales"
-import {
-  PAGE,
-  PRODUCT_CATEGORY,
-  PRODUCT,
-  RESERVED,
-  SEARCH
-} from "../shared/pageTypes"
 
 const PRODUCT_FIELDS =
   "path,id,name,category_id,category_ids,category_name,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags,position"
@@ -28,7 +21,7 @@ const getCurrentPage = path =>
       return {
         type: 404,
         path,
-        resource: null
+        resource: null,
       }
     }
     return Promise.reject(`Page response code = ${sitemapResponse.status}`)
@@ -77,7 +70,7 @@ const getAllData = (currentPage, productFilter, cookie) =>
     getProducts(currentPage, productFilter),
     getProduct(currentPage),
     getPage(currentPage),
-    getThemeSettings()
+    getThemeSettings(),
   ]).then(
     ([
       checkoutFields,
@@ -86,7 +79,7 @@ const getAllData = (currentPage, productFilter, cookie) =>
       products,
       product,
       page,
-      themeSettings
+      themeSettings,
     ]) => {
       let categoryDetails = null
       if (currentPage.type === PRODUCT_CATEGORY) {
@@ -100,7 +93,7 @@ const getAllData = (currentPage, productFilter, cookie) =>
         product,
         page,
         categoryDetails,
-        themeSettings
+        themeSettings,
       }
     }
   )
@@ -114,7 +107,7 @@ const getState = (currentPage, settings, allData, location, productFilter) => {
     product,
     page,
     categoryDetails,
-    themeSettings
+    themeSettings,
   } = allData
 
   let productsTotalCount = 0
@@ -171,13 +164,13 @@ const getState = (currentPage, settings, allData, location, productFilter) => {
         limit:
           settings.products_limit && settings.products_limit !== 0
             ? settings.products_limit
-            : 30
+            : 30,
       },
       cart,
       order: null,
       checkoutFields,
-      themeSettings
-    }
+      themeSettings,
+    },
   }
 
   return state
@@ -218,14 +211,14 @@ export const loadState = (req, language) => {
     hasHistory: false,
     pathname: urlPath,
     search: urlQuery,
-    hash: ""
+    hash: "",
   }
 
   return Promise.all([
     getCurrentPage(req.path),
     api.settings.retrieve().then(({ status, json }) => json),
     themeLocales.getText(language),
-    api.theme.placeholders.list()
+    api.theme.placeholders.list(),
   ]).then(([currentPage, settings, themeText, placeholdersResponse]) => {
     const productFilter = getFilter(currentPage, urlQuery, settings)
 
@@ -240,7 +233,7 @@ export const loadState = (req, language) => {
       return {
         state,
         themeText,
-        placeholders: placeholdersResponse.json
+        placeholders: placeholdersResponse.json,
       }
     })
   })

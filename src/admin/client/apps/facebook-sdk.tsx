@@ -1,8 +1,8 @@
-import React from "react"
-import messages from "lib/text"
 import api from "lib/api"
-import TextField from "material-ui/TextField"
+import messages from "lib/text"
 import RaisedButton from "material-ui/RaisedButton"
+import TextField from "material-ui/TextField"
+import React from "react"
 
 export const Description = {
   key: "facebook-sdk",
@@ -16,7 +16,7 @@ export const Description = {
     <li>Launch Dialogs that let people perform various actions like sharing stories.</li>
     <li>Facilitates communication when you're building a game or an app tab on Facebook.</li>
   </ol>
-  <p>The Facebook SDK for JavaScript doesn't have any standalone files that need to be downloaded or installed, instead you simply need to include a short piece of regular JavaScript in your HTML that will asynchronously load the SDK into your pages. The async load means that it does not block loading other elements of your page.</p>`
+  <p>The Facebook SDK for JavaScript doesn't have any standalone files that need to be downloaded or installed, instead you simply need to include a short piece of regular JavaScript in your HTML that will asynchronously load the SDK into your pages. The async load means that it does not block loading other elements of your page.</p>`,
 }
 
 const FACEBOOK_CODE = `<script>
@@ -43,7 +43,7 @@ export class App extends React.Component {
     super(props)
     this.state = {
       appId: "",
-      locale: "en_US"
+      locale: "en_US",
     }
   }
 
@@ -63,7 +63,7 @@ export class App extends React.Component {
         if (appSettings) {
           this.setState({
             appId: appSettings.appId,
-            locale: appSettings.locale
+            locale: appSettings.locale,
           })
         }
       })
@@ -85,7 +85,7 @@ export class App extends React.Component {
     api.apps.settings.update("facebook-sdk", { appId, locale })
     api.theme.placeholders.update("facebook-sdk", {
       place: "body_start",
-      value: htmlCode
+      value: htmlCode,
     })
   }
 
