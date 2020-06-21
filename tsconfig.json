@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "noImplicitReturns": false,
-    "noUnusedLocals": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
     "outDir": "build",
     "sourceMap": true,
     "strict": true,
