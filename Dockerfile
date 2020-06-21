@@ -21,6 +21,9 @@ RUN yarn
 # Bundle app source
 COPY . .
 
+# compiling typescript
+RUN yarn tscompile
+
 # building distributable
 RUN yarn build
 
