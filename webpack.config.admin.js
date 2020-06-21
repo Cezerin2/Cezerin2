@@ -8,7 +8,7 @@ const applicationText = require(`./locales/${applicationConfig.language}.json`)
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "src/admin/client/index.js"),
+    app: path.resolve(__dirname, "build/admin/client/index.js"),
     vendor: [
       "react",
       "react-dom",
