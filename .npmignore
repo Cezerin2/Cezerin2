@@ -18,3 +18,4 @@ logs/*.log
 npm-debug.log*
 *.zip
 docs/*
+build
