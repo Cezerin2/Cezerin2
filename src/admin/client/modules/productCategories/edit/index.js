@@ -1,40 +1,32 @@
-import { connect } from "react-redux"
-import {
-  updateCategory,
-  deselectCategory,
-  fetchCategories,
-  deleteImage,
-  uploadImage
-} from "../actions"
-import ProductCategoryEditForm from "./components/form"
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_redux_1 = require("react-redux");
+const actions_1 = require("../actions");
+const form_1 = __importDefault(require("./components/form"));
 const mapStateToProps = state => ({
-  uploadingImage: state.productCategories.uploadingImage,
-  categoryId: state.productCategories.selectedId,
-  items: state.productCategories.items,
-  initialValues: state.productCategories.items.find(
-    item => item.id === state.productCategories.selectedId
-  ),
-  isSaving: state.productCategories.isSaving
-})
-
+    uploadingImage: state.productCategories.uploadingImage,
+    categoryId: state.productCategories.selectedId,
+    items: state.productCategories.items,
+    initialValues: state.productCategories.items.find(item => item.id === state.productCategories.selectedId),
+    isSaving: state.productCategories.isSaving
+});
 const mapDispatchToProps = dispatch => ({
-  onImageDelete: () => {
-    dispatch(deleteImage())
-  },
-  onImageUpload: form => {
-    dispatch(uploadImage(form))
-  },
-  onSubmit: values => {
-    delete values.image
-    if (!values.slug || values.slug === "") {
-      values.slug = values.name
+    onImageDelete: () => {
+        dispatch(actions_1.deleteImage());
+    },
+    onImageUpload: form => {
+        dispatch(actions_1.uploadImage(form));
+    },
+    onSubmit: values => {
+        delete values.image;
+        if (!values.slug || values.slug === "") {
+            values.slug = values.name;
+        }
+        dispatch(actions_1.updateCategory(values));
     }
-    dispatch(updateCategory(values))
-  }
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductCategoryEditForm)
+});
+exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(form_1.default);
+//# sourceMappingURL=index.js.map

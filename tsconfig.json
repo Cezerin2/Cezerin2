@@ -13,5 +13,6 @@
     "allowJs": true
   },
   "compileOnSave": true,
+  "exclude": ["config"],
   "include": ["src"]
 }
