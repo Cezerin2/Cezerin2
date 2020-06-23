@@ -6,6 +6,7 @@
     "sourceMap": false,
     "strict": false,
     "target": "es2017",
+    "outDir": "src",
     "esModuleInterop": true,
     "noEmitOnError": false,
     "removeComments": true,
