@@ -1,0 +1,700 @@
+import api from "lib/api"
+import messages from "lib/text"
+import * as t from "./actionTypes"
+
+export function exportRequest() {
+  return {
+    type: t.THEME_EXPORT_REQUEST
+  }
+}
+
+export function exportReceive() {
+  return {
+    type: t.THEME_EXPORT_RECEIVE
+  }
+}
+
+export function installRequest() {
+  return {
+    type: t.THEME_INSTALL_REQUEST
+  }
+}
+
+export function installReceive() {
+  return {
+    type: t.THEME_INSTALL_RECEIVE
+  }
+}
+
+function receiveSettings(settings) {
+  return {
+    type: t.SETTINGS_RECEIVE,
+    settings
+  }
+}
+
+function receiveEmailSettings(emailSettings) {
+  return {
+    type: t.EMAIL_SETTINGS_RECEIVE,
+    emailSettings
+  }
+}
+
+function receiveImportSettings(importSettings) {
+  return {
+    type: t.IMPORT_SETTINGS_RECEIVE,
+    importSettings
+  }
+}
+
+function receiveCookieBanner(cookieBanner) {
+  return {
+    type: t.COOKIE_BANNER_RECEIVE,
+    cookieBanner
+  }
+}
+
+function requestCookieBanner(cookieBanner) {
+  return {
+    type: t.COOKIE_BANNER_REQUEST,
+    cookieBanner
+  }
+}
+
+function receiveEmailTemplate(emailTemplate) {
+  return {
+    type: t.EMAIL_TEMPLATE_RECEIVE,
+    emailTemplate
+  }
+}
+
+function requestEmailTemplate() {
+  return {
+    type: t.EMAIL_TEMPLATE_REQUEST
+  }
+}
+
+function receiveCheckoutFields(checkoutFields) {
+  return {
+    type: t.CHECKOUT_FIELDS_RECEIVE,
+    checkoutFields
+  }
+}
+
+function receiveCheckoutField(checkoutField) {
+  return {
+    type: t.CHECKOUT_FIELD_RECEIVE,
+    checkoutField
+  }
+}
+
+function requestCheckoutField() {
+  return {
+    type: t.CHECKOUT_FIELD_REQUEST
+  }
+}
+
+function receiveCommerceSettings(commerceSettings) {
+  return {
+    type: t.COMMERCE_SETTINGS_RECEIVE,
+    commerceSettings
+  }
+}
+
+function requestCommerceSettings() {
+  return {
+    type: t.COMMERCE_SETTINGS_REQUEST
+  }
+}
+
+function receiveShippingMethods(shippingMethods) {
+  return {
+    type: t.SHIPPING_METHODS_RECEIVE,
+    shippingMethods
+  }
+}
+
+function receivePaymentMethods(paymentMethods) {
+  return {
+    type: t.PAYMENT_METHODS_RECEIVE,
+    paymentMethods
+  }
+}
+
+function receivePaymentGateway(paymentGatewayEdit) {
+  return {
+    type: t.PAYMENT_GATEWAY_RECEIVE,
+    paymentGatewayEdit
+  }
+}
+
+export function receiveShippingMethod(shippingMethodEdit) {
+  return {
+    type: t.SHIPPING_METHOD_RECEIVE,
+    shippingMethodEdit
+  }
+}
+
+export function receivePaymentMethod(paymentMethodEdit) {
+  return {
+    type: t.PAYMENT_METHOD_RECEIVE,
+    paymentMethodEdit
+  }
+}
+
+function receiveTokens(tokens) {
+  return {
+    type: t.TOKENS_RECEIVE,
+    tokens
+  }
+}
+
+export function receiveToken(tokenEdit) {
+  return {
+    type: t.TOKEN_RECEIVE,
+    tokenEdit
+  }
+}
+
+export function receiveNewToken(newToken) {
+  return {
+    type: t.NEW_TOKEN_RECEIVE,
+    newToken
+  }
+}
+
+export function receiveThemeSettings(settings) {
+  return {
+    type: t.THEME_SETTINGS_RECEIVE,
+    settings
+  }
+}
+
+export function receiveThemeSettingsSchema(schema) {
+  return {
+    type: t.THEME_SETTINGS_SCHEMA_RECEIVE,
+    schema
+  }
+}
+
+function receiveRedirects(redirects) {
+  return {
+    type: t.REDIRECTS_RECEIVE,
+    redirects
+  }
+}
+
+export function receiveRedirect(redirectEdit) {
+  return {
+    type: t.REDIRECT_RECEIVE,
+    redirectEdit
+  }
+}
+
+function receiveWebhooks(webhooks) {
+  return {
+    type: t.WEBHOOKS_RECEIVE,
+    webhooks
+  }
+}
+
+export function receiveWebhook(webhookEdit) {
+  return {
+    type: t.WEBHOOK_RECEIVE,
+    webhookEdit
+  }
+}
+
+export function fetchSettings() {
+  return (dispatch, getState) => {
+    // API can be not init on app start
+    if (api) {
+      return api.settings
+        .retrieve()
+        .then(({ status, json }) => {
+          dispatch(receiveSettings(json))
+        })
+        .catch(error => {})
+    }
+  }
+}
+
+export function fetchEmailSettings() {
+  return (dispatch, getState) =>
+    api.settings
+      .retrieveEmailSettings()
+      .then(({ status, json }) => {
+        dispatch(receiveEmailSettings(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchImportSettings() {
+  return (dispatch, getState) =>
+    api.settings
+      .retrieveImportSettings()
+      .then(({ status, json }) => {
+        dispatch(receiveImportSettings(json))
+      })
+      .catch(error => {})
+}
+
+export function deleteLogo() {
+  return (dispatch, getState) =>
+    api.settings
+      .deleteLogo()
+      .then(({ status, json }) => {
+        if (status === 200) {
+          dispatch(fetchSettings())
+        } else {
+          throw status
+        }
+      })
+      .catch(error => {
+        // dispatch error
+        console.log(error)
+      })
+}
+
+export function updateSettings(settings) {
+  return (dispatch, getState) => {
+    delete settings.logo_file
+    return api.settings
+      .update(settings)
+      .then(({ status, json }) => {
+        dispatch(receiveSettings(json))
+      })
+      .catch(error => {})
+  }
+}
+
+export function updateEmailSettings(emailSettings) {
+  return (dispatch, getState) =>
+    api.settings
+      .updateEmailSettings(emailSettings)
+      .then(({ status, json }) => {
+        dispatch(receiveEmailSettings(json))
+      })
+      .catch(error => {})
+}
+
+export function updateImportSettings(importSettings) {
+  return (dispatch, getState) =>
+    api.settings
+      .updateImportSettings(importSettings)
+      .then(({ status, json }) => {
+        dispatch(receiveImportSettings(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchCookieBanner(cookieBanner) {
+  return (dispatch, getState) => {
+    dispatch(requestCookieBanner())
+    return api.settings
+      .retrieveCookieBanner(cookieBanner)
+      .then(({ status, json }) => {
+        console.log(json)
+        dispatch(receiveCookieBanner(json))
+      })
+      .catch(error => {})
+  }
+}
+
+export function updateCookieBanner(cookieBanner) {
+  return (dispatch, getState) =>
+    api.settings
+      .updateCookieBanner(cookieBanner)
+      .then(({ status, json }) => {
+        console.log(cookieBanner)
+        dispatch(receiveCookieBanner(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchEmailTemplate(templateName) {
+  return (dispatch, getState) => {
+    dispatch(requestEmailTemplate())
+    return api.settings
+      .retrieveEmailTemplate(templateName)
+      .then(({ status, json }) => {
+        json.templateName = templateName
+        dispatch(receiveEmailTemplate(json))
+      })
+      .catch(error => {})
+  }
+}
+
+export function updateEmailTemplate(emailTemplate) {
+  return (dispatch, getState) =>
+    api.settings
+      .updateEmailTemplate(emailTemplate.templateName, emailTemplate)
+      .then(({ status, json }) => {
+        json.templateName = templateName
+        dispatch(receiveEmailTemplate(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchCheckoutFields() {
+  return (dispatch, getState) =>
+    api.checkoutFields
+      .list()
+      .then(({ status, json }) => {
+        dispatch(receiveCheckoutFields(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchCheckoutField(fieldName) {
+  return (dispatch, getState) => {
+    dispatch(requestCheckoutField())
+    return api.checkoutFields
+      .retrieve(fieldName)
+      .then(({ status, json }) => {
+        json.fieldName = fieldName
+        dispatch(receiveCheckoutField(json))
+      })
+      .catch(error => {})
+  }
+}
+
+export function updateCheckoutField(checkoutField) {
+  return (dispatch, getState) =>
+    api.checkoutFields
+      .update(checkoutField.fieldName, checkoutField)
+      .then(({ status, json }) => {
+        json.fieldName = fieldName
+        dispatch(receiveCheckoutField(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchCommerceSettings() {
+  return (dispatch, getState) =>
+    api.settings
+      .retrieveCommerceSettings()
+      .then(({ status, json }) => {
+        dispatch(receiveCommerceSettings(json))
+      })
+      .catch(error => {})
+}
+
+export function updateCommerceSettings(commerceSettings) {
+  return (dispatch, getState) =>
+    api.settings
+      .updateCommerceSettings(commerceSettings)
+      .then(({ status, json }) => {
+        dispatch(receiveCommerceSettings(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchShippingMethods() {
+  return (dispatch, getState) =>
+    api.shippingMethods
+      .list()
+      .then(({ status, json }) => {
+        dispatch(receiveShippingMethods(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchPaymentMethods() {
+  return (dispatch, getState) =>
+    api.paymentMethods
+      .list()
+      .then(({ status, json }) => {
+        dispatch(receivePaymentMethods(json))
+      })
+      .catch(error => {})
+}
+
+export function updateShippingMethod(method) {
+  return (dispatch, getState) =>
+    api.shippingMethods
+      .update(method.id, method)
+      .then(({ status, json }) => {
+        dispatch(fetchShippingMethods())
+      })
+      .catch(error => {})
+}
+
+export function updatePaymentMethod(method) {
+  return (dispatch, getState) =>
+    api.paymentMethods
+      .update(method.id, method)
+      .then(({ status, json }) => {
+        dispatch(fetchPaymentMethods())
+      })
+      .catch(error => {})
+}
+
+export function fetchShippingMethod(id) {
+  return (dispatch, getState) =>
+    api.shippingMethods
+      .retrieve(id)
+      .then(({ status, json }) => {
+        dispatch(receiveShippingMethod(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchPaymentMethod(id) {
+  return (dispatch, getState) =>
+    api.paymentMethods
+      .retrieve(id)
+      .then(({ status, json }) => {
+        dispatch(receivePaymentMethod(json))
+      })
+      .catch(error => {})
+}
+
+export function deleteShippingMethod(methodId) {
+  return (dispatch, getState) =>
+    api.shippingMethods
+      .delete(methodId)
+      .then(({ status, json }) => {
+        dispatch(fetchShippingMethods())
+      })
+      .catch(error => {})
+}
+
+export function deletePaymentMethod(methodId) {
+  return (dispatch, getState) =>
+    api.paymentMethods
+      .delete(methodId)
+      .then(({ status, json }) => {
+        dispatch(fetchPaymentMethods())
+      })
+      .catch(error => {})
+}
+
+export function createShippingMethod(method) {
+  return (dispatch, getState) =>
+    api.shippingMethods
+      .create(method)
+      .then(({ status, json }) => {
+        dispatch(fetchShippingMethods())
+      })
+      .catch(error => {})
+}
+
+export function createPaymentMethod(method) {
+  return (dispatch, getState) =>
+    api.paymentMethods
+      .create(method)
+      .then(({ status, json }) => {
+        dispatch(fetchPaymentMethods())
+      })
+      .catch(error => {})
+}
+
+export function fetchTokens() {
+  return (dispatch, getState) =>
+    api.tokens
+      .list()
+      .then(({ status, json }) => {
+        dispatch(receiveTokens(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchToken(id) {
+  return (dispatch, getState) =>
+    api.tokens
+      .retrieve(id)
+      .then(({ status, json }) => {
+        dispatch(receiveToken(json))
+      })
+      .catch(error => {})
+}
+
+export function createToken(token) {
+  return (dispatch, getState) =>
+    api.tokens
+      .create(token)
+      .then(({ status, json }) => {
+        console.log(json)
+        dispatch(fetchTokens())
+        dispatch(receiveNewToken(json.token))
+      })
+      .catch(error => {})
+}
+
+export function updateToken(token) {
+  return (dispatch, getState) =>
+    api.tokens
+      .update(token.id, token)
+      .then(({ status, json }) => {
+        dispatch(fetchTokens())
+      })
+      .catch(error => {})
+}
+
+export function deleteToken(tokenId) {
+  return (dispatch, getState) =>
+    api.tokens
+      .delete(tokenId)
+      .then(({ status, json }) => {
+        dispatch(fetchTokens())
+      })
+      .catch(error => {})
+}
+
+export function fetchPaymentGateway(gatewayName) {
+  return (dispatch, getState) => {
+    if (gatewayName && gatewayName.length > 0) {
+      return api.paymentGateways
+        .retrieve(gatewayName)
+        .then(({ status, json }) => {
+          dispatch(receivePaymentGateway(json))
+        })
+        .catch(error => {})
+    }
+    dispatch(receivePaymentGateway(null))
+  }
+}
+
+export function updatePaymentGateway(gatewayName, data) {
+  return (dispatch, getState) =>
+    api.paymentGateways
+      .update(gatewayName, data)
+      .then(({ status, json }) => {
+        dispatch(receivePaymentGateway(json))
+      })
+      .catch(error => {})
+}
+
+export function uploadLogo(form) {
+  return (dispatch, getState) =>
+    api.settings
+      .uploadLogo(form)
+      .then(() => {
+        dispatch(fetchSettings())
+      })
+      .catch(error => {})
+}
+
+export function fetchThemeSettings() {
+  return (dispatch, getState) =>
+    Promise.all([
+      api.theme.settings.retrieve(),
+      api.theme.settings.retrieveSchema()
+    ])
+      .then(([settingsResponse, schemaResponse]) => {
+        dispatch(receiveThemeSettings(settingsResponse.json))
+        dispatch(receiveThemeSettingsSchema(schemaResponse.json))
+      })
+      .catch(error => {})
+}
+
+export function updateThemeSettings(settings) {
+  return (dispatch, getState) =>
+    api.theme.settings
+      .update(settings)
+      .then(() => {
+        dispatch(fetchThemeSettings())
+      })
+      .catch(error => {})
+}
+
+export function fetchRedirects() {
+  return (dispatch, getState) =>
+    api.redirects
+      .list()
+      .then(({ status, json }) => {
+        dispatch(receiveRedirects(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchRedirect(id) {
+  return (dispatch, getState) =>
+    api.redirects
+      .retrieve(id)
+      .then(({ status, json }) => {
+        dispatch(receiveRedirect(json))
+      })
+      .catch(error => {})
+}
+
+export function createRedirect(redirect) {
+  return (dispatch, getState) =>
+    api.redirects
+      .create(redirect)
+      .then(({ status, json }) => {
+        dispatch(fetchRedirects())
+      })
+      .catch(error => {})
+}
+
+export function updateRedirect(redirect) {
+  return (dispatch, getState) =>
+    api.redirects
+      .update(redirect.id, redirect)
+      .then(({ status, json }) => {
+        dispatch(fetchRedirects())
+      })
+      .catch(error => {})
+}
+
+export function deleteRedirect(redirectId) {
+  return (dispatch, getState) =>
+    api.redirects
+      .delete(redirectId)
+      .then(({ status, json }) => {
+        dispatch(fetchRedirects())
+      })
+      .catch(error => {})
+}
+
+export function fetchWebhooks() {
+  return (dispatch, getState) =>
+    api.webhooks
+      .list()
+      .then(({ status, json }) => {
+        dispatch(receiveWebhooks(json))
+      })
+      .catch(error => {})
+}
+
+export function fetchWebhook(id) {
+  return (dispatch, getState) =>
+    api.webhooks
+      .retrieve(id)
+      .then(({ status, json }) => {
+        dispatch(receiveWebhook(json))
+      })
+      .catch(error => {})
+}
+
+export function createWebhook(webhook) {
+  return (dispatch, getState) =>
+    api.webhooks
+      .create(webhook)
+      .then(({ status, json }) => {
+        dispatch(fetchWebhooks())
+      })
+      .catch(error => {})
+}
+
+export function updateWebhook(webhook) {
+  return (dispatch, getState) =>
+    api.webhooks
+      .update(webhook.id, webhook)
+      .then(({ status, json }) => {
+        dispatch(fetchWebhooks())
+      })
+      .catch(error => {})
+}
+
+export function deleteWebhook(webhookId) {
+  return (dispatch, getState) =>
+    api.webhooks
+      .delete(webhookId)
+      .then(({ status, json }) => {
+        dispatch(fetchWebhooks())
+      })
+      .catch(error => {})
+}

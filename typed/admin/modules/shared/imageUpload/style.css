@@ -1,0 +1,40 @@
+.preview {
+  height: 220px;
+  width: 200px;
+}
+
+.preview img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.footer {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropzone {
+  cursor: pointer;
+}
+.dropText {
+  color: #a1a1a1;
+  font-size: 14px;
+}
+.dropzoneActive {
+  background-color: rgba(18, 179, 117, 0.4);
+}
+.dropzoneReject {
+  background-color: rgba(244, 67, 54, 0.8);
+}
+.dropzoneReject .preview img,
+.dropzoneActive .preview img {
+  opacity: 0.3;
+}
+
+.noImage {
+  display: flex;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

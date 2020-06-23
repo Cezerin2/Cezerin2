@@ -1,0 +1,28 @@
+.number {
+  text-decoration: none;
+  font-weight: 400;
+  color: rgb(0, 142, 180);
+}
+
+.small {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.price {
+  word-break: break-all;
+  text-align: right;
+}
+
+.shipping {
+  font-size: 14px;
+}
+
+.status {
+  text-align: right;
+  font-size: 14px;
+}
+
+.more {
+  padding: 40px 0;
+  text-align: center;
+}
