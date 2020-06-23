@@ -1,7 +1,7 @@
 {
   "name": "theme",
   "version": "1.0.0",
-  "description": "",
+  "description": "Theme for cezerin2.",
   "main": "dist/index.js",
   "author": "",
   "license": "Unlicense",

@@ -1,5 +1,5 @@
 import React from "react"
-import AuthHeader from "auth-header/auth-header"
+import AuthHeader from "../authHeader"
 import { themeSettings, text } from "../../lib/settings"
 import Lscache from "lscache"
 import Login from "./login"
