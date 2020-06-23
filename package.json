@@ -19,6 +19,7 @@
     "url": "https://github.com/Cezerin2/cezerin"
   },
   "scripts": {
+    "tscompile": "tsc",
     "setup": "node -r esm src/api/server/setup.js",
     "compile": "babel src/store -d dist/store --presets @babel/react --plugins transform-class-properties --quiet",
     "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src/store -d dist/store --presets @babel/react --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets @babel/react --plugins transform-class-properties --watch\"",
