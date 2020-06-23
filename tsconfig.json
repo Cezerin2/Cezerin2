@@ -10,7 +10,7 @@
     "noEmitOnError": false,
     "removeComments": true,
     "jsx": "react",
-    "allowJs": true
+    "allowJs": false
   },
   "compileOnSave": true,
   "exclude": ["config"],
