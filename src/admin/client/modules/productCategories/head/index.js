@@ -1,40 +1,34 @@
-import React from "react"
-import { connect } from "react-redux"
-import { withRouter } from "react-router"
-import { reset } from "redux-form"
-import {
-  deleteCategory,
-  moveUpCategory,
-  moveDownCategory,
-  replaceCategory,
-  createCategory
-} from "../actions"
-import Buttons from "./components/buttons"
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_redux_1 = require("react-redux");
+const react_router_1 = require("react-router");
+const redux_form_1 = require("redux-form");
+const actions_1 = require("../actions");
+const buttons_1 = __importDefault(require("./components/buttons"));
 const mapStateToProps = state => ({
-  selected: state.productCategories.items.find(
-    item => item.id === state.productCategories.selectedId
-  )
-})
-
+    selected: state.productCategories.items.find(item => item.id === state.productCategories.selectedId)
+});
 const mapDispatchToProps = dispatch => ({
-  onMoveUp: () => {
-    dispatch(moveUpCategory())
-  },
-  onMoveDown: () => {
-    dispatch(moveDownCategory())
-  },
-  onDelete: id => {
-    dispatch(deleteCategory(id))
-    dispatch(reset("FormProductCategory"))
-  },
-  onMoveTo: id => {
-    dispatch(replaceCategory(id))
-    dispatch(reset("FormProductCategory"))
-  },
-  onCreate: () => {
-    dispatch(createCategory())
-  }
-})
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Buttons))
+    onMoveUp: () => {
+        dispatch(actions_1.moveUpCategory());
+    },
+    onMoveDown: () => {
+        dispatch(actions_1.moveDownCategory());
+    },
+    onDelete: id => {
+        dispatch(actions_1.deleteCategory(id));
+        dispatch(redux_form_1.reset("FormProductCategory"));
+    },
+    onMoveTo: id => {
+        dispatch(actions_1.replaceCategory(id));
+        dispatch(redux_form_1.reset("FormProductCategory"));
+    },
+    onCreate: () => {
+        dispatch(actions_1.createCategory());
+    }
+});
+exports.default = react_router_1.withRouter(react_redux_1.connect(mapStateToProps, mapDispatchToProps)(buttons_1.default));
+//# sourceMappingURL=index.js.map

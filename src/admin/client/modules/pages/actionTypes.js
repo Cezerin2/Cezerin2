@@ -1,5 +1,7 @@
-export const PAGES_REQUEST = "PAGES_REQUEST"
-export const PAGES_RECEIVE = "PAGES_RECEIVE"
-
-export const PAGE_REQUEST = "PAGE_REQUEST"
-export const PAGE_RECEIVE = "PAGE_RECEIVE"
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PAGES_REQUEST = "PAGES_REQUEST";
+exports.PAGES_RECEIVE = "PAGES_RECEIVE";
+exports.PAGE_REQUEST = "PAGE_REQUEST";
+exports.PAGE_RECEIVE = "PAGE_RECEIVE";
+//# sourceMappingURL=actionTypes.js.map
