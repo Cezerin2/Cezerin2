@@ -7,7 +7,7 @@ const { GenerateSW } = require("workbox-webpack-plugin")
 
 module.exports = {
   entry: {
-    app: ["babel-polyfill", "./build/store/client/index.js"],
+    app: ["babel-polyfill", "./src/store/client/index.js"],
     theme: ["theme"],
   },
 
@@ -37,6 +37,11 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
