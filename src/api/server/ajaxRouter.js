@@ -251,7 +251,7 @@ ajaxRouter.post("/customer-account", async (req, res, next) => {
   if (req.body.token) {
     customerData.token = AuthHeader.decodeUserLoginAuth(req.body.token)
     if (customerData.token.userId !== undefined) {
-      let userId = null
+      var userId = null;
       try {
         userId = JSON.stringify(customerData.token.userId).replace(/["']/g, "")
       } catch (erro) {}
@@ -482,7 +482,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
 ajaxRouter.put("/customer-account", async (req, res, next) => {
   const customerData = req.body
   const token = AuthHeader.decodeUserLoginAuth(req.body.token)
-  let userId = null
+  var userId = null;
 
   try {
     userId = JSON.stringify(token.userId).replace(/["']/g, "")
