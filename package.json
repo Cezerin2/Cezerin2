@@ -1,7 +1,8 @@
 {
-  "name": "cezerin",
-  "version": "0.33.0",
-  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.com",
+  "name": "cezerin2-mono",
+  "version": "0.34.0",
+  "private": true,
+  "description": "Cezerin2 is React and Node.js based eCommerce platform. https://cezerin.org",
   "keywords": [
     "cezerin",
     "ecommerce",
@@ -9,54 +10,14 @@
     "shop",
     "cms"
   ],
-  "homepage": "https://cezerin.com",
-  "bugs": "https://github.com/cezerin/cezerin/issues",
-  "license": "MIT",
-  "author": {
-    "name": "Restmount <jsonmount@gmail.com>",
-    "url": "https://github.com/restmount"
-  },
-  "contributors": [
-    {
-      "name": "Restmount <jsonmount@gmail.com>",
-      "url": "https://github.com/restmount"
-    },
-    {
-      "name": "Sergey Onufrienko <sergey@onufrienko.com>",
-      "url": "https://github.com/sonufrienko"
-    }
-  ],
+  "homepage": "https://cezerin.org",
+  "bugs": "https://github.com/Cezerin2/cezerin2-mono/issues",
+  "license": "Unlicense",
+  "author": "Restmount, Himadu and Community",
   "main": "src/api/server/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cezerin/cezerin"
-  },
-  "scripts": {
-    "setup": "node -r esm src/api/server/setup.js",
-    "compile": "babel src/store -d dist/store --presets react --plugins transform-class-properties --quiet",
-    "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src/store -d dist/store --presets react --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets react --plugins transform-class-properties --watch\"",
-    "webpack:admin": "webpack --config webpack.config.admin.js --mode production",
-    "webpack:store": "webpack --config webpack.config.store.js --mode production",
-    "webpack:admin:watch": "webpack --config webpack.config.admin.js --mode development --watch",
-    "webpack:store:watch": "webpack --config webpack.config.store.js --mode development --watch",
-    "theme:install": "./scripts/theme-install.sh",
-    "theme:export": "./scripts/theme-export.sh",
-    "theme:build": "babel theme/src -d theme/dist --presets react --plugins transform-class-properties --quiet && npm run webpack:store",
-    "build": "npm run compile && npm run theme:build && npm run webpack:admin",
-    "build:watch": "concurrently -n compile,webpackStore,webpackAdmin \"npm run compile:watch\" \"npm run webpack:store:watch\" \"npm run webpack:admin:watch\"",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prettier": "prettier --write \"src/**/*.js\" \"theme/**/*.js\"",
-    "precommit": "lint-staged",
-    "start-api": "node -r esm src/api/server/index.js",
-    "start-store": "node -r esm dist/store/server/index.js",
-    "start": "concurrently npm:start-*"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "url": "https://github.com/Cezerin2/cezerin2-mono"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
@@ -76,13 +37,6 @@
     "cookie-parser": "^1.4.3",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
-    "eslint": "^5.4.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.0.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.11.1",
     "esm": "^3.0.80",
     "express": "^4.16.3",
     "express-jwt": "^5.3.0",
@@ -141,8 +95,23 @@
     "workbox-webpack-plugin": "^3.4.1",
     "ws": "^6.0.0"
   },
-  "engines": {
-    "node": "^8.0.0",
-    "npm": "^5.0.0"
+  "devDependencies": {},
+  "scripts": {
+    "setup": "node -r esm src/api/server/setup.js",
+    "compile": "babel src/store -d dist/store --presets react --plugins transform-class-properties --quiet",
+    "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src/store -d dist/store --presets react --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets react --plugins transform-class-properties --watch\"",
+    "webpack:admin": "webpack --config webpack.config.admin.js --mode production",
+    "webpack:store": "webpack --config webpack.config.store.js --mode production",
+    "webpack:admin:watch": "webpack --config webpack.config.admin.js --mode development --watch",
+    "webpack:store:watch": "webpack --config webpack.config.store.js --mode development --watch",
+    "theme:install": "./scripts/theme-install.sh",
+    "theme:export": "./scripts/theme-export.sh",
+    "theme:build": "babel theme/src -d theme/dist --presets react --plugins transform-class-properties --quiet && npm run webpack:store",
+    "build": "npm run compile && npm run theme:build && npm run webpack:admin",
+    "build:watch": "concurrently -n compile,webpackStore,webpackAdmin \"npm run compile:watch\" \"npm run webpack:store:watch\" \"npm run webpack:admin:watch\"",
+    "prettier": "prettier --write \"src/**/*.js\" \"theme/**/*.js\"",
+    "start-api": "node -r esm src/api/server/index.js",
+    "start-store": "node -r esm dist/store/server/index.js",
+    "start": "concurrently npm:start-*"
   }
 }
