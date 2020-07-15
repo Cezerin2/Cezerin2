@@ -49,8 +49,8 @@ export default class ConfirmationDialog extends React.Component {
       />,
       <FlatButton
         label={submitLabel}
-        primary
-        keyboardFocused
+        primary={true}
+        keyboardFocused={true}
         onClick={this.handleSubmit}
       />
     ]

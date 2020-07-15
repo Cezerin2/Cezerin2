@@ -11,7 +11,7 @@ import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
 import TextField from "material-ui/TextField"
 import Search from "./search"
-const { Fragment } = React
+const Fragment = React.Fragment
 
 export default class Buttons extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class Buttons extends React.Component {
         {selectedCount > 0 && (
           <Fragment>
             <IconButton
-              touch
+              touch={true}
               tooltipPosition="bottom-left"
               tooltip={messages.actions_delete}
               onClick={this.openDelete}
@@ -62,7 +62,7 @@ export default class Buttons extends React.Component {
           </Fragment>
         )}
         <IconButton
-          touch
+          touch={true}
           tooltipPosition="bottom-left"
           tooltip={messages.orders_titleAdd}
           onClick={onCreate}

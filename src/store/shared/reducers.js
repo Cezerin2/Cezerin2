@@ -23,10 +23,11 @@ const appReducer = (state = initialState, action) => {
           productsMinPrice: action.products.price.min || 0,
           productsMaxPrice: action.products.price.max || 0
         })
+      } else {
+        return Object.assign({}, state, {
+          products: []
+        })
       }
-      return Object.assign({}, state, {
-        products: []
-      })
 
     case t.MORE_PRODUCTS_REQUEST:
       return Object.assign({}, state, { loadingMoreProducts: true })

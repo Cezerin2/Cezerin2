@@ -14,7 +14,9 @@ class CommerceSettingsService {
     return db
       .collection("commerceSettings")
       .findOne()
-      .then(settings => this.changeProperties(settings))
+      .then(settings => {
+        return this.changeProperties(settings)
+      })
   }
 
   updateCommerceSettings(data) {
@@ -42,6 +44,8 @@ class CommerceSettingsService {
           return db
             .collection("commerceSettings")
             .insertOne(this.defaultSettings)
+        } else {
+          return
         }
       })
   }
@@ -51,7 +55,7 @@ class CommerceSettingsService {
       return new Error("Required fields are missing")
     }
 
-    const settings = {}
+    let settings = {}
 
     if (data.status !== undefined) {
       settings.status = parse.getString(data.status)

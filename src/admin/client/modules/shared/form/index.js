@@ -10,18 +10,20 @@ export const CustomToggle = ({
   className = "",
   disabled = false,
   style
-}) => (
-  <Toggle
-    label={label}
-    toggled={!!input.value}
-    onToggle={(event, isInputChecked) => {
-      input.onChange(isInputChecked)
-    }}
-    className={className}
-    disabled={disabled}
-    style={style}
-  />
-)
+}) => {
+  return (
+    <Toggle
+      label={label}
+      toggled={input.value ? true : false}
+      onToggle={(event, isInputChecked) => {
+        input.onChange(isInputChecked)
+      }}
+      className={className}
+      disabled={disabled}
+      style={style}
+    />
+  )
+}
 
 export const NumberField = ({
   input,
@@ -32,13 +34,13 @@ export const NumberField = ({
 }) => (
   <TextField
     floatingLabelText={label}
-    fullWidth
+    fullWidth={true}
     disabled={disabled}
     value={input.value}
     type="number"
     onChange={(event, value) => {
       let number = parseFloat(value)
-      number = number || 0
+      number = number ? number : 0
       input.onChange(number)
     }}
   />
@@ -81,7 +83,9 @@ export class MultiSelect extends React.Component {
     this.props.input.onChange(newSelectedItems)
   }
 
-  isCheckboxChecked = item => this.state.selectedItems.includes(item)
+  isCheckboxChecked = item => {
+    return this.state.selectedItems.includes(item)
+  }
 
   render() {
     const { items, disabled, columns = 2 } = this.props

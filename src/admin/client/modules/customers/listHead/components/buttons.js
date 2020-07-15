@@ -50,7 +50,7 @@ export default class Buttons extends React.Component {
   }
 
   selectSetGroup = groupId => {
-    this.setState({ groupId })
+    this.setState({ groupId: groupId })
   }
 
   render() {
@@ -64,8 +64,8 @@ export default class Buttons extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary
-        keyboardFocused
+        primary={true}
+        keyboardFocused={true}
         onClick={this.saveSetGroup}
       />
     ]
@@ -76,7 +76,7 @@ export default class Buttons extends React.Component {
         {selectedCount > 0 && (
           <span>
             <IconButton
-              touch
+              touch={true}
               tooltipPosition="bottom-left"
               tooltip={messages.actions_delete}
               onClick={this.showDelete}
@@ -86,7 +86,7 @@ export default class Buttons extends React.Component {
               </FontIcon>
             </IconButton>
             <IconButton
-              touch
+              touch={true}
               tooltipPosition="bottom-left"
               tooltip={messages.customers_setGroup}
               onClick={this.showSetGroup}
@@ -108,12 +108,12 @@ export default class Buttons extends React.Component {
               modal={false}
               open={this.state.openSetGroup}
               onRequestClose={this.closeSetGroup}
-              autoScrollBodyContent
+              autoScrollBodyContent={true}
             >
               <GroupSelect
                 onSelect={this.selectSetGroup}
                 selectedId={this.state.groupId}
-                showRoot
+                showRoot={true}
                 showAll={false}
               />
             </Dialog>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 import messages from "lib/text"
 import * as helper from "lib/helper"
+import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import Divider from "material-ui/Divider"
@@ -13,10 +14,9 @@ import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
 import Dialog from "material-ui/Dialog"
-import style from "./style.css"
 
 const iconButtonElement = (
-  <IconButton touch>
+  <IconButton touch={true}>
     <FontIcon color="rgb(189, 189, 189)" className="material-icons">
       more_vert
     </FontIcon>
@@ -34,7 +34,7 @@ const ProductOption = ({ option, onChange, selectedOptions }) => {
   return (
     <SelectField
       floatingLabelText={option.name}
-      fullWidth
+      fullWidth={true}
       value={selectedValue}
       onChange={(event, index, value) => {
         onChange(option.id, value)
@@ -56,8 +56,9 @@ const ProductOptions = ({ options, onChange, selectedOptions }) => {
       />
     ))
     return <div className="product-options">{items}</div>
+  } else {
+    return null
   }
-  return null
 }
 
 export class OrderItem extends React.Component {
@@ -103,7 +104,7 @@ export class OrderItem extends React.Component {
 
   onOptionChange = (optionId, valueId) => {
     this.setState({ quantity: 1 })
-    const { selectedOptions } = this.state
+    let { selectedOptions } = this.state
 
     if (valueId === "") {
       delete selectedOptions[optionId]
@@ -111,13 +112,13 @@ export class OrderItem extends React.Component {
       selectedOptions[optionId] = valueId
     }
 
-    this.setState({ selectedOptions })
+    this.setState({ selectedOptions: selectedOptions })
     this.findVariantBySelectedOptions()
   }
 
   findVariantBySelectedOptions = () => {
     const { selectedOptions } = this.state
-    const { product } = this.props.item
+    const product = this.props.item.product
     for (const variant of product.variants) {
       const variantMutchSelectedOptions = variant.options.every(
         variantOption =>
@@ -134,7 +135,7 @@ export class OrderItem extends React.Component {
 
   getCurrentVariant = () => {
     const variantId = this.props.item.variant_id
-    const { product } = this.props.item
+    const product = this.props.item.product
     let variant = null
 
     if (
@@ -151,8 +152,8 @@ export class OrderItem extends React.Component {
 
   getOptionsByVariant = () => {
     const variantId = this.props.item.variant_id
-    const { product } = this.props.item
-    const selectedOptions = {}
+    const product = this.props.item.product
+    let selectedOptions = {}
     if (
       variantId &&
       product &&
@@ -179,12 +180,16 @@ export class OrderItem extends React.Component {
         onClick={this.hideEditForm}
         style={{ marginRight: 10 }}
       />,
-      <FlatButton label={messages.save} primary onClick={this.submitEditForm} />
+      <FlatButton
+        label={messages.save}
+        primary={true}
+        onClick={this.submitEditForm}
+      />
     ]
 
     let { quantity } = this.state
     const { selectedOptions, selectedVariant } = this.state
-    const { product } = item
+    const product = item.product
     const price = helper.formatCurrency(item.price, settings)
     const priceTotal = helper.formatCurrency(item.price_total, settings)
     const discountTotal = helper.formatCurrency(item.discount_total, settings)
@@ -223,13 +228,13 @@ export class OrderItem extends React.Component {
 
     return (
       <div>
-        <div className={`${style.item} row row--no-gutter middle-xs`}>
+        <div className={style.item + " row row--no-gutter middle-xs"}>
           <div className="col-xs-2">
             {thumbnailUrl && thumbnailUrl !== "" && (
               <img src={thumbnailUrl} className={style.itemImage} />
             )}
           </div>
-          <div className={`${style.itemName} col-xs-4`}>
+          <div className={style.itemName + " col-xs-4"}>
             <Link to={`/admin/product/${item.product_id}`}>{item.name}</Link>
             <div>{item.variant_name}</div>
             <div>
@@ -280,7 +285,7 @@ export class OrderItem extends React.Component {
             />
             <SelectField
               floatingLabelText={messages.quantity}
-              fullWidth
+              fullWidth={true}
               value={quantity}
               onChange={this.quantityChange}
             >

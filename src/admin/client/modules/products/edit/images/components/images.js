@@ -60,8 +60,8 @@ export default class ProductImages extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary
-        keyboardFocused
+        primary={true}
+        keyboardFocused={true}
         onClick={this.handleEditSave}
       />
     ]
@@ -89,7 +89,7 @@ export default class ProductImages extends React.Component {
           >
             <TextField
               floatingLabelText={messages.alt}
-              fullWidth
+              fullWidth={true}
               value={alt}
               onChange={this.handleAltChange}
             />

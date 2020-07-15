@@ -5,8 +5,8 @@ import PayPalCheckout from "./PayPalCheckout"
 import LiqPay from "./LiqPay"
 import StripeElements from "./StripeElements"
 
-const getOptions = orderId =>
-  Promise.all([
+const getOptions = orderId => {
+  return Promise.all([
     OrdersService.getSingleOrder(orderId),
     SettingsService.getSettings()
   ]).then(([order, settings]) => {
@@ -16,8 +16,8 @@ const getOptions = orderId =>
       ).then(gatewaySettings => {
         const options = {
           gateway: order.payment_method_gateway,
-          gatewaySettings,
-          order,
+          gatewaySettings: gatewaySettings,
+          order: order,
           amount: order.grand_total,
           currency: settings.currency_code
         }
@@ -26,9 +26,10 @@ const getOptions = orderId =>
       })
     }
   })
+}
 
-const getPaymentFormSettings = orderId =>
-  getOptions(orderId).then(options => {
+const getPaymentFormSettings = orderId => {
+  return getOptions(orderId).then(options => {
     switch (options.gateway) {
       case "paypal-checkout":
         return PayPalCheckout.getPaymentFormSettings(options)
@@ -40,14 +41,15 @@ const getPaymentFormSettings = orderId =>
         return Promise.reject("Invalid gateway")
     }
   })
+}
 
-const paymentNotification = (req, res, gateway) =>
-  PaymentGatewaysService.getGateway(gateway).then(gatewaySettings => {
+const paymentNotification = (req, res, gateway) => {
+  return PaymentGatewaysService.getGateway(gateway).then(gatewaySettings => {
     const options = {
-      gateway,
-      gatewaySettings,
-      req,
-      res
+      gateway: gateway,
+      gatewaySettings: gatewaySettings,
+      req: req,
+      res: res
     }
 
     switch (gateway) {
@@ -59,6 +61,7 @@ const paymentNotification = (req, res, gateway) =>
         return Promise.reject("Invalid gateway")
     }
   })
+}
 
 const processOrderPayment = async order => {
   const orderAlreadyCharged = order.paid === true
@@ -83,7 +86,7 @@ const processOrderPayment = async order => {
 }
 
 export default {
-  getPaymentFormSettings,
-  paymentNotification,
-  processOrderPayment
+  getPaymentFormSettings: getPaymentFormSettings,
+  paymentNotification: paymentNotification,
+  processOrderPayment: processOrderPayment
 }

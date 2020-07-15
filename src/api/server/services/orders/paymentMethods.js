@@ -10,7 +10,7 @@ class PaymentMethodsService {
 
   getFilter(params = {}) {
     return new Promise((resolve, reject) => {
-      const filter = {}
+      let filter = {}
       const id = parse.getObjectIDIfValid(params.id)
       const enabled = parse.getBooleanIfValid(params.enabled)
 
@@ -31,8 +31,8 @@ class PaymentMethodsService {
               order.shipping_method_id
             )
 
-            filter.$and = []
-            filter.$and.push({
+            filter["$and"] = []
+            filter["$and"].push({
               $or: [
                 {
                   "conditions.subtotal_min": 0
@@ -44,7 +44,7 @@ class PaymentMethodsService {
                 }
               ]
             })
-            filter.$and.push({
+            filter["$and"].push({
               $or: [
                 {
                   "conditions.subtotal_max": 0
@@ -61,7 +61,7 @@ class PaymentMethodsService {
               order.shipping_address.country &&
               order.shipping_address.country.length > 0
             ) {
-              filter.$and.push({
+              filter["$and"].push({
                 $or: [
                   {
                     "conditions.countries": {
@@ -76,7 +76,7 @@ class PaymentMethodsService {
             }
 
             if (shippingMethodObjectID) {
-              filter.$and.push({
+              filter["$and"].push({
                 $or: [
                   {
                     "conditions.shipping_method_ids": {
@@ -92,24 +92,25 @@ class PaymentMethodsService {
           }
           resolve(filter)
         })
+      } else {
+        resolve(filter)
       }
-      resolve(filter)
     })
   }
 
   getMethods(params = {}) {
-    return this.getFilter(params).then(filter =>
-      PaymentMethodsLightService.getMethods(filter)
-    )
+    return this.getFilter(params).then(filter => {
+      return PaymentMethodsLightService.getMethods(filter)
+    })
   }
 
   getSingleMethod(id) {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    return this.getMethods({ id }).then(methods =>
-      methods.length > 0 ? methods[0] : null
-    )
+    return this.getMethods({ id: id }).then(methods => {
+      return methods.length > 0 ? methods[0] : null
+    })
   }
 
   addMethod(data) {
@@ -146,7 +147,9 @@ class PaymentMethodsService {
     return db
       .collection("paymentMethods")
       .deleteOne({ _id: methodObjectID })
-      .then(deleteResponse => deleteResponse.deletedCount > 0)
+      .then(deleteResponse => {
+        return deleteResponse.deletedCount > 0
+      })
   }
 
   async pullShippingMethod(id) {
@@ -164,7 +167,7 @@ class PaymentMethodsService {
   }
 
   getPaymentMethodConditions(conditions) {
-    const methodIds = conditions
+    let methodIds = conditions
       ? parse.getArrayIfValid(conditions.shipping_method_ids) || []
       : []
     let methodObjects = []
@@ -188,7 +191,7 @@ class PaymentMethodsService {
   }
 
   getValidDocumentForInsert(data) {
-    const method = {}
+    let method = {}
 
     method.name = parse.getString(data.name)
     method.description = parse.getString(data.description)
@@ -205,7 +208,7 @@ class PaymentMethodsService {
       return new Error("Required fields are missing")
     }
 
-    const method = {}
+    let method = {}
 
     if (data.name !== undefined) {
       method.name = parse.getString(data.name)

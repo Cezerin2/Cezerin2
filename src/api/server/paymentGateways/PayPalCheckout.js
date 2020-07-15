@@ -11,8 +11,8 @@ const getPaymentFormSettings = options => {
 
   const formSettings = {
     order_id: order.id,
-    amount,
-    currency,
+    amount: amount,
+    currency: currency,
     env: gatewaySettings.env,
     client: gatewaySettings.client,
     size: gatewaySettings.size,
@@ -59,8 +59,8 @@ const paymentNotification = options => {
     })
 }
 
-const verify = (params, settings) =>
-  new Promise((resolve, reject) => {
+const verify = (params, settings) => {
+  return new Promise((resolve, reject) => {
     if (!settings) {
       settings = {
         allow_sandbox: false
@@ -74,8 +74,8 @@ const verify = (params, settings) =>
     params.cmd = "_notify-validate"
     const body = qs.stringify(params)
 
-    // Set up the request to paypal
-    const req_options = {
+    //Set up the request to paypal
+    let req_options = {
       host: params.test_ipn ? SANDBOX_URL : REGULAR_URL,
       method: "POST",
       path: "/cgi-bin/webscr",
@@ -88,32 +88,34 @@ const verify = (params, settings) =>
       )
     }
 
-    const req = https.request(req_options, res => {
-      const data = []
+    let req = https.request(req_options, res => {
+      let data = []
 
       res.on("data", d => {
         data.push(d)
       })
 
       res.on("end", () => {
-        const response = data.join("")
+        let response = data.join("")
 
-        // Check if IPN is valid
+        //Check if IPN is valid
         if (response === "VERIFIED") {
           return resolve(response)
+        } else {
+          return reject("IPN Verification status: " + response)
         }
-        return reject(`IPN Verification status: ${response}`)
       })
     })
 
-    // Add the post parameters to the request body
+    //Add the post parameters to the request body
     req.write(body)
-    // Request error
+    //Request error
     req.on("error", reject)
     req.end()
   })
+}
 
 export default {
-  getPaymentFormSettings,
-  paymentNotification
+  getPaymentFormSettings: getPaymentFormSettings,
+  paymentNotification: paymentNotification
 }

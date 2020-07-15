@@ -8,11 +8,6 @@ import ProductImages from "modules/products/edit/images"
 import ProductGeneral from "modules/products/edit/general"
 import ProductAdditional from "modules/products/edit/additional"
 
-import { connect } from "react-redux"
-import { withRouter } from "react-router"
-import { fetchCategoriesIfNeeded } from "modules/productCategories/actions"
-import { fetchProduct, cancelProductEdit } from "../actions"
-
 class ProductEditContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -63,20 +58,29 @@ class ProductEditContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  product: state.products.editProduct
-})
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
+import { fetchProduct, cancelProductEdit } from "../actions"
+import { fetchCategoriesIfNeeded } from "modules/productCategories/actions"
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchData: () => {
-    const { productId } = ownProps.match.params
-    dispatch(fetchProduct(productId))
-    dispatch(fetchCategoriesIfNeeded())
-  },
-  eraseData: () => {
-    dispatch(cancelProductEdit())
+const mapStateToProps = (state, ownProps) => {
+  return {
+    product: state.products.editProduct
   }
-})
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    fetchData: () => {
+      const { productId } = ownProps.match.params
+      dispatch(fetchProduct(productId))
+      dispatch(fetchCategoriesIfNeeded())
+    },
+    eraseData: () => {
+      dispatch(cancelProductEdit())
+    }
+  }
+}
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ProductEditContainer)

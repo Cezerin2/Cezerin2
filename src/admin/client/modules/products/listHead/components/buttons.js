@@ -9,7 +9,7 @@ import IconButton from "material-ui/IconButton"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import Search from "./search"
-const { Fragment } = React
+const Fragment = React.Fragment
 
 export default class Buttons extends React.Component {
   constructor(props) {
@@ -69,8 +69,8 @@ export default class Buttons extends React.Component {
       />,
       <FlatButton
         label={messages.actions_moveHere}
-        primary
-        keyboardFocused
+        primary={true}
+        keyboardFocused={true}
         onClick={this.saveMoveTo}
       />
     ]
@@ -81,7 +81,7 @@ export default class Buttons extends React.Component {
         {selectedCount > 0 && (
           <Fragment>
             <IconButton
-              touch
+              touch={true}
               tooltipPosition="bottom-left"
               tooltip={messages.actions_delete}
               onClick={this.openDelete}
@@ -91,7 +91,7 @@ export default class Buttons extends React.Component {
               </FontIcon>
             </IconButton>
             <IconButton
-              touch
+              touch={true}
               tooltipPosition="bottom-left"
               tooltip={messages.actions_moveTo}
               onClick={this.showMoveTo}
@@ -113,18 +113,18 @@ export default class Buttons extends React.Component {
               modal={false}
               open={this.state.openMoveTo}
               onRequestClose={this.closeMoveTo}
-              autoScrollBodyContent
+              autoScrollBodyContent={true}
             >
               <CategorySelect
                 onSelect={this.selectMoveTo}
                 selectedId={this.state.categoryIdMoveTo}
-                opened
+                opened={true}
               />
             </Dialog>
           </Fragment>
         )}
         <IconButton
-          touch
+          touch={true}
           tooltipPosition="bottom-left"
           tooltip={messages.addProduct}
           onClick={onCreate}

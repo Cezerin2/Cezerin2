@@ -3,11 +3,11 @@ import { Field, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
 
 import messages from "lib/text"
+import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
-import style from "./style.css"
 
 const validate = values => {
   const errors = {}
@@ -28,7 +28,7 @@ class Form extends React.Component {
   }
 
   render() {
-    const {
+    let {
       handleSubmit,
       pristine,
       submitting,
@@ -49,16 +49,16 @@ class Form extends React.Component {
             <Field
               name="name"
               component={TextField}
-              floatingLabelText={`${messages.orderStatusName} *`}
-              fullWidth
+              floatingLabelText={messages.orderStatusName + " *"}
+              fullWidth={true}
             />
             <br />
             <Field
               name="description"
               component={TextField}
               floatingLabelText={messages.description}
-              fullWidth
-              multiLine
+              fullWidth={true}
+              multiLine={true}
               rows={1}
             />
           </div>
@@ -71,7 +71,7 @@ class Form extends React.Component {
             <RaisedButton
               type="submit"
               label={statusId ? messages.save : messages.add}
-              primary
+              primary={true}
               className={style.button}
               disabled={pristine || submitting || isSaving}
             />

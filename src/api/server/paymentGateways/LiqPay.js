@@ -8,9 +8,9 @@ const getPaymentFormSettings = options => {
     sandbox: "0",
     action: "pay",
     version: "3",
-    amount,
-    currency,
-    description: `Order: ${order.number}`,
+    amount: amount,
+    currency: currency,
+    description: "Order: " + order.number,
     order_id: order.id,
     public_key: gatewaySettings.public_key,
     language: gatewaySettings.language,
@@ -64,12 +64,12 @@ const paymentNotification = options => {
 
 const getForm = (params, private_key) => {
   params = getFormParams(params)
-  const data = new Buffer(JSON.stringify(params)).toString("base64")
-  const signature = getHashFromString(private_key + data + private_key)
+  let data = new Buffer(JSON.stringify(params)).toString("base64")
+  let signature = getHashFromString(private_key + data + private_key)
 
   return {
-    data,
-    signature
+    data: data,
+    signature: signature
   }
 }
 
@@ -83,12 +83,12 @@ const getFormParams = params => {
 }
 
 const getHashFromString = str => {
-  const sha1 = crypto.createHash("sha1")
+  let sha1 = crypto.createHash("sha1")
   sha1.update(str)
   return sha1.digest("base64")
 }
 
 export default {
-  getPaymentFormSettings,
-  paymentNotification
+  getPaymentFormSettings: getPaymentFormSettings,
+  paymentNotification: paymentNotification
 }

@@ -1,8 +1,8 @@
 import React from "react"
-import Paper from "material-ui/Paper"
-import apps from "src/apps"
 import AppDescription from "./description"
 import style from "./style.css"
+import Paper from "material-ui/Paper"
+import apps from "src/apps"
 
 const AppDetails = ({ match }) => {
   const { appKey } = match.params
@@ -11,7 +11,7 @@ const AppDetails = ({ match }) => {
   const appDescription = app.Description
 
   return (
-    <div className={`${style.detailsContainer} scroll col-full-height`}>
+    <div className={style.detailsContainer + " scroll col-full-height"}>
       <AppDescription {...appDescription} />
       <div style={{ maxWidth: 720, width: "100%" }}>
         <Paper className="paper-box" zDepth={1}>

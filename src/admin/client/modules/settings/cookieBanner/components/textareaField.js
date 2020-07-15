@@ -18,7 +18,7 @@ const TextAreaField = field => (
       rows={field.rows}
       id={field.id}
       onInput={event => setInputValueText(event.target.value)}
-      value={inp || field.text}
+      value={inp ? inp : field.text}
       rows={field.rows}
       cols={field.cols}
     />

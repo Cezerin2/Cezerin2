@@ -19,18 +19,29 @@ class WebhooksService {
 
     if (webhooksFromCache) {
       return webhooksFromCache
+    } else {
+      const items = await db
+        .collection("webhooks")
+        .find()
+        .toArray()
+      const result = items.map(item => this.changeProperties(item))
+      cache.set(WEBHOOKS_CACHE_KEY, result)
+      return result
     }
+<<<<<<< HEAD
     const items = await db.collection("webhooks").find().toArray()
     const result = items.map(item => this.changeProperties(item))
     cache.set(WEBHOOKS_CACHE_KEY, result)
     return result
+=======
+>>>>>>> parent of 5126239... Eslint fix (#45)
   }
 
   async getSingleWebhook(id) {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    const webhookObjectID = new ObjectID(id)
+    let webhookObjectID = new ObjectID(id)
 
     const item = await db
       .collection("webhooks")
@@ -82,8 +93,13 @@ class WebhooksService {
   }
 
   getValidDocumentForInsert(data) {
+<<<<<<< HEAD
     const webhook = {
       date_created: new Date(),
+=======
+    let webhook = {
+      date_created: new Date()
+>>>>>>> parent of 5126239... Eslint fix (#45)
     }
 
     webhook.description = parse.getString(data.description)
@@ -100,8 +116,13 @@ class WebhooksService {
       return new Error("Required fields are missing")
     }
 
+<<<<<<< HEAD
     const webhook = {
       date_updated: new Date(),
+=======
+    let webhook = {
+      date_updated: new Date()
+>>>>>>> parent of 5126239... Eslint fix (#45)
     }
 
     if (data.description !== undefined) {

@@ -17,18 +17,20 @@ import {
   TableRowColumn
 } from "material-ui/Table"
 
-const SearchBox = ({ text, onChange }) => (
-  <TextField
-    fullWidth
-    floatingLabelText={messages.products_search}
-    onChange={onChange}
-    value={text}
-  />
-)
+const SearchBox = ({ text, onChange }) => {
+  return (
+    <TextField
+      fullWidth={true}
+      floatingLabelText={messages.products_search}
+      onChange={onChange}
+      value={text}
+    />
+  )
+}
 
 const SearchResult = ({ products, selectedId, settings, onSelect }) => {
   const rows = products.map((product, index) => {
-    const priceFormatted = helper.formatCurrency(product.price, settings)
+    let priceFormatted = helper.formatCurrency(product.price, settings)
     const isSelected = product.id === selectedId
 
     return (
@@ -46,7 +48,7 @@ const SearchResult = ({ products, selectedId, settings, onSelect }) => {
   return (
     <Table
       height="400px"
-      selectable
+      selectable={true}
       multiSelectable={false}
       onRowSelection={onSelect}
     >
@@ -136,7 +138,11 @@ export default class ConfirmationDialog extends React.Component {
         onClick={this.handleCancel}
         style={{ marginRight: 10 }}
       />,
-      <FlatButton label={submitLabel} primary onClick={this.handleSubmit} />
+      <FlatButton
+        label={submitLabel}
+        primary={true}
+        onClick={this.handleSubmit}
+      />
     ]
 
     return (

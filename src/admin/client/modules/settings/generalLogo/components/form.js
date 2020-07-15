@@ -9,7 +9,7 @@ export default class GeneralLogoSettingsForm extends React.Component {
 
   render() {
     const { onImageUpload, onImageDelete, settings } = this.props
-    const imageUrl = settings && settings.logo ? settings.logo : ""
+    let imageUrl = settings && settings.logo ? settings.logo : ""
 
     return (
       <Paper className="paper-box" zDepth={1}>

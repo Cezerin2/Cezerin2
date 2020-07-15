@@ -17,7 +17,9 @@ class EmailSettingsService {
     return db
       .collection("emailSettings")
       .findOne()
-      .then(settings => this.changeProperties(settings))
+      .then(settings => {
+        return this.changeProperties(settings)
+      })
   }
 
   updateEmailSettings(data) {
@@ -43,6 +45,8 @@ class EmailSettingsService {
       .then(count => {
         if (count === 0) {
           return db.collection("emailSettings").insertOne(this.defaultSettings)
+        } else {
+          return
         }
       })
   }
@@ -52,7 +56,7 @@ class EmailSettingsService {
       return new Error("Required fields are missing")
     }
 
-    const settings = {}
+    let settings = {}
 
     if (data.host !== undefined) {
       settings.host = parse.getString(data.host).toLowerCase()

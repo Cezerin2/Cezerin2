@@ -20,7 +20,7 @@ class CustomersService {
     // orders_count_to
     // orders_count_from
 
-    const filter = {}
+    let filter = {}
     const id = parse.getObjectIDIfValid(params.id)
     const group_id = parse.getObjectIDIfValid(params.group_id)
 
@@ -37,7 +37,7 @@ class CustomersService {
     }
 
     if (params.search) {
-      filter.$or = [
+      filter["$or"] = [
         { email: new RegExp(params.search, "i") },
         { mobile: new RegExp(params.search, "i") },
         { $text: { $search: params.search } }
@@ -48,7 +48,7 @@ class CustomersService {
   }
 
   getCustomers(params = {}) {
-    const filter = this.getFilter(params)
+    let filter = this.getFilter(params)
     const limit = parse.getNumberIfPositive(params.limit) || 1000
     const offset = parse.getNumberIfPositive(params.offset) || 0
 
@@ -79,7 +79,7 @@ class CustomersService {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    return this.getCustomers({ id }).then(items =>
+    return this.getCustomers({ id: id }).then(items =>
       items.data.length > 0 ? items.data[0] : {}
     )
   }
@@ -179,7 +179,7 @@ class CustomersService {
   }
 
   getValidDocumentForInsert(data) {
-    const customer = {
+    let customer = {
       date_created: new Date(),
       date_updated: null,
       total_spent: 0,
@@ -206,12 +206,13 @@ class CustomersService {
 
   validateAddresses(addresses) {
     if (addresses && addresses.length > 0) {
-      const validAddresses = addresses.map(addressItem =>
+      let validAddresses = addresses.map(addressItem =>
         parse.getCustomerAddress(addressItem)
       )
       return validAddresses
+    } else {
+      return []
     }
-    return []
   }
 
   getValidDocumentForUpdate(id, data) {
@@ -219,7 +220,7 @@ class CustomersService {
       return new Error("Required fields are missing")
     }
 
-    const customer = {
+    let customer = {
       date_updated: new Date()
     }
 
@@ -300,14 +301,18 @@ class CustomersService {
       if (customer.addresses && customer.addresses.length === 1) {
         customer.billing = customer.shipping = customer.addresses[0]
       } else if (customer.addresses && customer.addresses.length > 1) {
-        const default_billing = customer.addresses.find(
+        let default_billing = customer.addresses.find(
           address => address.default_billing
         )
-        const default_shipping = customer.addresses.find(
+        let default_shipping = customer.addresses.find(
           address => address.default_shipping
         )
-        customer.billing = default_billing || customer.addresses[0]
-        customer.shipping = default_shipping || customer.addresses[0]
+        customer.billing = default_billing
+          ? default_billing
+          : customer.addresses[0]
+        customer.shipping = default_shipping
+          ? default_shipping
+          : customer.addresses[0]
       } else {
         customer.billing = {}
         customer.shipping = {}
@@ -321,7 +326,7 @@ class CustomersService {
     if (!ObjectID.isValid(customer_id)) {
       return Promise.reject("Invalid identifier")
     }
-    const customerObjectID = new ObjectID(customer_id)
+    let customerObjectID = new ObjectID(customer_id)
     const validAddress = parse.getCustomerAddress(address)
 
     return db.collection("customers").updateOne(
@@ -337,7 +342,7 @@ class CustomersService {
   }
 
   createObjectToUpdateAddressFields(address) {
-    const fields = {}
+    let fields = {}
 
     if (address.address1 !== undefined) {
       fields["addresses.$.address1"] = parse.getString(address.address1)
@@ -410,8 +415,8 @@ class CustomersService {
     if (!ObjectID.isValid(customer_id) || !ObjectID.isValid(address_id)) {
       return Promise.reject("Invalid identifier")
     }
-    const customerObjectID = new ObjectID(customer_id)
-    const addressObjectID = new ObjectID(address_id)
+    let customerObjectID = new ObjectID(customer_id)
+    let addressObjectID = new ObjectID(address_id)
     const addressFields = this.createObjectToUpdateAddressFields(data)
 
     return db.collection("customers").updateOne(
@@ -427,8 +432,8 @@ class CustomersService {
     if (!ObjectID.isValid(customer_id) || !ObjectID.isValid(address_id)) {
       return Promise.reject("Invalid identifier")
     }
-    const customerObjectID = new ObjectID(customer_id)
-    const addressObjectID = new ObjectID(address_id)
+    let customerObjectID = new ObjectID(customer_id)
+    let addressObjectID = new ObjectID(address_id)
 
     return db.collection("customers").updateOne(
       {
@@ -448,8 +453,8 @@ class CustomersService {
     if (!ObjectID.isValid(customer_id) || !ObjectID.isValid(address_id)) {
       return Promise.reject("Invalid identifier")
     }
-    const customerObjectID = new ObjectID(customer_id)
-    const addressObjectID = new ObjectID(address_id)
+    let customerObjectID = new ObjectID(customer_id)
+    let addressObjectID = new ObjectID(address_id)
 
     return db
       .collection("customers")
@@ -464,8 +469,8 @@ class CustomersService {
           }
         }
       )
-      .then(res =>
-        db.collection("customers").updateOne(
+      .then(res => {
+        return db.collection("customers").updateOne(
           {
             _id: customerObjectID,
             "addresses.id": addressObjectID
@@ -476,15 +481,15 @@ class CustomersService {
             }
           }
         )
-      )
+      })
   }
 
   setDefaultShipping(customer_id, address_id) {
     if (!ObjectID.isValid(customer_id) || !ObjectID.isValid(address_id)) {
       return Promise.reject("Invalid identifier")
     }
-    const customerObjectID = new ObjectID(customer_id)
-    const addressObjectID = new ObjectID(address_id)
+    let customerObjectID = new ObjectID(customer_id)
+    let addressObjectID = new ObjectID(address_id)
 
     return db
       .collection("customers")
@@ -499,8 +504,8 @@ class CustomersService {
           }
         }
       )
-      .then(res =>
-        db.collection("customers").updateOne(
+      .then(res => {
+        return db.collection("customers").updateOne(
           {
             _id: customerObjectID,
             "addresses.id": addressObjectID
@@ -511,7 +516,7 @@ class CustomersService {
             }
           }
         )
-      )
+      })
   }
 
   logout() {
@@ -522,7 +527,7 @@ class CustomersService {
   getAll() {
     const requestOptions = {
       method: "GET"
-      // headers: authHeader()
+      //headers: authHeader()
     }
 
     return fetch(`${security.storeBaseUrl}/users`, requestOptions).then(

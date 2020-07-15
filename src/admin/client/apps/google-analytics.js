@@ -100,7 +100,7 @@ export class App extends React.Component {
         <div style={{ textAlign: "right" }}>
           <RaisedButton
             label={messages.save}
-            primary
+            primary={true}
             disabled={false}
             onClick={this.updateSettings}
           />

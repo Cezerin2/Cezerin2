@@ -58,7 +58,7 @@ class OrderAddressService {
       return new Error("Required fields are missing")
     }
 
-    const address = {}
+    let address = {}
 
     keys.forEach(key => {
       const value = data[key]

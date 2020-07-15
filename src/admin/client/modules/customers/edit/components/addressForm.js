@@ -4,11 +4,11 @@ import { TextField, SelectField } from "redux-form-material-ui"
 
 import { CustomToggle } from "modules/shared/form"
 import messages from "lib/text"
+import style from "./style.css"
 
 import Divider from "material-ui/Divider"
 import RaisedButton from "material-ui/RaisedButton"
 import FlatButton from "material-ui/FlatButton"
-import style from "./style.css"
 
 const validate = values => {
   const errors = {}
@@ -29,7 +29,7 @@ class CustomerAddressForm extends React.Component {
   }
 
   render() {
-    const {
+    let {
       handleSubmit,
       pristine,
       submitting,
@@ -49,7 +49,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="full_name"
               floatingLabelText={messages.full_name}
             />
@@ -57,7 +57,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="company"
               floatingLabelText={messages.company}
             />
@@ -65,7 +65,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="address1"
               floatingLabelText={messages.address1}
             />
@@ -73,7 +73,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="address2"
               floatingLabelText={messages.address2}
             />
@@ -81,7 +81,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="city"
               floatingLabelText={messages.city}
             />
@@ -89,7 +89,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="state"
               floatingLabelText={messages.state}
             />
@@ -97,7 +97,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="postal_code"
               floatingLabelText={messages.postal_code}
             />
@@ -105,7 +105,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="country"
               floatingLabelText={messages.country}
             />
@@ -113,7 +113,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth
+              fullWidth={true}
               name="phone"
               floatingLabelText={messages.phone}
             />
@@ -123,7 +123,7 @@ class CustomerAddressForm extends React.Component {
           <FlatButton label={messages.cancel} onClick={onCancel} />
           <FlatButton
             label={messages.save}
-            primary
+            primary={true}
             type="submit"
             style={{ marginLeft: 12 }}
             disabled={pristine || submitting}

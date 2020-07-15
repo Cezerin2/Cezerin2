@@ -3,13 +3,13 @@ import { Field, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
 
 import messages from "lib/text"
+import style from "./style.css"
 import ConfirmationDialog from "modules/shared/confirmation"
 import { MultiSelect } from "modules/shared/form"
 
 import Paper from "material-ui/Paper"
 import Divider from "material-ui/Divider"
 import RaisedButton from "material-ui/RaisedButton"
-import style from "./style.css"
 
 const Scopes = [
   "admin",
@@ -72,7 +72,7 @@ class EditTokenForm extends React.Component {
   }
 
   render() {
-    const {
+    let {
       handleSubmit,
       pristine,
       submitting,
@@ -93,13 +93,13 @@ class EditTokenForm extends React.Component {
                 name="name"
                 component={TextField}
                 floatingLabelText={messages.settings_tokenName}
-                fullWidth
+                fullWidth={true}
               />
               <Field
                 name="email"
                 component={TextField}
                 floatingLabelText={messages.email}
-                fullWidth
+                fullWidth={true}
                 disabled={!isAdd}
                 type="email"
               />
@@ -107,7 +107,7 @@ class EditTokenForm extends React.Component {
                 name="expiration"
                 component={TextField}
                 floatingLabelText={messages.settings_tokenExp}
-                fullWidth
+                fullWidth={true}
                 type="number"
               />
               <div className="blue-title">{messages.settings_selectScopes}</div>
@@ -122,7 +122,7 @@ class EditTokenForm extends React.Component {
               {!isAdd && (
                 <RaisedButton
                   label={messages.settings_revokeAccess}
-                  secondary
+                  secondary={true}
                   style={{ float: "left" }}
                   onClick={this.handleRevoke}
                 />
@@ -130,7 +130,7 @@ class EditTokenForm extends React.Component {
               <RaisedButton
                 type="submit"
                 label={isAdd ? messages.settings_generateToken : messages.save}
-                primary
+                primary={true}
                 className={style.button}
                 disabled={pristine || submitting}
               />
@@ -144,7 +144,7 @@ class EditTokenForm extends React.Component {
           description={newToken}
           submitLabel={messages.actions_done}
           cancelLabel={messages.cancel}
-          modal
+          modal={true}
         />
 
         <ConfirmationDialog

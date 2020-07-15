@@ -6,11 +6,11 @@ import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
 import messages from "lib/text"
 import * as helper from "lib/helper"
-import moment from "moment"
 import style from "./style.css"
+import moment from "moment"
 
 const getOrderStateIcons = order => {
-  const icons = []
+  let icons = []
 
   if (order.hold) {
     icons.push(
@@ -95,17 +95,17 @@ const getOrderStateIcons = order => {
 
 const OrdersListItem = ({ order, onSelect, selected, settings }) => {
   const checked = selected.includes(order.id)
-  const grandTotalFormatted = helper.formatCurrency(order.grand_total, settings)
+  let grandTotalFormatted = helper.formatCurrency(order.grand_total, settings)
 
   const stateIcons = getOrderStateIcons(order)
   const dateCreated = moment(order.date_placed || order.date_created)
   const dateCreatedFromNow = dateCreated.format(`${settings.date_format}`)
-  const shippingTo = order.shipping_address
+  let shippingTo = order.shipping_address
     ? order.shipping_address.full_name
     : ""
 
   return (
-    <div className={`orders-item${checked === true ? " selected" : ""}`}>
+    <div className={"orders-item" + (checked === true ? " selected" : "")}>
       <ListItem
         style={{ cursor: "normal" }}
         primaryText={
@@ -130,12 +130,12 @@ const OrdersListItem = ({ order, onSelect, selected, settings }) => {
               <div className={style.shipping}>{shippingTo}</div>
               <small className={style.small}>{order.shipping_method}</small>
             </div>
-            <div className={`col-xs-2 ${style.price}`}>
+            <div className={"col-xs-2 " + style.price}>
               {grandTotalFormatted}
               <br />
               <small className={style.small}>{order.payment_method}</small>
             </div>
-            <div className={`col-xs-2 ${style.status}`}>{order.status}</div>
+            <div className={"col-xs-2 " + style.status}>{order.status}</div>
           </div>
         }
       />

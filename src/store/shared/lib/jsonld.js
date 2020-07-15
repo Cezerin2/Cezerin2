@@ -3,8 +3,8 @@ import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED } from "../pageTypes"
 
 const getBreadcrumbsForProduct = (product, categories) => {
   if (product && product.category_id) {
-    const ids = [product.category_id]
-    const parentIds = getParentIds(categories, product.category_id)
+    let ids = [product.category_id]
+    let parentIds = getParentIds(categories, product.category_id)
     ids.push(...parentIds)
 
     let index = 0
@@ -21,13 +21,14 @@ const getBreadcrumbsForProduct = (product, categories) => {
       "@type": "BreadcrumbList",
       itemListElement: breadcrumbs
     }
+  } else {
+    return null
   }
-  return null
 }
 
 const getBreadcrumbsForCategory = (currentCategoryId, categories) => {
   if (currentCategoryId) {
-    const ids = getParentIds(categories, currentCategoryId)
+    let ids = getParentIds(categories, currentCategoryId)
 
     let index = 0
     const breadcrumbs = ids.reverse().map(categoryId => {
@@ -43,21 +44,22 @@ const getBreadcrumbsForCategory = (currentCategoryId, categories) => {
       "@type": "BreadcrumbList",
       itemListElement: breadcrumbs
     }
+  } else {
+    return null
   }
-  return null
 }
 
 const getBreadcrumbItem = (url, name, position) => ({
   "@type": "ListItem",
-  position,
+  position: position,
   item: {
     "@id": url,
-    name
+    name: name
   }
 })
 
 const getProduct = (product, settings) => {
-  const imageUrl =
+  let imageUrl =
     product.images && product.images.length > 0 ? product.images[0].url : null
 
   return {
@@ -80,7 +82,7 @@ const getProduct = (product, settings) => {
 }
 
 const getProductJSONLD = (product, categories, settings) => {
-  const jsonldArray = []
+  let jsonldArray = []
   const breadcrumbs = getBreadcrumbsForProduct(product, categories)
   if (breadcrumbs) {
     jsonldArray.push(breadcrumbs)
@@ -91,7 +93,7 @@ const getProductJSONLD = (product, categories, settings) => {
 }
 
 const getCategoryJSONLD = (categoryId, categories) => {
-  const jsonldArray = []
+  let jsonldArray = []
   const breadcrumbs = getBreadcrumbsForCategory(categoryId, categories)
   if (breadcrumbs) {
     jsonldArray.push(breadcrumbs)

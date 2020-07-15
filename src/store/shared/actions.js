@@ -1,7 +1,7 @@
-import queryString from "query-string"
-import { animateScroll } from "react-scroll"
 import * as t from "./actionTypes"
 import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "./pageTypes"
+import queryString from "query-string"
+import { animateScroll } from "react-scroll"
 import api from "../client/api"
 import * as analytics from "./analytics"
 
@@ -22,7 +22,7 @@ export const fetchProducts = () => async (dispatch, getState) => {
 export const getProductFilterForCategory = (locationSearch, sortBy) => {
   const queryFilter = queryString.parse(locationSearch)
 
-  const attributes = {}
+  let attributes = {}
   for (const querykey in queryFilter) {
     if (querykey.startsWith("attributes.")) {
       attributes[querykey] = queryFilter[querykey]
@@ -32,7 +32,7 @@ export const getProductFilterForCategory = (locationSearch, sortBy) => {
   return {
     priceFrom: parseInt(queryFilter.price_from || 0),
     priceTo: parseInt(queryFilter.price_to || 0),
-    attributes,
+    attributes: attributes,
     search: null,
     sort: sortBy
   }
@@ -59,9 +59,9 @@ export const getParsedProductFilter = productFilter => {
       category_id: productFilter.categoryId,
       price_from: productFilter.priceFrom,
       price_to: productFilter.priceTo,
-      sort: productFilter.sort,
-      fields: productFilter.fields,
-      limit: productFilter.limit,
+      sort: productFilter["sort"],
+      fields: productFilter["fields"],
+      limit: productFilter["limit"],
       offset: 0
     },
     productFilter.attributes
@@ -82,6 +82,7 @@ export const fetchMoreProducts = () => async (dispatch, getState) => {
     app.products.length === 0 ||
     !app.productsHasMore
   ) {
+    return
   } else {
     dispatch(requestMoreProducts())
 
@@ -123,8 +124,8 @@ export const addCartItem = item => async (dispatch, getState) => {
   const cart = response.json
   dispatch(receiveCart(cart))
   analytics.addCartItem({
-    item,
-    cart
+    item: item,
+    cart: cart
   })
 }
 
@@ -136,7 +137,7 @@ export const updateCartItemQuantiry = (item_id, quantity) => async (
 ) => {
   dispatch(requestUpdateCartItemQuantiry())
   const response = await api.ajax.cart.updateItem(item_id, {
-    quantity
+    quantity: quantity
   })
   dispatch(receiveCart(response.json))
   dispatch(fetchShippingMethods())
@@ -219,7 +220,7 @@ export const checkout = (cart, history) => async (dispatch, getState) => {
   const order = response.json
   dispatch(receiveCheckout(order))
   history.push("/checkout-success")
-  analytics.checkoutSuccess({ order })
+  analytics.checkoutSuccess({ order: order })
 }
 
 const requestCheckout = () => ({ type: t.CHECKOUT_REQUEST })
@@ -262,7 +263,7 @@ export const setCategory = categoryId => (dispatch, getState) => {
   const category = app.categories.find(c => c.id === categoryId)
   if (category) {
     dispatch(setCurrentCategory(category))
-    dispatch(setProductsFilter({ categoryId }))
+    dispatch(setProductsFilter({ categoryId: categoryId }))
     dispatch(receiveProduct(null))
   }
 }
@@ -273,13 +274,13 @@ const setCurrentCategory = category => ({
 })
 
 export const setSort = sort => (dispatch, getState) => {
-  dispatch(setProductsFilter({ sort }))
+  dispatch(setProductsFilter({ sort: sort }))
   dispatch(fetchProducts())
 }
 
 const setProductsFilter = filter => ({
   type: t.SET_PRODUCTS_FILTER,
-  filter
+  filter: filter
 })
 
 export const analyticsSetShippingMethod = method_id => (dispatch, getState) => {

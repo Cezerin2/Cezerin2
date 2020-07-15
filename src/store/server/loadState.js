@@ -1,5 +1,5 @@
-import queryString from "query-string"
 import api from "./api"
+import queryString from "query-string"
 import {
   getParsedProductFilter,
   getProductFilterForCategory,
@@ -19,28 +19,32 @@ const PRODUCT_FIELDS =
 const CATEGORIES_FIELDS =
   "image,name,description,meta_description,meta_title,sort,parent_id,position,slug,id"
 
-const getCurrentPage = path =>
-  api.sitemap.retrieve({ path, enabled: true }).then(sitemapResponse => {
-    if (sitemapResponse.status === 200) {
-      return sitemapResponse.json
-    }
-    if (sitemapResponse.status === 404) {
-      return {
-        type: 404,
-        path,
-        resource: null
+const getCurrentPage = path => {
+  return api.sitemap
+    .retrieve({ path: path, enabled: true })
+    .then(sitemapResponse => {
+      if (sitemapResponse.status === 200) {
+        return sitemapResponse.json
+      } else if (sitemapResponse.status === 404) {
+        return {
+          type: 404,
+          path: path,
+          resource: null
+        }
+      } else {
+        return Promise.reject(`Page response code = ${sitemapResponse.status}`)
       }
-    }
-    return Promise.reject(`Page response code = ${sitemapResponse.status}`)
-  })
+    })
+}
 
 const getProducts = (currentPage, productFilter) => {
   if (currentPage.type === PRODUCT_CATEGORY || currentPage.type === SEARCH) {
-    const filter = getParsedProductFilter(productFilter)
+    let filter = getParsedProductFilter(productFilter)
     filter.enabled = true
     return api.products.list(filter).then(({ status, json }) => json)
+  } else {
+    return null
   }
-  return null
 }
 
 const getProduct = currentPage => {
@@ -48,8 +52,9 @@ const getProduct = currentPage => {
     return api.products
       .retrieve(currentPage.resource)
       .then(({ status, json }) => json)
+  } else {
+    return {}
   }
-  return {}
 }
 
 const getPage = currentPage => {
@@ -57,18 +62,20 @@ const getPage = currentPage => {
     return api.pages
       .retrieve(currentPage.resource)
       .then(({ status, json }) => json)
+  } else {
+    return {}
   }
-  return {}
 }
 
-const getThemeSettings = () =>
-  api.theme.settings
+const getThemeSettings = () => {
+  return api.theme.settings
     .retrieve()
     .then(({ status, json }) => json)
     .catch(err => ({}))
+}
 
-const getAllData = (currentPage, productFilter, cookie) =>
-  Promise.all([
+const getAllData = (currentPage, productFilter, cookie) => {
+  return Promise.all([
     api.checkoutFields.list().then(({ status, json }) => json),
     api.productCategories
       .list({ enabled: true, fields: CATEGORIES_FIELDS })
@@ -104,6 +111,7 @@ const getAllData = (currentPage, productFilter, cookie) =>
       }
     }
   )
+}
 
 const getState = (currentPage, settings, allData, location, productFilter) => {
   const {
@@ -136,19 +144,19 @@ const getState = (currentPage, settings, allData, location, productFilter) => {
 
   const state = {
     app: {
-      settings,
-      location,
-      currentPage,
+      settings: settings,
+      location: location,
+      currentPage: currentPage,
       pageDetails: page,
-      categoryDetails,
+      categoryDetails: categoryDetails,
       productDetails: product,
-      categories,
+      categories: categories,
       products: products && products.data ? products.data : [],
-      productsTotalCount,
-      productsHasMore,
-      productsMinPrice,
-      productsMaxPrice,
-      productsAttributes,
+      productsTotalCount: productsTotalCount,
+      productsHasMore: productsHasMore,
+      productsMinPrice: productsMinPrice,
+      productsMaxPrice: productsMaxPrice,
+      productsAttributes: productsAttributes,
       paymentMethods: [],
       shippingMethods: [],
       loadingProducts: false,
@@ -173,10 +181,10 @@ const getState = (currentPage, settings, allData, location, productFilter) => {
             ? settings.products_limit
             : 30
       },
-      cart,
+      cart: cart,
       order: null,
-      checkoutFields,
-      themeSettings
+      checkoutFields: checkoutFields,
+      themeSettings: themeSettings
     }
   }
 
@@ -238,8 +246,8 @@ export const loadState = (req, language) => {
         productFilter
       )
       return {
-        state,
-        themeText,
+        state: state,
+        themeText: themeText,
         placeholders: placeholdersResponse.json
       }
     })

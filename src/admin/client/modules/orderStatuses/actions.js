@@ -1,6 +1,6 @@
+import * as t from "./actionTypes"
 import api from "lib/api"
 import messages from "lib/text"
-import * as t from "./actionTypes"
 
 function requestStatuses() {
   return {
@@ -92,8 +92,9 @@ function shouldFetchStatuses(state) {
   const statuses = state.orderStatuses
   if (statuses.isFetched || statuses.isFetching) {
     return false
+  } else {
+    return true
   }
-  return true
 }
 
 export function fetchStatusesIfNeeded() {
@@ -120,8 +121,8 @@ export function updateStatus(data) {
 }
 
 export function createStatus(data) {
-  return (dispatch, getState) =>
-    api.orderStatuses
+  return (dispatch, getState) => {
+    return api.orderStatuses
       .create(data)
       .then(({ status, json }) => {
         dispatch(successCreateStatus(json.id))
@@ -129,14 +130,15 @@ export function createStatus(data) {
         dispatch(selectStatus(json.id))
       })
       .catch(error => {
-        // dispatch error
+        //dispatch error
         console.log(error)
       })
+  }
 }
 
 export function deleteStatus(id) {
-  return (dispatch, getState) =>
-    api.orderStatuses
+  return (dispatch, getState) => {
+    return api.orderStatuses
       .delete(id)
       .then(({ status, json }) => {
         if (status === 200) {
@@ -148,7 +150,8 @@ export function deleteStatus(id) {
         }
       })
       .catch(error => {
-        // dispatch error
+        //dispatch error
         console.log(error)
       })
+  }
 }

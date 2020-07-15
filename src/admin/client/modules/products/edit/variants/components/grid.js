@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 import messages from "lib/text"
+import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import FontIcon from "material-ui/FontIcon"
@@ -9,7 +10,6 @@ import IconButton from "material-ui/IconButton"
 import RaisedButton from "material-ui/RaisedButton"
 import MenuItem from "material-ui/MenuItem"
 import DropDownMenu from "material-ui/DropDownMenu"
-import style from "./style.css"
 
 class VariantInput extends React.Component {
   constructor(props) {
@@ -57,7 +57,7 @@ const VariantRow = ({
   onOptionChange,
   onDeleteVariant
 }) => {
-  const cols = options.map((option, index) => {
+  let cols = options.map((option, index) => {
     const variantOption = variant.options.find(i => i.option_id === option.id)
     const variantOptionValueId = variantOption ? variantOption.value_id : null
 
@@ -81,8 +81,9 @@ const VariantRow = ({
           </DropDownMenu>
         </div>
       )
+    } else {
+      return <div key={option.id} className={style.gridCol} />
     }
-    return <div key={option.id} className={style.gridCol} />
   })
 
   return (

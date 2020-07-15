@@ -4,45 +4,54 @@ export const formatNumber = (number, settings) => {
   const x = 3
   const floatNumber = parseFloat(number || 0) || 0
 
-  const re = `\\d(?=(\\d{${x}})+${settings.decimal_number > 0 ? "\\D" : "$"})`
+  const re =
+    "\\d(?=(\\d{" +
+    x +
+    "})+" +
+    (settings.decimal_number > 0 ? "\\D" : "$") +
+    ")"
 
-  const num = floatNumber.toFixed(Math.max(0, ~~settings.decimal_number))
+  let num = floatNumber.toFixed(Math.max(0, ~~settings.decimal_number))
 
   return (settings.decimal_separator
     ? num.replace(".", settings.decimal_separator)
     : num
-  ).replace(new RegExp(re, "g"), `$&${settings.thousand_separator}`)
+  ).replace(new RegExp(re, "g"), "$&" + settings.thousand_separator)
 }
 
 const amountPattern = "{amount}"
-export const formatCurrency = (number = 0, settings) =>
-  settings.currency_format.replace(
+export const formatCurrency = (number = 0, settings) => {
+  return settings.currency_format.replace(
     amountPattern,
     formatNumber(number, settings)
   )
+}
 
 export const formatFileSize = (bytes = 0) => {
   const sizes = ["Bytes", "KB", "MB", "GB", "TB"]
   if (bytes === 0) {
     return "n/a"
+  } else {
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+    if (i === 0) {
+      return `${bytes} ${sizes[i]}`
+    } else {
+      return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
+    }
   }
-  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
-  if (i === 0) {
-    return `${bytes} ${sizes[i]}`
-  }
-  return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
 }
 
 export const getThumbnailUrl = (originalUrl, width) => {
   if (originalUrl && originalUrl.length > 0) {
     const pos = originalUrl.lastIndexOf("/")
-    const thumbnailUrl = `${originalUrl.substring(
-      0,
-      pos
-    )}/${width}/${originalUrl.substring(pos + 1)}`
+    const thumbnailUrl =
+      originalUrl.substring(0, pos) +
+      `/${width}/` +
+      originalUrl.substring(pos + 1)
     return thumbnailUrl
+  } else {
+    return ""
   }
-  return ""
 }
 
 export const getOrderFieldLabelByKey = key => {

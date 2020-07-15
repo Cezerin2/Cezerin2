@@ -20,7 +20,7 @@ class ProductImagesService {
     if (!ObjectID.isValid(productId)) {
       return Promise.reject("Invalid identifier")
     }
-    const productObjectID = new ObjectID(productId)
+    let productObjectID = new ObjectID(productId)
 
     return SettingsService.getSettings().then(generalSettings =>
       db
@@ -31,15 +31,20 @@ class ProductImagesService {
             let images = product.images.map(image => {
               image.url = url.resolve(
                 generalSettings.domain,
-                `${settings.productsUploadUrl}/${product._id}/${image.filename}`
+                settings.productsUploadUrl +
+                  "/" +
+                  product._id +
+                  "/" +
+                  image.filename
               )
               return image
             })
 
             images = images.sort((a, b) => a.position - b.position)
             return images
+          } else {
+            return []
           }
-          return []
         })
     )
   }
@@ -48,19 +53,19 @@ class ProductImagesService {
     if (!ObjectID.isValid(productId) || !ObjectID.isValid(imageId)) {
       return Promise.reject("Invalid identifier")
     }
-    const productObjectID = new ObjectID(productId)
-    const imageObjectID = new ObjectID(imageId)
+    let productObjectID = new ObjectID(productId)
+    let imageObjectID = new ObjectID(imageId)
 
     return this.getImages(productId)
       .then(images => {
         if (images && images.length > 0) {
-          const imageData = images.find(
+          let imageData = images.find(
             i => i.id.toString() === imageId.toString()
           )
           if (imageData) {
-            const { filename } = imageData
-            const filepath = path.resolve(
-              `${settings.productsUploadPath}/${productId}/${filename}`
+            let filename = imageData.filename
+            let filepath = path.resolve(
+              settings.productsUploadPath + "/" + productId + "/" + filename
             )
             fse.removeSync(filepath)
             return db
@@ -69,36 +74,38 @@ class ProductImagesService {
                 { _id: productObjectID },
                 { $pull: { images: { id: imageObjectID } } }
               )
+          } else {
+            return true
           }
+        } else {
           return true
         }
-        return true
       })
       .then(() => true)
   }
 
   async addImage(req, res) {
-    const { productId } = req.params
+    const productId = req.params.productId
     if (!ObjectID.isValid(productId)) {
       res.status(500).send(this.getErrorMessage("Invalid identifier"))
       return
     }
 
-    const uploadedFiles = []
+    let uploadedFiles = []
     const productObjectID = new ObjectID(productId)
     const uploadDir = path.resolve(
-      `${settings.productsUploadPath}/${productId}`
+      settings.productsUploadPath + "/" + productId
     )
     fse.ensureDirSync(uploadDir)
 
-    const form = new formidable.IncomingForm()
+    let form = new formidable.IncomingForm()
     form.uploadDir = uploadDir
 
     form
       .on("fileBegin", (name, file) => {
         // Emitted whenever a field / value pair has been received.
         file.name = utils.getCorrectFileName(file.name)
-        file.path = `${uploadDir}/${file.name}`
+        file.path = uploadDir + "/" + file.name
       })
       .on("file", async (field, file) => {
         // every time a file has been uploaded successfully,
@@ -136,8 +143,8 @@ class ProductImagesService {
     if (!ObjectID.isValid(productId) || !ObjectID.isValid(imageId)) {
       return Promise.reject("Invalid identifier")
     }
-    const productObjectID = new ObjectID(productId)
-    const imageObjectID = new ObjectID(imageId)
+    let productObjectID = new ObjectID(productId)
+    let imageObjectID = new ObjectID(imageId)
 
     const imageData = this.getValidDocumentForUpdate(data)
 
@@ -155,7 +162,7 @@ class ProductImagesService {
       return new Error("Required fields are missing")
     }
 
-    const image = {}
+    let image = {}
 
     if (data.alt !== undefined) {
       image["images.$.alt"] = parse.getString(data.alt)

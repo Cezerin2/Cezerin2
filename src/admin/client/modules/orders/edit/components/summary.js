@@ -4,15 +4,15 @@ import moment from "moment"
 
 import messages from "lib/text"
 import * as helper from "lib/helper"
+import style from "./style.css"
+import SummaryForm from "./summaryForm.js"
 
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import Dialog from "material-ui/Dialog"
-import SummaryForm from "./summaryForm.js"
-import style from "./style.css"
 
 const getOrderStates = order => {
-  const states = []
+  let states = []
 
   if (order.hold) {
     states.push(
@@ -117,63 +117,63 @@ export default class OrderSummary extends React.Component {
         <div className={style.innerBox}>
           <div className={style.states}>{states}</div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.orderDate}</span>
             </div>
             <div className="col-xs-7">{dateCreatedFormated}</div>
           </div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.orderStatus}</span>
             </div>
             <div className="col-xs-7">{order.status}</div>
           </div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.referrer}</span>
             </div>
             <div className="col-xs-7">{referrerLink}</div>
           </div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.trackingNumber}</span>
             </div>
             <div className="col-xs-7">{order.tracking_number}</div>
           </div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.shippingStatus}</span>
             </div>
             <div className="col-xs-7">{order.shipping_status}</div>
           </div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.shippingMethod}</span>
             </div>
             <div className="col-xs-7">{order.shipping_method}</div>
           </div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.paymentsMethod}</span>
             </div>
             <div className="col-xs-7">{order.payment_method}</div>
           </div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.customerComment}</span>
             </div>
             <div className="col-xs-7">{order.comments}</div>
           </div>
 
-          <div className={`${style.summaryRow} row`}>
+          <div className={style.summaryRow + " row"}>
             <div className="col-xs-5">
               <span>{messages.note}</span>
             </div>
@@ -191,7 +191,7 @@ export default class OrderSummary extends React.Component {
             {isDraft && (
               <RaisedButton
                 label={messages.placeOrder}
-                primary
+                primary={true}
                 onClick={onCheckout}
                 disabled={processingCheckout}
               />
@@ -203,7 +203,7 @@ export default class OrderSummary extends React.Component {
             modal={false}
             open={this.state.openSummaryEdit}
             onRequestClose={this.hideSummaryEdit}
-            autoScrollBodyContent
+            autoScrollBodyContent={true}
             contentStyle={{ width: 600 }}
           >
             <SummaryForm

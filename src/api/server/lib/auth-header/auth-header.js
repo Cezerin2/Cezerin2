@@ -6,7 +6,7 @@ class AuthHeader {
   constructor() {}
 
   encodeUserLoginAuth(userId) {
-    return jwt.sign({ userId }, cert)
+    return jwt.sign({ userId: userId }, cert)
   }
 
   decodeUserLoginAuth(token) {

@@ -1,6 +1,6 @@
+import * as t from "./actionTypes"
 import api from "lib/api"
 import messages from "lib/text"
-import * as t from "./actionTypes"
 
 function requestGroups() {
   return {
@@ -92,8 +92,9 @@ function shouldFetchGroups(state) {
   const groups = state.customerGroups
   if (groups.isFetched || groups.isFetching) {
     return false
+  } else {
+    return true
   }
-  return true
 }
 
 export function fetchGroupsIfNeeded() {
@@ -120,8 +121,8 @@ export function updateGroup(data) {
 }
 
 export function createGroup(data) {
-  return (dispatch, getState) =>
-    api.customerGroups
+  return (dispatch, getState) => {
+    return api.customerGroups
       .create(data)
       .then(({ status, json }) => {
         dispatch(successCreateGroup(json.id))
@@ -129,14 +130,15 @@ export function createGroup(data) {
         dispatch(selectGroup(json.id))
       })
       .catch(error => {
-        // dispatch error
+        //dispatch error
         console.log(error)
       })
+  }
 }
 
 export function deleteGroup(id) {
-  return (dispatch, getState) =>
-    api.customerGroups
+  return (dispatch, getState) => {
+    return api.customerGroups
       .delete(id)
       .then(({ status, json }) => {
         if (status === 200) {
@@ -148,7 +150,8 @@ export function deleteGroup(id) {
         }
       })
       .catch(error => {
-        // dispatch error
+        //dispatch error
         console.log(error)
       })
+  }
 }

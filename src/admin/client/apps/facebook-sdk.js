@@ -82,7 +82,7 @@ export class App extends React.Component {
           )
         : ""
 
-    api.apps.settings.update("facebook-sdk", { appId, locale })
+    api.apps.settings.update("facebook-sdk", { appId: appId, locale: locale })
     api.theme.placeholders.update("facebook-sdk", {
       place: "body_start",
       value: htmlCode
@@ -100,7 +100,7 @@ export class App extends React.Component {
 
         <TextField
           type="text"
-          fullWidth
+          fullWidth={true}
           value={this.state.appId}
           onChange={this.handleAppIdChange}
           floatingLabelText="App ID"
@@ -108,7 +108,7 @@ export class App extends React.Component {
 
         <TextField
           type="text"
-          fullWidth
+          fullWidth={true}
           value={this.state.locale}
           onChange={this.handleLocaleChange}
           floatingLabelText="Locale"
@@ -118,7 +118,7 @@ export class App extends React.Component {
         <div style={{ textAlign: "right" }}>
           <RaisedButton
             label={messages.save}
-            primary
+            primary={true}
             disabled={false}
             onClick={this.updateSettings}
           />

@@ -14,7 +14,7 @@
     "node": true
   },
   "rules": {
-    "prettier/prettier": ["error", { "singleQuote": false }],
+    "prettier/prettier": ["error", { "singleQuote": true }],
     "react/jsx-filename-extension": "off",
     "import/newline-after-import": 0,
     "class-methods-use-this": 0,

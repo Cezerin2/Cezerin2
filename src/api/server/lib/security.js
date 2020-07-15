@@ -58,8 +58,8 @@ const checkUserScope = (requiredScope, req, res, next) => {
   }
 }
 
-const verifyToken = token =>
-  new Promise((resolve, reject) => {
+const verifyToken = token => {
+  return new Promise((resolve, reject) => {
     jwt.verify(token, settings.jwtSecretKey, (err, decoded) => {
       if (err) {
         reject(err)
@@ -69,10 +69,11 @@ const verifyToken = token =>
       }
     })
   })
+}
 
 const checkTokenInBlacklistCallback = async (req, payload, done) => {
   try {
-    const { jti } = payload
+    const jti = payload.jti
     const blacklist = await SecurityTokensService.getTokensBlacklist()
     const tokenIsRevoked = blacklist.includes(jti)
     return done(null, tokenIsRevoked)
@@ -92,13 +93,15 @@ const applyMiddleware = app => {
   }
 }
 
-const getAccessControlAllowOrigin = () => settings.storeBaseUrl || "*"
+const getAccessControlAllowOrigin = () => {
+  return settings.storeBaseUrl || "*"
+}
 
 export default {
-  checkUserScope,
-  scope,
-  verifyToken,
-  applyMiddleware,
-  getAccessControlAllowOrigin,
-  DEVELOPER_MODE
+  checkUserScope: checkUserScope,
+  scope: scope,
+  verifyToken: verifyToken,
+  applyMiddleware: applyMiddleware,
+  getAccessControlAllowOrigin: getAccessControlAllowOrigin,
+  DEVELOPER_MODE: DEVELOPER_MODE
 }

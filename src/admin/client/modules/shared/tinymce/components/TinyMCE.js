@@ -71,7 +71,9 @@ const EVENTS = [
   "dirty"
 ]
 
-const HANDLER_NAMES = EVENTS.map(event => `on${ucFirst(event)}`)
+const HANDLER_NAMES = EVENTS.map(event => {
+  return "on" + ucFirst(event)
+})
 
 export default class TinyMCE extends React.Component {
   constructor(props) {
@@ -98,6 +100,7 @@ export default class TinyMCE extends React.Component {
     ) {
       this.id = nextProps.id
       this._init(clone(nextProps.config), nextProps.content)
+      return
     }
   }
 
@@ -140,7 +143,7 @@ export default class TinyMCE extends React.Component {
     const setupCallback = config.setup
     const hasSetupCallback = typeof setupCallback === "function"
 
-    config.selector = `#${this.id}`
+    config.selector = "#" + this.id
     config.setup = editor => {
       EVENTS.forEach((eventType, index) => {
         editor.on(eventType, e => {

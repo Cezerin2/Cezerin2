@@ -48,7 +48,7 @@ export default class WebhooksList extends React.Component {
 
   render() {
     const { webhooks } = this.props
-    const listItems = webhooks.map((webhook, index) => (
+    let listItems = webhooks.map((webhook, index) => (
       <WebhookItem key={index} webhook={webhook} />
     ))
 

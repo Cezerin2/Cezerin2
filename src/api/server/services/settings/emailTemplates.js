@@ -7,8 +7,10 @@ class EmailTemplatesService {
   getEmailTemplate(name) {
     return db
       .collection("emailTemplates")
-      .findOne({ name })
-      .then(template => this.changeProperties(template))
+      .findOne({ name: name })
+      .then(template => {
+        return this.changeProperties(template)
+      })
   }
 
   updateEmailTemplate(name, data) {
@@ -16,7 +18,7 @@ class EmailTemplatesService {
     return db
       .collection("emailTemplates")
       .updateOne(
-        { name },
+        { name: name },
         {
           $set: template
         },
@@ -30,7 +32,7 @@ class EmailTemplatesService {
       return new Error("Required fields are missing")
     }
 
-    const template = {}
+    let template = {}
 
     if (data.subject !== undefined) {
       template.subject = parse.getString(data.subject)

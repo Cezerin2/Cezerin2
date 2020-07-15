@@ -8,7 +8,7 @@ const Buttons = () => (
   <span>
     <Link to="/admin/settings/shipping/add">
       <IconButton
-        touch
+        touch={true}
         tooltipPosition="bottom-left"
         tooltip={messages.settings_addShippingMethod}
       >

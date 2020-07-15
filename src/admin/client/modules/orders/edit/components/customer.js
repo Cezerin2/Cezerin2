@@ -3,17 +3,18 @@ import { Link } from "react-router-dom"
 
 import messages from "lib/text"
 import * as helper from "lib/helper"
+import style from "./style.css"
+import ShippingAddressForm from "./shippingAddressForm.js"
 
 import Paper from "material-ui/Paper"
 import Divider from "material-ui/Divider"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
 import Dialog from "material-ui/Dialog"
-import ShippingAddressForm from "./shippingAddressForm.js"
-import style from "./style.css"
 
-const getShippingFieldLabel = ({ label, key }) =>
-  label && label.length > 0 ? label : helper.getOrderFieldLabelByKey(key)
+const getShippingFieldLabel = ({ label, key }) => {
+  return label && label.length > 0 ? label : helper.getOrderFieldLabelByKey(key)
+}
 
 const ShippingFields = ({ order, shippingMethod }) => {
   let rows = null
@@ -57,7 +58,7 @@ const ShippingAddress = ({ order, settings }) => {
         <div>
           {address.city},{" "}
           {address.state && address.state.length > 0
-            ? `${address.state}, `
+            ? address.state + ", "
             : ""}
           {address.postal_code}
         </div>
@@ -83,8 +84,7 @@ const BillingAddress = ({ address, settings }) => {
 
   if (billinsAddressIsEmpty && settings.hide_billing_address) {
     return null
-  }
-  if (billinsAddressIsEmpty && !settings.hide_billing_address) {
+  } else if (billinsAddressIsEmpty && !settings.hide_billing_address) {
     return (
       <div>
         <Divider
@@ -103,37 +103,38 @@ const BillingAddress = ({ address, settings }) => {
         </div>
       </div>
     )
-  }
-  return (
-    <div>
-      <Divider
-        style={{
-          marginTop: 30,
-          marginBottom: 30,
-          marginLeft: -30,
-          marginRight: -30
-        }}
-      />
-      <div style={{ paddingBottom: 16, paddingTop: 0 }}>
-        {messages.billingAddress}
-      </div>
-      <div className={style.address}>
-        <div>{address.full_name}</div>
-        <div>{address.company}</div>
-        <div>{address.address1}</div>
-        <div>{address.address2}</div>
-        <div>
-          {address.city},{" "}
-          {address.state && address.state.length > 0
-            ? `${address.state}, `
-            : ""}
-          {address.postal_code}
+  } else {
+    return (
+      <div>
+        <Divider
+          style={{
+            marginTop: 30,
+            marginBottom: 30,
+            marginLeft: -30,
+            marginRight: -30
+          }}
+        />
+        <div style={{ paddingBottom: 16, paddingTop: 0 }}>
+          {messages.billingAddress}
         </div>
-        <div>{address.country}</div>
-        <div>{address.phone}</div>
+        <div className={style.address}>
+          <div>{address.full_name}</div>
+          <div>{address.company}</div>
+          <div>{address.address1}</div>
+          <div>{address.address2}</div>
+          <div>
+            {address.city},{" "}
+            {address.state && address.state.length > 0
+              ? address.state + ", "
+              : ""}
+            {address.postal_code}
+          </div>
+          <div>{address.country}</div>
+          <div>{address.phone}</div>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default class OrderCustomer extends React.Component {
@@ -182,7 +183,7 @@ export default class OrderCustomer extends React.Component {
                 </Link>
               </div>
               <div>
-                <a href={`MailTo:${order.email}`} className={style.link}>
+                <a href={"MailTo:" + order.email} className={style.link}>
                   {order.email}
                 </a>
               </div>
@@ -224,7 +225,7 @@ export default class OrderCustomer extends React.Component {
               modal={false}
               open={this.state.openShippingEdit}
               onRequestClose={this.hideShippingEdit}
-              autoScrollBodyContent
+              autoScrollBodyContent={true}
               contentStyle={{ width: 600 }}
             >
               <ShippingAddressForm

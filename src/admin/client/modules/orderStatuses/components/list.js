@@ -47,7 +47,7 @@ export default class StatusesList extends React.Component {
           <ListItem
             className="treeItem"
             primaryText={messages.allOrderStatuses}
-            style={selectedId === "all" ? styles.selectedItem : null}
+            style={"all" === selectedId ? styles.selectedItem : null}
             innerDivStyle={styles.innerItem}
             leftIcon={FolderIcon}
             onClick={() => {

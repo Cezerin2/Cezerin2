@@ -213,5 +213,5 @@ server {
 
 ## Please Note:
 
-- after you set up the SSL cert on your domain you should adjust the config admin and server files. Change localhost to your server domain IP so after CORS would work properly.
+- after you set up the SSL cert on your domain you should adjust the config admin and server files. Change localhost to your server domain IP so after CORS would work properly.  
 ```

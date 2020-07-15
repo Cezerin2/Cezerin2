@@ -11,7 +11,7 @@ class ShippingMethodsService {
 
   getFilter(params = {}) {
     return new Promise((resolve, reject) => {
-      const filter = {}
+      let filter = {}
       const id = parse.getObjectIDIfValid(params.id)
       const enabled = parse.getBooleanIfValid(params.enabled)
 
@@ -27,8 +27,8 @@ class ShippingMethodsService {
       if (order_id) {
         return OrdersService.getSingleOrder(order_id).then(order => {
           if (order) {
-            filter.$and = []
-            filter.$and.push({
+            filter["$and"] = []
+            filter["$and"].push({
               $or: [
                 {
                   "conditions.weight_total_min": 0
@@ -40,7 +40,7 @@ class ShippingMethodsService {
                 }
               ]
             })
-            filter.$and.push({
+            filter["$and"].push({
               $or: [
                 {
                   "conditions.weight_total_max": 0
@@ -53,7 +53,7 @@ class ShippingMethodsService {
               ]
             })
 
-            filter.$and.push({
+            filter["$and"].push({
               $or: [
                 {
                   "conditions.subtotal_min": 0
@@ -65,7 +65,7 @@ class ShippingMethodsService {
                 }
               ]
             })
-            filter.$and.push({
+            filter["$and"].push({
               $or: [
                 {
                   "conditions.subtotal_max": 0
@@ -82,7 +82,7 @@ class ShippingMethodsService {
               order.shipping_address.country &&
               order.shipping_address.country.length > 0
             ) {
-              filter.$and.push({
+              filter["$and"].push({
                 $or: [
                   {
                     "conditions.countries": {
@@ -100,7 +100,7 @@ class ShippingMethodsService {
               order.shipping_address.state &&
               order.shipping_address.state.length > 0
             ) {
-              filter.$and.push({
+              filter["$and"].push({
                 $or: [
                   {
                     "conditions.states": {
@@ -118,7 +118,7 @@ class ShippingMethodsService {
               order.shipping_address.city &&
               order.shipping_address.city.length > 0
             ) {
-              filter.$and.push({
+              filter["$and"].push({
                 $or: [
                   {
                     "conditions.cities": {
@@ -134,24 +134,25 @@ class ShippingMethodsService {
           }
           resolve(filter)
         })
+      } else {
+        resolve(filter)
       }
-      resolve(filter)
     })
   }
 
   getMethods(params = {}) {
-    return this.getFilter(params).then(filter =>
-      ShippingMethodsLightService.getMethods(filter)
-    )
+    return this.getFilter(params).then(filter => {
+      return ShippingMethodsLightService.getMethods(filter)
+    })
   }
 
   getSingleMethod(id) {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    return this.getMethods({ id }).then(methods =>
-      methods.length > 0 ? methods[0] : null
-    )
+    return this.getMethods({ id: id }).then(methods => {
+      return methods.length > 0 ? methods[0] : null
+    })
   }
 
   addMethod(data) {
@@ -224,12 +225,13 @@ class ShippingMethodsService {
         label: parse.getString(field.label),
         required: parse.getBooleanIfValid(field.required, false)
       }))
+    } else {
+      return []
     }
-    return []
   }
 
   getValidDocumentForInsert(data) {
-    const method = {
+    let method = {
       // 'logo': '',
       // 'app_id': null,
       // 'app_settings': {}
@@ -251,7 +253,7 @@ class ShippingMethodsService {
       return new Error("Required fields are missing")
     }
 
-    const method = {}
+    let method = {}
 
     if (data.name !== undefined) {
       method.name = parse.getString(data.name)

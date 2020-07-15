@@ -14,15 +14,17 @@ const SMTP_FROM_CONFIG_FILE = {
   }
 }
 
-const getSmtpFromEmailSettings = emailSettings => ({
-  host: emailSettings.host,
-  port: emailSettings.port,
-  secure: emailSettings.port === 465,
-  auth: {
-    user: emailSettings.user,
-    pass: emailSettings.pass
+const getSmtpFromEmailSettings = emailSettings => {
+  return {
+    host: emailSettings.host,
+    port: emailSettings.port,
+    secure: emailSettings.port === 465,
+    auth: {
+      user: emailSettings.user,
+      pass: emailSettings.pass
+    }
   }
-})
+}
 
 const getSmtp = emailSettings => {
   const useSmtpServerFromConfigFile = emailSettings.host === ""
@@ -33,8 +35,8 @@ const getSmtp = emailSettings => {
   return smtp
 }
 
-const sendMail = (smtp, message) =>
-  new Promise((resolve, reject) => {
+const sendMail = (smtp, message) => {
+  return new Promise((resolve, reject) => {
     if (!message.to.includes("@")) {
       reject("Invalid email address")
       return
@@ -49,6 +51,7 @@ const sendMail = (smtp, message) =>
       }
     })
   })
+}
 
 const getFrom = emailSettings => {
   const useSmtpServerFromConfigFile = emailSettings.host === ""
@@ -73,5 +76,5 @@ const send = async message => {
 }
 
 export default {
-  send
+  send: send
 }

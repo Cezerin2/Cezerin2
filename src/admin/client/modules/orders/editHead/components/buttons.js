@@ -88,7 +88,7 @@ export default class Buttons extends React.Component {
     if (order) {
       const orderName = `${messages.order} #${order.number}`
 
-      const menuItems = []
+      let menuItems = []
       if (order.closed) {
         //
       } else if (order.cancelled) {
@@ -169,7 +169,7 @@ export default class Buttons extends React.Component {
 
           <DeleteConfirmation
             open={this.state.openDelete}
-            isSingle
+            isSingle={true}
             itemsCount={1}
             itemName={orderName}
             onCancel={this.closeDelete}
@@ -178,7 +178,7 @@ export default class Buttons extends React.Component {
 
           <IconMenu
             iconButtonElement={
-              <IconButton touch>
+              <IconButton touch={true}>
                 <FontIcon color="#fff" className="material-icons">
                   more_vert
                 </FontIcon>
@@ -195,7 +195,8 @@ export default class Buttons extends React.Component {
           </IconMenu>
         </span>
       )
+    } else {
+      return <span />
     }
-    return <span />
   }
 }

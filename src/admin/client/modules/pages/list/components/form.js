@@ -48,7 +48,7 @@ export default class PagesList extends React.Component {
 
   render() {
     const { pages } = this.props
-    const listItems = pages.map((page, index) => (
+    let listItems = pages.map((page, index) => (
       <PageItem key={index} page={page} />
     ))
 

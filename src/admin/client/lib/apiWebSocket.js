@@ -3,7 +3,7 @@ import settings from "lib/settings"
 import { installReceive } from "modules/settings/actions"
 import { fetchOrders } from "modules/orders/actions"
 
-const AUTO_RECONNECT_INTERVAL = 1000 // 1 seconds
+const AUTO_RECONNECT_INTERVAL = 1000 //1 seconds
 const ORDER_CREATED = "order.created"
 const THEME_INSTALLED = "theme.installed"
 let store = null
@@ -61,10 +61,10 @@ const onClose = event => {
 }
 
 const showNotification = (title, body, requireInteraction = false) => {
-  const msg = new Notification(title, {
-    body,
+  let msg = new Notification(title, {
+    body: body,
     tag: "dashboard",
-    requireInteraction
+    requireInteraction: requireInteraction
   })
 
   msg.addEventListener("click", event => {

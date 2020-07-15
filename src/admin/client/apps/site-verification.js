@@ -85,10 +85,10 @@ export class App extends React.Component {
       .join("\n")
 
     api.apps.settings.update("site-verification", {
-      google,
-      bing,
-      pinterest,
-      yandex
+      google: google,
+      bing: bing,
+      pinterest: pinterest,
+      yandex: yandex
     })
 
     api.theme.placeholders.update("site-verification", {
@@ -109,7 +109,7 @@ export class App extends React.Component {
           value={this.state.google}
           onChange={this.handleGoogleChange}
           floatingLabelText="Google"
-          fullWidth
+          fullWidth={true}
           hintText={GOOGLE_EXAMPLE}
         />
 
@@ -118,7 +118,7 @@ export class App extends React.Component {
           value={this.state.bing}
           onChange={this.handleBingChange}
           floatingLabelText="Bing"
-          fullWidth
+          fullWidth={true}
           hintText={BING_EXAMPLE}
         />
 
@@ -127,7 +127,7 @@ export class App extends React.Component {
           value={this.state.pinterest}
           onChange={this.handlePinterestChange}
           floatingLabelText="Pinterest"
-          fullWidth
+          fullWidth={true}
           hintText={PINTEREST_EXAMPLE}
         />
 
@@ -136,14 +136,14 @@ export class App extends React.Component {
           value={this.state.yandex}
           onChange={this.handleYandexChange}
           floatingLabelText="Yandex"
-          fullWidth
+          fullWidth={true}
           hintText={YANDEX_EXAMPLE}
         />
 
         <div style={{ textAlign: "right", marginTop: 20 }}>
           <RaisedButton
             label={messages.save}
-            primary
+            primary={true}
             disabled={false}
             onClick={this.updateSettings}
           />

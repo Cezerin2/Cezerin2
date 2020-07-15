@@ -1,6 +1,6 @@
+import * as t from "./actionTypes"
 import api from "lib/api"
 import messages from "lib/text"
-import * as t from "./actionTypes"
 
 function requestCategories() {
   return {
@@ -115,8 +115,9 @@ function shouldFetchCategories(state) {
   const categories = state.productCategories
   if (categories.isFetched || categories.isFetching) {
     return false
+  } else {
+    return true
   }
-  return true
 }
 
 export function fetchCategoriesIfNeeded() {
@@ -143,12 +144,14 @@ function sendUpdateCategory(id, data) {
 }
 
 export function updateCategory(data) {
-  return (dispatch, getState) => dispatch(sendUpdateCategory(data.id, data))
+  return (dispatch, getState) => {
+    return dispatch(sendUpdateCategory(data.id, data))
+  }
 }
 
 export function createCategory() {
-  return (dispatch, getState) =>
-    api.productCategories
+  return (dispatch, getState) => {
+    return api.productCategories
       .create({ enabled: false })
       .then(({ status, json }) => {
         dispatch(successCreateCategory(json.id))
@@ -156,9 +159,10 @@ export function createCategory() {
         dispatch(selectCategory(json.id))
       })
       .catch(error => {
-        // dispatch error
+        //dispatch error
         console.log(error)
       })
+  }
 }
 
 export function deleteImage() {
@@ -176,15 +180,15 @@ export function deleteImage() {
         }
       })
       .catch(error => {
-        // dispatch error
+        //dispatch error
         console.log(error)
       })
   }
 }
 
 export function deleteCategory(id) {
-  return (dispatch, getState) =>
-    api.productCategories
+  return (dispatch, getState) => {
+    return api.productCategories
       .delete(id)
       .then(({ status, json }) => {
         if (status === 200) {
@@ -196,9 +200,10 @@ export function deleteCategory(id) {
         }
       })
       .catch(error => {
-        // dispatch error
+        //dispatch error
         console.log(error)
       })
+  }
 }
 
 function moveCategory(allCategories = [], selectedCategory, isUp = true) {
@@ -224,8 +229,8 @@ function moveCategory(allCategories = [], selectedCategory, isUp = true) {
     }
 
     if (allCategories.length > 0) {
-      const targetCategory = allCategories[0]
-      const newPosition = targetCategory.position
+      let targetCategory = allCategories[0]
+      let newPosition = targetCategory.position
 
       api.productCategories
         .update(selectedCategory.id, { position: targetCategory.position })
@@ -248,13 +253,13 @@ function moveCategory(allCategories = [], selectedCategory, isUp = true) {
 
 export function moveUpCategory() {
   return (dispatch, getState) => {
-    const state = getState()
-    const allCategories = state.productCategories.items
-    const selectedCategory = allCategories.find(
+    let state = getState()
+    var allCategories = state.productCategories.items
+    var selectedCategory = allCategories.find(
       item => item.id === state.productCategories.selectedId
     )
 
-    const isUp = true
+    var isUp = true
 
     return moveCategory(allCategories, selectedCategory, isUp).then(
       newPosition => {
@@ -267,12 +272,12 @@ export function moveUpCategory() {
 
 export function moveDownCategory() {
   return (dispatch, getState) => {
-    const state = getState()
-    const allCategories = state.productCategories.items
-    const selectedCategory = allCategories.find(
+    let state = getState()
+    var allCategories = state.productCategories.items
+    var selectedCategory = allCategories.find(
       item => item.id === state.productCategories.selectedId
     )
-    const isUp = false
+    var isUp = false
 
     return moveCategory(allCategories, selectedCategory, isUp).then(
       newPosition => {
@@ -285,8 +290,8 @@ export function moveDownCategory() {
 
 export function replaceCategory(parentId) {
   return (dispatch, getState) => {
-    const state = getState()
-    const selectedCategory = state.productCategories.items.find(
+    let state = getState()
+    var selectedCategory = state.productCategories.items.find(
       item => item.id === state.productCategories.selectedId
     )
 
@@ -297,7 +302,7 @@ export function replaceCategory(parentId) {
         dispatch(fetchCategories())
       })
       .catch(error => {
-        // dispatch error
+        //dispatch error
         console.log(error)
       })
   }

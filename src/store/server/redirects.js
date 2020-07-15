@@ -28,12 +28,15 @@ const getRedirect = req => {
   })
 }
 
-const redirectUrlIsValid = url =>
-  url &&
-  url.length > 0 &&
-  (url.startsWith("/") ||
-    url.startsWith("https://") ||
-    url.startsWith("http://"))
+const redirectUrlIsValid = url => {
+  return (
+    url &&
+    url.length > 0 &&
+    (url.startsWith("/") ||
+      url.startsWith("https://") ||
+      url.startsWith("http://"))
+  )
+}
 
 const redirects = (req, res, next) => {
   if (IGNORE_PATH.includes(req.url)) {

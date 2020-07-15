@@ -13,7 +13,7 @@ class ProductCategoriesService {
   constructor() {}
 
   getFilter(params = {}) {
-    const filter = {}
+    let filter = {}
     const enabled = parse.getBooleanIfValid(params.enabled)
     if (enabled !== null) {
       filter.enabled = enabled
@@ -29,10 +29,10 @@ class ProductCategoriesService {
     const filter = this.getFilter(params)
     const projection = utils.getProjectionFromFields(params.fields)
     const generalSettings = await SettingsService.getSettings()
-    const { domain } = generalSettings
+    const domain = generalSettings.domain
     const items = await db
       .collection("productCategories")
-      .find(filter, { projection })
+      .find(filter, { projection: projection })
       .sort({ position: 1 })
       .toArray()
     const result = items.map(category =>
@@ -45,9 +45,9 @@ class ProductCategoriesService {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    return this.getCategories({ id }).then(categories =>
-      categories.length > 0 ? categories[0] : null
-    )
+    return this.getCategories({ id: id }).then(categories => {
+      return categories.length > 0 ? categories[0] : null
+    })
   }
 
   async addCategory(data) {
@@ -67,7 +67,7 @@ class ProductCategoriesService {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }
-    const categoryObjectID = new ObjectID(id)
+    let categoryObjectID = new ObjectID(id)
 
     return this.getValidDocumentForUpdate(id, data)
       .then(dataToSet =>
@@ -81,11 +81,11 @@ class ProductCategoriesService {
   findAllChildren(items, id, result) {
     if (id && ObjectID.isValid(id)) {
       result.push(new ObjectID(id))
-      const finded = items.filter(
+      let finded = items.filter(
         item => (item.parent_id || "").toString() === id.toString()
       )
       if (finded.length > 0) {
-        for (const item of finded) {
+        for (let item of finded) {
           this.findAllChildren(items, item.id, result)
         }
       }
@@ -103,13 +103,13 @@ class ProductCategoriesService {
     return this.getCategories()
       .then(items => {
         // 2. find category and children
-        const idsToDelete = []
+        let idsToDelete = []
         this.findAllChildren(items, id, idsToDelete)
         return idsToDelete
       })
       .then(idsToDelete => {
         // 3. delete categories
-        const objectsToDelete = idsToDelete.map(id => new ObjectID(id))
+        let objectsToDelete = idsToDelete.map(id => new ObjectID(id))
         // return db.collection('productCategories').deleteMany({_id: { $in: objectsToDelete}}).then(() => idsToDelete);
         return db
           .collection("productCategories")
@@ -118,9 +118,9 @@ class ProductCategoriesService {
             deleteResponse.deletedCount > 0 ? idsToDelete : null
           )
       })
-      .then(idsToDelete =>
+      .then(idsToDelete => {
         // 4. update category_id for products
-        idsToDelete
+        return idsToDelete
           ? db
               .collection("products")
               .updateMany(
@@ -129,19 +129,20 @@ class ProductCategoriesService {
               )
               .then(() => idsToDelete)
           : null
-      )
+      })
       .then(idsToDelete => {
         // 5. delete directories with images
         if (idsToDelete) {
-          for (const categoryId of idsToDelete) {
-            const deleteDir = path.resolve(
-              `${settings.categoriesUploadPath}/${categoryId}`
+          for (let categoryId of idsToDelete) {
+            let deleteDir = path.resolve(
+              settings.categoriesUploadPath + "/" + categoryId
             )
             fse.remove(deleteDir, err => {})
           }
           return Promise.resolve(true)
+        } else {
+          return Promise.resolve(false)
         }
-        return Promise.resolve(false)
       })
   }
 
@@ -152,7 +153,7 @@ class ProductCategoriesService {
   getValidDocumentForInsert(data, newPosition) {
     //  Allow empty category to create draft
 
-    const category = {
+    let category = {
       date_created: new Date(),
       date_updated: null,
       image: ""
@@ -167,14 +168,15 @@ class ProductCategoriesService {
     category.parent_id = parse.getObjectIDIfValid(data.parent_id)
     category.position = parse.getNumberIfValid(data.position) || newPosition
 
-    const slug = !data.slug || data.slug.length === 0 ? data.name : data.slug
+    let slug = !data.slug || data.slug.length === 0 ? data.name : data.slug
     if (!slug || slug.length === 0) {
       return Promise.resolve(category)
+    } else {
+      return utils.getAvailableSlug(slug).then(newSlug => {
+        category.slug = newSlug
+        return category
+      })
     }
-    return utils.getAvailableSlug(slug).then(newSlug => {
-      category.slug = newSlug
-      return category
-    })
   }
 
   getValidDocumentForUpdate(id, data) {
@@ -186,7 +188,7 @@ class ProductCategoriesService {
         reject("Required fields are missing")
       }
 
-      const category = {
+      let category = {
         date_updated: new Date()
       }
 
@@ -227,7 +229,7 @@ class ProductCategoriesService {
       }
 
       if (data.slug !== undefined) {
-        let { slug } = data
+        let slug = data.slug
         if (!slug || slug.length === 0) {
           slug = data.name
         }
@@ -273,28 +275,26 @@ class ProductCategoriesService {
   }
 
   deleteCategoryImage(id) {
-    const dir = path.resolve(`${settings.categoriesUploadPath}/${id}`)
+    let dir = path.resolve(settings.categoriesUploadPath + "/" + id)
     fse.emptyDirSync(dir)
     this.updateCategory(id, { image: "" })
   }
 
   uploadCategoryImage(req, res) {
-    const categoryId = req.params.id
-    const form = new formidable.IncomingForm()
-    let file_name = null
-    let file_size = 0
+    let categoryId = req.params.id
+    let form = new formidable.IncomingForm(),
+      file_name = null,
+      file_size = 0
 
     form
       .on("fileBegin", (name, file) => {
         // Emitted whenever a field / value pair has been received.
-        const dir = path.resolve(
-          `${settings.categoriesUploadPath}/${categoryId}`
-        )
+        let dir = path.resolve(settings.categoriesUploadPath + "/" + categoryId)
         fse.emptyDirSync(dir)
         file.name = utils.getCorrectFileName(file.name)
-        file.path = `${dir}/${file.name}`
+        file.path = dir + "/" + file.name
       })
-      .on("file", (field, file) => {
+      .on("file", function(field, file) {
         // every time a file has been uploaded successfully,
         file_name = file.name
         file_size = file.size
@@ -303,7 +303,7 @@ class ProductCategoriesService {
         res.status(500).send(this.getErrorMessage(err))
       })
       .on("end", () => {
-        // Emitted when the entire request has been received, and all contained files have finished flushing to disk.
+        //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
         if (file_name) {
           this.updateCategory(categoryId, { image: file_name })
           res.send({ file: file_name, size: file_size })

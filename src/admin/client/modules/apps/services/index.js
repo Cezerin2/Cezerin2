@@ -1,21 +1,23 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
-import * as webstoreAuth from "lib/webstoreAuth"
 import { fetchServices } from "../actions"
+import * as webstoreAuth from "lib/webstoreAuth"
 import List from "./components/list"
 
 const mapStateToProps = (state, ownProps) => {
   const webstoreAuthorized = webstoreAuth.isCurrentTokenValid()
   return {
     services: state.apps.services,
-    webstoreAuthorized
+    webstoreAuthorized: webstoreAuthorized
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchData: () => {
-    dispatch(fetchServices())
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    fetchData: () => {
+      dispatch(fetchServices())
+    }
   }
-})
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(List))

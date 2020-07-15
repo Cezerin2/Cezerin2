@@ -5,15 +5,15 @@ import moment from "moment"
 import api from "lib/api"
 import messages from "lib/text"
 import * as helper from "lib/helper"
+import style from "./style.css"
 
 import Paper from "material-ui/Paper"
 import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
-import style from "./style.css"
 
 const getOrderStates = order => {
-  const states = []
+  let states = []
 
   if (order.hold) {
     states.push(
@@ -67,7 +67,7 @@ const getOrderStates = order => {
 }
 
 const CustomerOrder = ({ order, settings }) => {
-  const grandTotalFormatted = helper.formatCurrency(order.grand_total, settings)
+  let grandTotalFormatted = helper.formatCurrency(order.grand_total, settings)
   const dateCreated = moment(order.date_placed || order.date_created)
   const dateCreatedFormated = dateCreated.format(settings.date_format)
   const states = getOrderStates(order)

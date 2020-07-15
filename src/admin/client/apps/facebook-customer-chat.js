@@ -67,8 +67,8 @@ export class App extends React.Component {
         : ""
 
     api.apps.settings.update("facebook-customer-chat", {
-      pageId,
-      minimized
+      pageId: pageId,
+      minimized: minimized
     })
     api.theme.placeholders.update("facebook-customer-chat", {
       place: "body_end",
@@ -85,7 +85,7 @@ export class App extends React.Component {
       <div>
         <TextField
           type="text"
-          fullWidth
+          fullWidth={true}
           value={this.state.pageId}
           onChange={this.handlePageIdChange}
           floatingLabelText="Page ID"
@@ -93,7 +93,7 @@ export class App extends React.Component {
 
         <TextField
           type="text"
-          fullWidth
+          fullWidth={true}
           value={this.state.minimized}
           onChange={this.handleMinimizedChange}
           floatingLabelText="minimized"
@@ -103,7 +103,7 @@ export class App extends React.Component {
         <div style={{ textAlign: "right" }}>
           <RaisedButton
             label={messages.save}
-            primary
+            primary={true}
             disabled={false}
             onClick={this.updateSettings}
           />

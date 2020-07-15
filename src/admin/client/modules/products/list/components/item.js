@@ -20,13 +20,14 @@ const ItemImage = ({ images }) => {
   if (images && images.length > 0) {
     const imageUrl = helper.getThumbnailUrl(images[0].url, THUMBNAIL_WIDTH)
     return <img src={imageUrl} className={style.image} />
+  } else {
+    return ImagePlaceholder
   }
-  return ImagePlaceholder
 }
 
 const ItemPrice = ({ product, settings }) => {
-  const priceFormatted = helper.formatCurrency(product.price, settings)
-  const priceOldFormatted = product.on_sale
+  let priceFormatted = helper.formatCurrency(product.price, settings)
+  let priceOldFormatted = product.on_sale
     ? helper.formatCurrency(product.regular_price, settings)
     : ""
 
@@ -71,9 +72,9 @@ const ItemStock = ({ status, quantity }) => {
 const ProductItem = ({ product, onSelect, selected, settings }) => {
   let productClass = style.productName
   if (!product.enabled || product.discontinued) {
-    productClass += ` ${style.productInactive}`
+    productClass += " " + style.productInactive
   } else {
-    productClass += ` ${style.productActive}`
+    productClass += " " + style.productActive
   }
 
   const productName =
@@ -82,8 +83,8 @@ const ProductItem = ({ product, onSelect, selected, settings }) => {
       : `<${messages.draft}>`
 
   return (
-    <div className={`products-item${selected === true ? " selected" : ""}`}>
-      <div className={`row row--no-gutter middle-xs ${style.innerItem}`}>
+    <div className={"products-item" + (selected === true ? " selected" : "")}>
+      <div className={"row row--no-gutter middle-xs " + style.innerItem}>
         <div className="col-xs-6 col--no-gutter">
           <div className="row row--no-gutter middle-xs">
             <div className="col-xs-1 col--no-gutter">
@@ -95,7 +96,7 @@ const ProductItem = ({ product, onSelect, selected, settings }) => {
               />
             </div>
             <div className="col-xs-3">
-              <div className={`row middle-xs center-xs ${style.imageBox}`}>
+              <div className={"row middle-xs center-xs " + style.imageBox}>
                 <div className="col-xs-12">
                   <div className="box">
                     <ItemImage images={product.images} />
@@ -105,7 +106,7 @@ const ProductItem = ({ product, onSelect, selected, settings }) => {
             </div>
             <div className="col-xs-8">
               <Link
-                to={`/admin/product/${product.id}`}
+                to={"/admin/product/" + product.id}
                 className={productClass}
               >
                 {productName}
@@ -115,14 +116,14 @@ const ProductItem = ({ product, onSelect, selected, settings }) => {
             </div>
           </div>
         </div>
-        <div className={`col-xs-2 ${style.sku}`}>{product.sku}</div>
-        <div className={`col-xs-2 ${style.stock}`}>
+        <div className={"col-xs-2 " + style.sku}>{product.sku}</div>
+        <div className={"col-xs-2 " + style.stock}>
           <ItemStock
             status={product.stock_status}
             quantity={product.stock_quantity}
           />
         </div>
-        <div className={`col-xs-2 ${style.price}`}>
+        <div className={"col-xs-2 " + style.price}>
           <ItemPrice product={product} settings={settings} />
         </div>
       </div>

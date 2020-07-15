@@ -13,7 +13,7 @@ class OrderItemsService {
       return Promise.reject("Invalid identifier")
     }
 
-    const newItem = this.getValidDocumentForInsert(data)
+    let newItem = this.getValidDocumentForInsert(data)
     const orderItem = await this.getOrderItemIfExists(
       order_id,
       newItem.product_id,
@@ -77,29 +77,28 @@ class OrderItemsService {
 
     if (!product) {
       return 0
-    }
-    if (product.discontinued) {
+    } else if (product.discontinued) {
       return 0
-    }
-    if (product.stock_backorder) {
+    } else if (product.stock_backorder) {
       return quantityNeeded
-    }
-    if (product.variable && variant_id) {
+    } else if (product.variable && variant_id) {
       const variant = this.getVariantFromProduct(product, variant_id)
       if (variant) {
         return variant.stock_quantity >= quantityNeeded
           ? quantityNeeded
           : variant.stock_quantity
+      } else {
+        return 0
       }
-      return 0
+    } else {
+      return product.stock_quantity >= quantityNeeded
+        ? quantityNeeded
+        : product.stock_quantity
     }
-    return product.stock_quantity >= quantityNeeded
-      ? quantityNeeded
-      : product.stock_quantity
   }
 
   async getOrderItemIfExists(order_id, product_id, variant_id) {
-    const orderObjectID = new ObjectID(order_id)
+    let orderObjectID = new ObjectID(order_id)
     const order = await db.collection("orders").findOne(
       {
         _id: orderObjectID
@@ -115,37 +114,39 @@ class OrderItemsService {
           item.product_id.toString() === product_id.toString() &&
           (item.variant_id || "").toString() === (variant_id || "").toString()
       )
+    } else {
+      return null
     }
-    return null
   }
 
   async updateItem(order_id, item_id, data) {
     if (!ObjectID.isValid(order_id) || !ObjectID.isValid(item_id)) {
       return Promise.reject("Invalid identifier")
     }
-    const orderObjectID = new ObjectID(order_id)
-    const itemObjectID = new ObjectID(item_id)
+    let orderObjectID = new ObjectID(order_id)
+    let itemObjectID = new ObjectID(item_id)
     const item = this.getValidDocumentForUpdate(data)
 
     if (parse.getNumberIfPositive(data.quantity) === 0) {
       // delete item
       return this.deleteItem(order_id, item_id)
-    }
-    // update
-    await ProductStockService.handleDeleteOrderItem(order_id, item_id)
-    await db.collection("orders").updateOne(
-      {
-        _id: orderObjectID,
-        "items.id": itemObjectID
-      },
-      {
-        $set: item
-      }
-    )
+    } else {
+      // update
+      await ProductStockService.handleDeleteOrderItem(order_id, item_id)
+      await db.collection("orders").updateOne(
+        {
+          _id: orderObjectID,
+          "items.id": itemObjectID
+        },
+        {
+          $set: item
+        }
+      )
 
-    await this.calculateAndUpdateItem(order_id, item_id)
-    await ProductStockService.handleAddOrderItem(order_id, item_id)
-    return OrdersService.getSingleOrder(order_id)
+      await this.calculateAndUpdateItem(order_id, item_id)
+      await ProductStockService.handleAddOrderItem(order_id, item_id)
+      return OrdersService.getSingleOrder(order_id)
+    }
   }
 
   getVariantFromProduct(product, variantId) {
@@ -153,8 +154,9 @@ class OrderItemsService {
       return product.variants.find(
         variant => variant.id.toString() === variantId.toString()
       )
+    } else {
+      return null
     }
-    return null
   }
 
   getOptionFromProduct(product, optionId) {
@@ -162,8 +164,9 @@ class OrderItemsService {
       return product.options.find(
         item => item.id.toString() === optionId.toString()
       )
+    } else {
+      return null
     }
-    return null
   }
 
   getOptionValueFromProduct(product, optionId, valueId) {
@@ -172,8 +175,9 @@ class OrderItemsService {
       return option.values.find(
         item => item.id.toString() === valueId.toString()
       )
+    } else {
+      return null
     }
-    return null
   }
 
   getOptionNameFromProduct(product, optionId) {
@@ -189,7 +193,7 @@ class OrderItemsService {
   getVariantNameFromProduct(product, variantId) {
     const variant = this.getVariantFromProduct(product, variantId)
     if (variant) {
-      const optionNames = []
+      let optionNames = []
       for (const option of variant.options) {
         const optionName = this.getOptionNameFromProduct(
           product,
@@ -252,8 +256,7 @@ class OrderItemsService {
         "items.$.discount_total": 0,
         "items.$.price_total": item.custom_price * item.quantity
       }
-    }
-    if (item.variant_id) {
+    } else if (item.variant_id) {
       // product with variant
       const variant = this.getVariantFromProduct(product, item.variant_id)
       const variantName = this.getVariantNameFromProduct(
@@ -276,22 +279,24 @@ class OrderItemsService {
           "items.$.discount_total": 0,
           "items.$.price_total": variantPrice * item.quantity
         }
+      } else {
+        // variant not exists
+        return null
       }
-      // variant not exists
-      return null
-    }
-    // normal product
-    return {
-      "items.$.product_image": product.images,
-      "items.$.sku": product.sku,
-      "items.$.name": product.name,
-      "items.$.variant_name": "",
-      "items.$.price": product.price,
-      "items.$.tax_class": product.tax_class,
-      "items.$.tax_total": 0,
-      "items.$.weight": product.weight || 0,
-      "items.$.discount_total": 0,
-      "items.$.price_total": product.price * item.quantity
+    } else {
+      // normal product
+      return {
+        "items.$.product_image": product.images,
+        "items.$.sku": product.sku,
+        "items.$.name": product.name,
+        "items.$.variant_name": "",
+        "items.$.price": product.price,
+        "items.$.tax_class": product.tax_class,
+        "items.$.tax_total": 0,
+        "items.$.weight": product.weight || 0,
+        "items.$.discount_total": 0,
+        "items.$.price_total": product.price * item.quantity
+      }
     }
   }
 
@@ -303,17 +308,18 @@ class OrderItemsService {
         await this.calculateAndUpdateItem(order_id, item.id)
       }
       return OrdersService.getSingleOrder(order_id)
+    } else {
+      // order.items is empty
+      return null
     }
-    // order.items is empty
-    return null
   }
 
   async deleteItem(order_id, item_id) {
     if (!ObjectID.isValid(order_id) || !ObjectID.isValid(item_id)) {
       return Promise.reject("Invalid identifier")
     }
-    const orderObjectID = new ObjectID(order_id)
-    const itemObjectID = new ObjectID(item_id)
+    let orderObjectID = new ObjectID(order_id)
+    let itemObjectID = new ObjectID(item_id)
 
     await ProductStockService.handleDeleteOrderItem(order_id, item_id)
     await db.collection("orders").updateOne(
@@ -358,7 +364,7 @@ class OrderItemsService {
       return new Error("Required fields are missing")
     }
 
-    const item = {}
+    let item = {}
 
     if (data.variant_id !== undefined) {
       item["items.$.variant_id"] = parse.getObjectIDIfValid(data.variant_id)
