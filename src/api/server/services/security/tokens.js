@@ -22,13 +22,8 @@ class SecurityTokensService {
   constructor() {}
 
   getTokens(params = {}) {
-<<<<<<< HEAD
     const filter = {
       is_revoked: false,
-=======
-    let filter = {
-      is_revoked: false
->>>>>>> parent of 5126239... Eslint fix (#45)
     }
     const id = parse.getObjectIDIfValid(params.id)
     if (id) {
@@ -57,7 +52,7 @@ class SecurityTokensService {
         .collection("tokens")
         .find(
           {
-            is_revoked: true
+            is_revoked: true,
           },
           { _id: 1 }
         )
@@ -68,7 +63,6 @@ class SecurityTokensService {
           return blacklistFromDB
         })
     }
-<<<<<<< HEAD
     return db
       .collection("tokens")
       .find(
@@ -83,8 +77,6 @@ class SecurityTokensService {
         cache.set(BLACKLIST_CACHE_KEY, blacklistFromDB)
         return blacklistFromDB
       })
-=======
->>>>>>> parent of 5126239... Eslint fix (#45)
   }
 
   getSingleToken(id) {
@@ -192,13 +184,8 @@ class SecurityTokensService {
       return new Error("Required fields are missing")
     }
 
-<<<<<<< HEAD
     const token = {
       date_updated: new Date(),
-=======
-    let token = {
-      date_updated: new Date()
->>>>>>> parent of 5126239... Eslint fix (#45)
     }
 
     if (data.name !== undefined) {
