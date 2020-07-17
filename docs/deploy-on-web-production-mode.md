@@ -24,6 +24,11 @@ pm2 reload store
 What is production mode?!
 
 At production mode all requests to api must be authorized with JWT token.
+
+It means nobody can add/edit/delete categories, products, orders, customers, etc. without permission.
+
+Only admins can make this.
+
 You must login before you access to admin.
 Login page - https://your-domain-name.com/admin/login
 
