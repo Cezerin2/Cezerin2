@@ -51,6 +51,9 @@ SEO Friendly. Google Analytics eCommerce Tracking included.
 
 [![Cezerin Dashboard](https://cezerin.org/assets/images/cezerin-dashboard-products.png)](https://admin.cezerin.net)
 
+
+## Docs
+
 - Getting Started
 
   - [Overview](./docs/overview.md)
