@@ -83,6 +83,25 @@ sudo service mongod start
 
 ## 4. Install and Run Cezerin
 
+We will install cezerin to the /var/www folder.
+
+Connect by ssh to your hosting.
+
+```shell
+cd /var/www
+```
+
+Clone cezerin:
+
+```shell
+git clone https://github.com/cezerin2/cezerin2
+cd cezerin2
+```
+
+Cezerin files located in /var/www/cezerin2 folder.
+
+Then just install, build and run cezerin, check this doc.
+
 [Cezerin Installation Guide.](https://github.com/Cezerin2/cezerin2/blob/master/docs/using-source-code.md)
 
 Cezerin apps must be running, console command:
