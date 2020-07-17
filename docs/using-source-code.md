@@ -9,7 +9,7 @@ cd cezerin2
 
 - **Change settings**
 
-- This step is optional. You can skip this step, by default all works fine with default settings.
+- This step is optional. You can skip this step, all works fine with default settings.
 
 ```shell
 cd config
@@ -35,19 +35,19 @@ npm i
 
 - **Setup database**
 
-Prepare database at this setup our database is empty. To add default data, indexes and access token we need to run:
+Prepare database. At this step our database is empty. To add default data (categories, products, pages), indexes and access token we need to run:
 
 ```shell
 npm run setup <email> <domain>
 ```
 
-- We don't have real domain, so we'll use our local domain:
+We don't have real domain, so we'll use our local domain:
 
-  ```shell
-  npm run setup admin@example.com http://localhost:3000
-  ```
+```shell
+npm run setup admin@example.com http://localhost:3000
+```
 
-- You can change this email and domain anytime at Admin - Settings - General - Domain and Admin - Settings - Personal Access Tokens.
+You can change this email and domain anytime at Admin - Settings - General - Domain and Admin - Settings - Personal Access Tokens.
 
 - **Build project**
 
