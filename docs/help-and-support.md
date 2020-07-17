@@ -12,7 +12,7 @@ If you need some help with deployment and something does not quite work, message
 
 - [**Telegram Chat: Cezerin**](https://t.me/cezerin): https://t.me/cezerin
 
-- [**Google Groups Forum**](https://groups.google.com/forum/#!forum/cezerin): https://groups.google.com/forum/#!forum/cezerin
+- [**Google Groups Forum**](https://groups.google.com/g/cezerin): https://groups.google.com/g/cezerin
 
 ### New Private Support?
 

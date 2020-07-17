@@ -26,7 +26,7 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 - [Demo Store](https://cezerin.net)
 - [Demo Dashboard](https://cezerin.net/admin)
 - [Telegram Chat: Cezerin](https://t.me/cezerin)
-- [Forum](https://groups.google.com/forum/#!forum/cezerin)
+- [Forum](https://groups.google.com/g/cezerin)
 - [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs)
 - [Facebook](https://facebook.com/cezerin)
 - [Twitter](https://twitter.com/cezerin2)
