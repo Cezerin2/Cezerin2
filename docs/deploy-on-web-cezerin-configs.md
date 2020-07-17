@@ -31,8 +31,6 @@ http://localhost:3001/ajax to https://your-domain-name.com/ajax
 
 Rebuild & restart apps with new configs:
 
-cezerin
-
 ```
 npm run build
 pm2 reload api
