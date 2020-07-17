@@ -14,6 +14,6 @@ If you need some help with deployment and something does not quite work, message
 
 - [**Google Groups Forum**](https://groups.google.com/g/cezerin): https://groups.google.com/g/cezerin
 
-### New Private Support?
+### Need Private Support?
 
-Feel free to send an email to `nitingoyal.dev@gmail.com`
+https://github.com/vamcart
