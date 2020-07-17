@@ -67,7 +67,7 @@ Check that is cezerin apps is started fine and online:
 pm2 list all
 ```
 
-If all is fine, you can see somethng like this, status column must be online. Not error etc...
+If all is fine, you can see somethng like this, status column must be online. Not "error".
 ```shell
 ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
