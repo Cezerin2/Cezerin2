@@ -43,6 +43,8 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 ## Store
 Single-Page Application with React server-side rendering.
 
+SEO Friendly. Google Analytics eCommerce Tracking included.
+
 [Online Demo Store](https://demo.cezerin.net)
 
 [![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://demo.cezerin.net)
