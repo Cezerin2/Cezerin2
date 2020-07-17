@@ -81,7 +81,7 @@ SEO Friendly. Google Analytics eCommerce Tracking included.
 - API
 
   - [API Reference](./docs/api)
-  - [API Client](https://github.com/cezerin/client)
+  - [API Client](https://github.com/cezerin2/cezerin2-client)
 
 - Help
   - [FAQ](./docs/faq.md)
