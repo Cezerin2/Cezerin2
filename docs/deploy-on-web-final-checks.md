@@ -11,6 +11,8 @@ If you:
 You will see working store in your browser by this urls:
 
 Store: https://your-domain-name.com
+
 API: https://your-domain-name.com/api/v1/settings
+
 Dashboard: https://your-domain-name.com/admin
 
