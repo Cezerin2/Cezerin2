@@ -1,23 +1,23 @@
 ### Using Source code
 
-### A) Cezerin Backend (API) Installation
-
 - **Clone Git repository**
 
 ```shell
-git clone https://github.com/Cezerin2/cezerin2
+git clone https://github.com/cezerin2/cezerin2
 cd cezerin2
 ```
 
 - **Change settings**
 
+- This step is optional. You can skip this step, by default all works fine with default settings.
+
 ```shell
-cd src
+cd config
 ```
 
-- **Open `config.ts` and change**
+- **Open `config/server.js` and change**
 
-  - MongoDB Creditionals
+  - MongoDB Credentials
   - SMTP Settings
   - JWT and Cookie Secret Key
 
@@ -31,7 +31,6 @@ cd src
 
 ```shell
 npm i
-npm run compile
 ```
 
 - **Setup database**
@@ -48,7 +47,7 @@ npm run setup <email> <domain>
   npm run setup admin@example.com http://localhost:3000
   ```
 
-- This script will add token with email admin@example.com and my domain to http://localhost
+- You can change this email and domain anytime at Admin - Settings - General - Domain and Admin - Settings - Personal Access Tokens.
 
 - **Start application in the background**
 
