@@ -11,32 +11,6 @@
 - follow mongo [instructions](https://docs.mongodb.com/manual/installation/) to install locally.
 - run `mongod`
 
-### Implementation
-
-- **Docker**
-  docker implementation will require access to host ports, to do this you will be required to add host network
-
-  ```shell
-  --network host
-  ```
-
-      **Full Example**
-       ```shell
-      docker run -d \
-      --name cezerin2 \
-      -p 3001:80 \
-      -v /content-on-host:/var/www/cezerin2/public/content \
-      --network host \
-      cezerin2/cezerin2:latest
-      ```
-
-- **pm2**
-  Deloy normally with pm2. [here](https://cezerin.org/docs/#/using-source-code)
-
-  ```shell
-  pm2 start app.js
-  ```
-
 ## 2. Docker Mongo
 
 ### Setup
