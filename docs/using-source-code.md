@@ -71,8 +71,8 @@ npm start
 - Storefront running on port 3000 and available at **http://localhost:3000**
 - Dashboard running on port 3000 and available at **http://localhost:3000/admin**
 
--For example, here is the api method for store settings: **http://localhost:3001/api/v1/settings**
--and dashboard settings page: **http://localhost:3000/admin/settings**
+For example, here is the api method for store settings: **http://localhost:3001/api/v1/settings**
+and dashboard settings page: **http://localhost:3000/admin/settings**
 
 
 ```shell
