@@ -35,7 +35,7 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 
 Client-side dashboard use JSON Web Token (JWT) to access REST API.
 
-[Online Demo Dashboard](https://cezerin.net/)
+[Online Demo Dashboard](https://cezerin.net/admin)
 
 ![Cezerin Dashboard](https://cezerin.org/assets/images/cezerin-dashboard-products.png)
 
@@ -57,6 +57,7 @@ SEO Friendly. Google Analytics eCommerce Tracking included.
 - Getting Started
 
   - [Overview](./docs/overview.md)
+  - [Application Structure](./docs/application-structure.md)
 
 - Installation Guides
 
