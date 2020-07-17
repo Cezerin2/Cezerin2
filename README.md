@@ -23,8 +23,8 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 
 - [GitHub](https://github.com/cezerin2)
 - [Community Site](https://cezerin.org)
-- [Demo Store](https://demo.cezerin.net)
-- [Demo Dashboard](https://admin.cezerin.net)
+- [Demo Store](https://cezerin.net)
+- [Demo Dashboard](https://cezerin.net/admin)
 - [Telegram Chat: Cezerin](https://t.me/cezerin)
 - [Forum](https://groups.google.com/forum/#!forum/cezerin)
 - [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs)
@@ -35,7 +35,7 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 
 Client-side dashboard use JSON Web Token (JWT) to access REST API.
 
-[Online Demo Dashboard](https://admin.cezerin.net)
+[Online Demo Dashboard](https://cezerin.net/)
 
 ![Cezerin Dashboard](https://cezerin.org/assets/images/cezerin-dashboard-products.png)
 
@@ -45,11 +45,11 @@ Single-Page Application with React server-side rendering.
 
 SEO Friendly. Google Analytics eCommerce Tracking included.
 
-[Online Demo Store](https://demo.cezerin.net)
+[Online Demo Store](https://cezerin.net)
 
-[![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://demo.cezerin.net)
+[![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://cezerin.net)
 
-[![Cezerin Dashboard](https://cezerin.org/assets/images/cezerin-dashboard-products.png)](https://admin.cezerin.net)
+[![Cezerin Dashboard](https://cezerin.org/assets/images/cezerin-dashboard-products.png)](https://cezerin.net/admin)
 
 
 ## Docs

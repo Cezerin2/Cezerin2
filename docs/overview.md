@@ -7,7 +7,7 @@ Cezerin is React and Node.js based eCommerce platform. Allows creating a Progres
 
 [Demo Store](https://demo.cezerin.net)
 
-[Demo Store Dashboard](https://admin.cezerin.net)
+[Demo Store Dashboard](https://cezerin.net/admin)
 
 ---
 
