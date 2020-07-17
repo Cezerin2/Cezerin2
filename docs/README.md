@@ -27,7 +27,7 @@
 - API
 
   - [API Reference](api)
-  - [API Client](https://github.com/cezerin/client)
+  - [API Client](https://github.com/cezerin2/cezerin2-client)
 
 - Help
   - [FAQ](faq.md)
