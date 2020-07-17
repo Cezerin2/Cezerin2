@@ -121,6 +121,8 @@ root@ubuntu-s-1vcpu-1gb-nyc3-01:~# pm2 list all
 └───────┴────┴──────┴────────┴───┴──────┴────────────┘
 ```
 
+Ok. Cezerin is started and working. Let's go futher.
+
 ## 5. Run Nginx
 
 To enable cezerin apps from browser, we need to setup web server.
