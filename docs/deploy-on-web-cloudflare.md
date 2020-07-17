@@ -3,10 +3,10 @@
 [Cloudflare.](https://www.cloudflare.com)
 
 - Get droplet IP on DigitalOcean
-  ![DigitalOcean IP Address](https://github.com/Cezerin2/cezerin2/raw/master/docs/images/do-ip.png)
+  ![DigitalOcean IP Address](https://github.com/Cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean.png)
 
 - Add `A` and `CNAME` to DNS on CloudFlare
-  ![CloudFlare DNS](https://user-images.githubusercontent.com/3618501/76990802-9c174d00-6959-11ea-8c03-620a2c97e952.png)
+  ![CloudFlare DNS](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-cloudflare.png)
 - Set SSL to `Flexible` on CloudFlare
   ![CloudFlare SSL](https://github.com/Cezerin2/cezerin2/raw/master/docs/images/cf-ssl.png)
 
