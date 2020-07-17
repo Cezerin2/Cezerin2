@@ -176,75 +176,58 @@ Content: your-droplet-ip-address
 
 You must edit cezerin configs and setup new domain name at configs.
 
+/cezerin2/config/admin.js
+
+Change:
+
+```
+http://localhost:3001/api/v1 to https://your-domain-name.com/api/v1
+ws://localhost:3001 to wss://your-domain-name.com
+```
+
 /cezerin2/config/server.js
 
 Change:
 
 ```
+http://localhost:3001/api/v1 to https://your-domain-name.com/api/v1
+http://localhost:3001/ajax to https://your-domain-name.com/ajax
 http://localhost:3000 to https://your-domain-name.com
-http://localhost:3001 to https://your-domain-name.com
-http://localhost:3002 to https://admin.your-domain-name.com
 ```
 
-/cezerin2-store/config/store.js
+/cezerin2/config/store.js
 
 Change:
 
 ```
-http://localhost:3001 to https://your-domain-name.com
-```
-
-/cezerin2-admin/config/admin.js
-
-Change:
-
-```
-http://localhost:3001 to https://your-domain-name.com
-```
-
-Change:
-
-```
-ws://localhost:3001 to wss://your-domain-name.com
+http://localhost:3001/ajax to https://your-domain-name.com/ajax
 ```
 
 Rebuild & restart apps with new configs:
 
-cezerin (backend app does not need to be build, just reload):
-
 ```
+npm run build
 pm2 reload api
-```
-
-cezerin2-store:
-
-```
-npm run build
 pm2 reload store
-```
-
-cezerin2-admin:
-
-```
-npm run build
-pm2 reload admin
 ```
 
 ## 8. Final checks
 
-Thats all.
+That's all.
 
 If you:
 
-1. Run cezerin2, cezerin2-store, cezerin2-admin apps.
+1. Run cezerin.
 2. Run webserver nginx with cezerin config.
 3. Setup DNS records.
 
 You will see working store in your browser by this urls:
 
 Store: https://your-domain-name.com
+
 API: https://your-domain-name.com/api/v1/settings
-Dashboard: https://admin.your-domain-name.com
+
+Dashboard: https://your-domain-name.com/admin
 
 ## 9. Turn off Developer Mode
 
@@ -255,31 +238,16 @@ At dev mode api's and dashboard available for all without any restrictions.
 
 To turn off developer mode, you need to do:
 
-- Add access token while install (npm run setup ...) or add email at Admin - Settings - Web tokens
+- Add access token while install (npm run setup ...) or add email for admin at Admin - Settings - Web tokens
 - Set SMTP server in `cezerin2/config/server.js`
 - Set false for option `developerMode` from `cezerin2/config/server.js`
-- Set false for option `developerMode` from `cezerin2-store/config/store.js`
-- Set false for option `developerMode` from `cezerin2-admin/config/admin.js`
+- Set false for option `developerMode` from `cezerin2/config/admin.js`
 - Rebuild & restart apps with new configs:
 
-cezerin (backend app does not need to be build, just reload):
-
 ```
+npm run build
 pm2 reload api
-```
-
-cezerin2-store:
-
-```
-npm run build
 pm2 reload store
-```
-
-cezerin2-admin:
-
-```
-npm run build
-pm2 reload admin
 ```
 
 - Production mode is active now.
@@ -287,11 +255,34 @@ pm2 reload admin
 What is production mode?!
 
 At production mode all requests to api must be authorized with JWT token.
-You must login before you access to admin.
-Login page - https://admin.your-domain-name.com/login
 
-Specify your admin email address and email with authorize link will be send to you.
+It means nobody can add/edit/delete categories, products, orders, customers, etc. without permission.
+
+Only admins can make this.
+
+You must login before you access to admin.
+Login page - https://your-domain-name.com/admin/login
+
+Specify your admin email address and you will receive email with authorization link.
 
 Click to link at email and you will set JWT token at all requests to api.
 
 JWT token added to every request header - Bearer Authentication.
+
+P.S. or you can manually login to the admin, without email.
+
+Add admin JWT key at Admin - Settings - Personal access tokens.
+
+Save your key.
+
+JWT Token looks like this:
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiYWRtaW4iXSwianRpIjoiNWUyY2FhODU2MjEyMmYwZjQwODdkNmUyIiwiZW1haWwiOiJ2YW1zaG9wQGdtYWlsLmNvbSIsImlhdCI6MTU3OTk4NTk1MCwiZXhwIjo0MTcxOTg1OTUwfQ.28iql8r_PDARK6Xym2JWWkV3Vk7cBBkMbALbhEyA2oI
+
+Switch to production mode.
+
+And authorizate to admin with this url example: https://your-domain-name.com/admin/login?token=  
+
+Insert you key in the URL, like this:
+
+https://your-domain-name.com/admin/login?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiYWRtaW4iXSwianRpIjoiNWUyY2FhODU2MjEyMmYwZjQwODdkNmUyIiwiZW1haWwiOiJ2YW1zaG9wQGdtYWlsLmNvbSIsImlhdCI6MTU3OTk4NTk1MCwiZXhwIjo0MTcxOTg1OTUwfQ.28iql8r_PDARK6Xym2JWWkV3Vk7cBBkMbALbhEyA2oI
