@@ -2,7 +2,7 @@
 
 Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 
-## Cezerin Platform includes:
+## Cezerin Platform:
 
 1. Cezerin API - Backend.
 2. Cezerin Store - Frontend.
