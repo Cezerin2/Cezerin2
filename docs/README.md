@@ -3,10 +3,10 @@
 - Getting Started
 
   - [Overview](overview.md)
+  - [Application Structure](application-structure.md)
 
 - Installation Guides
 
-  - [Application Structure](application-structure.md)
   - [Prerequisites](prerequisites.md)
   - [Setup Database](setup-database.md)
   - [Using source code](using-source-code.md)
