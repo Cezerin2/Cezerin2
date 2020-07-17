@@ -61,10 +61,26 @@ npm run build
 pm2 start process.json
 ```
 
-- or you can start app in your terminal (you will see debug information, that is useful for debug):
+Check that is cezerin apps is started fine and online:
 
 ```shell
-npm start
+pm2 list all
+```
+
+If all is fine, you can see somethng like this, status column must be online. Not error etc...
+```shell
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ api                │ fork     │ 2    │ online    │ 5.6%     │ 139.5mb  │
+│ 1  │ store              │ fork     │ 3    │ online    │ 6.8%     │ 134.2mb  │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+```
+
+If you have error status, you can check the log by this command:
+
+```shell
+pm2 logs
 ```
 
 - API running on port 3001 and available at **http://localhost:3001**
