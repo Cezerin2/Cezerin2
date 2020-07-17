@@ -1,7 +1,5 @@
 # Cezerin is React and Node.js based eCommerce platform. React Shopping Cart.
 
-[![CircleCI](https://circleci.com/gh/Cezerin2/cezerin2/tree/master.svg?style=svg)](https://circleci.com/gh/Cezerin2/cezerin2/tree/master)
-
 Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 
 ## Cezerin Platform includes:
@@ -34,13 +32,18 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 - [Twitter](https://twitter.com/cezerin2)
 
 ## Dashboard
-Client-side dashboard use JSON Web Token (JWT) to access REST API.[Demo dashboard](https://admin.cezerin.net)
+
+Client-side dashboard use JSON Web Token (JWT) to access REST API.
+
+[Online Demo Dashboard](https://admin.cezerin.net)
 
 ![Cezerin Dashboard](https://cezerin.org/assets/images/cezerin-dashboard-products.png)
 
 
 ## Store
-Single-Page Application with React server-side rendering. [Demo store](https://demo.cezerin.net)
+Single-Page Application with React server-side rendering.
+
+[Online Demo Store](https://demo.cezerin.net)
 
 [![Cezerin Store](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://demo.cezerin.net)
 
