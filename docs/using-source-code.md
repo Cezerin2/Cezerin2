@@ -47,7 +47,7 @@ We don't have real domain, so we'll use our local domain:
 npm run setup admin@example.com http://localhost:3000
 ```
 
-You can change this email and domain anytime at Admin - Settings - General - Domain and Admin - Settings - Personal Access Tokens.
+You can change this email and domain anytime at Dashboard - Settings - General - Domain and Settings - Personal Access Tokens.
 
 - **Build project**
 
@@ -71,8 +71,8 @@ npm start
 - Storefront running on port 3000 and available at **http://localhost:3000**
 - Dashboard running on port 3000 and available at **http://localhost:3000/admin**
 
-- For example, here is the api method for store settings: **http://localhost:3001/api/v1/settings**
-- and dashboard settings page: **http://localhost:3000/admin/settings**
+For example, here is the api method for store settings: **http://localhost:3001/api/v1/settings**
+and dashboard settings page: **http://localhost:3000/admin/settings**
 
 
 ```shell
