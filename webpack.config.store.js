@@ -103,7 +103,7 @@ module.exports = {
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp('/(images|assets|admin-assets)/'),
-					handler: 'cacheFirst'
+					handler: 'networkFirst'
 				},
 				{
 					urlPattern: new RegExp('/api/'),
