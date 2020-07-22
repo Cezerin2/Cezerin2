@@ -25,5 +25,9 @@ unzip -q "public/content/$fileName" -d "theme"
 npm run theme:build
 chmod -R 755 theme/*
 
-# 6. show success message
+# 6. reload apps
+pm2 reload api
+pm2 reload store
+
+# 7. show success message
 echo -e '\e[1;92m'Theme $fileName successfully installed'\e[0m'
