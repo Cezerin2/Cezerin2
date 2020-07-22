@@ -23,6 +23,7 @@ unzip -q "public/content/$fileName" -d "theme"
 
 # 5. build theme
 npm run theme:build
+chmod -R 755 theme/*
 
 # 6. show success message
 echo -e '\e[1;92m'Theme $fileName successfully installed'\e[0m'
