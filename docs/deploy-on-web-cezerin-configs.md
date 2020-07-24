@@ -1,4 +1,4 @@
-## 8. Cezerin configs changes:
+## Cezerin configs changes:
 
 You must edit cezerin configs and setup new domain name at configs.
 

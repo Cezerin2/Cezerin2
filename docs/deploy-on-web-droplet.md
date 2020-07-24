@@ -1,4 +1,4 @@
-## 2. Create droplet
+## Create droplet
 
 1. Click **Create droplet**
 

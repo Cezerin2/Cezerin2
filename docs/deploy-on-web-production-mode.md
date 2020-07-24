@@ -1,4 +1,4 @@
-## 10. Turn off Developer Mode
+## Turn off Developer Mode
 
 By default, Cezerin is in developer mode. This means you can access API and Dashboard without authorization (access tokens).
 
