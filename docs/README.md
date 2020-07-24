@@ -16,13 +16,17 @@
 
   - [Hosting](deploy-on-web-hosting.md)
   - [Create droplet](deploy-on-web-droplet.md)
+  - [Setup domain](deploy-on-web-domain.md)
+  -- [Register domain](deploy-on-web-domain-registration.md)
+  -- [Setup domain with DigitalOcean DNS](deploy-on-web-digitalocean.md)
+  -- [Setup domain with Cloudflare](deploy-on-web-cloudflare.md)
   - [Install NGinx Web Server + MERN Stack](deploy-on-web-mern.md)
   - [Run MongoDB](deploy-on-web-mongodb.md)
   - [Run Cezerin](deploy-on-web-cezerin.md)
   - [Run NGinx](deploy-on-web-nginx.md)
-  - [Setup domain with Cloudflare](deploy-on-web-cloudflare.md)
   - [Cezerin configs changes](deploy-on-web-cezerin-configs.md)
   - [Final checks](deploy-on-web-final-checks.md)
+  - [Setup Let's Encrypt SSL Certificate](deploy-on-web-lets-encrypt.md)
   - [Turn off Developer Mode](deploy-on-web-production-mode.md)
 
 - API
