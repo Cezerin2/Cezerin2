@@ -70,13 +70,17 @@ SEO Friendly. Google Analytics eCommerce Tracking included.
 
   - [Hosting](./docs/deploy-on-web-hosting.md)
   - [Create droplet](./docs/deploy-on-web-droplet.md)
+  - [Setup domain](deploy-on-web-domain.md)
+  -- [Register domain](deploy-on-web-domain-registration.md)
+  -- [Setup domain with DigitalOcean DNS](deploy-on-web-digitalocean.md)
+  -- [Setup domain with Cloudflare](deploy-on-web-cloudflare.md)
   - [Install NGinx Web Server + MERN Stack](./docs/deploy-on-web-mern.md)
   - [Run MongoDB](./docs/deploy-on-web-mongodb.md)
   - [Run Cezerin](./docs/deploy-on-web-cezerin.md)
   - [Run NGinx](./docs/deploy-on-web-nginx.md)
-  - [Setup domain with Cloudflare](./docs/deploy-on-web-cloudflare.md)
   - [Cezerin configs changes](./docs/deploy-on-web-cezerin-configs.md)
   - [Final checks](./docs/deploy-on-web-final-checks.md)
+  - [Setup Let's Encrypt SSL Certificate](deploy-on-web-lets-encrypt.md)
   - [Turn off Developer Mode](./docs/deploy-on-web-production-mode.md)
 
 - API
