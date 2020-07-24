@@ -2,7 +2,7 @@
 
 By default we don't have SSL certifacate for our web site on cezerin.
 
-Let's install Free auto-aupdated Let's Encrypt SSL Certificate.
+Let's install free auto-updated Let's Encrypt SSL Certificate.
 
 What we have at this moment:
 
@@ -11,7 +11,7 @@ What we have at this moment:
 3. Running cezerin.
 4. Runnig web server NGinx.
 
-###Step 1 - Installing Certbot
+##Step 1 - Installing Certbot
 
 The first step to using Let’s Encrypt to obtain an SSL certificate is to install the Certbot software on your server.
 
@@ -31,7 +31,7 @@ sudo apt install python-certbot-nginx
 
 Certbot is now ready to use, but in order for it to configure SSL for Nginx, we need to verify some of Nginx’s configuration.
 
-###Step 2 — Confirming Nginx’s Configuration
+##Step 2 — Confirming Nginx’s Configuration
 
 Certbot needs to be able to find the correct server block in your Nginx configuration for it to be able to automatically configure SSL. Specifically, it does this by looking for a server_name directive that matches the domain you request a certificate for.
 
@@ -45,12 +45,10 @@ change:
 ```
 to:
 ```
-#        server_name _;
         server_name your-domain-name.com www.your-domain-name.com;
 ```        
 for our example cezerin.net domain i have changed to:
 ```
-#        server_name _;
         server_name cezerin.net www.cezerin.net;
 ```        
 Just type your domain name.
@@ -65,7 +63,7 @@ If you get an error, reopen the server block file and check for any typos or mis
 
 Certbot can now find the correct server block and update it.
 
-###Step 3 — Obtaining an SSL Certificate
+##Step 3 — Obtaining an SSL Certificate
 
 Certbot provides a variety of ways to obtain SSL certificates through plugins. The Nginx plugin will take care of reconfiguring Nginx and reloading the config whenever necessary. To use this plugin, type the following:
 ```
@@ -118,7 +116,7 @@ Your certificates are downloaded, installed, and loaded. Try reloading your webs
 
 Let’s finish by testing the renewal process.
 
-###Step 4 — Verifying Certbot Auto-Renewal
+##Step 4 — Verifying Certbot Auto-Renewal
 
 Let’s Encrypt’s certificates are only valid for ninety days. This is to encourage users to automate their certificate renewal process. The certbot package we installed takes care of this for us by adding a renew script to /etc/cron.d. This script runs twice a day and will automatically renew any certificate that’s within thirty days of expiration.
 
@@ -130,7 +128,7 @@ sudo certbot renew --dry-run
 
 If you see no errors, you’re all set. When necessary, Certbot will renew your certificates and reload Nginx to pick up the changes. If the automated renewal process ever fails, Let’s Encrypt will send a message to the email you specified, warning you when your certificate is about to expire.
 
-###Conclusion
+##Conclusion
 
 In this tutorial, you installed the Let’s Encrypt client certbot, downloaded SSL certificates for your domain, configured Nginx to use these certificates, and set up automatic certificate renewal. If you have further questions about using Certbot, their documentation is a good place to start.             
             
