@@ -28,14 +28,14 @@ P.S. You can change DNS at your domain name control panel.
 
 - Add `A` and `CNAME` records to DigitalOcean DNS.
 
+*Hostname* - Must be your domain name.
+*Value* - Must be your droplet ip adddess.
+
+`A` dns record points to our droplet IP address.
+
 Example for cezerin.net:
 
   ![DigitalOcean DNS Records](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean-dns-domain.png)
-
-A record points to our droplet IP address.
-
-  ![DigitalOcean DNS Records](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean-dns-domain.png)
-
 
 That's all. 
 
