@@ -15,9 +15,13 @@ https://123.456.789.0
 
 For example, we have cezerin.net domain and we need to make available cezerin online store on https://cezerin.net
 
-3. Ok, we have domain name and domain name control panel.
+3. Ok, we have domain name and we have domain name control panel. 
 
-4. Let's go to setup domain.
 
-  -- [Setup domain with DigitalOcean DNS](deploy-on-web-digitalocean.md)
-  -- [Setup domain with Cloudflare](deploy-on-web-cloudflare.md)
+1. Click **Create droplet**
+
+- Choose an image: `Ubuntu 18.04.4 x64`
+- Choose a size: `2 GB (RAM), 1 vCPU, 50 GB (SSD)`
+- Choose a datacenter region: `San Francisco`
+
+2. Then SSH to droplet.

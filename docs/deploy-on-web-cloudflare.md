@@ -1,4 +1,4 @@
-## 7. Setup domain with CloudFlare
+## Setup domain with CloudFlare
 
 [Cloudflare.](https://cloudflare.com)
 
