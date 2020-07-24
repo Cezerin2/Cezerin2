@@ -1,4 +1,4 @@
-## 4. Run MongoDB
+## Run MongoDB
 
 ```shell
 sudo service mongod start

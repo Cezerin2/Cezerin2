@@ -1,4 +1,4 @@
-## 3. Install NGinx Web Server + MERN Stack
+## Install NGinx Web Server + MERN Stack
 
 NGinx Web Server Installation
 

@@ -1,4 +1,4 @@
-## 6. Run Nginx
+## Run Nginx
 
 To enable cezerin apps from browser, we need to setup web server.
 

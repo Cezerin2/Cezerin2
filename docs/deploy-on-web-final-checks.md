@@ -1,4 +1,4 @@
-## 9. Final checks
+## Final checks
 
 That's all.
 
