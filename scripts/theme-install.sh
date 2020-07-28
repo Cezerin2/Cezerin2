@@ -10,7 +10,7 @@ if [ $# -eq 0 ]; then
 fi
 
 # 1. check file exists
-if [ ! -f "public/content/$fileName" ]; then
+if [ ! -f "../public/content/$fileName" ]; then
     echo "File not found!"
     exit 1
 fi
@@ -19,7 +19,7 @@ fi
 rm -rf theme/*
 
 # 4. unzip to current theme
-unzip -q "public/content/$fileName" -d "theme"
+unzip -q "../public/content/$fileName" -d "theme"
 
 # 5. build theme
 npm run theme:build
