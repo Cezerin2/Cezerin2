@@ -45,3 +45,10 @@ npm i -g npm
 ```shell
 npm i -g pm2
 ```
+
+- **ZIP/UNZIP**
+
+```shell
+sudo apt-get install zip
+sudo apt-get install unzip
+```
