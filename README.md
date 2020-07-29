@@ -60,7 +60,10 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 - Getting Started
 
   - [Overview](./docs/overview.md)
+  - [Online Demo](./docs/online-demo.md)
   - [Application Structure](./docs/application-structure.md)
+  - [API Client](https://github.com/cezerin2/cezerin2-client)
+  - [API Reference](https://github.com/Cezerin2/cezerin2/tree/master/docs/api)
 
 - Installation Guides
 
