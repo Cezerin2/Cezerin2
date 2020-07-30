@@ -3,8 +3,11 @@
 - Getting Started
 
   - [Overview](overview.md)
+  - [Online Demo](online-demo.md)
   - [Application Structure](application-structure.md)
-
+  - [API Client](https://github.com/cezerin2/cezerin2-client)
+  - [API Reference](https://github.com/Cezerin2/cezerin2/tree/master/docs/api)
+  
 - Installation Guides
 
   - [Prerequisites](prerequisites.md)
