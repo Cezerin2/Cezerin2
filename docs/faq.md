@@ -78,4 +78,6 @@ You can see free memory by this console command:
 free - m
 ```
 
-[**GitHub Issues**](https://github.com/cezerin2/cezerin2/issues): https://github.com/cezerin2/cezerin2/issues
+### Feel free to add your FAQs.
+
+You can add it by making Pull Request to the https://github.com/Cezerin2/cezerin2.github.io
