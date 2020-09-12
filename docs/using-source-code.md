@@ -1,5 +1,11 @@
 ### Using Source code
 
+- **Change folder to /var/www**
+
+```shell
+cd /var/www
+```
+
 - **Clone Git repository**
 
 ```shell
