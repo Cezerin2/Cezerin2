@@ -114,7 +114,7 @@
     "react": "^16.4.2",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.4.2",
-    "react-dropzone": "^5.0.1",
+    "react-dropzone": "^11.2.0",
     "react-helmet": "^5.2.0",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-lazyload": "^2.6.5",
