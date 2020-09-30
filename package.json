@@ -136,7 +136,7 @@
     "sass-loader": "^7.1.0",
     "sitemap": "^6.3.2",
     "slug": "^0.9.1",
-    "stripe": "^6.7.0",
+    "stripe": "^8.106.0",
     "theme": "file:theme",
     "ua-parser-js": "^0.7.18",
     "webpack": "^4.17.1",
