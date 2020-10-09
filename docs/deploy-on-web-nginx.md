@@ -8,7 +8,7 @@ All requests from domain.com proxy to localhost:3000 (running cezerin frontend a
 
 All requests from domain.com/api, domain.com/ajax, domain.com/images proxy to localhost:3001 (running cezerin backend app)
 
-We have cezerin nginx config, so you can use this config for web deploy.
+We have cezerin nginx config, so you can use this config for web deploy (just remove default config settings and replace with cezerin config settings).
 
 [cezerin nginx config](https://raw.githubusercontent.com/cezerin2/cezerin2/master/docs/nginx.md)
 
