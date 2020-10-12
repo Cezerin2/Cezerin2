@@ -62,7 +62,6 @@ export default class Gallery extends React.Component {
 						slideOnThumbnailHover={true}
 						thumbnailPosition={themeSettings.product_thumbnail_position}
 						onSlide={this.setPhotoIndex}
-						startIndex={lightboxPhotoIndex}
 					/>
 					{lightboxIsOpen && (
 						<Lightbox

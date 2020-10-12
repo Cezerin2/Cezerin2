@@ -3,7 +3,7 @@ import { getJSONLD } from './lib/jsonld';
 import {
 	addCartItem,
 	deleteCartItem,
-	updateCartItemQuantity,
+	updateCartItemQuantiry,
 	fetchMoreProducts,
 	setSort,
 	fetchShippingMethods,
@@ -13,7 +13,7 @@ import {
 	checkout,
 	loginUser,
 	loggedinUserTimeUp,
-	changeCustomerProperties,
+	changecustomerProperties,
 	registerUser,
 	cartLayerInitialized,
 	forgotPassword,
@@ -42,28 +42,28 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 		deleteCartItem: item_id => {
 			dispatch(deleteCartItem(item_id));
 		},
-		updateCartItemQuantity:   (item_id, quantity) => {
-			dispatch(updateCartItemQuantity(item_id, quantity));
+		updateCartItemQuantiry: (item_id, quantity) => {
+			dispatch(updateCartItemQuantiry(item_id, quantity));
 		},
-		updateCart:               (data, callback) => {
+		updateCart: (data, callback) => {
 			dispatch(updateCart(data, callback));
 		},
-		loginUser:                (data, callback) => {
+		loginUser: (data, callback) => {
 			dispatch(loginUser(data, callback));
 		},
-		loggedinUserTimeUp:       (data, callback) => {
+		loggedinUserTimeUp: (data, callback) => {
 			dispatch(loggedinUserTimeUp(data, callback));
 		},
-		changeCustomerProperties: (data, callback) => {
-			dispatch(changeCustomerProperties(data, callback));
+		changecustomerProperties: (data, callback) => {
+			dispatch(changecustomerProperties(data, callback));
 		},
-		customerData:             (data, callback) => {
+		customerData: (data, callback) => {
 			dispatch(customerData(data, callback));
 		},
-		registerUser:             (data, callback) => {
+		registerUser: (data, callback) => {
 			dispatch(registerUser(data, callback));
 		},
-		cartLayerInitialized:     (data, callback) => {
+		cartLayerInitialized: (data, callback) => {
 			dispatch(cartLayerInitialized(data, callback));
 		},
 		forgotPassword: (data, callback) => {
