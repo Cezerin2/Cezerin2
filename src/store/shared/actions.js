@@ -133,7 +133,7 @@ export const addCartItem = item => async (dispatch, getState) => {
 
 const requestAddCartItem = () => ({ type: t.CART_ITEM_ADD_REQUEST });
 
-export const updateCartItemQuantity = (item_id, quantity) => async (
+export const updateCartItemQuantiry = (item_id, quantity) => async (
 	dispatch,
 	getState
 ) => {
@@ -338,7 +338,7 @@ export const registerUser = (data, callback) => async (dispatch, getState) => {
 	dispatch(handleRegisterProperties(response.json));
 };
 
-export const changeCustomerProperties = (data, callback) => async (
+export const changecustomerProperties = (data, callback) => async (
 	dispatch,
 	getState
 ) => {
