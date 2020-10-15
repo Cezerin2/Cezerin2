@@ -92,6 +92,7 @@
   "emptyCheckout": "Ihr Warenkorb ist leer",
   "required": "Pflichtfeld.",
   "emailInvalid": "Bitte geben Sie eine gültige E-Mail Adresse an.",
+  "phoneInvalid": "Bitte geben Sie eine gültige telefon an.",
   "sameAsShipping": "Wie Lieferadresse",
   "edit": "Bearbeiten",
   "next": "Weiter",

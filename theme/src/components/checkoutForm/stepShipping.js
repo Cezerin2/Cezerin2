@@ -3,9 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { themeSettings, text } from '../../lib/settings';
 import InputField from './inputField';
 import TextareaField from './textareaField';
-
-const validateRequired = value =>
-	value && value.length > 0 ? undefined : text.required;
+import { validateRequired } from '../validation';
 
 const getFieldLabelByKey = key => {
 	switch (key) {

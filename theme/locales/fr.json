@@ -90,6 +90,7 @@
   "emptyCheckout": "Votre panier est vide",
   "required": "Ce champs est requis.",
   "emailInvalid": "Merci d'entrer une adresse email valide.",
+  "phoneInvalid": "Merci d'entrer un numéro de téléphone valide.",
   "sameAsShipping": "La même que l'adresse de livraison",
   "edit": "Modifier",
   "next": "Suivant",

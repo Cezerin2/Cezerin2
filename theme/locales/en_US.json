@@ -92,6 +92,7 @@
   "emptyCheckout": "Your cart is empty",
   "required": "This field is required.",
   "emailInvalid": "Please enter a valid email address.",
+  "phoneInvalid": "Please enter a valid phone number.",
   "sameAsShipping": "Same as shipping address",
   "edit": "Edit",
   "next": "Next",

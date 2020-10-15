@@ -88,6 +88,7 @@
   "emptyCheckout": "Seu carrinho está vazio",
   "required": "Este campo é obrigatório.",
   "emailInvalid": "Por favor, digite um email válido.",
+  "phoneInvalid": "Por favor, digite um número de telefone válido.",
   "sameAsShipping": "O mesmo endereço de entrega",
   "edit": "Editar",
   "next": "Próximo",

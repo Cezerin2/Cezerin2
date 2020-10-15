@@ -56,6 +56,7 @@
   "help_slug": "Lo “slug” è una versione URL-friendly del nome. Spesso si usa scrivere tutto in minuscolo e contiene solo lettere, numeri e trattini (-) .",
   "required": "Questo campo è obbligatorio",
   "emailInvalid": "Perfavore inserisci una email valida.",
+  "phoneInvalid": "Perfavore inserisci una telefono valida.",
   "errors_url": "Perfavore inserisci un URL valido.",
   "errors_number": "Perfavore inserisci un numero valido",
   "errors_urlTaken": "URL è gia stato preso o contiene parole riservate",

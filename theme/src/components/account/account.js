@@ -2,16 +2,8 @@ import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import Lscache from 'lscache';
 import { Field, reduxForm } from 'redux-form';
-import api from '../../../dist/lib/api';
-import { themeSettings, text } from '../../lib/settings';
-
-const validateRequired = value =>
-	value && value.length > 0 ? undefined : text.required;
-
-const validateEmail = value =>
-	value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-		? text.emailInvalid
-		: undefined;
+import { text } from '../../lib/settings';
+import { validateEmail, validatePhone, validateRequired } from '../validation';
 
 const ReadOnlyField = ({ name, value }) => (
 	<div className="checkout-field-preview">
@@ -66,10 +58,12 @@ class Account extends React.Component {
 				address1:
 					typeof this.props.customerProperties.customer_settings.addresses !==
 						'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
 					this.props.customerProperties.customer_settings.addresses[0]
 						.address1 !== 'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
 					this.props.customerProperties.customer_settings.addresses[0]
 						.address1 !== null
 						? this.props.customerProperties.customer_settings.addresses[0]
@@ -78,10 +72,12 @@ class Account extends React.Component {
 				address2:
 					typeof this.props.customerProperties.customer_settings.addresses !==
 						'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
 					this.props.customerProperties.customer_settings.addresses[0]
 						.address2 !== 'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
 					this.props.customerProperties.customer_settings.addresses[0]
 						.address2 !== null
 						? this.props.customerProperties.customer_settings.addresses[0]
@@ -90,22 +86,25 @@ class Account extends React.Component {
 				city:
 					typeof this.props.customerProperties.customer_settings.addresses !==
 						'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
-					this.props.customerProperties.customer_settings.addresses[0]
-						.city !== 'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
-					this.props.customerProperties.customer_settings.addresses[0]
-						.city !== null
-						? this.props.customerProperties.customer_settings.addresses[0]
-								.city
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0].city !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0].city !==
+						null
+						? this.props.customerProperties.customer_settings.addresses[0].city
 						: '',
 				postal_code:
 					typeof this.props.customerProperties.customer_settings.addresses !==
 						'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
 					this.props.customerProperties.customer_settings.addresses[0]
 						.postal_code !== 'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
 					this.props.customerProperties.customer_settings.addresses[0]
 						.postal_code !== null
 						? this.props.customerProperties.customer_settings.addresses[0]
@@ -114,22 +113,25 @@ class Account extends React.Component {
 				state:
 					typeof this.props.customerProperties.customer_settings.addresses !==
 						'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
-					this.props.customerProperties.customer_settings.addresses[0]
-						.state !== 'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
-					this.props.customerProperties.customer_settings.addresses[0]
-						.state !== null
-						? this.props.customerProperties.customer_settings.addresses[0]
-								.state
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0].state !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0].state !==
+						null
+						? this.props.customerProperties.customer_settings.addresses[0].state
 						: '',
 				country:
 					typeof this.props.customerProperties.customer_settings.addresses !==
 						'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
 					this.props.customerProperties.customer_settings.addresses[0]
 						.country !== 'undefined' &&
-					this.props.customerProperties.customer_settings.addresses.length > 0 &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
 					this.props.customerProperties.customer_settings.addresses[0]
 						.country !== null
 						? this.props.customerProperties.customer_settings.addresses[0]
@@ -138,77 +140,87 @@ class Account extends React.Component {
 			},
 			shipping_address: {
 				address1:
-				typeof this.props.customerProperties.customer_settings.addresses !==
+					typeof this.props.customerProperties.customer_settings.addresses !==
 						'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.address1 !== 'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.address1 !== null
-					? this.props.customerProperties.customer_settings.addresses[0]
-							.address1
-					: '',
-			address2:
-				typeof this.props.customerProperties.customer_settings.addresses !==
-					'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.address2 !== 'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.address2 !== null
-					? this.props.customerProperties.customer_settings.addresses[0]
-							.address2
-					: '',
-			city:
-				typeof this.props.customerProperties.customer_settings.addresses !==
-					'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.city !== 'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.city !== null
-					? this.props.customerProperties.customer_settings.addresses[0]
-							.city
-					: '',
-			postal_code:
-				typeof this.props.customerProperties.customer_settings.addresses !==
-					'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.postal_code !== 'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.postal_code !== null
-					? this.props.customerProperties.customer_settings.addresses[0]
-							.postal_code
-					: '',
-			state:
-				typeof this.props.customerProperties.customer_settings.addresses !==
-					'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.state !== 'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.state !== null
-					? this.props.customerProperties.customer_settings.addresses[0]
-							.state
-					: '',
-			country:
-				typeof this.props.customerProperties.customer_settings.addresses !==
-					'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.country !== 'undefined' &&
-				this.props.customerProperties.customer_settings.addresses.length > 0 &&
-				this.props.customerProperties.customer_settings.addresses[0]
-					.country !== null
-					? this.props.customerProperties.customer_settings.addresses[0]
-							.country
-					: ''
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address1 !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address1 !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.address1
+						: '',
+				address2:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address2 !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.address2 !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.address2
+						: '',
+				city:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0].city !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0].city !==
+						null
+						? this.props.customerProperties.customer_settings.addresses[0].city
+						: '',
+				postal_code:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.postal_code !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.postal_code !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.postal_code
+						: '',
+				state:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0].state !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0].state !==
+						null
+						? this.props.customerProperties.customer_settings.addresses[0].state
+						: '',
+				country:
+					typeof this.props.customerProperties.customer_settings.addresses !==
+						'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.country !== 'undefined' &&
+					this.props.customerProperties.customer_settings.addresses.length >
+						0 &&
+					this.props.customerProperties.customer_settings.addresses[0]
+						.country !== null
+						? this.props.customerProperties.customer_settings.addresses[0]
+								.country
+						: ''
 			}
 		});
 		this.setState({ reinitialized: true });
@@ -240,6 +252,9 @@ class Account extends React.Component {
 		}
 		if (fieldName === 'email') {
 			validatorsArray.push(validateEmail);
+		}
+		if (fieldName === 'mobile') {
+			validatorsArray.push(validatePhone);
 		}
 
 		return validatorsArray;

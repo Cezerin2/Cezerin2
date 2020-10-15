@@ -78,6 +78,7 @@
   "emptyCheckout": "Il tuo carrello è vuoto",
   "required": "Questo campo è obbligatorio",
   "emailInvalid": "Perfavore inserisci una email valida.",
+  "phoneInvalid": "Perfavore inserisci una telefono valida.",
   "sameAsShipping": "Uguale all'indirizzo di spedizione",
   "edit": "Modifica",
   "next": "Prossimo",
