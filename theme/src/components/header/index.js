@@ -55,7 +55,7 @@ export default class Header extends React.Component {
 			this.props.state.cart !== nextProps.state.cart &&
 			this.props.state.currentPage.path !== '/checkout'
 		) {
-			this.showCart();
+			this.setSiteState(state.CART);
 		}
 	}
 
