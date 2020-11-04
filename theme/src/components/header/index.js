@@ -35,13 +35,18 @@ const BackButton = ({ onClick }) => (
 	</span>
 );
 
+const state = {
+	MENU: 'menu',
+	CART: 'cart',
+	SITE: 'site'
+};
+
 export default class Header extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mobileMenuIsActive: false,
-			mobileSearchIsActive: false,
-			cartIsActive: false
+			siteState: state.SITE,
+			mobileSearchIsActive: false
 		};
 	}
 
@@ -54,12 +59,39 @@ export default class Header extends React.Component {
 		}
 	}
 
+	mobileMenuIsActive = () => {
+		return this.state.siteState === state.MENU
+	}
+
+	cartIsActive = () => {
+		return this.state.siteState === state.CART
+	}
+
+	setSiteState (state) {
+		this.setState({ siteState: state });
+		this.handleState(state)
+	}
+
+	handleState(newState) {
+		switch(newState) {
+			case state.CART:
+				document.body.classList.add('noscroll');
+				if (this.state.mobileSearchIsActive) {
+					this.searchToggle()
+				}
+				break;
+    		case state.MENU:
+				document.body.classList.add('noscroll');
+				break;
+    		case state.SITE:
+				document.body.classList.remove('noscroll');
+				break;
+		}
+	};
+
 	menuToggle = () => {
-		this.setState({
-			mobileMenuIsActive: !this.state.mobileMenuIsActive,
-			cartIsActive: false
-		});
-		document.body.classList.toggle('noscroll');
+		let newState = this.state.siteState == state.MENU ? state.SITE : state.MENU
+		this.setSiteState(newState)
 	};
 
 	searchToggle = () => {
@@ -69,24 +101,9 @@ export default class Header extends React.Component {
 		document.body.classList.toggle('search-active');
 	};
 
-	menuClose = () => {
-		this.setState({ mobileMenuIsActive: false });
-		document.body.classList.remove('noscroll');
-	};
-
-	closeAll = () => {
-		this.setState({
-			cartIsActive: false,
-			mobileMenuIsActive: false
-		});
-		document.body.classList.remove('noscroll');
-	};
-
 	cartToggle = () => {
-		this.setState({
-			cartIsActive: !this.state.cartIsActive,
-			mobileMenuIsActive: false
-		});
+		let newState = this.state.siteState == state.CART ? state.SITE : state.CART
+		this.setSiteState(newState)
 
 		if (
 			this.props.state.cart &&
@@ -97,15 +114,6 @@ export default class Header extends React.Component {
 				cartlayerBtnInitialized: true
 			});
 		}
-		document.body.classList.toggle('noscroll');
-	};
-
-	showCart = () => {
-		this.setState({
-			cartIsActive: true,
-			mobileMenuIsActive: false
-		});
-		document.body.classList.add('noscroll');
 	};
 
 	handleLogin = () => {
@@ -149,7 +157,7 @@ export default class Header extends React.Component {
 			cartlayerBtnInitialized
 		} = this.props.state;
 
-		const classToggle = this.state.mobileMenuIsActive
+		const classToggle = this.mobileMenuIsActive()
 			? 'navbar-burger is-hidden-tablet is-active'
 			: 'navbar-burger is-hidden-tablet';
 		const showBackButton =
@@ -173,7 +181,7 @@ export default class Header extends React.Component {
 							</div>
 
 							<div className="column is-4 has-text-centered column-logo">
-								<Logo src={settings.logo} onClick={this.closeAll} alt="logo" />
+								<Logo src={settings.logo} onClick={() => this.setSiteState(state.SITE)} alt="logo" />
 							</div>
 
 							<div className="column is-4 has-text-right header-block-right">
@@ -199,11 +207,11 @@ export default class Header extends React.Component {
 								<CartIndicator
 									cart={cart}
 									onClick={this.cartToggle}
-									cartIsActive={this.state.cartIsActive}
+									cartIsActive={this.cartIsActive()}
 									cartlayerBtnInitialized={cartlayerBtnInitialized}
 								/>
 								<div
-									className={this.state.cartIsActive ? 'mini-cart-open' : ''}
+									className={this.cartIsActive() ? 'mini-cart-open' : ''}
 								>
 									<Cart
 										cart={cart}
@@ -228,23 +236,23 @@ export default class Header extends React.Component {
 
 				<div
 					className={
-						this.state.mobileMenuIsActive || this.state.cartIsActive
+						this.mobileMenuIsActive() || this.cartIsActive()
 							? 'dark-overflow'
 							: ''
 					}
-					onClick={this.closeAll}
+					onClick={() => this.setSiteState(state.SITE)}
 				/>
 				<div
 					className={
 						'mobile-nav is-hidden-tablet' +
-						(this.state.mobileMenuIsActive ? ' mobile-nav-open' : '')
+						(this.mobileMenuIsActive() ? ' mobile-nav-open' : '')
 					}
 				>
 					<HeadMenu
 						isMobile={true}
 						categories={categories}
 						location={location}
-						onClick={this.menuClose}
+						onClick={() => this.setSiteState(state.SITE)}
 					/>
 				</div>
 			</Fragment>
