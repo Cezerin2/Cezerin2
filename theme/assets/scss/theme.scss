@@ -116,6 +116,11 @@ MOBILE
     position:fixed;
     overflow:hidden;
   }
+	
+	body.sidebar-active {
+    position:fixed;
+    overflow:hidden;
+  }
 }
 
 @import "homeSlider.scss";
