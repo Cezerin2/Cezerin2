@@ -18,12 +18,12 @@ export default class ProductFilter extends React.Component {
 		this.setState({
 			sidebarIsActive: !this.state.sidebarIsActive
 		});
-		document.body.classList.toggle('noscroll');
+		document.body.classList.toggle('sidebar-active');
 	};
 
 	sidebarClose = () => {
 		this.setState({ sidebarIsActive: false });
-		document.body.classList.remove('noscroll');
+		document.body.classList.remove('sidebar-active');
 	};
 
 	render() {
