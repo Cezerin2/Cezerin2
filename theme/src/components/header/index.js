@@ -142,7 +142,7 @@ export default class Header extends React.Component {
 	};
 
 	handleGoBack = () => {
-		this.closeAll();
+		this.setSiteState(state.SITE)
 		this.props.goBack();
 	};
 
