@@ -17,3 +17,4 @@ dist/*
 logs/*
 npm-debug.log*
 *.zip
+.devcontainer

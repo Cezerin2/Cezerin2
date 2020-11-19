@@ -1,4 +1,6 @@
 .mini-cart {
+  visibility: hidden;
+  transition: opacity .3s,visibility .3s, right .4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   position: absolute;
   width: 460px;
   top: calc(100%);
@@ -8,7 +10,6 @@
   box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.2);
   border: 1px solid #f3f3f3;
   border-width: 1px 0 0 1px;
-  transition: right 200ms ease-in-out;
   padding: 20px;
   text-align: left;
   font-size: 90%;
@@ -18,6 +19,7 @@
 
 .mini-cart-open .mini-cart {
   right: 0;
+  visibility: visible;
 }
 
 .mini-cart-item-price {
