@@ -47,6 +47,7 @@ $ig-blue: #636363 !default;
   height: 100%;
   z-index: 1001;
   width: 100%;
+  transition: ease-in-out .5s;
 }
 
 body {
