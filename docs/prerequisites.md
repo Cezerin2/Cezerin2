@@ -27,10 +27,10 @@ NodeJS 11.x installation:
 
 ```shell
 # Using Ubuntu
-curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install -y nodejs
 # Using Debian, as root
-curl -sL https://deb.nodesource.com/setup_11.x | bash -
+curl -sL https://deb.nodesource.com/setup_14.x | bash -
 apt-get install -y nodejs (edited)
 ```
 
@@ -51,4 +51,11 @@ npm i -g pm2
 ```shell
 sudo apt-get install zip
 sudo apt-get install unzip
+```
+
+
+- **GCC Compiler**
+
+```shell
+sudo apt-get install build-essential
 ```
