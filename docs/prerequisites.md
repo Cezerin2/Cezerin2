@@ -21,9 +21,9 @@ systemctl start mongod
 systemctl enable mongod
 ```
 
-- **Node.js `v11.x`**
+- **Node.js `v14.x`**
 
-NodeJS 11.x installation:
+NodeJS 14.x installation:
 
 ```shell
 # Using Ubuntu
