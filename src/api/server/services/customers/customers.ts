@@ -1,11 +1,11 @@
-import { ObjectID } from 'mongodb';
-import { db } from '../../lib/mongo';
-import utils from '../../lib/utils';
-import parse from '../../lib/parse';
-import webhooks from '../../lib/webhooks';
-import CustomerGroupsService from './customerGroups';
-import AuthHeader from '../../lib/auth-header';
-import security from '../../lib/security';
+import { ObjectID } from "mongodb"
+import { db } from "../../lib/mongo"
+import utils from "../../lib/utils"
+import parse from "../../lib/parse"
+import webhooks from "../../lib/webhooks"
+import CustomerGroupsService from "./customerGroups"
+import AuthHeader from "../../lib/auth-header"
+import security from "../../lib/security"
 
 class CustomersService {
 	constructor() {}
@@ -20,162 +20,162 @@ class CustomersService {
 		// orders_count_to
 		// orders_count_from
 
-		let filter = {};
-		const id = parse.getObjectIDIfValid(params.id);
-		const group_id = parse.getObjectIDIfValid(params.group_id);
+		let filter = {}
+		const id = parse.getObjectIDIfValid(params.id)
+		const group_id = parse.getObjectIDIfValid(params.group_id)
 
 		if (id) {
-			filter._id = new ObjectID(id);
+			filter._id = new ObjectID(id)
 		}
 
 		if (group_id) {
-			filter.group_id = group_id;
+			filter.group_id = group_id
 		}
 
 		if (params.email) {
-			filter.email = params.email.toLowerCase();
+			filter.email = params.email.toLowerCase()
 		}
 
 		if (params.search) {
-			filter['$or'] = [
-				{ email: new RegExp(params.search, 'i') },
-				{ mobile: new RegExp(params.search, 'i') },
-				{ $text: { $search: params.search } }
-			];
+			filter["$or"] = [
+				{ email: new RegExp(params.search, "i") },
+				{ mobile: new RegExp(params.search, "i") },
+				{ $text: { $search: params.search } },
+			]
 		}
 
-		return filter;
+		return filter
 	}
 
 	getCustomers(params = {}) {
-		let filter = this.getFilter(params);
-		const limit = parse.getNumberIfPositive(params.limit) || 1000;
-		const offset = parse.getNumberIfPositive(params.offset) || 0;
+		let filter = this.getFilter(params)
+		const limit = parse.getNumberIfPositive(params.limit) || 1000
+		const offset = parse.getNumberIfPositive(params.offset) || 0
 
 		return Promise.all([
 			CustomerGroupsService.getGroups(),
 			db
-				.collection('customers')
+				.collection("customers")
 				.find(filter)
 				.sort({ date_created: -1 })
 				.skip(offset)
 				.limit(limit)
 				.toArray(),
-			db.collection('customers').countDocuments(filter)
+			db.collection("customers").countDocuments(filter),
 		]).then(([customerGroups, customers, customersCount]) => {
 			const items = customers.map(customer =>
 				this.changeProperties(customer, customerGroups)
-			);
+			)
 			const result = {
 				total_count: customersCount,
 				has_more: offset + items.length < customersCount,
-				data: items
-			};
-			return result;
-		});
+				data: items,
+			}
+			return result
+		})
 	}
 
 	getSingleCustomer(id) {
 		if (!ObjectID.isValid(id)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
 		return this.getCustomers({ id: id }).then(items =>
 			items.data.length > 0 ? items.data[0] : {}
-		);
+		)
 	}
 
 	async addCustomer(data) {
-		const customer = this.getValidDocumentForInsert(data);
+		const customer = this.getValidDocumentForInsert(data)
 
 		// is email unique
 		if (customer.email && customer.email.length > 0) {
 			const customerCount = await db
-				.collection('customers')
-				.countDocuments({ email: customer.email });
+				.collection("customers")
+				.countDocuments({ email: customer.email })
 			if (customerCount > 0) {
-				return Promise.reject('Customer email must be unique');
+				return Promise.reject("Customer email must be unique")
 			}
 		}
 
 		const insertResponse = await db
-			.collection('customers')
-			.insertMany([customer]);
-		const newCustomerId = insertResponse.ops[0]._id.toString();
-		const newCustomer = await this.getSingleCustomer(newCustomerId);
+			.collection("customers")
+			.insertMany([customer])
+		const newCustomerId = insertResponse.ops[0]._id.toString()
+		const newCustomer = await this.getSingleCustomer(newCustomerId)
 		await webhooks.trigger({
 			event: webhooks.events.CUSTOMER_CREATED,
-			payload: newCustomer
-		});
-		return newCustomer;
+			payload: newCustomer,
+		})
+		return newCustomer
 	}
 
 	async updateCustomer(id, data) {
 		if (!ObjectID.isValid(id)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
-		const customerObjectID = new ObjectID(id);
-		const customer = this.getValidDocumentForUpdate(id, data);
+		const customerObjectID = new ObjectID(id)
+		const customer = this.getValidDocumentForUpdate(id, data)
 
 		// is email unique
 		if (customer.email && customer.email.length > 0) {
-			const customerCount = await db.collection('customers').countDocuments({
+			const customerCount = await db.collection("customers").countDocuments({
 				_id: {
-					$ne: customerObjectID
+					$ne: customerObjectID,
 				},
-				email: customer.email
-			});
+				email: customer.email,
+			})
 
 			if (customerCount > 0) {
-				return Promise.reject('Customer email must be unique');
+				return Promise.reject("Customer email must be unique")
 			}
 		}
 
-		await db.collection('customers').updateOne(
+		await db.collection("customers").updateOne(
 			{
-				_id: customerObjectID
+				_id: customerObjectID,
 			},
 			{
-				$set: customer
+				$set: customer,
 			}
-		);
+		)
 
-		const updatedCustomer = await this.getSingleCustomer(id);
+		const updatedCustomer = await this.getSingleCustomer(id)
 		await webhooks.trigger({
 			event: webhooks.events.CUSTOMER_UPDATED,
-			payload: updatedCustomer
-		});
-		return updatedCustomer;
+			payload: updatedCustomer,
+		})
+		return updatedCustomer
 	}
 
 	updateCustomerStatistics(customerId, totalSpent, ordersCount) {
 		if (!ObjectID.isValid(customerId)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
-		const customerObjectID = new ObjectID(customerId);
+		const customerObjectID = new ObjectID(customerId)
 		const customerData = {
 			total_spent: totalSpent,
-			orders_count: ordersCount
-		};
+			orders_count: ordersCount,
+		}
 
 		return db
-			.collection('customers')
-			.updateOne({ _id: customerObjectID }, { $set: customerData });
+			.collection("customers")
+			.updateOne({ _id: customerObjectID }, { $set: customerData })
 	}
 
 	async deleteCustomer(customerId) {
 		if (!ObjectID.isValid(customerId)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
-		const customerObjectID = new ObjectID(customerId);
-		const customer = await this.getSingleCustomer(customerId);
+		const customerObjectID = new ObjectID(customerId)
+		const customer = await this.getSingleCustomer(customerId)
 		const deleteResponse = await db
-			.collection('customers')
-			.deleteOne({ _id: customerObjectID });
+			.collection("customers")
+			.deleteOne({ _id: customerObjectID })
 		await webhooks.trigger({
 			event: webhooks.events.CUSTOMER_DELETED,
-			payload: customer
-		});
-		return deleteResponse.deletedCount > 0;
+			payload: customer,
+		})
+		return deleteResponse.deletedCount > 0
 	}
 
 	getValidDocumentForInsert(data) {
@@ -183,376 +183,375 @@ class CustomersService {
 			date_created: new Date(),
 			date_updated: null,
 			total_spent: 0,
-			orders_count: 0
-		};
+			orders_count: 0,
+		}
 
-		customer.note = parse.getString(data.note);
-		customer.email = parse.getString(data.email).toLowerCase();
-		customer.mobile = parse.getString(data.mobile).toLowerCase();
-		customer.full_name = parse.getString(data.full_name);
-		customer.first_name = parse.getString(data.first_name);
-		customer.last_name = parse.getString(data.last_name);
-		customer.password = parse.getString(data.password);
-		customer.gender = parse.getString(data.gender).toLowerCase();
-		customer.group_id = parse.getObjectIDIfValid(data.group_id);
-		customer.tags = parse.getArrayIfValid(data.tags) || [];
-		customer.social_accounts =
-			parse.getArrayIfValid(data.social_accounts) || [];
-		customer.birthdate = parse.getDateIfValid(data.birthdate);
-		customer.addresses = this.validateAddresses(data.addresses);
-		customer.browser = parse.getBrowser(data.browser);
+		customer.note = parse.getString(data.note)
+		customer.email = parse.getString(data.email).toLowerCase()
+		customer.mobile = parse.getString(data.mobile).toLowerCase()
+		customer.full_name = parse.getString(data.full_name)
+		customer.first_name = parse.getString(data.first_name)
+		customer.last_name = parse.getString(data.last_name)
+		customer.password = parse.getString(data.password)
+		customer.gender = parse.getString(data.gender).toLowerCase()
+		customer.group_id = parse.getObjectIDIfValid(data.group_id)
+		customer.tags = parse.getArrayIfValid(data.tags) || []
+		customer.social_accounts = parse.getArrayIfValid(data.social_accounts) || []
+		customer.birthdate = parse.getDateIfValid(data.birthdate)
+		customer.addresses = this.validateAddresses(data.addresses)
+		customer.browser = parse.getBrowser(data.browser)
 
-		return customer;
+		return customer
 	}
 
 	validateAddresses(addresses) {
 		if (addresses && addresses.length > 0) {
 			let validAddresses = addresses.map(addressItem =>
 				parse.getCustomerAddress(addressItem)
-			);
-			return validAddresses;
+			)
+			return validAddresses
 		} else {
-			return [];
+			return []
 		}
 	}
 
 	getValidDocumentForUpdate(id, data) {
 		if (Object.keys(data).length === 0) {
-			return new Error('Required fields are missing');
+			return new Error("Required fields are missing")
 		}
 
 		let customer = {
-			date_updated: new Date()
-		};
+			date_updated: new Date(),
+		}
 
 		if (data.note !== undefined) {
-			customer.note = parse.getString(data.note);
+			customer.note = parse.getString(data.note)
 		}
 
 		if (data.email !== undefined) {
-			customer.email = parse.getString(data.email).toLowerCase();
+			customer.email = parse.getString(data.email).toLowerCase()
 		}
 
 		if (data.mobile !== undefined) {
-			customer.mobile = parse.getString(data.mobile).toLowerCase();
+			customer.mobile = parse.getString(data.mobile).toLowerCase()
 		}
 
 		if (data.full_name !== undefined) {
-			customer.full_name = parse.getString(data.full_name);
+			customer.full_name = parse.getString(data.full_name)
 		}
 
 		if (data.first_name !== undefined) {
-			customer.first_name = parse.getString(data.first_name);
+			customer.first_name = parse.getString(data.first_name)
 		}
 
 		if (data.last_name !== undefined) {
-			customer.last_name = parse.getString(data.last_name);
+			customer.last_name = parse.getString(data.last_name)
 		}
 
 		if (data.password !== undefined) {
-			customer.password = parse.getString(data.password);
+			customer.password = parse.getString(data.password)
 		}
 
 		if (data.gender !== undefined) {
-			customer.gender = parse.getString(data.gender);
+			customer.gender = parse.getString(data.gender)
 		}
 
 		if (data.group_id !== undefined) {
-			customer.group_id = parse.getObjectIDIfValid(data.group_id);
+			customer.group_id = parse.getObjectIDIfValid(data.group_id)
 		}
 
 		if (data.tags !== undefined) {
-			customer.tags = parse.getArrayIfValid(data.tags) || [];
+			customer.tags = parse.getArrayIfValid(data.tags) || []
 		}
 
 		if (data.social_accounts !== undefined) {
 			customer.social_accounts =
-				parse.getArrayIfValid(data.social_accounts) || [];
+				parse.getArrayIfValid(data.social_accounts) || []
 		}
 
 		if (data.birthdate !== undefined) {
-			customer.birthdate = parse.getDateIfValid(data.birthdate);
+			customer.birthdate = parse.getDateIfValid(data.birthdate)
 		}
 
 		if (data.addresses !== undefined) {
-			customer.addresses = this.validateAddresses(data.addresses);
+			customer.addresses = this.validateAddresses(data.addresses)
 		}
 
 		if (data.browser !== undefined) {
-			customer.browser = parse.getBrowser(data.browser);
+			customer.browser = parse.getBrowser(data.browser)
 		}
 
-		return customer;
+		return customer
 	}
 
 	changeProperties(customer, customerGroups) {
 		if (customer) {
-			customer.id = customer._id.toString();
-			delete customer._id;
+			customer.id = customer._id.toString()
+			delete customer._id
 
 			const customerGroup = customer.group_id
 				? customerGroups.find(
 						group => group.id === customer.group_id.toString()
 				  )
-				: null;
+				: null
 
 			customer.group_name =
-				customerGroup && customerGroup.name ? customerGroup.name : '';
+				customerGroup && customerGroup.name ? customerGroup.name : ""
 
 			if (customer.addresses && customer.addresses.length === 1) {
-				customer.billing = customer.shipping = customer.addresses[0];
+				customer.billing = customer.shipping = customer.addresses[0]
 			} else if (customer.addresses && customer.addresses.length > 1) {
 				let default_billing = customer.addresses.find(
 					address => address.default_billing
-				);
+				)
 				let default_shipping = customer.addresses.find(
 					address => address.default_shipping
-				);
+				)
 				customer.billing = default_billing
 					? default_billing
-					: customer.addresses[0];
+					: customer.addresses[0]
 				customer.shipping = default_shipping
 					? default_shipping
-					: customer.addresses[0];
+					: customer.addresses[0]
 			} else {
-				customer.billing = {};
-				customer.shipping = {};
+				customer.billing = {}
+				customer.shipping = {}
 			}
 		}
 
-		return customer;
+		return customer
 	}
 
 	addAddress(customer_id, address) {
 		if (!ObjectID.isValid(customer_id)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
-		let customerObjectID = new ObjectID(customer_id);
-		const validAddress = parse.getCustomerAddress(address);
+		let customerObjectID = new ObjectID(customer_id)
+		const validAddress = parse.getCustomerAddress(address)
 
-		return db.collection('customers').updateOne(
+		return db.collection("customers").updateOne(
 			{
-				_id: customerObjectID
+				_id: customerObjectID,
 			},
 			{
 				$push: {
-					addresses: validAddress
-				}
+					addresses: validAddress,
+				},
 			}
-		);
+		)
 	}
 
 	createObjectToUpdateAddressFields(address) {
-		let fields = {};
+		let fields = {}
 
 		if (address.address1 !== undefined) {
-			fields['addresses.$.address1'] = parse.getString(address.address1);
+			fields["addresses.$.address1"] = parse.getString(address.address1)
 		}
 
 		if (address.address2 !== undefined) {
-			fields['addresses.$.address2'] = parse.getString(address.address2);
+			fields["addresses.$.address2"] = parse.getString(address.address2)
 		}
 
 		if (address.city !== undefined) {
-			fields['addresses.$.city'] = parse.getString(address.city);
+			fields["addresses.$.city"] = parse.getString(address.city)
 		}
 
 		if (address.country !== undefined) {
-			fields['addresses.$.country'] = parse
+			fields["addresses.$.country"] = parse
 				.getString(address.country)
-				.toUpperCase();
+				.toUpperCase()
 		}
 
 		if (address.state !== undefined) {
-			fields['addresses.$.state'] = parse.getString(address.state);
+			fields["addresses.$.state"] = parse.getString(address.state)
 		}
 
 		if (address.phone !== undefined) {
-			fields['addresses.$.phone'] = parse.getString(address.phone);
+			fields["addresses.$.phone"] = parse.getString(address.phone)
 		}
 
 		if (address.postal_code !== undefined) {
-			fields['addresses.$.postal_code'] = parse.getString(address.postal_code);
+			fields["addresses.$.postal_code"] = parse.getString(address.postal_code)
 		}
 
 		if (address.full_name !== undefined) {
-			fields['addresses.$.full_name'] = parse.getString(address.full_name);
+			fields["addresses.$.full_name"] = parse.getString(address.full_name)
 		}
 
 		if (address.company !== undefined) {
-			fields['addresses.$.company'] = parse.getString(address.company);
+			fields["addresses.$.company"] = parse.getString(address.company)
 		}
 
 		if (address.tax_number !== undefined) {
-			fields['addresses.$.tax_number'] = parse.getString(address.tax_number);
+			fields["addresses.$.tax_number"] = parse.getString(address.tax_number)
 		}
 
 		if (address.coordinates !== undefined) {
-			fields['addresses.$.coordinates'] = address.coordinates;
+			fields["addresses.$.coordinates"] = address.coordinates
 		}
 
 		if (address.details !== undefined) {
-			fields['addresses.$.details'] = address.details;
+			fields["addresses.$.details"] = address.details
 		}
 
 		if (address.default_billing !== undefined) {
-			fields['addresses.$.default_billing'] = parse.getBooleanIfValid(
+			fields["addresses.$.default_billing"] = parse.getBooleanIfValid(
 				address.default_billing,
 				false
-			);
+			)
 		}
 
 		if (address.default_shipping !== undefined) {
-			fields['addresses.$.default_shipping'] = parse.getBooleanIfValid(
+			fields["addresses.$.default_shipping"] = parse.getBooleanIfValid(
 				address.default_shipping,
 				false
-			);
+			)
 		}
 
-		return fields;
+		return fields
 	}
 
 	updateAddress(customer_id, address_id, data) {
 		if (!ObjectID.isValid(customer_id) || !ObjectID.isValid(address_id)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
-		let customerObjectID = new ObjectID(customer_id);
-		let addressObjectID = new ObjectID(address_id);
-		const addressFields = this.createObjectToUpdateAddressFields(data);
+		let customerObjectID = new ObjectID(customer_id)
+		let addressObjectID = new ObjectID(address_id)
+		const addressFields = this.createObjectToUpdateAddressFields(data)
 
-		return db.collection('customers').updateOne(
+		return db.collection("customers").updateOne(
 			{
 				_id: customerObjectID,
-				'addresses.id': addressObjectID
+				"addresses.id": addressObjectID,
 			},
 			{ $set: addressFields }
-		);
+		)
 	}
 
 	deleteAddress(customer_id, address_id) {
 		if (!ObjectID.isValid(customer_id) || !ObjectID.isValid(address_id)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
-		let customerObjectID = new ObjectID(customer_id);
-		let addressObjectID = new ObjectID(address_id);
+		let customerObjectID = new ObjectID(customer_id)
+		let addressObjectID = new ObjectID(address_id)
 
-		return db.collection('customers').updateOne(
+		return db.collection("customers").updateOne(
 			{
-				_id: customerObjectID
+				_id: customerObjectID,
 			},
 			{
 				$pull: {
 					addresses: {
-						id: addressObjectID
-					}
-				}
+						id: addressObjectID,
+					},
+				},
 			}
-		);
+		)
 	}
 
 	setDefaultBilling(customer_id, address_id) {
 		if (!ObjectID.isValid(customer_id) || !ObjectID.isValid(address_id)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
-		let customerObjectID = new ObjectID(customer_id);
-		let addressObjectID = new ObjectID(address_id);
+		let customerObjectID = new ObjectID(customer_id)
+		let addressObjectID = new ObjectID(address_id)
 
 		return db
-			.collection('customers')
+			.collection("customers")
 			.updateOne(
 				{
 					_id: customerObjectID,
-					'addresses.default_billing': true
+					"addresses.default_billing": true,
 				},
 				{
 					$set: {
-						'addresses.$.default_billing': false
-					}
+						"addresses.$.default_billing": false,
+					},
 				}
 			)
 			.then(res => {
-				return db.collection('customers').updateOne(
+				return db.collection("customers").updateOne(
 					{
 						_id: customerObjectID,
-						'addresses.id': addressObjectID
+						"addresses.id": addressObjectID,
 					},
 					{
 						$set: {
-							'addresses.$.default_billing': true
-						}
+							"addresses.$.default_billing": true,
+						},
 					}
-				);
-			});
+				)
+			})
 	}
 
 	setDefaultShipping(customer_id, address_id) {
 		if (!ObjectID.isValid(customer_id) || !ObjectID.isValid(address_id)) {
-			return Promise.reject('Invalid identifier');
+			return Promise.reject("Invalid identifier")
 		}
-		let customerObjectID = new ObjectID(customer_id);
-		let addressObjectID = new ObjectID(address_id);
+		let customerObjectID = new ObjectID(customer_id)
+		let addressObjectID = new ObjectID(address_id)
 
 		return db
-			.collection('customers')
+			.collection("customers")
 			.updateOne(
 				{
 					_id: customerObjectID,
-					'addresses.default_shipping': true
+					"addresses.default_shipping": true,
 				},
 				{
 					$set: {
-						'addresses.$.default_shipping': false
-					}
+						"addresses.$.default_shipping": false,
+					},
 				}
 			)
 			.then(res => {
-				return db.collection('customers').updateOne(
+				return db.collection("customers").updateOne(
 					{
 						_id: customerObjectID,
-						'addresses.id': addressObjectID
+						"addresses.id": addressObjectID,
 					},
 					{
 						$set: {
-							'addresses.$.default_shipping': true
-						}
+							"addresses.$.default_shipping": true,
+						},
 					}
-				);
-			});
+				)
+			})
 	}
 
 	logout() {
 		// remove user from local storage to log user out
-		localStorage.removeItem('user');
+		localStorage.removeItem("user")
 	}
 
 	getAll() {
 		const requestOptions = {
-			method: 'GET'
+			method: "GET",
 			//headers: authHeader()
-		};
+		}
 
 		return fetch(`${security.storeBaseUrl}/users`, requestOptions).then(
 			handleResponse
-		);
+		)
 	}
 
 	handleResponse(response) {
 		return response.text().then(text => {
-			const data = text && JSON.parse(text);
+			const data = text && JSON.parse(text)
 			if (!response.ok) {
 				if (response.status === 401) {
 					// auto logout if 401 response returned from api
-					logout();
-					location.reload(true);
+					logout()
+					location.reload(true)
 				}
 
-				const error = (data && data.message) || response.statusText;
-				return Promise.reject(error);
+				const error = (data && data.message) || response.statusText
+				return Promise.reject(error)
 			}
 
-			return data;
-		});
+			return data
+		})
 	}
 }
 
-export default new CustomersService();
+export default new CustomersService()

@@ -1,84 +1,84 @@
-import { db } from '../../lib/mongo';
-import parse from '../../lib/parse';
+import { db } from "../../lib/mongo"
+import parse from "../../lib/parse"
 
 class ImportSettingsService {
 	constructor() {
 		this.defaultSettings = {
-			apikey: '',
-			sheetid: '',
-			range: ''
-		};
+			apikey: "",
+			sheetid: "",
+			range: "",
+		}
 	}
 
 	getImportSettings() {
 		return db
-			.collection('importSettings')
+			.collection("importSettings")
 			.findOne()
 			.then(settings => {
-				return this.changeProperties(settings);
-			});
+				return this.changeProperties(settings)
+			})
 	}
 
 	updateImportSettings(data) {
-		const settings = this.getValidDocumentForUpdate(data);
+		const settings = this.getValidDocumentForUpdate(data)
 		return this.insertDefaultSettingsIfEmpty().then(() =>
 			db
-				.collection('importSettings')
+				.collection("importSettings")
 				.updateOne(
 					{},
 					{
-						$set: settings
+						$set: settings,
 					},
 					{ upsert: true }
 				)
 				.then(res => this.getImportSettings())
-		);
+		)
 	}
 
 	insertDefaultSettingsIfEmpty() {
 		return db
-			.collection('importSettings')
+			.collection("importSettings")
 			.countDocuments({})
 			.then(count => {
 				if (count === 0) {
-					return db.collection('importSettings').insertOne(this.defaultSettings);
+					return db.collection("importSettings").insertOne(this.defaultSettings)
 				} else {
-					return;
+					return
 				}
-			});
+			})
 	}
 
 	getValidDocumentForUpdate(data) {
 		if (Object.keys(data).length === 0) {
-			return new Error('Required fields are missing');
+			return new Error("Required fields are missing")
 		}
 
-		let settings = {};
+		let settings = {}
 
 		if (data.apikey !== undefined) {
-			settings.apikey = parse.getString(data.apikey);
+			settings.apikey = parse.getString(data.apikey)
 		}
 
 		if (data.sheetid !== undefined) {
-			settings.sheetid = parse.getString(data.sheetid);
+			settings.sheetid = parse.getString(data.sheetid)
 		}
 
 		if (data.range !== undefined) {
-			settings.range = parse.getString(data.range);
+			settings.range = parse.getString(data.range)
 		}
 
-		return settings;
+		return settings
 	}
 
 	changeProperties(settings) {
 		if (settings) {
-			delete settings._id;
+			delete settings._id
 		} else {
-			return this.defaultSettings;
+			return this.defaultSettings
 		}
 
-		return settings;
+		return settings
 	}
 }
 
-export default new ImportSettingsService();
+export default new ImportSettingsService()

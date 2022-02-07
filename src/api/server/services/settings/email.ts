@@ -1,99 +1,99 @@
-import { db } from '../../lib/mongo';
-import parse from '../../lib/parse';
+import { db } from "../../lib/mongo"
+import parse from "../../lib/parse"
 
 class EmailSettingsService {
 	constructor() {
 		this.defaultSettings = {
-			host: '',
-			port: '',
-			user: '',
+			host: "",
+			port: "",
+			user: "",
 			pass: 0,
-			from_name: '',
-			from_address: ''
-		};
+			from_name: "",
+			from_address: "",
+		}
 	}
 
 	getEmailSettings() {
 		return db
-			.collection('emailSettings')
+			.collection("emailSettings")
 			.findOne()
 			.then(settings => {
-				return this.changeProperties(settings);
-			});
+				return this.changeProperties(settings)
+			})
 	}
 
 	updateEmailSettings(data) {
-		const settings = this.getValidDocumentForUpdate(data);
+		const settings = this.getValidDocumentForUpdate(data)
 		return this.insertDefaultSettingsIfEmpty().then(() =>
 			db
-				.collection('emailSettings')
+				.collection("emailSettings")
 				.updateOne(
 					{},
 					{
-						$set: settings
+						$set: settings,
 					},
 					{ upsert: true }
 				)
 				.then(res => this.getEmailSettings())
-		);
+		)
 	}
 
 	insertDefaultSettingsIfEmpty() {
 		return db
-			.collection('emailSettings')
+			.collection("emailSettings")
 			.countDocuments({})
 			.then(count => {
 				if (count === 0) {
-					return db.collection('emailSettings').insertOne(this.defaultSettings);
+					return db.collection("emailSettings").insertOne(this.defaultSettings)
 				} else {
-					return;
+					return
 				}
-			});
+			})
 	}
 
 	getValidDocumentForUpdate(data) {
 		if (Object.keys(data).length === 0) {
-			return new Error('Required fields are missing');
+			return new Error("Required fields are missing")
 		}
 
-		let settings = {};
+		let settings = {}
 
 		if (data.host !== undefined) {
-			settings.host = parse.getString(data.host).toLowerCase();
+			settings.host = parse.getString(data.host).toLowerCase()
 		}
 
 		if (data.port !== undefined) {
-			settings.port = parse.getNumberIfPositive(data.port);
+			settings.port = parse.getNumberIfPositive(data.port)
 		}
 
 		if (data.user !== undefined) {
-			settings.user = parse.getString(data.user);
+			settings.user = parse.getString(data.user)
 		}
 
 		if (data.pass !== undefined) {
-			settings.pass = parse.getString(data.pass);
+			settings.pass = parse.getString(data.pass)
 		}
 
 		if (data.from_name !== undefined) {
-			settings.from_name = parse.getString(data.from_name);
+			settings.from_name = parse.getString(data.from_name)
 		}
 
 		if (data.from_address !== undefined) {
-			settings.from_address = parse.getString(data.from_address);
+			settings.from_address = parse.getString(data.from_address)
 		}
 
-		return settings;
+		return settings
 	}
 
 	changeProperties(settings) {
 		if (settings) {
-			delete settings._id;
+			delete settings._id
 		} else {
-			return this.defaultSettings;
+			return this.defaultSettings
 		}
 
-		return settings;
+		return settings
 	}
 }
 
-export default new EmailSettingsService();
+export default new EmailSettingsService()
