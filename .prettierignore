@@ -1,6 +1,5 @@
 dist/
 theme/assets/
 theme/dist/
-package-lock.json
-package.json
-yarn.lock
+public/admin-assets/tinymce
+public/admin-assets/css/*.min.css
