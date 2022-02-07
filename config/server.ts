@@ -10,8 +10,7 @@ const dbCred =
 const dbUrl =
   process.env.DB_URL || `mongodb://${dbCred}${dbHost}:${dbPort}/${dbName}`
 
-// Must be changed on server.ts too
-module.exports = {
+const config = {
   // used by Store (server side)
   apiBaseUrl: `http://localhost:3001/api/v1`,
 
@@ -41,7 +40,6 @@ module.exports = {
     fromAddress: "vam@test.com",
   },
   // key to sign tokens
-  // Need to be changed at theme\src\components\auth-header.js too!
   jwtSecretKey: "-",
 
   // key to sign store cookies
@@ -71,3 +69,5 @@ module.exports = {
 
   developerMode: true,
 }
+
+export default config
