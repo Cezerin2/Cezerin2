@@ -2,6 +2,7 @@ import security from "../lib/security"
 import WebhooksService from "../services/webhooks"
 
 class WebhooksRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()

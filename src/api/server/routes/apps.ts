@@ -2,6 +2,7 @@ import security from "../lib/security"
 import AppSettingsService from "../services/apps/settings"
 
 class AppsRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()

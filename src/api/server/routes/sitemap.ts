@@ -2,6 +2,7 @@ import security from "../lib/security"
 import SitemapService from "../services/sitemap"
 
 class SitemapRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()

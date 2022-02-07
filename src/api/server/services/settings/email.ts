@@ -2,6 +2,14 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class EmailSettingsService {
+	defaultSettings: {
+		host: string
+		port: string
+		user: string
+		pass: number
+		from_name: string
+		from_address: string
+	}
 	constructor() {
 		this.defaultSettings = {
 			host: "",
@@ -56,7 +64,7 @@ class EmailSettingsService {
 			return new Error("Required fields are missing")
 		}
 
-		let settings = {}
+		let settings: any = {}
 
 		if (data.host !== undefined) {
 			settings.host = parse.getString(data.host).toLowerCase()

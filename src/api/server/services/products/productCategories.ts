@@ -1,19 +1,19 @@
+import formidable from "formidable"
+import fse from "fs-extra"
 import { ObjectID } from "mongodb"
 import path from "path"
 import url from "url"
-import formidable from "formidable"
-import fse from "fs-extra"
-import settings from "../../lib/settings"
-import SettingsService from "../settings/settings"
 import { db } from "../../lib/mongo"
-import utils from "../../lib/utils"
 import parse from "../../lib/parse"
+import settings from "../../lib/settings"
+import utils from "../../lib/utils"
+import SettingsService from "../settings/settings"
 
 class ProductCategoriesService {
 	constructor() {}
 
-	getFilter(params = {}) {
-		let filter = {}
+	getFilter(params: any = {}) {
+		let filter: any = {}
 		const enabled = parse.getBooleanIfValid(params.enabled)
 		if (enabled !== null) {
 			filter.enabled = enabled
@@ -25,7 +25,7 @@ class ProductCategoriesService {
 		return filter
 	}
 
-	async getCategories(params = {}) {
+	async getCategories(params: any = {}) {
 		const filter = this.getFilter(params)
 		const projection = utils.getProjectionFromFields(params.fields)
 		const generalSettings = await SettingsService.getSettings()
@@ -153,7 +153,7 @@ class ProductCategoriesService {
 	getValidDocumentForInsert(data, newPosition) {
 		//  Allow empty category to create draft
 
-		let category = {
+		let category: any = {
 			date_created: new Date(),
 			date_updated: null,
 			image: "",
@@ -188,7 +188,7 @@ class ProductCategoriesService {
 				reject("Required fields are missing")
 			}
 
-			let category = {
+			let category: any = {
 				date_updated: new Date(),
 			}
 
@@ -280,7 +280,7 @@ class ProductCategoriesService {
 		this.updateCategory(id, { image: "" })
 	}
 
-	uploadCategoryImage(req, res) {
+	uploadCategoryImage(req, res, next?) {
 		let categoryId = req.params.id
 		let form = new formidable.IncomingForm(),
 			file_name = null,

@@ -1,14 +1,39 @@
-import path from "path"
-import fse from "fs-extra"
-import fs from "fs"
-import url from "url"
 import formidable from "formidable"
-import settings from "../../lib/settings"
-import utils from "../../lib/utils"
+import fs from "fs"
+import fse from "fs-extra"
+import path from "path"
+import url from "url"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
+import settings from "../../lib/settings"
+import utils from "../../lib/utils"
 
 class SettingsService {
+	defaultSettings: {
+		store_name: string
+		domain: string
+		logo_file: string
+		language: string
+		currency_code: string
+		currency_symbol: string
+		currency_format: string
+		thousand_separator: string
+		decimal_separator: string
+		decimal_number: number
+		timezone: string
+		date_format: string
+		time_format: string
+		default_shipping_country: string
+		default_shipping_state: string
+		default_shipping_city: string
+		default_product_sorting: string
+		product_fields: string
+		products_limit: number
+		weight_unit: string
+		length_unit: string
+		hide_billing_address: boolean
+		order_confirmation_copy_to: string
+	}
 	constructor() {
 		this.defaultSettings = {
 			store_name: "",
@@ -81,7 +106,7 @@ class SettingsService {
 			return new Error("Required fields are missing")
 		}
 
-		let settings = {}
+		let settings: any = {}
 
 		if (data.store_name !== undefined) {
 			settings.store_name = parse.getString(data.store_name)

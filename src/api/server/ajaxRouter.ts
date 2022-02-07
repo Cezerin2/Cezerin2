@@ -1,16 +1,16 @@
+import bcrypt from "bcrypt"
+import CezerinClient from "cezerin2-client"
 import express from "express"
+import handlebars from "handlebars"
 import jwt from "jsonwebtoken"
 import { ObjectID } from "mongodb"
-import CezerinClient from "cezerin2-client"
-import handlebars from "handlebars"
-import bcrypt from "bcrypt"
-import serverSettings from "./lib/settings"
-import { db } from "./lib/mongo"
 import AuthHeader from "./lib/auth-header"
 import mailer from "./lib/mailer"
+import { db } from "./lib/mongo"
+import serverSettings from "./lib/settings"
+import OrderItemsService from "./services/orders/orderItems"
 import EmailTemplatesService from "./services/settings/emailTemplates"
 import SettingsService from "./services/settings/settings"
-import OrderItemsService from "./services/orders/orderItems"
 
 // cost factor for hashes
 const { saltRounds } = serverSettings
@@ -237,7 +237,7 @@ ajaxRouter.post("/forgot-password", async (req, res, next) => {
 })
 
 ajaxRouter.post("/customer-account", async (req, res, next) => {
-	const customerData = {
+	const customerData: any = {
 		token: "",
 		authenticated: false,
 		customer_settings: null,
@@ -479,7 +479,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
 ajaxRouter.put("/customer-account", async (req, res, next) => {
 	const customerData = req.body
 	const token = AuthHeader.decodeUserLoginAuth(req.body.token)
-	const userId = null
+	let userId = null
 	try {
 		userId = JSON.stringify(token.userId).replace(/["']/g, "")
 	} catch (erro) {}
@@ -578,7 +578,7 @@ ajaxRouter.post("/cart/items", (req, res, next) => {
 				res.status(status).send(json)
 			})
 	} else {
-		const orderDraft = {
+		const orderDraft: any = {
 			draft: true,
 			referrer_url: req.signedCookies.referrer_url,
 			landing_url: req.signedCookies.landing_url,

@@ -1,12 +1,11 @@
-import path from "path"
-import fs from "fs"
-import url from "url"
 import formidable from "formidable"
+import fs from "fs"
+import path from "path"
 import settings from "../../lib/settings"
 
 class ThemeAssetsService {
 	deleteFile(fileName) {
-		return new Promise((resolve, reject) => {
+		return new Promise<void>((resolve, reject) => {
 			const filePath = path.resolve(
 				settings.themeAssetsUploadPath + "/" + fileName
 			)

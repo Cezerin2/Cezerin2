@@ -32,7 +32,7 @@ class EmailTemplatesService {
 			return new Error("Required fields are missing")
 		}
 
-		let template = {}
+		let template: any = {}
 
 		if (data.subject !== undefined) {
 			template.subject = parse.getString(data.subject)

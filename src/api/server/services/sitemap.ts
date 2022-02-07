@@ -4,7 +4,7 @@ import parse from "../lib/parse"
 class SitemapService {
 	constructor() {}
 
-	getPaths(onlyEnabled) {
+	getPaths(onlyEnabled?) {
 		const slug = null
 		onlyEnabled = parse.getBooleanIfValid(onlyEnabled, false)
 
@@ -73,8 +73,8 @@ class SitemapService {
 	}
 
 	getSlugArrayFromProducts(slug, onlyEnabled) {
-		const categoriesFilter = {}
-		const productFilter = {}
+		const categoriesFilter: any = {}
+		const productFilter: any = {}
 
 		if (slug) {
 			const slugParts = slug.split("/")
@@ -113,7 +113,7 @@ class SitemapService {
 	}
 
 	getSlugArrayFromPages(slug, onlyEnabled) {
-		const filter = this.getFilterWithoutSlashes(slug)
+		const filter: any = this.getFilterWithoutSlashes(slug)
 		if (onlyEnabled === true) {
 			filter.enabled = true
 		}
@@ -133,7 +133,7 @@ class SitemapService {
 	}
 
 	getSlugArrayFromProductCategories(slug, onlyEnabled) {
-		const filter = this.getFilterWithoutSlashes(slug)
+		const filter: any = this.getFilterWithoutSlashes(slug)
 		if (onlyEnabled === true) {
 			filter.enabled = true
 		}

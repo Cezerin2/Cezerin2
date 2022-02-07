@@ -1,18 +1,18 @@
+import fse from "fs-extra"
 import { ObjectID } from "mongodb"
 import path from "path"
 import url from "url"
-import fse from "fs-extra"
-import settings from "../../lib/settings"
 import { db } from "../../lib/mongo"
-import utils from "../../lib/utils"
 import parse from "../../lib/parse"
-import CategoriesService from "./productCategories"
+import settings from "../../lib/settings"
+import utils from "../../lib/utils"
 import SettingsService from "../settings/settings"
+import CategoriesService from "./productCategories"
 
 class ProductsService {
 	constructor() {}
 
-	async getProducts(params = {}) {
+	async getProducts(params: any = {}) {
 		const categories = await CategoriesService.getCategories({
 			fields: "parent_id",
 		})
@@ -299,6 +299,7 @@ class ProductsService {
 		} else if (sort && sort.length > 0) {
 			const fields = sort.split(",")
 			return Object.assign(
+				{},
 				...fields.map(field => ({
 					[field.startsWith("-") ? field.slice(1) : field]: field.startsWith(
 						"-"
@@ -317,7 +318,7 @@ class ProductsService {
 		let regularPrice = "$regular_price"
 		let costPrice = "$cost_price"
 
-		let project = {
+		let project: any = {
 			category_ids: 1,
 			related_product_ids: 1,
 			enabled: 1,
@@ -446,7 +447,10 @@ class ProductsService {
 	}
 
 	getProjectFilteredByFields(project, fieldsArray) {
-		return Object.assign(...fieldsArray.map(key => ({ [key]: project[key] })))
+		return Object.assign(
+			{},
+			...fieldsArray.map(key => ({ [key]: project[key] }))
+		)
 	}
 
 	getMatchTextQuery({ search }) {
@@ -683,7 +687,7 @@ class ProductsService {
 	getValidDocumentForInsert(data) {
 		//  Allow empty product to create draft
 
-		let product = {
+		let product: any = {
 			date_created: new Date(),
 			date_updated: null,
 			images: [],
@@ -748,7 +752,7 @@ class ProductsService {
 			throw new Error("Required fields are missing")
 		}
 
-		let product = {
+		let product: any = {
 			date_updated: new Date(),
 		}
 
@@ -985,7 +989,7 @@ class ProductsService {
 	}
 
 	isSkuExists(sku, productId) {
-		let filter = {
+		let filter: any = {
 			sku: sku,
 		}
 
@@ -999,11 +1003,11 @@ class ProductsService {
 			.then(count => count > 0)
 	}
 
-	setAvailableSku(product, productId) {
+	setAvailableSku(product, productId?) {
 		// SKU can be empty
 		if (product.sku && product.sku.length > 0) {
 			let newSku = product.sku
-			let filter = {}
+			let filter: any = {}
 			if (productId && ObjectID.isValid(productId)) {
 				filter._id = { $ne: new ObjectID(productId) }
 			}
@@ -1026,7 +1030,7 @@ class ProductsService {
 	}
 
 	isSlugExists(slug, productId) {
-		let filter = {
+		let filter: any = {
 			slug: utils.cleanSlug(slug),
 		}
 
@@ -1040,10 +1044,10 @@ class ProductsService {
 			.then(count => count > 0)
 	}
 
-	setAvailableSlug(product, productId) {
+	setAvailableSlug(product, productId?) {
 		if (product.slug && product.slug.length > 0) {
 			let newSlug = utils.cleanSlug(product.slug)
-			let filter = {}
+			let filter: any = {}
 			if (productId && ObjectID.isValid(productId)) {
 				filter._id = { $ne: new ObjectID(productId) }
 			}

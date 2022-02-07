@@ -2,6 +2,7 @@ import security from "../lib/security"
 import OrderStatusesService from "../services/orders/orderStatuses"
 
 class OrderStatusesRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()

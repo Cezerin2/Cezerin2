@@ -1,6 +1,7 @@
 import PaymentGateways from "../paymentGateways"
 
 class NotificationsRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()

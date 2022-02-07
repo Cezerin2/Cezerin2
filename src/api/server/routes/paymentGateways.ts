@@ -2,6 +2,7 @@ import security from "../lib/security"
 import PaymentGatewaysService from "../services/settings/paymentGateways"
 
 class PaymentGatewaysRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()

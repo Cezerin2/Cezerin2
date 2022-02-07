@@ -13,7 +13,7 @@ class ShippingMethodsLightService {
 	}
 
 	getMethodPrice(id) {
-		let filter = {}
+		let filter: any = {}
 		if (id) {
 			filter._id = new ObjectID(id)
 		}

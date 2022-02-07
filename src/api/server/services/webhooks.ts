@@ -1,7 +1,6 @@
-import { ObjectID } from "mongodb"
 import lruCache from "lru-cache"
+import { ObjectID } from "mongodb"
 import { db } from "../lib/mongo"
-import utils from "../lib/utils"
 import parse from "../lib/parse"
 
 const cache = lruCache({
@@ -14,7 +13,7 @@ const WEBHOOKS_CACHE_KEY = "webhooks"
 class WebhooksService {
 	constructor() {}
 
-	async getWebhooks() {
+	async getWebhooks(query?) {
 		const webhooksFromCache = cache.get(WEBHOOKS_CACHE_KEY)
 
 		if (webhooksFromCache) {
@@ -83,7 +82,7 @@ class WebhooksService {
 	}
 
 	getValidDocumentForInsert(data) {
-		let webhook = {
+		let webhook: any = {
 			date_created: new Date(),
 		}
 
@@ -101,7 +100,7 @@ class WebhooksService {
 			return new Error("Required fields are missing")
 		}
 
-		let webhook = {
+		let webhook: any = {
 			date_updated: new Date(),
 		}
 

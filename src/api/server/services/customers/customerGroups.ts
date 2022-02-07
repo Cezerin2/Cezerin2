@@ -1,6 +1,5 @@
 import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
-import utils from "../../lib/utils"
 import parse from "../../lib/parse"
 
 class CustomerGroupsService {
@@ -66,7 +65,7 @@ class CustomerGroupsService {
 	}
 
 	getValidDocumentForInsert(data) {
-		let group = {
+		let group: any = {
 			date_created: new Date(),
 		}
 
@@ -81,7 +80,7 @@ class CustomerGroupsService {
 			return new Error("Required fields are missing")
 		}
 
-		let group = {
+		let group: any = {
 			date_updated: new Date(),
 		}
 

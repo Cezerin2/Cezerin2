@@ -1,12 +1,12 @@
+import formidable from "formidable"
+import fse from "fs-extra"
 import { ObjectID } from "mongodb"
 import path from "path"
 import url from "url"
-import formidable from "formidable"
-import fse from "fs-extra"
-import settings from "../../lib/settings"
 import { db } from "../../lib/mongo"
-import utils from "../../lib/utils"
 import parse from "../../lib/parse"
+import settings from "../../lib/settings"
+import utils from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 class ProductImagesService {
@@ -84,7 +84,7 @@ class ProductImagesService {
 			.then(() => true)
 	}
 
-	async addImage(req, res) {
+	async addImage(req, res, next?) {
 		const productId = req.params.productId
 		if (!ObjectID.isValid(productId)) {
 			res.status(500).send(this.getErrorMessage("Invalid identifier"))

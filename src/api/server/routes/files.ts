@@ -2,6 +2,7 @@ import security from "../lib/security"
 import FilesService from "../services/files"
 
 class FilesRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()
