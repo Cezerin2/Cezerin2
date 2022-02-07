@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthHeader from '../../../../src/api/server/lib/auth-header';
+import AuthHeader from '../auth-header';
 import { Redirect } from 'react-router-dom';
 import { themeSettings, text } from '../../lib/settings';
 import Register from './register';
