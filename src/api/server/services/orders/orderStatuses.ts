@@ -1,13 +1,12 @@
 import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
-import utils from "../../lib/utils"
 import parse from "../../lib/parse"
 
 class OrderStatusesService {
 	constructor() {}
 
-	getStatuses(params = {}) {
-		let filter = {}
+	getStatuses(params: any = {}) {
+		let filter: any = {}
 		const id = parse.getObjectIDIfValid(params.id)
 		if (id) {
 			filter._id = new ObjectID(id)
@@ -69,7 +68,7 @@ class OrderStatusesService {
 	}
 
 	getValidDocumentForInsert(data) {
-		let status = {}
+		let status: any = {}
 
 		status.name = parse.getString(data.name)
 		status.description = parse.getString(data.description)
@@ -85,7 +84,7 @@ class OrderStatusesService {
 			return new Error("Required fields are missing")
 		}
 
-		let status = {}
+		let status: any = {}
 
 		if (data.name !== undefined) {
 			status.name = parse.getString(data.name)

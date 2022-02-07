@@ -2,6 +2,7 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class ImportSettingsService {
+	defaultSettings: { apikey: string; sheetid: string; range: string }
 	constructor() {
 		this.defaultSettings = {
 			apikey: "",
@@ -53,7 +54,7 @@ class ImportSettingsService {
 			return new Error("Required fields are missing")
 		}
 
-		let settings = {}
+		let settings: any = {}
 
 		if (data.apikey !== undefined) {
 			settings.apikey = parse.getString(data.apikey)

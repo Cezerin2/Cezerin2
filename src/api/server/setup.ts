@@ -1,7 +1,6 @@
-import winston from "winston"
-import url from "url"
 import { MongoClient } from "mongodb"
-import logger from "./lib/logger"
+import url from "url"
+import winston from "winston"
 import settings from "./lib/settings"
 
 const mongodbConnection = settings.mongodbServerUrl
@@ -434,7 +433,7 @@ const addPaymentMethods = async db => {
 	}
 }
 
-const createIndex = (db, collectionName, fields, options) =>
+const createIndex = (db, collectionName, fields, options?) =>
 	db.collection(collectionName).createIndex(fields, options)
 
 const createAllIndexes = async db => {

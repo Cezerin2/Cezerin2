@@ -1,16 +1,14 @@
 import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
-import utils from "../../lib/utils"
 import parse from "../../lib/parse"
+import settings from "../../lib/settings"
 import webhooks from "../../lib/webhooks"
 import CustomerGroupsService from "./customerGroups"
-import AuthHeader from "../../lib/auth-header"
-import security from "../../lib/security"
 
 class CustomersService {
 	constructor() {}
 
-	getFilter(params = {}) {
+	getFilter(params: any = {}) {
 		// tag
 		// gender
 		// date_created_to
@@ -20,7 +18,7 @@ class CustomersService {
 		// orders_count_to
 		// orders_count_from
 
-		let filter = {}
+		let filter: any = {}
 		const id = parse.getObjectIDIfValid(params.id)
 		const group_id = parse.getObjectIDIfValid(params.group_id)
 
@@ -47,7 +45,7 @@ class CustomersService {
 		return filter
 	}
 
-	getCustomers(params = {}) {
+	getCustomers(params: any = {}) {
 		let filter = this.getFilter(params)
 		const limit = parse.getNumberIfPositive(params.limit) || 1000
 		const offset = parse.getNumberIfPositive(params.offset) || 0
@@ -179,7 +177,7 @@ class CustomersService {
 	}
 
 	getValidDocumentForInsert(data) {
-		let customer = {
+		let customer: any = {
 			date_created: new Date(),
 			date_updated: null,
 			total_spent: 0,
@@ -220,7 +218,7 @@ class CustomersService {
 			return new Error("Required fields are missing")
 		}
 
-		let customer = {
+		let customer: any = {
 			date_updated: new Date(),
 		}
 
@@ -530,8 +528,8 @@ class CustomersService {
 			//headers: authHeader()
 		}
 
-		return fetch(`${security.storeBaseUrl}/users`, requestOptions).then(
-			handleResponse
+		return fetch(`${settings.storeBaseUrl}/users`, requestOptions).then(
+			this.handleResponse
 		)
 	}
 
@@ -541,8 +539,8 @@ class CustomersService {
 			if (!response.ok) {
 				if (response.status === 401) {
 					// auto logout if 401 response returned from api
-					logout()
-					location.reload(true)
+					this.logout()
+					location.reload()
 				}
 
 				const error = (data && data.message) || response.statusText

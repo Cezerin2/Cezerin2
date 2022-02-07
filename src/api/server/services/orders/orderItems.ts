@@ -1,9 +1,9 @@
 import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
-import OrdersService from "./orders"
 import ProductsService from "../products/products"
 import ProductStockService from "../products/stock"
+import OrdersService from "./orders"
 
 class OrderItemsService {
 	constructor() {}
@@ -340,7 +340,7 @@ class OrderItemsService {
 
 	getValidDocumentForInsert(data) {
 		const productImage = parse.getObjectIDIfValid(data.product_id)
-		const item = {
+		const item: any = {
 			product_image: [],
 			id: new ObjectID(),
 			product_id: parse.getObjectIDIfValid(data.product_id),

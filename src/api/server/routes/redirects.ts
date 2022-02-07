@@ -2,6 +2,7 @@ import security from "../lib/security"
 import RedirectsService from "../services/redirects"
 
 class RedirectsRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()

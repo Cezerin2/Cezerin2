@@ -1,14 +1,14 @@
-import { ObjectID } from "mongodb"
-import url from "url"
-import jwt from "jsonwebtoken"
-import moment from "moment"
-import uaParser from "ua-parser-js"
 import handlebars from "handlebars"
+import jwt from "jsonwebtoken"
 import lruCache from "lru-cache"
+import moment from "moment"
+import { ObjectID } from "mongodb"
+import uaParser from "ua-parser-js"
+import url from "url"
+import mailer from "../../lib/mailer"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import mailer from "../../lib/mailer"
 import SettingsService from "../settings/settings"
 
 const cache = lruCache({
@@ -21,8 +21,8 @@ const BLACKLIST_CACHE_KEY = "blacklist"
 class SecurityTokensService {
 	constructor() {}
 
-	getTokens(params = {}) {
-		let filter = {
+	getTokens(params: any = {}) {
+		let filter: any = {
 			is_revoked: false,
 		}
 		const id = parse.getObjectIDIfValid(params.id)
@@ -149,7 +149,7 @@ class SecurityTokensService {
 	getValidDocumentForInsert(data) {
 		const email = parse.getString(data.email)
 		return this.checkTokenEmailUnique(email).then(email => {
-			let token = {
+			const token: any = {
 				is_revoked: false,
 				date_created: new Date(),
 			}
@@ -170,7 +170,7 @@ class SecurityTokensService {
 			return new Error("Required fields are missing")
 		}
 
-		let token = {
+		let token: any = {
 			date_updated: new Date(),
 		}
 
@@ -197,9 +197,9 @@ class SecurityTokensService {
 
 	getSignedToken(token) {
 		return new Promise((resolve, reject) => {
-			const jwtOptions = {}
+			const jwtOptions: any = {}
 
-			let payload = {
+			let payload: any = {
 				scopes: token.scopes,
 				jti: token.id,
 			}

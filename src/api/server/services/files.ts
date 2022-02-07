@@ -1,9 +1,8 @@
-import path from "path"
-import fs from "fs"
-import url from "url"
 import formidable from "formidable"
-import utils from "../lib/utils"
+import fs from "fs"
+import path from "path"
 import settings from "../lib/settings"
+import utils from "../lib/utils"
 
 const CONTENT_PATH = path.resolve(settings.filesUploadPath)
 
@@ -43,7 +42,7 @@ class FilesService {
 	}
 
 	deleteFile(fileName) {
-		return new Promise((resolve, reject) => {
+		return new Promise<void>((resolve, reject) => {
 			const filePath = CONTENT_PATH + "/" + fileName
 			if (fs.existsSync(filePath)) {
 				fs.unlink(filePath, err => {

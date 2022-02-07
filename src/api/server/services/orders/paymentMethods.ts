@@ -1,16 +1,15 @@
 import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
-import utils from "../../lib/utils"
 import parse from "../../lib/parse"
-import PaymentMethodsLightService from "./paymentMethodsLight"
 import OrdersService from "./orders"
+import PaymentMethodsLightService from "./paymentMethodsLight"
 
 class PaymentMethodsService {
 	constructor() {}
 
-	getFilter(params = {}) {
+	getFilter(params: any = {}) {
 		return new Promise((resolve, reject) => {
-			let filter = {}
+			let filter: any = {}
 			const id = parse.getObjectIDIfValid(params.id)
 			const enabled = parse.getBooleanIfValid(params.enabled)
 
@@ -191,7 +190,7 @@ class PaymentMethodsService {
 	}
 
 	getValidDocumentForInsert(data) {
-		let method = {}
+		let method: any = {}
 
 		method.name = parse.getString(data.name)
 		method.description = parse.getString(data.description)
@@ -208,7 +207,7 @@ class PaymentMethodsService {
 			return new Error("Required fields are missing")
 		}
 
-		let method = {}
+		let method: any = {}
 
 		if (data.name !== undefined) {
 			method.name = parse.getString(data.name)

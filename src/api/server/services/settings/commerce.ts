@@ -2,6 +2,11 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class CommerceSettingsService {
+	defaultSettings: {
+		status: string
+		serviceOptions: string
+		deliveryRadius: string
+	}
 	constructor() {
 		this.defaultSettings = {
 			status: "",
@@ -55,7 +60,7 @@ class CommerceSettingsService {
 			return new Error("Required fields are missing")
 		}
 
-		let settings = {}
+		let settings: any = {}
 
 		if (data.status !== undefined) {
 			settings.status = parse.getString(data.status)

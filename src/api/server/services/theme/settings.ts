@@ -1,6 +1,6 @@
 import fs from "fs"
-import path from "path"
 import lruCache from "lru-cache"
+import path from "path"
 import serverSettings from "../../lib/settings"
 
 const cache = lruCache({
@@ -37,7 +37,7 @@ class ThemeSettingsService {
 	}
 
 	writeFile(file, jsonData) {
-		return new Promise((resolve, reject) => {
+		return new Promise<void>((resolve, reject) => {
 			const stringData = JSON.stringify(jsonData)
 			fs.writeFile(file, stringData, err => {
 				if (err) {

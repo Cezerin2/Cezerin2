@@ -1,7 +1,6 @@
-import { ObjectID } from "mongodb"
 import lruCache from "lru-cache"
+import { ObjectID } from "mongodb"
 import { db } from "../lib/mongo"
-import utils from "../lib/utils"
 import parse from "../lib/parse"
 
 const cache = lruCache({
@@ -14,7 +13,7 @@ const REDIRECTS_CACHE_KEY = "redirects"
 class RedirectsService {
 	constructor() {}
 
-	getRedirects() {
+	getRedirects(query?) {
 		const redirectsFromCache = cache.get(REDIRECTS_CACHE_KEY)
 
 		if (redirectsFromCache) {
@@ -105,7 +104,7 @@ class RedirectsService {
 			return new Error("Required fields are missing")
 		}
 
-		let redirect = {}
+		let redirect: any = {}
 
 		if (data.from !== undefined) {
 			redirect.from = parse.getString(data.from)

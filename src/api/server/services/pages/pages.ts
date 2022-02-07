@@ -1,9 +1,8 @@
 import { ObjectID } from "mongodb"
 import url from "url"
-import settings from "../../lib/settings"
 import { db } from "../../lib/mongo"
-import utils from "../../lib/utils"
 import parse from "../../lib/parse"
+import utils from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 const DEFAULT_SORT = { is_system: -1, date_created: 1 }
@@ -11,8 +10,8 @@ const DEFAULT_SORT = { is_system: -1, date_created: 1 }
 class PagesService {
 	constructor() {}
 
-	getFilter(params = {}) {
-		let filter = {}
+	getFilter(params: any = {}) {
+		let filter: any = {}
 		const id = parse.getObjectIDIfValid(params.id)
 		const tags = parse.getString(params.tags)
 		if (id) {
@@ -28,6 +27,7 @@ class PagesService {
 		if (sort && sort.length > 0) {
 			const fields = sort.split(",")
 			return Object.assign(
+				{},
 				...fields.map(field => ({
 					[field.startsWith("-") ? field.slice(1) : field]: field.startsWith(
 						"-"
@@ -41,7 +41,7 @@ class PagesService {
 		}
 	}
 
-	async getPages(params = {}) {
+	async getPages(params: any = {}) {
 		const filter = this.getFilter(params)
 		const sortQuery = this.getSortQuery(params)
 		const projection = utils.getProjectionFromFields(params.fields)
@@ -102,7 +102,7 @@ class PagesService {
 	}
 
 	getValidDocumentForInsert(data) {
-		let page = {
+		let page: any = {
 			is_system: false,
 			date_created: new Date(),
 		}
@@ -130,7 +130,7 @@ class PagesService {
 			return Promise.reject("Required fields are missing")
 		} else {
 			return this.getSinglePage(id).then(prevPageData => {
-				let page = {
+				let page: any = {
 					date_updated: new Date(),
 				}
 

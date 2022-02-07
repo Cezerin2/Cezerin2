@@ -1,12 +1,13 @@
 import security from "../lib/security"
-import SettingsService from "../services/settings/settings"
-import EmailSettingsService from "../services/settings/email"
-import ImportSettingsService from "../services/settings/import"
-import CommerceSettingsService from "../services/settings/commerce"
-import EmailTemplatesService from "../services/settings/emailTemplates"
 import CheckoutFieldsService from "../services/settings/checkoutFields"
+import CommerceSettingsService from "../services/settings/commerce"
+import EmailSettingsService from "../services/settings/email"
+import EmailTemplatesService from "../services/settings/emailTemplates"
+import ImportSettingsService from "../services/settings/import"
+import SettingsService from "../services/settings/settings"
 
 class SettingsRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()

@@ -2,6 +2,7 @@ import security from "../lib/security"
 import CategoriesService from "../services/products/productCategories"
 
 class ProductCategoriesRoute {
+	router: any
 	constructor(router) {
 		this.router = router
 		this.registerRoutes()
