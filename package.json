@@ -1,38 +1,26 @@
 {
   "name": "cezerin",
   "version": "0.33.0",
-  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.com",
+  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.org",
   "keywords": [
     "cezerin",
+    "cezerin2",
     "ecommerce",
     "shopping cart",
     "shop",
     "cms"
   ],
-  "homepage": "https://cezerin.com",
-  "bugs": "https://github.com/cezerin/cezerin/issues",
+  "homepage": "https://cezerin.org",
+  "bugs": "https://github.com/Cezerin2/cezerin2/issues",
   "license": "MIT",
-  "author": {
-    "name": "Restmount <jsonmount@gmail.com>",
-    "url": "https://github.com/restmount"
-  },
-  "contributors": [
-    {
-      "name": "Restmount <jsonmount@gmail.com>",
-      "url": "https://github.com/restmount"
-    },
-    {
-      "name": "Sergey Onufrienko <sergey@onufrienko.com>",
-      "url": "https://github.com/sonufrienko"
-    }
-  ],
-  "main": "src/api/server/index.js",
+  "author": "Restmount <jsonmount@gmail.com> (https://github.com/restmount)",
+  "main": "src/api/server/index.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cezerin/cezerin"
+    "url": "https://github.com/Cezerin2/cezerin2"
   },
   "scripts": {
-    "setup": "node -r esm src/api/server/setup.js",
+    "setup": "ts-node src/api/server/setup.ts",
     "compile": "babel src/store -d dist/store --presets react --plugins transform-class-properties --quiet",
     "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src/store -d dist/store --presets react --plugins transform-class-properties --watch\" \"babel theme/src -d theme/dist --presets react --plugins transform-class-properties --watch\"",
     "webpack:admin": "webpack --config webpack.config.admin.js --mode production",
@@ -45,18 +33,11 @@
     "build": "npm run compile && npm run theme:build && npm run webpack:admin",
     "build:watch": "concurrently -n compile,webpackStore,webpackAdmin \"npm run compile:watch\" \"npm run webpack:store:watch\" \"npm run webpack:admin:watch\"",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prettier": "prettier --write \"src/**/*.js\" \"theme/**/*.js\"",
-    "precommit": "lint-staged",
-    "start-api": "node -r esm src/api/server/index.js",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "start-api": "ts-node src/api/server/index.ts",
     "start-store": "node -r esm dist/store/server/index.js",
     "start": "concurrently npm:start-*"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
@@ -67,7 +48,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
     "cezerin2-client": "^0.36.0",
     "chart.js": "^2.7.2",
@@ -93,7 +74,6 @@
     "handlebars": "^4.0.11",
     "helmet": "^3.13.0",
     "html-webpack-plugin": "^3.2.0",
-    "husky": "^0.14.3",
     "jsonwebtoken": "^8.3.0",
     "lint-staged": "^7.2.2",
     "lodash": "^4.17.10",
@@ -104,12 +84,10 @@
     "moment": "^2.22.2",
     "mongodb": "^3.1.4",
     "node-fetch": "^2.2.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.1",
     "nodemailer": "^4.6.8",
     "nodemailer-smtp-transport": "^2.7.4",
     "postcss-loader": "^3.0.0",
-    "prettier": "^1.14.2",
-    "prop-types": "^15.6.2",
     "query-string": "^6.1.0",
     "react": "^16.4.2",
     "react-chartjs-2": "^2.7.4",
@@ -145,8 +123,10 @@
     "workbox-webpack-plugin": "^3.4.1",
     "ws": "^6.0.0"
   },
-  "engines": {
-    "node": "^8.0.0",
-    "npm": "^5.0.0"
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "prop-types": "^15.6.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
   }
 }
