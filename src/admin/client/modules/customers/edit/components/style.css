@@ -48,7 +48,7 @@
 }
 
 .itemName a {
-  color: rgb(0,142,180);
+  color: rgb(0, 142, 180);
   text-decoration: none;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .link {
-  color: rgb(0,142,180);
+  color: rgb(0, 142, 180);
   text-decoration: none;
 }
 
@@ -116,7 +116,7 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.shippingButtons{
+.shippingButtons {
   text-align: right;
   margin-top: 20px;
 }
