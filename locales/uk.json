@@ -13,6 +13,7 @@
   "service_options": "Варіанти обслуговування",
   "service_options_initial_value": "Початкова вартість варіантів обслуговування",
   "delivery_radius": "Радіус доставки",
+  "local": "uk",
   "yes": "Да",
   "no": "Нет",
   "all": "Все",
