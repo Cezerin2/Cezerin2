@@ -13,6 +13,7 @@
   "service_options": "服务选项",
   "service_options_initial_value": "服务选项初始值",
   "delivery_radius": "配送半径",
+  "local": "zn_CN",
   "yes": "是",
   "no": "否",
   "all": "全部",

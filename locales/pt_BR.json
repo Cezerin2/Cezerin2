@@ -13,6 +13,7 @@
   "service_options": "Opções de serviço",
   "service_options_initial_value": "Valor inicial das opções de serviço",
   "delivery_radius": "Raio de entrega",
+  "local": "pt_BR",
   "yes": "Sim",
   "no": "Não",
   "all": "Todos",

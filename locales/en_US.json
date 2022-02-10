@@ -13,6 +13,7 @@
   "service_options": "Service options",
   "service_options_initial_value": "Service options initial value",
   "delivery_radius": "Delivery radius",
+  "local": "en_US",
   "yes": "Yes",
   "no": "No",
   "all": "All",

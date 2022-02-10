@@ -13,6 +13,7 @@
   "service_options": "Варианты обслуживания",
   "service_options_initial_value": "Начальное значение сервисных опций",
   "delivery_radius": "Радиус доставки",
+  "local": "ru",
   "yes": "Да",
   "no": "Нет",
   "all": "Все",
