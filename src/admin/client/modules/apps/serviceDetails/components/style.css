@@ -56,11 +56,11 @@
 }
 
 .logsItem:nth-child(odd) {
-  background: rgba(0,0,0,0.03);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .logsItem:hover {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .logDate {
@@ -69,7 +69,6 @@
 }
 
 .logMessage {
-
 }
 
 .action {
@@ -78,5 +77,5 @@
 }
 
 .action:last-child {
-  border-bottom: none
+  border-bottom: none;
 }
