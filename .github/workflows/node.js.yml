@@ -42,6 +42,6 @@ jobs:
         run: yarn
 
       - run: yarn add ./theme
-      - run: yarn theme:build
+      - run: yarn theme:compile
       - run: yarn add ./theme
       - run: yarn build
