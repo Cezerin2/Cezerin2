@@ -2,20 +2,22 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 33.0.x  | :white_check_mark: |
+| < 33.0  | :x:                |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+You can report a vulnerability directly to following members of the telegram group,
+[Telegram Chat: Cezerin](https://t.me/cezerin),
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+- [@lortschi](https://t.me/lortschi)
+- [@vamhost](https://t.me/vamhost)
+- [@ngoyal16](https://t.me/ngoyal16)
+- [@Himadu2000](https://t.me/Himadu2000)
+
+It's recommended to send to all of above because some members maybe inactive.
+We'll try to respond to your report as soon as possible and,
+
+If your vulnerability is accepted, you can either pull request a patch or we'll try to patch it as soon as possiple however your contributions are always appreciated.
