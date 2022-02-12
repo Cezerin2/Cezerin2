@@ -1,4 +1,4 @@
-var APPLICATION_DATA_TIMEZONES = {
+const APPLICATION_DATA_TIMEZONES = {
   "Africa/Abidjan": { utc: "+0000", utc_dst: "+0000", utc_v: 0, utc_dst_v: 0 },
   "Africa/Accra": { utc: "+0000", utc_dst: "+0000", utc_v: 0, utc_dst_v: 0 },
   "Africa/Addis_Ababa": {
