@@ -63,13 +63,7 @@ module.exports = {
 					{
 						test: /\.(js|jsx)$/,
 						exclude: /node_modules/,
-						use: {
-							loader: 'babel-loader',
-							options: {
-								presets: ['env', 'react'],
-								plugins: ['transform-class-properties']
-							}
-						}
+						use: 'babel-loader'
 					},
 					{
 						test: /\.css$/,

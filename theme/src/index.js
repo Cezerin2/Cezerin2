@@ -1,3 +1,6 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
 export { initOnClient, initOnServer } from './lib/settings';
 export { default as SharedContainer } from './containers/shared';
 export { default as IndexContainer } from './containers/index';
