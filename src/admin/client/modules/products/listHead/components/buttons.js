@@ -58,7 +58,7 @@ export default class Buttons extends React.Component {
       selectedCount,
       onDelete,
       onCreate,
-      onImportProducts,
+      // onImportProducts,
     } = this.props
 
     const actionsMoveTo = [
