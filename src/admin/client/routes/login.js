@@ -1,44 +1,44 @@
-import React from "react";
-import messages from "lib/text";
-import CezerinClient from "cezerin2-client";
-import settings from "lib/settings";
-import * as auth from "lib/auth";
+import React from "react"
+import messages from "lib/text"
+import CezerinClient from "cezerin2-client"
+import settings from "lib/settings"
+import * as auth from "lib/auth"
 
-import RaisedButton from "material-ui/RaisedButton";
-import Paper from "material-ui/Paper";
-import TextField from "material-ui/TextField";
+import RaisedButton from "material-ui/RaisedButton"
+import Paper from "material-ui/Paper"
+import TextField from "material-ui/TextField"
 
 export default class LoginForm extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       email: localStorage.getItem("dashboard_email") || "",
       isFetching: false,
       isAuthorized: false,
       emailIsSent: false,
-      error: null
-    };
+      error: null,
+    }
   }
 
   handleChange = event => {
     this.setState({
-      email: event.target.value
-    });
-  };
+      email: event.target.value,
+    })
+  }
 
   handleKeyPress = e => {
     if (e.keyCode === 13 || e.which === 13) {
-      this.handleSubmit();
+      this.handleSubmit()
     }
-  };
+  }
 
   handleSubmit = () => {
     this.setState({
       isFetching: true,
       isAuthorized: false,
       emailIsSent: false,
-      error: null
-    });
+      error: null,
+    })
 
     CezerinClient.authorize(settings.apiBaseUrl, this.state.email)
       .then(authorizeResponse => {
@@ -46,38 +46,38 @@ export default class LoginForm extends React.Component {
           isFetching: false,
           isAuthorized: false,
           emailIsSent: authorizeResponse.json.sent,
-          error: authorizeResponse.json.error
-        });
+          error: authorizeResponse.json.error,
+        })
       })
       .catch(error => {
         this.setState({
           isFetching: false,
           isAuthorized: false,
           emailIsSent: false,
-          error: error
-        });
-      });
-  };
+          error: error,
+        })
+      })
+  }
 
   componentWillMount() {
-    auth.checkTokenFromUrl();
+    auth.checkTokenFromUrl()
   }
   componentDidMount() {}
 
   render() {
-    const { email, isFetching, isAuthorized, emailIsSent, error } = this.state;
+    const { email, isFetching, isAuthorized, emailIsSent, error } = this.state
 
-    let response = null;
+    let response = null
     if (isFetching) {
       response = (
         <div className="loginSuccessResponse">{messages.messages_loading}</div>
-      );
+      )
     } else if (emailIsSent) {
       response = (
         <div className="loginSuccessResponse">{messages.loginLinkSent}</div>
-      );
+      )
     } else if (emailIsSent === false && error) {
-      response = <div className="loginErrorResponse">{error}</div>;
+      response = <div className="loginErrorResponse">{error}</div>
     }
 
     return (
@@ -108,6 +108,6 @@ export default class LoginForm extends React.Component {
           </Paper>
         </div>
       </div>
-    );
+    )
   }
 }

@@ -1,22 +1,19 @@
-import { connect } from 'react-redux';
-import { fetchPages } from '../actions';
-import Form from './components/form';
+import { connect } from "react-redux"
+import { fetchPages } from "../actions"
+import Form from "./components/form"
 
 const mapStateToProps = state => {
-	return {
-		pages: state.pages.pages
-	};
-};
+  return {
+    pages: state.pages.pages,
+  }
+}
 
 const mapDispatchToProps = dispatch => {
-	return {
-		onLoad: () => {
-			dispatch(fetchPages());
-		}
-	};
-};
+  return {
+    onLoad: () => {
+      dispatch(fetchPages())
+    },
+  }
+}
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

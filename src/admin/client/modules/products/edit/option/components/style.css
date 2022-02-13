@@ -15,7 +15,8 @@
   margin: 15px 0;
 }
 
-.grid {}
+.grid {
+}
 
 .gridRow {
   display: flex;

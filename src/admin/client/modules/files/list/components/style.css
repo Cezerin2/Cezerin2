@@ -8,12 +8,12 @@
   border-bottom: none;
 }
 
-.item:hover{
+.item:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
 .name a {
-  color: rgb(0,142,180);
+  color: rgb(0, 142, 180);
   text-decoration: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -25,7 +25,8 @@
   text-decoration: underline;
 }
 
-.date, .size {
+.date,
+.size {
   color: rgba(0, 0, 0, 0.54);
   text-align: right;
 }
