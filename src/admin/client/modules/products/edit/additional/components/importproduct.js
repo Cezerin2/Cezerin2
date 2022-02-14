@@ -588,4 +588,5 @@ class ProductImport extends React.Component {
 /*ProductImport.propTypes = {
 	onStartImportProducts: PropTypes.func.isRequired
 }*/
-module.exports = ProductImport
+
+export default ProductImport
