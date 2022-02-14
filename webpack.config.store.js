@@ -2,8 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { GenerateSW } = require("workbox-webpack-plugin");
 
 module.exports = {
 	entry: {
@@ -69,16 +69,15 @@ module.exports = {
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(
-			[
-				'theme/assets/js/app-*.js',
-				'theme/assets/js/theme-*.js',
-				'theme/assets/css/bundle-*.css',
-				'theme/assets/sw.js',
-				'theme/assets/precache-manifest.*.js'
-			],
-			{ verbose: false }
-		),
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns: [
+				path.resolve("theme/assets/js/app-*.js"),
+				path.resolve("theme/assets/js/theme-*.js"),
+				path.resolve("theme/assets/css/bundle-*.css"),
+				path.resolve("theme/assets/sw.js"),
+				path.resolve("theme/assets/workbox-*.js"),
+			  ],
+		}),
 		new MiniCssExtractPlugin({
 			filename: 'assets/css/bundle-[contenthash].css',
 			chunkFilename: 'assets/css/bundle-[contenthash].css'
@@ -88,34 +87,33 @@ module.exports = {
 			inject: 'body',
 			filename: 'assets/index.html'
 		}),
-		new WorkboxPlugin.GenerateSW({
+		new GenerateSW({
 			swDest: 'assets/sw.js',
-			precacheManifestFilename: 'assets/precache-manifest.[manifestHash].js',
 			clientsClaim: true,
 			skipWaiting: true,
 			exclude: [/\.html$/],
 			runtimeCaching: [
-				{
-					urlPattern: new RegExp('/(images|assets|admin-assets)/'),
-					handler: 'networkFirst'
+			  {
+				urlPattern: new RegExp("/(images|assets|admin-assets)/"),
+				handler: "NetworkFirst",
+			  },
+			  {
+				urlPattern: new RegExp("/api/"),
+				handler: "NetworkOnly",
+			  },
+			  {
+				urlPattern: new RegExp("/ajax/payment_form_settings"),
+				handler: "NetworkOnly",
+			  },
+			  {
+				urlPattern: new RegExp("/"),
+				handler: "NetworkFirst",
+				options: {
+				  networkTimeoutSeconds: 10,
 				},
-				{
-					urlPattern: new RegExp('/api/'),
-					handler: 'networkOnly'
-				},
-				{
-					urlPattern: new RegExp('/ajax/payment_form_settings'),
-					handler: 'networkOnly'
-				},
-				{
-					urlPattern: new RegExp('/'),
-					handler: 'networkFirst',
-					options: {
-						networkTimeoutSeconds: 10
-					}
-				}
-			]
-		}),
+			  },
+			],
+		  }),
 		new webpack.BannerPlugin({
 			banner: `Created: ${new Date().toUTCString()}`,
 			raw: false,
