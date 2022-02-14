@@ -33,6 +33,7 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 - [Twitter](https://twitter.com/cezerin2)
 
 ## Store
+
 Single-Page Application with React server-side rendering.
 
 SEO Friendly. Google Analytics eCommerce Tracking included.
@@ -53,7 +54,6 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 [Online Demo Dashboard](https://cezerin.net/admin)
 
 ![Cezerin Dashboard](https://cezerin.org/assets/images/cezerin-dashboard-products.png)
-
 
 ## Docs
 
@@ -101,11 +101,9 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 - Node.js
 - MongoDB
 
-
 ## Documentation
 
 [Documentation](https://github.com/cezerin2/cezerin2/tree/master/docs)
-
 
 ## Application Structure
 
@@ -137,24 +135,24 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 
 ## NPM Scripts
 
-|`npm run <script>`|Description|
-|------------------|-----------|
-|`clean:admin`|Delete admin asset bundles.|
-|`clean:store`|Delete store asset bundles.|
-|`compile:dev`|Compiles the application to disk **and watch** (`~/dist` by default).|
-|`compile`|Compiles the application to disk (`~/dist` by default).|
-|`webpack:admin:dev`|Assemble admin bundles **and watch**.|
-|`webpack:store:dev`|Assemble store bundles **and watch**.|
-|`webpack:admin:prod`|Assemble admin bundles.|
-|`webpack:store:prod`|Assemble store bundles.|
-|`theme:install`|Install theme from /public/<file>.zip|
-|`theme:export`|Zip current theme to /public/<file>.zip|
-|`theme:copy`|Compile theme and copy assets to /public/|
-|`theme:build:dev`|Refresh theme after modification **and watch**.|
-|`theme:build:prod`|Refresh theme after modification.|
-|`build:dev`|Compile and assemble bundles **and watch**.|
-|`build`|Compile and assemble bundles.|
-|`start`|Start node server.|
+| `npm run <script>`   | Description                                                           |
+| -------------------- | --------------------------------------------------------------------- |
+| `clean:admin`        | Delete admin asset bundles.                                           |
+| `clean:store`        | Delete store asset bundles.                                           |
+| `compile:dev`        | Compiles the application to disk **and watch** (`~/dist` by default). |
+| `compile`            | Compiles the application to disk (`~/dist` by default).               |
+| `webpack:admin:dev`  | Assemble admin bundles **and watch**.                                 |
+| `webpack:store:dev`  | Assemble store bundles **and watch**.                                 |
+| `webpack:admin:prod` | Assemble admin bundles.                                               |
+| `webpack:store:prod` | Assemble store bundles.                                               |
+| `theme:install`      | Install theme from /public/<file>.zip                                 |
+| `theme:export`       | Zip current theme to /public/<file>.zip                               |
+| `theme:copy`         | Compile theme and copy assets to /public/                             |
+| `theme:build:dev`    | Refresh theme after modification **and watch**.                       |
+| `theme:build:prod`   | Refresh theme after modification.                                     |
+| `build:dev`          | Compile and assemble bundles **and watch**.                           |
+| `build`              | Compile and assemble bundles.                                         |
+| `start`              | Start node server.                                                    |
 
 ## Financial contributions
 
@@ -163,12 +161,10 @@ Anyone can file an expense. If the expense makes sense for the development of th
 
 ## Credits
 
-
 ### Contributors
 
 Thank you to all the people who have already contributed to cezerin2!
 <a href="https://github.com/Cezerin2/cezerin2/graphs/contributors"><img src="https://opencollective.com/cezerin2/contributors.svg?width=890" /></a>
-
 
 ### Backers
 
@@ -176,18 +172,15 @@ Thank you to all our backers! [[Become a backer](https://opencollective.com/ceze
 
 <a href="https://opencollective.com/cezerin2#backers" target="_blank"><img src="https://opencollective.com/cezerin2/tiers/backer.svg?avatarHeight=36&width=600"></a>
 
-
 ### Sponsors
 
 Thank you to all our sponsors! (please ask your company to also support this open source project by [becoming a sponsor](https://opencollective.com/cezerin2#sponsor))
 
 <a href="https://opencollective.com/cezerin2#sponsor" target="_blank"><img src="https://opencollective.com/cezerin2/tiers/sponsor.svg?avatarHeight=36&width=600"></a>
 
-
 ## Contributing
 
 If you can, please contribute by reporting issues, discussing ideas, or submitting pull requests with patches and new features. We do our best to respond to all issues and pull requests within a day or two, and make patch releases to npm regularly.
-
 
 ## Licence
 

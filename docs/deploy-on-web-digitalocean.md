@@ -7,6 +7,7 @@
   ![DigitalOcean IP Address](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean.png)
 
 - Change DNS of your domain name to:
+
 ```
 ns1.digitalocean.com
 ns2.digitalocean.com
@@ -24,20 +25,20 @@ P.S. You can change DNS at your domain name control panel.
 
 - Enter domain name.
 - Select droplet.
-- Click *Add domain* button.
+- Click _Add domain_ button.
 
 - Add `A` and `CNAME` records to DigitalOcean DNS.
 
-*Hostname* - Must be your domain name.
-*Value* - Must be your droplet ip adddess.
+_Hostname_ - Must be your domain name.
+_Value_ - Must be your droplet ip adddess.
 
 `A` dns record points to our droplet IP address.
 
 Example for cezerin.net:
 
-  ![DigitalOcean DNS Records](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean-dns-domain.png)
+![DigitalOcean DNS Records](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean-dns-domain.png)
 
-That's all. 
+That's all.
 
 We have domain name points to our digitalocean droplet.
 

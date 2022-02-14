@@ -74,6 +74,7 @@ pm2 list all
 ```
 
 If all is fine, you can see somethng like this, status column must be online. Not "error".
+
 ```shell
 ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
@@ -95,7 +96,6 @@ pm2 logs
 
 For example, here is the api method for store settings: **http://localhost:3001/api/v1/settings**
 and dashboard settings page: **http://localhost:3000/admin/settings**
-
 
 ```shell
 [start-api] info: API running at http://localhost:3001
