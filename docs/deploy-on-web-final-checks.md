@@ -15,4 +15,3 @@ Store: https://your-domain-name.com
 API: https://your-domain-name.com/api/v1/settings
 
 Dashboard: https://your-domain-name.com/admin
-

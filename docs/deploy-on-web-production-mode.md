@@ -50,7 +50,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsiYWRtaW4iXSwianRpIjoiNWUyY2F
 
 Switch to production mode.
 
-And authorizate to admin with this url example: https://your-domain-name.com/admin/login?token=  
+And authorizate to admin with this url example: https://your-domain-name.com/admin/login?token=
 
 Insert you key in the URL, like this:
 
