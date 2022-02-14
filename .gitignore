@@ -12,7 +12,7 @@ theme/assets/js/theme-*
 theme/assets/css/bundle-*
 theme/assets/index.html
 theme/assets/sw.js
-theme/assets/precache-manifest.*.js
+theme/assets/workbox-*.js
 dist/*
 logs/*
 npm-debug.log*
