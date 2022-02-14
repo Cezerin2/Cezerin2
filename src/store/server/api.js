@@ -1,14 +1,14 @@
-import jwt from "jsonwebtoken";
-import CezerinClient from "cezerin2-client";
-import serverSettings from "./settings";
+import jwt from "jsonwebtoken"
+import CezerinClient from "cezerin2-client"
+import serverSettings from "./settings"
 
-const TOKEN_PAYLOAD = { email: "store", scopes: ["admin"] };
-const STORE_ACCESS_TOKEN = jwt.sign(TOKEN_PAYLOAD, serverSettings.jwtSecretKey);
+const TOKEN_PAYLOAD = { email: "store", scopes: ["admin"] }
+const STORE_ACCESS_TOKEN = jwt.sign(TOKEN_PAYLOAD, serverSettings.jwtSecretKey)
 
 const api = new CezerinClient({
   apiBaseUrl: serverSettings.apiBaseUrl,
   ajaxBaseUrl: serverSettings.ajaxBaseUrl,
-  apiToken: STORE_ACCESS_TOKEN
-});
+  apiToken: STORE_ACCESS_TOKEN,
+})
 
-export default api;
+export default api
