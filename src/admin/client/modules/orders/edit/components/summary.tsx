@@ -1,15 +1,11 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import moment from "moment"
-
 import messages from "lib/text"
-import * as helper from "lib/helper"
-import style from "./style.css"
-import SummaryForm from "./summaryForm.js"
-
+import Dialog from "material-ui/Dialog"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import Dialog from "material-ui/Dialog"
+import moment from "moment"
+import React from "react"
+import style from "./style.css"
+import SummaryForm from "./summaryForm"
 
 const getOrderStates = order => {
   let states = []

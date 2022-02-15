@@ -1,16 +1,14 @@
-import React from "react"
-import { Link } from "react-router-dom"
-
-import messages from "lib/text"
 import * as helper from "lib/helper"
-import style from "./style.css"
-import ShippingAddressForm from "./shippingAddressForm.js"
-
-import Paper from "material-ui/Paper"
+import messages from "lib/text"
+import Dialog from "material-ui/Dialog"
 import Divider from "material-ui/Divider"
 import FlatButton from "material-ui/FlatButton"
+import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import Dialog from "material-ui/Dialog"
+import React from "react"
+import { Link } from "react-router-dom"
+import ShippingAddressForm from "./shippingAddressForm"
+import style from "./style.css"
 
 const getShippingFieldLabel = ({ label, key }) => {
   return label && label.length > 0 ? label : helper.getOrderFieldLabelByKey(key)
