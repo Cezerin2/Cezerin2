@@ -1,20 +1,16 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import { TextField, SelectField } from "redux-form-material-ui"
-
-import { CustomToggle } from "modules/shared/form"
+import messages from "lib/text"
+import Divider from "material-ui/Divider"
+import MenuItem from "material-ui/MenuItem"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
 import PaymentGateway from "modules/settings/paymentGateway"
 import { AVAILABLE_PAYMENT_GATEWAYS } from "modules/settings/paymentGateway/availablePaymentGateways"
-import SelectShippingMethodsField from "./selectShipping.js"
-import messages from "lib/text"
+import { CustomToggle } from "modules/shared/form"
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { SelectField, TextField } from "redux-form-material-ui"
+import SelectShippingMethodsField from "./selectShipping"
 import style from "./style.css"
-
-import Paper from "material-ui/Paper"
-import Divider from "material-ui/Divider"
-import RaisedButton from "material-ui/RaisedButton"
-import MenuItem from "material-ui/MenuItem"
-import { List, ListItem } from "material-ui/List"
-import Checkbox from "material-ui/Checkbox"
 
 const validate = values => {
   const errors = {}
