@@ -8,7 +8,7 @@ const applicationText = require(`./locales/${applicationConfig.language}.json`)
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "src/admin/client/index.js"),
+    app: path.resolve(__dirname, "src/admin/client/index.tsx"),
     vendor: [
       "react",
       "react-dom",
@@ -54,6 +54,7 @@ module.exports = {
       modules: path.resolve(__dirname, "src/admin/client/modules"),
       lib: path.resolve(__dirname, "src/admin/client/lib"),
     },
+    extensions: [".tsx", ".js"],
   },
 
   module: {
@@ -61,7 +62,7 @@ module.exports = {
       {
         oneOf: [
           {
-            test: /\.(js|jsx)$/,
+            test: /\.tsx?$/,
             exclude: /node_modules/,
             use: "babel-loader",
           },
