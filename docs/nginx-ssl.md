@@ -1,21 +1,23 @@
-server {
-        # Dynamic image resizing server
-        listen 127.0.0.1:8888;
-        server_tokens off;
-        location ~ "^/resize/(?<entity>\w+)/(?<id>\w+)/(?<width>[1-9][0-9][0-9]{1}|[1][0-9][0-9][0-9]{1})/(?<file>.+)$" {
+server { # Dynamic image resizing server
+listen 127.0.0.1:8888;
+server_tokens off;
+location ~ "^/resize/(?<entity>\w+)/(?<id>\w+)/(?<width>[1-9][0-9][0-9]{1}|[1][0-9][0-9][0-9]{1})/(?<file>.+)$" {
                 alias /var/www/cezerin2/public/content/images/$entity/$id/$file;
-                image_filter_buffer 20M;
-                image_filter_jpeg_quality 85;
-                image_filter_interlace on;
-                image_filter resize $width -;
-        }
+image_filter_buffer 20M;
+image_filter_jpeg_quality 85;
+image_filter_interlace on;
+image_filter resize $width -;
+}
 }
 
 # Cache rule for resized images
+
 proxy_cache_path /tmp/nginx-images-cache2/ levels=1:2 keys_zone=images:10m inactive=30d max_size=5g use_temp_path=off;
 
 server {
-#        server_name _;
+
+# server*name *;
+
         server_name cezerin.net www.cezerin.net;
 
         gzip              on;
@@ -93,14 +95,12 @@ server {
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
-
 }
 
 server {
-    if ($host = www.cezerin.net) {
+if ($host = www.cezerin.net) {
         return 301 https://$host$request_uri;
-    } # managed by Certbot
-
+} # managed by Certbot
 
     if ($host = cezerin.net) {
         return 301 https://$host$request_uri;
@@ -110,8 +110,5 @@ server {
         listen 80 default_server;
         server_name cezerin.net www.cezerin.net;
     return 404; # managed by Certbot
-
-
-
 
 }

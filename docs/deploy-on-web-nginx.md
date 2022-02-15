@@ -12,7 +12,7 @@ We have cezerin nginx config, so you can use this config for web deploy (just re
 
 [cezerin nginx config](https://raw.githubusercontent.com/cezerin2/cezerin2/master/docs/nginx.md)
 
-P.S. Change /var/www/cezerin2/ in nginx config to your path if you download cezerin to another folder. 
+P.S. Change /var/www/cezerin2/ in nginx config to your path if you download cezerin to another folder.
 
 We need to add a new website to Nginx.
 

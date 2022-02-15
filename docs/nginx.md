@@ -1,22 +1,22 @@
-server {
-        # Dynamic image resizing server
-        listen 127.0.0.1:8888;
-        server_tokens off;
-        location ~ "^/resize/(?<entity>\w+)/(?<id>\w+)/(?<width>[1-9][0-9][0-9]{1}|[1][0-9][0-9][0-9]{1})/(?<file>.+)$" {
+server { # Dynamic image resizing server
+listen 127.0.0.1:8888;
+server_tokens off;
+location ~ "^/resize/(?<entity>\w+)/(?<id>\w+)/(?<width>[1-9][0-9][0-9]{1}|[1][0-9][0-9][0-9]{1})/(?<file>.+)$" {
                 alias /var/www/cezerin2/public/content/images/$entity/$id/$file;
-                image_filter_buffer 20M;
-                image_filter_jpeg_quality 85;
-                image_filter_interlace on;
-                image_filter resize $width -;
-        }
+image_filter_buffer 20M;
+image_filter_jpeg_quality 85;
+image_filter_interlace on;
+image_filter resize $width -;
+}
 }
 
 # Cache rule for resized images
+
 proxy_cache_path /tmp/nginx-images-cache2/ levels=1:2 keys_zone=images:10m inactive=30d max_size=5g use_temp_path=off;
 
 server {
-        listen 80 default_server;
-        server_name _;
+listen 80 default*server;
+server_name *;
 
         gzip              on;
         gzip_comp_level   2;
@@ -86,4 +86,5 @@ server {
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Forwarded-Proto $scheme;
         }
+
 }

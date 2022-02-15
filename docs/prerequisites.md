@@ -53,7 +53,6 @@ sudo apt-get install zip
 sudo apt-get install unzip
 ```
 
-
 - **GCC Compiler**
 
 ```shell

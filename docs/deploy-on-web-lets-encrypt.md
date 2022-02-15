@@ -18,6 +18,7 @@ The first step to using Let’s Encrypt to obtain an SSL certificate is to insta
 Certbot is in very active development, so the Certbot packages provided by Ubuntu tend to be outdated. However, the Certbot developers maintain a Ubuntu software repository with up-to-date versions, so we’ll use that repository instead.
 
 First, add the repository:
+
 ```
 sudo add-apt-repository ppa:certbot/certbot
 ```
@@ -25,6 +26,7 @@ sudo add-apt-repository ppa:certbot/certbot
 You’ll need to press ENTER to accept.
 
 Install Certbot’s Nginx package with apt:
+
 ```
 sudo apt install python-certbot-nginx
 ```
@@ -40,32 +42,41 @@ You should have a server block for your domain at /etc/nginx/sites-available/def
 Open nginx config /etc/ngnix/sites-available/default
 
 change:
+
 ```
         server_name _;
 ```
+
 to:
+
 ```
         server_name your-domain-name.com www.your-domain-name.com;
-```        
+```
+
 for our example cezerin.net domain i have changed to:
+
 ```
         server_name cezerin.net www.cezerin.net;
-```        
+```
+
 Just type your domain name.
 
 P.S. If you have errors, we have tested and working on cezerin.net nginx config. You can download it here - [Cezerin NGinx SSL Config Example](https://raw.githubusercontent.com/Cezerin2/cezerin2/master/docs/nginx-ssl.md)
 
 Reload nginx:
+
 ```
 nginx -t && service nginx reload
 ```
-If you get an error, reopen the server block file and check for any typos or missing characters. 
+
+If you get an error, reopen the server block file and check for any typos or missing characters.
 
 Certbot can now find the correct server block and update it.
 
 ## Step 3 — Obtaining an SSL Certificate
 
 Certbot provides a variety of ways to obtain SSL certificates through plugins. The Nginx plugin will take care of reconfiguring Nginx and reloading the config whenever necessary. To use this plugin, type the following:
+
 ```
 sudo certbot --nginx -d example.com -d www.example.com
 ```
@@ -77,6 +88,7 @@ If this is your first time running certbot, you will be prompted to enter an ema
 If that’s successful, certbot will ask how you’d like to configure your HTTPS settings.
 
 Output
+
 ```
 Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
 -------------------------------------------------------------------------------
@@ -91,6 +103,7 @@ Select the appropriate number [1-2] then [enter] (press 'c' to cancel):
 Select your choice (2) then hit ENTER. The configuration will be updated, and Nginx will reload to pick up the new settings. certbot will wrap up with a message telling you the process was successful and where your certificates are stored:
 
 Output
+
 ```
 IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at:
@@ -130,5 +143,4 @@ If you see no errors, you’re all set. When necessary, Certbot will renew your 
 
 ## Conclusion
 
-In this tutorial, you installed the Let’s Encrypt client certbot, downloaded SSL certificates for your domain, configured Nginx to use these certificates, and set up automatic certificate renewal. If you have further questions about using Certbot, their documentation is a good place to start.             
-            
+In this tutorial, you installed the Let’s Encrypt client certbot, downloaded SSL certificates for your domain, configured Nginx to use these certificates, and set up automatic certificate renewal. If you have further questions about using Certbot, their documentation is a good place to start.
