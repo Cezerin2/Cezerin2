@@ -1,9 +1,8 @@
 {
   "name": "theme",
   "version": "1.0.0",
-  "description": "",
+  "description": "Default theme for cezerin.",
   "main": "dist/index.js",
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "bulma": "^0.6.2",
