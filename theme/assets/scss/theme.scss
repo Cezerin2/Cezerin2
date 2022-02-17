@@ -21,7 +21,7 @@ $ig-blue: #636363 !default;
 @import "~react-image-gallery/styles/scss/image-gallery-no-icon.scss";
 
 .image-gallery-bullets .image-gallery-bullets-container {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 4px 0;
   border-radius: 20px;
   display: flex;
@@ -32,7 +32,7 @@ $ig-blue: #636363 !default;
 
 .image-gallery-right-nav,
 .image-gallery-left-nav {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .image-gallery-thumbnails-wrapper.left {
@@ -40,14 +40,14 @@ $ig-blue: #636363 !default;
 }
 
 .dark-overflow {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 3.25rem;
   left: 0;
   height: 100%;
   z-index: 1001;
   width: 100%;
-  transition: ease-in-out .5s;
+  transition: ease-in-out 0.5s;
 }
 
 body {
@@ -55,7 +55,9 @@ body {
   transition: margin 200ms ease-in-out;
 }
 
-a, input, button {
+a,
+input,
+button {
   outline: none;
 }
 
@@ -63,7 +65,8 @@ hr.separator {
   margin: 1rem 0;
 }
 
-.hero-body, .section {
+.hero-body,
+.section {
   padding: 1.5rem;
 }
 
@@ -89,11 +92,17 @@ hr.separator {
   font-weight: 300;
 }
 
-.shipping-address2 {}
-.shipping-postalcode {}
-.shipping-phone {}
-.shipping-company { display:none; }
-.shipping-comments {}
+.shipping-address2 {
+}
+.shipping-postalcode {
+}
+.shipping-phone {
+}
+.shipping-company {
+  display: none;
+}
+.shipping-comments {
+}
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -114,13 +123,13 @@ MOBILE
   }
 
   body.noscroll {
-    position:fixed;
-    overflow:hidden;
+    position: fixed;
+    overflow: hidden;
   }
-	
-	body.sidebar-active {
-    position:fixed;
-    overflow:hidden;
+
+  body.sidebar-active {
+    position: fixed;
+    overflow: hidden;
   }
 }
 
