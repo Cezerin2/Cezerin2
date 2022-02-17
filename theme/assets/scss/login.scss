@@ -1,167 +1,167 @@
 .login-container {
-	display: flex;
-	align-items: baseline;
-	margin: auto;
-	width: auto;
+  display: flex;
+  align-items: baseline;
+  margin: auto;
+  width: auto;
 }
 
-.login-container input[type='text'],
-.login-container input[type='email'],
-.login-container input[type='password'],
+.login-container input[type="text"],
+.login-container input[type="email"],
+.login-container input[type="password"],
 .login-container textarea {
-	width: 100%;
-	border: 1px solid #e0e0e0;
-	border-radius: 3px;
-	padding: 12px 16px;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  padding: 12px 16px;
 }
 
-.login-container input[type='text']:focus,
-.login-container input[type='email']:focus,
-.login-container input[type='password']:focus,
+.login-container input[type="text"]:focus,
+.login-container input[type="email"]:focus,
+.login-container input[type="password"]:focus,
 .login-container textarea:focus {
-	outline: none;
-	border: 1px solid #a1a1a1;
+  outline: none;
+  border: 1px solid #a1a1a1;
 }
 
-.login-container input[type='text'].invalid,
-.login-container input[type='email'].invalid,
-.login-container input[type='password'].invalid,
+.login-container input[type="text"].invalid,
+.login-container input[type="email"].invalid,
+.login-container input[type="password"].invalid,
 .login-container textarea.invalid {
-	border: 1px solid #e96161;
-	background-color: rgba(233, 97, 97, 0.05);
+  border: 1px solid #e96161;
+  background-color: rgba(233, 97, 97, 0.05);
 }
 
 .login-container label {
-	font-size: 9pt;
-	font-weight: normal;
-	color: #747679;
-	margin-bottom: 0.5em;
-	display: block;
+  font-size: 9pt;
+  font-weight: normal;
+  color: #747679;
+  margin-bottom: 0.5em;
+  display: block;
 }
 
 .login-container .error {
-	color: #e96161;
-	padding-left: 10px;
-	font-weight: 500;
+  color: #e96161;
+  padding-left: 10px;
+  font-weight: 500;
 }
 
 .register-form {
-	margin: auto;
+  margin: auto;
 }
 
 .login-guest-checkout,
 .login-form {
-	margin: 0 auto;
-	width: auto;
+  margin: 0 auto;
+  width: auto;
 }
 
 .login-form-with-guest {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .login-section-guest {
-	width: auto;
-	padding-top: 0;
-	margin-right: 0;
+  width: auto;
+  padding-top: 0;
+  margin-right: 0;
 }
 
 .login-button-wrap {
-	text-align: center;
-	margin-top: 30px;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .login-link-wrap {
-	text-align: right;
-	margin-top: 15px;
+  text-align: right;
+  margin-top: 15px;
 }
 
 .login-button-style {
-	background-color: $login;
-	border-color: transparent;
-	color: #fff;
-	padding-left: 3rem;
-	padding-right: 3rem;
-	text-transform: uppercase;
+  background-color: $login;
+  border-color: transparent;
+  color: #fff;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  text-transform: uppercase;
 }
 
 .register-button-style {
-	background-color: $login;
-	border-color: transparent;
-	color: #fff;
-	padding-left: 3rem;
-	padding-right: 3rem;
-	text-transform: uppercase;
+  background-color: $login;
+  border-color: transparent;
+  color: #fff;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  text-transform: uppercase;
 }
 
 .login-input-field {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .login-title {
-	padding-top: 0;
-	margin: 0;
+  padding-top: 0;
+  margin: 0;
 }
 
 .send-password-success-title {
-	color: $green;
+  color: $green;
 }
 
 .send-password-failed-title {
-	color: $error-alert-text;
+  color: $error-alert-text;
 }
 
 .login-success-title {
-	padding-top: 20px;
-	margin: 20px 0;
-	color: $green;
+  padding-top: 20px;
+  margin: 20px 0;
+  color: $green;
 }
 
 .login-section h2,
 .login-section-guest h2 {
-	padding-top: 15px;
-	text-align: center;
+  padding-top: 15px;
+  text-align: center;
 }
 
 .login-button {
-	margin: 0 0 0 10px;
+  margin: 0 0 0 10px;
 }
 
 .login-icon {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .login-name {
-	font-size: 10px;
-	text-overflow: ellipsis;
-	max-width: 40px;
-	cursor: pointer;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  max-width: 40px;
+  cursor: pointer;
 }
 .login-button:active.login-name:active {
-	color: lightblue;
+  color: lightblue;
 }
 .login-button:hover.login-name:hover {
-	color: lightblue;
+  color: lightblue;
 }
 
 .fluid-fit {
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .no-decor {
-	text-decoration: 'none';
+  text-decoration: "none";
 }
 
 @media screen and (max-width: 769px) {
-	.login-container {
-		align-items: baseline;
-		margin: auto;
-		width: auto;
-		display: table;
-	}
+  .login-container {
+    align-items: baseline;
+    margin: auto;
+    width: auto;
+    display: table;
+  }
 
-	.login-section-guest {
-		padding-top: 0;
-		margin-right: 0;
-	}
+  .login-section-guest {
+    padding-top: 0;
+    margin-right: 0;
+  }
 }

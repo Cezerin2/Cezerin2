@@ -1,13 +1,14 @@
 .mini-cart {
   visibility: hidden;
-  transition: opacity .3s,visibility .3s, right .4s cubic-bezier(0.01, -0.21, 0.27, 1.55);
+  transition: opacity 0.3s, visibility 0.3s,
+    right 0.4s cubic-bezier(0.01, -0.21, 0.27, 1.55);
   position: absolute;
   width: 460px;
   top: calc(100%);
   right: calc(-100%);
   background: #fff;
   z-index: 99;
-  box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid #f3f3f3;
   border-width: 1px 0 0 1px;
   padding: 20px;
@@ -23,7 +24,7 @@
 }
 
 .mini-cart-item-price {
-  padding-bottom: 6px
+  padding-bottom: 6px;
 }
 
 .cart-option-name {

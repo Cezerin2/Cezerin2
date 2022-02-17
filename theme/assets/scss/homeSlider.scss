@@ -46,7 +46,8 @@
   color: #333;
 }
 
-.image-gallery-left-nav, .image-gallery-right-nav {
+.image-gallery-left-nav,
+.image-gallery-right-nav {
   width: 3rem;
   background-size: 3rem;
   background-repeat: no-repeat;
@@ -69,7 +70,8 @@
 Mobile
 */
 @media screen and (max-width: 769px) {
-  .image-gallery-left-nav, .image-gallery-right-nav {
+  .image-gallery-left-nav,
+  .image-gallery-right-nav {
     padding: 30px 15px;
     background-size: 2rem;
   }
