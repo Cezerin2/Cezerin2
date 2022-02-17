@@ -22,7 +22,7 @@
   "scripts": {
     "setup": "ts-node src/api/server/setup.ts",
     "compile": "babel src/store -d dist/store --quiet",
-    "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src/store -d dist/store --watch\" \"babel theme/src -d theme/dist --watch\"",
+    "compile:watch": "concurrently -n storeWatcher,themeWatcher \"babel src/store -d dist/store --watch\" \"babel theme/src -d theme/dist --extensions \".tsx\" --watch\"",
     "webpack:admin": "webpack --config webpack.config.admin.js --mode production",
     "webpack:store": "webpack --config webpack.config.store.js --mode production",
     "webpack:admin:watch": "webpack --config webpack.config.admin.js --mode development --watch",
@@ -30,7 +30,7 @@
     "theme:install": "./scripts/theme-install.sh",
     "theme:export": "./scripts/theme-export.sh",
     "theme:build": "npm run theme:compile && npm run webpack:store",
-    "theme:compile": "babel theme/src -d theme/dist --quiet",
+    "theme:compile": "babel theme/src -d theme/dist --extensions \".tsx\" --quiet",
     "build": "npm run compile && npm run theme:build && npm run webpack:admin",
     "build:watch": "concurrently -n compile,webpackStore,webpackAdmin \"npm run compile:watch\" \"npm run webpack:store:watch\" \"npm run webpack:admin:watch\"",
     "lint": "eslint .",
