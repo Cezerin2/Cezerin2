@@ -33,6 +33,7 @@ class SettingsService {
     length_unit: string
     hide_billing_address: boolean
     order_confirmation_copy_to: string
+    contact_email_address: string
   }
   constructor() {
     this.defaultSettings = {
@@ -60,6 +61,7 @@ class SettingsService {
       length_unit: "cm",
       hide_billing_address: false,
       order_confirmation_copy_to: "",
+      contact_email_address: "",
     }
   }
 
@@ -211,6 +213,12 @@ class SettingsService {
     if (data.order_confirmation_copy_to !== undefined) {
       settings.order_confirmation_copy_to = parse.getString(
         data.order_confirmation_copy_to
+      )
+    }
+
+    if (data.contact_email_address !== undefined) {
+      settings.contact_email_address = parse.getString(
+        data.contact_email_address
       )
     }
 

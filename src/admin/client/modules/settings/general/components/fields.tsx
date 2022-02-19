@@ -260,4 +260,10 @@ export const fields = [
       />
     </div>
   </div>,
+  <div className="row between-xs middle-xs">
+    <div className="col-xs-12 col-sm-6">{messages.contactEmailAddress}</div>
+    <div className="col-xs-12 col-sm-6">
+      <Field component={TextField} fullWidth name="contact_email_address" />
+    </div>
+  </div>,
 ]

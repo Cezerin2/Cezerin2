@@ -339,6 +339,7 @@
   "addAttribute": "添加新属性",
   "newOrderReceived": "收到新订单",
   "orderEmailCopyTo": "发送订单电子邮件复制到",
+  "contactEmailAddress": "联系电子邮件地址",
   "allOrderStatuses": "“所有状态",
   "orderStatusName": "状态名称",
   "orderStatusDeleteAsk": "将删除状态{name}。",
