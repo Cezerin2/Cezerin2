@@ -339,6 +339,7 @@
   "addAttribute": "Ajouter nouveau attribut",
   "newOrderReceived": "Nouvelle commande reçue",
   "orderEmailCopyTo": "Envoyer la commande en copie par mail",
+  "contactEmailAddress": "Adresse e-mail de contact",
   "allOrderStatuses": "Tous les status",
   "orderStatusName": "Nom status",
   "orderStatusDeleteAsk": "Nous allons supprimer le status {name}.",
