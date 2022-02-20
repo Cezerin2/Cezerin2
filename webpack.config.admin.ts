@@ -1,4 +1,5 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin"
+// import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import path from "path"
@@ -105,6 +106,14 @@ module.exports = {
   },
 
   plugins: [
+    // new ForkTsCheckerWebpackPlugin({
+    //   typescript: {
+    //     diagnosticOptions: {
+    //       semantic: true,
+    //       syntactic: true,
+    //     },
+    //   },
+    // }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
         path.resolve("public/admin-assets/js/app-*.js"),
