@@ -339,6 +339,7 @@
   "addAttribute": "නව ගුණාංගයක් එක් කරන්න",
   "newOrderReceived": "නව ඇණවුමක් ලැබුණි",
   "orderEmailCopyTo": "ඇණවුම් ඊමේල් පිටපතක් යවන්න",
+  "contactEmailAddress": "අමතන ඊමේල් ලිපිනය",
   "allOrderStatuses": "සියලුම තත්වයන්",
   "orderStatusName": "තත්වයේ නම",
   "orderStatusDeleteAsk": "තත්වය මකා දමනු ඇත {නාමය}.",

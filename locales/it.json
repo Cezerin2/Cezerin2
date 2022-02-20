@@ -339,6 +339,7 @@
   "addAttribute": "Aggiungi attributo",
   "newOrderReceived": "Nuovo ordine ricevuto",
   "orderEmailCopyTo": "Invia l'ordine via mail a",
+  "contactEmailAddress": "Indirizzo email di contatto",
   "allOrderStatuses": "Tutti gli stati",
   "orderStatusName": "Nome Stato",
   "orderStatusDeleteAsk": "Cancellerà lo stato {name}.",

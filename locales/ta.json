@@ -339,6 +339,7 @@
   "addAttribute": "புதிய பண்புக்கூறு சேர்க்கவும்",
   "newOrderReceived": "புதிய ஆர்டர் பெறப்பட்டது",
   "orderEmailCopyTo": "ஆர்டர் மின்னஞ்சல் நகலை அனுப்பவும்",
+  "contactEmailAddress": "மின்னஞ்சலை தொடர்பு கொள்க",
   "allOrderStatuses": "அனைத்து நிலைகளும்",
   "orderStatusName": "நிலை பெயர்",
   "orderStatusDeleteAsk": "நிலை {பெயர் delete ஐ நீக்கும்.",

@@ -339,6 +339,7 @@
   "addAttribute": "Добавить свойство",
   "newOrderReceived": "Поступил новый заказ",
   "orderEmailCopyTo": "Отправить копию заказа на",
+  "contactEmailAddress": "Контактна адреса електронної пошти",
   "allOrderStatuses": "Все статусы",
   "orderStatusName": "Название статуса",
   "orderStatusDeleteAsk": "Удалить статус {name}.",

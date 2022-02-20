@@ -339,6 +339,7 @@
   "addAttribute": "Attribut hinzufügen",
   "newOrderReceived": "Neuen Auftrag erhalten",
   "orderEmailCopyTo": "Bestellbestätigungsmail in Kopie an",
+  "contactEmailAddress": "Kontakt-E-Mailadresse",
   "allOrderStatuses": "Alle Auftragsstatus",
   "orderStatusName": "Auftragsstatus",
   "orderStatusDeleteAsk": "Löscht den Auftragsstatus {name}.",
