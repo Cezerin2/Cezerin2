@@ -1,9 +1,10 @@
-const path = require("path")
-const webpack = require("webpack")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const applicationConfig = require("./config/admin.js")
+import { CleanWebpackPlugin } from "clean-webpack-plugin"
+import HtmlWebpackPlugin from "html-webpack-plugin"
+import MiniCssExtractPlugin from "mini-css-extract-plugin"
+import path from "path"
+import webpack from "webpack"
+import applicationConfig from "./config/admin"
+
 const applicationText = require(`./locales/${applicationConfig.language}.json`)
 
 module.exports = {
