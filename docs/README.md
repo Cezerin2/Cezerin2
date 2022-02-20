@@ -6,7 +6,7 @@
   - [Online Demo](online-demo.md)
   - [Application Structure](application-structure.md)
   - [API Client](https://github.com/cezerin2/cezerin2-client)
-  - [API Reference](https://github.com/Cezerin2/cezerin2/tree/master/docs/api)
+  - [API Reference](https://github.com/Cezerin2/Cezerin2/tree/main/docs/api)
 
 - Installation Guides
 

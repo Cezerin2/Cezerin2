@@ -10,7 +10,7 @@ All requests from domain.com/api, domain.com/ajax, domain.com/images proxy to lo
 
 We have cezerin nginx config, so you can use this config for web deploy (just remove default config settings and replace with cezerin config settings).
 
-[cezerin nginx config](https://raw.githubusercontent.com/cezerin2/cezerin2/master/docs/nginx.md)
+[cezerin nginx config](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/nginx.md)
 
 P.S. Change /var/www/cezerin2/ in nginx config to your path if you download cezerin to another folder.
 
@@ -22,7 +22,7 @@ We need to add a new website to Nginx.
    cd /etc/nginx/sites-available
    ```
 
-   open `default` file and paste [this config](https://raw.githubusercontent.com/cezerin2/cezerin2/master/docs/nginx.md)
+   open `default` file and paste [this config](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/nginx.md)
 
 2. Reload Nginx configuration
    ```

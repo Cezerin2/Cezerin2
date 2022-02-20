@@ -61,7 +61,7 @@ for our example cezerin.net domain i have changed to:
 
 Just type your domain name.
 
-P.S. If you have errors, we have tested and working on cezerin.net nginx config. You can download it here - [Cezerin NGinx SSL Config Example](https://raw.githubusercontent.com/Cezerin2/cezerin2/master/docs/nginx-ssl.md)
+P.S. If you have errors, we have tested and working on cezerin.net nginx config. You can download it here - [Cezerin NGinx SSL Config Example](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/nginx-ssl.md)
 
 Reload nginx:
 
