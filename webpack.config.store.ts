@@ -1,9 +1,9 @@
-const path = require("path")
-const webpack = require("webpack")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const { GenerateSW } = require("workbox-webpack-plugin")
+import { CleanWebpackPlugin } from "clean-webpack-plugin"
+import HtmlWebpackPlugin from "html-webpack-plugin"
+import MiniCssExtractPlugin from "mini-css-extract-plugin"
+import path from "path"
+import webpack from "webpack"
+import { GenerateSW } from "workbox-webpack-plugin"
 
 module.exports = {
   entry: {
