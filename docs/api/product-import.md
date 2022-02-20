@@ -13,7 +13,7 @@ Dashboard General Settings -> Product Import -> Google Spreadsheet
 
 ## Supported Table Attributes
 
-![alt text](https://github.com/Cezerin2/cezerin2/raw/master/docs/images/product-import-spreadsheet.png "Table Attributes")
+![alt text](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/images/product-import-spreadsheet.png "Table Attributes")
 
 | Attribute           | Description                                                      |
 | ------------------- | ---------------------------------------------------------------- |
