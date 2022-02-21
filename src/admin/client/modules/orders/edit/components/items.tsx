@@ -13,7 +13,7 @@ import { Link } from "react-router-dom"
 import style from "./style.css"
 
 const iconButtonElement = (
-  <IconButton touch={true}>
+  <IconButton touch>
     <FontIcon color="rgb(189, 189, 189)" className="material-icons">
       more_vert
     </FontIcon>
@@ -31,7 +31,7 @@ const ProductOption = ({ option, onChange, selectedOptions }) => {
   return (
     <SelectField
       floatingLabelText={option.name}
-      fullWidth={true}
+      fullWidth
       value={selectedValue}
       onChange={(event, index, value) => {
         onChange(option.id, value)
@@ -179,7 +179,7 @@ export class OrderItem extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary={true}
+        primary
         onClick={this.submitEditForm}
       />,
     ]
@@ -282,7 +282,7 @@ export class OrderItem extends React.Component {
             />
             <SelectField
               floatingLabelText={messages.quantity}
-              fullWidth={true}
+              fullWidth
               value={quantity}
               onChange={this.quantityChange}
             >

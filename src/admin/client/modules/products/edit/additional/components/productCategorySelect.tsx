@@ -45,8 +45,8 @@ export default class ProductCategorySelect extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.close}
       />,
     ]
@@ -59,7 +59,7 @@ export default class ProductCategorySelect extends React.Component {
           modal={false}
           open={open}
           onRequestClose={this.close}
-          autoScrollBodyContent={true}
+          autoScrollBodyContent
         >
           <CategorySelect
             onSelect={this.handleSelect}

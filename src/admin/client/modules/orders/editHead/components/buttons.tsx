@@ -167,7 +167,7 @@ export default class Buttons extends React.Component {
 
           <DeleteConfirmation
             open={this.state.openDelete}
-            isSingle={true}
+            isSingle
             itemsCount={1}
             itemName={orderName}
             onCancel={this.closeDelete}
@@ -176,7 +176,7 @@ export default class Buttons extends React.Component {
 
           <IconMenu
             iconButtonElement={
-              <IconButton touch={true}>
+              <IconButton touch>
                 <FontIcon color="#fff" className="material-icons">
                   more_vert
                 </FontIcon>

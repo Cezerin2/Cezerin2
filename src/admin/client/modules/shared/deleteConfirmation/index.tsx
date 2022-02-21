@@ -56,8 +56,8 @@ export default class ConfirmationDialog extends React.Component {
       />,
       <FlatButton
         label={messages.actions_delete}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.handleDelete}
       />,
     ]

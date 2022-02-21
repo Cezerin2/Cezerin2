@@ -77,7 +77,7 @@ class ThemeSettings extends React.Component {
               <RaisedButton
                 type="submit"
                 label={messages.save}
-                primary={true}
+                primary
                 className={style.button}
                 disabled={pristine || submitting}
               />

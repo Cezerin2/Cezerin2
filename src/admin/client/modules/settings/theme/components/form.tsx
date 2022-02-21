@@ -69,7 +69,7 @@ export default class Theme extends React.Component {
                   }
                   disabled={exportInProcess || installInProcess}
                   onClick={this.onExportClick.bind(this)}
-                  primary={true}
+                  primary
                 />
               </div>
             </div>
@@ -97,7 +97,7 @@ export default class Theme extends React.Component {
                   disabled={installInProcess}
                   labelPosition="before"
                   containerElement="label"
-                  primary={true}
+                  primary
                 >
                   <input
                     type="file"

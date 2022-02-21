@@ -26,8 +26,8 @@ export default class MultiUploader extends React.Component {
       <div>
         <Dropzone
           onDrop={this.onDrop}
-          multiple={true}
-          disableClick={true}
+          multiple
+          disableClick
           accept="image/*"
           ref={node => {
             this.dropzone = node
@@ -45,7 +45,7 @@ export default class MultiUploader extends React.Component {
 
         {!uploading && (
           <RaisedButton
-            primary={true}
+            primary
             label={messages.chooseImage}
             style={{ marginLeft: 20, marginTop: 10 }}
             onClick={() => {

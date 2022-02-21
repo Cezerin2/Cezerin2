@@ -29,7 +29,7 @@ const DeveloperForm = ({
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="name"
                 floatingLabelText={messages.full_name}
               />
@@ -37,17 +37,17 @@ const DeveloperForm = ({
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="description"
                 floatingLabelText={messages.description}
-                multiLine={true}
+                multiLine
                 rows={1}
               />
             </div>
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="website"
                 floatingLabelText={messages.website}
               />
@@ -55,7 +55,7 @@ const DeveloperForm = ({
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="email"
                 floatingLabelText={messages.email}
               />
@@ -68,7 +68,7 @@ const DeveloperForm = ({
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

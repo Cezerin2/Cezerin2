@@ -64,26 +64,26 @@ const ProductGeneralForm = ({
               name="name"
               component={TextField}
               floatingLabelText={messages.products_name + " *"}
-              fullWidth={true}
+              fullWidth
             />
             <Field
               name="slug"
               component={TextField}
               floatingLabelText={messages.slug}
-              fullWidth={true}
+              fullWidth
             />
             <p className="field-hint">{messages.help_slug}</p>
             <Field
               name="meta_title"
               component={TextField}
               floatingLabelText={messages.pageTitle}
-              fullWidth={true}
+              fullWidth
             />
             <Field
               name="meta_description"
               component={TextField}
               floatingLabelText={messages.metaDescription}
-              fullWidth={true}
+              fullWidth
             />
             <div className="field-hint" style={{ marginTop: 40 }}>
               {messages.description}
@@ -105,7 +105,7 @@ const ProductGeneralForm = ({
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

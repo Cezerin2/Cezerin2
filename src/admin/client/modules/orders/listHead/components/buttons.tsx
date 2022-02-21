@@ -36,7 +36,7 @@ export default class Buttons extends React.Component {
         {selectedCount > 0 && (
           <Fragment>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_delete}
               onClick={this.openDelete}
@@ -55,7 +55,7 @@ export default class Buttons extends React.Component {
           </Fragment>
         )}
         <IconButton
-          touch={true}
+          touch
           tooltipPosition="bottom-left"
           tooltip={messages.orders_titleAdd}
           onClick={onCreate}

@@ -31,7 +31,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="apikey"
                 hintText="..apiKey"
                 floatingLabelText={messages.settings_apikey}
@@ -40,7 +40,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="sheetid"
                 hintText="..sheet-id"
                 floatingLabelText={messages.settings_sheetid}
@@ -49,7 +49,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="range"
                 floatingLabelText={messages.settings_tablename}
               />
@@ -59,7 +59,7 @@ class EmailSettings extends React.Component {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

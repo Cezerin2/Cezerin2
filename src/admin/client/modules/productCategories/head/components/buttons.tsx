@@ -63,8 +63,8 @@ export default class Buttons extends React.Component {
       />,
       <FlatButton
         label={messages.actions_moveHere}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.saveMoveTo}
       />,
     ]
@@ -74,7 +74,7 @@ export default class Buttons extends React.Component {
         {selected && (
           <Fragment>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_moveUp}
               onClick={onMoveUp}
@@ -84,7 +84,7 @@ export default class Buttons extends React.Component {
               </FontIcon>
             </IconButton>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_moveDown}
               onClick={onMoveDown}
@@ -94,7 +94,7 @@ export default class Buttons extends React.Component {
               </FontIcon>
             </IconButton>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_delete}
               onClick={this.showDelete}
@@ -104,7 +104,7 @@ export default class Buttons extends React.Component {
               </FontIcon>
             </IconButton>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_moveTo}
               onClick={this.showMoveTo}
@@ -119,18 +119,18 @@ export default class Buttons extends React.Component {
               modal={false}
               open={this.state.openMoveTo}
               onRequestClose={this.closeMoveTo}
-              autoScrollBodyContent={true}
+              autoScrollBodyContent
             >
               <CategorySelect
                 onSelect={this.selectMoveTo}
                 selectedId={this.state.categoryIdMoveTo}
-                showRoot={true}
+                showRoot
                 showAll={false}
               />
             </Dialog>
             <DeleteConfirmation
               open={this.state.openDelete}
-              isSingle={true}
+              isSingle
               itemsCount={1}
               itemName={categoryName}
               onCancel={this.closeDelete}
@@ -139,7 +139,7 @@ export default class Buttons extends React.Component {
           </Fragment>
         )}
         <IconButton
-          touch={true}
+          touch
           tooltipPosition="bottom-left"
           tooltip={messages.productCategories_titleAdd}
           onClick={onCreate}

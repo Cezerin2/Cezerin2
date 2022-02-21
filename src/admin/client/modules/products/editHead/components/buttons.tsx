@@ -36,7 +36,7 @@ export default class Buttons extends React.Component {
     return (
       <Fragment>
         <IconButton
-          touch={true}
+          touch
           tooltipPosition="bottom-left"
           tooltip={messages.deleteProduct}
           onClick={this.openDelete}
@@ -48,7 +48,7 @@ export default class Buttons extends React.Component {
         {product && product.enabled && (
           <a href={product.url} target="_blank">
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.viewOnWebsite}
             >
@@ -60,7 +60,7 @@ export default class Buttons extends React.Component {
         )}
         <DeleteConfirmation
           open={this.state.openDelete}
-          isSingle={true}
+          isSingle
           itemsCount={1}
           itemName={productName}
           onCancel={this.closeDelete}

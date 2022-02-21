@@ -67,8 +67,8 @@ export default class Buttons extends React.Component {
       />,
       <FlatButton
         label={messages.actions_moveHere}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.saveMoveTo}
       />,
     ]
@@ -79,7 +79,7 @@ export default class Buttons extends React.Component {
         {selectedCount > 0 && (
           <Fragment>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_delete}
               onClick={this.openDelete}
@@ -89,7 +89,7 @@ export default class Buttons extends React.Component {
               </FontIcon>
             </IconButton>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_moveTo}
               onClick={this.showMoveTo}
@@ -111,18 +111,18 @@ export default class Buttons extends React.Component {
               modal={false}
               open={this.state.openMoveTo}
               onRequestClose={this.closeMoveTo}
-              autoScrollBodyContent={true}
+              autoScrollBodyContent
             >
               <CategorySelect
                 onSelect={this.selectMoveTo}
                 selectedId={this.state.categoryIdMoveTo}
-                opened={true}
+                opened
               />
             </Dialog>
           </Fragment>
         )}
         <IconButton
-          touch={true}
+          touch
           tooltipPosition="bottom-left"
           tooltip={messages.addProduct}
           onClick={onCreate}

@@ -42,7 +42,7 @@ const SettingsMenu = () => (
       style={styles.link}
       activeStyle={styles.linkActive}
       to="/admin/settings"
-      exact={true}
+      exact
     >
       <ListItem
         primaryText={messages.settings_general}
@@ -115,7 +115,7 @@ const SettingsMenu = () => (
       style={styles.link}
       activeStyle={styles.linkActive}
       to="/admin/settings/import"
-      exact={true}
+      exact
     >
       <ListItem
         primaryText={messages.drawer_importing}

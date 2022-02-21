@@ -79,7 +79,7 @@ export default class ImageUpload extends React.Component {
 
         <div className={style.footer}>
           <IconButton
-            touch={true}
+            touch
             tooltip={messages.actions_upload}
             onClick={() => {
               this.dropzone.open()
@@ -92,7 +92,7 @@ export default class ImageUpload extends React.Component {
           </IconButton>
           {hasPreview && (
             <IconButton
-              touch={true}
+              touch
               tooltip={messages.actions_delete}
               onClick={this.onDelete}
               tooltipPosition="top-right"

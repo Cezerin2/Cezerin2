@@ -36,7 +36,7 @@ const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
                   component={TextField}
                   name={fieldKey}
                   floatingLabelText={messages.fieldKey}
-                  fullWidth={true}
+                  fullWidth
                   required
                   pattern="^[A-Za-z0-9_]{2,32}$"
                 />
@@ -46,7 +46,7 @@ const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
                   component={TextField}
                   name={fieldLabel}
                   floatingLabelText={messages.settings_fieldLabel}
-                  fullWidth={true}
+                  fullWidth
                 />
               </div>
               <div className="col-xs-3">
@@ -62,7 +62,7 @@ const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
                   targetOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "top" }}
                   iconButtonElement={
-                    <IconButton touch={true}>
+                    <IconButton touch>
                       <FontIcon color="#777" className="material-icons">
                         more_vert
                       </FontIcon>

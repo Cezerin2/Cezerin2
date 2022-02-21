@@ -14,7 +14,7 @@ import style from "./style.css"
 const Fragment = React.Fragment
 
 const iconButtonElement = (
-  <IconButton touch={true}>
+  <IconButton touch>
     <FontIcon color="rgb(189, 189, 189)" className="material-icons">
       more_vert
     </FontIcon>
@@ -68,7 +68,7 @@ class FileItem extends React.Component {
           </IconMenu>
           <DeleteConfirmation
             open={this.state.openDelete}
-            isSingle={true}
+            isSingle
             itemsCount={1}
             itemName={fileName}
             onCancel={this.hideDelete}

@@ -29,7 +29,7 @@ const ServiceDescription = ({
                 {!service.enabled && (
                   <RaisedButton
                     label={messages.enable}
-                    primary={true}
+                    primary
                     disabled={loadingEnableDisable}
                     onClick={enableService}
                   />

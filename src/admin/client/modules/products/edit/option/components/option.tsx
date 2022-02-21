@@ -55,7 +55,7 @@ class ProductOptionForm extends React.Component {
                 name="name"
                 component={TextField}
                 floatingLabelText={messages.optionName}
-                fullWidth={true}
+                fullWidth
               />
               <div className="row">
                 <div className="col-xs-6">
@@ -64,14 +64,14 @@ class ProductOptionForm extends React.Component {
                     component={TextField}
                     type="number"
                     floatingLabelText={messages.position}
-                    fullWidth={true}
+                    fullWidth
                   />
                 </div>
                 <div className="col-xs-6">
                   <Field
                     component={SelectField}
-                    autoWidth={true}
-                    fullWidth={true}
+                    autoWidth
+                    fullWidth
                     name="control"
                     floatingLabelText={messages.optionControl}
                   >
@@ -93,7 +93,7 @@ class ProductOptionForm extends React.Component {
             <div className="buttons-box">
               <RaisedButton
                 label={messages.actions_delete}
-                secondary={true}
+                secondary
                 onClick={deleteOption}
               />
               <FlatButton
@@ -105,7 +105,7 @@ class ProductOptionForm extends React.Component {
               <RaisedButton
                 type="submit"
                 label={messages.save}
-                primary={true}
+                primary
                 className={style.button}
                 disabled={pristine || submitting}
               />

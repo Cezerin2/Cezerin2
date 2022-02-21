@@ -12,7 +12,7 @@ const GalleryItem = ({ url, alt, id, onDelete, onImageEdit }) => (
     </div>
     <div className={style.footer}>
       <IconButton
-        touch={true}
+        touch
         tooltip={messages.edit}
         tooltipPosition="top-right"
         onClick={onImageEdit}
@@ -22,7 +22,7 @@ const GalleryItem = ({ url, alt, id, onDelete, onImageEdit }) => (
         </FontIcon>
       </IconButton>
       <IconButton
-        touch={true}
+        touch
         tooltip={messages.actions_delete}
         tooltipPosition="top-right"
         onClick={() => {
