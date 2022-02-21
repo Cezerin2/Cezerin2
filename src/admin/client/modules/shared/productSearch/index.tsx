@@ -10,7 +10,7 @@ import React from "react"
 const SearchBox = ({ text, onChange }) => {
   return (
     <TextField
-      fullWidth={true}
+      fullWidth
       floatingLabelText={messages.products_search}
       onChange={onChange}
       value={text}
@@ -38,7 +38,7 @@ const SearchResult = ({ products, selectedId, settings, onSelect }) => {
   return (
     <Table
       height="400px"
-      selectable={true}
+      selectable
       multiSelectable={false}
       onRowSelection={onSelect}
     >
@@ -128,11 +128,7 @@ export default class ConfirmationDialog extends React.Component {
         onClick={this.handleCancel}
         style={{ marginRight: 10 }}
       />,
-      <FlatButton
-        label={submitLabel}
-        primary={true}
-        onClick={this.handleSubmit}
-      />,
+      <FlatButton label={submitLabel} primary onClick={this.handleSubmit} />,
     ]
 
     return (

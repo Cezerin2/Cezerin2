@@ -152,7 +152,7 @@ class CommerceForm extends React.Component {
                 <Field
                   name="serviceOptions"
                   component={SelectField}
-                  fullWidth={true}
+                  fullWidth
                   label={messages.service_options}
                   hintText={messages.service_options_initial_value}
                   floatingLabelText={messages.service_options_initial_value}
@@ -178,7 +178,7 @@ class CommerceForm extends React.Component {
                 (this.state.isSelectField || this.state.isServiceOptions) && (
                   <Field
                     component={TextField}
-                    fullWidth={true}
+                    fullWidth
                     name="deliveryRadius"
                     hintText={messages.delivery_radius}
                     floatingLabelText={messages.delivery_radius}
@@ -190,7 +190,7 @@ class CommerceForm extends React.Component {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

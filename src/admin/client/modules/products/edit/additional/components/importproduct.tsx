@@ -570,8 +570,8 @@ class ProductImport extends React.Component {
                 <FlatButton
                   label={messages.import}
                   files={files}
-                  primary={true}
-                  keyboardFocused={true}
+                  primary
+                  keyboardFocused
                   onClick={this.fetchData}
                   className={"spread-sheet-save-btn"}
                 />

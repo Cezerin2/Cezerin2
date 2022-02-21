@@ -90,13 +90,13 @@ class EditTokenForm extends React.Component {
                 name="name"
                 component={TextField}
                 floatingLabelText={messages.settings_tokenName}
-                fullWidth={true}
+                fullWidth
               />
               <Field
                 name="email"
                 component={TextField}
                 floatingLabelText={messages.email}
-                fullWidth={true}
+                fullWidth
                 disabled={!isAdd}
                 type="email"
               />
@@ -104,7 +104,7 @@ class EditTokenForm extends React.Component {
                 name="expiration"
                 component={TextField}
                 floatingLabelText={messages.settings_tokenExp}
-                fullWidth={true}
+                fullWidth
                 type="number"
               />
               <div className="blue-title">{messages.settings_selectScopes}</div>
@@ -119,7 +119,7 @@ class EditTokenForm extends React.Component {
               {!isAdd && (
                 <RaisedButton
                   label={messages.settings_revokeAccess}
-                  secondary={true}
+                  secondary
                   style={{ float: "left" }}
                   onClick={this.handleRevoke}
                 />
@@ -127,7 +127,7 @@ class EditTokenForm extends React.Component {
               <RaisedButton
                 type="submit"
                 label={isAdd ? messages.settings_generateToken : messages.save}
-                primary={true}
+                primary
                 className={style.button}
                 disabled={pristine || submitting}
               />
@@ -141,7 +141,7 @@ class EditTokenForm extends React.Component {
           description={newToken}
           submitLabel={messages.actions_done}
           cancelLabel={messages.cancel}
-          modal={true}
+          modal
         />
 
         <ConfirmationDialog

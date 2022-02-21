@@ -59,8 +59,8 @@ export default class Buttons extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.saveSetGroup}
       />,
     ]
@@ -71,7 +71,7 @@ export default class Buttons extends React.Component {
         {selectedCount > 0 && (
           <span>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_delete}
               onClick={this.showDelete}
@@ -81,7 +81,7 @@ export default class Buttons extends React.Component {
               </FontIcon>
             </IconButton>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.customers_setGroup}
               onClick={this.showSetGroup}
@@ -103,12 +103,12 @@ export default class Buttons extends React.Component {
               modal={false}
               open={this.state.openSetGroup}
               onRequestClose={this.closeSetGroup}
-              autoScrollBodyContent={true}
+              autoScrollBodyContent
             >
               <GroupSelect
                 onSelect={this.selectSetGroup}
                 selectedId={this.state.groupId}
-                showRoot={true}
+                showRoot
                 showAll={false}
               />
             </Dialog>

@@ -18,8 +18,8 @@ const ArrayEditor = ({
       <div className={style.arrayTitle}>
         {label}
         <FloatingActionButton
-          mini={true}
-          secondary={true}
+          mini
+          secondary
           onClick={() => fields.push({})}
           style={{ marginLeft: "20px" }}
         >
@@ -37,7 +37,7 @@ const ArrayEditor = ({
               <div className={style.arrayItemHead}>
                 <FlatButton
                   label={messages.actions_delete}
-                  secondary={true}
+                  secondary
                   onClick={() => fields.remove(index)}
                 />
 

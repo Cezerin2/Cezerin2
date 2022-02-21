@@ -35,7 +35,7 @@ export default class Buttons extends React.Component {
     return (
       <span>
         <IconButton
-          touch={true}
+          touch
           tooltipPosition="bottom-left"
           tooltip={messages.actions_delete}
           onClick={this.showDelete}
@@ -46,7 +46,7 @@ export default class Buttons extends React.Component {
         </IconButton>
         <DeleteConfirmation
           open={this.state.openDelete}
-          isSingle={true}
+          isSingle
           itemsCount={1}
           itemName={methodName}
           onCancel={this.closeDelete}

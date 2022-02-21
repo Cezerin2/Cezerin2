@@ -223,7 +223,7 @@ export default class OrderCustomer extends React.Component {
               modal={false}
               open={this.state.openShippingEdit}
               onRequestClose={this.hideShippingEdit}
-              autoScrollBodyContent={true}
+              autoScrollBodyContent
               contentStyle={{ width: 600 }}
             >
               <ShippingAddressForm

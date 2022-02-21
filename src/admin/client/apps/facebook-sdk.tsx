@@ -100,7 +100,7 @@ export class App extends React.Component {
 
         <TextField
           type="text"
-          fullWidth={true}
+          fullWidth
           value={this.state.appId}
           onChange={this.handleAppIdChange}
           floatingLabelText="App ID"
@@ -108,7 +108,7 @@ export class App extends React.Component {
 
         <TextField
           type="text"
-          fullWidth={true}
+          fullWidth
           value={this.state.locale}
           onChange={this.handleLocaleChange}
           floatingLabelText="Locale"
@@ -118,7 +118,7 @@ export class App extends React.Component {
         <div style={{ textAlign: "right" }}>
           <RaisedButton
             label={messages.save}
-            primary={true}
+            primary
             disabled={false}
             onClick={this.updateSettings}
           />

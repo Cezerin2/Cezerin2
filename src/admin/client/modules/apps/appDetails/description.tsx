@@ -20,7 +20,7 @@ const AppDescription = ({
             <h1 className={style.title}>{name}</h1>
             <div className={style.developer}>{developer}</div>
             {/* {!enabled &&
-              <RaisedButton label={messages.enable} primary={true} disabled={loadingEnableDisable} onClick={enableService} />
+              <RaisedButton label={messages.enable} primary disabled={loadingEnableDisable} onClick={enableService} />
             }
             {enabled &&
               <RaisedButton label={messages.disable} disabled={loadingEnableDisable} onClick={disableService} />

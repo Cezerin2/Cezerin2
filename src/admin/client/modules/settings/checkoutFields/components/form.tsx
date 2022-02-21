@@ -37,7 +37,7 @@ class CheckoutFieldForm extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="label"
                 floatingLabelText={messages.settings_fieldLabel}
               />
@@ -45,7 +45,7 @@ class CheckoutFieldForm extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="placeholder"
                 floatingLabelText={messages.settings_fieldPlaceholder}
               />
@@ -75,7 +75,7 @@ class CheckoutFieldForm extends React.Component {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

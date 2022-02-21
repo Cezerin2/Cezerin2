@@ -39,7 +39,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="full_name"
               floatingLabelText={messages.full_name}
             />
@@ -47,7 +47,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="company"
               floatingLabelText={messages.company}
             />
@@ -55,7 +55,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="address1"
               floatingLabelText={messages.address1}
             />
@@ -63,7 +63,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="address2"
               floatingLabelText={messages.address2}
             />
@@ -71,7 +71,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="city"
               floatingLabelText={messages.city}
             />
@@ -79,7 +79,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="state"
               floatingLabelText={messages.state}
             />
@@ -87,7 +87,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="postal_code"
               floatingLabelText={messages.postal_code}
             />
@@ -95,7 +95,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="country"
               floatingLabelText={messages.country}
             />
@@ -103,7 +103,7 @@ class CustomerAddressForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="phone"
               floatingLabelText={messages.phone}
             />
@@ -113,7 +113,7 @@ class CustomerAddressForm extends React.Component {
           <FlatButton label={messages.cancel} onClick={onCancel} />
           <FlatButton
             label={messages.save}
-            primary={true}
+            primary
             type="submit"
             style={{ marginLeft: 12 }}
             disabled={pristine || submitting}

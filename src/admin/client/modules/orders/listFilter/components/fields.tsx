@@ -22,7 +22,7 @@ export default ({
     <div className={style.filter}>
       <SelectField
         className={style.select}
-        fullWidth={true}
+        fullWidth
         value={isDraft}
         onChange={(event, index, value) => {
           setDraft(value)
@@ -31,12 +31,12 @@ export default ({
       >
         <MenuItem value={null} primaryText={messages.all} label=" " />
         <MenuItem value={false} primaryText={messages.no} />
-        <MenuItem value={true} primaryText={messages.yes} />
+        <MenuItem value primaryText={messages.yes} />
       </SelectField>
 
       <SelectField
         className={style.select}
-        fullWidth={true}
+        fullWidth
         value={isHold}
         onChange={(event, index, value) => {
           setHold(value)
@@ -45,12 +45,12 @@ export default ({
       >
         <MenuItem value={null} primaryText={messages.all} label=" " />
         <MenuItem value={false} primaryText={messages.no} />
-        <MenuItem value={true} primaryText={messages.yes} />
+        <MenuItem value primaryText={messages.yes} />
       </SelectField>
 
       <SelectField
         className={style.select}
-        fullWidth={true}
+        fullWidth
         value={isPaid}
         onChange={(event, index, value) => {
           setPaid(value)
@@ -59,12 +59,12 @@ export default ({
       >
         <MenuItem value={null} primaryText={messages.all} label=" " />
         <MenuItem value={false} primaryText={messages.no} />
-        <MenuItem value={true} primaryText={messages.yes} />
+        <MenuItem value primaryText={messages.yes} />
       </SelectField>
 
       <SelectField
         className={style.select}
-        fullWidth={true}
+        fullWidth
         value={isDelivered}
         onChange={(event, index, value) => {
           setDelivered(value)
@@ -73,12 +73,12 @@ export default ({
       >
         <MenuItem value={null} primaryText={messages.all} label=" " />
         <MenuItem value={false} primaryText={messages.no} />
-        <MenuItem value={true} primaryText={messages.yes} />
+        <MenuItem value primaryText={messages.yes} />
       </SelectField>
 
       <SelectField
         className={style.select}
-        fullWidth={true}
+        fullWidth
         value={isCancelled}
         onChange={(event, index, value) => {
           setCancelled(value)
@@ -87,12 +87,12 @@ export default ({
       >
         <MenuItem value={null} primaryText={messages.all} label=" " />
         <MenuItem value={false} primaryText={messages.no} />
-        <MenuItem value={true} primaryText={messages.yes} />
+        <MenuItem value primaryText={messages.yes} />
       </SelectField>
 
       <SelectField
         className={style.select}
-        fullWidth={true}
+        fullWidth
         value={isClosed}
         onChange={(event, index, value) => {
           setClosed(value)
@@ -101,7 +101,7 @@ export default ({
       >
         <MenuItem value={null} primaryText={messages.all} label=" " />
         <MenuItem value={false} primaryText={messages.no} />
-        <MenuItem value={true} primaryText={messages.yes} />
+        <MenuItem value primaryText={messages.yes} />
       </SelectField>
     </div>
   )

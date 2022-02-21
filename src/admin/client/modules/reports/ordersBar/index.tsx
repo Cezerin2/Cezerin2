@@ -49,7 +49,7 @@ export default class OrdersBar extends React.Component {
       <div>
         <BarChart
           data={ordersData}
-          legendDisplay={true}
+          legendDisplay
           title={messages.drawer_orders}
         />
         <BarChart

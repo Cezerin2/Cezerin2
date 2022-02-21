@@ -83,14 +83,14 @@ class EditPageForm extends React.Component {
                 name="meta_title"
                 component={TextField}
                 floatingLabelText={messages.pageTitle}
-                fullWidth={true}
+                fullWidth
               />
               <br />
               <Field
                 name="slug"
                 component={TextField}
                 floatingLabelText={messages.slug}
-                fullWidth={true}
+                fullWidth
                 disabled={initialValues.is_system}
               />
               <p className="field-hint">{messages.help_slug}</p>
@@ -98,7 +98,7 @@ class EditPageForm extends React.Component {
                 name="meta_description"
                 component={TextField}
                 floatingLabelText={messages.metaDescription}
-                fullWidth={true}
+                fullWidth
               />
               <div className="field-hint" style={{ marginTop: 40 }}>
                 {messages.content}
@@ -133,7 +133,7 @@ class EditPageForm extends React.Component {
               <RaisedButton
                 type="submit"
                 label={isAdd ? messages.add : messages.save}
-                primary={true}
+                primary
                 className={style.button}
                 disabled={pristine || submitting}
               />

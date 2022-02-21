@@ -47,7 +47,7 @@ export default ({
           setStock(value)
         }}
         floatingLabelText={messages.products_stockStatus}
-        fullWidth={true}
+        fullWidth
       >
         <MenuItem value={"all"} primaryText={messages.all} />
         <MenuItem value={"available"} primaryText={messages.products_inStock} />

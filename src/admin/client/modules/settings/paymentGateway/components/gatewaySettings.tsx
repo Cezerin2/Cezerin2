@@ -25,8 +25,8 @@ const PayPalButton = props => {
         component={SelectField}
         name="env"
         floatingLabelText="Environment"
-        fullWidth={true}
-        autoWidth={true}
+        fullWidth
+        autoWidth
       >
         <MenuItem value="production" primaryText="production" />
         <MenuItem value="sandbox" primaryText="sandbox" />
@@ -36,15 +36,15 @@ const PayPalButton = props => {
         component={TextField}
         name="client"
         floatingLabelText="Client ID"
-        fullWidth={true}
+        fullWidth
       />
 
       <Field
         component={SelectField}
         name="size"
         floatingLabelText="Button size"
-        fullWidth={true}
-        autoWidth={true}
+        fullWidth
+        autoWidth
       >
         <MenuItem value="small" primaryText="small" />
         <MenuItem value="medium" primaryText="medium" />
@@ -56,8 +56,8 @@ const PayPalButton = props => {
         component={SelectField}
         name="shape"
         floatingLabelText="Button shape"
-        fullWidth={true}
-        autoWidth={true}
+        fullWidth
+        autoWidth
       >
         <MenuItem value="pill" primaryText="pill" />
         <MenuItem value="rect" primaryText="rect" />
@@ -67,8 +67,8 @@ const PayPalButton = props => {
         component={SelectField}
         name="color"
         floatingLabelText="Button color"
-        fullWidth={true}
-        autoWidth={true}
+        fullWidth
+        autoWidth
       >
         <MenuItem value="gold" primaryText="gold" />
         <MenuItem value="blue" primaryText="blue" />
@@ -81,7 +81,7 @@ const PayPalButton = props => {
         name="notify_url"
         floatingLabelText="Notify URL"
         hintText="https://<domain>/api/v1/notifications/paypal-checkout"
-        fullWidth={true}
+        fullWidth
       />
     </div>
   )
@@ -94,22 +94,22 @@ const LiqPay = props => {
         component={TextField}
         name="public_key"
         floatingLabelText="Public Key"
-        fullWidth={true}
+        fullWidth
       />
 
       <Field
         component={TextField}
         name="private_key"
         floatingLabelText="Private Key"
-        fullWidth={true}
+        fullWidth
       />
 
       <Field
         component={SelectField}
         name="language"
         floatingLabelText="Language"
-        fullWidth={true}
-        autoWidth={true}
+        fullWidth
+        autoWidth
       >
         <MenuItem value="ru" primaryText="Russian" />
         <MenuItem value="uk" primaryText="Ukrainian" />
@@ -121,7 +121,7 @@ const LiqPay = props => {
         name="server_url"
         floatingLabelText="Server URL"
         hintText="https://<domain>/api/v1/notifications/liqpay"
-        fullWidth={true}
+        fullWidth
       />
     </div>
   )
@@ -134,8 +134,8 @@ const StripeElements = props => {
         component={SelectField}
         name="env"
         floatingLabelText="Environment"
-        fullWidth={true}
-        autoWidth={true}
+        fullWidth
+        autoWidth
       >
         <MenuItem value="production" primaryText="production" />
         <MenuItem value="sandbox" primaryText="sandbox" />
@@ -144,13 +144,13 @@ const StripeElements = props => {
         component={TextField}
         name="public_key"
         floatingLabelText="Publishable key"
-        fullWidth={true}
+        fullWidth
       />
       <Field
         component={TextField}
         name="secret_key"
         floatingLabelText="Secret key"
-        fullWidth={true}
+        fullWidth
       />
     </div>
   )

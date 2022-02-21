@@ -67,7 +67,7 @@ const RelatedProductActions = ({ fields, index }) => (
     targetOrigin={{ horizontal: "right", vertical: "top" }}
     anchorOrigin={{ horizontal: "right", vertical: "top" }}
     iconButtonElement={
-      <IconButton touch={true}>
+      <IconButton touch>
         <FontIcon color="#777" className="material-icons">
           more_vert
         </FontIcon>
@@ -332,7 +332,7 @@ const ProductAdditionalForm = ({
           <RaisedButton
             type="submit"
             label={messages.save}
-            primary={true}
+            primary
             className={style.button}
             disabled={pristine || submitting}
           />

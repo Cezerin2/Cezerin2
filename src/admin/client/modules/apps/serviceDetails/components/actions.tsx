@@ -41,7 +41,7 @@ class ActionComponent extends React.Component {
           <div className="col-xs-5" style={{ textAlign: "right" }}>
             <RaisedButton
               label={action.name}
-              primary={true}
+              primary
               disabled={this.state.loading}
               onClick={this.handleActionCall}
             />

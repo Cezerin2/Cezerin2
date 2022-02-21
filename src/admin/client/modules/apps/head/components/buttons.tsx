@@ -10,7 +10,7 @@ const WebStoreMenu = () => {
   return (
     <IconMenu
       iconButtonElement={
-        <IconButton touch={true}>
+        <IconButton touch>
           <FontIcon color="#fff" className="material-icons">
             more_vert
           </FontIcon>

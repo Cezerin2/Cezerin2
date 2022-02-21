@@ -25,7 +25,7 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="email"
                 floatingLabelText={messages.email}
               />
@@ -33,7 +33,7 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="shop_url"
                 floatingLabelText={messages.shopUrl}
               />
@@ -41,7 +41,7 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="admin_url"
                 floatingLabelText={messages.adminUrl}
               />
@@ -60,7 +60,7 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

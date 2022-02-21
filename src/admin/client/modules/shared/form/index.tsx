@@ -34,7 +34,7 @@ export const NumberField = ({
 }) => (
   <TextField
     floatingLabelText={label}
-    fullWidth={true}
+    fullWidth
     disabled={disabled}
     value={input.value}
     type="number"

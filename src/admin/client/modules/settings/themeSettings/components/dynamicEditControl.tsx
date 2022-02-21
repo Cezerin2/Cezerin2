@@ -22,7 +22,7 @@ const DynamicEditControl = ({
     return (
       <Field
         component={TextField}
-        fullWidth={true}
+        fullWidth
         name={fieldName}
         floatingLabelText={label}
       />
@@ -36,8 +36,8 @@ const DynamicEditControl = ({
         component={SelectField}
         name={fieldName}
         floatingLabelText={label}
-        fullWidth={true}
-        autoWidth={true}
+        fullWidth
+        autoWidth
       >
         {selectOptions}
       </Field>

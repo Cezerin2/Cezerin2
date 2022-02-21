@@ -20,8 +20,8 @@ export default class MultiUploader extends React.Component {
       <div>
         <Dropzone
           onDrop={this.onDrop}
-          multiple={true}
-          disableClick={true}
+          multiple
+          disableClick
           ref={node => {
             this.dropzone = node
           }}

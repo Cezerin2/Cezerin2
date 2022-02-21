@@ -34,7 +34,7 @@ const ServiceSettingsForm = ({
         {typeof value === "number" && (
           <Field
             component={TextField}
-            fullWidth={true}
+            fullWidth
             type="number"
             name={key}
             floatingLabelText={key}
@@ -44,7 +44,7 @@ const ServiceSettingsForm = ({
         {typeof value !== "boolean" && typeof value !== "number" && (
           <Field
             component={TextField}
-            fullWidth={true}
+            fullWidth
             name={key}
             floatingLabelText={key}
           />
@@ -74,7 +74,7 @@ const ServiceSettingsForm = ({
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

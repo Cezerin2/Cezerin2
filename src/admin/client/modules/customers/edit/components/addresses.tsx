@@ -31,7 +31,7 @@ const Address = ({ address }) => {
 }
 
 const iconButtonElement = (
-  <IconButton touch={true}>
+  <IconButton touch>
     <FontIcon color="rgb(189, 189, 189)" className="material-icons">
       more_vert
     </FontIcon>
@@ -139,7 +139,7 @@ class CustomerAddress extends React.Component {
             modal={false}
             open={this.state.openEdit}
             onRequestClose={this.hideEditForm}
-            autoScrollBodyContent={true}
+            autoScrollBodyContent
             contentStyle={{ width: 600 }}
           >
             <AddressForm

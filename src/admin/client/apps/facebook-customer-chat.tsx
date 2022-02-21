@@ -85,7 +85,7 @@ export class App extends React.Component {
       <div>
         <TextField
           type="text"
-          fullWidth={true}
+          fullWidth
           value={this.state.pageId}
           onChange={this.handlePageIdChange}
           floatingLabelText="Page ID"
@@ -93,7 +93,7 @@ export class App extends React.Component {
 
         <TextField
           type="text"
-          fullWidth={true}
+          fullWidth
           value={this.state.minimized}
           onChange={this.handleMinimizedChange}
           floatingLabelText="minimized"
@@ -103,7 +103,7 @@ export class App extends React.Component {
         <div style={{ textAlign: "right" }}>
           <RaisedButton
             label={messages.save}
-            primary={true}
+            primary
             disabled={false}
             onClick={this.updateSettings}
           />
