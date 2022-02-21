@@ -1,13 +1,13 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import * as helper from "lib/helper"
+import messages from "lib/text"
 import Checkbox from "material-ui/Checkbox"
-import { ListItem } from "material-ui/List"
 import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
-import messages from "lib/text"
-import * as helper from "lib/helper"
-import style from "./style.css"
+import { ListItem } from "material-ui/List"
 import moment from "moment"
+import React from "react"
+import { Link } from "react-router-dom"
+import style from "./style.css"
 
 const getOrderStateIcons = order => {
   let icons = []

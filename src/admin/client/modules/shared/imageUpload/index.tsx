@@ -1,12 +1,10 @@
-import React from "react"
 import messages from "lib/text"
-import Dropzone from "react-dropzone"
-
-import Paper from "material-ui/Paper"
-import Snackbar from "material-ui/Snackbar"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
-
+import Paper from "material-ui/Paper"
+import Snackbar from "material-ui/Snackbar"
+import React from "react"
+import Dropzone from "react-dropzone"
 import style from "./style.css"
 
 export default class ImageUpload extends React.Component {
@@ -81,7 +79,7 @@ export default class ImageUpload extends React.Component {
 
         <div className={style.footer}>
           <IconButton
-            touch={true}
+            touch
             tooltip={messages.actions_upload}
             onClick={() => {
               this.dropzone.open()
@@ -94,7 +92,7 @@ export default class ImageUpload extends React.Component {
           </IconButton>
           {hasPreview && (
             <IconButton
-              touch={true}
+              touch
               tooltip={messages.actions_delete}
               onClick={this.onDelete}
               tooltipPosition="top-right"

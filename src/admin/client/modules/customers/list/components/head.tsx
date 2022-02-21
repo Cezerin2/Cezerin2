@@ -1,7 +1,7 @@
-import React from "react"
-import Subheader from "material-ui/Subheader"
-import Checkbox from "material-ui/Checkbox"
 import messages from "lib/text"
+import Checkbox from "material-ui/Checkbox"
+import Subheader from "material-ui/Subheader"
+import React from "react"
 
 export default ({ onSelectAll }) => (
   <Subheader style={{ paddingRight: 16 }}>

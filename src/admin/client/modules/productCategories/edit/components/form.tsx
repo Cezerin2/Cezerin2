@@ -1,18 +1,15 @@
+import api from "lib/api"
+import messages from "lib/text"
+import FlatButton from "material-ui/FlatButton"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import Editor from "modules/shared/editor"
+import { CustomToggle } from "modules/shared/form"
+import ImageUpload from "modules/shared/imageUpload"
 import React from "react"
 import { Field, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
-import Editor from "modules/shared/editor"
-
-import { CustomToggle } from "modules/shared/form"
-import ImageUpload from "modules/shared/imageUpload"
-import messages from "lib/text"
 import style from "./style.css"
-import settings from "lib/settings"
-import api from "lib/api"
-
-import Paper from "material-ui/Paper"
-import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
 
 const validate = values => {
   const errors = {}
@@ -77,7 +74,7 @@ const ProductCategoryEditForm = ({
               name="name"
               component={TextField}
               floatingLabelText={messages.productCategories_name + " *"}
-              fullWidth={true}
+              fullWidth
             />
             <div className="field-hint" style={{ marginTop: 40 }}>
               {messages.description}
@@ -106,20 +103,20 @@ const ProductCategoryEditForm = ({
               name="slug"
               component={TextField}
               floatingLabelText={messages.slug}
-              fullWidth={true}
+              fullWidth
             />
             <p className="field-hint">{messages.help_slug}</p>
             <Field
               name="meta_title"
               component={TextField}
               floatingLabelText={messages.pageTitle}
-              fullWidth={true}
+              fullWidth
             />
             <Field
               name="meta_description"
               component={TextField}
               floatingLabelText={messages.metaDescription}
-              fullWidth={true}
+              fullWidth
             />
           </div>
           <div
@@ -137,7 +134,7 @@ const ProductCategoryEditForm = ({
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting || isSaving}
             />

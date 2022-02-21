@@ -1,8 +1,7 @@
 import React from "react"
-import messages from "lib/text"
-import style from "./style.css"
 import Account from "./account"
 import Developer from "./developer"
+import style from "./style.css"
 
 export default class WebStoreAccountDetails extends React.Component {
   constructor(props) {

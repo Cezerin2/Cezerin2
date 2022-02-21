@@ -1,12 +1,6 @@
-import React from "react"
-
-import messages from "lib/text"
-import style from "./style.css"
-
 import Paper from "material-ui/Paper"
-import RaisedButton from "material-ui/RaisedButton"
-import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
+import React from "react"
+import style from "./style.css"
 
 const AppDescription = ({
   name,
@@ -26,7 +20,7 @@ const AppDescription = ({
             <h1 className={style.title}>{name}</h1>
             <div className={style.developer}>{developer}</div>
             {/* {!enabled &&
-              <RaisedButton label={messages.enable} primary={true} disabled={loadingEnableDisable} onClick={enableService} />
+              <RaisedButton label={messages.enable} primary disabled={loadingEnableDisable} onClick={enableService} />
             }
             {enabled &&
               <RaisedButton label={messages.disable} disabled={loadingEnableDisable} onClick={disableService} />

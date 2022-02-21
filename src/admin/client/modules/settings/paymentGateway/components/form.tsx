@@ -53,7 +53,7 @@ class EditPaymentGatewayForm extends React.Component {
             title={gatewayDetails.name}
             modal={false}
             open={this.state.open}
-            autoScrollBodyContent={true}
+            autoScrollBodyContent
             contentStyle={{ width: 600 }}
             onRequestClose={this.handleClose}
           >
@@ -70,7 +70,7 @@ class EditPaymentGatewayForm extends React.Component {
                 />
                 <FlatButton
                   label={messages.save}
-                  primary={true}
+                  primary
                   type="submit"
                   onClick={this.handleClose}
                   style={{ marginLeft: 12 }}

@@ -1,10 +1,9 @@
-import React from "react"
 import messages from "lib/text"
-import style from "./style.css"
-
-import SelectField from "material-ui/SelectField"
 import MenuItem from "material-ui/MenuItem"
+import SelectField from "material-ui/SelectField"
 import Toggle from "material-ui/Toggle"
+import React from "react"
+import style from "./style.css"
 
 export default ({
   active,
@@ -48,7 +47,7 @@ export default ({
           setStock(value)
         }}
         floatingLabelText={messages.products_stockStatus}
-        fullWidth={true}
+        fullWidth
       >
         <MenuItem value={"all"} primaryText={messages.all} />
         <MenuItem value={"available"} primaryText={messages.products_inStock} />

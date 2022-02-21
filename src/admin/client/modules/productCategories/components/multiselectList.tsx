@@ -1,9 +1,7 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import messages from "lib/text"
-import { List, ListItem } from "material-ui/List"
-import FontIcon from "material-ui/FontIcon"
 import Checkbox from "material-ui/Checkbox"
+import FontIcon from "material-ui/FontIcon"
+import { List, ListItem } from "material-ui/List"
+import React from "react"
 
 const styles = {
   selectedItem: {

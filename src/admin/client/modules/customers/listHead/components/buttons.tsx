@@ -1,16 +1,11 @@
-import React from "react"
-import { Link } from "react-router-dom"
 import messages from "lib/text"
-import GroupSelect from "modules/customerGroups/select"
-import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import FontIcon from "material-ui/FontIcon"
-import IconMenu from "material-ui/IconMenu"
-import IconButton from "material-ui/IconButton"
-import MenuItem from "material-ui/MenuItem"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
-import TextField from "material-ui/TextField"
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
+import GroupSelect from "modules/customerGroups/select"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import React from "react"
 import Search from "./search"
 
 export default class Buttons extends React.Component {
@@ -64,8 +59,8 @@ export default class Buttons extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.saveSetGroup}
       />,
     ]
@@ -76,7 +71,7 @@ export default class Buttons extends React.Component {
         {selectedCount > 0 && (
           <span>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.actions_delete}
               onClick={this.showDelete}
@@ -86,7 +81,7 @@ export default class Buttons extends React.Component {
               </FontIcon>
             </IconButton>
             <IconButton
-              touch={true}
+              touch
               tooltipPosition="bottom-left"
               tooltip={messages.customers_setGroup}
               onClick={this.showSetGroup}
@@ -108,12 +103,12 @@ export default class Buttons extends React.Component {
               modal={false}
               open={this.state.openSetGroup}
               onRequestClose={this.closeSetGroup}
-              autoScrollBodyContent={true}
+              autoScrollBodyContent
             >
               <GroupSelect
                 onSelect={this.selectSetGroup}
                 selectedId={this.state.groupId}
-                showRoot={true}
+                showRoot
                 showAll={false}
               />
             </Dialog>

@@ -187,7 +187,7 @@ export default class OrderSummary extends React.Component {
             {isDraft && (
               <RaisedButton
                 label={messages.placeOrder}
-                primary={true}
+                primary
                 onClick={onCheckout}
                 disabled={processingCheckout}
               />
@@ -199,7 +199,7 @@ export default class OrderSummary extends React.Component {
             modal={false}
             open={this.state.openSummaryEdit}
             onRequestClose={this.hideSummaryEdit}
-            autoScrollBodyContent={true}
+            autoScrollBodyContent
             contentStyle={{ width: 600 }}
           >
             <SummaryForm

@@ -1,10 +1,10 @@
-import React from "react"
 import messages from "lib/text"
-import Gallery from "modules/shared/imageUploadMultiple"
-import Paper from "material-ui/Paper"
-import TextField from "material-ui/TextField"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
+import Paper from "material-ui/Paper"
+import TextField from "material-ui/TextField"
+import Gallery from "modules/shared/imageUploadMultiple"
+import React from "react"
 
 export default class ProductImages extends React.Component {
   constructor(props) {
@@ -60,8 +60,8 @@ export default class ProductImages extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.handleEditSave}
       />,
     ]
@@ -89,7 +89,7 @@ export default class ProductImages extends React.Component {
           >
             <TextField
               floatingLabelText={messages.alt}
-              fullWidth={true}
+              fullWidth
               value={alt}
               onChange={this.handleAltChange}
             />

@@ -86,10 +86,10 @@ class EditPaymentMethodForm extends React.Component {
                 <div>
                   <Field
                     component={SelectField}
-                    autoWidth={true}
-                    fullWidth={true}
+                    autoWidth
+                    fullWidth
                     name="gateway"
-                    floatingLabelFixed={true}
+                    floatingLabelFixed
                     floatingLabelText={messages.paymentGateway}
                     onChange={(event, currentValue, prevValue) => {
                       this.onGatewayChange(currentValue)
@@ -110,7 +110,7 @@ class EditPaymentMethodForm extends React.Component {
                 <div>
                   <Field
                     component={TextField}
-                    fullWidth={true}
+                    fullWidth
                     name="name"
                     floatingLabelText={messages.settings_paymentMethodName}
                   />
@@ -118,9 +118,9 @@ class EditPaymentMethodForm extends React.Component {
                 <div>
                   <Field
                     component={TextField}
-                    fullWidth={true}
+                    fullWidth
                     name="description"
-                    multiLine={true}
+                    multiLine
                     floatingLabelText={messages.description}
                   />
                 </div>
@@ -144,7 +144,7 @@ class EditPaymentMethodForm extends React.Component {
                 <div>
                   <Field
                     component={TextField}
-                    fullWidth={true}
+                    fullWidth
                     name="conditions.countries"
                     floatingLabelText={messages.settings_countries}
                     hintText="US,UK,AU,SG"
@@ -156,7 +156,7 @@ class EditPaymentMethodForm extends React.Component {
                       component={TextField}
                       name="conditions.subtotal_min"
                       type="number"
-                      fullWidth={true}
+                      fullWidth
                       floatingLabelText={
                         messages.settings_minSubtotal +
                         ` (${settings.currency_symbol})`
@@ -168,7 +168,7 @@ class EditPaymentMethodForm extends React.Component {
                       component={TextField}
                       name="conditions.subtotal_max"
                       type="number"
-                      fullWidth={true}
+                      fullWidth
                       floatingLabelText={
                         messages.settings_maxSubtotal +
                         ` (${settings.currency_symbol})`
@@ -191,7 +191,7 @@ class EditPaymentMethodForm extends React.Component {
             <RaisedButton
               type="submit"
               label={isAdd ? messages.add : messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

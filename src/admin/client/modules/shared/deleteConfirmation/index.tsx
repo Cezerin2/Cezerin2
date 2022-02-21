@@ -1,7 +1,7 @@
-import React from "react"
 import messages from "lib/text"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
+import React from "react"
 
 export default class ConfirmationDialog extends React.Component {
   constructor(props) {
@@ -56,8 +56,8 @@ export default class ConfirmationDialog extends React.Component {
       />,
       <FlatButton
         label={messages.actions_delete}
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onClick={this.handleDelete}
       />,
     ]

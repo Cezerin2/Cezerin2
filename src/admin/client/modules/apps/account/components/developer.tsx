@@ -1,17 +1,10 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import { Link } from "react-router-dom"
-import { TextField } from "redux-form-material-ui"
-
-import { CustomToggle } from "modules/shared/form"
 import messages from "lib/text"
-import style from "./style.css"
-
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
-import { List, ListItem } from "material-ui/List"
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
+import style from "./style.css"
 
 const DeveloperForm = ({
   handleSubmit,
@@ -36,7 +29,7 @@ const DeveloperForm = ({
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="name"
                 floatingLabelText={messages.full_name}
               />
@@ -44,17 +37,17 @@ const DeveloperForm = ({
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="description"
                 floatingLabelText={messages.description}
-                multiLine={true}
+                multiLine
                 rows={1}
               />
             </div>
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="website"
                 floatingLabelText={messages.website}
               />
@@ -62,7 +55,7 @@ const DeveloperForm = ({
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="email"
                 floatingLabelText={messages.email}
               />
@@ -75,7 +68,7 @@ const DeveloperForm = ({
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

@@ -1,17 +1,11 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import { Link } from "react-router-dom"
-import { TextField } from "redux-form-material-ui"
-
-import { CustomToggle } from "modules/shared/form"
 import messages from "lib/text"
-import style from "./style.css"
-
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
-import { List, ListItem } from "material-ui/List"
+import { CustomToggle } from "modules/shared/form"
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
+import style from "./style.css"
 
 const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
   return (
@@ -31,7 +25,7 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="email"
                 floatingLabelText={messages.email}
               />
@@ -39,7 +33,7 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="shop_url"
                 floatingLabelText={messages.shopUrl}
               />
@@ -47,7 +41,7 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="admin_url"
                 floatingLabelText={messages.adminUrl}
               />
@@ -66,7 +60,7 @@ const AccountForm = ({ handleSubmit, pristine, submitting, initialValues }) => {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

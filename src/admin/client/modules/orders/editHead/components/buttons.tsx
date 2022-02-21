@@ -1,15 +1,13 @@
-import React from "react"
 import messages from "lib/text"
-import ConfirmationDialog from "modules/shared/confirmation"
-import ProductSearchDialog from "modules/shared/productSearch"
-import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import FontIcon from "material-ui/FontIcon"
-import IconMenu from "material-ui/IconMenu"
-import IconButton from "material-ui/IconButton"
-import MenuItem from "material-ui/MenuItem"
-import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
 import Divider from "material-ui/Divider"
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
+import IconMenu from "material-ui/IconMenu"
+import MenuItem from "material-ui/MenuItem"
+import ConfirmationDialog from "modules/shared/confirmation"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import ProductSearchDialog from "modules/shared/productSearch"
+import React from "react"
 
 export default class Buttons extends React.Component {
   constructor(props) {
@@ -169,7 +167,7 @@ export default class Buttons extends React.Component {
 
           <DeleteConfirmation
             open={this.state.openDelete}
-            isSingle={true}
+            isSingle
             itemsCount={1}
             itemName={orderName}
             onCancel={this.closeDelete}
@@ -178,7 +176,7 @@ export default class Buttons extends React.Component {
 
           <IconMenu
             iconButtonElement={
-              <IconButton touch={true}>
+              <IconButton touch>
                 <FontIcon color="#fff" className="material-icons">
                   more_vert
                 </FontIcon>

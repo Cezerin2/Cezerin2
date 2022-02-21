@@ -1,15 +1,10 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import { TextField, SelectField } from "redux-form-material-ui"
-
 import messages from "lib/text"
-import style from "./style.css"
-
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
-import { List, ListItem } from "material-ui/List"
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
+import style from "./style.css"
 
 class EmailSettings extends React.Component {
   constructor(props) {
@@ -36,7 +31,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="host"
                 hintText="smtp.server.com"
                 floatingLabelText={messages.settings_smtpHost}
@@ -45,7 +40,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="port"
                 type="number"
                 hintText="465"
@@ -55,7 +50,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="user"
                 floatingLabelText={messages.settings_smtpUser}
               />
@@ -63,7 +58,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="pass"
                 type="password"
                 floatingLabelText={messages.settings_smtpPass}
@@ -72,7 +67,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="from_name"
                 floatingLabelText={messages.settings_emailFromName}
               />
@@ -80,7 +75,7 @@ class EmailSettings extends React.Component {
             <div>
               <Field
                 component={TextField}
-                fullWidth={true}
+                fullWidth
                 name="from_address"
                 type="email"
                 floatingLabelText={messages.settings_emailFromAddress}
@@ -91,7 +86,7 @@ class EmailSettings extends React.Component {
             <RaisedButton
               type="submit"
               label={messages.save}
-              primary={true}
+              primary
               className={style.button}
               disabled={pristine || submitting}
             />

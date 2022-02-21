@@ -1,6 +1,6 @@
-import React from "react"
-import Subheader from "material-ui/Subheader"
 import messages from "lib/text"
+import Subheader from "material-ui/Subheader"
+import React from "react"
 
 const Head = ({ onSelectAll }) => (
   <Subheader>

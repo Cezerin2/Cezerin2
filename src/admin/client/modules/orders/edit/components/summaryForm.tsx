@@ -1,16 +1,11 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import { TextField, SelectField } from "redux-form-material-ui"
-
-import { CustomToggle } from "modules/shared/form"
 import api from "lib/api"
 import messages from "lib/text"
-import style from "./style.css"
-
-import Divider from "material-ui/Divider"
-import RaisedButton from "material-ui/RaisedButton"
 import FlatButton from "material-ui/FlatButton"
 import MenuItem from "material-ui/MenuItem"
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { SelectField, TextField } from "redux-form-material-ui"
+import style from "./style.css"
 
 const validate = values => {
   const errors = {}
@@ -86,7 +81,7 @@ class SummaryForm extends React.Component {
         <div>
           <Field
             component={SelectField}
-            fullWidth={true}
+            fullWidth
             name="status_id"
             floatingLabelText={messages.orderStatus}
           >
@@ -96,7 +91,7 @@ class SummaryForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="tracking_number"
               floatingLabelText={messages.trackingNumber}
             />
@@ -104,7 +99,7 @@ class SummaryForm extends React.Component {
 
           <Field
             component={SelectField}
-            fullWidth={true}
+            fullWidth
             name="shipping_method_id"
             floatingLabelText={messages.shippingMethod}
           >
@@ -113,7 +108,7 @@ class SummaryForm extends React.Component {
 
           <Field
             component={SelectField}
-            fullWidth={true}
+            fullWidth
             name="payment_method_id"
             floatingLabelText={messages.paymentsMethod}
           >
@@ -123,7 +118,7 @@ class SummaryForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="comments"
               floatingLabelText={messages.customerComment}
             />
@@ -132,7 +127,7 @@ class SummaryForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="note"
               floatingLabelText={messages.note}
             />
@@ -141,7 +136,7 @@ class SummaryForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="email"
               floatingLabelText={messages.email}
             />
@@ -150,7 +145,7 @@ class SummaryForm extends React.Component {
           <div>
             <Field
               component={TextField}
-              fullWidth={true}
+              fullWidth
               name="mobile"
               floatingLabelText={messages.mobile}
             />
@@ -160,7 +155,7 @@ class SummaryForm extends React.Component {
           <FlatButton label={messages.cancel} onClick={onCancel} />
           <FlatButton
             label={messages.save}
-            primary={true}
+            primary
             type="submit"
             style={{ marginLeft: 12 }}
             disabled={pristine || submitting}

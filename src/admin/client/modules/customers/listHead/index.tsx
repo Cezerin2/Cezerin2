@@ -1,10 +1,9 @@
-import React from "react"
 import { connect } from "react-redux"
 import {
-  fetchCustomers,
   deleteCustomers,
-  setGroup,
+  fetchCustomers,
   setFilterSearch,
+  setGroup,
 } from "../actions"
 import Buttons from "./components/buttons"
 

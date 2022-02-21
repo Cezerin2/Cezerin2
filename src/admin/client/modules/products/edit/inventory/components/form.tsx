@@ -1,17 +1,14 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { Field, reduxForm } from "redux-form"
-import { TextField, SelectField, DatePicker } from "redux-form-material-ui"
-import { CustomToggle } from "modules/shared/form"
-
-import messages from "lib/text"
-import style from "./style.css"
 import api from "lib/api"
-
-import Paper from "material-ui/Paper"
-import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
+import messages from "lib/text"
 import Divider from "material-ui/Divider"
+import FlatButton from "material-ui/FlatButton"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import { CustomToggle } from "modules/shared/form"
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { DatePicker, TextField } from "redux-form-material-ui"
+import style from "./style.css"
 
 const validate = values => {
   const errors = {}
@@ -104,7 +101,7 @@ const ProductInventoryForm = ({
                       messages.products_regularPrice +
                       ` (${settings.currency_symbol})`
                     }
-                    fullWidth={true}
+                    fullWidth
                   />
                 </div>
                 <div className="col-xs-6">
@@ -115,7 +112,7 @@ const ProductInventoryForm = ({
                       messages.products_salePrice +
                       ` (${settings.currency_symbol})`
                     }
-                    fullWidth={true}
+                    fullWidth
                   />
                 </div>
                 <div className="col-xs-6">
@@ -146,7 +143,7 @@ const ProductInventoryForm = ({
                 name="sku"
                 component={TextField}
                 floatingLabelText={messages.products_sku}
-                fullWidth={true}
+                fullWidth
               />
 
               <div className="row">
@@ -155,7 +152,7 @@ const ProductInventoryForm = ({
                     name="stock_quantity"
                     component={TextField}
                     floatingLabelText={messages.products_stockQuantity}
-                    fullWidth={true}
+                    fullWidth
                   />
                 </div>
                 <div className="col-xs-6">
@@ -165,7 +162,7 @@ const ProductInventoryForm = ({
                     floatingLabelText={
                       messages.products_weight + ` (${settings.weight_unit})`
                     }
-                    fullWidth={true}
+                    fullWidth
                   />
                 </div>
               </div>
@@ -245,7 +242,7 @@ const ProductInventoryForm = ({
           <RaisedButton
             type="submit"
             label={messages.save}
-            primary={true}
+            primary
             className={style.button}
             disabled={pristine || submitting}
           />

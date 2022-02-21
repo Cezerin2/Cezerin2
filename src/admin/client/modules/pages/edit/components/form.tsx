@@ -1,17 +1,14 @@
+import api from "lib/api"
+import messages from "lib/text"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import Editor from "modules/shared/editor"
+import { CustomToggle } from "modules/shared/form"
 import React from "react"
+import TagsInput from "react-tagsinput"
 import { Field, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
-
-import { CustomToggle } from "modules/shared/form"
-import Editor from "modules/shared/editor"
-import TagsInput from "react-tagsinput"
-import messages from "lib/text"
 import style from "./style.css"
-import api from "lib/api"
-
-import Paper from "material-ui/Paper"
-import Divider from "material-ui/Divider"
-import RaisedButton from "material-ui/RaisedButton"
 
 const TagsField = ({ input, placeholder }) => {
   const tagsArray = input.value && Array.isArray(input.value) ? input.value : []
@@ -86,14 +83,14 @@ class EditPageForm extends React.Component {
                 name="meta_title"
                 component={TextField}
                 floatingLabelText={messages.pageTitle}
-                fullWidth={true}
+                fullWidth
               />
               <br />
               <Field
                 name="slug"
                 component={TextField}
                 floatingLabelText={messages.slug}
-                fullWidth={true}
+                fullWidth
                 disabled={initialValues.is_system}
               />
               <p className="field-hint">{messages.help_slug}</p>
@@ -101,7 +98,7 @@ class EditPageForm extends React.Component {
                 name="meta_description"
                 component={TextField}
                 floatingLabelText={messages.metaDescription}
-                fullWidth={true}
+                fullWidth
               />
               <div className="field-hint" style={{ marginTop: 40 }}>
                 {messages.content}
@@ -136,7 +133,7 @@ class EditPageForm extends React.Component {
               <RaisedButton
                 type="submit"
                 label={isAdd ? messages.add : messages.save}
-                primary={true}
+                primary
                 className={style.button}
                 disabled={pristine || submitting}
               />

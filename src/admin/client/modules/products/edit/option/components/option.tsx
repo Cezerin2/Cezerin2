@@ -1,17 +1,14 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { Field, reduxForm } from "redux-form"
-import { TextField, SelectField } from "redux-form-material-ui"
-import { CustomToggle } from "modules/shared/form"
-import OptionValues from "./values"
-
 import messages from "lib/text"
-import style from "./style.css"
-
-import Paper from "material-ui/Paper"
 import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
 import MenuItem from "material-ui/MenuItem"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import { CustomToggle } from "modules/shared/form"
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { SelectField, TextField } from "redux-form-material-ui"
+import style from "./style.css"
+import OptionValues from "./values"
 
 const validate = values => {
   const errors = {}
@@ -58,7 +55,7 @@ class ProductOptionForm extends React.Component {
                 name="name"
                 component={TextField}
                 floatingLabelText={messages.optionName}
-                fullWidth={true}
+                fullWidth
               />
               <div className="row">
                 <div className="col-xs-6">
@@ -67,14 +64,14 @@ class ProductOptionForm extends React.Component {
                     component={TextField}
                     type="number"
                     floatingLabelText={messages.position}
-                    fullWidth={true}
+                    fullWidth
                   />
                 </div>
                 <div className="col-xs-6">
                   <Field
                     component={SelectField}
-                    autoWidth={true}
-                    fullWidth={true}
+                    autoWidth
+                    fullWidth
                     name="control"
                     floatingLabelText={messages.optionControl}
                   >
@@ -96,7 +93,7 @@ class ProductOptionForm extends React.Component {
             <div className="buttons-box">
               <RaisedButton
                 label={messages.actions_delete}
-                secondary={true}
+                secondary
                 onClick={deleteOption}
               />
               <FlatButton
@@ -108,7 +105,7 @@ class ProductOptionForm extends React.Component {
               <RaisedButton
                 type="submit"
                 label={messages.save}
-                primary={true}
+                primary
                 className={style.button}
                 disabled={pristine || submitting}
               />

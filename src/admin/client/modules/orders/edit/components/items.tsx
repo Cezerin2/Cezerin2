@@ -1,22 +1,19 @@
-import React from "react"
-import { Link } from "react-router-dom"
-
-import messages from "lib/text"
 import * as helper from "lib/helper"
-import style from "./style.css"
-
-import Paper from "material-ui/Paper"
+import messages from "lib/text"
+import Dialog from "material-ui/Dialog"
 import Divider from "material-ui/Divider"
-import IconButton from "material-ui/IconButton"
 import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
-import Dialog from "material-ui/Dialog"
+import React from "react"
+import { Link } from "react-router-dom"
+import style from "./style.css"
 
 const iconButtonElement = (
-  <IconButton touch={true}>
+  <IconButton touch>
     <FontIcon color="rgb(189, 189, 189)" className="material-icons">
       more_vert
     </FontIcon>
@@ -34,7 +31,7 @@ const ProductOption = ({ option, onChange, selectedOptions }) => {
   return (
     <SelectField
       floatingLabelText={option.name}
-      fullWidth={true}
+      fullWidth
       value={selectedValue}
       onChange={(event, index, value) => {
         onChange(option.id, value)
@@ -182,7 +179,7 @@ export class OrderItem extends React.Component {
       />,
       <FlatButton
         label={messages.save}
-        primary={true}
+        primary
         onClick={this.submitEditForm}
       />,
     ]
@@ -285,7 +282,7 @@ export class OrderItem extends React.Component {
             />
             <SelectField
               floatingLabelText={messages.quantity}
-              fullWidth={true}
+              fullWidth
               value={quantity}
               onChange={this.quantityChange}
             >

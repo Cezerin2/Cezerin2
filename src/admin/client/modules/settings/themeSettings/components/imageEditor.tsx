@@ -1,6 +1,6 @@
-import React from "react"
 import api from "lib/api"
 import ImageUpload from "modules/shared/imageUpload"
+import React from "react"
 
 export default class ThemeImageUpload extends React.Component {
   constructor(props) {
