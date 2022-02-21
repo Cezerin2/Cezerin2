@@ -4,8 +4,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "airbnb",
-    "prettier",
-    "prettier/react"
+    "prettier"
   ],
   "plugins": ["react", "prettier", "jsx-a11y", "import"],
   "parserOptions": {
