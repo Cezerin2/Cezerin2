@@ -1,15 +1,12 @@
+import messages from "lib/text"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import ConfirmationDialog from "modules/shared/confirmation"
+import { MultiSelect } from "modules/shared/form"
 import React from "react"
 import { Field, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
-
-import messages from "lib/text"
 import style from "./style.css"
-import ConfirmationDialog from "modules/shared/confirmation"
-import { MultiSelect } from "modules/shared/form"
-
-import Paper from "material-ui/Paper"
-import Divider from "material-ui/Divider"
-import RaisedButton from "material-ui/RaisedButton"
 
 const Scopes = [
   "admin",

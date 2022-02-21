@@ -1,25 +1,23 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { Field, FieldArray, reduxForm } from "redux-form"
-import { TextField } from "redux-form-material-ui"
-
 import api from "lib/api"
 import * as helper from "lib/helper"
 import messages from "lib/text"
-import style from "./style.css"
-
-import TagsInput from "react-tagsinput"
-import ProductSearchDialog from "modules/shared/productSearch"
-import ProductCategorySelect from "./productCategorySelect"
-import ProductCategoryMultiSelect from "./productCategoryMultiSelect"
-
-import Paper from "material-ui/Paper"
+import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
-import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import ProductSearchDialog from "modules/shared/productSearch"
+import React from "react"
+import { Link } from "react-router-dom"
+import TagsInput from "react-tagsinput"
+import { Field, FieldArray, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
+import ProductCategoryMultiSelect from "./productCategoryMultiSelect"
+import ProductCategorySelect from "./productCategorySelect"
+import style from "./style.css"
+
 const Fragment = React.Fragment
 
 const TagsField = ({ input, placeholder }) => {

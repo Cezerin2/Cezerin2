@@ -1,18 +1,14 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { Field, FieldArray, reduxForm } from "redux-form"
-import { TextField, SelectField } from "redux-form-material-ui"
-
-import { CustomToggle } from "modules/shared/form"
 import messages from "lib/text"
-import style from "./style.css"
-
+import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
+import IconMenu from "material-ui/IconMenu"
+import MenuItem from "material-ui/MenuItem"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import FontIcon from "material-ui/FontIcon"
-import IconMenu from "material-ui/IconMenu"
-import IconButton from "material-ui/IconButton"
-import MenuItem from "material-ui/MenuItem"
+import { CustomToggle } from "modules/shared/form"
+import React from "react"
+import { Field } from "redux-form"
+import { TextField } from "redux-form-material-ui"
 
 const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
   return (

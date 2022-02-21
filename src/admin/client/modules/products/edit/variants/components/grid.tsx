@@ -1,15 +1,13 @@
-import React from "react"
-import { Link } from "react-router-dom"
-
 import messages from "lib/text"
-import style from "./style.css"
-
-import Paper from "material-ui/Paper"
+import DropDownMenu from "material-ui/DropDownMenu"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
-import RaisedButton from "material-ui/RaisedButton"
 import MenuItem from "material-ui/MenuItem"
-import DropDownMenu from "material-ui/DropDownMenu"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import React from "react"
+import { Link } from "react-router-dom"
+import style from "./style.css"
 
 class VariantInput extends React.Component {
   constructor(props) {

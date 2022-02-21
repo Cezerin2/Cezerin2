@@ -1,12 +1,11 @@
 import React from "react"
 import {
+  arrayMove,
   SortableContainer,
   SortableElement,
-  arrayMove,
 } from "react-sortable-hoc"
-import settings from "lib/settings"
-import style from "./style.css"
 import GalleryItem from "./item"
+import style from "./style.css"
 import MultiUploader from "./uploader"
 
 const SortableItem = SortableElement(({ image, onDelete, onImageEdit }) => (

@@ -1,13 +1,12 @@
-import React from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
 import { reset } from "redux-form"
 import {
-  deleteCategory,
-  moveUpCategory,
-  moveDownCategory,
-  replaceCategory,
   createCategory,
+  deleteCategory,
+  moveDownCategory,
+  moveUpCategory,
+  replaceCategory,
 } from "../actions"
 import Buttons from "./components/buttons"
 

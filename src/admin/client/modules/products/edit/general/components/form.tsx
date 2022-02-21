@@ -1,16 +1,13 @@
+import api from "lib/api"
+import messages from "lib/text"
+import FlatButton from "material-ui/FlatButton"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import Editor from "modules/shared/editor"
 import React from "react"
-import { Link } from "react-router-dom"
 import { Field, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
-import Editor from "modules/shared/editor"
-
-import messages from "lib/text"
 import style from "./style.css"
-import api from "lib/api"
-
-import Paper from "material-ui/Paper"
-import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
 
 const validate = values => {
   const errors = {}

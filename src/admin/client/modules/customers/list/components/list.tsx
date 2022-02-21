@@ -1,11 +1,11 @@
-import React from "react"
-import { List } from "material-ui/List"
+import messages from "lib/text"
 import Divider from "material-ui/Divider"
+import FontIcon from "material-ui/FontIcon"
+import { List } from "material-ui/List"
+import RaisedButton from "material-ui/RaisedButton"
+import React from "react"
 import Head from "./head"
 import CustomersListItem from "./item"
-import RaisedButton from "material-ui/RaisedButton"
-import FontIcon from "material-ui/FontIcon"
-import messages from "lib/text"
 import style from "./style.css"
 
 export default class CustomersList extends React.Component {

@@ -1,11 +1,9 @@
-import React from "react"
-import { Link } from "react-router-dom"
 import messages from "lib/text"
-
-import Paper from "material-ui/Paper"
-import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
+import Paper from "material-ui/Paper"
+import React from "react"
+import { Link } from "react-router-dom"
 
 export default class ImportSettings extends React.Component {
   constructor(props) {

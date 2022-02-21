@@ -1,40 +1,38 @@
+import {
+  blue700,
+  cyan700,
+  darkBlack,
+  fullBlack,
+  grey100,
+  grey300,
+  grey400,
+  pinkA200,
+  white,
+} from "material-ui/styles/colors"
+import getMuiTheme from "material-ui/styles/getMuiTheme"
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
+import Head from "modules/head"
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-
-import Head from "modules/head"
-import Login from "routes/login"
-import Logout from "routes/logout"
-import Home from "routes/home"
-import NotFound from "routes/notFound"
-import Products from "routes/products"
-import ProductImport from "routes/products/import"
-import ProductDetails from "routes/products/edit"
-import ProductCategories from "routes/products/categories"
+import Apps from "routes/apps"
 import Customers from "routes/customers"
 import CustomerDetails from "routes/customers/edit"
 import CustomerGroups from "routes/customers/groups"
+import Files from "routes/files"
+import Home from "routes/home"
+import Login from "routes/login"
+import Logout from "routes/logout"
+import NotFound from "routes/notFound"
 import Orders from "routes/orders"
 import OrderDetails from "routes/orders/edit"
 import OrderStatuses from "routes/orders/statuses"
 import Pages from "routes/pages"
 import PagesDetails from "routes/pages/edit"
+import Products from "routes/products"
+import ProductCategories from "routes/products/categories"
+import ProductDetails from "routes/products/edit"
+import ProductImport from "routes/products/import"
 import Settings from "routes/settings"
-import Apps from "routes/apps"
-import Files from "routes/files"
-
-import {
-  blue700,
-  cyan700,
-  pinkA200,
-  grey100,
-  grey300,
-  grey400,
-  white,
-  darkBlack,
-  fullBlack,
-} from "material-ui/styles/colors"
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
-import getMuiTheme from "material-ui/styles/getMuiTheme"
 
 const muiTheme = getMuiTheme({
   fontFamily: "Roboto, sans-serif",

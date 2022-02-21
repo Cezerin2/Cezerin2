@@ -1,13 +1,11 @@
-import React from "react"
-
 import messages from "lib/text"
-import style from "./style.css"
-import DynamicEditControl from "./dynamicEditControl"
-
-import Paper from "material-ui/Paper"
 import FlatButton from "material-ui/FlatButton"
-import FontIcon from "material-ui/FontIcon"
 import FloatingActionButton from "material-ui/FloatingActionButton"
+import FontIcon from "material-ui/FontIcon"
+import Paper from "material-ui/Paper"
+import React from "react"
+import DynamicEditControl from "./dynamicEditControl"
+import style from "./style.css"
 
 const ArrayEditor = ({
   label,

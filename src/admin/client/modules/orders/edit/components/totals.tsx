@@ -1,12 +1,8 @@
-import React from "react"
-
-import messages from "lib/text"
 import * as helper from "lib/helper"
-import style from "./style.css"
-
-import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
+import messages from "lib/text"
 import Divider from "material-ui/Divider"
+import React from "react"
+import style from "./style.css"
 
 const OrderTotals = ({ order, settings }) => {
   const discountTotal = helper.formatCurrency(order.discount_total, settings)

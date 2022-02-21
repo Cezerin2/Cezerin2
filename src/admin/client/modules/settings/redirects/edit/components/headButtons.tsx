@@ -1,8 +1,8 @@
-import React from "react"
 import messages from "lib/text"
-import DeleteConfirmation from "modules/shared/deleteConfirmation"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import React from "react"
 const { Fragment } = React
 
 export default class Buttons extends React.Component {

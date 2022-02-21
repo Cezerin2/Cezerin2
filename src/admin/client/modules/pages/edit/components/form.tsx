@@ -1,17 +1,14 @@
+import api from "lib/api"
+import messages from "lib/text"
+import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
+import Editor from "modules/shared/editor"
+import { CustomToggle } from "modules/shared/form"
 import React from "react"
+import TagsInput from "react-tagsinput"
 import { Field, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
-
-import { CustomToggle } from "modules/shared/form"
-import Editor from "modules/shared/editor"
-import TagsInput from "react-tagsinput"
-import messages from "lib/text"
 import style from "./style.css"
-import api from "lib/api"
-
-import Paper from "material-ui/Paper"
-import Divider from "material-ui/Divider"
-import RaisedButton from "material-ui/RaisedButton"
 
 const TagsField = ({ input, placeholder }) => {
   const tagsArray = input.value && Array.isArray(input.value) ? input.value : []

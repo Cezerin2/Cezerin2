@@ -1,14 +1,9 @@
-import React from "react"
-import { Link } from "react-router-dom"
-
-import messages from "lib/text"
 import api from "lib/api"
-import style from "./style.css"
-
+import messages from "lib/text"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
+import React from "react"
+import style from "./style.css"
 
 class ActionComponent extends React.Component {
   constructor(props) {

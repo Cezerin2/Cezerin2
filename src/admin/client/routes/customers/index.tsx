@@ -1,6 +1,6 @@
-import React from "react"
-import CustomersList from "modules/customers/list"
 import Groups from "modules/customerGroups/list"
+import CustomersList from "modules/customers/list"
+import React from "react"
 
 export default () => (
   <div className="row row--no-gutter col-full-height">

@@ -1,17 +1,16 @@
-import React from "react"
-
-import moment from "moment"
-import messages from "lib/text"
 import * as helper from "lib/helper"
-import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import style from "./style.css"
-import FileUploader from "./fileUploader"
-
-import Paper from "material-ui/Paper"
+import messages from "lib/text"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
+import Paper from "material-ui/Paper"
+import DeleteConfirmation from "modules/shared/deleteConfirmation"
+import moment from "moment"
+import React from "react"
+import FileUploader from "./fileUploader"
+import style from "./style.css"
+
 const Fragment = React.Fragment
 
 const iconButtonElement = (

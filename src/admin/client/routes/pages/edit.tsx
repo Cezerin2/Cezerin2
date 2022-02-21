@@ -1,6 +1,5 @@
-import React from "react"
-import { Route } from "react-router-dom"
 import PageEdit from "modules/pages/edit"
+import React from "react"
 
 const ProductDetails = props => {
   return (

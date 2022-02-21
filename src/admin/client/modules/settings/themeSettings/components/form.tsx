@@ -1,16 +1,12 @@
-import React from "react"
-import { Field, FieldArray, reduxForm } from "redux-form"
-
 import messages from "lib/text"
-import * as helper from "lib/helper"
 import sortBy from "lodash/sortBy"
-import style from "./style.css"
-import DynamicEditControl from "./dynamicEditControl"
-import ArrayEditor from "./arrayEditor"
-
-import Paper from "material-ui/Paper"
 import FlatButton from "material-ui/FlatButton"
+import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
+import React from "react"
+import { reduxForm } from "redux-form"
+import DynamicEditControl from "./dynamicEditControl"
+import style from "./style.css"
 
 class ThemeSettings extends React.Component {
   constructor(props) {

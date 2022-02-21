@@ -1,12 +1,15 @@
-import React from "react"
 import messages from "lib/text"
-
-import ProductVariants from "modules/products/edit/variants"
-import ProductAttributes from "modules/products/edit/attributes"
-import ProductInventory from "modules/products/edit/inventory"
-import ProductImages from "modules/products/edit/images"
-import ProductGeneral from "modules/products/edit/general"
+import { fetchCategoriesIfNeeded } from "modules/productCategories/actions"
 import ProductAdditional from "modules/products/edit/additional"
+import ProductAttributes from "modules/products/edit/attributes"
+import ProductGeneral from "modules/products/edit/general"
+import ProductImages from "modules/products/edit/images"
+import ProductInventory from "modules/products/edit/inventory"
+import ProductVariants from "modules/products/edit/variants"
+import React from "react"
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
+import { cancelProductEdit, fetchProduct } from "../actions"
 
 class ProductEditContainer extends React.Component {
   constructor(props) {
@@ -57,11 +60,6 @@ class ProductEditContainer extends React.Component {
     )
   }
 }
-
-import { connect } from "react-redux"
-import { withRouter } from "react-router"
-import { fetchProduct, cancelProductEdit } from "../actions"
-import { fetchCategoriesIfNeeded } from "modules/productCategories/actions"
 
 const mapStateToProps = (state, ownProps) => {
   return {

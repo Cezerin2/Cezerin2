@@ -1,6 +1,6 @@
+import settings from "lib/settings"
 import React from "react"
 import TinyMCE from "../tinymce"
-import settings from "lib/settings"
 
 const config = {
   inline: true,

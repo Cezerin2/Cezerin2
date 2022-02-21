@@ -1,12 +1,10 @@
-import React from "react"
 import messages from "lib/text"
-import Dropzone from "react-dropzone"
-
-import Paper from "material-ui/Paper"
-import Snackbar from "material-ui/Snackbar"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
-
+import Paper from "material-ui/Paper"
+import Snackbar from "material-ui/Snackbar"
+import React from "react"
+import Dropzone from "react-dropzone"
 import style from "./style.css"
 
 export default class ImageUpload extends React.Component {
