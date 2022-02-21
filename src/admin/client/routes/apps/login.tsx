@@ -1,11 +1,10 @@
-import React from "react"
-import messages from "lib/text"
 import CezerinClient from "cezerin2-client"
+import messages from "lib/text"
 import * as auth from "lib/webstoreAuth"
-
-import RaisedButton from "material-ui/RaisedButton"
 import Paper from "material-ui/Paper"
+import RaisedButton from "material-ui/RaisedButton"
 import TextField from "material-ui/TextField"
+import React from "react"
 
 export default class LoginForm extends React.Component {
   constructor(props) {

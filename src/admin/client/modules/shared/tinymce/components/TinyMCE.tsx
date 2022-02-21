@@ -1,9 +1,9 @@
+import clone from "lodash/clone"
+import isEqual from "lodash/isEqual"
 import React from "react"
 import { findDOMNode } from "react-dom"
-import isEqual from "lodash/isEqual"
-import clone from "lodash/clone"
-import uuid from "../helpers/uuid"
 import ucFirst from "../helpers/ucFirst"
+import uuid from "../helpers/uuid"
 
 const EVENTS = [
   "focusin",

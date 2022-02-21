@@ -1,12 +1,6 @@
-import React from "react"
-
-import messages from "lib/text"
-import style from "./style.css"
-
 import Paper from "material-ui/Paper"
-import RaisedButton from "material-ui/RaisedButton"
-import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
+import React from "react"
+import style from "./style.css"
 
 const AppDescription = ({
   name,

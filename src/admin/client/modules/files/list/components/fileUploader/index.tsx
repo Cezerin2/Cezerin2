@@ -1,10 +1,9 @@
+import messages from "lib/text"
+import FlatButton from "material-ui/FlatButton"
+import Snackbar from "material-ui/Snackbar"
 import React from "react"
 import Dropzone from "react-dropzone"
-import messages from "lib/text"
 import style from "./style.css"
-
-import Snackbar from "material-ui/Snackbar"
-import FlatButton from "material-ui/FlatButton"
 
 export default class MultiUploader extends React.Component {
   onDrop = files => {

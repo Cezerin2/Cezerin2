@@ -1,5 +1,5 @@
-import React from "react"
 import OrdersBar from "modules/reports/ordersBar"
+import React from "react"
 import { defaults } from "react-chartjs-2"
 
 // Set charts default

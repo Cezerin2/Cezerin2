@@ -1,19 +1,16 @@
-import React from "react"
-import { Link } from "react-router-dom"
-
-import messages from "lib/text"
 import * as helper from "lib/helper"
-import style from "./style.css"
-
-import Paper from "material-ui/Paper"
+import messages from "lib/text"
+import Dialog from "material-ui/Dialog"
 import Divider from "material-ui/Divider"
-import IconButton from "material-ui/IconButton"
 import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
+import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
-import Dialog from "material-ui/Dialog"
+import React from "react"
+import { Link } from "react-router-dom"
+import style from "./style.css"
 
 const iconButtonElement = (
   <IconButton touch={true}>

@@ -1,8 +1,8 @@
-import React from "react"
 import messages from "lib/text"
-import style from "./style.css"
-import SelectField from "material-ui/SelectField"
 import MenuItem from "material-ui/MenuItem"
+import SelectField from "material-ui/SelectField"
+import React from "react"
+import style from "./style.css"
 
 export default ({
   isClosed,

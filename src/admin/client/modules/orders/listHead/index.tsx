@@ -1,7 +1,6 @@
-import React from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
-import { fetchOrders, setFilter, deleteOrders, createOrder } from "../actions"
+import { createOrder, deleteOrders, fetchOrders, setFilter } from "../actions"
 import Buttons from "./components/buttons"
 
 const mapStateToProps = (state, ownProps) => {

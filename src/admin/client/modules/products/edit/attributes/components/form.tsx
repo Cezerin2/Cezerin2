@@ -1,15 +1,12 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { Field, FieldArray, reduxForm } from "redux-form"
-
 import messages from "lib/text"
-import style from "./style.css"
-
-import Paper from "material-ui/Paper"
+import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
-import FlatButton from "material-ui/FlatButton"
+import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
+import React from "react"
+import { Field, FieldArray, reduxForm } from "redux-form"
+import style from "./style.css"
 
 const AttributesGrid = ({ fields, meta: { touched, error, submitFailed } }) => {
   return (

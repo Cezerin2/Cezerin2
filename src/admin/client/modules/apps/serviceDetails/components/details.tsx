@@ -1,8 +1,8 @@
 import React from "react"
-import ServiceDescription from "./description"
-import ServiceSettings from "./settings"
 import ServiceActions from "./actions"
+import ServiceDescription from "./description"
 import ServiceLogs from "./logs"
+import ServiceSettings from "./settings"
 import style from "./style.css"
 
 export default class ServiceDetails extends React.Component {

@@ -1,15 +1,10 @@
-import React from "react"
-import { Field, reduxForm } from "redux-form"
-import { TextField, SelectField } from "redux-form-material-ui"
-
 import messages from "lib/text"
-import style from "./style.css"
-
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
-import { List, ListItem } from "material-ui/List"
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { TextField } from "redux-form-material-ui"
+import style from "./style.css"
 
 class EmailSettings extends React.Component {
   constructor(props) {

@@ -1,8 +1,8 @@
-import React from "react"
-import messages from "lib/text"
 import api from "lib/api"
-import TextField from "material-ui/TextField"
+import messages from "lib/text"
 import RaisedButton from "material-ui/RaisedButton"
+import TextField from "material-ui/TextField"
+import React from "react"
 
 export const Description = {
   key: "jivosite",

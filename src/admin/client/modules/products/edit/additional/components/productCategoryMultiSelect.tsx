@@ -1,12 +1,9 @@
-import React from "react"
-import { Field, FieldArray, reduxForm } from "redux-form"
 import messages from "lib/text"
-import style from "./style.css"
-import CategoryMultiselect from "modules/productCategories/components/multiselectList"
-import FontIcon from "material-ui/FontIcon"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
-import RaisedButton from "material-ui/RaisedButton"
+import FontIcon from "material-ui/FontIcon"
+import CategoryMultiselect from "modules/productCategories/components/multiselectList"
+import React from "react"
 const Fragment = React.Fragment
 
 const CategoryItemActions = ({ fields, index }) => (

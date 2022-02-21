@@ -1,16 +1,16 @@
+import messages from "lib/text"
+import MenuItem from "material-ui/MenuItem"
+import Paper from "material-ui/Paper"
+import { RadioButton } from "material-ui/RadioButton"
+import RaisedButton from "material-ui/RaisedButton"
 import React from "react"
 import { Field, reduxForm } from "redux-form"
-import { TextField, RadioButtonGroup } from "redux-form-material-ui"
-
-import messages from "lib/text"
+import {
+  RadioButtonGroup,
+  SelectField,
+  TextField,
+} from "redux-form-material-ui"
 import style from "./style.css"
-
-import Paper from "material-ui/Paper"
-import MenuItem from "material-ui/MenuItem"
-import Divider from "material-ui/Divider"
-import RaisedButton from "material-ui/RaisedButton"
-import { RadioButton } from "material-ui/RadioButton"
-import { SelectField } from "redux-form-material-ui"
 
 const radioButtonStyle = {
   marginTop: 14,

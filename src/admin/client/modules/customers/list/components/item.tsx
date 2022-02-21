@@ -1,11 +1,10 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import * as helper from "lib/helper"
 import Checkbox from "material-ui/Checkbox"
-import { ListItem } from "material-ui/List"
 import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
-import messages from "lib/text"
-import * as helper from "lib/helper"
+import { ListItem } from "material-ui/List"
+import React from "react"
+import { Link } from "react-router-dom"
 import style from "./style.css"
 
 const CustomersListItem = ({ customer, onSelect, selected, settings }) => {
