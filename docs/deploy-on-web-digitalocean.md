@@ -4,7 +4,7 @@
 
 - Get droplet IP on DigitalOcean
 
-  ![DigitalOcean IP Address](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean.png)
+  ![DigitalOcean IP Address](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/images/cezerin-digitalocean.png)
 
 - Change DNS of your domain name to:
 
@@ -17,11 +17,11 @@ P.S. You can change DNS at your domain name control panel.
 
 - Check WHOIS of your domain name, ensure that DNS successfully changed.
 
-  ![Domain WHOIS](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean-dns-domain-whois.png)
+  ![Domain WHOIS](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/images/cezerin-digitalocean-dns-domain-whois.png)
 
 - Go to DigitalOcean - Networking - Domains.
 
-  ![DigitalOcean DNS](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean-dns.png)
+  ![DigitalOcean DNS](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/images/cezerin-digitalocean-dns.png)
 
 - Enter domain name.
 - Select droplet.
@@ -36,10 +36,10 @@ _Value_ - Must be your droplet ip adddess.
 
 Example for cezerin.net:
 
-![DigitalOcean DNS Records](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean-dns-domain.png)
+![DigitalOcean DNS Records](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/images/cezerin-digitalocean-dns-domain.png)
 
 That's all.
 
 We have domain name points to our digitalocean droplet.
 
-![DigitalOcean DNS Records](https://github.com/cezerin2/cezerin2/raw/master/docs/images/cezerin-digitalocean-dns-domain-added.png)
+![DigitalOcean DNS Records](https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/docs/images/cezerin-digitalocean-dns-domain-added.png)

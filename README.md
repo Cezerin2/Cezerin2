@@ -21,14 +21,14 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 
 ## Links
 
-- [GitHub](https://github.com/cezerin2)
+- [GitHub](https://github.com/Cezerin2)
 - [Community Site](https://cezerin.org)
 - [Demo Store - Plusha Theme](https://plusha.cezerin.net)
 - [Demo Store - Default Theme](https://cezerin.net)
 - [Demo Dashboard](https://cezerin.net/admin)
 - [Telegram Chat: Cezerin](https://t.me/cezerin)
 - [Forum](https://groups.google.com/g/cezerin)
-- [Docs](https://github.com/cezerin2/cezerin2/blob/master/docs)
+- [Docs](https://github.com/Cezerin2/Cezerin2/tree/main/docs)
 - [Facebook](https://facebook.com/cezerin)
 - [Twitter](https://twitter.com/cezerin2)
 
@@ -63,7 +63,7 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
   - [Online Demo](./docs/online-demo.md)
   - [Application Structure](./docs/application-structure.md)
   - [API Client](https://github.com/cezerin2/cezerin2-client)
-  - [API Reference](https://github.com/Cezerin2/cezerin2/tree/master/docs/api)
+  - [API Reference](https://github.com/Cezerin2/Cezerin2/tree/main/docs/api)
 
 - Installation Guides
 
@@ -103,7 +103,7 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 
 ## Documentation
 
-[Documentation](https://github.com/cezerin2/cezerin2/tree/master/docs)
+[Documentation](https://github.com/Cezerin2/Cezerin2/tree/main/docs)
 
 ## Application Structure
 
