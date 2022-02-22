@@ -1,4 +1,4 @@
-import fs from "fs"
+import fse from "fs-extra"
 import path from "path"
 import winston from "winston"
 
@@ -11,7 +11,7 @@ export const getText = locale => {
   } else {
     const filePath = path.resolve(THEME_LOCALES_PATH + locale + ".json")
     return new Promise((resolve, reject) => {
-      fs.readFile(filePath, "utf8", (err, data) => {
+      fse.readFile(filePath, "utf8", (err, data) => {
         if (err) {
           winston.error("Fail to read theme locale", filePath, err)
           reject(err)
