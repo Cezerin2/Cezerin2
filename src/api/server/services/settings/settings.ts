@@ -1,5 +1,4 @@
 import formidable from "formidable"
-import fs from "fs"
 import fse from "fs-extra"
 import path from "path"
 import url from "url"
@@ -35,6 +34,7 @@ class SettingsService {
     order_confirmation_copy_to: string
     contact_email_address: string
   }
+
   constructor() {
     this.defaultSettings = {
       store_name: "",
@@ -250,7 +250,7 @@ class SettingsService {
         let filePath = path.resolve(
           settings.filesUploadPath + "/" + data.logo_file
         )
-        fs.unlink(filePath, err => {
+        fse.unlink(filePath, err => {
           this.updateSettings({ logo_file: null })
         })
       }
