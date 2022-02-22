@@ -1,4 +1,4 @@
-import fs from "fs"
+import fse from "fs-extra"
 import lruCache from "lru-cache"
 import path from "path"
 import serverSettings from "../../lib/settings"
@@ -20,7 +20,7 @@ class ThemeSettingsService {
 
   readFile(file) {
     return new Promise((resolve, reject) => {
-      fs.readFile(file, "utf8", (err, data) => {
+      fse.readFile(file, "utf8", (err, data) => {
         if (err) {
           reject(err)
         } else {
@@ -39,7 +39,7 @@ class ThemeSettingsService {
   writeFile(file, jsonData) {
     return new Promise<void>((resolve, reject) => {
       const stringData = JSON.stringify(jsonData)
-      fs.writeFile(file, stringData, err => {
+      fse.writeFile(file, stringData, err => {
         if (err) {
           reject(err)
         } else {
@@ -50,7 +50,7 @@ class ThemeSettingsService {
   }
 
   getSettingsSchema() {
-    if (fs.existsSync(SETTINGS_SCHEMA_FILE)) {
+    if (fse.existsSync(SETTINGS_SCHEMA_FILE)) {
       return this.readFile(SETTINGS_SCHEMA_FILE)
     }
 

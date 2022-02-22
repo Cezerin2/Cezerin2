@@ -1,5 +1,5 @@
 import formidable from "formidable"
-import fs from "fs"
+import fse from "fs-extra"
 import path from "path"
 import settings from "../lib/settings"
 import utils from "../lib/utils"
@@ -9,7 +9,7 @@ const CONTENT_PATH = path.resolve(settings.filesUploadPath)
 class FilesService {
   getFileData(fileName) {
     const filePath = CONTENT_PATH + "/" + fileName
-    const stats = fs.statSync(filePath)
+    const stats = fse.statSync(filePath)
     if (stats.isFile()) {
       return {
         file: fileName,
@@ -30,7 +30,7 @@ class FilesService {
 
   getFiles() {
     return new Promise((resolve, reject) => {
-      fs.readdir(CONTENT_PATH, (err, files) => {
+      fse.readdir(CONTENT_PATH, (err, files) => {
         if (err) {
           reject(err)
         } else {
@@ -44,8 +44,8 @@ class FilesService {
   deleteFile(fileName) {
     return new Promise<void>((resolve, reject) => {
       const filePath = CONTENT_PATH + "/" + fileName
-      if (fs.existsSync(filePath)) {
-        fs.unlink(filePath, err => {
+      if (fse.existsSync(filePath)) {
+        fse.unlink(filePath, err => {
           resolve()
         })
       } else {

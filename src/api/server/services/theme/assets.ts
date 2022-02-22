@@ -1,5 +1,5 @@
 import formidable from "formidable"
-import fs from "fs"
+import fse from "fs-extra"
 import path from "path"
 import settings from "../../lib/settings"
 
@@ -9,8 +9,8 @@ class ThemeAssetsService {
       const filePath = path.resolve(
         settings.themeAssetsUploadPath + "/" + fileName
       )
-      if (fs.existsSync(filePath)) {
-        fs.unlink(filePath, err => {
+      if (fse.existsSync(filePath)) {
+        fse.unlink(filePath, err => {
           resolve()
         })
       } else {
