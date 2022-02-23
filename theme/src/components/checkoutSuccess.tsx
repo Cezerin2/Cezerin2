@@ -1,8 +1,7 @@
-import React from "react"
 import PropTypes from "prop-types"
-import { NavLink } from "react-router-dom"
-import { text } from "../lib/settings"
+import React from "react"
 import * as helper from "../lib/helper"
+import { text } from "../lib/settings"
 
 const getCheckoutField = (checkoutFields, fieldName) => {
   if (checkoutFields && checkoutFields.length > 0) {

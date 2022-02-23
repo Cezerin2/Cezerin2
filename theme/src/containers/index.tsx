@@ -1,9 +1,9 @@
-import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import { themeSettings } from "../lib/settings"
+import React, { Fragment } from "react"
+import HomeSlider from "../components/homeSlider"
 import MetaTags from "../components/metaTags"
 import CustomProducts from "../components/products/custom"
-import HomeSlider from "../components/homeSlider"
+import { themeSettings } from "../lib/settings"
 
 const IndexContainer = props => {
   const {

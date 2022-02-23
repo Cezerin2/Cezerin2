@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import { themeSettings } from "../lib/settings"
+import React, { Fragment } from "react"
 import MetaTags from "../components/metaTags"
 import PageList from "../components/pageList"
+import { themeSettings } from "../lib/settings"
 
 const PageContainer = props => {
   const {

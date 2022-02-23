@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import * as helper from "../lib/helper"
-import MetaTags from "../components/metaTags"
+import React, { Fragment } from "react"
 import CheckoutSuccess from "../components/checkoutSuccess"
+import MetaTags from "../components/metaTags"
+import * as helper from "../lib/helper"
 
 const CheckoutSuccessContainer = props => {
   const {

@@ -1,12 +1,12 @@
-import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import { themeSettings, text } from "../lib/settings"
-import MetaTags from "../components/metaTags"
-import ProductList from "../components/productList"
-import ProductFilter from "../components/productFilter"
-import Sort from "../components/sort"
+import React, { Fragment } from "react"
 import CategoryBreadcrumbs from "../components/categoryBreadcrumbs"
+import MetaTags from "../components/metaTags"
+import ProductFilter from "../components/productFilter"
+import ProductList from "../components/productList"
+import Sort from "../components/sort"
 import * as helper from "../lib/helper"
+import { text, themeSettings } from "../lib/settings"
 
 const getFilterAttributesSummary = productFilter => {
   let attributesSummary = ""

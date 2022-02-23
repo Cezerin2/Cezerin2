@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
 import PropTypes from "prop-types"
+import React, { Fragment } from "react"
+import CheckoutForm from "../components/checkoutForm"
 import MetaTags from "../components/metaTags"
 import OrderSummary from "../components/orderSummary"
-import CheckoutForm from "../components/checkoutForm"
 
 const CheckoutContainer = props => {
   const {

@@ -1,5 +1,5 @@
 import React from "react"
-import { themeSettings, text } from "../../lib/settings"
+import { text, themeSettings } from "../../lib/settings"
 
 const LoadMore = ({
   loadMoreProducts,

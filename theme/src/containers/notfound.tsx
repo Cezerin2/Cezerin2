@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
-import { text } from "../lib/settings"
 import MetaTags from "../components/metaTags"
+import { text } from "../lib/settings"
 
 const NotFoundContainer = () => (
   <Fragment>

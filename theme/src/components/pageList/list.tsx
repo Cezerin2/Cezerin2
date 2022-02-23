@@ -1,5 +1,4 @@
 import React from "react"
-import { themeSettings, text } from "../../lib/settings"
 import PageListItem from "./item"
 
 const PageList = ({ pages }) => {

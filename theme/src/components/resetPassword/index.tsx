@@ -1,6 +1,6 @@
 import React from "react"
 import { Redirect } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
+import { themeSettings } from "../../lib/settings"
 import ResetPassword from "./resetPassword"
 
 export default class ResetPasswordForm extends React.Component {

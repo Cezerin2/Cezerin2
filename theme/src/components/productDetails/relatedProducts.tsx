@@ -1,5 +1,5 @@
-import React, { Fragment } from "react"
-import { themeSettings, text } from "../../lib/settings"
+import React from "react"
+import { text, themeSettings } from "../../lib/settings"
 import CustomProducts from "../products/custom"
 
 export default class RelatedProducts extends React.PureComponent {

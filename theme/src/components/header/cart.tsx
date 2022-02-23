@@ -1,8 +1,8 @@
-import React from "react"
-import { NavLink, Redirect } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
 import Lscache from "lscache"
+import React from "react"
+import { NavLink } from "react-router-dom"
 import * as helper from "../../lib/helper"
+import { text, themeSettings } from "../../lib/settings"
 
 const CartItem = ({ item, deleteCartItem, settings }) => {
   const thumbnail = helper.getThumbnailUrl(

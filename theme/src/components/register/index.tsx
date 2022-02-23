@@ -1,7 +1,6 @@
 import React from "react"
+import { themeSettings } from "../../lib/settings"
 import AuthHeader from "../auth-header"
-import { Redirect } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
 import Register from "./register"
 
 export default class RegisterForm extends React.Component {

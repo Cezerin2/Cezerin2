@@ -1,6 +1,5 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
 
 const pad = number => (number < 10 ? "0" + number : number)
 const formatDate = date =>
