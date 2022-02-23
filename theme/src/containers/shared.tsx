@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import { themeSettings } from "../lib/settings"
-import Header from "../components/header"
+import React, { Fragment } from "react"
 import Footer from "../components/footer"
+import Header from "../components/header"
+import { themeSettings } from "../lib/settings"
 
 const SharedContainer = props => {
   const {

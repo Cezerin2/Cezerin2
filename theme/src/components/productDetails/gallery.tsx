@@ -1,9 +1,8 @@
 import React, { Fragment } from "react"
-import { NavLink } from "react-router-dom"
 import ImageGallery from "react-image-gallery"
 import Lightbox from "react-image-lightbox"
 import * as helper from "../../lib/helper"
-import { themeSettings, text } from "../../lib/settings"
+import { themeSettings } from "../../lib/settings"
 
 export default class Gallery extends React.Component {
   constructor(props) {

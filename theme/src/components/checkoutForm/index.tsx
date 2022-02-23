@@ -1,9 +1,9 @@
-import React from "react"
-import { themeSettings, text } from "../../lib/settings"
-import CheckoutStepContacts from "./stepContacts"
-import CheckoutStepShipping from "./stepShipping"
-import CheckoutStepPayment from "./stepPayment"
 import Lscache from "lscache"
+import React from "react"
+import { text, themeSettings } from "../../lib/settings"
+import CheckoutStepContacts from "./stepContacts"
+import CheckoutStepPayment from "./stepPayment"
+import CheckoutStepShipping from "./stepShipping"
 
 export default class CheckoutForm extends React.Component {
   constructor(props) {

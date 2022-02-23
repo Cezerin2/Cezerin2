@@ -1,7 +1,5 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-import * as helper from "../../lib/helper"
-import { themeSettings, text } from "../../lib/settings"
+import { text } from "../../lib/settings"
 
 const Option = ({ option, onChange }) => {
   const values = option.values

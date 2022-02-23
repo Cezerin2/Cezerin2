@@ -1,5 +1,4 @@
 import React, { Fragment } from "react"
-import { themeSettings, text } from "../../lib/settings"
 import Item from "./item"
 import LoadMore from "./loadMore"
 

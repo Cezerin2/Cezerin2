@@ -1,6 +1,4 @@
 import React from "react"
-import * as helper from "../../lib/helper"
-import { themeSettings, text } from "../../lib/settings"
 
 const Tags = ({ tags }) => {
   if (tags && tags.length > 0) {

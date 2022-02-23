@@ -1,7 +1,7 @@
 import React from "react"
 import api from "../../../lib/api"
-import PayPalCheckout from "./PayPalCheckout"
 import LiqPay from "./LiqPay"
+import PayPalCheckout from "./PayPalCheckout"
 import StripeElements from "./StripeElements"
 
 export default class PaymentForm extends React.Component {

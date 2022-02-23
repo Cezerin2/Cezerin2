@@ -1,12 +1,12 @@
+import Lscache from "lscache"
 import React, { Fragment } from "react"
 import { NavLink } from "react-router-dom"
-import Lscache from "lscache"
-import { themeSettings, text } from "../../lib/settings"
+import { text } from "../../lib/settings"
 import Cart from "./cart"
 import CartIndicator from "./cartIndicator"
+import HeadMenu from "./headMenu"
 import Login from "./login"
 import SearchBox from "./searchBox"
-import HeadMenu from "./headMenu"
 
 const Logo = ({ src, onClick, alt }) => (
   <NavLink className="logo-image" to="/" onClick={onClick}>

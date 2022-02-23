@@ -1,5 +1,5 @@
 import React from "react"
-import { themeSettings, text } from "../../lib/settings"
+import { text } from "../../lib/settings"
 import PaymentForm from "./paymentForm"
 
 const CheckoutStepPayment = props => {

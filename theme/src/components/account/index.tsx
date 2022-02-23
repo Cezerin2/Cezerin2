@@ -1,7 +1,7 @@
+import Lscache from "lscache"
 import React from "react"
 import { Redirect } from "react-router-dom"
-import Lscache from "lscache"
-import { themeSettings, text } from "../../lib/settings"
+import { themeSettings } from "../../lib/settings"
 import AuthHeader from "../auth-header"
 import Account from "./account"
 

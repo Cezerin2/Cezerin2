@@ -1,9 +1,9 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
-import ItemTags from "./itemTags"
+import { themeSettings } from "../../lib/settings"
 import ItemImage from "./itemImage"
 import ItemPrice from "./itemPrice"
+import ItemTags from "./itemTags"
 
 const Item = ({
   product,

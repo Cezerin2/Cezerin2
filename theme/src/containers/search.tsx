@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import { text } from "../lib/settings"
+import React, { Fragment } from "react"
 import MetaTags from "../components/metaTags"
 import ProductList from "../components/productList"
+import { text } from "../lib/settings"
 
 const SearchContainer = props => {
   const {

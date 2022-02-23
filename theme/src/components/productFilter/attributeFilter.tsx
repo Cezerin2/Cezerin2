@@ -1,6 +1,4 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
 
 class AttributeValue extends React.Component {
   constructor(props) {
