@@ -1,6 +1,6 @@
 import React from "react"
-import { themeSettings, text } from "../../lib/settings"
 import * as helper from "../../lib/helper"
+import { text, themeSettings } from "../../lib/settings"
 
 const FormattedCurrency = ({ number, settings }) =>
   helper.formatCurrency(number, settings)

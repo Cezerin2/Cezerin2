@@ -1,7 +1,7 @@
 import React from "react"
 import LazyLoad from "react-lazyload"
-import { themeSettings, text } from "../../lib/settings"
 import * as helper from "../../lib/helper"
+import { themeSettings } from "../../lib/settings"
 
 const ItemImage = ({ images, productName, height }) => {
   if (images && images.length > 0) {

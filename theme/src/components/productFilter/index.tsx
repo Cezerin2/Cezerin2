@@ -1,10 +1,8 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-import { themeSettings, text } from "../../lib/settings"
-
+import { text } from "../../lib/settings"
 import Sort from "../sort"
-import PriceSlider from "./priceSlider"
 import AttributeFilter from "./attributeFilter"
+import PriceSlider from "./priceSlider"
 
 export default class ProductFilter extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
-import React from "react"
 import PropTypes from "prop-types"
-import { themeSettings, text } from "../lib/settings"
+import React from "react"
+import { text, themeSettings } from "../lib/settings"
 
 const Sort = ({ defaultSort, currentSort, setSort }) => (
   <div className="columns is-mobile sort">

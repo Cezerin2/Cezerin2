@@ -1,8 +1,8 @@
+import Lscache from "lscache"
 import React from "react"
 import { Field, reduxForm } from "redux-form"
-import Lscache from "lscache"
-import { themeSettings, text } from "../../lib/settings"
 import { formatCurrency } from "../../lib/helper"
+import { text } from "../../lib/settings"
 import InputField from "./inputField"
 
 const validateRequired = value =>

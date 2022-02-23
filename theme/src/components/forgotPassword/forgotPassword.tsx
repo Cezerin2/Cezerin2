@@ -1,8 +1,6 @@
 import React from "react"
 import { Field, reduxForm } from "redux-form"
-import { themeSettings, text } from "../../lib/settings"
-import { Link, Redirect, NavLink } from "react-router-dom"
-import Lscache from "lscache"
+import { text } from "../../lib/settings"
 
 const validateRequired = value =>
   value && value.length > 0 ? undefined : text.required

@@ -1,6 +1,6 @@
 import React from "react"
 import { Field, reduxForm } from "redux-form"
-import { themeSettings, text } from "../../lib/settings"
+import { text } from "../../lib/settings"
 import InputField from "./inputField"
 import TextareaField from "./textareaField"
 

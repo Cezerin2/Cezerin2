@@ -1,5 +1,5 @@
 import React from "react"
-import { themeSettings, text } from "../../lib/settings"
+import { themeSettings } from "../../lib/settings"
 import ForgotPassword from "./forgotPassword"
 
 export default class ForgotPasswordForm extends React.Component {

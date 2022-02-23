@@ -1,5 +1,5 @@
-import React, { Fragment } from "react"
 import PropTypes from "prop-types"
+import React, { Fragment } from "react"
 import MetaTags from "../components/metaTags"
 import ProductDetails from "../components/productDetails"
 

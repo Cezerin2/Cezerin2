@@ -1,6 +1,5 @@
 import React from "react"
-import * as helper from "../../lib/helper"
-import { themeSettings, text } from "../../lib/settings"
+import { text, themeSettings } from "../../lib/settings"
 
 const AddToCartButton = ({
   product,

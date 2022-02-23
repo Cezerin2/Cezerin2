@@ -1,5 +1,5 @@
 import React from "react"
-import { themeSettings, text } from "../../lib/settings"
+import { text } from "../../lib/settings"
 
 const Attribute = ({ name, value }) => (
   <div className="columns is-gapless is-mobile product-attribute">

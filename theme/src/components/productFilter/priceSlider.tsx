@@ -1,8 +1,7 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
 import { Range } from "rc-slider"
-import { themeSettings, text } from "../../lib/settings"
+import React from "react"
 import * as helper from "../../lib/helper"
+import { text } from "../../lib/settings"
 
 export default class PriceSlider extends React.Component {
   constructor(props) {

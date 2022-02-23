@@ -1,7 +1,7 @@
-import React from "react"
-import AuthHeader from "../auth-header"
-import { themeSettings, text } from "../../lib/settings"
 import Lscache from "lscache"
+import React from "react"
+import { themeSettings } from "../../lib/settings"
+import AuthHeader from "../auth-header"
 import Login from "./login"
 
 export default class LoginForm extends React.Component {

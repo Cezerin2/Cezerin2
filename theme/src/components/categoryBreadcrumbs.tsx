@@ -1,8 +1,8 @@
-import React from "react"
 import PropTypes from "prop-types"
+import React from "react"
 import { NavLink } from "react-router-dom"
-import { text } from "../lib/settings"
 import * as helper from "../lib/helper"
+import { text } from "../lib/settings"
 
 const CategoryBreadcrumbs = ({ currentCategory, categories }) => {
   const items = helper.getCategoryBreadcrumbs(currentCategory.id, categories)
