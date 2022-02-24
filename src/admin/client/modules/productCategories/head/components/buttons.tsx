@@ -5,8 +5,7 @@ import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import CategorySelect from "modules/productCategories/select"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import React from "react"
-const Fragment = React.Fragment
+import React, { Fragment } from "react"
 
 class Buttons extends React.Component {
   constructor(props) {
