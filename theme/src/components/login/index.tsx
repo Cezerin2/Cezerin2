@@ -1,7 +1,7 @@
 import Lscache from "lscache"
 import React from "react"
 import { themeSettings } from "../../lib/settings"
-import AuthHeader from "../authHeader"
+import { encodeUserPassword } from "../authHeader"
 import Login from "./login"
 
 class LoginForm extends React.Component {
@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
 
     this.props.loginUser({
       email: values.email,
-      password: AuthHeader.encodeUserPassword(values.password),
+      password: encodeUserPassword(values.password),
       history: this.props.history,
       cartLayer: cartLayer,
     })
