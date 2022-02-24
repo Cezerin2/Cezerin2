@@ -5,7 +5,7 @@ import { themeSettings } from "../../lib/settings"
 import AuthHeader from "../authHeader"
 import Account from "./account"
 
-export default class AccountForm extends React.Component {
+class AccountForm extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -98,3 +98,5 @@ export default class AccountForm extends React.Component {
     }
   }
 }
+
+export default AccountForm

@@ -3,7 +3,7 @@ import { themeSettings } from "../../lib/settings"
 import AuthHeader from "../authHeader"
 import Register from "./register"
 
-export default class RegisterForm extends React.Component {
+class RegisterForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -57,3 +57,5 @@ export default class RegisterForm extends React.Component {
     )
   }
 }
+
+export default RegisterForm
