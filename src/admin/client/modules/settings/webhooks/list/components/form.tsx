@@ -37,7 +37,7 @@ const WebhookItem = ({ webhook }) => {
   )
 }
 
-export default class WebhooksList extends React.Component {
+class WebhooksList extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -66,3 +66,5 @@ export default class WebhooksList extends React.Component {
     )
   }
 }
+
+export default WebhooksList

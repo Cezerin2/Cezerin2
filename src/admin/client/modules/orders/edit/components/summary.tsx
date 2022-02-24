@@ -61,7 +61,7 @@ const getOrderStates = order => {
   return states
 }
 
-export default class OrderSummary extends React.Component {
+class OrderSummary extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -213,3 +213,5 @@ export default class OrderSummary extends React.Component {
     )
   }
 }
+
+export default OrderSummary

@@ -6,7 +6,7 @@ import TextField from "material-ui/TextField"
 import Gallery from "modules/shared/imageUploadMultiple"
 import React from "react"
 
-export default class ProductImages extends React.Component {
+class ProductImages extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -99,3 +99,5 @@ export default class ProductImages extends React.Component {
     )
   }
 }
+
+export default ProductImages

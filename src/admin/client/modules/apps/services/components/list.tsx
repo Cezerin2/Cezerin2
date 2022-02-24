@@ -6,7 +6,7 @@ import apps from "src/apps"
 import AppItem from "./appItem"
 import ServiceItem from "./serviceItem"
 
-export default class ServicesList extends React.Component {
+class ServicesList extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -54,3 +54,5 @@ export default class ServicesList extends React.Component {
     )
   }
 }
+
+export default ServicesList

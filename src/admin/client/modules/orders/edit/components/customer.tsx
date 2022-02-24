@@ -135,7 +135,7 @@ const BillingAddress = ({ address, settings }) => {
   }
 }
 
-export default class OrderCustomer extends React.Component {
+class OrderCustomer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -239,3 +239,5 @@ export default class OrderCustomer extends React.Component {
     )
   }
 }
+
+export default OrderCustomer

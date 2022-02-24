@@ -32,7 +32,7 @@ const MethodItem = ({ method }) => {
   )
 }
 
-export default class EmailSettings extends React.Component {
+class EmailSettings extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -56,3 +56,5 @@ export default class EmailSettings extends React.Component {
     )
   }
 }
+
+export default EmailSettings

@@ -5,7 +5,7 @@ import DeleteConfirmation from "modules/shared/deleteConfirmation"
 import React from "react"
 const Fragment = React.Fragment
 
-export default class Buttons extends React.Component {
+class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -70,3 +70,5 @@ export default class Buttons extends React.Component {
     )
   }
 }
+
+export default Buttons

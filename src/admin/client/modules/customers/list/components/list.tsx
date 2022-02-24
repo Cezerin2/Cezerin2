@@ -8,7 +8,7 @@ import Head from "./head"
 import CustomersListItem from "./item"
 import style from "./style.css"
 
-export default class CustomersList extends React.Component {
+class CustomersList extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -59,3 +59,5 @@ export default class CustomersList extends React.Component {
     )
   }
 }
+
+export default CustomersList

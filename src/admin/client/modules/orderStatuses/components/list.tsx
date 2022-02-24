@@ -15,7 +15,7 @@ const styles = {
 
 const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>
 
-export default class StatusesList extends React.Component {
+class StatusesList extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -74,3 +74,5 @@ export default class StatusesList extends React.Component {
     )
   }
 }
+
+export default StatusesList
