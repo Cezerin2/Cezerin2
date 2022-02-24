@@ -147,88 +147,79 @@ const SettingsMenu = () => (
   </List>
 )
 
-const Settings = ({ match }) => {
-  return (
-    <div className="row row--no-gutter col-full-height">
-      <div className="col-xs-12 col-sm-4 col-md-3 col--no-gutter scroll col-full-height">
-        <SettingsMenu />
-      </div>
-      <div className="col-xs-12 col-sm-8 col-md-9 col--no-gutter scroll col-full-height">
-        <Switch>
-          <Route path="/admin/settings" exact component={General} />
-          <Route path="/admin/settings/general/logo" component={GeneralLogo} />
-          <Route path="/admin/settings/theme" component={Theme} />
-          <Route path="/admin/settings/shipping" exact component={Shipping} />
-          <Route
-            path="/admin/settings/shipping/add"
-            exact
-            component={ShippingEdit}
-          />
-          <Route
-            path="/admin/settings/shipping/:methodId"
-            component={ShippingEdit}
-          />
-          <Route path="/admin/settings/payments" exact component={Payments} />
-          <Route
-            path="/admin/settings/payments/add"
-            exact
-            component={PaymentsEdit}
-          />
-          <Route
-            path="/admin/settings/payments/:methodId"
-            component={PaymentsEdit}
-          />
-          <Route path="/admin/settings/tokens" exact component={Tokens} />
-          <Route
-            path="/admin/settings/tokens/add"
-            exact
-            component={TokensEdit}
-          />
-          <Route
-            path="/admin/settings/tokens/:tokenId"
-            component={TokensEdit}
-          />
-          <Route path="/admin/settings/email" exact component={Email} />
-          <Route path="/admin/settings/email/smtp" component={Smtp} />
-          <Route
-            path="/admin/settings/email/templates/:templateName"
-            component={EmailTemplate}
-          />
-          <Route path="/admin/settings/import" exact component={Import} />
-          <Route
-            path="/admin/settings/import/googlespreadsheet"
-            exact
-            component={GoogleSpredsheet}
-          />
-          <Route path="/admin/settings/checkout" exact component={Checkout} />
-          <Route
-            path="/admin/settings/checkout/fields/:fieldName"
-            component={CheckoutFields}
-          />
-          <Route path="/admin/settings/redirects" exact component={Redirects} />
-          <Route
-            path="/admin/settings/redirects/add"
-            exact
-            component={RedirectsEdit}
-          />
-          <Route
-            path="/admin/settings/redirects/:redirectId"
-            component={RedirectsEdit}
-          />
-          <Route path="/admin/settings/webhooks" exact component={Webhooks} />
-          <Route
-            path="/admin/settings/webhooks/add"
-            exact
-            component={WebhooksEdit}
-          />
-          <Route
-            path="/admin/settings/webhooks/:webhookId"
-            component={WebhooksEdit}
-          />
-        </Switch>
-      </div>
+const Settings = () => (
+  <div className="row row--no-gutter col-full-height">
+    <div className="col-xs-12 col-sm-4 col-md-3 col--no-gutter scroll col-full-height">
+      <SettingsMenu />
     </div>
-  )
-}
+    <div className="col-xs-12 col-sm-8 col-md-9 col--no-gutter scroll col-full-height">
+      <Switch>
+        <Route path="/admin/settings" exact component={General} />
+        <Route path="/admin/settings/general/logo" component={GeneralLogo} />
+        <Route path="/admin/settings/theme" component={Theme} />
+        <Route path="/admin/settings/shipping" exact component={Shipping} />
+        <Route
+          path="/admin/settings/shipping/add"
+          exact
+          component={ShippingEdit}
+        />
+        <Route
+          path="/admin/settings/shipping/:methodId"
+          component={ShippingEdit}
+        />
+        <Route path="/admin/settings/payments" exact component={Payments} />
+        <Route
+          path="/admin/settings/payments/add"
+          exact
+          component={PaymentsEdit}
+        />
+        <Route
+          path="/admin/settings/payments/:methodId"
+          component={PaymentsEdit}
+        />
+        <Route path="/admin/settings/tokens" exact component={Tokens} />
+        <Route path="/admin/settings/tokens/add" exact component={TokensEdit} />
+        <Route path="/admin/settings/tokens/:tokenId" component={TokensEdit} />
+        <Route path="/admin/settings/email" exact component={Email} />
+        <Route path="/admin/settings/email/smtp" component={Smtp} />
+        <Route
+          path="/admin/settings/email/templates/:templateName"
+          component={EmailTemplate}
+        />
+        <Route path="/admin/settings/import" exact component={Import} />
+        <Route
+          path="/admin/settings/import/googlespreadsheet"
+          exact
+          component={GoogleSpredsheet}
+        />
+        <Route path="/admin/settings/checkout" exact component={Checkout} />
+        <Route
+          path="/admin/settings/checkout/fields/:fieldName"
+          component={CheckoutFields}
+        />
+        <Route path="/admin/settings/redirects" exact component={Redirects} />
+        <Route
+          path="/admin/settings/redirects/add"
+          exact
+          component={RedirectsEdit}
+        />
+        <Route
+          path="/admin/settings/redirects/:redirectId"
+          component={RedirectsEdit}
+        />
+        <Route path="/admin/settings/webhooks" exact component={Webhooks} />
+        <Route
+          path="/admin/settings/webhooks/add"
+          exact
+          component={WebhooksEdit}
+        />
+        <Route
+          path="/admin/settings/webhooks/:webhookId"
+          component={WebhooksEdit}
+        />
+      </Switch>
+    </div>
+  </div>
+)
 
 export default Settings
