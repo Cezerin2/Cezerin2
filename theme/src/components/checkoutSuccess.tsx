@@ -3,6 +3,13 @@ import React from "react"
 import * as helper from "../lib/helper"
 import { text } from "../lib/settings"
 
+const ShippingFieldDiv = ({ label, value }) => (
+  <div className="shipping-field">
+    <label>{label}: </label>
+    {value}
+  </div>
+)
+
 const getCheckoutField = (checkoutFields, fieldName) => {
   if (checkoutFields && checkoutFields.length > 0) {
     return checkoutFields.find(
@@ -63,13 +70,6 @@ const ShippingFields = ({ order, shippingMethod }) => {
 
   return <div>{shippingFields}</div>
 }
-
-const ShippingFieldDiv = ({ label, value }) => (
-  <div className="shipping-field">
-    <label>{label}: </label>
-    {value}
-  </div>
-)
 
 const OrderItem = ({ item, settings }) => (
   <div className="columns is-mobile is-gapless checkout-success-row">
