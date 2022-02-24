@@ -2,7 +2,7 @@ import React from "react"
 import { themeSettings } from "../../lib/settings"
 import ForgotPassword from "./forgotPassword"
 
-export default class ForgotPasswordForm extends React.Component {
+class ForgotPasswordForm extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -35,3 +35,5 @@ export default class ForgotPasswordForm extends React.Component {
     )
   }
 }
+
+export default ForgotPasswordForm

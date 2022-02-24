@@ -28,7 +28,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import DrawerMenu from "./drawer"
 
-export default class AppBarTop extends React.Component {
+class AppBarTop extends React.Component {
   constructor(props) {
     super(props)
     this.state = { open: false }
@@ -690,3 +690,5 @@ export default class AppBarTop extends React.Component {
     )
   }
 }
+
+export default AppBarTop

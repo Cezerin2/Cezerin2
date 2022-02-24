@@ -1,7 +1,7 @@
 import React from "react"
 import { text, themeSettings } from "../../lib/settings"
 
-export default class SearchBox extends React.Component {
+class SearchBox extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -86,3 +86,5 @@ export default class SearchBox extends React.Component {
     )
   }
 }
+
+export default SearchBox

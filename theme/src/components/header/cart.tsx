@@ -45,7 +45,7 @@ const CartItem = ({ item, deleteCartItem, settings }) => {
   )
 }
 
-export default class Cart extends React.PureComponent {
+class Cart extends React.PureComponent {
   render() {
     const { cart, deleteCartItem, settings, cartToggle } = this.props
 
@@ -93,3 +93,5 @@ export default class Cart extends React.PureComponent {
     )
   }
 }
+
+export default Cart

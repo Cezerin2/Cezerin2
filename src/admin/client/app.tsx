@@ -53,7 +53,7 @@ const muiTheme = getMuiTheme({
   appBar: {},
 })
 
-export default () => (
+const App = () => (
   <Router>
     <MuiThemeProvider muiTheme={muiTheme}>
       <div id="container">
@@ -111,3 +111,5 @@ export default () => (
     </MuiThemeProvider>
   </Router>
 )
+
+export default App

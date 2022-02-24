@@ -4,7 +4,7 @@ import Sort from "../sort"
 import AttributeFilter from "./attributeFilter"
 import PriceSlider from "./priceSlider"
 
-export default class ProductFilter extends React.Component {
+class ProductFilter extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -90,3 +90,5 @@ export default class ProductFilter extends React.Component {
     )
   }
 }
+
+export default ProductFilter

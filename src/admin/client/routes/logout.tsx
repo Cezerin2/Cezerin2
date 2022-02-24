@@ -1,7 +1,7 @@
 import * as auth from "lib/auth"
 import React from "react"
 
-export default class Logout extends React.Component {
+class Logout extends React.Component {
   componentWillMount() {
     auth.removeToken()
   }
@@ -10,3 +10,5 @@ export default class Logout extends React.Component {
     return null
   }
 }
+
+export default Logout

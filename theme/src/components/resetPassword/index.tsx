@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom"
 import { themeSettings } from "../../lib/settings"
 import ResetPassword from "./resetPassword"
 
-export default class ResetPasswordForm extends React.Component {
+class ResetPasswordForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -69,3 +69,5 @@ export default class ResetPasswordForm extends React.Component {
     )
   }
 }
+
+export default ResetPasswordForm

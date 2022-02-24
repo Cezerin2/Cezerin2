@@ -19,7 +19,7 @@ const LoginIcon = () => {
   )
 }
 
-export default class Login extends React.PureComponent {
+class Login extends React.PureComponent {
   render() {
     const { login, onClick } = this.props
     return (
@@ -29,3 +29,5 @@ export default class Login extends React.PureComponent {
     )
   }
 }
+
+export default Login

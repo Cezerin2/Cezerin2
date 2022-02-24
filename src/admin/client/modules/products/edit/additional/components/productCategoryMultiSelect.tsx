@@ -4,7 +4,6 @@ import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import CategoryMultiselect from "modules/productCategories/components/multiselectList"
 import React from "react"
-const Fragment = React.Fragment
 
 const CategoryItemActions = ({ fields, index }) => (
   <a
@@ -21,7 +20,7 @@ const CategoryItem = ({ categoryName, actions }) => (
   </span>
 )
 
-export default class ProductCategoryMultiSelect extends React.Component {
+class ProductCategoryMultiSelect extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -123,3 +122,5 @@ export default class ProductCategoryMultiSelect extends React.Component {
     )
   }
 }
+
+export default ProductCategoryMultiSelect

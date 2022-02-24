@@ -5,11 +5,10 @@ import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import CategorySelect from "modules/productCategories/select"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import React from "react"
+import React, { Fragment } from "react"
 import Search from "./search"
-const Fragment = React.Fragment
 
-export default class Buttons extends React.Component {
+class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -135,3 +134,5 @@ export default class Buttons extends React.Component {
     )
   }
 }
+
+export default Buttons

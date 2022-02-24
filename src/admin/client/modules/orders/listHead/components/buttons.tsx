@@ -2,11 +2,10 @@ import messages from "lib/text"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import React from "react"
+import React, { Fragment } from "react"
 import Search from "./search"
-const Fragment = React.Fragment
 
-export default class Buttons extends React.Component {
+class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -68,3 +67,5 @@ export default class Buttons extends React.Component {
     )
   }
 }
+
+export default Buttons

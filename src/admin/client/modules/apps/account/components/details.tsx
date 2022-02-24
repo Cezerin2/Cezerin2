@@ -3,7 +3,7 @@ import Account from "./account"
 import Developer from "./developer"
 import style from "./style.css"
 
-export default class WebStoreAccountDetails extends React.Component {
+class WebStoreAccountDetails extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -33,3 +33,5 @@ export default class WebStoreAccountDetails extends React.Component {
     }
   }
 }
+
+export default WebStoreAccountDetails

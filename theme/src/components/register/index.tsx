@@ -1,9 +1,9 @@
 import React from "react"
 import { themeSettings } from "../../lib/settings"
-import AuthHeader from "../authHeader"
+import { encodeUserPassword } from "../authHeader"
 import Register from "./register"
 
-export default class RegisterForm extends React.Component {
+class RegisterForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -17,7 +17,7 @@ export default class RegisterForm extends React.Component {
       first_name: values.first_name,
       last_name: values.last_name,
       email: values.email,
-      password: AuthHeader.encodeUserPassword(values.password),
+      password: encodeUserPassword(values.password),
       history: this.props.history,
     })
   }
@@ -57,3 +57,5 @@ export default class RegisterForm extends React.Component {
     )
   }
 }
+
+export default RegisterForm

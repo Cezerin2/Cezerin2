@@ -6,7 +6,7 @@ import style from "./style.css"
 import OrderSummary from "./summary"
 import OrderTotals from "./totals"
 
-export default class OrderDetails extends React.Component {
+class OrderDetails extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -70,3 +70,5 @@ export default class OrderDetails extends React.Component {
     )
   }
 }
+
+export default OrderDetails

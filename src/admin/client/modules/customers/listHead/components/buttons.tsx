@@ -8,7 +8,7 @@ import DeleteConfirmation from "modules/shared/deleteConfirmation"
 import React from "react"
 import Search from "./search"
 
-export default class Buttons extends React.Component {
+class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -118,3 +118,5 @@ export default class Buttons extends React.Component {
     )
   }
 }
+
+export default Buttons

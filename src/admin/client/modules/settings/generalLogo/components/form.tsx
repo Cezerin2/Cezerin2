@@ -2,7 +2,7 @@ import Paper from "material-ui/Paper"
 import ImageUpload from "modules/shared/imageUpload"
 import React from "react"
 
-export default class GeneralLogoSettingsForm extends React.Component {
+class GeneralLogoSettingsForm extends React.Component {
   componentDidMount() {
     this.props.onLoad()
   }
@@ -25,3 +25,5 @@ export default class GeneralLogoSettingsForm extends React.Component {
     )
   }
 }
+
+export default GeneralLogoSettingsForm

@@ -7,11 +7,9 @@ import MenuItem from "material-ui/MenuItem"
 import Paper from "material-ui/Paper"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
 import moment from "moment"
-import React from "react"
+import React, { Fragment } from "react"
 import FileUploader from "./fileUploader"
 import style from "./style.css"
-
-const Fragment = React.Fragment
 
 const iconButtonElement = (
   <IconButton touch>
@@ -80,7 +78,7 @@ class FileItem extends React.Component {
   }
 }
 
-export default class FileList extends React.Component {
+class FileList extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -116,3 +114,5 @@ export default class FileList extends React.Component {
     )
   }
 }
+
+export default FileList

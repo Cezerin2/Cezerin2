@@ -3,7 +3,7 @@ import React from "react"
 import * as helper from "../../lib/helper"
 import { text } from "../../lib/settings"
 
-export default class PriceSlider extends React.Component {
+class PriceSlider extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -62,3 +62,5 @@ export default class PriceSlider extends React.Component {
     )
   }
 }
+
+export default PriceSlider

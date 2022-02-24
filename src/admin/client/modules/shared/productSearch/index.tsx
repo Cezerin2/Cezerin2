@@ -47,7 +47,7 @@ const SearchResult = ({ products, selectedId, settings, onSelect }) => {
   )
 }
 
-export default class ConfirmationDialog extends React.Component {
+class ConfirmationDialog extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -153,3 +153,5 @@ export default class ConfirmationDialog extends React.Component {
     )
   }
 }
+
+export default ConfirmationDialog

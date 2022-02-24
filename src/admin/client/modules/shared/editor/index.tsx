@@ -15,7 +15,7 @@ const config = {
     "undo redo | forecolor paste removeformat table | outdent indent | preview code",
 }
 
-export default class Editor extends React.Component {
+class Editor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -63,3 +63,5 @@ export default class Editor extends React.Component {
     )
   }
 }
+
+export default Editor

@@ -9,7 +9,7 @@ import DeleteConfirmation from "modules/shared/deleteConfirmation"
 import ProductSearchDialog from "modules/shared/productSearch"
 import React from "react"
 
-export default class Buttons extends React.Component {
+class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -198,3 +198,5 @@ export default class Buttons extends React.Component {
     }
   }
 }
+
+export default Buttons

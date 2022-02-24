@@ -98,7 +98,7 @@ const CustomerOrder = ({ order, settings }) => {
   )
 }
 
-export default class CustomerOrders extends React.Component {
+class CustomerOrders extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -138,3 +138,5 @@ export default class CustomerOrders extends React.Component {
     )
   }
 }
+
+export default CustomerOrders

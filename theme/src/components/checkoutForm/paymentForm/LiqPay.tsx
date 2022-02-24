@@ -1,7 +1,7 @@
 import React from "react"
 
 let scriptAdded = false
-export default class PayPalButton extends React.Component {
+class PayPalButton extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -64,3 +64,5 @@ export default class PayPalButton extends React.Component {
     )
   }
 }
+
+export default PayPalButton
