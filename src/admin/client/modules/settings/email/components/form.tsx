@@ -5,7 +5,7 @@ import Paper from "material-ui/Paper"
 import React from "react"
 import { Link } from "react-router-dom"
 
-export default class EmailSettings extends React.Component {
+class EmailSettings extends React.Component {
   componentDidMount() {
     this.props.onLoad()
   }
@@ -154,3 +154,5 @@ export default class EmailSettings extends React.Component {
     )
   }
 }
+
+export default EmailSettings

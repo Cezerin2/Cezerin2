@@ -6,7 +6,7 @@ import CategorySelect from "modules/productCategories/select"
 import React from "react"
 const Fragment = React.Fragment
 
-export default class ProductCategorySelect extends React.Component {
+class ProductCategorySelect extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -80,3 +80,5 @@ export default class ProductCategorySelect extends React.Component {
     )
   }
 }
+
+export default ProductCategorySelect

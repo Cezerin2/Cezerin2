@@ -23,7 +23,7 @@ const styles = {
   },
 }
 
-export default class Theme extends React.Component {
+class Theme extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -116,3 +116,5 @@ export default class Theme extends React.Component {
     )
   }
 }
+
+export default Theme

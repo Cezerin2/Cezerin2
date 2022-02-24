@@ -5,7 +5,7 @@ import React from "react"
 import Dropzone from "react-dropzone"
 import style from "./style.css"
 
-export default class MultiUploader extends React.Component {
+class MultiUploader extends React.Component {
   onDrop = files => {
     let form = new FormData()
     files.map(file => {
@@ -59,3 +59,5 @@ export default class MultiUploader extends React.Component {
     )
   }
 }
+
+export default MultiUploader

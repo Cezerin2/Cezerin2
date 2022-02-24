@@ -7,7 +7,7 @@ import React from "react"
 import Dropzone from "react-dropzone"
 import style from "./style.css"
 
-export default class ImageUpload extends React.Component {
+class ImageUpload extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -108,3 +108,5 @@ export default class ImageUpload extends React.Component {
     )
   }
 }
+
+export default ImageUpload

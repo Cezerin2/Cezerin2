@@ -80,7 +80,7 @@ class FileItem extends React.Component {
   }
 }
 
-export default class FileList extends React.Component {
+class FileList extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -116,3 +116,5 @@ export default class FileList extends React.Component {
     )
   }
 }
+
+export default FileList

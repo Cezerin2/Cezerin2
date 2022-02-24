@@ -7,7 +7,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import TextField from "material-ui/TextField"
 import React from "react"
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -110,3 +110,5 @@ export default class LoginForm extends React.Component {
     )
   }
 }
+
+export default LoginForm

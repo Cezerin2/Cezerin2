@@ -5,7 +5,7 @@ import ServiceLogs from "./logs"
 import ServiceSettings from "./settings"
 import style from "./style.css"
 
-export default class ServiceDetails extends React.Component {
+class ServiceDetails extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -88,3 +88,5 @@ export default class ServiceDetails extends React.Component {
     )
   }
 }
+
+export default ServiceDetails
