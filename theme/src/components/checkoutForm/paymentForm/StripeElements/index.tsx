@@ -2,7 +2,7 @@ import React from "react"
 import { StripeProvider } from "react-stripe-elements"
 import StoreCheckout from "./StoreCheckout"
 
-export default class StripeElements extends React.Component {
+class StripeElements extends React.Component {
   constructor(props) {
     super(props)
     this.state = { stripe: null }
@@ -36,3 +36,5 @@ export default class StripeElements extends React.Component {
     )
   }
 }
+
+export default StripeElements

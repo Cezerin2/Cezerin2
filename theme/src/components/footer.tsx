@@ -85,7 +85,7 @@ const Contacts = ({ contacts }) => {
   }
 }
 
-export default class Footer extends React.PureComponent {
+class Footer extends React.PureComponent {
   static propTypes = {
     settings: PropTypes.shape({}).isRequired,
   }
@@ -133,3 +133,5 @@ export default class Footer extends React.PureComponent {
     )
   }
 }
+
+export default Footer

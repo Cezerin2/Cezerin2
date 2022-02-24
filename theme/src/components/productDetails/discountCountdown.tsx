@@ -1,7 +1,7 @@
 import React from "react"
 import { text } from "../../lib/settings"
 
-export default class DiscountCountdown extends React.Component {
+class DiscountCountdown extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -84,3 +84,5 @@ export default class DiscountCountdown extends React.Component {
     }
   }
 }
+
+export default DiscountCountdown

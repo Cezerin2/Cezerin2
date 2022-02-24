@@ -2,7 +2,7 @@ import React from "react"
 import api from "../../lib/api"
 import PageList from "./list"
 
-export default class CustomPageList extends React.Component {
+class CustomPageList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -36,3 +36,5 @@ export default class CustomPageList extends React.Component {
     return <PageList pages={pages} />
   }
 }
+
+export default CustomPageList

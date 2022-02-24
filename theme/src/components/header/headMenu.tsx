@@ -85,7 +85,7 @@ class HeadMenuItem extends React.Component {
   }
 }
 
-export default class HeadMenu extends React.PureComponent {
+class HeadMenu extends React.PureComponent {
   render() {
     const { categories, onClick, isMobile } = this.props
     let addItemsToMenu = []
@@ -115,3 +115,5 @@ export default class HeadMenu extends React.PureComponent {
     return <ul className="nav-level-0">{items}</ul>
   }
 }
+
+export default HeadMenu
