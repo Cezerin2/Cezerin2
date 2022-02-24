@@ -2,7 +2,7 @@ import Lscache from "lscache"
 import React from "react"
 import { Redirect } from "react-router-dom"
 import { themeSettings } from "../../lib/settings"
-import AuthHeader from "../auth-header"
+import AuthHeader from "../authHeader"
 import Account from "./account"
 
 export default class AccountForm extends React.Component {
