@@ -4,9 +4,8 @@ import api from "lib/api"
 import messages from "lib/text"
 import FlatButton from "material-ui/FlatButton"
 import Paper from "material-ui/Paper"
-import React from "react"
+import React, { Fragment } from "react"
 
-const Fragment = React.Fragment
 const updateProductArray = []
 const categoryIdArray = []
 const imageFilesArray = []

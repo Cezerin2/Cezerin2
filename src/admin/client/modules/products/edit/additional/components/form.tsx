@@ -18,8 +18,6 @@ import ProductCategoryMultiSelect from "./productCategoryMultiSelect"
 import ProductCategorySelect from "./productCategorySelect"
 import style from "./style.css"
 
-const Fragment = React.Fragment
-
 const TagsField = ({ input, placeholder }) => {
   const tagsArray = input.value && Array.isArray(input.value) ? input.value : []
   return (

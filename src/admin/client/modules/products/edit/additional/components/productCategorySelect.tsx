@@ -3,8 +3,7 @@ import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import CategorySelect from "modules/productCategories/select"
-import React from "react"
-const Fragment = React.Fragment
+import React, { Fragment } from "react"
 
 class ProductCategorySelect extends React.Component {
   constructor(props) {

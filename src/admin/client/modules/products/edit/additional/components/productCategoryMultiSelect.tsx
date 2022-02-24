@@ -4,7 +4,6 @@ import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import CategoryMultiselect from "modules/productCategories/components/multiselectList"
 import React from "react"
-const Fragment = React.Fragment
 
 const CategoryItemActions = ({ fields, index }) => (
   <a
