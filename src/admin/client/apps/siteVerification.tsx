@@ -18,10 +18,10 @@ export const Description = {
   </ol>`,
 }
 
-const GOOGLE_EXAMPLE = '<meta name="google-site-verification" content="1234" />'
-const BING_EXAMPLE = '<meta name="msvalidate.01" content="1234" />'
-const PINTEREST_EXAMPLE = '<meta name="p:domain_verify" content="1234" />'
-const YANDEX_EXAMPLE = '<meta name="yandex-verification" content="1234" />'
+const googleExample = '<meta name="google-site-verification" content="1234" />'
+const bingExample = '<meta name="msvalidate.01" content="1234" />'
+const pinterestExample = '<meta name="p:domain_verify" content="1234" />'
+const yandexExample = '<meta name="yandex-verification" content="1234" />'
 
 export const App: FC = () => {
   const [google, setGoogle] = useState("")
@@ -29,22 +29,17 @@ export const App: FC = () => {
   const [pinterest, setPinterest] = useState("")
   const [yandex, setYandex] = useState("")
 
-  const fetchSettings = () => {
+  const fetchSettings = () =>
     api.apps.settings
       .retrieve("site-verification")
       .then(({ json }) => {
         const appSettings = json
-        if (appSettings) {
-          setGoogle(appSettings.google)
-          setBing(appSettings.bing)
-          setPinterest(appSettings.pinterest)
-          setYandex(appSettings.yandex)
-        }
+        setGoogle(appSettings?.google)
+        setBing(appSettings?.bing)
+        setPinterest(appSettings?.pinterest)
+        setYandex(appSettings?.yandex)
       })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+      .catch(console.error)
 
   const updateSettings = () => {
     const metaTags = [google, bing, pinterest, yandex]
@@ -70,14 +65,14 @@ export const App: FC = () => {
   }, [])
 
   return (
-    <div>
+    <>
       <TextField
         type="text"
         value={google}
         onChange={({ target }) => setGoogle(target.value)}
         floatingLabelText="Google"
         fullWidth
-        hintText={GOOGLE_EXAMPLE}
+        hintText={googleExample}
       />
 
       <TextField
@@ -86,7 +81,7 @@ export const App: FC = () => {
         onChange={({ target }) => setBing(target.value)}
         floatingLabelText="Bing"
         fullWidth
-        hintText={BING_EXAMPLE}
+        hintText={bingExample}
       />
 
       <TextField
@@ -95,7 +90,7 @@ export const App: FC = () => {
         onChange={({ target }) => setPinterest(target.value)}
         floatingLabelText="Pinterest"
         fullWidth
-        hintText={PINTEREST_EXAMPLE}
+        hintText={pinterestExample}
       />
 
       <TextField
@@ -104,7 +99,7 @@ export const App: FC = () => {
         onChange={({ target }) => setYandex(target.value)}
         floatingLabelText="Yandex"
         fullWidth
-        hintText={YANDEX_EXAMPLE}
+        hintText={yandexExample}
       />
 
       <div style={{ textAlign: "right", marginTop: 20 }}>
@@ -115,6 +110,6 @@ export const App: FC = () => {
           onClick={updateSettings}
         />
       </div>
-    </div>
+    </>
   )
 }

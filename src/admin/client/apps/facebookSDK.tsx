@@ -19,7 +19,7 @@ export const Description = {
   <p>The Facebook SDK for JavaScript doesn't have any standalone files that need to be downloaded or installed, instead you simply need to include a short piece of regular JavaScript in your HTML that will asynchronously load the SDK into your pages. The async load means that it does not block loading other elements of your page.</p>`,
 }
 
-const FACEBOOK_CODE = `<script>
+const facebookCode = `<script>
   window.fbAsyncInit = function() {
     FB.init({
       appId            : 'YOUR_APP_ID',
@@ -39,34 +39,28 @@ const FACEBOOK_CODE = `<script>
 </script>`
 
 export const App: FC = () => {
-  const [appId, setAppId] = useState("")
+  const [appID, setAppID] = useState("")
   const [locale, setLocale] = useState("en_US")
 
-  const fetchSettings = () => {
+  const fetchSettings = () =>
     api.apps.settings
       .retrieve("facebook-sdk")
       .then(({ json }) => {
         const appSettings = json
-        if (appSettings) {
-          setAppId(appSettings.appId)
-          setLocale(appSettings.locale)
-        }
+        setAppID(appSettings?.appId)
+        setLocale(appSettings?.locale)
       })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+      .catch(console.error)
 
   const updateSettings = () => {
     const htmlCode =
-      appId && appId.length > 0
-        ? FACEBOOK_CODE.replace(/YOUR_APP_ID/g, appId).replace(
-            /YOUR_LOCALE/g,
-            locale
-          )
+      appID?.length > 0
+        ? facebookCode
+            .replace(/YOUR_APP_ID/g, appID)
+            .replace(/YOUR_LOCALE/g, locale)
         : ""
 
-    api.apps.settings.update("facebook-sdk", { appId, locale })
+    api.apps.settings.update("facebook-sdk", { appID, locale })
     api.theme.placeholders.update("facebook-sdk", {
       place: "body_start",
       value: htmlCode,
@@ -78,14 +72,14 @@ export const App: FC = () => {
   }, [])
 
   return (
-    <div>
+    <>
       <div>You can find App ID using the Facebook App Dashboard.</div>
 
       <TextField
         type="text"
         fullWidth
-        value={appId}
-        onChange={({ target }) => setAppId(target.value)}
+        value={appID}
+        onChange={({ target }) => setAppID(target.value)}
         floatingLabelText="App ID"
       />
 
@@ -106,6 +100,6 @@ export const App: FC = () => {
           onClick={updateSettings}
         />
       </div>
-    </div>
+    </>
   )
 }

@@ -14,19 +14,14 @@ export const Description = {
 export const App: FC = () => {
   const [code, setCode] = useState("")
 
-  const fetchSettings = () => {
+  const fetchSettings = () =>
     api.apps.settings
       .retrieve("jivosite")
       .then(({ json }) => {
         const appSettings = json
-        if (appSettings) {
-          setCode(appSettings.code)
-        }
+        setCode(appSettings?.code)
       })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+      .catch(console.error)
 
   const updateSettings = () => {
     api.apps.settings.update("jivosite", { code })
@@ -41,7 +36,7 @@ export const App: FC = () => {
   }, [])
 
   return (
-    <div>
+    <>
       <div>Введите код JivoSite</div>
 
       <TextField
@@ -63,6 +58,6 @@ export const App: FC = () => {
           onClick={updateSettings}
         />
       </div>
-    </div>
+    </>
   )
 }
