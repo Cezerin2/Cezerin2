@@ -2,7 +2,7 @@ import api from "lib/api"
 import messages from "lib/text"
 import RaisedButton from "material-ui/RaisedButton"
 import TextField from "material-ui/TextField"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 
 export const Description = {
   key: "facebook-sdk",
@@ -38,33 +38,18 @@ const FACEBOOK_CODE = `<script>
    }(document, 'script', 'facebook-jssdk'));
 </script>`
 
-export class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      appId: "",
-      locale: "en_US",
-    }
-  }
+export const App: FC = () => {
+  const [appId, setAppId] = useState("")
+  const [locale, setLocale] = useState("en_US")
 
-  handleAppIdChange = event => {
-    this.setState({ appId: event.target.value })
-  }
-
-  handleLocaleChange = event => {
-    this.setState({ locale: event.target.value })
-  }
-
-  fetchSettings = () => {
+  const fetchSettings = () => {
     api.apps.settings
       .retrieve("facebook-sdk")
-      .then(({ status, json }) => {
+      .then(({ json }) => {
         const appSettings = json
         if (appSettings) {
-          this.setState({
-            appId: appSettings.appId,
-            locale: appSettings.locale,
-          })
+          setAppId(appSettings.appId)
+          setLocale(appSettings.locale)
         }
       })
       .catch(error => {
@@ -72,8 +57,7 @@ export class App extends React.Component {
       })
   }
 
-  updateSettings = () => {
-    const { appId, locale } = this.state
+  const updateSettings = () => {
     const htmlCode =
       appId && appId.length > 0
         ? FACEBOOK_CODE.replace(/YOUR_APP_ID/g, appId).replace(
@@ -82,48 +66,46 @@ export class App extends React.Component {
           )
         : ""
 
-    api.apps.settings.update("facebook-sdk", { appId: appId, locale: locale })
+    api.apps.settings.update("facebook-sdk", { appId, locale })
     api.theme.placeholders.update("facebook-sdk", {
       place: "body_start",
       value: htmlCode,
     })
   }
 
-  componentDidMount() {
-    this.fetchSettings()
-  }
+  useEffect(() => {
+    fetchSettings()
+  }, [])
 
-  render() {
-    return (
-      <div>
-        <div>You can find App ID using the Facebook App Dashboard.</div>
+  return (
+    <div>
+      <div>You can find App ID using the Facebook App Dashboard.</div>
 
-        <TextField
-          type="text"
-          fullWidth
-          value={this.state.appId}
-          onChange={this.handleAppIdChange}
-          floatingLabelText="App ID"
+      <TextField
+        type="text"
+        fullWidth
+        value={appId}
+        onChange={({ target }) => setAppId(target.value)}
+        floatingLabelText="App ID"
+      />
+
+      <TextField
+        type="text"
+        fullWidth
+        value={locale}
+        onChange={({ target }) => setLocale(target.value)}
+        floatingLabelText="Locale"
+        hintText="en_US"
+      />
+
+      <div style={{ textAlign: "right" }}>
+        <RaisedButton
+          label={messages.save}
+          primary
+          disabled={false}
+          onClick={updateSettings}
         />
-
-        <TextField
-          type="text"
-          fullWidth
-          value={this.state.locale}
-          onChange={this.handleLocaleChange}
-          floatingLabelText="Locale"
-          hintText="en_US"
-        />
-
-        <div style={{ textAlign: "right" }}>
-          <RaisedButton
-            label={messages.save}
-            primary
-            disabled={false}
-            onClick={this.updateSettings}
-          />
-        </div>
       </div>
-    )
-  }
+    </div>
+  )
 }

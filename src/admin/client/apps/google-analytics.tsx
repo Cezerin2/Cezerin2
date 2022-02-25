@@ -2,7 +2,7 @@ import api from "lib/api"
 import messages from "lib/text"
 import RaisedButton from "material-ui/RaisedButton"
 import TextField from "material-ui/TextField"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 
 export const Description = {
   key: "google-analytics",
@@ -33,27 +33,16 @@ const GTAG_CODE = `<!-- Global site tag (gtag.js) - Google Analytics -->
   gtag('config', 'GA_TRACKING_ID');
 </script>`
 
-export class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      trackingId: "",
-    }
-  }
+export const App: FC = () => {
+  const [trackingId, setTrackingId] = useState("")
 
-  handleTrackingIdChange = event => {
-    this.setState({
-      trackingId: event.target.value,
-    })
-  }
-
-  fetchSettings = () => {
+  const fetchSettings = () => {
     api.apps.settings
       .retrieve("google-analytics")
-      .then(({ status, json }) => {
+      .then(({ json }) => {
         const appSettings = json
         if (appSettings) {
-          this.setState({ trackingId: appSettings.GA_TRACKING_ID })
+          setTrackingId(appSettings.GA_TRACKING_ID)
         }
       })
       .catch(error => {
@@ -61,8 +50,7 @@ export class App extends React.Component {
       })
   }
 
-  updateSettings = () => {
-    const { trackingId } = this.state
+  const updateSettings = () => {
     const gtag =
       trackingId && trackingId.length > 0
         ? GTAG_CODE.replace(/GA_TRACKING_ID/g, trackingId)
@@ -77,35 +65,33 @@ export class App extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.fetchSettings()
-  }
+  useEffect(() => {
+    fetchSettings()
+  }, [])
 
-  render() {
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          Enter your Google Analytics Tracking ID to track page views and other
-          events.
-        </div>
-
-        <TextField
-          type="text"
-          value={this.state.trackingId}
-          onChange={this.handleTrackingIdChange}
-          floatingLabelText="Tracking ID"
-          hintText="UA-XXXXXXXX-X"
-        />
-
-        <div style={{ textAlign: "right" }}>
-          <RaisedButton
-            label={messages.save}
-            primary
-            disabled={false}
-            onClick={this.updateSettings}
-          />
-        </div>
+        Enter your Google Analytics Tracking ID to track page views and other
+        events.
       </div>
-    )
-  }
+
+      <TextField
+        type="text"
+        value={trackingId}
+        onChange={({ target }) => setTrackingId(target.value)}
+        floatingLabelText="Tracking ID"
+        hintText="UA-XXXXXXXX-X"
+      />
+
+      <div style={{ textAlign: "right" }}>
+        <RaisedButton
+          label={messages.save}
+          primary
+          disabled={false}
+          onClick={updateSettings}
+        />
+      </div>
+    </div>
+  )
 }

@@ -2,7 +2,7 @@ import api from "lib/api"
 import messages from "lib/text"
 import RaisedButton from "material-ui/RaisedButton"
 import TextField from "material-ui/TextField"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 
 export const Description = {
   key: "site-verification",
@@ -23,53 +23,22 @@ const BING_EXAMPLE = '<meta name="msvalidate.01" content="1234" />'
 const PINTEREST_EXAMPLE = '<meta name="p:domain_verify" content="1234" />'
 const YANDEX_EXAMPLE = '<meta name="yandex-verification" content="1234" />'
 
-export class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      google: "",
-      bing: "",
-      pinterest: "",
-      yandex: "",
-    }
-  }
+export const App: FC = () => {
+  const [google, setGoogle] = useState("")
+  const [bing, setBing] = useState("")
+  const [pinterest, setPinterest] = useState("")
+  const [yandex, setYandex] = useState("")
 
-  handleGoogleChange = event => {
-    this.setState({
-      google: event.target.value,
-    })
-  }
-
-  handleBingChange = event => {
-    this.setState({
-      bing: event.target.value,
-    })
-  }
-
-  handlePinterestChange = event => {
-    this.setState({
-      pinterest: event.target.value,
-    })
-  }
-
-  handleYandexChange = event => {
-    this.setState({
-      yandex: event.target.value,
-    })
-  }
-
-  fetchSettings = () => {
+  const fetchSettings = () => {
     api.apps.settings
       .retrieve("site-verification")
-      .then(({ status, json }) => {
+      .then(({ json }) => {
         const appSettings = json
         if (appSettings) {
-          this.setState({
-            google: appSettings.google,
-            bing: appSettings.bing,
-            pinterest: appSettings.pinterest,
-            yandex: appSettings.yandex,
-          })
+          setGoogle(appSettings.google)
+          setBing(appSettings.bing)
+          setPinterest(appSettings.pinterest)
+          setYandex(appSettings.yandex)
         }
       })
       .catch(error => {
@@ -77,18 +46,17 @@ export class App extends React.Component {
       })
   }
 
-  updateSettings = () => {
-    const { google, bing, pinterest, yandex } = this.state
+  const updateSettings = () => {
     const metaTags = [google, bing, pinterest, yandex]
       .map(tag => (tag && tag.length > 0 ? tag : null))
       .filter(tag => tag !== null)
       .join("\n")
 
     api.apps.settings.update("site-verification", {
-      google: google,
-      bing: bing,
-      pinterest: pinterest,
-      yandex: yandex,
+      google,
+      bing,
+      pinterest,
+      yandex,
     })
 
     api.theme.placeholders.update("site-verification", {
@@ -97,58 +65,56 @@ export class App extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.fetchSettings()
-  }
+  useEffect(() => {
+    fetchSettings()
+  }, [])
 
-  render() {
-    return (
-      <div>
-        <TextField
-          type="text"
-          value={this.state.google}
-          onChange={this.handleGoogleChange}
-          floatingLabelText="Google"
-          fullWidth
-          hintText={GOOGLE_EXAMPLE}
+  return (
+    <div>
+      <TextField
+        type="text"
+        value={google}
+        onChange={({ target }) => setGoogle(target.value)}
+        floatingLabelText="Google"
+        fullWidth
+        hintText={GOOGLE_EXAMPLE}
+      />
+
+      <TextField
+        type="text"
+        value={bing}
+        onChange={({ target }) => setBing(target.value)}
+        floatingLabelText="Bing"
+        fullWidth
+        hintText={BING_EXAMPLE}
+      />
+
+      <TextField
+        type="text"
+        value={pinterest}
+        onChange={({ target }) => setPinterest(target.value)}
+        floatingLabelText="Pinterest"
+        fullWidth
+        hintText={PINTEREST_EXAMPLE}
+      />
+
+      <TextField
+        type="text"
+        value={yandex}
+        onChange={({ target }) => setYandex(target.value)}
+        floatingLabelText="Yandex"
+        fullWidth
+        hintText={YANDEX_EXAMPLE}
+      />
+
+      <div style={{ textAlign: "right", marginTop: 20 }}>
+        <RaisedButton
+          label={messages.save}
+          primary
+          disabled={false}
+          onClick={updateSettings}
         />
-
-        <TextField
-          type="text"
-          value={this.state.bing}
-          onChange={this.handleBingChange}
-          floatingLabelText="Bing"
-          fullWidth
-          hintText={BING_EXAMPLE}
-        />
-
-        <TextField
-          type="text"
-          value={this.state.pinterest}
-          onChange={this.handlePinterestChange}
-          floatingLabelText="Pinterest"
-          fullWidth
-          hintText={PINTEREST_EXAMPLE}
-        />
-
-        <TextField
-          type="text"
-          value={this.state.yandex}
-          onChange={this.handleYandexChange}
-          floatingLabelText="Yandex"
-          fullWidth
-          hintText={YANDEX_EXAMPLE}
-        />
-
-        <div style={{ textAlign: "right", marginTop: 20 }}>
-          <RaisedButton
-            label={messages.save}
-            primary
-            disabled={false}
-            onClick={this.updateSettings}
-          />
-        </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
