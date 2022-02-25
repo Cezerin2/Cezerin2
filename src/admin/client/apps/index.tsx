@@ -1,8 +1,8 @@
-import * as GoogleAnalyticsApp from "./google-analytics"
-import * as SiteVerificationApp from "./site-verification"
+import * as FacebookCustomerChatApp from "./facebookCustomerChat"
+import * as FacebookSDKApp from "./facebookSDK"
+import * as GoogleAnalyticsApp from "./googleAnalytics"
 import * as JivositeApp from "./jivosite"
-import * as FacebookSDKApp from "./facebook-sdk"
-import * as FacebookCustomerChatApp from "./facebook-customer-chat"
+import * as SiteVerificationApp from "./siteVerification"
 
 export default [
   GoogleAnalyticsApp,
