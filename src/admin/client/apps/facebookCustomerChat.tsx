@@ -20,38 +20,32 @@ export const Description = {
   </ol>`,
 }
 
-const CHAT_CODE = `<div class="fb-customerchat" page_id="PAGE_ID" minimized="IS_MINIMIZED"></div>`
+const chatCode = `<div class="fb-customerchat" page_id="PAGE_ID" minimized="IS_MINIMIZED"></div>`
 
 export const App: FC = () => {
-  const [pageId, setPageId] = useState("")
+  const [pageID, setPageID] = useState("")
   const [minimized, setMinimized] = useState("false")
 
-  const fetchSettings = () => {
+  const fetchSettings = () =>
     api.apps.settings
       .retrieve("facebook-customer-chat")
       .then(({ json }) => {
         const appSettings = json
-        if (appSettings) {
-          setPageId(appSettings.pageId)
-          setMinimized(appSettings.minimized)
-        }
+        setPageID(appSettings?.pageId)
+        setMinimized(appSettings?.minimized)
       })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+      .catch(console.error)
 
   const updateSettings = () => {
     const htmlCode =
-      pageId && pageId.length > 0
-        ? CHAT_CODE.replace(/PAGE_ID/g, pageId).replace(
-            /IS_MINIMIZED/g,
-            minimized
-          )
+      pageID?.length > 0
+        ? chatCode
+            .replace(/PAGE_ID/g, pageID)
+            .replace(/IS_MINIMIZED/g, minimized)
         : ""
 
     api.apps.settings.update("facebook-customer-chat", {
-      pageId,
+      pageID,
       minimized,
     })
     api.theme.placeholders.update("facebook-customer-chat", {
@@ -65,12 +59,12 @@ export const App: FC = () => {
   }, [])
 
   return (
-    <div>
+    <>
       <TextField
         type="text"
         fullWidth
-        value={pageId}
-        onChange={({ target }) => setPageId(target.value)}
+        value={pageID}
+        onChange={({ target }) => setPageID(target.value)}
         floatingLabelText="Page ID"
       />
 
@@ -91,6 +85,6 @@ export const App: FC = () => {
           onClick={updateSettings}
         />
       </div>
-    </div>
+    </>
   )
 }
