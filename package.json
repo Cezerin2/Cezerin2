@@ -81,7 +81,7 @@
     "redux-thunk": "^2.3.0",
     "request-promise": "^4.2.2",
     "response-time": "^2.3.2",
-    "sitemap": "^1.13.0",
+    "sitemap": "^7.1.1",
     "slug": "^0.9.1",
     "stripe": "^6.7.0",
     "theme": "./theme",
