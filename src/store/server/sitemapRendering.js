@@ -1,4 +1,5 @@
-import sm from "sitemap"
+import { SitemapStream, streamToPromise } from "sitemap"
+import { Readable } from "stream"
 import winston from "winston"
 import api from "./api"
 
@@ -26,7 +27,7 @@ const sitemapRendering = (req, res) => {
         ? settings.domain
         : `${req.protocol}://${req.hostname}`
 
-    const urls = sitemapArray
+    const links = sitemapArray
       .filter(
         item =>
           item.type !== "reserved" &&
@@ -34,16 +35,22 @@ const sitemapRendering = (req, res) => {
           !SITEMAP_EXCLUDE_PATH.includes(item.path)
       )
       .map(item => item.path)
-    const sitemap = sm.createSitemap({ hostname, urls })
-    sitemap.toXML((err, xml) => {
-      if (err) {
-        winston.error(err.message ? err.message : err)
-        res.status(500).end()
-      } else {
+
+    const stream = new SitemapStream({ hostname })
+
+    const sitemap = streamToPromise(Readable.from(links).pipe(stream)).then(
+      data => data.toString()
+    )
+
+    sitemap
+      .then(xml => {
         res.header("Content-Type", "application/xml")
         res.send(xml)
-      }
-    })
+      })
+      .catch(error => {
+        winston.error(error.message ? error.message : error)
+        res.status(500).end()
+      })
   })
 }
 
