@@ -1,1 +1,3 @@
-export default APPLICATION_CONFIG
+import applicationConfig from "../../../../config/admin"
+
+export default applicationConfig
