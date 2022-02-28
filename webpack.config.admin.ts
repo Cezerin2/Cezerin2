@@ -125,7 +125,7 @@ module.exports = {
       APPLICATION_CONFIG: JSON.stringify(applicationConfig),
     }),
     new webpack.DefinePlugin({
-      APPLICATION_TEXT: JSON.stringify(applicationText),
+      applicationText: JSON.stringify(applicationText),
     }),
     new MiniCssExtractPlugin({
       filename: "admin-assets/css/bundle-[contenthash].css",
