@@ -122,9 +122,6 @@ module.exports = {
       ],
     }),
     new webpack.DefinePlugin({
-      APPLICATION_CONFIG: JSON.stringify(applicationConfig),
-    }),
-    new webpack.DefinePlugin({
       applicationText: JSON.stringify(applicationText),
     }),
     new MiniCssExtractPlugin({
