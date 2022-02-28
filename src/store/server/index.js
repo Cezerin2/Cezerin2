@@ -9,6 +9,7 @@ import robotsRendering from "./robotsRendering"
 import sitemapRendering from "./sitemapRendering"
 import redirects from "./redirects"
 import pageRendering from "./pageRendering"
+import "./logger"
 
 const app = express()
 
