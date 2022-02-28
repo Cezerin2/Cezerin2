@@ -1,7 +1,7 @@
 import winston from "winston"
 import CezerinClient from "cezerin2-client"
 import React from "react"
-import { StaticRouter } from "react-router"
+import { StaticRouter } from "react-router-dom"
 import { renderToString } from "react-dom/server"
 import { createStore, applyMiddleware } from "redux"
 import thunkMiddleware from "redux-thunk"

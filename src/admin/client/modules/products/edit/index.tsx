@@ -8,7 +8,7 @@ import ProductInventory from "modules/products/edit/inventory"
 import ProductVariants from "modules/products/edit/variants"
 import React from "react"
 import { connect } from "react-redux"
-import { withRouter } from "react-router"
+import { withRouter } from "react-router-dom"
 import { cancelProductEdit, fetchProduct } from "../actions"
 
 class ProductEditContainer extends React.Component {
