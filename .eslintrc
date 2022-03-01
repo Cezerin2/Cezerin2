@@ -19,6 +19,19 @@
     "node": true
   },
   "rules": {
+    "import/no-extraneous-dependencies": 0,
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function" }
+    ],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "import/extensions": ["error", "never", { "tsx": "always" }],
+    "react/prop-types": 0,
+    "import/no-unresolved": 0,
+    "react/no-array-index-key": 0,
     "import/newline-after-import": 0,
     "class-methods-use-this": 0,
     "no-console": "off"
