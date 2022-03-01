@@ -2,27 +2,26 @@ import jwt from "jsonwebtoken"
 import serverConfigs from "../../../../config/server"
 
 const cert = serverConfigs.jwtSecretKey
-class AuthHeader {
-  constructor() {}
 
-  encodeUserLoginAuth(userId) {
-    return jwt.sign({ userId: userId }, cert)
-  }
+const encodeUserLoginAuth = (userID: string) => jwt.sign({ userID }, cert)
 
-  decodeUserLoginAuth(token) {
-    try {
-      return jwt.verify(token, cert)
-    } catch (error) {
-      return error
-    }
-  }
-
-  encodeUserPassword(token) {
-    return jwt.sign({ password: token }, cert)
-  }
-
-  decodeUserPassword(token) {
+const decodeUserLoginAuth = (token: string) => {
+  try {
     return jwt.verify(token, cert)
+  } catch (error) {
+    return error
   }
 }
-export default new AuthHeader()
+
+const encodeUserPassword = (token: string) =>
+  jwt.sign({ password: token }, cert)
+
+const decodeUserPassword = (token: string) =>
+  jwt.verify(token, cert) as { password: string }
+
+export {
+  encodeUserLoginAuth,
+  decodeUserLoginAuth,
+  encodeUserPassword,
+  decodeUserPassword,
+}

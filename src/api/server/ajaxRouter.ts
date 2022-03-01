@@ -4,7 +4,11 @@ import express from "express"
 import handlebars from "handlebars"
 import jwt from "jsonwebtoken"
 import { ObjectID } from "mongodb"
-import AuthHeader from "./lib/authHeader"
+import {
+  decodeUserLoginAuth,
+  decodeUserPassword,
+  encodeUserLoginAuth,
+} from "./lib/authHeader"
 import mailer from "./lib/mailer"
 import { db } from "./lib/mongo"
 import serverSettings from "./lib/settings"
@@ -143,8 +147,8 @@ ajaxRouter.post("/reset-password", async (req, res, next) => {
 
     const userId =
       "token" in req.body
-        ? AuthHeader.decodeUserLoginAuth(req.body.token)
-        : AuthHeader.decodeUserLoginAuth(req.body.id).userId.userId
+        ? decodeUserLoginAuth(req.body.token)
+        : decodeUserLoginAuth(req.body.id).userId.userId
 
     const filter = {
       id: userId,
@@ -175,7 +179,7 @@ ajaxRouter.post("/reset-password", async (req, res, next) => {
     const { status, json } = await api.customers.list(filter)
     if (json.total_count > 0) {
       data.status = true
-      data.id = AuthHeader.encodeUserLoginAuth(userId)
+      data.id = encodeUserLoginAuth(userId)
     }
     return res.status(status).send(data)
   })
@@ -200,7 +204,7 @@ ajaxRouter.post("/forgot-password", async (req, res, next) => {
     await handlebars.registerHelper("forgot_password_link", obj => {
       const url = `${serverSettings.storeBaseUrl}${
         countryCode !== undefined ? `/${countryCode}/` : "/"
-      }reset-password?token=${AuthHeader.encodeUserLoginAuth(userId)}`
+      }reset-password?token=${encodeUserLoginAuth(userId)}`
       let text = emailTemp.link
       if (text == undefined) {
         text = url
@@ -245,7 +249,7 @@ ajaxRouter.post("/customer-account", async (req, res, next) => {
   }
 
   if (req.body.token) {
-    customerData.token = AuthHeader.decodeUserLoginAuth(req.body.token)
+    customerData.token = decodeUserLoginAuth(req.body.token)
     if (customerData.token.userId !== undefined) {
       let userId = null
       try {
@@ -260,7 +264,7 @@ ajaxRouter.post("/customer-account", async (req, res, next) => {
       await api.customers.retrieve(userId).then(({ status, json }) => {
         customerData.customer_settings = json
         customerData.customer_settings.password = "*******"
-        customerData.token = AuthHeader.encodeUserLoginAuth(userId)
+        customerData.token = encodeUserLoginAuth(userId)
         customerData.authenticated = false
       })
 
@@ -301,13 +305,11 @@ ajaxRouter.post("/login", async (req, res, next) => {
       }
 
       const customerPassword = result.password
-      const inputPassword = AuthHeader.decodeUserPassword(
-        req.body.password
-      ).password
+      const inputPassword = decodeUserPassword(req.body.password).password
 
       bcrypt.compare(inputPassword, customerPassword, async (err, out) => {
         if (out == true) {
-          customerData.token = AuthHeader.encodeUserLoginAuth(result._id)
+          customerData.token = encodeUserLoginAuth(result._id)
           customerData.authenticated = true
 
           await api.customers.retrieve(result._id).then(({ status, json }) => {
@@ -356,16 +358,10 @@ ajaxRouter.post("/register", async (req, res, next) => {
 
     ;(async () => {
       // decode token parts and check if valid email is the second part of them
-      const firstName = await AuthHeader.decodeUserLoginAuth(
-        requestTokenArray[0]
-      ).userId
-      const lastName = await AuthHeader.decodeUserLoginAuth(
-        requestTokenArray[1]
-      ).userId
-      const eMail = await AuthHeader.decodeUserLoginAuth(requestTokenArray[2])
-        .userId
-      const passWord = await AuthHeader.decodeUserPassword(requestTokenArray[3])
-        .password
+      const firstName = await decodeUserLoginAuth(requestTokenArray[0]).userId
+      const lastName = await decodeUserLoginAuth(requestTokenArray[1]).userId
+      const eMail = await decodeUserLoginAuth(requestTokenArray[2]).userId
+      const passWord = await decodeUserPassword(requestTokenArray[3]).password
 
       if (
         requestTokenArray.length < 1 ||
@@ -438,13 +434,11 @@ ajaxRouter.post("/register", async (req, res, next) => {
         handlebars.compile(emailTemp.body),
         SettingsService.getSettings(),
       ])
-      const tokenConcatString = `${AuthHeader.encodeUserLoginAuth(
+      const tokenConcatString = `${encodeUserLoginAuth(
         req.body.first_name
-      )}xXx${AuthHeader.encodeUserLoginAuth(
-        req.body.last_name
-      )}xXx${AuthHeader.encodeUserLoginAuth(req.body.email)}xXx${
-        req.body.password
-      }`
+      )}xXx${encodeUserLoginAuth(req.body.last_name)}xXx${encodeUserLoginAuth(
+        req.body.email
+      )}xXx${req.body.password}`
       await Promise.all([
         mailer.send({
           to: req.body.email,
@@ -478,7 +472,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
 
 ajaxRouter.put("/customer-account", async (req, res, next) => {
   const customerData = req.body
-  const token = AuthHeader.decodeUserLoginAuth(req.body.token)
+  const token = decodeUserLoginAuth(req.body.token)
   let userId = null
   try {
     userId = JSON.stringify(token.userId).replace(/["']/g, "")
@@ -529,7 +523,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
         }
         customerDataObj.customer_settings = result
         customerDataObj.customer_settings.password = "*******"
-        customerDataObj.token = AuthHeader.encodeUserLoginAuth(userId)
+        customerDataObj.token = encodeUserLoginAuth(userId)
         customerData.authenticated = false
 
         if (customerData.saved_addresses === 0) {
