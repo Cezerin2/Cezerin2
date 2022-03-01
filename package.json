@@ -36,9 +36,10 @@
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ignore-path .gitignore .",
     "format": "prettier --write .",
-    "start-api": "ts-node src/api/server/index.ts",
-    "start-store": "node -r esm dist/store/server/index.js",
-    "start": "concurrently npm:start-*"
+    "start:api": "ts-node src/api/server/index.ts",
+    "start:store": "node -r esm dist/store/server/index.js",
+    "start": "concurrently npm:start:*",
+    "watch:api": "tsnd --respawn src/api/server/index.ts"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
