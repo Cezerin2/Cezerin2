@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt"
+import { hashSync } from "bcrypt"
 import handlebars from "handlebars"
 import { ObjectID } from "mongodb"
 import dashboardWebSocket from "../../lib/dashboardWebSocket"
@@ -185,9 +185,9 @@ class OrdersService {
   }
 
   getSingleOrder(id) {
-    if (!ObjectID.isValid(id)) {
-      return Promise.reject("Invalid identifier")
-    }
+    if (!ObjectID.isValid(id))
+      return Promise.reject(new Error("Invalid identifier"))
+
     return this.getOrders({ id }).then(items =>
       items.data.length > 0 ? items.data[0] : {}
     )
@@ -217,9 +217,7 @@ class OrdersService {
                 ? order.shipping_address.full_name
                 : ""
 
-            // generate password-hash
-            const salt = bcrypt.genSaltSync(saltRounds)
-            const hashPassword = bcrypt.hashSync(order.password, salt)
+            const hashPassword = hashSync(order.password, saltRounds)
 
             return CustomersService.addCustomer({
               first_name: order.first_name,
@@ -685,7 +683,12 @@ class OrdersService {
     return bodyTemplate(order)
   }
 
-  async sendAllMails(toEmail, copyTo, subject, body) {
+  async sendAllMails(
+    toEmail: string,
+    copyTo: string[],
+    subject: string,
+    body: string
+  ) {
     await Promise.all([
       mailer.send({
         to: toEmail,
@@ -700,7 +703,7 @@ class OrdersService {
     ])
   }
 
-  async checkoutOrder(orderId) {
+  async checkoutOrder(orderId: string) {
     /*
     TODO:
     - check order exists
