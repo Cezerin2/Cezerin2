@@ -4,22 +4,23 @@ const getString = value => (value || "").toString()
 
 const getDateIfValid = value => {
   const date = Date.parse(value)
-  return isNaN(date) ? null : new Date(date)
+  return Number.isNaN(date) ? null : new Date(date)
 }
 
-const getArrayIfValid = value => {
-  return Array.isArray(value) ? value : null
-}
+const getArrayIfValid = value => (Array.isArray(value) ? value : null)
+
+const getObjectIDIfValid = value =>
+  ObjectID.isValid(value) ? new ObjectID(value) : null
 
 const getArrayOfObjectID = value => {
-  if (Array.isArray(value) && value.length > 0) {
+  if (Array.isArray(value) && value.length > 0)
     return value.map(id => getObjectIDIfValid(id)).filter(id => !!id)
-  } else {
-    return []
-  }
+
+  return []
 }
 
-const isNumber = value => !isNaN(parseFloat(value)) && isFinite(value)
+const isNumber = value =>
+  !Number.isNaN(parseFloat(value)) && Number.isFinite(value)
 
 const getNumberIfValid = value => (isNumber(value) ? parseFloat(value) : null)
 
@@ -29,19 +30,13 @@ const getNumberIfPositive = value => {
 }
 
 const getBooleanIfValid = (value, defaultValue = null) => {
-  if (value === "true" || value === "false") {
-    return value === "true"
-  } else {
-    return typeof value === "boolean" ? value : defaultValue
-  }
+  if (value === "true" || value === "false") return value === "true"
+
+  return typeof value === "boolean" ? value : defaultValue
 }
 
-const getObjectIDIfValid = value => {
-  return ObjectID.isValid(value) ? new ObjectID(value) : null
-}
-
-const getBrowser = browser => {
-  return browser
+const getBrowser = browser =>
+  browser
     ? {
         ip: getString(browser.ip),
         user_agent: getString(browser.user_agent),
@@ -50,10 +45,9 @@ const getBrowser = browser => {
         ip: "",
         user_agent: "",
       }
-}
 
 const getCustomerAddress = address => {
-  let coordinates = {
+  const coordinates = {
     latitude: "",
     longitude: "",
   }
@@ -76,7 +70,7 @@ const getCustomerAddress = address => {
         phone: getString(address.phone),
         company: getString(address.company),
         tax_number: getString(address.tax_number),
-        coordinates: coordinates,
+        coordinates,
         details: address.details,
         default_billing: false,
         default_shipping: false,
@@ -85,7 +79,7 @@ const getCustomerAddress = address => {
 }
 
 const getOrderAddress = address => {
-  let coordinates = {
+  const coordinates = {
     latitude: "",
     longitude: "",
   }
@@ -106,42 +100,39 @@ const getOrderAddress = address => {
     phone: "",
     company: "",
     tax_number: "",
-    coordinates: coordinates,
+    coordinates,
     details: null,
   }
 
   return address
-    ? Object.assign(
-        {},
-        {
-          full_name: getString(address.full_name),
-          address1: getString(address.address1),
-          address2: getString(address.address2),
-          city: getString(address.city),
-          country: getString(address.country).toUpperCase(),
-          postal_code: getString(address.postal_code),
-          state: getString(address.state),
-          phone: getString(address.phone),
-          company: getString(address.company),
-          tax_number: getString(address.tax_number),
-          coordinates: coordinates,
-          details: address.details,
-        },
-        address
-      )
+    ? {
+        full_name: getString(address.full_name),
+        address1: getString(address.address1),
+        address2: getString(address.address2),
+        city: getString(address.city),
+        country: getString(address.country).toUpperCase(),
+        postal_code: getString(address.postal_code),
+        state: getString(address.state),
+        phone: getString(address.phone),
+        company: getString(address.company),
+        tax_number: getString(address.tax_number),
+        coordinates,
+        details: address.details,
+        ...address,
+      }
     : emptyAddress
 }
 
 export default {
-  getString: getString,
-  getObjectIDIfValid: getObjectIDIfValid,
-  getDateIfValid: getDateIfValid,
-  getArrayIfValid: getArrayIfValid,
-  getArrayOfObjectID: getArrayOfObjectID,
-  getNumberIfValid: getNumberIfValid,
-  getNumberIfPositive: getNumberIfPositive,
-  getBooleanIfValid: getBooleanIfValid,
-  getBrowser: getBrowser,
-  getCustomerAddress: getCustomerAddress,
-  getOrderAddress: getOrderAddress,
+  getString,
+  getObjectIDIfValid,
+  getDateIfValid,
+  getArrayIfValid,
+  getArrayOfObjectID,
+  getNumberIfValid,
+  getNumberIfPositive,
+  getBooleanIfValid,
+  getBrowser,
+  getCustomerAddress,
+  getOrderAddress,
 }
