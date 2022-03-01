@@ -1,1 +1,3 @@
-export { default } from "../../../../config/server"
+import config from "../../../../config/server"
+
+export default config
