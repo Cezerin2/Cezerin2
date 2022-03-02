@@ -19,7 +19,7 @@ const staticOptions = {
 }
 
 app.set("trust proxy", 1)
-app.use(helmet())
+app.use(helmet({ contentSecurityPolicy: false }))
 app.get("/images/:entity/:id/:size/:filename", (req, res, next) => {
   // A stub of image resizing (can be done with Nginx)
   const newUrl = `/images/${req.params.entity}/${req.params.id}/${req.params.filename}`
