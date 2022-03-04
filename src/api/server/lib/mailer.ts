@@ -14,17 +14,15 @@ const SMTP_FROM_CONFIG_FILE = {
   },
 }
 
-const getSmtpFromEmailSettings = emailSettings => {
-  return {
-    host: emailSettings.host,
-    port: emailSettings.port,
-    secure: emailSettings.port === 465,
-    auth: {
-      user: emailSettings.user,
-      pass: emailSettings.pass,
-    },
-  }
-}
+const getSmtpFromEmailSettings = emailSettings => ({
+  host: emailSettings.host,
+  port: emailSettings.port,
+  secure: emailSettings.port === 465,
+  auth: {
+    user: emailSettings.user,
+    pass: emailSettings.pass,
+  },
+})
 
 const getSmtp = emailSettings => {
   const useSmtpServerFromConfigFile = emailSettings.host === ""
@@ -35,23 +33,22 @@ const getSmtp = emailSettings => {
   return smtp
 }
 
-const sendMail = (smtp, message) => {
-  return new Promise((resolve, reject) => {
+const sendMail = (smtp, message) =>
+  new Promise((resolve, reject) => {
     if (!message.to.includes("@")) {
-      reject("Invalid email address")
+      reject(new Error("Invalid email address"))
       return
     }
 
     const transporter = nodemailer.createTransport(smtpTransport(smtp))
-    transporter.sendMail(message, (err, info) => {
-      if (err) {
-        reject(err)
+    transporter.sendMail(message, (error, info) => {
+      if (error) {
+        reject(error)
       } else {
         resolve(info)
       }
     })
   })
-}
 
 const getFrom = emailSettings => {
   const useSmtpServerFromConfigFile = emailSettings.host === ""
@@ -60,7 +57,7 @@ const getFrom = emailSettings => {
     : `"${emailSettings.from_name}" <${emailSettings.from_address}>`
 }
 
-const send = async message => {
+export const send = async message => {
   const emailSettings = await EmailSettingsService.getEmailSettings()
   const smtp = getSmtp(emailSettings)
   message.from = getFrom(emailSettings)
@@ -69,12 +66,8 @@ const send = async message => {
     const result = await sendMail(smtp, message)
     winston.info("Email sent", result)
     return true
-  } catch (e) {
-    winston.error("Email send failed", e)
+  } catch (error) {
+    winston.error("Email send failed", error)
     return false
   }
-}
-
-export default {
-  send: send,
 }
