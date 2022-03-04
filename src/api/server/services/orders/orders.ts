@@ -2,7 +2,7 @@ import { hashSync } from "bcrypt"
 import handlebars from "handlebars"
 import { ObjectID } from "mongodb"
 import dashboardWebSocket from "../../lib/dashboardWebSocket"
-import mailer from "../../lib/mailer"
+import { send } from "../../lib/mailer"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
@@ -690,12 +690,12 @@ class OrdersService {
     body: string
   ) {
     await Promise.all([
-      mailer.send({
+      send({
         to: toEmail,
         subject,
         html: body,
       }),
-      mailer.send({
+      send({
         to: copyTo,
         subject,
         html: body,

@@ -1,18 +1,19 @@
 import winston from "winston"
-import nodemailer from "nodemailer"
-import smtpTransport from "nodemailer-smtp-transport"
+import { createTransport } from "nodemailer"
 import settings from "./settings"
 import EmailSettingsService from "../services/settings/email"
 
-const SMTP_FROM_CONFIG_FILE = {
-  host: settings.smtpServer.host,
-  port: settings.smtpServer.port,
-  secure: settings.smtpServer.secure,
+const { host, port, secure, user, pass } = settings.smtpServer
+const transportFromConfig = createTransport({
+  host,
+  port,
+  secure, // true for 465, false for other ports
   auth: {
-    user: settings.smtpServer.user,
-    pass: settings.smtpServer.pass,
+    user,
+    pass,
   },
-}
+  tls: { rejectUnauthorized: false },
+})
 
 const getSmtpFromEmailSettings = emailSettings => ({
   host: emailSettings.host,
@@ -22,26 +23,28 @@ const getSmtpFromEmailSettings = emailSettings => ({
     user: emailSettings.user,
     pass: emailSettings.pass,
   },
+  tls: { rejectUnauthorized: false },
 })
 
-const getSmtp = emailSettings => {
+const getTransport = emailSettings => {
   const useSmtpServerFromConfigFile = emailSettings.host === ""
+  const emailSettingsSMTP = getSmtpFromEmailSettings(emailSettings)
+
   const smtp = useSmtpServerFromConfigFile
-    ? SMTP_FROM_CONFIG_FILE
-    : getSmtpFromEmailSettings(emailSettings)
+    ? createTransport(transportFromConfig)
+    : createTransport(emailSettingsSMTP)
 
   return smtp
 }
 
-const sendMail = (smtp, message) =>
+const sendMail = (transport, message) =>
   new Promise((resolve, reject) => {
     if (!message.to.includes("@")) {
       reject(new Error("Invalid email address"))
       return
     }
 
-    const transporter = nodemailer.createTransport(smtpTransport(smtp))
-    transporter.sendMail(message, (error, info) => {
+    transport.sendMail(message, (error, info) => {
       if (error) {
         reject(error)
       } else {
@@ -59,11 +62,12 @@ const getFrom = emailSettings => {
 
 export const send = async message => {
   const emailSettings = await EmailSettingsService.getEmailSettings()
-  const smtp = getSmtp(emailSettings)
-  message.from = getFrom(emailSettings)
+  const transport = getTransport(emailSettings)
+
+  const messageToSend = { ...message, from: getFrom(emailSettings) }
 
   try {
-    const result = await sendMail(smtp, message)
+    const result = await sendMail(transport, messageToSend)
     winston.info("Email sent", result)
     return true
   } catch (error) {
