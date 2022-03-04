@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser"
 import cors from "cors"
 import responseTime from "response-time"
 import winston from "winston"
-import logger from "./lib/logger"
+import { sendResponse } from "./lib/logger"
 import settings from "./lib/settings"
 import security from "./lib/security"
 import { db } from "./lib/mongo"
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use("/ajax", ajaxRouter)
 app.use("/api", apiRouter)
-app.use(logger.sendResponse)
+app.use(sendResponse)
 
 const server = app.listen(settings.apiListenPort, () => {
   const serverAddress = server.address()

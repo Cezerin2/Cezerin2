@@ -1,7 +1,8 @@
 import winston from "winston"
-const LOGS_FILE = "logs/server.log"
 
-winston.configure({
+const logsFile = "logs/server.log"
+
+const logger = winston.configure({
   transports: [
     new winston.transports.Console({
       level: "debug",
@@ -15,7 +16,7 @@ winston.configure({
       level: "info",
       handleExceptions: true,
       format: winston.format.json(),
-      filename: LOGS_FILE,
+      filename: logsFile,
     }),
   ],
 })
@@ -29,7 +30,7 @@ const logUnauthorizedRequests = req => {
   // todo
 }
 
-const sendResponse = (err, req, res, next) => {
+export const sendResponse = (err, req, res, next) => {
   if (err && err.name === "UnauthorizedError") {
     logUnauthorizedRequests(req)
     res.status(401).send(getResponse(err.message))
@@ -41,6 +42,4 @@ const sendResponse = (err, req, res, next) => {
   }
 }
 
-export default {
-  sendResponse,
-}
+export default logger

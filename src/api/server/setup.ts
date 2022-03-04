@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb"
 import url from "url"
 import winston from "winston"
+import "./lib/logger"
 import settings from "./lib/settings"
 
 const mongodbConnection = settings.mongodbServerUrl
