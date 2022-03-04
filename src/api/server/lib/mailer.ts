@@ -1,7 +1,7 @@
-import winston from "winston"
 import { createTransport, SentMessageInfo, Transporter } from "nodemailer"
-import settings from "./settings"
+import winston from "winston"
 import EmailSettingsService from "../services/settings/email"
+import settings from "./settings"
 
 interface config {
   host: string
