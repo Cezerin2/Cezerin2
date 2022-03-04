@@ -1,5 +1,5 @@
-import WebSocket from "ws"
 import url from "url"
+import WebSocket from "ws"
 import security from "./security"
 
 let wss = null

@@ -1,17 +1,16 @@
-import express from "express"
-import helmet from "helmet"
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import express from "express"
+import helmet from "helmet"
 import responseTime from "response-time"
 import winston from "winston"
-import { sendResponse } from "./lib/logger"
-import settings from "./lib/settings"
-import security from "./lib/security"
-import { db } from "./lib/mongo"
-import dashboardWebSocket from "./lib/dashboardWebSocket"
 import ajaxRouter from "./ajaxRouter"
 import apiRouter from "./apiRouter"
+import dashboardWebSocket from "./lib/dashboardWebSocket"
+import { sendResponse } from "./lib/logger"
+import security from "./lib/security"
+import settings from "./lib/settings"
 
 const app = express()
 
