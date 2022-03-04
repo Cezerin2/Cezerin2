@@ -2,9 +2,9 @@
   "apps": [
     {
       "name": "api",
-      "script": "./src/api/server/index.js",
-      "node_args": "-r esm",
-      "watch": ["./config/server.js", "./src/api/server/"],
+      "script": "npm",
+      "args": "run start:api",
+      "watch": ["./config", "./src/api/server"],
       "instances": "1",
       "exec_mode": "fork",
       "watch_options": {
@@ -14,12 +14,12 @@
     },
     {
       "name": "store",
-      "script": "./dist/store/server/index.js",
-      "node_args": "-r esm",
+      "script": "npm",
+      "args": "run start:store",
       "watch": [
-        "./config/server.js",
-        "./dist/store/",
-        "./theme/dist/",
+        "./config",
+        "./dist/store",
+        "./theme/dist",
         "./theme/assets/index.html"
       ],
       "instances": "1",
