@@ -5,7 +5,7 @@ import moment from "moment"
 import { ObjectID } from "mongodb"
 import uaParser from "ua-parser-js"
 import url from "url"
-import mailer from "../../lib/mailer"
+import { send } from "../../lib/mailer"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
@@ -310,7 +310,7 @@ class SecurityTokensService {
           requestFrom,
         }),
       }
-      const emailSent = await mailer.send(message)
+      const emailSent = await send(message)
       return { sent: emailSent, error: null }
     } else {
       return { sent: false, error: "Access Denied" }

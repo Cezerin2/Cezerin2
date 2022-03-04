@@ -9,7 +9,7 @@ import {
   decodeUserPassword,
   encodeUserLoginAuth,
 } from "./lib/authHeader"
-import mailer from "./lib/mailer"
+import { send } from "./lib/mailer"
 import { db } from "./lib/mongo"
 import serverSettings from "./lib/settings"
 import OrderItemsService from "./services/orders/orderItems"
@@ -218,7 +218,7 @@ ajaxRouter.post("/forgot-password", async (req, res, next) => {
       SettingsService.getSettings(),
     ])
     await Promise.all([
-      mailer.send({
+      send({
         to: req.body.email,
         subject: `${emailTemp.subject} ${settings.store_name}`,
         html: bodyTemplate({
@@ -440,7 +440,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
         req.body.email
       )}xXx${req.body.password}`
       await Promise.all([
-        mailer.send({
+        send({
           to: req.body.email,
           subject: `${emailTemp.subject} ${settings.store_name}`,
           html: bodyTemplate({
