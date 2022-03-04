@@ -1,11 +1,11 @@
 import fse from "fs-extra"
-import lruCache from "lru-cache"
+import LRUCache from "lru-cache"
 import path from "path"
 import serverSettings from "../../lib/settings"
 
-const cache = lruCache({
+const cache = new LRUCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24, // 24h
+  ttl: 1000 * 60 * 60 * 24, // 24h
 })
 
 const THEME_SETTINGS_CACHE_KEY = "themesettings"

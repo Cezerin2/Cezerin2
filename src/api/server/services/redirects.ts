@@ -1,11 +1,11 @@
-import lruCache from "lru-cache"
+import LRUCache from "lru-cache"
 import { ObjectID } from "mongodb"
 import { db } from "../lib/mongo"
 import parse from "../lib/parse"
 
-const cache = lruCache({
+const cache = new LRUCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24, // 24h
+  ttl: 1000 * 60 * 60 * 24, // 24h
 })
 
 const REDIRECTS_CACHE_KEY = "redirects"
