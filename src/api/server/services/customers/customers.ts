@@ -6,8 +6,6 @@ import { events, trigger } from "../../lib/webhooks"
 import CustomerGroupsService from "./customerGroups"
 
 class CustomersService {
-  constructor() {}
-
   getFilter(params: any = {}) {
     // tag
     // gender

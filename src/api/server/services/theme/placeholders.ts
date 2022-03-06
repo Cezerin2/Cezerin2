@@ -2,8 +2,6 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class ThemePlaceholdersService {
-  constructor() {}
-
   getPlaceholders() {
     return db.collection("themePlaceholders").find({}, { _id: 0 }).toArray()
   }

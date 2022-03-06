@@ -6,8 +6,6 @@ import PaymentMethodsService from "./paymentMethods"
 import ShippingMethodsLightService from "./shippingMethodsLight"
 
 class ShippingMethodsService {
-  constructor() {}
-
   getFilter(params: any = {}) {
     return new Promise((resolve, reject) => {
       let filter: any = {}

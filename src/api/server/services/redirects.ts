@@ -11,8 +11,6 @@ const cache = new LRUCache({
 const REDIRECTS_CACHE_KEY = "redirects"
 
 class RedirectsService {
-  constructor() {}
-
   getRedirects(query?) {
     const redirectsFromCache = cache.get(REDIRECTS_CACHE_KEY)
 

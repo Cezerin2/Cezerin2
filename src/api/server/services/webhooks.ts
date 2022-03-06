@@ -11,8 +11,6 @@ const cache = new LRUCache({
 const WEBHOOKS_CACHE_KEY = "webhooks"
 
 class WebhooksService {
-  constructor() {}
-
   async getWebhooks(query?) {
     const webhooksFromCache = cache.get(WEBHOOKS_CACHE_KEY)
 

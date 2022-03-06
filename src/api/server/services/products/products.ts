@@ -10,8 +10,6 @@ import SettingsService from "../settings/settings"
 import CategoriesService from "./productCategories"
 
 class ProductsService {
-  constructor() {}
-
   async getProducts(params: any = {}) {
     const categories = await CategoriesService.getCategories({
       fields: "parent_id",
