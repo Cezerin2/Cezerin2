@@ -101,7 +101,7 @@ class CustomersService {
     const newCustomerId = insertResponse.ops[0]._id.toString()
     const newCustomer = await this.getSingleCustomer(newCustomerId)
     await trigger({
-      event: events.CUSTOMER_CREATED,
+      event: events.customerCreated,
       payload: newCustomer,
     })
     return newCustomer
@@ -139,7 +139,7 @@ class CustomersService {
 
     const updatedCustomer = await this.getSingleCustomer(id)
     await trigger({
-      event: events.CUSTOMER_UPDATED,
+      event: events.customerUpdated,
       payload: updatedCustomer,
     })
     return updatedCustomer
@@ -170,7 +170,7 @@ class CustomersService {
       .collection("customers")
       .deleteOne({ _id: customerObjectID })
     await trigger({
-      event: events.CUSTOMER_DELETED,
+      event: events.customerDeleted,
       payload: customer,
     })
     return deleteResponse.deletedCount > 0

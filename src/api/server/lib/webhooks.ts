@@ -41,13 +41,13 @@ export const trigger = async ({ event, payload }) => {
 }
 
 export const events = {
-  ORDER_CREATED: "order.created",
-  ORDER_UPDATED: "order.updated",
-  ORDER_DELETED: "order.deleted",
-  TRANSACTION_CREATED: "transaction.created",
-  TRANSACTION_UPDATED: "transaction.updated",
-  TRANSACTION_DELETED: "transaction.deleted",
-  CUSTOMER_CREATED: "customer.created",
-  CUSTOMER_UPDATED: "customer.updated",
-  CUSTOMER_DELETED: "customer.deleted",
+  orderCreated: "order.created",
+  orderUpdated: "order.updated",
+  orderDeleted: "order.deleted",
+  transactionCreated: "transaction.created",
+  transactionUpdated: "transaction.updated",
+  transactionDeleted: "transaction.deleted",
+  customerCreated: "customer.created",
+  customerUpdated: "customer.updated",
+  customerDeleted: "customer.deleted",
 }
