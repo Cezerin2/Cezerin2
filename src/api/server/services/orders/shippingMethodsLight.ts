@@ -2,8 +2,6 @@ import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
 
 class ShippingMethodsLightService {
-  constructor() {}
-
   getMethods(filter = {}) {
     return db
       .collection("shippingMethods")

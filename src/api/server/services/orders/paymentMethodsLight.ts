@@ -1,8 +1,6 @@
 import { db } from "../../lib/mongo"
 
 class PaymentMethodsLightService {
-  constructor() {}
-
   getMethods(filter = {}) {
     return db
       .collection("paymentMethods")

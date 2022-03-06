@@ -4,8 +4,6 @@ import parse from "../../lib/parse"
 import OrdersService from "./orders"
 
 class OrderAddressService {
-  constructor() {}
-
   updateBillingAddress(id, data) {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")

@@ -2,8 +2,6 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class EmailTemplatesService {
-  constructor() {}
-
   getEmailTemplate(name) {
     return db
       .collection("emailTemplates")

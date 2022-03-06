@@ -4,8 +4,6 @@ import parse from "../../lib/parse"
 import OrdersService from "./orders"
 
 class OrdertDiscountsService {
-  constructor() {}
-
   addDiscount(order_id, data) {
     if (!ObjectID.isValid(order_id)) {
       return Promise.reject("Invalid identifier")

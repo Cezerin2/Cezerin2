@@ -3,8 +3,6 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class ProductOptionValuesService {
-  constructor() {}
-
   getOptionValues(productId, optionId) {
     let productObjectID = new ObjectID(productId)
 
