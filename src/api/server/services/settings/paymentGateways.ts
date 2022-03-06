@@ -1,8 +1,6 @@
 import { db } from "../../lib/mongo"
 
 class PaymentGatewaysService {
-  constructor() {}
-
   getGateway(gatewayName) {
     return db
       .collection("paymentGateways")

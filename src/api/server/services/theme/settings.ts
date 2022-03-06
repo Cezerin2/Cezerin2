@@ -16,8 +16,6 @@ const SETTINGS_SCHEMA_FILE = path.resolve(
 const SETTINGS_SCHEMA_FILE_EN = path.resolve("theme/settings/en.json")
 
 class ThemeSettingsService {
-  constructor() {}
-
   readFile(file) {
     return new Promise((resolve, reject) => {
       fse.readFile(file, "utf8", (err, data) => {

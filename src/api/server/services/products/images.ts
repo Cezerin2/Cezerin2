@@ -10,8 +10,6 @@ import utils from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 class ProductImagesService {
-  constructor() {}
-
   getErrorMessage(err) {
     return { error: true, message: err.toString() }
   }

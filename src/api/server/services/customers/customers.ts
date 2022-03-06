@@ -2,12 +2,10 @@ import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import webhooks from "../../lib/webhooks"
+import { events, trigger } from "../../lib/webhooks"
 import CustomerGroupsService from "./customerGroups"
 
 class CustomersService {
-  constructor() {}
-
   getFilter(params: any = {}) {
     // tag
     // gender
@@ -100,8 +98,8 @@ class CustomersService {
       .insertMany([customer])
     const newCustomerId = insertResponse.ops[0]._id.toString()
     const newCustomer = await this.getSingleCustomer(newCustomerId)
-    await webhooks.trigger({
-      event: webhooks.events.CUSTOMER_CREATED,
+    await trigger({
+      event: events.customerCreated,
       payload: newCustomer,
     })
     return newCustomer
@@ -138,8 +136,8 @@ class CustomersService {
     )
 
     const updatedCustomer = await this.getSingleCustomer(id)
-    await webhooks.trigger({
-      event: webhooks.events.CUSTOMER_UPDATED,
+    await trigger({
+      event: events.customerUpdated,
       payload: updatedCustomer,
     })
     return updatedCustomer
@@ -169,8 +167,8 @@ class CustomersService {
     const deleteResponse = await db
       .collection("customers")
       .deleteOne({ _id: customerObjectID })
-    await webhooks.trigger({
-      event: webhooks.events.CUSTOMER_DELETED,
+    await trigger({
+      event: events.customerDeleted,
       payload: customer,
     })
     return deleteResponse.deletedCount > 0

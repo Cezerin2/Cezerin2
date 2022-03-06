@@ -1,8 +1,6 @@
 import { db } from "../../lib/mongo"
 
 class AppSettingsService {
-  constructor() {}
-
   getSettings(appKey) {
     return db
       .collection("appSettings")

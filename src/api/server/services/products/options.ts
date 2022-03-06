@@ -3,8 +3,6 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class ProductOptionsService {
-  constructor() {}
-
   getOptions(productId) {
     if (!ObjectID.isValid(productId)) {
       return Promise.reject("Invalid identifier")

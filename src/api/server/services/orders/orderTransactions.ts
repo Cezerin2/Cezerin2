@@ -1,12 +1,10 @@
 import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
-import webhooks from "../../lib/webhooks"
+import { events, trigger } from "../../lib/webhooks"
 import OrdersService from "./orders"
 
 class OrdertTansactionsService {
-  constructor() {}
-
   async addTransaction(order_id, data) {
     if (!ObjectID.isValid(order_id)) {
       return Promise.reject("Invalid identifier")
@@ -26,8 +24,8 @@ class OrdertTansactionsService {
     )
 
     const order = await OrdersService.getSingleOrder(order_id)
-    await webhooks.trigger({
-      event: webhooks.events.TRANSACTION_CREATED,
+    await trigger({
+      event: events.transactionCreated,
       payload: order,
     })
     return order
@@ -52,8 +50,8 @@ class OrdertTansactionsService {
     )
 
     const order = await OrdersService.getSingleOrder(order_id)
-    await webhooks.trigger({
-      event: webhooks.events.TRANSACTION_UPDATED,
+    await trigger({
+      event: events.transactionUpdated,
       payload: order,
     })
     return order
@@ -80,8 +78,8 @@ class OrdertTansactionsService {
     )
 
     const order = await OrdersService.getSingleOrder(order_id)
-    await webhooks.trigger({
-      event: webhooks.events.TRANSACTION_DELETED,
+    await trigger({
+      event: events.transactionDeleted,
       payload: order,
     })
     return order

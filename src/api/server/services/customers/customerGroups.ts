@@ -3,8 +3,6 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class CustomerGroupsService {
-  constructor() {}
-
   getGroups(params = {}) {
     return db
       .collection("customerGroups")

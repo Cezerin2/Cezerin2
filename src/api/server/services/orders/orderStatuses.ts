@@ -3,8 +3,6 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class OrderStatusesService {
-  constructor() {}
-
   getStatuses(params: any = {}) {
     let filter: any = {}
     const id = parse.getObjectIDIfValid(params.id)
