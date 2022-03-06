@@ -66,8 +66,8 @@ module.exports = {
   orderStartNumber: 1000,
 
   // cost factor, controls how much time is needed to calculate a single BCrypt hash
-  // for production: recommended salRounds > 12
-  saltRounds: process.env.SALT_ROUNDS || 12,
+  // for production: recommended 17 < saltRounds > 14 or 16
+  saltRounds: Number(process.env.SALT_ROUNDS) || 14,
 
   developerMode: true,
 }

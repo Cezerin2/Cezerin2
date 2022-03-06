@@ -1,19 +1,19 @@
 import handlebars from "handlebars"
 import jwt from "jsonwebtoken"
-import lruCache from "lru-cache"
+import LRUCache from "lru-cache"
 import moment from "moment"
 import { ObjectID } from "mongodb"
 import uaParser from "ua-parser-js"
 import url from "url"
-import mailer from "../../lib/mailer"
+import { send } from "../../lib/mailer"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
 import SettingsService from "../settings/settings"
 
-const cache = lruCache({
+const cache = new LRUCache({
   max: 10000,
-  maxAge: 1000 * 60 * 60 * 24, // 24h
+  ttl: 1000 * 60 * 60 * 24, // 24h
 })
 
 const BLACKLIST_CACHE_KEY = "blacklist"
@@ -310,7 +310,7 @@ class SecurityTokensService {
           requestFrom,
         }),
       }
-      const emailSent = await mailer.send(message)
+      const emailSent = await send(message)
       return { sent: emailSent, error: null }
     } else {
       return { sent: false, error: "Access Denied" }

@@ -32,6 +32,7 @@
     "react/prop-types": 0,
     "import/no-unresolved": 0,
     "react/no-array-index-key": 0,
+    "import/prefer-default-export": 0,
     "import/newline-after-import": 0,
     "class-methods-use-this": 0,
     "no-console": "off"

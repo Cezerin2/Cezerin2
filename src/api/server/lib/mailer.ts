@@ -1,80 +1,95 @@
+import { createTransport, SentMessageInfo, Transporter } from "nodemailer"
 import winston from "winston"
-import nodemailer from "nodemailer"
-import smtpTransport from "nodemailer-smtp-transport"
-import settings from "./settings"
 import EmailSettingsService from "../services/settings/email"
+import settings from "./settings"
 
-const SMTP_FROM_CONFIG_FILE = {
-  host: settings.smtpServer.host,
-  port: settings.smtpServer.port,
-  secure: settings.smtpServer.secure,
+interface config {
+  host: string
+  port: number
+  user: string
+  pass: string
+}
+
+const { host, port, secure, user, pass } = settings.smtpServer
+const transportFromConfig = createTransport({
+  host,
+  port,
+  secure, // true for 465, false for other ports
   auth: {
-    user: settings.smtpServer.user,
-    pass: settings.smtpServer.pass,
+    user,
+    pass,
   },
-}
+  tls: { rejectUnauthorized: false },
+})
 
-const getSmtpFromEmailSettings = emailSettings => {
-  return {
-    host: emailSettings.host,
-    port: emailSettings.port,
-    secure: emailSettings.port === 465,
-    auth: {
-      user: emailSettings.user,
-      pass: emailSettings.pass,
-    },
-  }
-}
+const getSmtpFromEmailSettings = (emailSettings: config) => ({
+  host: emailSettings.host,
+  port: emailSettings.port,
+  secure: emailSettings.port === 465,
+  auth: {
+    user: emailSettings.user,
+    pass: emailSettings.pass,
+  },
+  tls: { rejectUnauthorized: false },
+})
 
-const getSmtp = emailSettings => {
+const getTransport = (emailSettings: config) => {
   const useSmtpServerFromConfigFile = emailSettings.host === ""
+  const emailSettingsSMTP = getSmtpFromEmailSettings(emailSettings)
+
   const smtp = useSmtpServerFromConfigFile
-    ? SMTP_FROM_CONFIG_FILE
-    : getSmtpFromEmailSettings(emailSettings)
+    ? createTransport(transportFromConfig)
+    : createTransport(emailSettingsSMTP)
 
   return smtp
 }
 
-const sendMail = (smtp, message) => {
-  return new Promise((resolve, reject) => {
+const sendMail = (
+  transport: Transporter<SentMessageInfo>,
+  message: { to: string | string[] }
+) =>
+  new Promise((resolve, reject) => {
     if (!message.to.includes("@")) {
-      reject("Invalid email address")
+      reject(new Error("Invalid email address"))
       return
     }
 
-    const transporter = nodemailer.createTransport(smtpTransport(smtp))
-    transporter.sendMail(message, (err, info) => {
-      if (err) {
-        reject(err)
+    transport.sendMail(message, (error, info) => {
+      if (error) {
+        reject(error)
       } else {
         resolve(info)
       }
     })
   })
-}
 
-const getFrom = emailSettings => {
+const getFrom = (emailSettings: {
+  host: string
+  from_name: string
+  from_address: string
+}) => {
   const useSmtpServerFromConfigFile = emailSettings.host === ""
   return useSmtpServerFromConfigFile
     ? `"${settings.smtpServer.fromName}" <${settings.smtpServer.fromAddress}>`
     : `"${emailSettings.from_name}" <${emailSettings.from_address}>`
 }
 
-const send = async message => {
+export const send = async (message: {
+  to: string | string[]
+  subject: string
+  html: string
+}) => {
   const emailSettings = await EmailSettingsService.getEmailSettings()
-  const smtp = getSmtp(emailSettings)
-  message.from = getFrom(emailSettings)
+  const transport = getTransport(emailSettings)
+
+  const messageToSend = { ...message, from: getFrom(emailSettings) }
 
   try {
-    const result = await sendMail(smtp, message)
+    const result = await sendMail(transport, messageToSend)
     winston.info("Email sent", result)
     return true
-  } catch (e) {
-    winston.error("Email send failed", e)
+  } catch (error) {
+    winston.error("Email send failed", error)
     return false
   }
-}
-
-export default {
-  send: send,
 }

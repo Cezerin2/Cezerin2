@@ -1,9 +1,9 @@
 import { exec } from "child_process"
-import path from "path"
 import formidable from "formidable"
+import path from "path"
 import winston from "winston"
-import settings from "../../lib/settings"
 import dashboardWebSocket from "../../lib/dashboardWebSocket"
+import settings from "../../lib/settings"
 
 class ThemesService {
   constructor() {}

@@ -1,6 +1,6 @@
-import winston from "winston"
-import url from "url"
 import { MongoClient } from "mongodb"
+import url from "url"
+import winston from "winston"
 import settings from "./settings"
 
 const mongodbConnection = settings.mongodbServerUrl
