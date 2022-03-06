@@ -42,6 +42,7 @@
     "watch:api": "tsnd --respawn src/api/server/index.ts"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
     "cezerin2-client": "^0.36.0",
@@ -61,7 +62,6 @@
     "material-ui": "^0.20.2",
     "moment": "^2.22.2",
     "mongodb": "^3.1.4",
-    "node-fetch": "^2.2.0",
     "nodemailer": "^6.7.2",
     "query-string": "^6.1.0",
     "react": "^17.0.2",
