@@ -28,6 +28,7 @@
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
+    "no-restricted-syntax": 0,
     "import/extensions": ["error", "never", { "tsx": "always" }],
     "react/prop-types": 0,
     "import/no-unresolved": 0,
