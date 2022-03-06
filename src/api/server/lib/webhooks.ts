@@ -1,5 +1,5 @@
+import axios from "axios"
 import crypto from "crypto"
-import fetch from "node-fetch"
 import WebhooksService from "../services/webhooks"
 
 const trigger = async ({ event, payload }) => {
@@ -21,17 +21,13 @@ const send = ({ event, payload, webhook }) => {
     const data = JSON.stringify(payload)
     const signature = sign({ data: data, secret: webhook.secret })
 
-    fetch(webhook.url, {
-      method: "POST",
-      body: data,
-      redirect: "manual",
-      compress: true,
+    axios.post(webhook.url, data, {
       headers: {
         "Content-Type": "application/json",
         "X-Hook-Event": event,
         "X-Hook-Signature": signature,
       },
-    }).catch(() => {})
+    })
   }
 }
 
