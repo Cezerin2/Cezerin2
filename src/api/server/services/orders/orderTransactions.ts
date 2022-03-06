@@ -27,7 +27,7 @@ class OrdertTansactionsService {
 
     const order = await OrdersService.getSingleOrder(order_id)
     await trigger({
-      event: events.TRANSACTION_CREATED,
+      event: events.transactionCreated,
       payload: order,
     })
     return order
@@ -53,7 +53,7 @@ class OrdertTansactionsService {
 
     const order = await OrdersService.getSingleOrder(order_id)
     await trigger({
-      event: events.TRANSACTION_UPDATED,
+      event: events.transactionUpdated,
       payload: order,
     })
     return order
@@ -81,7 +81,7 @@ class OrdertTansactionsService {
 
     const order = await OrdersService.getSingleOrder(order_id)
     await trigger({
-      event: events.TRANSACTION_DELETED,
+      event: events.transactionDeleted,
       payload: order,
     })
     return order

@@ -257,7 +257,7 @@ class OrdersService {
     const updatedOrder = await this.getSingleOrder(id)
     if (updatedOrder.draft === false) {
       await trigger({
-        event: events.ORDER_UPDATED,
+        event: events.orderUpdated,
         payload: updatedOrder,
       })
     }
@@ -272,7 +272,7 @@ class OrdersService {
     const orderObjectID = new ObjectID(orderId)
     const order = await this.getSingleOrder(orderId)
     await trigger({
-      event: events.ORDER_DELETED,
+      event: events.orderDeleted,
       payload: order,
     })
     const deleteResponse = await db
@@ -733,7 +733,7 @@ class OrdersService {
 
     await Promise.all([
       trigger({
-        event: events.ORDER_CREATED,
+        event: events.orderCreated,
         payload: order,
       }),
       this.sendAllMails(order.email, copyTo, subject, body),
