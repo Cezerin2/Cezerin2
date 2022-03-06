@@ -6,7 +6,7 @@ import { send } from "../../lib/mailer"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import webhooks from "../../lib/webhooks"
+import { events, trigger } from "../../lib/webhooks"
 import PaymentGateways from "../../paymentGateways"
 import CustomersService from "../customers/customers"
 import ProductStockService from "../products/stock"
@@ -256,8 +256,8 @@ class OrdersService {
       .updateOne({ _id: orderObjectID }, { $set: orderData })
     const updatedOrder = await this.getSingleOrder(id)
     if (updatedOrder.draft === false) {
-      await webhooks.trigger({
-        event: webhooks.events.ORDER_UPDATED,
+      await trigger({
+        event: events.ORDER_UPDATED,
         payload: updatedOrder,
       })
     }
@@ -271,8 +271,8 @@ class OrdersService {
     }
     const orderObjectID = new ObjectID(orderId)
     const order = await this.getSingleOrder(orderId)
-    await webhooks.trigger({
-      event: webhooks.events.ORDER_DELETED,
+    await trigger({
+      event: events.ORDER_DELETED,
       payload: order,
     })
     const deleteResponse = await db
@@ -732,8 +732,8 @@ class OrdersService {
     })
 
     await Promise.all([
-      webhooks.trigger({
-        event: webhooks.events.ORDER_CREATED,
+      trigger({
+        event: events.ORDER_CREATED,
         payload: order,
       }),
       this.sendAllMails(order.email, copyTo, subject, body),

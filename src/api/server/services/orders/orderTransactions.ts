@@ -1,7 +1,7 @@
 import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
-import webhooks from "../../lib/webhooks"
+import { events, trigger } from "../../lib/webhooks"
 import OrdersService from "./orders"
 
 class OrdertTansactionsService {
@@ -26,8 +26,8 @@ class OrdertTansactionsService {
     )
 
     const order = await OrdersService.getSingleOrder(order_id)
-    await webhooks.trigger({
-      event: webhooks.events.TRANSACTION_CREATED,
+    await trigger({
+      event: events.TRANSACTION_CREATED,
       payload: order,
     })
     return order
@@ -52,8 +52,8 @@ class OrdertTansactionsService {
     )
 
     const order = await OrdersService.getSingleOrder(order_id)
-    await webhooks.trigger({
-      event: webhooks.events.TRANSACTION_UPDATED,
+    await trigger({
+      event: events.TRANSACTION_UPDATED,
       payload: order,
     })
     return order
@@ -80,8 +80,8 @@ class OrdertTansactionsService {
     )
 
     const order = await OrdersService.getSingleOrder(order_id)
-    await webhooks.trigger({
-      event: webhooks.events.TRANSACTION_DELETED,
+    await trigger({
+      event: events.TRANSACTION_DELETED,
       payload: order,
     })
     return order
