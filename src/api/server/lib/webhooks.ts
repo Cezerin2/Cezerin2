@@ -4,7 +4,7 @@ import WebhooksService from "../services/webhooks"
 
 const sign = ({ data, secret }) => {
   if (secret && secret.length > 0) {
-    const hmac = crypto.createHmac("sha256", secret)
+    const hmac = crypto.createHmac("sha512", secret)
     hmac.update(data)
     const signature = hmac.digest("hex")
     return signature
