@@ -20,6 +20,7 @@
   },
   "rules": {
     "import/no-extraneous-dependencies": 0,
+    "import/no-import-module-exports": 0,
     "react/function-component-definition": [
       2,
       { "namedComponents": "arrow-function" }
