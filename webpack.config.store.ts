@@ -94,19 +94,19 @@ module.exports = {
       exclude: [/\.html$/],
       runtimeCaching: [
         {
-          urlPattern: new RegExp("/(images|assets|admin-assets)/"),
+          urlPattern: /\/(images|assets|admin-assets)\//,
           handler: "NetworkFirst",
         },
         {
-          urlPattern: new RegExp("/api/"),
+          urlPattern: /\/api\//,
           handler: "NetworkOnly",
         },
         {
-          urlPattern: new RegExp("/ajax/payment_form_settings"),
+          urlPattern: /\/ajax\/payment_form_settings/,
           handler: "NetworkOnly",
         },
         {
-          urlPattern: new RegExp("/"),
+          urlPattern: /\//,
           handler: "NetworkFirst",
           options: {
             networkTimeoutSeconds: 10,
