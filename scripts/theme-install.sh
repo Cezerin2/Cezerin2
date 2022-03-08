@@ -5,7 +5,7 @@ set -e
 fileName=$1
 
 if [ $# -eq 0 ]; then
-    echo "No arguments supplied"
+    echo "No arguments supplied!"
     exit 1
 fi
 
