@@ -41,7 +41,7 @@ module.exports = {
     fromAddress: "vam@test.com",
   },
   // key to sign tokens
-  // Need to be changed at theme\src\components\auth-header.js too!
+  // Need to be changed at theme\src\components\authHeader.tsx too!
   jwtSecretKey: "-",
 
   // key to sign store cookies
