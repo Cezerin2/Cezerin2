@@ -6,7 +6,6 @@ echo "................................"
 
 echo "Installing Packages"
 yarn
-yarn add ./theme
 echo "................................"
 
 echo "Building theme file"
