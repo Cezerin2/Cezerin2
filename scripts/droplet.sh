@@ -29,8 +29,8 @@ echo "Installing pm2"
 yarn global add pm2
 echo "................................"
 
-echo "Installing nginx"
-sudo apt install nginx -y
+echo "Installing mongodb and nginx"
+sudo apt install mongodb-org nginx -y
 echo "................................"
 
 echo "Cloning Cezerin"
@@ -58,6 +58,10 @@ echo "................................"
 
 echo "Building Cezerin"
 yarn build
+echo "................................"
+
+echo "Running Cezerin setup"
+yarn setup
 echo "................................"
 
 echo "Starting Cezerin"
