@@ -135,24 +135,28 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 
 ## NPM Scripts
 
-| `npm run <script>`   | Description                                                           |
-| -------------------- | --------------------------------------------------------------------- |
-| `clean:admin`        | Delete admin asset bundles.                                           |
-| `clean:store`        | Delete store asset bundles.                                           |
-| `compile:dev`        | Compiles the application to disk **and watch** (`~/dist` by default). |
-| `compile`            | Compiles the application to disk (`~/dist` by default).               |
-| `webpack:admin:dev`  | Assemble admin bundles **and watch**.                                 |
-| `webpack:store:dev`  | Assemble store bundles **and watch**.                                 |
-| `webpack:admin:prod` | Assemble admin bundles.                                               |
-| `webpack:store:prod` | Assemble store bundles.                                               |
-| `theme:install`      | Install theme from /public/<file>.zip                                 |
-| `theme:export`       | Zip current theme to /public/<file>.zip                               |
-| `theme:copy`         | Compile theme and copy assets to /public/                             |
-| `theme:build:dev`    | Refresh theme after modification **and watch**.                       |
-| `theme:build:prod`   | Refresh theme after modification.                                     |
-| `build:dev`          | Compile and assemble bundles **and watch**.                           |
-| `build`              | Compile and assemble bundles.                                         |
-| `start`              | Start node server.                                                    |
+| `npm run <script>`    | Description                                                               |
+| --------------------- | ------------------------------------------------------------------------- |
+| `setup`               | Run Cezerin mongodb setup.                                                |
+| `compile`             | Compiles the store to disk (`~/dist` by default).                         |
+| `compile:watch`       | Compiles the store and theme to disk **and watch** (`~/dist` by default). |
+| `webpack:admin`       | Assemble admin bundles.                                                   |
+| `webpack:store`       | Assemble store bundles.                                                   |
+| `webpack:admin:watch` | Assemble admin bundles **and watch**.                                     |
+| `webpack:store:watch` | Assemble store bundles **and watch**.                                     |
+| `theme:install`       | Install theme from /public/<file>.zip                                     |
+| `theme:export`        | Zip current theme to /public/<file>.zip                                   |
+| `theme:compile`       | Compile theme after modification.                                         |
+| `theme:build`         | Refresh theme after modification.                                         |
+| `build`               | Compile and assemble bundles.                                             |
+| `build:watch`         | Compile and assemble bundles **and watch**.                               |
+| `lint`                | Check project with eslint.                                                |
+| `lint:fix`            | Check and fix project with eslint.                                        |
+| `format`              | Format project with prettier.                                             |
+| `start:api`           | Start node server.                                                        |
+| `start:store`         | Start store server.                                                       |
+| `start`               | Start Cezerin.                                                            |
+| `watch:api`           | Start node server **and watch**.                                          |
 
 ## Financial contributions
 
