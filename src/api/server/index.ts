@@ -36,7 +36,8 @@ app.use(sendResponse)
 
 const server = app.listen(settings.apiListenPort, () => {
   const serverAddress = server.address()
-  winston.info(`API running at http://localhost:${serverAddress.port}`)
+  if (typeof serverAddress !== "string")
+    winston.info(`API running at http://localhost:${serverAddress.port}`)
 })
 
 dashboardWebSocket.listen(server)

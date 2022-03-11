@@ -32,7 +32,15 @@ const DEFAULT_CACHE_CONTROL = "public, max-age=60"
 const PRODUCTS_CACHE_CONTROL = "public, max-age=60"
 const PRODUCT_DETAILS_CACHE_CONTROL = "public, max-age=60"
 
-const getCartCookieOptions = isHttps => ({
+interface cookieOptions {
+  maxAge: number
+  httpOnly: true
+  signed: true
+  secure: boolean
+  sameSite: "strict"
+}
+
+const getCartCookieOptions = (isHttps: boolean): cookieOptions => ({
   maxAge: 24 * 60 * 60 * 1000, // 24 hours
   httpOnly: true,
   signed: true,
@@ -100,7 +108,7 @@ const fillCartItems = cartResponse => {
 
 ajaxRouter.get("/products", (req, res) => {
   const filter = req.query
-  filter.enabled = true
+  filter.enabled = "true"
   api.products
     .list(filter)
     .then(({ status, json }) =>
@@ -352,7 +360,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
     // if requestToken array has no splitable part response token is wrong
     if (requestTokenArray.length < 2) {
       data.isRightToken = false
-      res.status("200").send(data)
+      res.status(200).send(data)
       return false
     }
 
@@ -370,7 +378,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
         )
       ) {
         data.isRightToken = false
-        res.status("200").send(data)
+        res.status(200).send(data)
         return false
       }
 
@@ -405,7 +413,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
       })
     })()
     data.isCustomerSaved = true
-    res.status("200").send(data)
+    res.status(200).send(data)
     return true
   }
 
@@ -447,7 +455,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
             shop_name: settings.store_name,
           }),
         }),
-        res.status("200").send(data),
+        res.status(200).send(data),
       ])
     }
     return false
@@ -519,7 +527,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
       async (error, result) => {
         if (error) {
           // alert
-          res.status("200").send(error)
+          res.status(200).send(error)
         }
         customerDataObj.customer_settings = result
         customerDataObj.customer_settings.password = "*******"
@@ -529,7 +537,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
         if (customerData.saved_addresses === 0) {
           let objJsonB64 = JSON.stringify(customerDataObj)
           objJsonB64 = Buffer.from(objJsonB64).toString("base64")
-          res.status("200").send(JSON.stringify(objJsonB64))
+          res.status(200).send(JSON.stringify(objJsonB64))
           return false
         }
 
@@ -545,12 +553,12 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
           (error, result) => {
             if (error) {
               // alert
-              res.status("200").send(error)
+              res.status(200).send(error)
             }
             customerDataObj.order_statuses = result
             let objJsonB64 = JSON.stringify(customerDataObj)
             objJsonB64 = Buffer.from(objJsonB64).toString("base64")
-            res.status("200").send(JSON.stringify(objJsonB64))
+            res.status(200).send(JSON.stringify(objJsonB64))
           }
         )
       }
@@ -751,7 +759,7 @@ ajaxRouter.get("/pages/:id", (req, res) => {
 ajaxRouter.get("/sitemap", async (req, res) => {
   let result = null
   const filter = req.query
-  filter.enabled = true
+  filter.enabled = "true"
 
   const sitemapResponse = await api.sitemap.retrieve(req.query)
   if (sitemapResponse.status !== 404 || sitemapResponse.json) {
