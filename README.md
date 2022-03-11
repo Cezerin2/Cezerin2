@@ -106,6 +106,22 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 
 [Documentation](https://github.com/Cezerin2/Cezerin2/tree/main/docs)
 
+### Quick Start
+
+##### On your local machine
+
+If you have installed above requirements,
+
+1. [Download code](https://github.com/Cezerin2/Cezerin2/archive/refs/heads/main.zip)
+2. Extract code, update config at config folder as you need and run setup.sh on the folder
+3. To setup required mongodb collections you will need to run `yarn setup` from command line in the folder
+
+##### On Digitalocean Droplet
+
+1. Start a basic ubuntu server
+2. Run `curl -o- https://raw.githubusercontent.com/Cezerin2/Cezerin2/main/scripts/droplet.sh | bash` in the command line
+3. You can update config from config folder as required and restart server by running `yarn build` and `pm2 start process.json`
+
 ## Application Structure
 
 ```
