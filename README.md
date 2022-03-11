@@ -99,6 +99,7 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 ### Requirements
 
 - Node.js
+- [Yarn](https://yarnpkg.com/getting-started/install)
 - MongoDB
 
 ## Documentation
