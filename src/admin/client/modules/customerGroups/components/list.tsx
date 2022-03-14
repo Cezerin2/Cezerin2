@@ -1,7 +1,7 @@
 import messages from "lib/text"
 import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
-import React from "react"
+import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const styles = {
@@ -15,78 +15,78 @@ const styles = {
 
 const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>
 
-class Groups extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+interface props {
+  onSelect
+  selectedId
+  items
+  showAll
+  showRoot
+  showManage
+  onLoad: () => void
+}
 
-  componentDidMount() {
-    this.props.onLoad()
-  }
+const Groups: FC<props> = props => {
+  const { onSelect, selectedId, items, showAll, showRoot, showManage, onLoad } =
+    props
 
-  render() {
-    const { onSelect, selectedId, items, showAll, showRoot, showManage } =
-      this.props
+  useEffect(() => {
+    onLoad()
+  }, [])
 
-    const rows = items.map(item => (
-      <ListItem
-        key={item.id}
-        className="treeItem"
-        style={item.id === selectedId ? styles.selectedItem : null}
-        innerDivStyle={styles.innerItem}
-        primaryText={item.name}
-        leftIcon={FolderIcon}
-        onClick={() => {
-          this.props.onSelect(item.id)
-        }}
-      />
-    ))
+  const rows = items.map(item => (
+    <ListItem
+      key={item.id}
+      className="treeItem"
+      style={item.id === selectedId ? styles.selectedItem : null}
+      innerDivStyle={styles.innerItem}
+      primaryText={item.name}
+      leftIcon={FolderIcon}
+      onClick={() => onSelect(item.id)}
+    />
+  ))
 
-    return (
-      <List>
-        {showRoot && (
+  return (
+    <List>
+      {showRoot && (
+        <ListItem
+          className="treeItem"
+          primaryText={messages.customers_noGroup}
+          style={selectedId === "root" ? styles.selectedItem : null}
+          innerDivStyle={styles.innerItem}
+          leftIcon={<FontIcon className="material-icons">clear</FontIcon>}
+          onClick={() => {
+            onSelect("root")
+          }}
+        />
+      )}
+
+      {showAll && (
+        <ListItem
+          className="treeItem"
+          primaryText={messages.customerGroups_all}
+          style={selectedId === "all" ? styles.selectedItem : null}
+          innerDivStyle={styles.innerItem}
+          leftIcon={FolderIcon}
+          onClick={() => {
+            onSelect("all")
+          }}
+        />
+      )}
+
+      {rows}
+
+      {showManage && (
+        <Link to="/admin/customers/groups" style={{ textDecoration: "none" }}>
           <ListItem
             className="treeItem"
-            primaryText={messages.customers_noGroup}
-            style={"root" === selectedId ? styles.selectedItem : null}
+            primaryText={messages.customerGroups_titleEditMany}
             innerDivStyle={styles.innerItem}
-            leftIcon={<FontIcon className="material-icons">clear</FontIcon>}
-            onClick={() => {
-              onSelect("root")
-            }}
+            leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
           />
-        )}
-
-        {showAll && (
-          <ListItem
-            className="treeItem"
-            primaryText={messages.customerGroups_all}
-            style={"all" === selectedId ? styles.selectedItem : null}
-            innerDivStyle={styles.innerItem}
-            leftIcon={FolderIcon}
-            onClick={() => {
-              onSelect("all")
-            }}
-          />
-        )}
-
-        {rows}
-
-        {showManage && (
-          <Link to="/admin/customers/groups" style={{ textDecoration: "none" }}>
-            <ListItem
-              className="treeItem"
-              primaryText={messages.customerGroups_titleEditMany}
-              innerDivStyle={styles.innerItem}
-              leftIcon={
-                <FontIcon className="material-icons">settings</FontIcon>
-              }
-            />
-          </Link>
-        )}
-      </List>
-    )
-  }
+        </Link>
+      )}
+    </List>
+  )
 }
 
 export default Groups

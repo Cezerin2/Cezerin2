@@ -2,54 +2,53 @@ import api from "lib/api"
 import messages from "lib/text"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import React from "react"
+import React, { FC, useState } from "react"
 import style from "./style.css"
 
-class ActionComponent extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: false,
-    }
-  }
+interface props {
+  action
+  serviceId
+  fetchServiceLogs
+}
 
-  handleActionCall = () => {
-    const { action, serviceId, fetchServiceLogs } = this.props
-    this.setState({ loading: true })
+const ActionComponent: FC<props> = props => {
+  const [loading, setLoading] = useState(false)
+
+  const { action, serviceId, fetchServiceLogs } = props
+
+  const handleActionCall = () => {
+    setLoading(true)
 
     return api.webstore.services.actions
       .call(serviceId, action.id)
       .then(({ status, json }) => {
-        this.setState({ loading: false })
+        setLoading(false)
         fetchServiceLogs()
       })
       .catch(error => {
         alert(error)
-        this.setState({ loading: false })
+        setLoading(false)
         fetchServiceLogs()
       })
   }
 
-  render() {
-    const { action, serviceId } = this.props
-    return (
-      <div className={style.action}>
-        <div className="row middle-xs">
-          <div className="col-xs-7" style={{ fontSize: "14px" }}>
-            {action.description}
-          </div>
-          <div className="col-xs-5" style={{ textAlign: "right" }}>
-            <RaisedButton
-              label={action.name}
-              primary
-              disabled={this.state.loading}
-              onClick={this.handleActionCall}
-            />
-          </div>
+  return (
+    <div className={style.action}>
+      <div className="row middle-xs">
+        <div className="col-xs-7" style={{ fontSize: "14px" }}>
+          {action.description}
+        </div>
+        <div className="col-xs-5" style={{ textAlign: "right" }}>
+          <RaisedButton
+            label={action.name}
+            primary
+            disabled={loading}
+            onClick={handleActionCall}
+          />
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 const ServiceActions = ({ actions, serviceId, fetchServiceLogs }) => {
