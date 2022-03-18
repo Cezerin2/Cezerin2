@@ -2,9 +2,11 @@ import { ObjectID } from "mongodb"
 
 const getString = value => (value || "").toString()
 
+// ? Number methods requires values to be converted to number
+// ? with number method wasted lot of time on this
 const getDateIfValid = value => {
   const date = Date.parse(value)
-  return Number.isNaN(date) ? null : new Date(date)
+  return Number.isNaN(Number(date)) ? null : new Date(date)
 }
 
 const getArrayIfValid = value => (Array.isArray(value) ? value : null)
@@ -20,7 +22,7 @@ const getArrayOfObjectID = value => {
 }
 
 const isNumber = value =>
-  !Number.isNaN(parseFloat(value)) && Number.isFinite(value)
+  !Number.isNaN(Number(parseFloat(value))) && Number.isFinite(Number(value))
 
 const getNumberIfValid = value => (isNumber(value) ? parseFloat(value) : null)
 
