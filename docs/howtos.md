@@ -22,7 +22,7 @@ in the script section file package.json
 
 ```javascript
 npm run build:watch
-npm run start-api
+npm run start:api
 npm run start:dev
 ```
 
