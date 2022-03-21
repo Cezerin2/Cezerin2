@@ -1,6 +1,6 @@
 import FontIcon from "material-ui/FontIcon"
 import { ListItem } from "material-ui/List"
-import React from "react"
+import React, { FC } from "react"
 
 export const styles = {
   selectedItem: {
@@ -17,35 +17,33 @@ export const styles = {
 const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>
 const DraftIcon = <FontIcon className="material-icons">visibility_off</FontIcon>
 
-class Item extends React.PureComponent {
-  constructor(props) {
-    super(props)
-  }
+interface props {
+  item
+  opened
+  selectedId
+  nestedItems
+  onSelect: (itemID: string) => void
+}
 
-  handleClick = () => {
-    const { item } = this.props
-    this.props.onSelect(item.id)
-  }
+const Item: FC<props> = props => {
+  const { item, opened, selectedId, nestedItems, onSelect } = props
 
-  render() {
-    const { item, opened, selectedId, nestedItems } = this.props
-    const icon = item.enabled ? FolderIcon : DraftIcon
-    const style = item.id === selectedId ? styles.selectedItem : null
+  const icon = item.enabled ? FolderIcon : DraftIcon
+  const style = item.id === selectedId ? styles.selectedItem : null
 
-    return (
-      <ListItem
-        className="treeItem"
-        initiallyOpen={opened}
-        style={style}
-        innerDivStyle={styles.innerItem}
-        primaryText={item.name}
-        nestedItems={nestedItems}
-        leftIcon={icon}
-        onClick={this.handleClick}
-        nestedListStyle={styles.nestedListStyle}
-      />
-    )
-  }
+  return (
+    <ListItem
+      className="treeItem"
+      initiallyOpen={opened}
+      style={style}
+      innerDivStyle={styles.innerItem}
+      primaryText={item.name}
+      nestedItems={nestedItems}
+      leftIcon={icon}
+      onClick={() => onSelect(item.id)}
+      nestedListStyle={styles.nestedListStyle}
+    />
+  )
 }
 
 export default Item
