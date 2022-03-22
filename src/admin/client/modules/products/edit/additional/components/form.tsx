@@ -94,8 +94,7 @@ const RelatedProductActions = ({ fields, index }) => (
 const RelatedProduct = ({ settings, product, actions }) => {
   if (product) {
     const priceFormatted = helper.formatCurrency(product.price, settings)
-    const imageUrl =
-      product && product.images.length > 0 ? product.images[0].url : null
+    const imageUrl = product && typeof product.images[0]!='undefined' ? product.images[0].url : null
     const thumbnailUrl = helper.getThumbnailUrl(imageUrl, 100)
     return (
       <ProductShort
