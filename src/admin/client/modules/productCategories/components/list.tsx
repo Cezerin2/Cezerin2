@@ -5,7 +5,7 @@ import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
 import Item, { styles } from "./item"
 
-interface props {
+interface Props {
   selectedId
   items
   showAll?: boolean
@@ -19,7 +19,7 @@ interface props {
   onSelect
 }
 
-const Categories: FC<props> = props => {
+const Categories: FC<Props> = props => {
   const {
     selectedId,
     items,
@@ -57,9 +57,9 @@ const Categories: FC<props> = props => {
       return allItems
         .filter(item => item.parent_id === id)
         .map(item => getItem(selectedId, allItems, item, opened))
-    } else {
-      return []
     }
+
+    return []
   }
 
   const handleClickAll = () => {
@@ -97,7 +97,7 @@ const Categories: FC<props> = props => {
     }
   }
 
-  var rows = items
+  const rows = items
     .filter(item => item.parent_id === null)
     .map(item => getItem(selectedId, items, item, opened))
 
@@ -106,7 +106,7 @@ const Categories: FC<props> = props => {
       {showRoot && (
         <ListItem
           primaryText={rootName}
-          style={"root" === selectedId ? styles.selectedItem : null}
+          style={selectedId === "root" ? styles.selectedItem : null}
           innerDivStyle={styles.innerItem}
           leftIcon={<FontIcon className="material-icons">home</FontIcon>}
           onClick={handleClickRoot}
@@ -117,7 +117,7 @@ const Categories: FC<props> = props => {
         <ListItem
           className="treeItem"
           primaryText={allName}
-          style={"all" === selectedId ? styles.selectedItem : null}
+          style={selectedId === "all" ? styles.selectedItem : null}
           innerDivStyle={styles.innerItem}
           leftIcon={<FontIcon className="material-icons">folder</FontIcon>}
           onClick={handleClickAll}

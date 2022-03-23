@@ -23,7 +23,7 @@ const TagsField = ({ input, placeholder }) => {
   return (
     <TagsInput
       value={tagsArray}
-      inputProps={{ placeholder: placeholder }}
+      inputProps={{ placeholder }}
       onChange={tags => {
         input.onChange(tags)
       }}
@@ -44,12 +44,14 @@ const ProductShort = ({
     className={
       style.relatedProduct +
       (enabled === false || discontinued === true
-        ? " " + style.relatedProductDisabled
+        ? ` ${style.relatedProductDisabled}`
         : "")
     }
   >
     <div className={style.relatedProductImage}>
-      {thumbnailUrl && thumbnailUrl !== "" && <img src={thumbnailUrl} />}
+      {thumbnailUrl && thumbnailUrl !== "" && (
+        <img src={thumbnailUrl} alt="thumbnail" />
+      )}
     </div>
     <div className={style.relatedProductText}>
       <Link to={`/admin/product/${id}`}>{name}</Link>
@@ -108,18 +110,18 @@ const RelatedProduct = ({ settings, product, actions }) => {
         actions={actions}
       />
     )
-  } else {
-    // product doesn't exist
-    return (
-      <ProductShort
-        id="-"
-        name=""
-        thumbnailUrl=""
-        priceFormatted=""
-        actions={actions}
-      />
-    )
   }
+
+  // Product doesn't exist
+  return (
+    <ProductShort
+      id="-"
+      name=""
+      thumbnailUrl=""
+      priceFormatted=""
+      actions={actions}
+    />
+  )
 }
 
 class ProductsArray extends React.Component {
@@ -165,7 +167,7 @@ class ProductsArray extends React.Component {
           limit: 50,
           fields:
             "id,name,enabled,discontinued,price,on_sale,regular_price,images",
-          ids: ids,
+          ids,
         })
         .then(productsResponse => {
           this.setState({ products: productsResponse.json.data })
@@ -178,11 +180,7 @@ class ProductsArray extends React.Component {
   }
 
   render() {
-    const {
-      settings,
-      fields,
-      meta: { touched, error, submitFailed },
-    } = this.props
+    const { settings, fields } = this.props
     const { products } = this.state
 
     return (
@@ -314,10 +312,9 @@ const ProductAdditionalForm = ({
         />
       </div>
       <div
-        className={
-          "buttons-box " +
-          (pristine ? "buttons-box-pristine" : "buttons-box-show")
-        }
+        className={`buttons-box ${
+          pristine ? "buttons-box-pristine" : "buttons-box-show"
+        }`}
       >
         <FlatButton
           label={messages.cancel}
