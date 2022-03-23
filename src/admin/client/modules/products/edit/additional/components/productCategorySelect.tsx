@@ -1,17 +1,16 @@
+import { Dialog, DialogActions } from "@mui/material"
 import messages from "lib/text"
-import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import CategorySelect from "modules/productCategories/select"
 import React, { FC, useState } from "react"
 
-interface props {
-  categories
-  input
-  meta: { touched; error }
+interface Props {
+  categories: { id: string; name: string }[]
+  input: { value: string; onChange: () => void }
 }
 
-const ProductCategorySelect: FC<props> = props => {
+const ProductCategorySelect: FC<Props> = props => {
   const [open, setOpen] = useState(false)
 
   const { categories, input } = props
@@ -22,35 +21,32 @@ const ProductCategorySelect: FC<props> = props => {
   const category = categories.find(item => item.id === selectedCategoryId)
   const categoryName = category ? category.name : ""
 
-  const dialogButtons = [
-    <FlatButton
-      label={messages.cancel}
-      onClick={close}
-      style={{ marginRight: 10 }}
-    />,
-    <FlatButton
-      label={messages.save}
-      primary
-      keyboardFocused
-      onClick={close}
-    />,
-  ]
-
   return (
     <>
       <Dialog
         title={messages.category}
-        actions={dialogButtons}
-        modal={false}
         open={open}
-        onRequestClose={close}
-        autoScrollBodyContent
+        onClose={close}
+        scroll="body"
       >
         <CategorySelect
           onSelect={input.onChange}
           selectedId={selectedCategoryId}
           opened={false}
         />
+        <DialogActions>
+          <FlatButton
+            label={messages.cancel}
+            onClick={close}
+            style={{ marginRight: 10 }}
+          />
+          <FlatButton
+            label={messages.save}
+            primary
+            keyboardFocused
+            onClick={close}
+          />
+        </DialogActions>
       </Dialog>
       <FlatButton
         label={categoryName}
