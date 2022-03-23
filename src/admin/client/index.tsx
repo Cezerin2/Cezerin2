@@ -11,10 +11,7 @@ import "../../../public/admin-assets/css/style.css"
 import App from "./app"
 import reducers from "./rootReducer"
 
-const DEVELOPER_MODE = settings.developerMode === true
-if (DEVELOPER_MODE === false) {
-  auth.validateCurrentToken()
-}
+if (!settings.developerMode) auth.validateCurrentToken()
 
 const store = configureStore({ reducer: reducers })
 store.dispatch(fetchSettings())
