@@ -1,5 +1,5 @@
 import Categories from "modules/productCategories/list"
-import ProductImport from "modules/products/edit/additional/components/importproduct"
+import ProductImport from "modules/products/edit/additional/components/importProduct"
 import ProductsList from "modules/products/list"
 import ProductsFilter from "modules/products/listFilter"
 import React from "react"
