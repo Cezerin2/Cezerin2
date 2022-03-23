@@ -6,25 +6,23 @@ import MenuItem from "material-ui/MenuItem"
 import React from "react"
 import { Link } from "react-router-dom"
 
-const WebStoreMenu = () => {
-  return (
-    <IconMenu
-      iconButtonElement={
-        <IconButton touch>
-          <FontIcon color="#fff" className="material-icons">
-            more_vert
-          </FontIcon>
-        </IconButton>
-      }
-      targetOrigin={{ horizontal: "right", vertical: "top" }}
-      anchorOrigin={{ horizontal: "right", vertical: "top" }}
-    >
-      <MenuItem
-        containerElement={<Link to="/admin/apps/account" />}
-        primaryText={messages.account}
-      />
-    </IconMenu>
-  )
-}
+const WebStoreMenu = () => (
+  <IconMenu
+    iconButtonElement={
+      <IconButton touch>
+        <FontIcon color="#fff" className="material-icons">
+          more_vert
+        </FontIcon>
+      </IconButton>
+    }
+    targetOrigin={{ horizontal: "right", vertical: "top" }}
+    anchorOrigin={{ horizontal: "right", vertical: "top" }}
+  >
+    <MenuItem
+      containerElement={<Link to="/admin/apps/account" />}
+      primaryText={messages.account}
+    />
+  </IconMenu>
+)
 
 export default WebStoreMenu
