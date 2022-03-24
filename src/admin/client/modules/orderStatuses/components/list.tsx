@@ -1,7 +1,7 @@
 import messages from "lib/text"
 import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
-import React from "react"
+import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const styles = {
@@ -15,64 +15,65 @@ const styles = {
 
 const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>
 
-class StatusesList extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+interface Props {
+  onSelect
+  selectedId
+  items
+  showAll
+  showManage
+  onLoad
+}
 
-  componentDidMount() {
-    this.props.onLoad()
-  }
+const StatusesList: FC<Props> = props => {
+  const { onSelect, selectedId, items, showAll, showManage, onLoad } = props
 
-  render() {
-    const { onSelect, selectedId, items, showAll, showManage } = this.props
+  useEffect(() => {
+    onLoad()
+  }, [])
 
-    const rows = items.map(item => (
-      <ListItem
-        key={item.id}
-        className="treeItem"
-        style={item.id === selectedId ? styles.selectedItem : null}
-        innerDivStyle={styles.innerItem}
-        primaryText={item.name}
-        leftIcon={FolderIcon}
-        onClick={() => {
-          this.props.onSelect(item.id)
-        }}
-      />
-    ))
+  const rows = items.map(item => (
+    <ListItem
+      key={item.id}
+      className="treeItem"
+      style={item.id === selectedId ? styles.selectedItem : null}
+      innerDivStyle={styles.innerItem}
+      primaryText={item.name}
+      leftIcon={FolderIcon}
+      onClick={() => {
+        onSelect(item.id)
+      }}
+    />
+  ))
 
-    return (
-      <List>
-        {showAll && (
+  return (
+    <List>
+      {showAll && (
+        <ListItem
+          className="treeItem"
+          primaryText={messages.allOrderStatuses}
+          style={"all" === selectedId ? styles.selectedItem : null}
+          innerDivStyle={styles.innerItem}
+          leftIcon={FolderIcon}
+          onClick={() => {
+            onSelect("all")
+          }}
+        />
+      )}
+
+      {rows}
+
+      {showManage && (
+        <Link to="/admin/orders/statuses" style={{ textDecoration: "none" }}>
           <ListItem
             className="treeItem"
-            primaryText={messages.allOrderStatuses}
-            style={"all" === selectedId ? styles.selectedItem : null}
+            primaryText={messages.manageOrderStatuses}
             innerDivStyle={styles.innerItem}
-            leftIcon={FolderIcon}
-            onClick={() => {
-              onSelect("all")
-            }}
+            leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
           />
-        )}
-
-        {rows}
-
-        {showManage && (
-          <Link to="/admin/orders/statuses" style={{ textDecoration: "none" }}>
-            <ListItem
-              className="treeItem"
-              primaryText={messages.manageOrderStatuses}
-              innerDivStyle={styles.innerItem}
-              leftIcon={
-                <FontIcon className="material-icons">settings</FontIcon>
-              }
-            />
-          </Link>
-        )}
-      </List>
-    )
-  }
+        </Link>
+      )}
+    </List>
+  )
 }
 
 export default StatusesList

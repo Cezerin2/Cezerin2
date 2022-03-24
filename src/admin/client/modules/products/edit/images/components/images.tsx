@@ -4,100 +4,96 @@ import FlatButton from "material-ui/FlatButton"
 import Paper from "material-ui/Paper"
 import TextField from "material-ui/TextField"
 import Gallery from "modules/shared/imageUploadMultiple"
-import React from "react"
+import React, { FC, useState } from "react"
 
-class ProductImages extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      openEdit: false,
-      imageData: null,
-    }
+interface Props {
+  productId
+  images
+  onImageDelete
+  onImageSort
+  onImageUpload
+  uploadingImages
+  onImageUpdate
+}
+
+const ProductImages: FC<Props> = props => {
+  const [openEdit, setOpenEdit] = useState(false)
+  const [imageData, setImageData] = useState(null)
+
+  const {
+    productId,
+    images,
+    onImageDelete,
+    onImageSort,
+    onImageUpload,
+    uploadingImages,
+    onImageUpdate,
+  } = props
+
+  const closeEdit = () => setOpenEdit(false)
+
+  const handleEditOpen = image => {
+    setImageData(image)
+    setOpenEdit(true)
   }
 
-  closeEdit = () => {
-    this.setState({ openEdit: false })
+  const handleEditSave = () => {
+    onImageUpdate(imageData)
+    closeEdit()
   }
 
-  openEdit = () => {
-    this.setState({ openEdit: true })
+  const handleAltChange = (event, value) => {
+    const newImageData = { ...imageData, alt: value }
+    setImageData(newImageData)
   }
 
-  handleEditOpen = image => {
-    this.setState({ imageData: image })
-    this.openEdit()
-  }
+  const alt = imageData ? imageData.alt : ""
 
-  handleEditSave = () => {
-    this.props.onImageUpdate(this.state.imageData)
-    this.closeEdit()
-  }
+  const dialogButtons = [
+    <FlatButton
+      label={messages.cancel}
+      onClick={closeEdit}
+      style={{ marginRight: 10 }}
+    />,
+    <FlatButton
+      label={messages.save}
+      primary
+      keyboardFocused
+      onClick={handleEditSave}
+    />,
+  ]
 
-  handleAltChange = (event, value) => {
-    const newImageData = Object.assign({}, this.state.imageData, {
-      alt: value,
-    })
-    this.setState({ imageData: newImageData })
-  }
-
-  render() {
-    const {
-      productId,
-      images,
-      onImageDelete,
-      onImageSort,
-      onImageUpload,
-      uploadingImages,
-    } = this.props
-    const { openEdit, imageData } = this.state
-    const alt = imageData ? imageData.alt : ""
-
-    const dialogButtons = [
-      <FlatButton
-        label={messages.cancel}
-        onClick={this.closeEdit}
-        style={{ marginRight: 10 }}
-      />,
-      <FlatButton
-        label={messages.save}
-        primary
-        keyboardFocused
-        onClick={this.handleEditSave}
-      />,
-    ]
-
-    return (
-      <Paper className="paper-box" zDepth={1}>
-        <div style={{ padding: "10px 10px 30px 10px" }}>
-          <Gallery
-            productId={productId}
-            images={images}
-            onImageDelete={onImageDelete}
-            onImageSort={onImageSort}
-            onImageUpload={onImageUpload}
-            uploading={uploadingImages}
-            onImageEdit={this.handleEditOpen}
+  return (
+    <Paper className="paper-box" zDepth={1}>
+      <div style={{ padding: "10px 10px 30px 10px" }}>
+        <Gallery
+          productId={productId}
+          images={images}
+          onImageDelete={onImageDelete}
+          onImageSort={onImageSort}
+          onImageUpload={onImageUpload}
+          uploading={uploadingImages}
+          onImageEdit={handleEditOpen}
+        />
+        <Dialog
+          contentStyle={{ maxWidth: 540 }}
+          title={messages.edit}
+          actions={dialogButtons}
+          modal={false}
+          open={openEdit}
+          onRequestClose={closeEdit}
+          autoScrollBodyContent={false}
+        >
+          <TextField
+            floatingLabelText={messages.alt}
+            fullWidth
+            value={alt}
+            onChange={handleAltChange}
           />
-          <Dialog
-            contentStyle={{ maxWidth: 540 }}
-            title={messages.edit}
-            actions={dialogButtons}
-            modal={false}
-            open={openEdit}
-            onRequestClose={this.closeEdit}
-            autoScrollBodyContent={false}
-          >
-            <TextField
-              floatingLabelText={messages.alt}
-              fullWidth
-              value={alt}
-              onChange={this.handleAltChange}
-            />
-          </Dialog>
-        </div>
-      </Paper>
-    )
-  }
+        </Dialog>
+      </div>
+    </Paper>
+  )
 }
 
 export default ProductImages

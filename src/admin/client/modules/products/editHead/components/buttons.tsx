@@ -2,72 +2,61 @@ import messages from "lib/text"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import React, { Fragment } from "react"
+import React, { FC, useState } from "react"
 
-class Buttons extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      openDelete: false,
-    }
+interface Props {
+  product
+  onDelete
+}
+
+const Buttons: FC<Props> = props => {
+  const [openDelete, setOpenDelete] = useState(false)
+
+  const { product, onDelete } = props
+
+  const handleDelete = () => {
+    setOpenDelete(false)
+    onDelete()
   }
 
-  openDelete = () => {
-    this.setState({ openDelete: true })
-  }
+  const productName =
+    product && product.name && product.name.length > 0 ? product.name : "Draft"
 
-  closeDelete = () => {
-    this.setState({ openDelete: false })
-  }
-
-  handleDelete = () => {
-    this.closeDelete()
-    this.props.onDelete()
-  }
-
-  render() {
-    const { product } = this.props
-    const productName =
-      product && product.name && product.name.length > 0
-        ? product.name
-        : "Draft"
-
-    return (
-      <Fragment>
-        <IconButton
-          touch
-          tooltipPosition="bottom-left"
-          tooltip={messages.deleteProduct}
-          onClick={this.openDelete}
-        >
-          <FontIcon color="#fff" className="material-icons">
-            delete
-          </FontIcon>
-        </IconButton>
-        {product && product.enabled && (
-          <a href={product.url} target="_blank">
-            <IconButton
-              touch
-              tooltipPosition="bottom-left"
-              tooltip={messages.viewOnWebsite}
-            >
-              <FontIcon color="#fff" className="material-icons">
-                open_in_new
-              </FontIcon>
-            </IconButton>
-          </a>
-        )}
-        <DeleteConfirmation
-          open={this.state.openDelete}
-          isSingle
-          itemsCount={1}
-          itemName={productName}
-          onCancel={this.closeDelete}
-          onDelete={this.handleDelete}
-        />
-      </Fragment>
-    )
-  }
+  return (
+    <>
+      <IconButton
+        touch
+        tooltipPosition="bottom-left"
+        tooltip={messages.deleteProduct}
+        onClick={() => setOpenDelete(true)}
+      >
+        <FontIcon color="#fff" className="material-icons">
+          delete
+        </FontIcon>
+      </IconButton>
+      {product && product.enabled && (
+        <a href={product.url} target="_blank">
+          <IconButton
+            touch
+            tooltipPosition="bottom-left"
+            tooltip={messages.viewOnWebsite}
+          >
+            <FontIcon color="#fff" className="material-icons">
+              open_in_new
+            </FontIcon>
+          </IconButton>
+        </a>
+      )}
+      <DeleteConfirmation
+        open={openDelete}
+        isSingle
+        itemsCount={1}
+        itemName={productName}
+        onCancel={() => setOpenDelete(false)}
+        onDelete={handleDelete}
+      />
+    </>
+  )
 }
 
 export default Buttons

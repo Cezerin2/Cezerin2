@@ -2,59 +2,50 @@ import messages from "lib/text"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import React, { Fragment } from "react"
+import React, { FC, useState } from "react"
 
-class Buttons extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      openDelete: false,
-    }
+interface Props {
+  customer
+  onDelete
+}
+
+const Buttons: FC<Props> = props => {
+  const [openDelete, setOpenDelete] = useState(false)
+
+  const { customer, onDelete } = props
+
+  const deleteOrder = () => {
+    setOpenDelete(false)
+    onDelete()
   }
 
-  openDelete = () => {
-    this.setState({ openDelete: true })
-  }
+  const customerName =
+    customer && customer.full_name && customer.full_name.length > 0
+      ? customer.full_name
+      : "Draft"
 
-  closeDelete = () => {
-    this.setState({ openDelete: false })
-  }
-
-  deleteOrder = () => {
-    this.closeDelete()
-    this.props.onDelete()
-  }
-
-  render() {
-    const { customer } = this.props
-    const customerName =
-      customer && customer.full_name && customer.full_name.length > 0
-        ? customer.full_name
-        : "Draft"
-
-    return (
-      <Fragment>
-        <IconButton
-          touch
-          tooltipPosition="bottom-left"
-          tooltip={messages.actions_delete}
-          onClick={this.openDelete}
-        >
-          <FontIcon color="#fff" className="material-icons">
-            delete
-          </FontIcon>
-        </IconButton>
-        <DeleteConfirmation
-          open={this.state.openDelete}
-          isSingle
-          itemsCount={1}
-          itemName={customerName}
-          onCancel={this.closeDelete}
-          onDelete={this.props.onDelete}
-        />
-      </Fragment>
-    )
-  }
+  return (
+    <>
+      <IconButton
+        touch
+        tooltipPosition="bottom-left"
+        tooltip={messages.actions_delete}
+        onClick={() => setOpenDelete(true)}
+      >
+        <FontIcon color="#fff" className="material-icons">
+          delete
+        </FontIcon>
+      </IconButton>
+      <DeleteConfirmation
+        open={openDelete}
+        isSingle
+        itemsCount={1}
+        itemName={customerName}
+        onCancel={() => setOpenDelete(false)}
+        onDelete={onDelete}
+      />
+    </>
+  )
 }
 
 export default Buttons

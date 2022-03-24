@@ -6,7 +6,7 @@ import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import Paper from "material-ui/Paper"
 import moment from "moment"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import style from "./style.css"
 
@@ -98,45 +98,39 @@ const CustomerOrder = ({ order, settings }) => {
   )
 }
 
-class CustomerOrders extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      orders: [],
-    }
+interface Props {
+  customerId: string
+  settings
+}
+
+const CustomerOrders: FC<Props> = props => {
+  const [orders, setOrders] = useState([])
+  const { customerId, settings } = props
+
+  useEffect(() => {
+    api.orders.list({ customer_id: customerId }).then(({ status, json }) => {
+      setOrders(json.data)
+    })
+  }, [])
+
+  let orderItems = []
+  if (orders.length > 0) {
+    orderItems = orders.map((order, index) => (
+      <CustomerOrder key={index} order={order} settings={settings} />
+    ))
   }
 
-  componentDidMount() {
-    api.orders
-      .list({ customer_id: this.props.customerId })
-      .then(({ status, json }) => {
-        this.setState({ orders: json.data })
-      })
-  }
-
-  render() {
-    const { customerId, settings } = this.props
-    const { orders } = this.state
-
-    let orderItems = []
-    if (orders.length > 0) {
-      orderItems = orders.map((order, index) => (
-        <CustomerOrder key={index} order={order} settings={settings} />
-      ))
-    }
-
-    return (
-      <Paper className="paper-box" zDepth={1}>
-        <div
-          className="blue-title"
-          style={{ paddingLeft: 16, paddingBottom: 16 }}
-        >
-          {messages.customers_orders}
-        </div>
-        <List style={{ padding: 0 }}>{orderItems}</List>
-      </Paper>
-    )
-  }
+  return (
+    <Paper className="paper-box" zDepth={1}>
+      <div
+        className="blue-title"
+        style={{ paddingLeft: 16, paddingBottom: 16 }}
+      >
+        {messages.customers_orders}
+      </div>
+      <List style={{ padding: 0 }}>{orderItems}</List>
+    </Paper>
+  )
 }
 
 export default CustomerOrders
