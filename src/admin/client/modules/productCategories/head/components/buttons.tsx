@@ -1,5 +1,5 @@
 import messages from "lib/text"
-import Dialog from "material-ui/Dialog"
+import {Dialog, DialogActions} from "@mui/material"
 import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
@@ -29,7 +29,8 @@ class Buttons extends React.Component {
     this.setState({ openMoveTo: false })
   }
 
-  closeDelete = () => {
+  closeDele
+  te = () => {
     this.setState({ openDelete: false })
   }
 
@@ -53,20 +54,6 @@ class Buttons extends React.Component {
       selected && selected.name && selected.name.length > 0
         ? selected.name
         : "Draft"
-
-    const actionsMoveTo = [
-      <FlatButton
-        label={messages.cancel}
-        onClick={this.closeMoveTo}
-        style={{ marginRight: 10 }}
-      />,
-      <FlatButton
-        label={messages.actions_moveHere}
-        primary
-        keyboardFocused
-        onClick={this.saveMoveTo}
-      />,
-    ]
 
     return (
       <span>
@@ -114,11 +101,9 @@ class Buttons extends React.Component {
             </IconButton>
             <Dialog
               title={messages.actions_moveTo}
-              actions={actionsMoveTo}
-              modal={false}
               open={this.state.openMoveTo}
-              onRequestClose={this.closeMoveTo}
-              autoScrollBodyContent
+              onClose={this.closeMoveTo}
+              scroll="body"
             >
               <CategorySelect
                 onSelect={this.selectMoveTo}
@@ -126,6 +111,19 @@ class Buttons extends React.Component {
                 showRoot
                 showAll={false}
               />
+              <DialogActions>
+                <FlatButton
+                  label={messages.cancel}
+                  onClick={this.closeMoveTo}
+                  style={{ marginRight: 10 }}
+                />
+                <FlatButton
+                  label={messages.save}
+                  primary
+                  keyboardFocused
+                  onClick={this.saveMoveTo}
+                />
+              </DialogActions>
             </Dialog>
             <DeleteConfirmation
               open={this.state.openDelete}
