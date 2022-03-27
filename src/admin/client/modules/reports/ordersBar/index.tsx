@@ -6,8 +6,8 @@ import BarChart from "./barChart"
 import * as utils from "./utils"
 
 const OrdersBar: FC = () => {
-  const [ordersData, setOrdersData] = useState([])
-  const [salesData, setSalesData] = useState([])
+  const [ordersData, setOrdersData] = useState({})
+  const [salesData, setSalesData] = useState({})
 
   const fetchData = () => {
     const filter = {
