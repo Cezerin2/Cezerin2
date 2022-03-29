@@ -32,6 +32,18 @@ nodemon views file change and restarts the store
 
 it does not reload the page in the browser automatically, but significantly speeds up the development process
 
+
+### How do I change the language?
+
+You need to modify these files inside the folder config:
+```javascript
+config/server.ts
+config/admin.tsx 
+config/server.js
+config/store.js
+```
+
+
 ### Feel free to add your HowTos.
 
 You can add it by making Pull Request to the https://github.com/Cezerin2/cezerin2.github.io
