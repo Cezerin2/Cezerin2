@@ -78,6 +78,19 @@ You can see free memory by this console command:
 free - m
 ```
 
-### Feel free to add your FAQs.
+### Empty cart after clicking "Add to cart" inside a product, how to fix?
 
-You can add it by making Pull Request to the https://github.com/Cezerin2/cezerin2.github.io
+Try to clean the cookies of your browser.
+
+
+### Registration and password forget emails are empty, how to fix?
+
+If you changed your language (and is different from English, Russian and German), you have to create the templates for your own language. Check the file:
+```javascript
+src/api/server/setup.ts 
+```
+and:
+```javascript
+src/admin/client/modules/settings/email/components/form.tsx
+```
+
