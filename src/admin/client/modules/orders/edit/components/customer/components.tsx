@@ -4,9 +4,15 @@ import Divider from "material-ui/Divider"
 import React from "react"
 import style from "../style.css"
 
-const getShippingFieldLabel = ({ label, key }) => {
-  return label && label.length > 0 ? label : helper.getOrderFieldLabelByKey(key)
-}
+const getShippingFieldLabel = ({ label, key }) =>
+  label && label.length > 0 ? label : helper.getOrderFieldLabelByKey(key)
+
+const ShippingFieldDiv = ({ label, value }) => (
+  <div>
+    <label>{label}: </label>
+    {value}
+  </div>
+)
 
 const ShippingFields = ({ order, shippingMethod }) => {
   let rows = null
@@ -28,13 +34,6 @@ const ShippingFields = ({ order, shippingMethod }) => {
   return <div>{rows}</div>
 }
 
-const ShippingFieldDiv = ({ label, value }) => (
-  <div>
-    <label>{label}: </label>
-    {value}
-  </div>
-)
-
 export const ShippingAddress = ({ order, settings }) => {
   const address = order.shipping_address
   const shippingMethod = order.shipping_method_details
@@ -50,7 +49,7 @@ export const ShippingAddress = ({ order, settings }) => {
         <div>
           {address.city},{" "}
           {address.state && address.state.length > 0
-            ? address.state + ", "
+            ? `${address.state}, `
             : ""}
           {address.postal_code}
         </div>
@@ -74,9 +73,9 @@ export const BillingAddress = ({ address, settings }) => {
     address.tax_number === "" &&
     address.postal_code === ""
 
-  if (billinsAddressIsEmpty && settings.hide_billing_address) {
-    return null
-  } else if (billinsAddressIsEmpty && !settings.hide_billing_address) {
+  if (billinsAddressIsEmpty && settings.hide_billing_address) return null
+
+  if (billinsAddressIsEmpty && !settings.hide_billing_address)
     return (
       <div>
         <Divider
@@ -95,36 +94,35 @@ export const BillingAddress = ({ address, settings }) => {
         </div>
       </div>
     )
-  } else {
-    return (
-      <div>
-        <Divider
-          style={{
-            marginTop: 30,
-            marginBottom: 30,
-            marginLeft: -30,
-            marginRight: -30,
-          }}
-        />
-        <div style={{ paddingBottom: 16, paddingTop: 0 }}>
-          {messages.billingAddress}
-        </div>
-        <div className={style.address}>
-          <div>{address.full_name}</div>
-          <div>{address.company}</div>
-          <div>{address.address1}</div>
-          <div>{address.address2}</div>
-          <div>
-            {address.city},{" "}
-            {address.state && address.state.length > 0
-              ? address.state + ", "
-              : ""}
-            {address.postal_code}
-          </div>
-          <div>{address.country}</div>
-          <div>{address.phone}</div>
-        </div>
+
+  return (
+    <div>
+      <Divider
+        style={{
+          marginTop: 30,
+          marginBottom: 30,
+          marginLeft: -30,
+          marginRight: -30,
+        }}
+      />
+      <div style={{ paddingBottom: 16, paddingTop: 0 }}>
+        {messages.billingAddress}
       </div>
-    )
-  }
+      <div className={style.address}>
+        <div>{address.full_name}</div>
+        <div>{address.company}</div>
+        <div>{address.address1}</div>
+        <div>{address.address2}</div>
+        <div>
+          {address.city},{" "}
+          {address.state && address.state.length > 0
+            ? `${address.state}, `
+            : ""}
+          {address.postal_code}
+        </div>
+        <div>{address.country}</div>
+        <div>{address.phone}</div>
+      </div>
+    </div>
+  )
 }
