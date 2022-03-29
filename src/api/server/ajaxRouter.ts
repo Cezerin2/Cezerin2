@@ -153,13 +153,13 @@ ajaxRouter.post("/reset-password", async (req, res, next) => {
       verified: false,
     }
 
-    const userId =
+    const userID =
       "token" in req.body
         ? decodeUserLoginAuth(req.body.token)
-        : decodeUserLoginAuth(req.body.id).userId.userId
+        : decodeUserLoginAuth(req.body.id).userID.userID
 
     const filter = {
-      id: userId,
+      id: userID,
     }
     const customerDraft = {
       password: hash,
@@ -168,17 +168,17 @@ ajaxRouter.post("/reset-password", async (req, res, next) => {
     // update customer password after checking customer id
     if ("id" in req.body) {
       await api.customers
-        .update(userId, customerDraft)
+        .update(userID, customerDraft)
         .then(({ status, json }) => {
           data.status = true
-          data.id = userId
+          data.id = userID
           data.verified = true
           return res.status(status).send(data)
         })
       return false
     }
 
-    if ("name" in userId && userId.name.indexOf("JsonWebTokenErro") !== -1) {
+    if ("name" in userID && userID.name.indexOf("JsonWebTokenErro") !== -1) {
       res.send(data)
       return false
     }
@@ -187,7 +187,7 @@ ajaxRouter.post("/reset-password", async (req, res, next) => {
     const { status, json } = await api.customers.list(filter)
     if (json.total_count > 0) {
       data.status = true
-      data.id = encodeUserLoginAuth(userId)
+      data.id = encodeUserLoginAuth(userID)
     }
     return res.status(status).send(data)
   })
@@ -202,7 +202,7 @@ ajaxRouter.post("/forgot-password", async (req, res, next) => {
   }
 
   // send forgot password email
-  async function sendEmail(userId) {
+  async function sendEmail(userID) {
     const countryCode = undefined
     const [emailTemp] = await Promise.all([
       EmailTemplatesService.getEmailTemplate(
@@ -212,7 +212,7 @@ ajaxRouter.post("/forgot-password", async (req, res, next) => {
     await handlebars.registerHelper("forgot_password_link", obj => {
       const url = `${serverSettings.storeBaseUrl}${
         countryCode !== undefined ? `/${countryCode}/` : "/"
-      }reset-password?token=${encodeUserLoginAuth(userId)}`
+      }reset-password?token=${encodeUserLoginAuth(userID)}`
       let text = emailTemp.link
       if (text == undefined) {
         text = url
@@ -258,21 +258,21 @@ ajaxRouter.post("/customer-account", async (req, res, next) => {
 
   if (req.body.token) {
     customerData.token = decodeUserLoginAuth(req.body.token)
-    if (customerData.token.userId !== undefined) {
-      let userId = null
+    if (customerData.token.userID !== undefined) {
+      let userID = null
       try {
-        userId = JSON.stringify(customerData.token.userId).replace(/["']/g, "")
+        userID = JSON.stringify(customerData.token.userID).replace(/["']/g, "")
       } catch (erro) {}
 
       const filter = {
-        customer_id: userId,
+        customer_id: userID,
       }
 
       // retrieve customer data
-      await api.customers.retrieve(userId).then(({ status, json }) => {
+      await api.customers.retrieve(userID).then(({ status, json }) => {
         customerData.customer_settings = json
         customerData.customer_settings.password = "*******"
-        customerData.token = encodeUserLoginAuth(userId)
+        customerData.token = encodeUserLoginAuth(userID)
         customerData.authenticated = false
       })
 
@@ -481,9 +481,9 @@ ajaxRouter.post("/register", async (req, res, next) => {
 ajaxRouter.put("/customer-account", async (req, res, next) => {
   const customerData = req.body
   const token = decodeUserLoginAuth(req.body.token)
-  let userId = null
+  let userID = null
   try {
-    userId = JSON.stringify(token.userId).replace(/["']/g, "")
+    userID = JSON.stringify(token.userID).replace(/["']/g, "")
   } catch (erro) {}
 
   // generate password-hash
@@ -519,7 +519,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
   try {
     // update customer
     await db.collection("customers").updateMany(
-      { _id: ObjectID(userId) },
+      { _id: ObjectID(userID) },
       {
         $set: customerDraftObj,
       },
@@ -531,7 +531,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
         }
         customerDataObj.customer_settings = result
         customerDataObj.customer_settings.password = "*******"
-        customerDataObj.token = encodeUserLoginAuth(userId)
+        customerDataObj.token = encodeUserLoginAuth(userID)
         customerData.authenticated = false
 
         if (customerData.saved_addresses === 0) {
@@ -543,7 +543,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
 
         // update orders
         await db.collection("orders").updateMany(
-          { customer_id: ObjectID(userId) },
+          { customer_id: ObjectID(userID) },
           {
             $set: {
               shipping_address: customerData.shipping_address,
