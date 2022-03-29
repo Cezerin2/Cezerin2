@@ -366,9 +366,9 @@ ajaxRouter.post("/register", async (req, res, next) => {
 
     ;(async () => {
       // decode token parts and check if valid email is the second part of them
-      const firstName = await decodeUserLoginAuth(requestTokenArray[0]).userId
-      const lastName = await decodeUserLoginAuth(requestTokenArray[1]).userId
-      const eMail = await decodeUserLoginAuth(requestTokenArray[2]).userId
+      const firstName = await decodeUserLoginAuth(requestTokenArray[0]).userID
+      const lastName = await decodeUserLoginAuth(requestTokenArray[1]).userID
+      const eMail = await decodeUserLoginAuth(requestTokenArray[2]).userID
       const passWord = await decodeUserPassword(requestTokenArray[3]).password
 
       if (
