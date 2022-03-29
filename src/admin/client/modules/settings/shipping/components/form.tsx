@@ -2,59 +2,57 @@ import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import Paper from "material-ui/Paper"
-import React from "react"
+import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
 
-const MethodItem = ({ method }) => {
-  return (
-    <div>
-      <Divider />
-      <Link
-        to={`/admin/settings/shipping/${method.id}`}
-        style={{ textDecoration: "none" }}
-      >
-        <ListItem
-          rightIcon={
-            <FontIcon className="material-icons">keyboard_arrow_right</FontIcon>
-          }
-          style={!method.enabled ? { color: "rgba(0, 0, 0, 0.3)" } : {}}
-          primaryText={
-            <div className="row">
-              <div className="col-xs-6">{method.name}</div>
-              <div className="col-xs-6" style={{ color: "rgba(0, 0, 0, 0.4)" }}>
-                {method.description}
-              </div>
+const MethodItem = ({ method }) => (
+  <>
+    <Divider />
+    <Link
+      to={`/admin/settings/shipping/${method.id}`}
+      style={{ textDecoration: "none" }}
+    >
+      <ListItem
+        rightIcon={
+          <FontIcon className="material-icons">keyboard_arrow_right</FontIcon>
+        }
+        style={!method.enabled ? { color: "rgba(0, 0, 0, 0.3)" } : {}}
+        primaryText={
+          <div className="row">
+            <div className="col-xs-6">{method.name}</div>
+            <div className="col-xs-6" style={{ color: "rgba(0, 0, 0, 0.4)" }}>
+              {method.description}
             </div>
-          }
-        />
-      </Link>
-    </div>
-  )
+          </div>
+        }
+      />
+    </Link>
+  </>
+)
+
+interface Props {
+  shippingMethods
+  onLoad: () => void
 }
 
-class EmailSettings extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+const EmailSettings: FC<Props> = props => {
+  const { shippingMethods, onLoad } = props
 
-  componentDidMount() {
-    this.props.onLoad()
-  }
+  useEffect(() => {
+    onLoad()
+  }, [])
 
-  render() {
-    const { shippingMethods } = this.props
-    let methods = shippingMethods.map((method, index) => (
-      <MethodItem key={index} method={method} />
-    ))
+  const methods = shippingMethods.map((method, index) => (
+    <MethodItem key={index} method={method} />
+  ))
 
-    return (
-      <Paper className="paper-box" zDepth={1}>
-        <div style={{ width: "100%" }}>
-          <List style={{ padding: 0 }}>{methods}</List>
-        </div>
-      </Paper>
-    )
-  }
+  return (
+    <Paper className="paper-box" zDepth={1}>
+      <div style={{ width: "100%" }}>
+        <List style={{ padding: 0 }}>{methods}</List>
+      </div>
+    </Paper>
+  )
 }
 
 export default EmailSettings

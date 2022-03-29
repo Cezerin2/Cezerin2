@@ -2,7 +2,7 @@ import Divider from "material-ui/Divider"
 import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import Paper from "material-ui/Paper"
-import React from "react"
+import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const PageItem = ({ page }) => {
@@ -36,29 +36,29 @@ const PageItem = ({ page }) => {
   )
 }
 
-class PagesList extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+interface Props {
+  pages
+  onLoad: () => void
+}
 
-  componentDidMount() {
-    this.props.onLoad()
-  }
+const PagesList: FC<Props> = props => {
+  const { pages, onLoad } = props
 
-  render() {
-    const { pages } = this.props
-    let listItems = pages.map((page, index) => (
-      <PageItem key={index} page={page} />
-    ))
+  useEffect(() => {
+    onLoad()
+  }, [])
 
-    return (
-      <Paper className="paper-box" zDepth={1}>
-        <div style={{ width: "100%" }}>
-          <List style={{ padding: 0 }}>{listItems}</List>
-        </div>
-      </Paper>
-    )
-  }
+  const listItems = pages.map((page, index) => (
+    <PageItem key={index} page={page} />
+  ))
+
+  return (
+    <Paper className="paper-box" zDepth={1}>
+      <div style={{ width: "100%" }}>
+        <List style={{ padding: 0 }}>{listItems}</List>
+      </div>
+    </Paper>
+  )
 }
 
 export default PagesList
