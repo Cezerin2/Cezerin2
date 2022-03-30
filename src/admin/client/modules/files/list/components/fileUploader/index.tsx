@@ -1,7 +1,7 @@
 import messages from "lib/text"
 import FlatButton from "material-ui/FlatButton"
 import Snackbar from "material-ui/Snackbar"
-import React, { FC } from "react"
+import React, { FC, useRef } from "react"
 import Dropzone from "react-dropzone"
 import style from "./style.css"
 
@@ -11,6 +11,8 @@ interface Props {
 }
 
 const MultiUploader: FC<Props> = props => {
+  const dropzone = useRef<{ open: () => void }>()
+
   const { uploading, onUpload } = props
 
   const onDrop = files => {
@@ -28,7 +30,7 @@ const MultiUploader: FC<Props> = props => {
         multiple
         disableClick
         ref={node => {
-          this.dropzone = node
+          dropzone.current = node
         }}
         style={{}}
         className={style.dropzone + (uploading ? ` ${style.uploading}` : "")}
@@ -41,7 +43,7 @@ const MultiUploader: FC<Props> = props => {
             label={messages.chooseImage}
             className={style.button}
             onClick={() => {
-              this.dropzone.open()
+              dropzone.current.open()
             }}
           />
         </div>
