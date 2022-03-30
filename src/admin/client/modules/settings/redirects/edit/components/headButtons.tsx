@@ -2,62 +2,53 @@ import messages from "lib/text"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
-import React, { Fragment } from "react"
+import React, { FC, useState } from "react"
 
-class Buttons extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      openDelete: false,
-    }
+interface Props {
+  redirect
+  onDelete
+}
+
+const Buttons: FC<Props> = props => {
+  const [openDelete, setOpenDelete] = useState(false)
+
+  const { redirect, onDelete } = props
+
+  const deletePage = () => {
+    setOpenDelete(false)
+    onDelete(redirect.id)
   }
 
-  openDelete = () => {
-    this.setState({ openDelete: true })
-  }
+  const redirectName =
+    redirect && redirect.from && redirect.from.length > 0
+      ? redirect.from
+      : "Draft"
 
-  closeDelete = () => {
-    this.setState({ openDelete: false })
-  }
+  if (redirect)
+    return (
+      <>
+        <IconButton
+          touch
+          tooltipPosition="bottom-left"
+          tooltip={messages.actions_delete}
+          onClick={() => setOpenDelete(true)}
+        >
+          <FontIcon color="#fff" className="material-icons">
+            delete
+          </FontIcon>
+        </IconButton>
+        <DeleteConfirmation
+          open={openDelete}
+          isSingle
+          itemsCount={1}
+          itemName={redirectName}
+          onCancel={() => setOpenDelete(false)}
+          onDelete={deletePage}
+        />
+      </>
+    )
 
-  deletePage = () => {
-    this.setState({ openDelete: false })
-    this.props.onDelete(this.props.redirect.id)
-  }
-
-  render() {
-    const { redirect } = this.props
-    const redirectName =
-      redirect && redirect.from && redirect.from.length > 0
-        ? redirect.from
-        : "Draft"
-
-    if (redirect) {
-      return (
-        <Fragment>
-          <IconButton
-            touch
-            tooltipPosition="bottom-left"
-            tooltip={messages.actions_delete}
-            onClick={this.openDelete}
-          >
-            <FontIcon color="#fff" className="material-icons">
-              delete
-            </FontIcon>
-          </IconButton>
-          <DeleteConfirmation
-            open={this.state.openDelete}
-            isSingle
-            itemsCount={1}
-            itemName={redirectName}
-            onCancel={this.closeDelete}
-            onDelete={this.deletePage}
-          />
-        </Fragment>
-      )
-    }
-    return null
-  }
+  return null
 }
 
 export default Buttons

@@ -5,44 +5,33 @@ import IconButton from "material-ui/IconButton"
 import MenuItem from "material-ui/MenuItem"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import React from "react"
+import React, { FC, useState } from "react"
 import { Link } from "react-router-dom"
 import style from "./style.css"
 
-class VariantInput extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.value,
-    }
-    this.onChange = this.onChange.bind(this)
-    this.onBlur = this.onBlur.bind(this)
-  }
+interface Props {
+  type
+  placeholder
+  variantId
+  onChange
+}
 
-  onChange = e => {
-    this.setState({ value: e.target.value })
-  }
+const VariantInput: FC<Props> = props => {
+  const [value, setValue] = useState(props.value)
 
-  onBlur = e => {
-    this.props.onChange(this.props.variantId, this.state.value)
-  }
+  const { type, placeholder, variantId, onChange } = props
 
-  render() {
-    const { type, placeholder } = this.props
-    const { value } = this.state
-
-    return (
-      <input
-        type={type}
-        className={style.textInput}
-        placeholder={placeholder}
-        value={value}
-        onChange={this.onChange}
-        onBlur={this.onBlur}
-        min="0"
-      />
-    )
-  }
+  return (
+    <input
+      type={type}
+      className={style.textInput}
+      placeholder={placeholder}
+      value={value}
+      onChange={({ target }) => setValue(target.value)}
+      onBlur={() => onChange(variantId, value)}
+      min="0"
+    />
+  )
 }
 
 const VariantRow = ({
@@ -55,7 +44,7 @@ const VariantRow = ({
   onOptionChange,
   onDeleteVariant,
 }) => {
-  let cols = options.map((option, index) => {
+  const cols = options.map((option, index) => {
     const variantOption = variant.options.find(i => i.option_id === option.id)
     const variantOptionValueId = variantOption ? variantOption.value_id : null
 
@@ -65,6 +54,7 @@ const VariantRow = ({
         .map((value, index) => (
           <MenuItem key={index} value={value.id} primaryText={value.name} />
         ))
+
       return (
         <div key={option.id} className={style.gridCol}>
           <DropDownMenu
@@ -79,9 +69,9 @@ const VariantRow = ({
           </DropDownMenu>
         </div>
       )
-    } else {
-      return <div key={option.id} className={style.gridCol} />
     }
+
+    return <div key={option.id} className={style.gridCol} />
   })
 
   return (

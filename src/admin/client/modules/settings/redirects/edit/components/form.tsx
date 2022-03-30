@@ -1,7 +1,7 @@
 import messages from "lib/text"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
-import React from "react"
+import React, { FC, useEffect } from "react"
 import { Field, reduxForm } from "redux-form"
 import { TextField } from "redux-form-material-ui"
 import style from "./style.css"
@@ -19,51 +19,56 @@ const validate = values => {
   return errors
 }
 
-class EditRedirectForm extends React.Component {
-  componentDidMount() {
-    this.props.onLoad()
-  }
+interface Props {
+  handleSubmit
+  pristine
+  submitting
+  redirectId
+  onLoad: () => void
+}
 
-  render() {
-    const { handleSubmit, pristine, submitting, redirectId } = this.props
-    const isAdd = redirectId === null || redirectId === undefined
+const EditRedirectForm: FC<Props> = props => {
+  const { handleSubmit, pristine, submitting, redirectId, onLoad } = props
 
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <Paper className="paper-box" zDepth={1}>
-            <div className={style.innerBox}>
-              <Field
-                name="from"
-                component={TextField}
-                floatingLabelText="From (e.g. /old-path)"
-                fullWidth
-              />
-              <Field
-                name="to"
-                component={TextField}
-                floatingLabelText="To (e.g. /new-path)"
-                fullWidth
-              />
-            </div>
-            <div
-              className={`buttons-box ${
-                pristine && !isAdd ? "buttons-box-pristine" : "buttons-box-show"
-              }`}
-            >
-              <RaisedButton
-                type="submit"
-                label={isAdd ? messages.add : messages.save}
-                primary
-                className={style.button}
-                disabled={pristine || submitting}
-              />
-            </div>
-          </Paper>
-        </form>
-      </div>
-    )
-  }
+  useEffect(() => {
+    onLoad()
+  }, [])
+
+  const isAdd = redirectId === null || redirectId === undefined
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Paper className="paper-box" zDepth={1}>
+        <div className={style.innerBox}>
+          <Field
+            name="from"
+            component={TextField}
+            floatingLabelText="From (e.g. /old-path)"
+            fullWidth
+          />
+          <Field
+            name="to"
+            component={TextField}
+            floatingLabelText="To (e.g. /new-path)"
+            fullWidth
+          />
+        </div>
+        <div
+          className={`buttons-box ${
+            pristine && !isAdd ? "buttons-box-pristine" : "buttons-box-show"
+          }`}
+        >
+          <RaisedButton
+            type="submit"
+            label={isAdd ? messages.add : messages.save}
+            primary
+            className={style.button}
+            disabled={pristine || submitting}
+          />
+        </div>
+      </Paper>
+    </form>
+  )
 }
 
 export default reduxForm({
