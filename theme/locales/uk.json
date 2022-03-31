@@ -101,7 +101,7 @@
   "login_success": "You are logged in successfully.",
   "login_failed": "The email or password is wrong. Please try again.",
   "registry_success": "You have been successful as customer registered.",
-  "registry_failed": "The email account is no more available. Please try with an other..",
+  "registry_failed": "The email account is no more available. Please try with another.",
   "registry_doi_success": "Thank you for preaccomplishing the registry. We sent you an email for the last step.",
   "registry_completed": "You accomplished the registry. Now you can log in to your account",
   "registry_wrong_token": "The URL you have pasted is wrong.",

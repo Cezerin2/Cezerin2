@@ -133,9 +133,9 @@ export const addCartItem = item => async (dispatch, getState) => {
 
 const requestAddCartItem = () => ({ type: t.CART_ITEM_ADD_REQUEST })
 
-export const updateCartItemQuantiry =
+export const updateCartItemQuantity =
   (item_id, quantity) => async (dispatch, getState) => {
-    dispatch(requestUpdateCartItemQuantiry())
+    dispatch(requestUpdateCartItemQuantity())
     const response = await api.ajax.cart.updateItem(item_id, {
       quantity: quantity,
     })
@@ -143,7 +143,7 @@ export const updateCartItemQuantiry =
     dispatch(fetchShippingMethods())
   }
 
-const requestUpdateCartItemQuantiry = () => ({
+const requestUpdateCartItemQuantity = () => ({
   type: t.CART_ITEM_UPDATE_REQUEST,
 })
 
