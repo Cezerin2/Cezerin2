@@ -94,3 +94,21 @@ and:
 src/admin/client/modules/settings/email/components/form.tsx
 ```
 
+### error: uncaughtException: listen EADDRINUSE: address already in use :::3000, how to fix?
+
+Quitting the store and the api in the wrong way can lead to this error. The solution in linux is killing the process that using the port that gives you the error:
+
+to obtain the PID of the process:
+```javascript
+lsof -t -i:3000
+```
+to kill the PID:
+```javascript
+kill -9 PID
+```
+or more simply in one command: 
+```javascript
+kill -9 $(lsof -t -i:3001)
+```
+
+
