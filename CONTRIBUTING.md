@@ -50,10 +50,12 @@ And any of the rules can be petitioned for changed if it reduce unneceray code. 
 The commit message should follow the following format:
 
 ```plain
-type(scope): subject
+type(scope): Subject
 BLANK LINE
 body
 ```
+
+Subject should start with capital.
 
 ##### Type
 
@@ -71,6 +73,7 @@ The scope must be one of the following:
 
 - admin - Anything updated on src/admin
 - store - Anything updated on src/store
+- theme - Anything updated on theme
 - server - Anything updated on src/server
 - empty - All other changes
 
