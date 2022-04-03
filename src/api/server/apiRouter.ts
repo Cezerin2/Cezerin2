@@ -1,4 +1,4 @@
-import express from "express"
+import { Router } from "express"
 import AppsRoute from "./routes/apps"
 import CustomerGroupsRoute from "./routes/customerGroups"
 import CustomersRoute from "./routes/customers"
@@ -19,26 +19,26 @@ import ThemeRoute from "./routes/theme"
 import SecurityTokensRoute from "./routes/tokens"
 import WebhooksRoute from "./routes/webhooks"
 
-const apiRouter = express.Router()
+const apiRouter = Router()
 
-new ProductsRoute(apiRouter)
-new ProductCategoriesRoute(apiRouter)
-new SitemapRoute(apiRouter)
-new ThemeRoute(apiRouter)
-new CustomersRoute(apiRouter)
-new CustomerGroupsRoute(apiRouter)
-new OrdersRoute(apiRouter)
-new OrderStatusesRoute(apiRouter)
-new ShippingMethodsRoute(apiRouter)
-new PaymentMethodsRoute(apiRouter)
-new PaymentGatewaysRoute(apiRouter)
-new SettingsRoute(apiRouter)
-new PagesRoute(apiRouter)
-new SecurityTokensRoute(apiRouter)
-new NotificationsRoute(apiRouter)
-new RedirectsRoute(apiRouter)
-new FilesRoute(apiRouter)
-new AppsRoute(apiRouter)
-new WebhooksRoute(apiRouter)
+apiRouter.use(ProductsRoute)
+apiRouter.use(ProductCategoriesRoute)
+apiRouter.use(SitemapRoute)
+apiRouter.use(ThemeRoute)
+apiRouter.use(CustomersRoute)
+apiRouter.use(CustomerGroupsRoute)
+apiRouter.use(OrdersRoute)
+apiRouter.use(OrderStatusesRoute)
+apiRouter.use(ShippingMethodsRoute)
+apiRouter.use(PaymentMethodsRoute)
+apiRouter.use(PaymentGatewaysRoute)
+apiRouter.use(SettingsRoute)
+apiRouter.use(PagesRoute)
+apiRouter.use(SecurityTokensRoute)
+apiRouter.use(NotificationsRoute)
+apiRouter.use(RedirectsRoute)
+apiRouter.use(FilesRoute)
+apiRouter.use(AppsRoute)
+apiRouter.use(WebhooksRoute)
 
 export default apiRouter

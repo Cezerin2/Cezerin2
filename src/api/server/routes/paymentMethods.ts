@@ -1,88 +1,81 @@
+import { NextFunction, Request, Response, Router } from "express"
 import security from "../lib/security"
 import PaymentMethodsService from "../services/orders/paymentMethods"
 
-class PaymentMethodsRoute {
-  router: any
-  constructor(router) {
-    this.router = router
-    this.registerRoutes()
-  }
+const router = Router()
 
-  registerRoutes() {
-    this.router.get(
-      "/v1/payment_methods",
-      security.checkUserScope.bind(this, security.scope.READ_PAYMENT_METHODS),
-      this.getMethods.bind(this)
-    )
-    this.router.post(
-      "/v1/payment_methods",
-      security.checkUserScope.bind(this, security.scope.WRITE_PAYMENT_METHODS),
-      this.addMethod.bind(this)
-    )
-    this.router.get(
-      "/v1/payment_methods/:id",
-      security.checkUserScope.bind(this, security.scope.READ_PAYMENT_METHODS),
-      this.getSingleMethod.bind(this)
-    )
-    this.router.put(
-      "/v1/payment_methods/:id",
-      security.checkUserScope.bind(this, security.scope.WRITE_PAYMENT_METHODS),
-      this.updateMethod.bind(this)
-    )
-    this.router.delete(
-      "/v1/payment_methods/:id",
-      security.checkUserScope.bind(this, security.scope.WRITE_PAYMENT_METHODS),
-      this.deleteMethod.bind(this)
-    )
-  }
-
-  getMethods(req, res, next) {
-    PaymentMethodsService.getMethods(req.query)
-      .then(data => {
-        res.send(data)
-      })
-      .catch(next)
-  }
-
-  getSingleMethod(req, res, next) {
-    PaymentMethodsService.getSingleMethod(req.params.id)
-      .then(data => {
-        if (data) {
-          res.send(data)
-        } else {
-          res.status(404).end()
-        }
-      })
-      .catch(next)
-  }
-
-  addMethod(req, res, next) {
-    PaymentMethodsService.addMethod(req.body)
-      .then(data => {
-        res.send(data)
-      })
-      .catch(next)
-  }
-
-  updateMethod(req, res, next) {
-    PaymentMethodsService.updateMethod(req.params.id, req.body)
-      .then(data => {
-        if (data) {
-          res.send(data)
-        } else {
-          res.status(404).end()
-        }
-      })
-      .catch(next)
-  }
-
-  deleteMethod(req, res, next) {
-    PaymentMethodsService.deleteMethod(req.params.id)
-      .then(data => {
-        res.status(data ? 200 : 404).end()
-      })
-      .catch(next)
-  }
+const getMethods = (req: Request, res: Response, next: NextFunction) => {
+  PaymentMethodsService.getMethods(req.query)
+    .then(data => {
+      res.send(data)
+    })
+    .catch(next)
 }
 
-export default PaymentMethodsRoute
+const getSingleMethod = (req: Request, res: Response, next: NextFunction) => {
+  PaymentMethodsService.getSingleMethod(req.params.id)
+    .then(data => {
+      if (data) {
+        res.send(data)
+      } else {
+        res.status(404).end()
+      }
+    })
+    .catch(next)
+}
+
+const addMethod = (req: Request, res: Response, next: NextFunction) => {
+  PaymentMethodsService.addMethod(req.body)
+    .then(data => {
+      res.send(data)
+    })
+    .catch(next)
+}
+
+const updateMethod = (req: Request, res: Response, next: NextFunction) => {
+  PaymentMethodsService.updateMethod(req.params.id, req.body)
+    .then(data => {
+      if (data) {
+        res.send(data)
+      } else {
+        res.status(404).end()
+      }
+    })
+    .catch(next)
+}
+
+const deleteMethod = (req: Request, res: Response, next: NextFunction) => {
+  PaymentMethodsService.deleteMethod(req.params.id)
+    .then(data => {
+      res.status(data ? 200 : 404).end()
+    })
+    .catch(next)
+}
+
+router.get(
+  "/v1/payment_methods",
+  security.checkUserScope(security.scope.READ_PAYMENT_METHODS),
+  getMethods
+)
+router.post(
+  "/v1/payment_methods",
+  security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
+  addMethod
+)
+router.get(
+  "/v1/payment_methods/:id",
+  security.checkUserScope(security.scope.READ_PAYMENT_METHODS),
+  getSingleMethod
+)
+router.put(
+  "/v1/payment_methods/:id",
+  security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
+  updateMethod
+)
+router.delete(
+  "/v1/payment_methods/:id",
+  security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
+  deleteMethod
+)
+
+export default router

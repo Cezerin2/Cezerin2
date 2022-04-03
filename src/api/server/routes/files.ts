@@ -1,50 +1,43 @@
+import { NextFunction, Request, Response, Router } from "express"
 import security from "../lib/security"
 import FilesService from "../services/files"
 
-class FilesRoute {
-  router: any
-  constructor(router) {
-    this.router = router
-    this.registerRoutes()
-  }
+const router = Router()
 
-  registerRoutes() {
-    this.router.get(
-      "/v1/files",
-      security.checkUserScope.bind(this, security.scope.READ_FILES),
-      this.getFiles.bind(this)
-    )
-    this.router.post(
-      "/v1/files",
-      security.checkUserScope.bind(this, security.scope.WRITE_FILES),
-      this.uploadFile.bind(this)
-    )
-    this.router.delete(
-      "/v1/files/:file",
-      security.checkUserScope.bind(this, security.scope.WRITE_FILES),
-      this.deleteFile.bind(this)
-    )
-  }
-
-  getFiles(req, res, next) {
-    FilesService.getFiles()
-      .then(data => {
-        res.send(data)
-      })
-      .catch(next)
-  }
-
-  uploadFile(req, res, next) {
-    FilesService.uploadFile(req, res, next)
-  }
-
-  deleteFile(req, res, next) {
-    FilesService.deleteFile(req.params.file)
-      .then(() => {
-        res.end()
-      })
-      .catch(next)
-  }
+const getFiles = (req: Request, res: Response, next: NextFunction) => {
+  FilesService.getFiles()
+    .then(data => {
+      res.send(data)
+    })
+    .catch(next)
 }
 
-export default FilesRoute
+const uploadFile = (req: Request, res: Response, next: NextFunction) => {
+  FilesService.uploadFile(req, res, next)
+}
+
+const deleteFile = (req: Request, res: Response, next: NextFunction) => {
+  FilesService.deleteFile(req.params.file)
+    .then(() => {
+      res.end()
+    })
+    .catch(next)
+}
+
+router.get(
+  "/v1/files",
+  security.checkUserScope(security.scope.READ_FILES),
+  getFiles
+)
+router.post(
+  "/v1/files",
+  security.checkUserScope(security.scope.WRITE_FILES),
+  uploadFile
+)
+router.delete(
+  "/v1/files/:file",
+  security.checkUserScope(security.scope.WRITE_FILES),
+  deleteFile
+)
+
+export default router

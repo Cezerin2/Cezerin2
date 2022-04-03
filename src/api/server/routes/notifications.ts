@@ -1,22 +1,16 @@
+import { NextFunction, Request, Response, Router } from "express"
 import PaymentGateways from "../paymentGateways"
 
-class NotificationsRoute {
-  router: any
-  constructor(router) {
-    this.router = router
-    this.registerRoutes()
-  }
+const router = Router()
 
-  registerRoutes() {
-    this.router.post(
-      "/v1/notifications/:gateway",
-      this.paymentNotification.bind(this)
-    )
-  }
-
-  paymentNotification(req, res, next) {
-    PaymentGateways.paymentNotification(req, res, req.params.gateway)
-  }
+const paymentNotification = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  PaymentGateways.paymentNotification(req, res, req.params.gateway)
 }
 
-export default NotificationsRoute
+router.post("/v1/notifications/:gateway", paymentNotification)
+
+export default router
