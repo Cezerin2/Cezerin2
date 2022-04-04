@@ -46,7 +46,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.2",
-    "@reduxjs/toolkit": "^1.8.0",
+    "@reduxjs/toolkit": "^1.8.1",
     "@tinymce/tinymce-react": "^3.13.1",
     "axios": "^0.26.0",
     "bcrypt": "^5.0.1",
