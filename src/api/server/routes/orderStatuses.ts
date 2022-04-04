@@ -4,53 +4,30 @@ import OrderStatusesService from "../services/orders/orderStatuses"
 
 const router = Router()
 
-const getStatuses = (req: Request, res: Response, next: NextFunction) => {
+const getStatuses = (req: Request, res: Response, next: NextFunction) =>
   OrderStatusesService.getStatuses(req.query)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getSingleStatus = (req: Request, res: Response, next: NextFunction) => {
+const getSingleStatus = (req: Request, res: Response, next: NextFunction) =>
   OrderStatusesService.getSingleStatus(req.params.id)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const addStatus = (req: Request, res: Response, next: NextFunction) => {
+const addStatus = (req: Request, res: Response, next: NextFunction) =>
   OrderStatusesService.addStatus(req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateStatus = (req: Request, res: Response, next: NextFunction) => {
+const updateStatus = (req: Request, res: Response, next: NextFunction) =>
   OrderStatusesService.updateStatus(req.params.id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const deleteStatus = (req: Request, res: Response, next: NextFunction) => {
+const deleteStatus = (req: Request, res: Response, next: NextFunction) =>
   OrderStatusesService.deleteStatus(req.params.id)
-    .then(data => {
-      res.status(data ? 200 : 404).end()
-    })
+    .then(data => res.status(data ? 200 : 404).end())
     .catch(next)
-}
 
 router
   .get(

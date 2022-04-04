@@ -9,218 +9,135 @@ import OrdertTansactionsService from "../services/orders/orderTransactions"
 
 const router = Router()
 
-const getOrders = (req: Request, res: Response, next: NextFunction) => {
+const getOrders = (req: Request, res: Response, next: NextFunction) =>
   OrdersService.getOrders(req.query)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getSingleOrder = (req: Request, res: Response, next: NextFunction) => {
+const getSingleOrder = (req: Request, res: Response, next: NextFunction) =>
   OrdersService.getSingleOrder(req.params.id)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const addOrder = (req: Request, res: Response, next: NextFunction) => {
+const addOrder = (req: Request, res: Response, next: NextFunction) =>
   OrdersService.addOrder(req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateOrder = (req: Request, res: Response, next: NextFunction) => {
+const updateOrder = (req: Request, res: Response, next: NextFunction) =>
   OrdersService.updateOrder(req.params.id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const deleteOrder = (req: Request, res: Response, next: NextFunction) => {
+const deleteOrder = (req: Request, res: Response, next: NextFunction) =>
   OrdersService.deleteOrder(req.params.id)
-    .then(data => {
-      res.status(data ? 200 : 404).end()
-    })
+    .then(data => res.status(data ? 200 : 404).end())
     .catch(next)
-}
 
-const recalculateOrder = (req: Request, res: Response, next: NextFunction) => {
+const recalculateOrder = (req: Request, res: Response, next: NextFunction) =>
   OrderItemsService.calculateAndUpdateAllItems(req.params.id)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const checkoutOrder = (req: Request, res: Response, next: NextFunction) => {
+const checkoutOrder = (req: Request, res: Response, next: NextFunction) =>
   OrdersService.checkoutOrder(req.params.id)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const cancelOrder = (req: Request, res: Response, next: NextFunction) => {
+const cancelOrder = (req: Request, res: Response, next: NextFunction) =>
   OrdersService.cancelOrder(req.params.id)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const closeOrder = (req: Request, res: Response, next: NextFunction) => {
+const closeOrder = (req: Request, res: Response, next: NextFunction) =>
   OrdersService.closeOrder(req.params.id)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
 const updateBillingAddress = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+) =>
   OrderAddressService.updateBillingAddress(req.params.id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
 const updateShippingAddress = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+) =>
   OrderAddressService.updateShippingAddress(req.params.id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
 const addItem = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  OrderItemsService.addItem(order_id, req.body)
-    .then(data => {
-      res.send(data)
-    })
+  const orderID = req.params.id
+  OrderItemsService.addItem(orderID, req.body)
+    .then(data => res.send(data))
     .catch(next)
 }
 
 const updateItem = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  const item_id = req.params.item_id
-  OrderItemsService.updateItem(order_id, item_id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+  const orderID = req.params.id
+  const itemID = req.params.item_id
+  OrderItemsService.updateItem(orderID, itemID, req.body)
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
 }
 
 const deleteItem = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  const item_id = req.params.item_id
-  OrderItemsService.deleteItem(order_id, item_id)
-    .then(data => {
-      res.send(data)
-    })
+  const orderID = req.params.id
+  const itemID = req.params.item_id
+  OrderItemsService.deleteItem(orderID, itemID)
+    .then(data => res.send(data))
     .catch(next)
 }
 
 const addTransaction = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  OrdertTansactionsService.addTransaction(order_id, req.body)
-    .then(data => {
-      res.send(data)
-    })
+  const orderID = req.params.id
+  OrdertTansactionsService.addTransaction(orderID, req.body)
+    .then(data => res.send(data))
     .catch(next)
 }
 
 const updateTransaction = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  const transaction_id = req.params.item_id
-  OrdertTansactionsService.updateTransaction(order_id, transaction_id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+  const orderID = req.params.id
+  const transactionID = req.params.item_id
+  OrdertTansactionsService.updateTransaction(orderID, transactionID, req.body)
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
 }
 
 const deleteTransaction = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  const transaction_id = req.params.item_id
-  OrdertTansactionsService.deleteTransaction(order_id, transaction_id)
-    .then(data => {
-      res.send(data)
-    })
+  const orderID = req.params.id
+  const transactionID = req.params.item_id
+  OrdertTansactionsService.deleteTransaction(orderID, transactionID)
+    .then(data => res.send(data))
     .catch(next)
 }
 
 const addDiscount = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  OrdertDiscountsService.addDiscount(order_id, req.body)
-    .then(data => {
-      res.send(data)
-    })
+  const orderID = req.params.id
+  OrdertDiscountsService.addDiscount(orderID, req.body)
+    .then(data => res.send(data))
     .catch(next)
 }
 
 const updateDiscount = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  const discount_id = req.params.item_id
-  OrdertDiscountsService.updateDiscount(order_id, discount_id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+  const orderID = req.params.id
+  const discountID = req.params.item_id
+  OrdertDiscountsService.updateDiscount(orderID, discountID, req.body)
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
 }
 
 const deleteDiscount = (req: Request, res: Response, next: NextFunction) => {
-  const order_id = req.params.id
-  const discount_id = req.params.item_id
-  OrdertDiscountsService.deleteDiscount(order_id, discount_id)
-    .then(data => {
-      res.send(data)
-    })
+  const orderID = req.params.id
+  const discountID = req.params.item_id
+  OrdertDiscountsService.deleteDiscount(orderID, discountID)
+    .then(data => res.send(data))
     .catch(next)
 }
 
@@ -242,8 +159,8 @@ const chargeOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const isSuccess = await OrdersService.chargeOrder(orderId)
     res.status(isSuccess ? 200 : 500).end()
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
   }
 }
 

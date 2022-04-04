@@ -4,21 +4,15 @@ import PaymentGatewaysService from "../services/settings/paymentGateways"
 
 const router = Router()
 
-const getGateway = (req: Request, res: Response, next: NextFunction) => {
+const getGateway = (req: Request, res: Response, next: NextFunction) =>
   PaymentGatewaysService.getGateway(req.params.name)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateGateway = (req: Request, res: Response, next: NextFunction) => {
+const updateGateway = (req: Request, res: Response, next: NextFunction) =>
   PaymentGatewaysService.updateGateway(req.params.name, req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
 router
   .get(

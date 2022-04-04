@@ -8,270 +8,179 @@ import ProductVariantsService from "../services/products/variants"
 
 const router = Router()
 
-const getProducts = (req: Request, res: Response, next: NextFunction) => {
+const getProducts = (req: Request, res: Response, next: NextFunction) =>
   ProductsService.getProducts(req.query)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getSingleProduct = (req: Request, res: Response, next: NextFunction) => {
+const getSingleProduct = (req: Request, res: Response, next: NextFunction) =>
   ProductsService.getSingleProduct(req.params.productId)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const addProduct = (req: Request, res: Response, next: NextFunction) => {
+const addProduct = (req: Request, res: Response, next: NextFunction) =>
   ProductsService.addProduct(req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateProduct = (req: Request, res: Response, next: NextFunction) => {
+const updateProduct = (req: Request, res: Response, next: NextFunction) =>
   ProductsService.updateProduct(req.params.productId, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const deleteProduct = (req: Request, res: Response, next: NextFunction) => {
+const deleteProduct = (req: Request, res: Response, next: NextFunction) =>
   ProductsService.deleteProduct(req.params.productId)
-    .then(data => {
-      res.status(data ? 200 : 404).end()
-    })
+    .then(data => res.status(data ? 200 : 404).end())
     .catch(next)
-}
 
-const getImages = (req: Request, res: Response, next: NextFunction) => {
+const getImages = (req: Request, res: Response, next: NextFunction) =>
   ProductImagesService.getImages(req.params.productId)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
 const addImage = async (req: Request, res: Response, next: NextFunction) => {
   await ProductImagesService.addImage(req, res, next)
 }
 
-const updateImage = (req: Request, res: Response, next: NextFunction) => {
+const updateImage = (req: Request, res: Response) =>
   ProductImagesService.updateImage(
     req.params.productId,
     req.params.imageId,
     req.body
-  ).then(data => {
-    res.end()
-  })
-}
+  ).then(() => res.end())
 
-const deleteImage = (req: Request, res: Response, next: NextFunction) => {
+const deleteImage = (req: Request, res: Response) =>
   ProductImagesService.deleteImage(
     req.params.productId,
     req.params.imageId
-  ).then(data => {
-    res.end()
-  })
-}
+  ).then(() => res.end())
 
-const isSkuExists = (req: Request, res: Response, next: NextFunction) => {
+const isSkuExists = (req: Request, res: Response, next: NextFunction) =>
   ProductsService.isSkuExists(req.query.sku, req.params.productId)
-    .then(exists => {
-      res.status(exists ? 200 : 404).end()
-    })
+    .then(exists => res.status(exists ? 200 : 404).end())
     .catch(next)
-}
 
-const isSlugExists = (req: Request, res: Response, next: NextFunction) => {
+const isSlugExists = (req: Request, res: Response, next: NextFunction) =>
   ProductsService.isSlugExists(req.query.slug, req.params.productId)
-    .then(exists => {
-      res.status(exists ? 200 : 404).end()
-    })
+    .then(exists => res.status(exists ? 200 : 404).end())
     .catch(next)
-}
 
-const getOptions = (req: Request, res: Response, next: NextFunction) => {
+const getOptions = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionsService.getOptions(req.params.productId)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getSingleOption = (req: Request, res: Response, next: NextFunction) => {
+const getSingleOption = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionsService.getSingleOption(
     req.params.productId,
     req.params.optionId
   )
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const addOption = (req: Request, res: Response, next: NextFunction) => {
+const addOption = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionsService.addOption(req.params.productId, req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateOption = (req: Request, res: Response, next: NextFunction) => {
+const updateOption = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionsService.updateOption(
     req.params.productId,
     req.params.optionId,
     req.body
   )
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const deleteOption = (req: Request, res: Response, next: NextFunction) => {
+const deleteOption = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionsService.deleteOption(req.params.productId, req.params.optionId)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getOptionValues = (req: Request, res: Response, next: NextFunction) => {
+const getOptionValues = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionValuesService.getOptionValues(
     req.params.productId,
     req.params.optionId
   )
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
 const getSingleOptionValue = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+) =>
   ProductOptionValuesService.getSingleOptionValue(
     req.params.productId,
     req.params.optionId,
     req.params.valueId
   )
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const addOptionValue = (req: Request, res: Response, next: NextFunction) => {
+const addOptionValue = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionValuesService.addOptionValue(
     req.params.productId,
     req.params.optionId,
     req.body
   )
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateOptionValue = (req: Request, res: Response, next: NextFunction) => {
+const updateOptionValue = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionValuesService.updateOptionValue(
     req.params.productId,
     req.params.optionId,
     req.params.valueId,
     req.body
   )
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const deleteOptionValue = (req: Request, res: Response, next: NextFunction) => {
+const deleteOptionValue = (req: Request, res: Response, next: NextFunction) =>
   ProductOptionValuesService.deleteOptionValue(
     req.params.productId,
     req.params.optionId,
     req.params.valueId
   )
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getVariants = (req: Request, res: Response, next: NextFunction) => {
+const getVariants = (req: Request, res: Response, next: NextFunction) =>
   ProductVariantsService.getVariants(req.params.productId)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const addVariant = (req: Request, res: Response, next: NextFunction) => {
+const addVariant = (req: Request, res: Response, next: NextFunction) =>
   ProductVariantsService.addVariant(req.params.productId, req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateVariant = (req: Request, res: Response, next: NextFunction) => {
+const updateVariant = (req: Request, res: Response, next: NextFunction) =>
   ProductVariantsService.updateVariant(
     req.params.productId,
     req.params.variantId,
     req.body
   )
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const deleteVariant = (req: Request, res: Response, next: NextFunction) => {
+const deleteVariant = (req: Request, res: Response, next: NextFunction) =>
   ProductVariantsService.deleteVariant(
     req.params.productId,
     req.params.variantId
   )
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const setVariantOption = (req: Request, res: Response, next: NextFunction) => {
+const setVariantOption = (req: Request, res: Response, next: NextFunction) =>
   ProductVariantsService.setVariantOption(
     req.params.productId,
     req.params.variantId,
     req.body
   )
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
 router
   .get(

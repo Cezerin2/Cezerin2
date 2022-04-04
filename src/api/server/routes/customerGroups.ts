@@ -4,53 +4,30 @@ import CustomerGroupsService from "../services/customers/customerGroups"
 
 const router = Router()
 
-const getGroups = (req: Request, res: Response, next: NextFunction) => {
+const getGroups = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.getGroups(req.query)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getSingleGroup = (req: Request, res: Response, next: NextFunction) => {
+const getSingleGroup = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.getSingleGroup(req.params.id)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const addGroup = (req: Request, res: Response, next: NextFunction) => {
+const addGroup = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.addGroup(req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateGroup = (req: Request, res: Response, next: NextFunction) => {
+const updateGroup = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.updateGroup(req.params.id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const deleteGroup = (req: Request, res: Response, next: NextFunction) => {
+const deleteGroup = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.deleteGroup(req.params.id)
-    .then(data => {
-      res.status(data ? 200 : 404).end()
-    })
+    .then(data => res.status(data ? 200 : 404).end())
     .catch(next)
-}
 
 router
   .get(

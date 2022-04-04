@@ -4,53 +4,30 @@ import PaymentMethodsService from "../services/orders/paymentMethods"
 
 const router = Router()
 
-const getMethods = (req: Request, res: Response, next: NextFunction) => {
+const getMethods = (req: Request, res: Response, next: NextFunction) =>
   PaymentMethodsService.getMethods(req.query)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getSingleMethod = (req: Request, res: Response, next: NextFunction) => {
+const getSingleMethod = (req: Request, res: Response, next: NextFunction) =>
   PaymentMethodsService.getSingleMethod(req.params.id)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const addMethod = (req: Request, res: Response, next: NextFunction) => {
+const addMethod = (req: Request, res: Response, next: NextFunction) =>
   PaymentMethodsService.addMethod(req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateMethod = (req: Request, res: Response, next: NextFunction) => {
+const updateMethod = (req: Request, res: Response, next: NextFunction) =>
   PaymentMethodsService.updateMethod(req.params.id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const deleteMethod = (req: Request, res: Response, next: NextFunction) => {
+const deleteMethod = (req: Request, res: Response, next: NextFunction) =>
   PaymentMethodsService.deleteMethod(req.params.id)
-    .then(data => {
-      res.status(data ? 200 : 404).end()
-    })
+    .then(data => res.status(data ? 200 : 404).end())
     .catch(next)
-}
 
 router
   .get(
