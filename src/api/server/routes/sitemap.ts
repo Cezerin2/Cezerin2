@@ -4,25 +4,14 @@ import SitemapService from "../services/sitemap"
 
 const router = Router()
 
-const getPaths = (req: Request, res: Response, next: NextFunction) => {
-  if (req.query.path) {
-    SitemapService.getSinglePath(req.query.path, req.query.enabled === "true")
-      .then(data => {
-        if (data) {
-          res.send(data)
-        } else {
-          res.status(404).end()
-        }
-      })
-      .catch(next)
-  } else {
-    SitemapService.getPaths(req.query.enabled)
-      .then(data => {
-        res.send(data)
-      })
-      .catch(next)
-  }
-}
+const getPaths = (req: Request, res: Response, next: NextFunction) =>
+  req.query.path
+    ? SitemapService.getSinglePath(req.query.path, req.query.enabled === "true")
+        .then(data => (data ? res.send(data) : res.status(404).end()))
+        .catch(next)
+    : SitemapService.getPaths(req.query.enabled)
+        .then(data => res.send(data))
+        .catch(next)
 
 router.get(
   "/v1/sitemap",

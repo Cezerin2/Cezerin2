@@ -4,78 +4,58 @@ import PagesService from "../services/pages/pages"
 
 const router = Router()
 
-const getPages = (req: Request, res: Response, next: NextFunction) => {
+const getPages = (req: Request, res: Response, next: NextFunction) =>
   PagesService.getPages(req.query)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getSinglePage = (req: Request, res: Response, next: NextFunction) => {
+const getSinglePage = (req: Request, res: Response, next: NextFunction) =>
   PagesService.getSinglePage(req.params.id)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
 const addPage = (req: Request, res: Response, next: NextFunction) => {
   PagesService.addPage(req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
 }
 
 const updatePage = (req: Request, res: Response, next: NextFunction) => {
   PagesService.updatePage(req.params.id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
 }
 
-const deletePage = (req: Request, res: Response, next: NextFunction) => {
+const deletePage = (req: Request, res: Response, next: NextFunction) =>
   PagesService.deletePage(req.params.id)
-    .then(data => {
-      res.status(data ? 200 : 404).end()
-    })
+    .then(data => res.status(data ? 200 : 404).end())
     .catch(next)
-}
 
-router.get(
-  "/v1/pages",
-  security.checkUserScope(security.scope.READ_PAGES),
-  getPages
-)
-router.post(
-  "/v1/pages",
-  security.checkUserScope(security.scope.WRITE_PAGES),
-  addPage
-)
-router.get(
-  "/v1/pages/:id",
-  security.checkUserScope(security.scope.READ_PAGES),
-  getSinglePage
-)
-router.put(
-  "/v1/pages/:id",
-  security.checkUserScope(security.scope.WRITE_PAGES),
-  updatePage
-)
-router.delete(
-  "/v1/pages/:id",
-  security.checkUserScope(security.scope.WRITE_PAGES),
-  deletePage
-)
+router
+  .get(
+    "/v1/pages",
+    security.checkUserScope(security.scope.READ_PAGES),
+    getPages
+  )
+  .post(
+    "/v1/pages",
+    security.checkUserScope(security.scope.WRITE_PAGES),
+    addPage
+  )
+  .get(
+    "/v1/pages/:id",
+    security.checkUserScope(security.scope.READ_PAGES),
+    getSinglePage
+  )
+  .put(
+    "/v1/pages/:id",
+    security.checkUserScope(security.scope.WRITE_PAGES),
+    updatePage
+  )
+  .delete(
+    "/v1/pages/:id",
+    security.checkUserScope(security.scope.WRITE_PAGES),
+    deletePage
+  )
 
 export default router

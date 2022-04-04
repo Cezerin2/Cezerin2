@@ -4,78 +4,56 @@ import CustomerGroupsService from "../services/customers/customerGroups"
 
 const router = Router()
 
-const getGroups = (req: Request, res: Response, next: NextFunction) => {
+const getGroups = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.getGroups(req.query)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const getSingleGroup = (req: Request, res: Response, next: NextFunction) => {
+const getSingleGroup = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.getSingleGroup(req.params.id)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const addGroup = (req: Request, res: Response, next: NextFunction) => {
+const addGroup = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.addGroup(req.body)
-    .then(data => {
-      res.send(data)
-    })
+    .then(data => res.send(data))
     .catch(next)
-}
 
-const updateGroup = (req: Request, res: Response, next: NextFunction) => {
+const updateGroup = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.updateGroup(req.params.id, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
+    .then(data => (data ? res.send(data) : res.status(404).end()))
     .catch(next)
-}
 
-const deleteGroup = (req: Request, res: Response, next: NextFunction) => {
+const deleteGroup = (req: Request, res: Response, next: NextFunction) =>
   CustomerGroupsService.deleteGroup(req.params.id)
-    .then(data => {
-      res.status(data ? 200 : 404).end()
-    })
+    .then(data => res.status(data ? 200 : 404).end())
     .catch(next)
-}
 
-router.get(
-  "/v1/customer_groups",
-  security.checkUserScope(security.scope.READ_CUSTOMER_GROUPS),
-  getGroups
-)
-router.post(
-  "/v1/customer_groups",
-  security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
-  addGroup
-)
-router.get(
-  "/v1/customer_groups/:id",
-  security.checkUserScope(security.scope.READ_CUSTOMER_GROUPS),
-  getSingleGroup
-)
-router.put(
-  "/v1/customer_groups/:id",
-  security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
-  updateGroup
-)
-router.delete(
-  "/v1/customer_groups/:id",
-  security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
-  deleteGroup
-)
+router
+  .get(
+    "/v1/customer_groups",
+    security.checkUserScope(security.scope.READ_CUSTOMER_GROUPS),
+    getGroups
+  )
+  .post(
+    "/v1/customer_groups",
+    security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
+    addGroup
+  )
+  .get(
+    "/v1/customer_groups/:id",
+    security.checkUserScope(security.scope.READ_CUSTOMER_GROUPS),
+    getSingleGroup
+  )
+  .put(
+    "/v1/customer_groups/:id",
+    security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
+    updateGroup
+  )
+  .delete(
+    "/v1/customer_groups/:id",
+    security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
+    deleteGroup
+  )
 
 export default router
