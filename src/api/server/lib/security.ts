@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from "express"
 import expressJwt from "express-jwt"
 import jwt from "jsonwebtoken"
 import SecurityTokensService from "../services/security/tokens"
@@ -42,24 +43,27 @@ const scope = {
   WRITE_FILES: "write:files",
 }
 
-const checkUserScope = (requiredScope, req, res, next) => {
-  if (DEVELOPER_MODE === true) {
-    next()
-  } else if (
-    req.user &&
-    req.user.scopes &&
-    req.user.scopes.length > 0 &&
-    (req.user.scopes.includes(scope.ADMIN) ||
-      req.user.scopes.includes(requiredScope))
-  ) {
-    next()
-  } else {
-    res.status(403).send({ error: true, message: "Forbidden" })
+const checkUserScope =
+  (requiredScope: string) =>
+  // TODO: Remove & { user }
+  (req: Request & { user }, res: Response, next: NextFunction) => {
+    if (DEVELOPER_MODE === true) {
+      next()
+    } else if (
+      req.user &&
+      req.user.scopes &&
+      req.user.scopes.length > 0 &&
+      (req.user.scopes.includes(scope.ADMIN) ||
+        req.user.scopes.includes(requiredScope))
+    ) {
+      next()
+    } else {
+      res.status(403).send({ error: true, message: "Forbidden" })
+    }
   }
-}
 
-const verifyToken = token => {
-  return new Promise((resolve, reject) => {
+const verifyToken = token =>
+  new Promise((resolve, reject) => {
     jwt.verify(token, settings.jwtSecretKey, (err, decoded) => {
       if (err) {
         reject(err)
@@ -69,7 +73,6 @@ const verifyToken = token => {
       }
     })
   })
-}
 
 const checkTokenInBlacklistCallback = async (req, payload, done) => {
   try {
@@ -93,15 +96,13 @@ const applyMiddleware = app => {
   }
 }
 
-const getAccessControlAllowOrigin = () => {
-  return settings.storeBaseUrl || "*"
-}
+const getAccessControlAllowOrigin = () => settings.storeBaseUrl || "*"
 
 export default {
-  checkUserScope: checkUserScope,
-  scope: scope,
-  verifyToken: verifyToken,
-  applyMiddleware: applyMiddleware,
-  getAccessControlAllowOrigin: getAccessControlAllowOrigin,
-  DEVELOPER_MODE: DEVELOPER_MODE,
+  checkUserScope,
+  scope,
+  verifyToken,
+  applyMiddleware,
+  getAccessControlAllowOrigin,
+  DEVELOPER_MODE,
 }
