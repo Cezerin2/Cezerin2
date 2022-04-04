@@ -50,7 +50,7 @@
     "@tinymce/tinymce-react": "^3.13.1",
     "axios": "^0.26.0",
     "bcrypt": "^5.0.1",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.0",
     "cezerin2-client": "^0.36.0",
     "chart.js": "^2.7.2",
     "cookie-parser": "^1.4.3",
