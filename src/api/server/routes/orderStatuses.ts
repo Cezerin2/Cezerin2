@@ -52,30 +52,31 @@ const deleteStatus = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/order_statuses",
-  security.checkUserScope(security.scope.READ_ORDER_STATUSES),
-  getStatuses
-)
-router.post(
-  "/v1/order_statuses",
-  security.checkUserScope(security.scope.WRITE_ORDER_STATUSES),
-  addStatus
-)
-router.get(
-  "/v1/order_statuses/:id",
-  security.checkUserScope(security.scope.READ_ORDER_STATUSES),
-  getSingleStatus
-)
-router.put(
-  "/v1/order_statuses/:id",
-  security.checkUserScope(security.scope.WRITE_ORDER_STATUSES),
-  updateStatus
-)
-router.delete(
-  "/v1/order_statuses/:id",
-  security.checkUserScope(security.scope.WRITE_ORDER_STATUSES),
-  deleteStatus
-)
+router
+  .get(
+    "/v1/order_statuses",
+    security.checkUserScope(security.scope.READ_ORDER_STATUSES),
+    getStatuses
+  )
+  .post(
+    "/v1/order_statuses",
+    security.checkUserScope(security.scope.WRITE_ORDER_STATUSES),
+    addStatus
+  )
+  .get(
+    "/v1/order_statuses/:id",
+    security.checkUserScope(security.scope.READ_ORDER_STATUSES),
+    getSingleStatus
+  )
+  .put(
+    "/v1/order_statuses/:id",
+    security.checkUserScope(security.scope.WRITE_ORDER_STATUSES),
+    updateStatus
+  )
+  .delete(
+    "/v1/order_statuses/:id",
+    security.checkUserScope(security.scope.WRITE_ORDER_STATUSES),
+    deleteStatus
+  )
 
 export default router

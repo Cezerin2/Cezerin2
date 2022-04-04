@@ -52,30 +52,31 @@ const deleteRedirect = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/redirects",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getRedirects
-)
-router.post(
-  "/v1/redirects",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  addRedirect
-)
-router.get(
-  "/v1/redirects/:id",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getSingleRedirect
-)
-router.put(
-  "/v1/redirects/:id",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateRedirect
-)
-router.delete(
-  "/v1/redirects/:id",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  deleteRedirect
-)
+router
+  .get(
+    "/v1/redirects",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getRedirects
+  )
+  .post(
+    "/v1/redirects",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    addRedirect
+  )
+  .get(
+    "/v1/redirects/:id",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getSingleRedirect
+  )
+  .put(
+    "/v1/redirects/:id",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateRedirect
+  )
+  .delete(
+    "/v1/redirects/:id",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    deleteRedirect
+  )
 
 export default router

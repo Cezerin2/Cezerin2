@@ -52,30 +52,31 @@ const deletePage = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/pages",
-  security.checkUserScope(security.scope.READ_PAGES),
-  getPages
-)
-router.post(
-  "/v1/pages",
-  security.checkUserScope(security.scope.WRITE_PAGES),
-  addPage
-)
-router.get(
-  "/v1/pages/:id",
-  security.checkUserScope(security.scope.READ_PAGES),
-  getSinglePage
-)
-router.put(
-  "/v1/pages/:id",
-  security.checkUserScope(security.scope.WRITE_PAGES),
-  updatePage
-)
-router.delete(
-  "/v1/pages/:id",
-  security.checkUserScope(security.scope.WRITE_PAGES),
-  deletePage
-)
+router
+  .get(
+    "/v1/pages",
+    security.checkUserScope(security.scope.READ_PAGES),
+    getPages
+  )
+  .post(
+    "/v1/pages",
+    security.checkUserScope(security.scope.WRITE_PAGES),
+    addPage
+  )
+  .get(
+    "/v1/pages/:id",
+    security.checkUserScope(security.scope.READ_PAGES),
+    getSinglePage
+  )
+  .put(
+    "/v1/pages/:id",
+    security.checkUserScope(security.scope.WRITE_PAGES),
+    updatePage
+  )
+  .delete(
+    "/v1/pages/:id",
+    security.checkUserScope(security.scope.WRITE_PAGES),
+    deletePage
+  )
 
 export default router

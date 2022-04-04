@@ -24,15 +24,16 @@ const updateSettings = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/apps/:key/settings",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getSettings
-)
-router.put(
-  "/v1/apps/:key/settings",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateSettings
-)
+router
+  .get(
+    "/v1/apps/:key/settings",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getSettings
+  )
+  .put(
+    "/v1/apps/:key/settings",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateSettings
+  )
 
 export default router

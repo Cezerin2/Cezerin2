@@ -52,30 +52,31 @@ const deleteWebhook = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/webhooks",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getWebhooks
-)
-router.post(
-  "/v1/webhooks",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  addWebhook
-)
-router.get(
-  "/v1/webhooks/:id",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getSingleWebhook
-)
-router.put(
-  "/v1/webhooks/:id",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateWebhook
-)
-router.delete(
-  "/v1/webhooks/:id",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  deleteWebhook
-)
+router
+  .get(
+    "/v1/webhooks",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getWebhooks
+  )
+  .post(
+    "/v1/webhooks",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    addWebhook
+  )
+  .get(
+    "/v1/webhooks/:id",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getSingleWebhook
+  )
+  .put(
+    "/v1/webhooks/:id",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateWebhook
+  )
+  .delete(
+    "/v1/webhooks/:id",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    deleteWebhook
+  )
 
 export default router

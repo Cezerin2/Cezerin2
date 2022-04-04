@@ -103,68 +103,69 @@ const deletePlaceholder = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/theme/export",
-  security.checkUserScope(security.scope.READ_THEME),
-  exportTheme
-)
-router.post(
-  "/v1/theme/install",
-  security.checkUserScope(security.scope.WRITE_THEME),
-  installTheme
-)
+router
+  .get(
+    "/v1/theme/export",
+    security.checkUserScope(security.scope.READ_THEME),
+    exportTheme
+  )
+  .post(
+    "/v1/theme/install",
+    security.checkUserScope(security.scope.WRITE_THEME),
+    installTheme
+  )
 
-router.get(
-  "/v1/theme/settings",
-  security.checkUserScope(security.scope.READ_THEME),
-  getSettings
-)
-router.put(
-  "/v1/theme/settings",
-  security.checkUserScope(security.scope.WRITE_THEME),
-  updateSettings
-)
-router.get(
-  "/v1/theme/settings_schema",
-  security.checkUserScope(security.scope.READ_THEME),
-  getSettingsSchema
-)
+  .get(
+    "/v1/theme/settings",
+    security.checkUserScope(security.scope.READ_THEME),
+    getSettings
+  )
+  .put(
+    "/v1/theme/settings",
+    security.checkUserScope(security.scope.WRITE_THEME),
+    updateSettings
+  )
+  .get(
+    "/v1/theme/settings_schema",
+    security.checkUserScope(security.scope.READ_THEME),
+    getSettingsSchema
+  )
 
-router.post(
-  "/v1/theme/assets",
-  security.checkUserScope(security.scope.WRITE_THEME),
-  uploadFile
-)
-router.delete(
-  "/v1/theme/assets/:file",
-  security.checkUserScope(security.scope.WRITE_THEME),
-  deleteFile
-)
+  .post(
+    "/v1/theme/assets",
+    security.checkUserScope(security.scope.WRITE_THEME),
+    uploadFile
+  )
+  .delete(
+    "/v1/theme/assets/:file",
+    security.checkUserScope(security.scope.WRITE_THEME),
+    deleteFile
+  )
 
-router.get(
-  "/v1/theme/placeholders",
-  security.checkUserScope(security.scope.READ_THEME),
-  getPlaceholders
-)
-router.post(
-  "/v1/theme/placeholders",
-  security.checkUserScope(security.scope.WRITE_THEME),
-  addPlaceholder
-)
-router.get(
-  "/v1/theme/placeholders/:key",
-  security.checkUserScope(security.scope.READ_THEME),
-  getSinglePlaceholder
-)
-router.put(
-  "/v1/theme/placeholders/:key",
-  security.checkUserScope(security.scope.WRITE_THEME),
-  updatePlaceholder
-)
-router.delete(
-  "/v1/theme/placeholders/:key",
-  security.checkUserScope(security.scope.WRITE_THEME),
-  deletePlaceholder
-)
+  .get(
+    "/v1/theme/placeholders",
+    security.checkUserScope(security.scope.READ_THEME),
+    getPlaceholders
+  )
+  .post(
+    "/v1/theme/placeholders",
+    security.checkUserScope(security.scope.WRITE_THEME),
+    addPlaceholder
+  )
+  .get(
+    "/v1/theme/placeholders/:key",
+    security.checkUserScope(security.scope.READ_THEME),
+    getSinglePlaceholder
+  )
+  .put(
+    "/v1/theme/placeholders/:key",
+    security.checkUserScope(security.scope.WRITE_THEME),
+    updatePlaceholder
+  )
+  .delete(
+    "/v1/theme/placeholders/:key",
+    security.checkUserScope(security.scope.WRITE_THEME),
+    deletePlaceholder
+  )
 
 export default router

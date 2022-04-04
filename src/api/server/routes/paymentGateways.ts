@@ -20,15 +20,16 @@ const updateGateway = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/payment_gateways/:name",
-  security.checkUserScope(security.scope.READ_PAYMENT_METHODS),
-  getGateway
-)
-router.put(
-  "/v1/payment_gateways/:name",
-  security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
-  updateGateway
-)
+router
+  .get(
+    "/v1/payment_gateways/:name",
+    security.checkUserScope(security.scope.READ_PAYMENT_METHODS),
+    getGateway
+  )
+  .put(
+    "/v1/payment_gateways/:name",
+    security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
+    updateGateway
+  )
 
 export default router

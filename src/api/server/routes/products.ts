@@ -273,140 +273,141 @@ const setVariantOption = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/products",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  getProducts
-)
-router.post(
-  "/v1/products",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  addProduct
-)
-router.get(
-  "/v1/products/:productId",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  getSingleProduct
-)
-router.put(
-  "/v1/products/:productId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  updateProduct
-)
-router.delete(
-  "/v1/products/:productId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  deleteProduct
-)
+router
+  .get(
+    "/v1/products",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    getProducts
+  )
+  .post(
+    "/v1/products",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    addProduct
+  )
+  .get(
+    "/v1/products/:productId",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    getSingleProduct
+  )
+  .put(
+    "/v1/products/:productId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    updateProduct
+  )
+  .delete(
+    "/v1/products/:productId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    deleteProduct
+  )
 
-router.get(
-  "/v1/products/:productId/images",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  getImages
-)
-router.post(
-  "/v1/products/:productId/images",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  addImage
-)
-router.put(
-  "/v1/products/:productId/images/:imageId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  updateImage
-)
-router.delete(
-  "/v1/products/:productId/images/:imageId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  deleteImage
-)
+  .get(
+    "/v1/products/:productId/images",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    getImages
+  )
+  .post(
+    "/v1/products/:productId/images",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    addImage
+  )
+  .put(
+    "/v1/products/:productId/images/:imageId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    updateImage
+  )
+  .delete(
+    "/v1/products/:productId/images/:imageId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    deleteImage
+  )
 
-router.get(
-  "/v1/products/:productId/sku",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  isSkuExists
-)
-router.get(
-  "/v1/products/:productId/slug",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  isSlugExists
-)
+  .get(
+    "/v1/products/:productId/sku",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    isSkuExists
+  )
+  .get(
+    "/v1/products/:productId/slug",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    isSlugExists
+  )
 
-router.get(
-  "/v1/products/:productId/options",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  getOptions
-)
-router.get(
-  "/v1/products/:productId/options/:optionId",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  getSingleOption
-)
-router.post(
-  "/v1/products/:productId/options",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  addOption
-)
-router.put(
-  "/v1/products/:productId/options/:optionId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  updateOption
-)
-router.delete(
-  "/v1/products/:productId/options/:optionId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  deleteOption
-)
+  .get(
+    "/v1/products/:productId/options",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    getOptions
+  )
+  .get(
+    "/v1/products/:productId/options/:optionId",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    getSingleOption
+  )
+  .post(
+    "/v1/products/:productId/options",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    addOption
+  )
+  .put(
+    "/v1/products/:productId/options/:optionId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    updateOption
+  )
+  .delete(
+    "/v1/products/:productId/options/:optionId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    deleteOption
+  )
 
-router.get(
-  "/v1/products/:productId/options/:optionId/values",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  getOptionValues
-)
-router.get(
-  "/v1/products/:productId/options/:optionId/values/:valueId",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  getSingleOptionValue
-)
-router.post(
-  "/v1/products/:productId/options/:optionId/values",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  addOptionValue
-)
-router.put(
-  "/v1/products/:productId/options/:optionId/values/:valueId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  updateOptionValue
-)
-router.delete(
-  "/v1/products/:productId/options/:optionId/values/:valueId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  deleteOptionValue
-)
+  .get(
+    "/v1/products/:productId/options/:optionId/values",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    getOptionValues
+  )
+  .get(
+    "/v1/products/:productId/options/:optionId/values/:valueId",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    getSingleOptionValue
+  )
+  .post(
+    "/v1/products/:productId/options/:optionId/values",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    addOptionValue
+  )
+  .put(
+    "/v1/products/:productId/options/:optionId/values/:valueId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    updateOptionValue
+  )
+  .delete(
+    "/v1/products/:productId/options/:optionId/values/:valueId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    deleteOptionValue
+  )
 
-router.get(
-  "/v1/products/:productId/variants",
-  security.checkUserScope(security.scope.READ_PRODUCTS),
-  getVariants
-)
-router.post(
-  "/v1/products/:productId/variants",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  addVariant
-)
-router.put(
-  "/v1/products/:productId/variants/:variantId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  updateVariant
-)
-router.delete(
-  "/v1/products/:productId/variants/:variantId",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  deleteVariant
-)
-router.put(
-  "/v1/products/:productId/variants/:variantId/options",
-  security.checkUserScope(security.scope.WRITE_PRODUCTS),
-  setVariantOption
-)
+  .get(
+    "/v1/products/:productId/variants",
+    security.checkUserScope(security.scope.READ_PRODUCTS),
+    getVariants
+  )
+  .post(
+    "/v1/products/:productId/variants",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    addVariant
+  )
+  .put(
+    "/v1/products/:productId/variants/:variantId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    updateVariant
+  )
+  .delete(
+    "/v1/products/:productId/variants/:variantId",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    deleteVariant
+  )
+  .put(
+    "/v1/products/:productId/variants/:variantId/options",
+    security.checkUserScope(security.scope.WRITE_PRODUCTS),
+    setVariantOption
+  )
 
 export default router

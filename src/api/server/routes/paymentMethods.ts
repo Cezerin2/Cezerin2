@@ -52,30 +52,31 @@ const deleteMethod = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/payment_methods",
-  security.checkUserScope(security.scope.READ_PAYMENT_METHODS),
-  getMethods
-)
-router.post(
-  "/v1/payment_methods",
-  security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
-  addMethod
-)
-router.get(
-  "/v1/payment_methods/:id",
-  security.checkUserScope(security.scope.READ_PAYMENT_METHODS),
-  getSingleMethod
-)
-router.put(
-  "/v1/payment_methods/:id",
-  security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
-  updateMethod
-)
-router.delete(
-  "/v1/payment_methods/:id",
-  security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
-  deleteMethod
-)
+router
+  .get(
+    "/v1/payment_methods",
+    security.checkUserScope(security.scope.READ_PAYMENT_METHODS),
+    getMethods
+  )
+  .post(
+    "/v1/payment_methods",
+    security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
+    addMethod
+  )
+  .get(
+    "/v1/payment_methods/:id",
+    security.checkUserScope(security.scope.READ_PAYMENT_METHODS),
+    getSingleMethod
+  )
+  .put(
+    "/v1/payment_methods/:id",
+    security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
+    updateMethod
+  )
+  .delete(
+    "/v1/payment_methods/:id",
+    security.checkUserScope(security.scope.WRITE_PAYMENT_METHODS),
+    deleteMethod
+  )
 
 export default router

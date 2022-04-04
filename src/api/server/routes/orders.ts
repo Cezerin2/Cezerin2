@@ -247,122 +247,123 @@ const chargeOrder = async (req: Request, res: Response, next: NextFunction) => {
   }
 }
 
-router.get(
-  "/v1/orders",
-  security.checkUserScope(security.scope.READ_ORDERS),
-  getOrders
-)
-router.post(
-  "/v1/orders",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  addOrder
-)
-router.get(
-  "/v1/orders/:id",
-  security.checkUserScope(security.scope.READ_ORDERS),
-  getSingleOrder
-)
-router.put(
-  "/v1/orders/:id",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  updateOrder
-)
-router.delete(
-  "/v1/orders/:id",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  deleteOrder
-)
+router
+  .get(
+    "/v1/orders",
+    security.checkUserScope(security.scope.READ_ORDERS),
+    getOrders
+  )
+  .post(
+    "/v1/orders",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    addOrder
+  )
+  .get(
+    "/v1/orders/:id",
+    security.checkUserScope(security.scope.READ_ORDERS),
+    getSingleOrder
+  )
+  .put(
+    "/v1/orders/:id",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    updateOrder
+  )
+  .delete(
+    "/v1/orders/:id",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    deleteOrder
+  )
 
-router.put(
-  "/v1/orders/:id/recalculate",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  recalculateOrder
-)
-router.put(
-  "/v1/orders/:id/checkout",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  checkoutOrder
-)
-router.put(
-  "/v1/orders/:id/cancel",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  cancelOrder
-)
-router.put(
-  "/v1/orders/:id/close",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  closeOrder
-)
+  .put(
+    "/v1/orders/:id/recalculate",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    recalculateOrder
+  )
+  .put(
+    "/v1/orders/:id/checkout",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    checkoutOrder
+  )
+  .put(
+    "/v1/orders/:id/cancel",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    cancelOrder
+  )
+  .put(
+    "/v1/orders/:id/close",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    closeOrder
+  )
 
-router.put(
-  "/v1/orders/:id/billing_address",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  updateBillingAddress
-)
-router.put(
-  "/v1/orders/:id/shipping_address",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  updateShippingAddress
-)
+  .put(
+    "/v1/orders/:id/billing_address",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    updateBillingAddress
+  )
+  .put(
+    "/v1/orders/:id/shipping_address",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    updateShippingAddress
+  )
 
-router.post(
-  "/v1/orders/:id/items",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  addItem
-)
-router.put(
-  "/v1/orders/:id/items/:item_id",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  updateItem
-)
-router.delete(
-  "/v1/orders/:id/items/:item_id",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  deleteItem
-)
+  .post(
+    "/v1/orders/:id/items",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    addItem
+  )
+  .put(
+    "/v1/orders/:id/items/:item_id",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    updateItem
+  )
+  .delete(
+    "/v1/orders/:id/items/:item_id",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    deleteItem
+  )
 
-router.post(
-  "/v1/orders/:id/transactions",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  addTransaction
-)
-router.put(
-  "/v1/orders/:id/transactions/:transaction_id",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  updateTransaction
-)
-router.delete(
-  "/v1/orders/:id/transactions/:transaction_id",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  deleteTransaction
-)
+  .post(
+    "/v1/orders/:id/transactions",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    addTransaction
+  )
+  .put(
+    "/v1/orders/:id/transactions/:transaction_id",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    updateTransaction
+  )
+  .delete(
+    "/v1/orders/:id/transactions/:transaction_id",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    deleteTransaction
+  )
 
-router.post(
-  "/v1/orders/:id/discounts",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  addDiscount
-)
-router.put(
-  "/v1/orders/:id/discounts/:discount_id",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  updateDiscount
-)
-router.delete(
-  "/v1/orders/:id/discounts/:discount_id",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  deleteDiscount
-)
+  .post(
+    "/v1/orders/:id/discounts",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    addDiscount
+  )
+  .put(
+    "/v1/orders/:id/discounts/:discount_id",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    updateDiscount
+  )
+  .delete(
+    "/v1/orders/:id/discounts/:discount_id",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    deleteDiscount
+  )
 
-router.get(
-  "/v1/orders/:id/payment_form_settings",
-  security.checkUserScope(security.scope.READ_ORDERS),
-  getPaymentFormSettings
-)
+  .get(
+    "/v1/orders/:id/payment_form_settings",
+    security.checkUserScope(security.scope.READ_ORDERS),
+    getPaymentFormSettings
+  )
 
-router.post(
-  "/v1/orders/:id/charge",
-  security.checkUserScope(security.scope.WRITE_ORDERS),
-  chargeOrder
-)
+  .post(
+    "/v1/orders/:id/charge",
+    security.checkUserScope(security.scope.WRITE_ORDERS),
+    chargeOrder
+  )
 
 export default router

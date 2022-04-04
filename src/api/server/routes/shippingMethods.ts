@@ -53,30 +53,31 @@ const deleteMethod = async (
   res.status(result ? 200 : 404).end()
 }
 
-router.get(
-  "/v1/shipping_methods",
-  security.checkUserScope(security.scope.READ_SHIPPING_METHODS),
-  getMethods
-)
-router.post(
-  "/v1/shipping_methods",
-  security.checkUserScope(security.scope.WRITE_SHIPPING_METHODS),
-  addMethod
-)
-router.get(
-  "/v1/shipping_methods/:id",
-  security.checkUserScope(security.scope.READ_SHIPPING_METHODS),
-  getSingleMethod
-)
-router.put(
-  "/v1/shipping_methods/:id",
-  security.checkUserScope(security.scope.WRITE_SHIPPING_METHODS),
-  updateMethod
-)
-router.delete(
-  "/v1/shipping_methods/:id",
-  security.checkUserScope(security.scope.WRITE_SHIPPING_METHODS),
-  deleteMethod
-)
+router
+  .get(
+    "/v1/shipping_methods",
+    security.checkUserScope(security.scope.READ_SHIPPING_METHODS),
+    getMethods
+  )
+  .post(
+    "/v1/shipping_methods",
+    security.checkUserScope(security.scope.WRITE_SHIPPING_METHODS),
+    addMethod
+  )
+  .get(
+    "/v1/shipping_methods/:id",
+    security.checkUserScope(security.scope.READ_SHIPPING_METHODS),
+    getSingleMethod
+  )
+  .put(
+    "/v1/shipping_methods/:id",
+    security.checkUserScope(security.scope.WRITE_SHIPPING_METHODS),
+    updateMethod
+  )
+  .delete(
+    "/v1/shipping_methods/:id",
+    security.checkUserScope(security.scope.WRITE_SHIPPING_METHODS),
+    deleteMethod
+  )
 
 export default router

@@ -69,40 +69,41 @@ const deleteCategoryImage = (
   res.end()
 }
 
-router.get(
-  "/v1/product_categories",
-  security.checkUserScope(security.scope.READ_PRODUCT_CATEGORIES),
-  getCategories
-)
-router.post(
-  "/v1/product_categories",
-  security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
-  addCategory
-)
-router.get(
-  "/v1/product_categories/:id",
-  security.checkUserScope(security.scope.READ_PRODUCT_CATEGORIES),
-  getSingleCategory
-)
-router.put(
-  "/v1/product_categories/:id",
-  security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
-  updateCategory
-)
-router.delete(
-  "/v1/product_categories/:id",
-  security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
-  deleteCategory
-)
-router.post(
-  "/v1/product_categories/:id/image",
-  security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
-  uploadCategoryImage
-)
-router.delete(
-  "/v1/product_categories/:id/image",
-  security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
-  deleteCategoryImage
-)
+router
+  .get(
+    "/v1/product_categories",
+    security.checkUserScope(security.scope.READ_PRODUCT_CATEGORIES),
+    getCategories
+  )
+  .post(
+    "/v1/product_categories",
+    security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
+    addCategory
+  )
+  .get(
+    "/v1/product_categories/:id",
+    security.checkUserScope(security.scope.READ_PRODUCT_CATEGORIES),
+    getSingleCategory
+  )
+  .put(
+    "/v1/product_categories/:id",
+    security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
+    updateCategory
+  )
+  .delete(
+    "/v1/product_categories/:id",
+    security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
+    deleteCategory
+  )
+  .post(
+    "/v1/product_categories/:id/image",
+    security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
+    uploadCategoryImage
+  )
+  .delete(
+    "/v1/product_categories/:id/image",
+    security.checkUserScope(security.scope.WRITE_PRODUCT_CATEGORIES),
+    deleteCategoryImage
+  )
 
 export default router

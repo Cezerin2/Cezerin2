@@ -52,30 +52,31 @@ const deleteGroup = (req: Request, res: Response, next: NextFunction) => {
     .catch(next)
 }
 
-router.get(
-  "/v1/customer_groups",
-  security.checkUserScope(security.scope.READ_CUSTOMER_GROUPS),
-  getGroups
-)
-router.post(
-  "/v1/customer_groups",
-  security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
-  addGroup
-)
-router.get(
-  "/v1/customer_groups/:id",
-  security.checkUserScope(security.scope.READ_CUSTOMER_GROUPS),
-  getSingleGroup
-)
-router.put(
-  "/v1/customer_groups/:id",
-  security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
-  updateGroup
-)
-router.delete(
-  "/v1/customer_groups/:id",
-  security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
-  deleteGroup
-)
+router
+  .get(
+    "/v1/customer_groups",
+    security.checkUserScope(security.scope.READ_CUSTOMER_GROUPS),
+    getGroups
+  )
+  .post(
+    "/v1/customer_groups",
+    security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
+    addGroup
+  )
+  .get(
+    "/v1/customer_groups/:id",
+    security.checkUserScope(security.scope.READ_CUSTOMER_GROUPS),
+    getSingleGroup
+  )
+  .put(
+    "/v1/customer_groups/:id",
+    security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
+    updateGroup
+  )
+  .delete(
+    "/v1/customer_groups/:id",
+    security.checkUserScope(security.scope.WRITE_CUSTOMER_GROUPS),
+    deleteGroup
+  )
 
 export default router

@@ -76,36 +76,37 @@ const sendDashboardSigninUrl = (
     .catch(next)
 }
 
-router.get(
-  "/v1/security/tokens",
-  security.checkUserScope(security.scope.ADMIN),
-  getTokens
-)
-router.get(
-  "/v1/security/tokens/blacklist",
-  security.checkUserScope(security.scope.ADMIN),
-  getTokensBlacklist
-)
-router.post(
-  "/v1/security/tokens",
-  security.checkUserScope(security.scope.ADMIN),
-  addToken
-)
-router.get(
-  "/v1/security/tokens/:id",
-  security.checkUserScope(security.scope.ADMIN),
-  getSingleToken
-)
-router.put(
-  "/v1/security/tokens/:id",
-  security.checkUserScope(security.scope.ADMIN),
-  updateToken
-)
-router.delete(
-  "/v1/security/tokens/:id",
-  security.checkUserScope(security.scope.ADMIN),
-  deleteToken
-)
-router.post("/v1/authorize", sendDashboardSigninUrl)
+router
+  .get(
+    "/v1/security/tokens",
+    security.checkUserScope(security.scope.ADMIN),
+    getTokens
+  )
+  .get(
+    "/v1/security/tokens/blacklist",
+    security.checkUserScope(security.scope.ADMIN),
+    getTokensBlacklist
+  )
+  .post(
+    "/v1/security/tokens",
+    security.checkUserScope(security.scope.ADMIN),
+    addToken
+  )
+  .get(
+    "/v1/security/tokens/:id",
+    security.checkUserScope(security.scope.ADMIN),
+    getSingleToken
+  )
+  .put(
+    "/v1/security/tokens/:id",
+    security.checkUserScope(security.scope.ADMIN),
+    updateToken
+  )
+  .delete(
+    "/v1/security/tokens/:id",
+    security.checkUserScope(security.scope.ADMIN),
+    deleteToken
+  )
+  .post("/v1/authorize", sendDashboardSigninUrl)
 
 export default router

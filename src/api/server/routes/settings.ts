@@ -171,80 +171,81 @@ const deleteLogo = (req: Request, res: Response, next: NextFunction) => {
   })
 }
 
-router.get(
-  "/v1/settings",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getSettings
-)
-router.put(
-  "/v1/settings",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateSettings
-)
-router.get(
-  "/v1/settings/email",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getEmailSettings
-)
-router.put(
-  "/v1/settings/email",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateEmailSettings
-)
-router.get(
-  "/v1/settings/import",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getImportSettings
-)
-router.put(
-  "/v1/settings/import",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateImportSettings
-)
-router.get(
-  "/v1/settings/commerceform",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  retrieveCommerceSettings
-)
-router.put(
-  "/v1/settings/commerceform",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateCommerceSettings
-)
-router.get(
-  "/v1/settings/email/templates/:name",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getEmailTemplate
-)
-router.put(
-  "/v1/settings/email/templates/:name",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateEmailTemplate
-)
-router.get(
-  "/v1/settings/checkout/fields",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getCheckoutFields
-)
-router.get(
-  "/v1/settings/checkout/fields/:name",
-  security.checkUserScope(security.scope.READ_SETTINGS),
-  getCheckoutField
-)
-router.put(
-  "/v1/settings/checkout/fields/:name",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  updateCheckoutField
-)
-router.post(
-  "/v1/settings/logo",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  uploadLogo
-)
-router.delete(
-  "/v1/settings/logo",
-  security.checkUserScope(security.scope.WRITE_SETTINGS),
-  deleteLogo
-)
+router
+  .get(
+    "/v1/settings",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getSettings
+  )
+  .put(
+    "/v1/settings",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateSettings
+  )
+  .get(
+    "/v1/settings/email",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getEmailSettings
+  )
+  .put(
+    "/v1/settings/email",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateEmailSettings
+  )
+  .get(
+    "/v1/settings/import",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getImportSettings
+  )
+  .put(
+    "/v1/settings/import",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateImportSettings
+  )
+  .get(
+    "/v1/settings/commerceform",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    retrieveCommerceSettings
+  )
+  .put(
+    "/v1/settings/commerceform",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateCommerceSettings
+  )
+  .get(
+    "/v1/settings/email/templates/:name",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getEmailTemplate
+  )
+  .put(
+    "/v1/settings/email/templates/:name",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateEmailTemplate
+  )
+  .get(
+    "/v1/settings/checkout/fields",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getCheckoutFields
+  )
+  .get(
+    "/v1/settings/checkout/fields/:name",
+    security.checkUserScope(security.scope.READ_SETTINGS),
+    getCheckoutField
+  )
+  .put(
+    "/v1/settings/checkout/fields/:name",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    updateCheckoutField
+  )
+  .post(
+    "/v1/settings/logo",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    uploadLogo
+  )
+  .delete(
+    "/v1/settings/logo",
+    security.checkUserScope(security.scope.WRITE_SETTINGS),
+    deleteLogo
+  )
 
 export default router

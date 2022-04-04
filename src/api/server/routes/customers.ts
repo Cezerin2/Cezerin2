@@ -105,55 +105,56 @@ const setDefaultShipping = (
     .catch(next)
 }
 
-router.get(
-  "/v1/customers",
-  security.checkUserScope(security.scope.READ_CUSTOMERS),
-  getCustomers
-)
-router.post(
-  "/v1/customers",
-  security.checkUserScope(security.scope.WRITE_CUSTOMERS),
-  addCustomer
-)
-router.get(
-  "/v1/customers/:id",
-  security.checkUserScope(security.scope.READ_CUSTOMERS),
-  getSingleCustomer
-)
-router.put(
-  "/v1/customers/:id",
-  security.checkUserScope(security.scope.WRITE_CUSTOMERS),
-  updateCustomer
-)
-router.delete(
-  "/v1/customers/:id",
-  security.checkUserScope(security.scope.WRITE_CUSTOMERS),
-  deleteCustomer
-)
-router.post(
-  "/v1/customers/:id/addresses",
-  security.checkUserScope(security.scope.WRITE_CUSTOMERS),
-  addAddress
-)
-router.put(
-  "/v1/customers/:id/addresses/:address_id",
-  security.checkUserScope(security.scope.WRITE_CUSTOMERS),
-  updateAddress
-)
-router.delete(
-  "/v1/customers/:id/addresses/:address_id",
-  security.checkUserScope(security.scope.WRITE_CUSTOMERS),
-  deleteAddress
-)
-router.post(
-  "/v1/customers/:id/addresses/:address_id/default_billing",
-  security.checkUserScope(security.scope.WRITE_CUSTOMERS),
-  setDefaultBilling
-)
-router.post(
-  "/v1/customers/:id/addresses/:address_id/default_shipping",
-  security.checkUserScope(security.scope.WRITE_CUSTOMERS),
-  setDefaultShipping
-)
+router
+  .get(
+    "/v1/customers",
+    security.checkUserScope(security.scope.READ_CUSTOMERS),
+    getCustomers
+  )
+  .post(
+    "/v1/customers",
+    security.checkUserScope(security.scope.WRITE_CUSTOMERS),
+    addCustomer
+  )
+  .get(
+    "/v1/customers/:id",
+    security.checkUserScope(security.scope.READ_CUSTOMERS),
+    getSingleCustomer
+  )
+  .put(
+    "/v1/customers/:id",
+    security.checkUserScope(security.scope.WRITE_CUSTOMERS),
+    updateCustomer
+  )
+  .delete(
+    "/v1/customers/:id",
+    security.checkUserScope(security.scope.WRITE_CUSTOMERS),
+    deleteCustomer
+  )
+  .post(
+    "/v1/customers/:id/addresses",
+    security.checkUserScope(security.scope.WRITE_CUSTOMERS),
+    addAddress
+  )
+  .put(
+    "/v1/customers/:id/addresses/:address_id",
+    security.checkUserScope(security.scope.WRITE_CUSTOMERS),
+    updateAddress
+  )
+  .delete(
+    "/v1/customers/:id/addresses/:address_id",
+    security.checkUserScope(security.scope.WRITE_CUSTOMERS),
+    deleteAddress
+  )
+  .post(
+    "/v1/customers/:id/addresses/:address_id/default_billing",
+    security.checkUserScope(security.scope.WRITE_CUSTOMERS),
+    setDefaultBilling
+  )
+  .post(
+    "/v1/customers/:id/addresses/:address_id/default_shipping",
+    security.checkUserScope(security.scope.WRITE_CUSTOMERS),
+    setDefaultShipping
+  )
 
 export default router
