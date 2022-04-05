@@ -48,7 +48,7 @@
     "@mui/material": "^5.5.3",
     "@reduxjs/toolkit": "^1.8.1",
     "@tinymce/tinymce-react": "^3.13.1",
-    "axios": "^0.26.0",
+    "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "cezerin2-client": "^0.36.0",
