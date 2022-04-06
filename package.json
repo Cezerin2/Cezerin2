@@ -107,7 +107,7 @@
     "@types/express": "^4.17.13",
     "@types/fs-extra": "^9.0.13",
     "@types/jsonwebtoken": "^8.5.8",
-    "@types/lru-cache": "^7.4.0",
+    "@types/lru-cache": "^7.6.1",
     "@types/node": "^17.0.23",
     "@types/nodemailer": "^6.4.4",
     "@types/react": "^17.0.43",
