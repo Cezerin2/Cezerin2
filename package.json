@@ -97,7 +97,7 @@
     "ws": "^8.5.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.0",
+    "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
