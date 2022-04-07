@@ -1,0 +1,21 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Community Support
+    url: https://t.me/Cezerin
+    about: Please ask and answer questions and all other things here. And engage with the community.
+
+  - name: Want to start a discussion?
+    url: https://github.com/Cezerin2/Cezerin2/discussions
+    about: Want to start a thread to discuss an idea? Use the discussions feature provided by GitHub.
+
+  - name: Take actions for the development of community?
+    url: https://github.com/Cezerin2/Cezerin2/discussions
+    about: Use the discussions feature provided by GitHub.
+
+  - name: Take actions for reporting and enforcement of code of conduct?
+    url: https://github.com/Cezerin2/Cezerin2/discussions
+    about: Use the discussions feature provided by GitHub.
+
+  - name: Security vulnerabilities
+    url: https://github.com/Cezerin2/Cezerin2/security/policy
+    about: Reporting security vulnerabilities.
