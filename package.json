@@ -93,7 +93,7 @@
     "stripe": "^6.7.0",
     "theme": "./theme",
     "ua-parser-js": "^0.7.18",
-    "winston": "^3.0.0",
+    "winston": "^3.7.2",
     "ws": "^8.5.0"
   },
   "devDependencies": {
