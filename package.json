@@ -58,7 +58,7 @@
     "express": "^4.17.3",
     "express-jwt": "^5.3.0",
     "formidable": "^1.2.1",
-    "fs-extra": "^7.0.0",
+    "fs-extra": "^10.0.1",
     "handlebars": "^4.7.7",
     "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
