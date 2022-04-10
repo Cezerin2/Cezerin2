@@ -11,7 +11,7 @@ form {
   display: initial;
 }
 
-#app,
+#root,
 #container {
   height: 100%;
 }

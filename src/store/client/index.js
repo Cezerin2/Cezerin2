@@ -1,5 +1,5 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import { hydrateRoot } from "react-dom/client"
 import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
 import thunkMiddleware from "redux-thunk"
@@ -27,13 +27,14 @@ const store = createStore(
   applyMiddleware(thunkMiddleware)
 )
 
-ReactDOM.hydrate(
+const container = document.getElementById("root")
+hydrateRoot(
+  container,
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>,
-  document.getElementById("app")
+  </Provider>
 )
 
 analytics.onPageLoad({ state: initialState })

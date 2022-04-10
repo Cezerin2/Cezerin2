@@ -1,6 +1,6 @@
 import winston from "winston"
 import CezerinClient from "cezerin2-client"
-import React from "react"
+import React, { StrictMode } from "react"
 import { StaticRouter } from "react-router-dom"
 import { renderToString } from "react-dom/server"
 import { createStore, applyMiddleware } from "redux"
@@ -55,11 +55,13 @@ const renderError = (req, res, err) => {
 
 const getAppHtml = (store, location, context = {}) => {
   const html = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={location} context={context}>
-        <App />
-      </StaticRouter>
-    </Provider>
+    <StrictMode>
+      <Provider store={store}>
+        <StaticRouter location={location} context={context}>
+          <App />
+        </StaticRouter>
+      </Provider>
+    </StrictMode>
   )
 
   return html
@@ -113,7 +115,7 @@ const renderPage = (req, res, store, themeText, placeholders) => {
     .replace("{script}", head.script)
     .replace("{app_text}", JSON.stringify(themeText))
     .replace("{app_state}", JSON.stringify(state))
-    .replace("{app}", appHtml)
+    .replace("{root}", appHtml)
 
   const isHttps = req.protocol === "https"
   const full_url = `${req.protocol}://${req.hostname}${req.url}`
