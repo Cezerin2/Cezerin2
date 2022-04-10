@@ -3,8 +3,8 @@ import { connectToWebSocket } from "lib/apiWebSocket"
 import * as auth from "lib/auth"
 import settings from "lib/settings"
 import { fetchSettings } from "modules/settings/actions"
-import React from "react"
-import ReactDOM from "react-dom"
+import React, { StrictMode } from "react"
+import ReactDOM from "react-dom/client"
 import { Provider } from "react-redux"
 import "../../../public/admin-assets/css/flexboxgrid.min.css"
 import "../../../public/admin-assets/css/style.css"
@@ -22,9 +22,11 @@ if (window.WebSocket) {
   console.log("WebSocket is not supported by your browser.")
 }
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("app")
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
+root.render(
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>
 )
