@@ -75,7 +75,7 @@
     "react-dom": "^18.0.0",
     "react-dropzone": "^5.0.1",
     "react-helmet": "^6.1.0",
-    "react-lazyload": "^2.6.5",
+    "react-lazyload": "^3.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^5.3.0",
     "react-scroll": "^1.8.6",

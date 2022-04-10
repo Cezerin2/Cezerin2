@@ -711,9 +711,9 @@ class OrdersService {
     - fire Webhooks
     */
     const [order, emailTemplate, dashboardSettings] = await Promise.all([
-      this.getOrCreateCustomer(orderId).then(customer_id =>
+      this.getOrCreateCustomer(orderId).then(customerID =>
         this.updateOrder(orderId, {
-          customer_id,
+          customer_id: customerID,
           date_placed: new Date(),
           draft: false,
         })
