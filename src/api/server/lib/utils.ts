@@ -30,7 +30,7 @@ const getAvailableSlug = (path, resource?, enableCleanPath = true) => {
   })
 }
 
-const getCorrectFileName = filename => {
+const getCorrectFileName = (filename: string) => {
   if (filename) {
     // replace unsafe characters
     return filename.replace(/[\s*/:;&?@$()<>#%\{\}|\\\^\~\[\]]/g, "-")

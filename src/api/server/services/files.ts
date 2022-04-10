@@ -4,21 +4,20 @@ import path from "path"
 import settings from "../lib/settings"
 import utils from "../lib/utils"
 
-const CONTENT_PATH = path.resolve(settings.filesUploadPath)
+const contentPath = path.resolve(settings.filesUploadPath)
 
 class FilesService {
-  getFileData(fileName) {
-    const filePath = CONTENT_PATH + "/" + fileName
+  getFileData(fileName: string) {
+    const filePath = `${contentPath}/${fileName}`
     const stats = fse.statSync(filePath)
-    if (stats.isFile()) {
+    if (stats.isFile())
       return {
         file: fileName,
         size: stats.size,
         modified: stats.mtime,
       }
-    } else {
-      return null
-    }
+
+    return null
   }
 
   getFilesData(files) {
@@ -30,7 +29,7 @@ class FilesService {
 
   getFiles() {
     return new Promise((resolve, reject) => {
-      fse.readdir(CONTENT_PATH, (err, files) => {
+      fse.readdir(contentPath, (err, files) => {
         if (err) {
           reject(err)
         } else {
@@ -43,7 +42,7 @@ class FilesService {
 
   deleteFile(fileName) {
     return new Promise<void>((resolve, reject) => {
-      const filePath = CONTENT_PATH + "/" + fileName
+      const filePath = contentPath + "/" + fileName
       if (fse.existsSync(filePath)) {
         fse.unlink(filePath, err => {
           resolve()
@@ -55,7 +54,7 @@ class FilesService {
   }
 
   uploadFile(req, res, next) {
-    const uploadDir = CONTENT_PATH
+    const uploadDir = contentPath
 
     let form = new formidable.IncomingForm(),
       file_name = null,
@@ -69,7 +68,7 @@ class FilesService {
         file.name = utils.getCorrectFileName(file.name)
         file.path = uploadDir + "/" + file.name
       })
-      .on("file", function (name, file) {
+      .on("file", (name, file) => {
         // every time a file has been uploaded successfully,
         file_name = file.name
         file_size = file.size
@@ -84,15 +83,15 @@ class FilesService {
         } else {
           res
             .status(400)
-            .send(this.getErrorMessage("Required fields are missing"))
+            .send(this.getErrorMessage("Required fields are missing!"))
         }
       })
 
     form.parse(req)
   }
 
-  getErrorMessage(err) {
-    return { error: true, message: err.toString() }
+  getErrorMessage(error: string) {
+    return { error: true, message: error.toString() }
   }
 }
 
