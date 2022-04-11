@@ -1,5 +1,5 @@
+import { Dialog, DialogActions } from "@mui/material"
 import messages from "lib/text"
-import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
@@ -43,20 +43,6 @@ const Buttons: FC<Props> = props => {
     onMoveTo(categoryIdMoveTo)
   }
 
-  const actionsMoveTo = [
-    <FlatButton
-      label={messages.cancel}
-      onClick={() => setOpenMoveTo(false)}
-      style={{ marginRight: 10 }}
-    />,
-    <FlatButton
-      label={messages.actions_moveHere}
-      primary
-      keyboardFocused
-      onClick={saveMoveTo}
-    />,
-  ]
-
   return (
     <>
       <Search value={search} setSearch={setSearch} />
@@ -91,17 +77,28 @@ const Buttons: FC<Props> = props => {
           />
           <Dialog
             title={messages.actions_moveTo}
-            actions={actionsMoveTo}
-            modal={false}
             open={openMoveTo}
-            onRequestClose={() => setOpenMoveTo(false)}
-            autoScrollBodyContent
+            onClose={() => setOpenMoveTo(false)}
+            scroll="body"
           >
             <CategorySelect
               onSelect={setCategoryIdMoveTo}
               selectedId={categoryIdMoveTo}
               opened
             />
+            <DialogActions>
+              <FlatButton
+                label={messages.cancel}
+                onClick={() => setOpenMoveTo(false)}
+                style={{ marginRight: 10 }}
+              />
+              <FlatButton
+                label={messages.actions_moveHere}
+                primary
+                keyboardFocused
+                onClick={saveMoveTo}
+              />
+            </DialogActions>
           </Dialog>
         </>
       )}
