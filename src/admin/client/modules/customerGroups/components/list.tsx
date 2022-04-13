@@ -1,5 +1,5 @@
+import { Clear, Folder, Settings } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
@@ -13,9 +13,7 @@ const styles = {
   },
 }
 
-const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>
-
-interface props {
+interface Props {
   onSelect
   selectedId
   items
@@ -25,9 +23,10 @@ interface props {
   onLoad: () => void
 }
 
-const Groups: FC<props> = props => {
+const Groups: FC<Props> = props => {
   const { onSelect, selectedId, items, showAll, showRoot, showManage, onLoad } =
     props
+  const FolderIcon = <Folder />
 
   useEffect(() => {
     onLoad()
@@ -53,7 +52,7 @@ const Groups: FC<props> = props => {
           primaryText={messages.customers_noGroup}
           style={selectedId === "root" ? styles.selectedItem : null}
           innerDivStyle={styles.innerItem}
-          leftIcon={<FontIcon className="material-icons">clear</FontIcon>}
+          leftIcon={<Clear />}
           onClick={() => {
             onSelect("root")
           }}
@@ -81,7 +80,7 @@ const Groups: FC<props> = props => {
             className="treeItem"
             primaryText={messages.customerGroups_titleEditMany}
             innerDivStyle={styles.innerItem}
-            leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
+            leftIcon={<Settings />}
           />
         </Link>
       )}
