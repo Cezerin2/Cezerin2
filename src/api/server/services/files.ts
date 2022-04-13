@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from "express"
 import formidable from "formidable"
 import fse from "fs-extra"
 import path from "path"
@@ -40,7 +41,7 @@ class FilesService {
     })
   }
 
-  deleteFile(fileName) {
+  deleteFile(fileName: string) {
     return new Promise<void>((resolve, reject) => {
       const filePath = contentPath + "/" + fileName
       if (fse.existsSync(filePath)) {
@@ -53,7 +54,7 @@ class FilesService {
     })
   }
 
-  uploadFile(req, res, next) {
+  uploadFile(req: Request, res: Response, next: NextFunction) {
     const uploadDir = contentPath
 
     let form = new formidable.IncomingForm(),
@@ -73,8 +74,8 @@ class FilesService {
         file_name = file.name
         file_size = file.size
       })
-      .on("error", err => {
-        res.status(500).send(this.getErrorMessage(err))
+      .on("error", error => {
+        res.status(500).send(this.getErrorMessage(error))
       })
       .on("end", () => {
         //Emitted when the entire request has been received, and all contained files have finished flushing to disk.

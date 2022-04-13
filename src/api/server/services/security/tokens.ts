@@ -16,17 +16,15 @@ const cache = new LRUCache({
   ttl: 1000 * 60 * 60 * 24, // 24h
 })
 
-const BLACKLIST_CACHE_KEY = "blacklist"
+const blackListCacheKey = "blacklist"
 
 class SecurityTokensService {
   getTokens(params: any = {}) {
-    let filter: any = {
+    const filter: any = {
       is_revoked: false,
     }
     const id = parse.getObjectIDIfValid(params.id)
-    if (id) {
-      filter._id = new ObjectID(id)
-    }
+    if (id) filter._id = new ObjectID(id)
 
     const email = parse.getString(params.email).toLowerCase()
     if (email && email.length > 0) {
@@ -41,41 +39,38 @@ class SecurityTokensService {
   }
 
   getTokensBlacklist() {
-    const blacklistFromCache = cache.get(BLACKLIST_CACHE_KEY)
+    const blacklistFromCache = cache.get(blackListCacheKey)
 
-    if (blacklistFromCache) {
-      return Promise.resolve(blacklistFromCache)
-    } else {
-      return db
-        .collection("tokens")
-        .find(
-          {
-            is_revoked: true,
-          },
-          { _id: 1 }
-        )
-        .toArray()
-        .then(items => {
-          const blacklistFromDB = items.map(item => item._id.toString())
-          cache.set(BLACKLIST_CACHE_KEY, blacklistFromDB)
-          return blacklistFromDB
-        })
-    }
+    if (blacklistFromCache) return Promise.resolve(blacklistFromCache)
+
+    return db
+      .collection("tokens")
+      .find(
+        {
+          is_revoked: true,
+        },
+        { _id: 1 }
+      )
+      .toArray()
+      .then(items => {
+        const blacklistFromDB = items.map(item => item._id.toString())
+        cache.set(blackListCacheKey, blacklistFromDB)
+        return blacklistFromDB
+      })
   }
 
   getSingleToken(id) {
-    if (!ObjectID.isValid(id)) {
-      return Promise.reject("Invalid identifier")
-    }
-    return this.getTokens({ id: id }).then(items => {
-      return items.length > 0 ? items[0] : null
-    })
+    if (!ObjectID.isValid(id)) return Promise.reject("Invalid identifier")
+
+    return this.getTokens({ id }).then(items =>
+      items.length > 0 ? items[0] : null
+    )
   }
 
-  getSingleTokenByEmail(email) {
-    return this.getTokens({ email }).then(items => {
-      return items.length > 0 ? items[0] : null
-    })
+  getSingleTokenByEmail(email: string) {
+    return this.getTokens({ email }).then(items =>
+      items.length > 0 ? items[0] : null
+    )
   }
 
   addToken(data) {
@@ -91,9 +86,8 @@ class SecurityTokensService {
   }
 
   updateToken(id, data) {
-    if (!ObjectID.isValid(id)) {
-      return Promise.reject("Invalid identifier")
-    }
+    if (!ObjectID.isValid(id)) return Promise.reject("Invalid identifier")
+
     const tokenObjectID = new ObjectID(id)
     const token = this.getValidDocumentForUpdate(id, data)
 
@@ -109,9 +103,8 @@ class SecurityTokensService {
   }
 
   deleteToken(id) {
-    if (!ObjectID.isValid(id)) {
-      return Promise.reject("Invalid identifier")
-    }
+    if (!ObjectID.isValid(id)) return Promise.reject("Invalid identifier")
+
     const tokenObjectID = new ObjectID(id)
     return db
       .collection("tokens")
@@ -127,21 +120,20 @@ class SecurityTokensService {
         }
       )
       .then(res => {
-        cache.del(BLACKLIST_CACHE_KEY)
+        cache.del(blackListCacheKey)
       })
   }
 
   checkTokenEmailUnique(email) {
-    if (email && email.length > 0) {
+    if (email && email.length > 0)
       return db
         .collection("tokens")
-        .count({ email: email, is_revoked: false })
+        .count({ email, is_revoked: false })
         .then(count =>
           count === 0 ? email : Promise.reject("Token email must be unique")
         )
-    } else {
-      return Promise.resolve(email)
-    }
+
+    return Promise.resolve(email)
   }
 
   getValidDocumentForInsert(data) {
@@ -168,7 +160,7 @@ class SecurityTokensService {
       return new Error("Required fields are missing")
     }
 
-    let token: any = {
+    const token: any = {
       date_updated: new Date(),
     }
 
@@ -197,7 +189,7 @@ class SecurityTokensService {
     return new Promise((resolve, reject) => {
       const jwtOptions: any = {}
 
-      let payload: any = {
+      const payload: any = {
         scopes: token.scopes,
         jti: token.id,
       }
@@ -224,7 +216,7 @@ class SecurityTokensService {
   getDashboardSigninUrl(email) {
     return SettingsService.getSettings().then(generalSettings =>
       this.getSingleTokenByEmail(email).then(token => {
-        if (token) {
+        if (token)
           return this.getSignedToken(token).then(signedToken => {
             const loginUrl = url.resolve(
               generalSettings.domain,
@@ -232,9 +224,8 @@ class SecurityTokensService {
             )
             return `${loginUrl}?token=${signedToken}`
           })
-        } else {
-          return null
-        }
+
+        return null
       })
     )
   }
@@ -287,9 +278,10 @@ class SecurityTokensService {
 
     if (link) {
       const linkObj = url.parse(link)
+      // TODO: received as null//null
       const domain = `${linkObj.protocol}//${linkObj.host}`
       const device = userAgent.device.vendor
-        ? userAgent.device.vendor + " " + userAgent.device.model + ", "
+        ? `${userAgent.device.vendor} ${userAgent.device.model}, `
         : ""
       const requestFrom = `${device}${userAgent.os.name}, ${userAgent.browser.name}<br />
       ${date}<br />
@@ -310,9 +302,9 @@ class SecurityTokensService {
       }
       const emailSent = await send(message)
       return { sent: emailSent, error: null }
-    } else {
-      return { sent: false, error: "Access Denied" }
     }
+
+    return { sent: false, error: "Access Denied" }
   }
 }
 
