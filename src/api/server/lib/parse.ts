@@ -2,8 +2,9 @@ import { ObjectID } from "mongodb"
 
 const getString = value => (value || "").toString()
 
-// ? Number methods requires values to be converted to number
-// ? with number method wasted lot of time on this
+// ? Number methods requires values to be converted
+// ? to a number with number method
+// ? wasted lot of time on this
 const getDateIfValid = value => {
   const date = Date.parse(value)
   return Number.isNaN(Number(date)) ? null : new Date(date)
