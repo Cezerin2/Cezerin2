@@ -50,7 +50,7 @@ const sendMail = (
 ) =>
   new Promise((resolve, reject) => {
     if (!message.to.includes("@")) {
-      reject(new Error("Invalid email address"))
+      reject(new Error("Invalid email address!"))
       return
     }
 

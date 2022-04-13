@@ -28,21 +28,19 @@ const getTokenFromRequestPath = requestPath => {
   }
 }
 
-const verifyClient = (info, done) => {
+const verifyClient = async (info, done) => {
   if (security.DEVELOPER_MODE === true) {
     done(true)
   } else {
     const requestPath = info.req.url
     const token = getTokenFromRequestPath(requestPath)
-    security
-      .verifyToken(token)
-      .then(tokenDecoded => {
-        // TODO: check access to dashboard
-        done(true)
-      })
-      .catch(err => {
-        done(false, 401)
-      })
+    try {
+      // TODO: check access to dashboard
+      await security.verifyToken(token) // returns tokenDecoded
+      done(true)
+    } catch (error) {
+      done(false, 401)
+    }
   }
 }
 
