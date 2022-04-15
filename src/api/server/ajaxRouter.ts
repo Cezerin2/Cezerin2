@@ -178,6 +178,7 @@ ajaxRouter.post("/reset-password", async (req, res, next) => {
       return false
     }
 
+    // TODO: Spelling mistake
     if ("name" in userID && userID.name.indexOf("JsonWebTokenErro") !== -1) {
       res.send(data)
       return false
@@ -568,7 +569,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
 
 ajaxRouter.post("/cart/items", (req, res, next) => {
   const isHttps = req.protocol === "https"
-  const CART_COOKIE_OPTIONS = getCartCookieOptions(isHttps)
+  const cartCookieOptions = getCartCookieOptions(isHttps)
 
   const { order_id } = req.signedCookies
   const item = req.body
@@ -610,7 +611,7 @@ ajaxRouter.post("/cart/items", (req, res, next) => {
       .then(orderDraft => {
         api.orders.create(orderDraft).then(orderResponse => {
           const orderId = orderResponse.json.id
-          res.cookie("order_id", orderId, CART_COOKIE_OPTIONS)
+          res.cookie("order_id", orderId, cartCookieOptions)
           api.orders.items
             .create(orderId, item)
             .then(cartResponse => fillCartItems(cartResponse))

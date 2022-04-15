@@ -15,6 +15,7 @@ import RedirectsRoute from "./routes/redirects"
 import SettingsRoute from "./routes/settings"
 import ShippingMethodsRoute from "./routes/shippingMethods"
 import SitemapRoute from "./routes/sitemap"
+import StatusRoute from "./routes/status"
 import ThemeRoute from "./routes/theme"
 import SecurityTokensRoute from "./routes/tokens"
 import WebhooksRoute from "./routes/webhooks"
@@ -40,5 +41,6 @@ apiRouter.use(RedirectsRoute)
 apiRouter.use(FilesRoute)
 apiRouter.use(AppsRoute)
 apiRouter.use(WebhooksRoute)
+apiRouter.use(StatusRoute)
 
 export default apiRouter

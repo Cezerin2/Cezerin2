@@ -1,23 +1,40 @@
 import messages from "lib/text"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
-import React from "react"
+import React, { FC } from "react"
 import style from "./style.css"
 
-export default ({
-  isClosed,
-  isCancelled,
-  isDelivered,
-  isPaid,
-  isHold,
-  isDraft,
-  setClosed,
-  setCancelled,
-  setDelivered,
-  setPaid,
-  setHold,
-  setDraft,
-}) => {
+interface Props {
+  isClosed
+  isCancelled
+  isDelivered
+  isPaid
+  isHold
+  isDraft
+  setClosed
+  setCancelled
+  setDelivered
+  setPaid
+  setHold
+  setDraft
+}
+
+const Filter: FC<Props> = props => {
+  const {
+    isClosed,
+    isCancelled,
+    isDelivered,
+    isPaid,
+    isHold,
+    isDraft,
+    setClosed,
+    setCancelled,
+    setDelivered,
+    setPaid,
+    setHold,
+    setDraft,
+  } = props
+
   return (
     <div className={style.filter}>
       <SelectField
@@ -106,3 +123,5 @@ export default ({
     </div>
   )
 }
+
+export default Filter
