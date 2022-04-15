@@ -1,4 +1,4 @@
-import bodyParser from "body-parser"
+import { json, urlencoded } from "body-parser"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import express from "express"
@@ -28,8 +28,8 @@ app.use(
 )
 app.use(responseTime())
 app.use(cookieParser(settings.cookieSecretKey))
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+app.use(urlencoded({ extended: true }))
+app.use(json())
 app.use("/ajax", ajaxRouter)
 app.use("/api", apiRouter)
 app.use(sendResponse)

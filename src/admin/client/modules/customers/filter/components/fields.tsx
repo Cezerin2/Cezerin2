@@ -2,19 +2,32 @@ import messages from "lib/text"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
 import Toggle from "material-ui/Toggle"
-import React from "react"
+import React, { FC } from "react"
 import style from "./style.css"
 
-export default ({
-  active,
-  discontinued,
-  on_sale,
-  stock_status,
-  setActive,
-  setDiscontinued,
-  setOnSale,
-  setStock,
-}) => {
+interface Props {
+  active
+  discontinued
+  on_sale
+  stock_status
+  setActive
+  setDiscontinued
+  setOnSale
+  setStock
+}
+
+const Filter: FC<Props> = props => {
+  const {
+    active,
+    discontinued,
+    on_sale,
+    stock_status,
+    setActive,
+    setDiscontinued,
+    setOnSale,
+    setStock,
+  } = props
+
   return (
     <div className={style.filter}>
       <Toggle
@@ -68,3 +81,5 @@ export default ({
     </div>
   )
 }
+
+export default Filter

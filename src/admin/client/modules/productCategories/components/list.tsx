@@ -1,5 +1,5 @@
+import { Folder, GetApp, Home, Settings } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
@@ -108,7 +108,7 @@ const Categories: FC<Props> = props => {
           primaryText={rootName}
           style={selectedId === "root" ? styles.selectedItem : null}
           innerDivStyle={styles.innerItem}
-          leftIcon={<FontIcon className="material-icons">home</FontIcon>}
+          leftIcon={<Home />}
           onClick={handleClickRoot}
         />
       )}
@@ -119,7 +119,7 @@ const Categories: FC<Props> = props => {
           primaryText={allName}
           style={selectedId === "all" ? styles.selectedItem : null}
           innerDivStyle={styles.innerItem}
-          leftIcon={<FontIcon className="material-icons">folder</FontIcon>}
+          leftIcon={<Folder />}
           onClick={handleClickAll}
         />
       )}
@@ -135,7 +135,7 @@ const Categories: FC<Props> = props => {
             className="treeItem"
             primaryText={messages.productCategories_titleEditMany}
             innerDivStyle={styles.innerItem}
-            leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
+            leftIcon={<Settings />}
           />
         </Link>
       )}
@@ -146,7 +146,7 @@ const Categories: FC<Props> = props => {
             className="treeItem"
             primaryText={messages.drawer_importing}
             innerDivStyle={styles.innerItem}
-            leftIcon={<FontIcon className="material-icons">get_app</FontIcon>}
+            leftIcon={<GetApp />}
             onClick={handleClickImport}
           />
         </Link>
