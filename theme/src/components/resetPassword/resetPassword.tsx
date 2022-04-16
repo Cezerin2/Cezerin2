@@ -63,7 +63,7 @@ class ResetPassword extends React.Component {
 
   getFieldValidators = fieldName => {
     const isOptional = this.isFieldOptional(fieldName)
-    let validatorsArray = []
+    const validatorsArray = []
     if (!isOptional) {
       validatorsArray.push(validateRequired)
     }
@@ -77,10 +77,9 @@ class ResetPassword extends React.Component {
     return validatorsArray
   }
 
-  confirmPassword = value => {
-    if (value !== this.state.comparePassword) {
-      return text.password_verify_failed
-    }
+  confirmPassword = (value: string) => {
+    if (value !== this.state.comparePassword) return text.password_verify_failed
+
     return undefined
   }
 
@@ -91,25 +90,21 @@ class ResetPassword extends React.Component {
       : ""
   }
 
-  getFieldLabelText = fieldName => {
+  getFieldLabelText = (fieldName: string) => {
     const field = this.getField(fieldName)
-    if (field && field.label && field.label.length > 0) {
-      return field.label
-    } else {
-      switch (fieldName) {
-        case "password":
-          return text.password
-          break
-        case "password_verify":
-          return text.password_verify
-          break
-        default:
-          return "Unnamed field"
-      }
+    if (field && field.label && field.label.length > 0) return field.label
+
+    switch (fieldName) {
+      case "password":
+        return text.password
+      case "password_verify":
+        return text.password_verify
+      default:
+        return "Unnamed field"
     }
   }
 
-  getFieldLabel = fieldName => {
+  getFieldLabel = (fieldName: string) => {
     const labelText = this.getFieldLabelText(fieldName)
     return this.isFieldOptional(fieldName)
       ? `${labelText} (${text.optional})`
@@ -180,7 +175,7 @@ class ResetPassword extends React.Component {
                 <Link
                   to="/login"
                   style={{ textDecoration: "none" }}
-                  key={"back-to-login"}
+                  key="back-to-login"
                   className={loginButtonClass}
                 >
                   {text.back_to_login}

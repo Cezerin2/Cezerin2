@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import React, { Fragment } from "react"
+import React from "react"
 import MetaTags from "../components/metaTags"
 import ProductDetails from "../components/productDetails"
 
@@ -20,7 +20,7 @@ const ProductContainer = props => {
     const jsonld = getJSONLD(props.state)
 
     return (
-      <Fragment>
+      <>
         <MetaTags
           title={title}
           description={productDetails.meta_description}
@@ -38,9 +38,10 @@ const ProductContainer = props => {
           addCartItem={addCartItem}
           categories={categories}
         />
-      </Fragment>
+      </>
     )
   }
+
   return null
 }
 
