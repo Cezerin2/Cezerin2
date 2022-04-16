@@ -1,5 +1,6 @@
 import { hashSync } from "bcrypt"
 import handlebars from "handlebars"
+import { escapeRegExp } from "lodash"
 import { ObjectID } from "mongodb"
 import dashboardWebSocket from "../../lib/dashboardWebSocket"
 import { send } from "../../lib/mailer"
@@ -127,13 +128,13 @@ class OrdersService {
       if (searchAsNumber) {
         alternativeSearch.push({ number: searchAsNumber })
       }
-
-      alternativeSearch.push({ first_name: new RegExp(params.search, "i") })
-      alternativeSearch.push({ last_name: new RegExp(params.search, "i") })
-      alternativeSearch.push({ password: new RegExp(params.search, "i") })
-      alternativeSearch.push({ email: new RegExp(params.search, "i") })
-      alternativeSearch.push({ mobile: new RegExp(params.search, "i") })
-      alternativeSearch.push({ $text: { $search: params.search } })
+      const search = escapeRegExp(params.search)
+      alternativeSearch.push({ first_name: new RegExp(search, "i") })
+      alternativeSearch.push({ last_name: new RegExp(search, "i") })
+      alternativeSearch.push({ password: new RegExp(search, "i") })
+      alternativeSearch.push({ email: new RegExp(search, "i") })
+      alternativeSearch.push({ mobile: new RegExp(search, "i") })
+      alternativeSearch.push({ $text: { $search: search } })
 
       filter.$or = alternativeSearch
     }
