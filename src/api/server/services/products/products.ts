@@ -2,6 +2,7 @@ import fse from "fs-extra"
 import { ObjectID } from "mongodb"
 import path from "path"
 import url from "url"
+import { escapeRegExp } from "../../lib/escapeRegExp"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
@@ -458,8 +459,12 @@ class ProductsService {
       search !== "null" &&
       search !== "undefined"
     ) {
+      const safeSearch = escapeRegExp(search)
       return {
-        $or: [{ sku: new RegExp(search, "i") }, { $text: { $search: search } }],
+        $or: [
+          { sku: new RegExp(safeSearch, "i") },
+          { $text: { $search: search } },
+        ],
       }
     } else {
       return null

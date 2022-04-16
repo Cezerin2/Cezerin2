@@ -1,4 +1,5 @@
 import { ObjectID } from "mongodb"
+import { escapeRegExp } from "../../lib/escapeRegExp"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
@@ -33,9 +34,10 @@ class CustomersService {
     }
 
     if (params.search) {
+      const search = escapeRegExp(params.search)
       filter["$or"] = [
-        { email: new RegExp(params.search, "i") },
-        { mobile: new RegExp(params.search, "i") },
+        { email: new RegExp(search, "i") },
+        { mobile: new RegExp(search, "i") },
         { $text: { $search: params.search } },
       ]
     }
