@@ -90,7 +90,7 @@
     "response-time": "^2.3.2",
     "sitemap": "^7.1.1",
     "slug": "^5.3.0",
-    "stripe": "^6.7.0",
+    "stripe": "^8.217.0",
     "theme": "./theme",
     "ua-parser-js": "^0.7.18",
     "winston": "^3.7.2",
