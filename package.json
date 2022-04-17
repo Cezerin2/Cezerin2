@@ -37,7 +37,7 @@
     "lint:fix": "eslint --fix --ignore-path .gitignore .",
     "format": "prettier --write .",
     "start:api": "ts-node src/api/server/index.ts",
-    "start:store": "node -r esm dist/store/server/index.js",
+    "start:store": "node dist/store/server/index.js",
     "start": "concurrently npm:start:*",
     "watch:api": "tsnd --respawn src/api/server/index.ts"
   },
@@ -129,7 +129,6 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
-    "esm": "^3.0.80",
     "fork-ts-checker-webpack-plugin": "^7.2.6",
     "html-webpack-plugin": "^4.5.2",
     "mini-css-extract-plugin": "^1.6.2",
