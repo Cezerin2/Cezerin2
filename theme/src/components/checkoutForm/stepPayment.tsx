@@ -1,10 +1,23 @@
-import React from "react"
+import React, { FC } from "react"
 import { text } from "../../lib/settings"
 import PaymentForm from "./paymentForm"
 
-const CheckoutStepPayment = props => {
+interface Props {
+  cart: { payment_method_gateway; grand_total }
+  settings
+  processingCheckout
+  handleSuccessPayment
+  inputClassName
+  buttonClassName
+  shippingMethod
+  show
+  title
+  onCreateToken
+}
+
+const CheckoutStepPayment: FC<Props> = props => {
   const {
-    cart,
+    cart: { payment_method_gateway, grand_total },
     settings,
     processingCheckout,
     handleSuccessPayment,
@@ -16,9 +29,7 @@ const CheckoutStepPayment = props => {
     onCreateToken,
   } = props
 
-  const { payment_method_gateway, grand_total } = cart
-
-  if (!show) {
+  if (!show)
     return (
       <div className="checkout-step">
         <h1>
@@ -27,7 +38,7 @@ const CheckoutStepPayment = props => {
         </h1>
       </div>
     )
-  }
+
   return (
     <div className="checkout-step">
       <h1>
