@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import React, { Fragment } from "react"
+import React from "react"
 import CategoryBreadcrumbs from "../components/categoryBreadcrumbs"
 import MetaTags from "../components/metaTags"
 import ProductFilter from "../components/productFilter"
@@ -91,7 +91,7 @@ const CategoryContainer = props => {
   const showFilter = themeSettings.show_product_filter
 
   return (
-    <Fragment>
+    <>
       <MetaTags
         title={title}
         description={categoryDetails.meta_description}
@@ -138,7 +138,7 @@ const CategoryContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

@@ -1,11 +1,11 @@
-import messages from "lib/text"
 import settings from "lib/settings"
-import { installReceive } from "modules/settings/actions"
+import messages from "lib/text"
 import { fetchOrders } from "modules/orders/actions"
+import { installReceive } from "modules/settings/actions"
 
-const AUTO_RECONNECT_INTERVAL = 1000 //1 seconds
-const ORDER_CREATED = "order.created"
-const THEME_INSTALLED = "theme.installed"
+const autoReconnectInterval = 1000 // 1 seconds
+const orderCreated = "order.created"
+const themeInstalled = "theme.installed"
 let store = null
 
 export const connectToWebSocket = reduxStore => {
@@ -37,7 +37,7 @@ const onMessage = event => {
   try {
     const message = JSON.parse(event.data)
     eventHandler(message)
-  } catch (err) {}
+  } catch (error) {}
 }
 
 const onOpen = () => {
@@ -56,15 +56,15 @@ const onClose = event => {
     // try to reconnect
     setTimeout(() => {
       connect()
-    }, AUTO_RECONNECT_INTERVAL)
+    }, autoReconnectInterval)
   }
 }
 
 const showNotification = (title, body, requireInteraction = false) => {
-  let msg = new Notification(title, {
-    body: body,
+  const msg = new Notification(title, {
+    body,
     tag: "dashboard",
-    requireInteraction: requireInteraction,
+    requireInteraction,
   })
 
   msg.addEventListener("click", event => {
@@ -75,12 +75,12 @@ const showNotification = (title, body, requireInteraction = false) => {
 
 const eventHandler = ({ event, payload }) => {
   switch (event) {
-    case THEME_INSTALLED:
+    case themeInstalled:
       const fileName = payload
       store.dispatch(installReceive())
       showNotification(messages.settings_theme, messages.themeInstalled)
       break
-    case ORDER_CREATED:
+    case orderCreated:
       const order = payload
       store.dispatch(fetchOrders())
       showNotification(
