@@ -122,7 +122,7 @@ const EditTokenForm: FC<Props> = props => {
                 label={messages.settings_revokeAccess}
                 secondary
                 style={{ float: "left" }}
-                onClick={() => setShowRevokeDialog(false)}
+                onClick={() => setShowRevokeDialog(true)}
               />
             )}
             <RaisedButton
