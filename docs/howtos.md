@@ -11,7 +11,7 @@ npm install --save-dev nodemon
 2. Then add
 
 ```javascript
-"start:dev": "nodemon -r esm dist/store/server/index.js"
+"start:dev": "nodemon dist/store/server/index.js"
 ```
 
 in the script section file package.json
