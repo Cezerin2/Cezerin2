@@ -1,14 +1,12 @@
-import settings from "./settings"
-import api from "./api"
 import messages from "./text"
 
-const LOGIN_PATH = "/admin/login"
-const HOME_PATH = "/admin/"
+const loginPath = "/admin/login"
+const homePath = "/admin/"
 
-const getParameterByName = (name, url) => {
+const getParameterByName = (name: string, url?: string) => {
   if (!url) url = window.location.href
   name = name.replace(/[\[\]]/g, "\\$&")
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+  const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
     results = regex.exec(url)
   if (!results) return null
   if (!results[2]) return ""
@@ -16,15 +14,15 @@ const getParameterByName = (name, url) => {
 }
 
 export const validateCurrentToken = () => {
-  if (location.pathname !== LOGIN_PATH) {
+  if (location.pathname !== loginPath) {
     if (!isCurrentTokenValid()) {
-      location.replace(LOGIN_PATH)
+      location.replace(loginPath)
     }
   }
 }
 
 export const checkTokenFromUrl = () => {
-  if (location.pathname === LOGIN_PATH) {
+  if (location.pathname === loginPath) {
     const token = getParameterByName("token")
     if (token && token !== "") {
       const tokenData = parseJWT(token)
@@ -33,7 +31,7 @@ export const checkTokenFromUrl = () => {
         const expiration_date = tokenData.exp * 1000
         if (expiration_date > Date.now()) {
           saveToken({ token, email: tokenData.email, expiration_date })
-          location.replace(HOME_PATH)
+          location.replace(homePath)
         } else {
           alert(messages.tokenExpired)
         }
@@ -42,7 +40,7 @@ export const checkTokenFromUrl = () => {
       }
     } else {
       if (isCurrentTokenValid()) {
-        location.replace(HOME_PATH)
+        location.replace(homePath)
       }
     }
   }
@@ -53,7 +51,7 @@ const parseJWT = jwt => {
     const payload = jwt.split(".")[1]
     const tokenData = JSON.parse(atob(payload))
     return tokenData
-  } catch (e) {
+  } catch (error) {
     return null
   }
 }
@@ -80,5 +78,5 @@ export const removeToken = () => {
   localStorage.removeItem("webstore_token")
   localStorage.removeItem("webstore_email")
   localStorage.removeItem("webstore_exp")
-  location.replace(LOGIN_PATH)
+  location.replace(loginPath)
 }
