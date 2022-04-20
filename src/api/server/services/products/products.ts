@@ -1,4 +1,5 @@
 import fse from "fs-extra"
+import { escapeRegExp } from "lodash"
 import { ObjectID } from "mongodb"
 import path from "path"
 import url from "url"
@@ -458,8 +459,12 @@ class ProductsService {
       search !== "null" &&
       search !== "undefined"
     ) {
+      const safeSearch = escapeRegExp(search)
       return {
-        $or: [{ sku: new RegExp(search, "i") }, { $text: { $search: search } }],
+        $or: [
+          { sku: new RegExp(safeSearch, "i") },
+          { $text: { $search: search } },
+        ],
       }
     } else {
       return null

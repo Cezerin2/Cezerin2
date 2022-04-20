@@ -1,3 +1,4 @@
+import { escapeRegExp } from "lodash"
 import { ObjectID } from "mongodb"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
@@ -33,9 +34,10 @@ class CustomersService {
     }
 
     if (params.search) {
+      const search = escapeRegExp(params.search)
       filter["$or"] = [
-        { email: new RegExp(params.search, "i") },
-        { mobile: new RegExp(params.search, "i") },
+        { email: new RegExp(search, "i") },
+        { mobile: new RegExp(search, "i") },
         { $text: { $search: params.search } },
       ]
     }
