@@ -10,7 +10,7 @@ class ThemeAssetsService {
         settings.themeAssetsUploadPath + "/" + fileName
       )
       if (fse.existsSync(filePath)) {
-        fse.unlink(filePath, err => {
+        fse.unlink(filePath, error => {
           resolve()
         })
       } else {
@@ -38,8 +38,8 @@ class ThemeAssetsService {
         file_name = file.name
         file_size = file.size
       })
-      .on("error", err => {
-        res.status(500).send(this.getErrorMessage(err))
+      .on("error", error => {
+        res.status(500).send(this.getErrorMessage(error))
       })
       .on("end", () => {
         //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
@@ -55,8 +55,8 @@ class ThemeAssetsService {
     form.parse(req)
   }
 
-  getErrorMessage(err) {
-    return { error: true, message: err.toString() }
+  getErrorMessage(error) {
+    return { error: true, message: error.toString() }
   }
 }
 

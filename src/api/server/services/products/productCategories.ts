@@ -135,7 +135,7 @@ class ProductCategoriesService {
             let deleteDir = path.resolve(
               settings.categoriesUploadPath + "/" + categoryId
             )
-            fse.remove(deleteDir, err => {})
+            fse.remove(deleteDir, error => {})
           }
           return Promise.resolve(true)
         } else {
@@ -144,8 +144,8 @@ class ProductCategoriesService {
       })
   }
 
-  getErrorMessage(err) {
-    return { error: true, message: err.toString() }
+  getErrorMessage(error) {
+    return { error: true, message: error.toString() }
   }
 
   getValidDocumentForInsert(data, newPosition) {
@@ -238,8 +238,8 @@ class ProductCategoriesService {
             category.slug = newSlug
             resolve(category)
           })
-          .catch(err => {
-            reject(err)
+          .catch(error => {
+            reject(error)
           })
       } else {
         resolve(category)
@@ -297,8 +297,8 @@ class ProductCategoriesService {
         file_name = file.name
         file_size = file.size
       })
-      .on("error", err => {
-        res.status(500).send(this.getErrorMessage(err))
+      .on("error", error => {
+        res.status(500).send(this.getErrorMessage(error))
       })
       .on("end", () => {
         //Emitted when the entire request has been received, and all contained files have finished flushing to disk.

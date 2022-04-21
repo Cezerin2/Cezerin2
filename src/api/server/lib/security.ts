@@ -64,9 +64,9 @@ const checkUserScope =
 
 const verifyToken = token =>
   new Promise((resolve, reject) => {
-    jwt.verify(token, settings.jwtSecretKey, (err, decoded) => {
-      if (err) {
-        reject(err)
+    jwt.verify(token, settings.jwtSecretKey, (error, decoded) => {
+      if (error) {
+        reject(error)
       } else {
         // check on blacklist
         resolve(decoded)

@@ -10,8 +10,8 @@ import utils from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 class ProductImagesService {
-  getErrorMessage(err) {
-    return { error: true, message: err.toString() }
+  getErrorMessage(error) {
+    return { error: true, message: error.toString() }
   }
 
   getImages(productId) {
@@ -127,8 +127,8 @@ class ProductImagesService {
           )
         }
       })
-      .on("error", err => {
-        res.status(500).send(this.getErrorMessage(err))
+      .on("error", error => {
+        res.status(500).send(this.getErrorMessage(error))
       })
       .on("end", () => {
         res.send(uploadedFiles)
