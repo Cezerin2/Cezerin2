@@ -146,7 +146,7 @@ ajaxRouter.get("/cart", (req, res) => {
 })
 
 ajaxRouter.post("/reset-password", async (req, res, next) => {
-  await bcrypt.hash(req.body.password, saltRounds, async (err, hash) => {
+  await bcrypt.hash(req.body.password, saltRounds, async (error, hash) => {
     const data = {
       status: false,
       id: null,
@@ -316,7 +316,7 @@ ajaxRouter.post("/login", async (req, res, next) => {
       const customerPassword = result.password
       const inputPassword = decodeUserPassword(req.body.password).password
 
-      bcrypt.compare(inputPassword, customerPassword, async (err, out) => {
+      bcrypt.compare(inputPassword, customerPassword, async (error, out) => {
         if (out == true) {
           customerData.token = encodeUserLoginAuth(result._id)
           customerData.authenticated = true

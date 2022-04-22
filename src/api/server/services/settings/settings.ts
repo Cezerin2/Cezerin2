@@ -250,7 +250,7 @@ class SettingsService {
         let filePath = path.resolve(
           settings.filesUploadPath + "/" + data.logo_file
         )
-        fse.unlink(filePath, err => {
+        fse.unlink(filePath, error => {
           this.updateSettings({ logo_file: null })
         })
       }
@@ -278,8 +278,8 @@ class SettingsService {
         file_name = file.name
         file_size = file.size
       })
-      .on("error", err => {
-        res.status(500).send(this.getErrorMessage(err))
+      .on("error", error => {
+        res.status(500).send(this.getErrorMessage(error))
       })
       .on("end", () => {
         //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
@@ -296,8 +296,8 @@ class SettingsService {
     form.parse(req)
   }
 
-  getErrorMessage(err) {
-    return { error: true, message: err.toString() }
+  getErrorMessage(error) {
+    return { error: true, message: error.toString() }
   }
 }
 

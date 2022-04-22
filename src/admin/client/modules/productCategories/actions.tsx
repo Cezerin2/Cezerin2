@@ -1,6 +1,6 @@
-import * as t from "./actionTypes"
 import api from "lib/api"
 import messages from "lib/text"
+import * as t from "./actionTypes"
 
 function requestCategories() {
   return {
@@ -240,12 +240,12 @@ function moveCategory(allCategories = [], selectedCategory, isUp = true) {
             .then(() => {
               resolve(newPosition)
             })
-            .catch(err => {
-              reject(err)
+            .catch(error => {
+              reject(error)
             })
         })
-        .catch(err => {
-          reject(err)
+        .catch(error => {
+          reject(error)
         })
     }
   })

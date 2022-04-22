@@ -250,8 +250,8 @@ class ProductImport extends React.Component {
           }
         })
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        console.log(error)
       })
   }
 
@@ -323,8 +323,8 @@ class ProductImport extends React.Component {
             that.uploadImages()
           }
         })
-        .catch(err => {
-          console.log(err)
+        .catch(error => {
+          console.log(error)
         })
     })
   }

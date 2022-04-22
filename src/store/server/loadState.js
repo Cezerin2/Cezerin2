@@ -71,7 +71,7 @@ const getThemeSettings = () => {
   return api.theme.settings
     .retrieve()
     .then(({ status, json }) => json)
-    .catch(err => ({}))
+    .catch(error => ({}))
 }
 
 const getAllData = (currentPage, productFilter, cookie) => {
