@@ -203,9 +203,9 @@ class SecurityTokensService {
         jwtOptions.expiresIn = token.expiration * 60 * 60
       }
 
-      jwt.sign(payload, settings.jwtSecretKey, jwtOptions, (err, token) => {
-        if (err) {
-          reject(err)
+      jwt.sign(payload, settings.jwtSecretKey, jwtOptions, (error, token) => {
+        if (error) {
+          reject(error)
         } else {
           resolve(token)
         }

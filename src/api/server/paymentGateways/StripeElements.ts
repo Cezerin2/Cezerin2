@@ -49,7 +49,7 @@ const processOrderPayment = async ({ order, gatewaySettings, settings }) => {
     })
 
     return paymentSucceeded
-  } catch (err) {
+  } catch (error) {
     // handle errors
     return false
   }

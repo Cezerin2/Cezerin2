@@ -18,9 +18,9 @@ const settingsSchemaFileEn = path.resolve("theme/settings/en.json")
 class ThemeSettingsService {
   readFile(file) {
     return new Promise((resolve, reject) => {
-      fse.readFile(file, "utf8", (err, data) => {
-        if (err) {
-          reject(err)
+      fse.readFile(file, "utf8", (error, data) => {
+        if (error) {
+          reject(error)
         } else {
           let jsonData = {}
           try {
@@ -37,9 +37,9 @@ class ThemeSettingsService {
   writeFile(file, jsonData) {
     return new Promise<void>((resolve, reject) => {
       const stringData = JSON.stringify(jsonData)
-      fse.writeFile(file, stringData, err => {
-        if (err) {
-          reject(err)
+      fse.writeFile(file, stringData, error => {
+        if (error) {
+          reject(error)
         } else {
           resolve()
         }
