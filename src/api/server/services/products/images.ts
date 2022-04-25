@@ -14,11 +14,10 @@ class ProductImagesService {
     return { error: true, message: error.toString() }
   }
 
-  getImages(productId) {
-    if (!ObjectID.isValid(productId)) {
+  getImages(productID) {
+    if (!ObjectID.isValid(productID))
       return Promise.reject("Invalid identifier")
-    }
-    let productObjectID = new ObjectID(productId)
+    const productObjectID = new ObjectID(productID)
 
     return SettingsService.getSettings().then(generalSettings =>
       db
@@ -29,41 +28,37 @@ class ProductImagesService {
             let images = product.images.map(image => {
               image.url = url.resolve(
                 generalSettings.domain,
-                settings.productsUploadUrl +
-                  "/" +
-                  product._id +
-                  "/" +
-                  image.filename
+                `${settings.productsUploadUrl}/${product._id}/${image.filename}`
               )
               return image
             })
 
             images = images.sort((a, b) => a.position - b.position)
             return images
-          } else {
-            return []
           }
+
+          return []
         })
     )
   }
 
-  deleteImage(productId, imageId) {
-    if (!ObjectID.isValid(productId) || !ObjectID.isValid(imageId)) {
+  deleteImage(productID, imageID) {
+    if (!ObjectID.isValid(productID) || !ObjectID.isValid(imageID)) {
       return Promise.reject("Invalid identifier")
     }
-    let productObjectID = new ObjectID(productId)
-    let imageObjectID = new ObjectID(imageId)
+    const productObjectID = new ObjectID(productID)
+    const imageObjectID = new ObjectID(imageID)
 
-    return this.getImages(productId)
+    return this.getImages(productID)
       .then(images => {
         if (images && images.length > 0) {
-          let imageData = images.find(
-            i => i.id.toString() === imageId.toString()
+          const imageData = images.find(
+            i => i.id.toString() === imageID.toString()
           )
           if (imageData) {
             let filename = imageData.filename
-            let filepath = path.resolve(
-              settings.productsUploadPath + "/" + productId + "/" + filename
+            const filepath = path.resolve(
+              `${settings.productsUploadPath}/${productID}/${filename}`
             )
             fse.removeSync(filepath)
             return db
@@ -72,41 +67,41 @@ class ProductImagesService {
                 { _id: productObjectID },
                 { $pull: { images: { id: imageObjectID } } }
               )
-          } else {
-            return true
           }
-        } else {
+
           return true
         }
+
+        return true
       })
       .then(() => true)
   }
 
   async addImage(req, res, next?) {
-    const productId = req.params.productId
-    if (!ObjectID.isValid(productId)) {
+    const productID = req.params.productId
+    if (!ObjectID.isValid(productID)) {
       res.status(500).send(this.getErrorMessage("Invalid identifier"))
       return
     }
 
-    let uploadedFiles = []
-    const productObjectID = new ObjectID(productId)
+    const uploadedFiles = []
+    const productObjectID = new ObjectID(productID)
     const uploadDir = path.resolve(
-      settings.productsUploadPath + "/" + productId
+      `${settings.productsUploadPath}/${productID}`
     )
     fse.ensureDirSync(uploadDir)
 
-    let form = new formidable.IncomingForm()
+    const form = new formidable.IncomingForm()
     form.uploadDir = uploadDir
 
     form
       .on("fileBegin", (name, file) => {
         // Emitted whenever a field / value pair has been received.
         file.name = utils.getCorrectFileName(file.name)
-        file.path = uploadDir + "/" + file.name
+        file.path = `${uploadDir}/${file.name}`
       })
       .on("file", async (field, file) => {
-        // every time a file has been uploaded successfully,
+        // Every time a file has been uploaded successfully,
         if (file.name) {
           const imageData = {
             id: new ObjectID(),
@@ -137,12 +132,12 @@ class ProductImagesService {
     form.parse(req)
   }
 
-  updateImage(productId, imageId, data) {
-    if (!ObjectID.isValid(productId) || !ObjectID.isValid(imageId)) {
+  updateImage(productID, imageID, data) {
+    if (!ObjectID.isValid(productID) || !ObjectID.isValid(imageID))
       return Promise.reject("Invalid identifier")
-    }
-    let productObjectID = new ObjectID(productId)
-    let imageObjectID = new ObjectID(imageId)
+
+    const productObjectID = new ObjectID(productID)
+    const imageObjectID = new ObjectID(imageID)
 
     const imageData = this.getValidDocumentForUpdate(data)
 
@@ -160,7 +155,7 @@ class ProductImagesService {
       return new Error("Required fields are missing")
     }
 
-    let image = {}
+    const image = {}
 
     if (data.alt !== undefined) {
       image["images.$.alt"] = parse.getString(data.alt)
