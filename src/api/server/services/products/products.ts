@@ -205,9 +205,9 @@ class ProductsService {
       aggregation.push({ $match: matchQuery })
       aggregation.push({ $group: { _id: null, count: { $sum: 1 } } })
       return db.collection("products").aggregate(aggregation).toArray()
-    } else {
-      return null
     }
+
+    return null
   }
 
   getMinMaxPriceIfNeeded(params, categories, matchTextQuery, projectQuery) {
@@ -235,9 +235,9 @@ class ProductsService {
         },
       })
       return db.collection("products").aggregate(aggregation).toArray()
-    } else {
-      return null
     }
+
+    return null
   }
 
   getAllAttributesIfNeeded(params, categories, matchTextQuery, projectQuery) {
@@ -260,9 +260,9 @@ class ProductsService {
       aggregation.push({ $unwind: "$attributes" })
       aggregation.push({ $group: { _id: "$attributes", count: { $sum: 1 } } })
       return db.collection("products").aggregate(aggregation).toArray()
-    } else {
-      return null
     }
+
+    return null
   }
 
   getAttributesIfNeeded(params, categories, matchTextQuery, projectQuery) {
@@ -285,17 +285,18 @@ class ProductsService {
       aggregation.push({ $unwind: "$attributes" })
       aggregation.push({ $group: { _id: "$attributes", count: { $sum: 1 } } })
       return db.collection("products").aggregate(aggregation).toArray()
-    } else {
-      return null
     }
+
+    return null
   }
 
   getSortQuery({ sort, search }) {
     const isSearchUsed =
       search && search.length > 0 && search !== "null" && search !== "undefined"
-    if (sort === "search" && isSearchUsed) {
+    if (sort === "search" && isSearchUsed)
       return { score: { $meta: "textScore" } }
-    } else if (sort && sort.length > 0) {
+
+    if (sort && sort.length > 0) {
       const fields = sort.split(",")
       return Object.assign(
         {},
@@ -307,15 +308,15 @@ class ProductsService {
             : 1,
         }))
       )
-    } else {
-      return null
     }
+
+    return null
   }
 
   getProjectQuery(fieldsArray) {
-    let salePrice = "$sale_price"
-    let regularPrice = "$regular_price"
-    let costPrice = "$cost_price"
+    const salePrice = "$sale_price"
+    const regularPrice = "$regular_price"
+    const costPrice = "$cost_price"
 
     let project: any = {
       category_ids: 1,
@@ -466,13 +467,13 @@ class ProductsService {
           { $text: { $search: search } },
         ],
       }
-    } else {
-      return null
     }
+
+    return null
   }
 
   getMatchAttributesQuery(params) {
-    let attributesArray = Object.keys(params)
+    const attributesArray = Object.keys(params)
       .filter(paramName => paramName.startsWith("attributes."))
       .map(paramName => {
         const paramValue = params[paramName]
@@ -513,7 +514,7 @@ class ProductsService {
     ids = parse.getString(ids)
     tags = parse.getString(tags)
 
-    let queries = []
+    const queries = []
     const currentDate = new Date()
 
     if (category_id !== null) {
@@ -575,7 +576,7 @@ class ProductsService {
 
     if (ids && ids.length > 0) {
       const idsArray = ids.split(",")
-      let objectIDs = []
+      const objectIDs = []
       for (const id of idsArray) {
         if (ObjectID.isValid(id)) {
           objectIDs.push(new ObjectID(id))
@@ -596,14 +597,14 @@ class ProductsService {
       } else {
         // single value
         queries.push({
-          sku: sku,
+          sku,
         })
       }
     }
 
     if (tags && tags.length > 0) {
       queries.push({
-        tags: tags,
+        tags,
       })
     }
 
@@ -667,9 +668,9 @@ class ProductsService {
   }
 
   deleteProduct(productId) {
-    if (!ObjectID.isValid(productId)) {
+    if (!ObjectID.isValid(productId))
       return Promise.reject("Invalid identifier")
-    }
+
     const productObjectID = new ObjectID(productId)
     // 1. delete Product
     return db
@@ -678,8 +679,8 @@ class ProductsService {
       .then(deleteResponse => {
         if (deleteResponse.deletedCount > 0) {
           // 2. delete directory with images
-          let deleteDir = path.resolve(
-            settings.productsUploadPath + "/" + productId
+          const deleteDir = path.resolve(
+            `${settings.productsUploadPath}/${productId}`
           )
           fse.remove(deleteDir, error => {})
         }
@@ -907,11 +908,10 @@ class ProductsService {
   }
 
   getArrayOfObjectID(array) {
-    if (array && Array.isArray(array)) {
+    if (array && Array.isArray(array))
       return array.map(item => parse.getObjectIDIfValid(item))
-    } else {
-      return []
-    }
+
+    return []
   }
 
   getValidAttributesArray(attributes) {
@@ -925,22 +925,21 @@ class ProductsService {
           name: parse.getString(item.name),
           value: parse.getString(item.value),
         }))
-    } else {
-      return []
     }
+
+    return []
   }
 
   getSortedImagesWithUrls(item, domain) {
-    if (item.images && item.images.length > 0) {
+    if (item.images && item.images.length > 0)
       return item.images
         .map(image => {
           image.url = this.getImageUrl(domain, item.id, image.filename || "")
           return image
         })
         .sort((a, b) => a.position - b.position)
-    } else {
-      return item.images
-    }
+
+    return item.images
   }
 
   getImageUrl(domain, productId, imageFileName) {
@@ -952,9 +951,7 @@ class ProductsService {
 
   changeProperties(item, domain) {
     if (item) {
-      if (item.id) {
-        item.id = item.id.toString()
-      }
+      if (item.id) item.id = item.id.toString()
 
       item.images = this.getSortedImagesWithUrls(item, domain)
 
@@ -992,8 +989,8 @@ class ProductsService {
   }
 
   isSkuExists(sku, productId) {
-    let filter: any = {
-      sku: sku,
+    const filter: any = {
+      sku,
     }
 
     if (productId && ObjectID.isValid(productId)) {
@@ -1010,7 +1007,7 @@ class ProductsService {
     // SKU can be empty
     if (product.sku && product.sku.length > 0) {
       let newSku = product.sku
-      let filter: any = {}
+      const filter: any = {}
       if (productId && ObjectID.isValid(productId)) {
         filter._id = { $ne: new ObjectID(productId) }
       }
@@ -1027,13 +1024,13 @@ class ProductsService {
           product.sku = newSku
           return product
         })
-    } else {
-      return Promise.resolve(product)
     }
+
+    return Promise.resolve(product)
   }
 
   isSlugExists(slug, productId) {
-    let filter: any = {
+    const filter: any = {
       slug: utils.cleanSlug(slug),
     }
 
@@ -1050,10 +1047,9 @@ class ProductsService {
   setAvailableSlug(product, productId?) {
     if (product.slug && product.slug.length > 0) {
       let newSlug = utils.cleanSlug(product.slug)
-      let filter: any = {}
-      if (productId && ObjectID.isValid(productId)) {
+      const filter: any = {}
+      if (productId && ObjectID.isValid(productId))
         filter._id = { $ne: new ObjectID(productId) }
-      }
 
       return db
         .collection("products")
@@ -1067,9 +1063,9 @@ class ProductsService {
           product.slug = newSlug
           return product
         })
-    } else {
-      return Promise.resolve(product)
     }
+
+    return Promise.resolve(product)
   }
 }
 

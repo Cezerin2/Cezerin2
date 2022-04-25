@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from "express"
 import formidable from "formidable"
 import fse from "fs-extra"
 import path from "path"
@@ -247,8 +248,8 @@ class SettingsService {
   deleteLogo() {
     return this.getSettings().then(data => {
       if (data.logo_file && data.logo_file.length > 0) {
-        let filePath = path.resolve(
-          settings.filesUploadPath + "/" + data.logo_file
+        const filePath = path.resolve(
+          `${settings.filesUploadPath}/${data.logo_file}`
         )
         fse.unlink(filePath, error => {
           this.updateSettings({ logo_file: null })
@@ -257,13 +258,13 @@ class SettingsService {
     })
   }
 
-  uploadLogo(req, res, next) {
-    let uploadDir = path.resolve(settings.filesUploadPath)
+  uploadLogo(req: Request, res: Response, next: NextFunction) {
+    const uploadDir = path.resolve(settings.filesUploadPath)
     fse.ensureDirSync(uploadDir)
 
-    let form = new formidable.IncomingForm(),
-      file_name = null,
-      file_size = 0
+    const form = new formidable.IncomingForm()
+    let fileName = null
+    let fileSize = 0
 
     form.uploadDir = uploadDir
 
@@ -271,21 +272,21 @@ class SettingsService {
       .on("fileBegin", (name, file) => {
         // Emitted whenever a field / value pair has been received.
         file.name = utils.getCorrectFileName(file.name)
-        file.path = uploadDir + "/" + file.name
+        file.path = `${uploadDir}/${file.name}`
       })
-      .on("file", function (field, file) {
+      .on("file", (field, file) => {
         // every time a file has been uploaded successfully,
-        file_name = file.name
-        file_size = file.size
+        fileName = file.name
+        fileSize = file.size
       })
       .on("error", error => {
         res.status(500).send(this.getErrorMessage(error))
       })
       .on("end", () => {
-        //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
-        if (file_name) {
-          this.updateSettings({ logo_file: file_name })
-          res.send({ file: file_name, size: file_size })
+        // Emitted when the entire request has been received, and all contained files have finished flushing to disk.
+        if (fileName) {
+          this.updateSettings({ logo_file: fileName })
+          res.send({ file: fileName, size: fileSize })
         } else {
           res
             .status(400)
