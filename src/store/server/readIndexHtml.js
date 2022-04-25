@@ -7,6 +7,6 @@ export let indexHtml = null
 
 try {
   indexHtml = fse.readFileSync(filePath, "utf8")
-} catch (err) {
-  winston.error("Fail to read file", filePath, err)
+} catch (error) {
+  winston.error("Fail to read file", filePath, error)
 }

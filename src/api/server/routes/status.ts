@@ -12,49 +12,49 @@ const getStatus = (req: Request, res: Response) =>
 
 // TODO
 const getUpdates = (req: Request, res: Response) => {
-  exec("git pull", (err, stdout, stderr) => {
-    if (err) {
-      winston.error(err)
+  exec("git pull", (error, stdout, stderr) => {
+    if (error) {
+      winston.error(error)
       return
     }
     winston.info(stdout)
   })
 
-  exec("yarn", (err, stdout, stderr) => {
-    if (err) {
-      winston.error(err)
+  exec("yarn", (error, stdout, stderr) => {
+    if (error) {
+      winston.error(error)
       return
     }
     winston.info(stdout)
   })
 
-  exec("yarn theme:compile", (err, stdout, stderr) => {
-    if (err) {
-      winston.error(err)
+  exec("yarn theme:compile", (error, stdout, stderr) => {
+    if (error) {
+      winston.error(error)
       return
     }
     winston.info(stdout)
   })
 
-  exec("yarn add ./theme", (err, stdout, stderr) => {
-    if (err) {
-      winston.error(err)
+  exec("yarn add ./theme", (error, stdout, stderr) => {
+    if (error) {
+      winston.error(error)
       return
     }
     winston.info(stdout)
   })
 
-  exec("yarn build", (err, stdout, stderr) => {
-    if (err) {
-      winston.error(err)
+  exec("yarn build", (error, stdout, stderr) => {
+    if (error) {
+      winston.error(error)
       return
     }
     winston.info(stdout)
   })
 
-  exec("pm2 restart all", (err, stdout, stderr) => {
-    if (err) {
-      winston.error(err)
+  exec("pm2 restart all", (error, stdout, stderr) => {
+    if (error) {
+      winston.error(error)
       return
     }
     winston.info(stdout)

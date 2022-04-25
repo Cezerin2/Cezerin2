@@ -25,11 +25,11 @@ const onReconnect = () => {
 export let db = null
 
 const connectWithRetry = () => {
-  MongoClient.connect(mongodbConnection, connectOptions, (err, client) => {
-    if (err) {
+  MongoClient.connect(mongodbConnection, connectOptions, (error, client) => {
+    if (error) {
       winston.error(
-        `MongoDB connection was failed: ${err.message}`,
-        err.message
+        `MongoDB connection was failed: ${error.message}`,
+        error.message
       )
       setTimeout(connectWithRetry, reconnectInterval)
     } else {

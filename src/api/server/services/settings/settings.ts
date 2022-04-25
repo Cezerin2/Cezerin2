@@ -251,7 +251,7 @@ class SettingsService {
         const filePath = path.resolve(
           `${settings.filesUploadPath}/${data.logo_file}`
         )
-        fse.unlink(filePath, err => {
+        fse.unlink(filePath, error => {
           this.updateSettings({ logo_file: null })
         })
       }
@@ -297,8 +297,8 @@ class SettingsService {
     form.parse(req)
   }
 
-  getErrorMessage(err) {
-    return { error: true, message: err.toString() }
+  getErrorMessage(error) {
+    return { error: true, message: error.toString() }
   }
 }
 

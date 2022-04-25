@@ -682,7 +682,7 @@ class ProductsService {
           const deleteDir = path.resolve(
             `${settings.productsUploadPath}/${productId}`
           )
-          fse.remove(deleteDir, err => {})
+          fse.remove(deleteDir, error => {})
         }
         return deleteResponse.deletedCount > 0
       })

@@ -1,6 +1,5 @@
-import * as t from "./actionTypes"
 import api from "lib/api"
-import messages from "lib/text"
+import * as t from "./actionTypes"
 const push = () => {}
 
 function requestCustomer() {
@@ -173,7 +172,7 @@ export function deleteCustomers() {
         dispatch(deselectAllCustomer())
         dispatch(fetchCustomers())
       })
-      .catch(err => {})
+      .catch(error => {})
   }
 }
 
@@ -183,8 +182,8 @@ export function deleteCurrentCustomer() {
     let customer = state.customers.editCustomer
 
     if (customer && customer.id) {
-      return api.customers.delete(customer.id).catch(err => {
-        console.log(err)
+      return api.customers.delete(customer.id).catch(error => {
+        console.log(error)
       })
     }
   }
@@ -203,7 +202,7 @@ export function setGroup(group_id) {
         dispatch(deselectAllCustomer())
         dispatch(fetchCustomers())
       })
-      .catch(err => {})
+      .catch(error => {})
   }
 }
 

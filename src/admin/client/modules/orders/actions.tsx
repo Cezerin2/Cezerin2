@@ -1,6 +1,5 @@
-import * as t from "./actionTypes"
 import api from "lib/api"
-import messages from "lib/text"
+import * as t from "./actionTypes"
 
 function requestOrder() {
   return {
@@ -253,9 +252,9 @@ export function bulkUpdate(dataToSet) {
         dispatch(receiveBulkUpdate())
         dispatch(fetchOrders())
       })
-      .catch(err => {
+      .catch(error => {
         dispatch(errorBilkUpdate())
-        console.log(err)
+        console.log(error)
       })
   }
 }
@@ -273,8 +272,8 @@ export function deleteOrders() {
         dispatch(deselectAllOrder())
         dispatch(fetchOrders())
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        console.log(error)
       })
   }
 }
@@ -285,8 +284,8 @@ export function deleteCurrentOrder() {
     let order = state.orders.editOrder
 
     if (order && order.id) {
-      return api.orders.delete(order.id).catch(err => {
-        console.log(err)
+      return api.orders.delete(order.id).catch(error => {
+        console.log(error)
       })
     }
   }
@@ -328,7 +327,7 @@ const fetchOrderAdditionalData = order => {
 
       return order
     })
-    .catch(err => err)
+    .catch(error => error)
 }
 
 export function fetchOrder(orderId) {
