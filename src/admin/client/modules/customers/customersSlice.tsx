@@ -31,14 +31,86 @@ export const customersSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
+    requestCustomer: () => {},
+    receiveCustomer: (state, { payload }: PayloadAction<any>) => {
+      state.editCustomer = payload
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+    clearCustomerDetails: state => {
+      return receiveCustomer(null)
+    },
+    requestCustomers: state => {
+      state.loadingItems = true
+    },
+    requestMoreCustomers: state => {
+      state.loadingItems = true
+    },
+    receiveCustomersMore: (
+      state,
+      {
+        payload: { has_more, total_count, data },
+      }: PayloadAction<{ has_more; total_count; data }>
+    ) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = [...state.items, ...data]
+    },
+    receiveCustomers: (
+      state,
+      {
+        payload: { has_more, total_count, data },
+      }: PayloadAction<{ has_more; total_count; data }>
+    ) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = data
+    },
+    receiveCustomersError: (state, { payload }: PayloadAction<any>) => {
+      state.loadingItems = false
+      state.errorLoadingItems = payload
+    },
+    selectCustomer: (state, { payload }: PayloadAction<string>) => {
+      state.selected = [...state.selected, payload]
+    },
+    deselectCustomer: (state, { payload }: PayloadAction<string>) => {
+      state.selected = state.selected.filter(id => id !== payload)
+    },
+    deselectAllCustomer: state => {
+      state.selected = []
+    },
+    selectAllCustomer: state => {
+      let selected = state.items.map(item => item.id)
+      state.selected = selected
+    },
+    setFilterSearch: (state, { payload }: PayloadAction<any>) => {
+      state.search = payload
+    },
+    deleteCustomersSuccess: () => {},
+    setGroupSuccess: () => {},
   },
 })
 
-export const {} = customersSlice.actions
+export const {
+  requestCustomer,
+  receiveCustomer,
+  clearCustomerDetails,
+  requestCustomers,
+  requestMoreCustomers,
+  receiveCustomersMore,
+  receiveCustomers,
+  receiveCustomersError,
+  selectCustomer,
+  deselectCustomer,
+  deselectAllCustomer,
+  selectAllCustomer,
+  setFilterSearch,
+  deleteCustomersSuccess,
+  setGroupSuccess,
+} = customersSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCustomers = (state: RootState) => state.customers
@@ -46,105 +118,6 @@ export const selectCustomers = (state: RootState) => state.customers
 export default customersSlice.reducer
 
 const push = () => {}
-
-function requestCustomer() {
-  return {
-    type: t.CUSTOMERS_DETAIL_REQUEST,
-  }
-}
-
-function receiveCustomer(item) {
-  return {
-    type: t.CUSTOMERS_DETAIL_RECEIVE,
-    item,
-  }
-}
-
-export function clearCustomerDetails() {
-  return receiveCustomer(null)
-}
-
-function requestCustomers() {
-  return {
-    type: t.CUSTOMERS_REQUEST,
-  }
-}
-
-function requestMoreCustomers() {
-  return {
-    type: t.CUSTOMERS_MORE_REQUEST,
-  }
-}
-
-function receiveCustomersMore({ has_more, total_count, data }) {
-  return {
-    type: t.CUSTOMERS_MORE_RECEIVE,
-    has_more,
-    total_count,
-    data,
-  }
-}
-
-function receiveCustomers({ has_more, total_count, data }) {
-  return {
-    type: t.CUSTOMERS_RECEIVE,
-    has_more,
-    total_count,
-    data,
-  }
-}
-
-function receiveCustomersError(error) {
-  return {
-    type: t.CUSTOMERS_FAILURE,
-    error,
-  }
-}
-
-export function selectCustomer(id) {
-  return {
-    type: t.CUSTOMERS_SELECT,
-    customerId: id,
-  }
-}
-
-export function deselectCustomer(id) {
-  return {
-    type: t.CUSTOMERS_DESELECT,
-    customerId: id,
-  }
-}
-
-export function deselectAllCustomer() {
-  return {
-    type: t.CUSTOMERS_DESELECT_ALL,
-  }
-}
-
-export function selectAllCustomer() {
-  return {
-    type: t.CUSTOMERS_SELECT_ALL,
-  }
-}
-
-export function setFilterSearch(value) {
-  return {
-    type: t.CUSTOMERS_FILTER_SET_SEARCH,
-    search: value,
-  }
-}
-
-function deleteCustomersSuccess() {
-  return {
-    type: t.CUSTOMER_DELETE_SUCCESS,
-  }
-}
-
-function setGroupSuccess() {
-  return {
-    type: t.CUSTOMER_SET_GROUP_SUCCESS,
-  }
-}
 
 const getFilter = (state, offset = 0) => {
   let filter = {

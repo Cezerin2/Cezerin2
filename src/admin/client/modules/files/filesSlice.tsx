@@ -19,6 +19,14 @@ export const filesSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
+    receiveFiles: (state, { payload }: PayloadAction<File[]>) => {
+      state.files = payload
+    },
+    filesUploadStart: state => {
+      state.uploading = true
+    },
+    filesUploadEnd: state => {
+      state.uploading = false
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
@@ -26,31 +34,13 @@ export const filesSlice = createSlice({
   },
 })
 
-export const {} = filesSlice.actions
+export const { receiveFiles, filesUploadStart, filesUploadEnd } =
+  filesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectFiles = (state: RootState) => state.files
 
 export default filesSlice.reducer
-
-function receiveFiles(files) {
-  return {
-    type: t.FILES_RECEIVE,
-    files,
-  }
-}
-
-function filesUploadStart() {
-  return {
-    type: t.FILES_UPLOAD_START,
-  }
-}
-
-function filesUploadEnd() {
-  return {
-    type: t.FILES_UPLOAD_END,
-  }
-}
 
 export function fetchFiles() {
   return (dispatch, getState) => {

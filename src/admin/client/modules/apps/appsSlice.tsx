@@ -30,53 +30,48 @@ export const appsSlice = createSlice({
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
+    receiveAccount: (state, { payload }: PayloadAction<any>) => {
+      state.account = payload
+    },
+    receiveServices: (state, { payload }: PayloadAction<any>) => {
+      state.services = payload
+    },
+    receiveService: (state, { payload }: PayloadAction<any>) => {
+      state.service = payload
+    },
+    requestEnableDisableService: state => {
+      state.loadingEnableDisableService = true
+    },
+    receiveEnableDisableService: state => {
+      state.loadingEnableDisableService = false
+    },
+    requestServiceSettings: state => {
+      state.serviceSettings = null
+    },
+    receiveServiceSettings: (state, { payload }: PayloadAction<any>) => {
+      state.serviceSettings = payload
+    },
+    receiveServiceLogs: (state, { payload }: PayloadAction<any>) => {
+      state.serviceLogs = payload
     },
   },
 })
 
-export const {} = appsSlice.actions
+export const {
+  receiveAccount,
+  receiveServices,
+  receiveService,
+  requestEnableDisableService,
+  receiveEnableDisableService,
+  requestServiceSettings,
+  receiveServiceSettings,
+  receiveServiceLogs,
+} = appsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectApps = (state: RootState) => state.apps
 
 export default appsSlice.reducer
-
-const receiveAccount = account => ({
-  type: t.ACCOUNT_RECEIVE,
-  account,
-})
-
-const receiveServices = services => ({
-  type: t.SERVICES_RECEIVE,
-  services,
-})
-
-const receiveService = service => ({
-  type: t.SERVICE_RECEIVE,
-  service,
-})
-
-const requestEnableDisableService = () => ({
-  type: t.SERVICE_ENABLE_REQUEST,
-})
-
-const receiveEnableDisableService = () => ({
-  type: t.SERVICE_ENABLE_RECEIVE,
-})
-
-const requestServiceSettings = () => ({
-  type: t.SERVICE_SETTINGS_REQUEST,
-})
-
-const receiveServiceSettings = serviceSettings => ({
-  type: t.SERVICE_SETTINGS_RECEIVE,
-  serviceSettings,
-})
-
-const receiveServiceLogs = serviceLogs => ({
-  type: t.SERVICE_LOGS_RECEIVE,
-  serviceLogs,
-})
 
 export const fetchAccount = () => (dispatch, getState) => {
   return api.webstore.account.retrieve().then(({ status, json }) => {

@@ -68,182 +68,131 @@ export const productsSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+    requestProduct: () => {},
+    receiveProduct: (state, { payload }: PayloadAction<any>) => {
+      state.editProduct = payload
+    },
+    receiveProductError: (state, { payload }: PayloadAction<any>) => {
+      state.errorFetchEdit = payload
+    },
+    receiveImages: (state, { payload }: PayloadAction<any>) => {
+      state.editProductImages = payload
+    },
+    receiveVariants: (state, { payload }: PayloadAction<any>) => {
+      state.editProductVariants = payload
+    },
+    receiveOptions: (state, { payload }: PayloadAction<any>) => {
+      state.editProductOptions = payload
+    },
+    cancelProductEdit: state => {
+      state.isUpdating = false
+      state.editProduct = null
+      state.editProductImages = null
+      state.editProductOptions = null
+      state.editProductVariants = null
+    },
+    requestProducts: state => {
+      state.loadingItems = true
+    },
+    requestMoreProducts: state => {
+      state.loadingItems = true
+    },
+    receiveProductsMore: (
+      state,
+      {
+        payload: { has_more, total_count, data },
+      }: PayloadAction<{ has_more; total_count; data }>
+    ) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = [...state.items, ...data]
+    },
+    receiveProducts: (
+      state,
+      {
+        payload: { has_more, total_count, data },
+      }: PayloadAction<{ has_more; total_count; data }>
+    ) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = data
+    },
+    receiveProductsError: (state, { payload }: PayloadAction<any>) => {
+      state.errorLoadingItems = payload
+    },
+    selectProduct: (state, { payload }: PayloadAction<string>) => {
+      state.selected = [...state.selected, payload]
+    },
+    deselectProduct: (state, { payload }: PayloadAction<string>) => {
+      state.selected = state.selected.filter(id => id !== payload)
+    },
+    deselectAllProduct: state => {
+      state.selected = []
+    },
+    selectAllProduct: state => {
+      let selected = state.items.map(item => item.id)
+
+      state.selected = selected
+    },
+    setFilter: (state, { payload }: PayloadAction<any>) => {
+      const newFilter = { ...state.filter, ...payload }
+
+      state.filter = newFilter
+    },
+    deleteProductsSuccess: () => {},
+    setCategorySuccess: () => {},
+    requestUpdateProduct: state => {
+      state.isUpdating = true
+    },
+    receiveUpdateProduct: (state, { payload }: PayloadAction<any>) => {
+      state.isUpdating = false
+      state.editProduct = payload
+    },
+    errorUpdateProduct: (state, { payload }: PayloadAction<any>) => {},
+    successCreateProduct: (state, { payload }: PayloadAction<string>) => {},
+    imagesUploadStart: state => {
+      state.uploadingImages = true
+    },
+    imagesUploadEnd: state => {
+      state.uploadingImages = false
+    },
   },
 })
 
-export const {} = productsSlice.actions
+export const {
+  requestProduct,
+  receiveProduct,
+  receiveProductError,
+  receiveImages,
+  receiveVariants,
+  receiveOptions,
+  cancelProductEdit,
+  requestProducts,
+  requestMoreProducts,
+  receiveProductsMore,
+  receiveProducts,
+  receiveProductsError,
+  selectProduct,
+  deselectProduct,
+  deselectAllProduct,
+  selectAllProduct,
+  setFilter,
+  deleteProductsSuccess,
+  setCategorySuccess,
+  requestUpdateProduct,
+  receiveUpdateProduct,
+  errorUpdateProduct,
+  successCreateProduct,
+  imagesUploadStart,
+  imagesUploadEnd,
+} = productsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectProducts = (state: RootState) => state.products
 
 export default productsSlice.reducer
-
-function requestProduct() {
-  return {
-    type: t.PRODUCT_DETAIL_REQUEST,
-  }
-}
-
-function receiveProduct(item) {
-  return {
-    type: t.PRODUCT_DETAIL_RECEIVE,
-    item,
-  }
-}
-
-function receiveProductError(error) {
-  return {
-    type: t.PRODUCT_DETAIL_FAILURE,
-    error,
-  }
-}
-
-function receiveImages(images) {
-  return {
-    type: t.PRODUCT_IMAGES_RECEIVE,
-    images,
-  }
-}
-
-function receiveVariants(variants) {
-  return {
-    type: t.PRODUCT_VARIANTS_RECEIVE,
-    variants,
-  }
-}
-
-function receiveOptions(options) {
-  return {
-    type: t.PRODUCT_OPTIONS_RECEIVE,
-    options,
-  }
-}
-
-export function cancelProductEdit() {
-  return {
-    type: t.PRODUCT_DETAIL_ERASE,
-  }
-}
-
-function requestProducts() {
-  return {
-    type: t.PRODUCTS_REQUEST,
-  }
-}
-
-function requestMoreProducts() {
-  return {
-    type: t.PRODUCTS_MORE_REQUEST,
-  }
-}
-
-function receiveProductsMore({ has_more, total_count, data }) {
-  return {
-    type: t.PRODUCTS_MORE_RECEIVE,
-    has_more,
-    total_count,
-    data,
-  }
-}
-
-function receiveProducts({ has_more, total_count, data }) {
-  return {
-    type: t.PRODUCTS_RECEIVE,
-    has_more,
-    total_count,
-    data,
-  }
-}
-
-function receiveProductsError(error) {
-  return {
-    type: t.PRODUCTS_FAILURE,
-    error,
-  }
-}
-
-export function selectProduct(id) {
-  return {
-    type: t.PRODUCTS_SELECT,
-    productId: id,
-  }
-}
-
-export function deselectProduct(id) {
-  return {
-    type: t.PRODUCTS_DESELECT,
-    productId: id,
-  }
-}
-
-export function deselectAllProduct() {
-  return {
-    type: t.PRODUCTS_DESELECT_ALL,
-  }
-}
-
-export function selectAllProduct() {
-  return {
-    type: t.PRODUCTS_SELECT_ALL,
-  }
-}
-
-export function setFilter(filter) {
-  return {
-    type: t.PRODUCTS_SET_FILTER,
-    filter: filter,
-  }
-}
-
-function deleteProductsSuccess() {
-  return {
-    type: t.PRODUCT_DELETE_SUCCESS,
-  }
-}
-
-function setCategorySuccess() {
-  return {
-    type: t.PRODUCT_SET_CATEGORY_SUCCESS,
-  }
-}
-
-function requestUpdateProduct() {
-  return {
-    type: t.PRODUCT_UPDATE_REQUEST,
-  }
-}
-
-function receiveUpdateProduct(item) {
-  return {
-    type: t.PRODUCT_UPDATE_SUCCESS,
-    item,
-  }
-}
-
-function errorUpdateProduct(error) {
-  return {
-    type: t.PRODUCT_UPDATE_FAILURE,
-    error,
-  }
-}
-
-function successCreateProduct(id) {
-  return {
-    type: t.PRODUCT_CREATE_SUCCESS,
-  }
-}
-
-function imagesUploadStart() {
-  return {
-    type: t.PRODUCT_IMAGES_UPLOAD_START,
-  }
-}
-
-function imagesUploadEnd() {
-  return {
-    type: t.PRODUCT_IMAGES_UPLOAD_END,
-  }
-}
 
 const getFilter = (state, offset = 0) => {
   const searchTerm = state.products.filter.search

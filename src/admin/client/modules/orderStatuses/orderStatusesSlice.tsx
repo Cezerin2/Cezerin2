@@ -34,79 +34,55 @@ export const orderStatusesSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+    requestStatuses: state => {
+      state.isFetching = true
+    },
+    receiveStatuses: (state, { payload }: PayloadAction<any>) => {
+      state.isFetching = false
+      state.isFetched = true
+      state.items = payload
+    },
+    receiveErrorStatuses: (state, { payload }: PayloadAction<any>) => {
+      state.errorFetch = payload
+    },
+    selectStatus: (state, { payload }: PayloadAction<string>) => {
+      state.selectedId = payload
+    },
+    deselectStatus: state => {
+      state.selectedId = null
+    },
+    requestUpdateStatus: (state, { payload }: PayloadAction<string>) => {
+      state.isSaving = true
+    },
+    receiveUpdateStatus: state => {
+      state.isSaving = false
+    },
+    errorUpdateStatus: (state, { payload }: PayloadAction<any>) => {
+      state.isSaving = false
+      state.errorUpdate = payload
+    },
+    successCreateStatus: (state, { payload }: PayloadAction<string>) => {},
+    successDeleteStatus: (state, { payload }: PayloadAction<string>) => {},
   },
 })
 
-export const {} = orderStatusesSlice.actions
+export const {
+  requestStatuses,
+  receiveStatuses,
+  receiveErrorStatuses,
+  selectStatus,
+  deselectStatus,
+  requestUpdateStatus,
+  receiveUpdateStatus,
+  errorUpdateStatus,
+  successCreateStatus,
+  successDeleteStatus,
+} = orderStatusesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectOrderStatuses = (state: RootState) => state.orderStatuses
 
 export default orderStatusesSlice.reducer
-
-function requestStatuses() {
-  return {
-    type: t.STATUSES_REQUEST,
-  }
-}
-
-function receiveStatuses(items) {
-  return {
-    type: t.STATUSES_RECEIVE,
-    items,
-  }
-}
-
-function receiveErrorStatuses(error) {
-  return {
-    type: t.STATUSES_FAILURE,
-    error,
-  }
-}
-
-export function selectStatus(id) {
-  return {
-    type: t.STATUSES_SELECT,
-    selectedId: id,
-  }
-}
-
-export function deselectStatus() {
-  return {
-    type: t.STATUSES_DESELECT,
-  }
-}
-
-function requestUpdateStatus(id) {
-  return {
-    type: t.STATUS_UPDATE_REQUEST,
-  }
-}
-
-function receiveUpdateStatus() {
-  return {
-    type: t.STATUS_UPDATE_SUCCESS,
-  }
-}
-
-function errorUpdateStatus(error) {
-  return {
-    type: t.STATUS_UPDATE_FAILURE,
-    error,
-  }
-}
-
-function successCreateStatus(id) {
-  return {
-    type: t.STATUS_CREATE_SUCCESS,
-  }
-}
-
-function successDeleteStatus(id) {
-  return {
-    type: t.STATUS_DELETE_SUCCESS,
-  }
-}
 
 function fetchStatuses() {
   return dispatch => {

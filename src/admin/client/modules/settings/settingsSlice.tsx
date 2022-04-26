@@ -91,204 +91,129 @@ export const settingsSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+    exportRequest: state => {
+      state.exportInProcess = true
+    },
+    exportReceive: state => {
+      state.exportInProcess = false
+    },
+    installRequest: state => {
+      state.installInProcess = true
+    },
+    installReceive: state => {
+      state.installInProcess = false
+    },
+    receiveSettings: (state, { payload }: PayloadAction<any>) => {
+      state.settings = payload
+    },
+    receiveEmailSettings: (state, { payload }: PayloadAction<any>) => {
+      state.emailSettings = payload
+    },
+    receiveImportSettings: (state, { payload }: PayloadAction<any>) => {
+      state.importSettings = payload
+    },
+    receiveEmailTemplate: (state, { payload }: PayloadAction<any>) => {
+      state.emailTemplate = payload
+    },
+    requestEmailTemplate: state => {
+      state.emailTemplate = null
+    },
+    receiveCheckoutFields: (state, { payload }: PayloadAction<any>) => {
+      state.checkoutFields = payload
+    },
+    receiveCheckoutField: (state, { payload }: PayloadAction<any>) => {
+      state.checkoutField = payload
+    },
+    requestCheckoutField: state => {
+      state.checkoutField = null
+    },
+    receiveCommerceSettings: (state, { payload }: PayloadAction<any>) => {
+      state.commerceSettings = payload
+    },
+    requestCommerceSettings: state => {
+      state.commerceSettings = null
+    },
+    receiveShippingMethods: (state, { payload }: PayloadAction<any>) => {
+      state.shippingMethods = payload
+    },
+    receivePaymentMethods: (state, { payload }: PayloadAction<any>) => {
+      state.paymentMethods = payload
+    },
+    receivePaymentGateway: (state, { payload }: PayloadAction<any>) => {
+      state.paymentGatewayEdit = payload
+    },
+    receiveShippingMethod: (state, { payload }: PayloadAction<any>) => {
+      state.shippingMethodEdit = payload
+    },
+    receivePaymentMethod: (state, { payload }: PayloadAction<any>) => {
+      state.paymentMethodEdit = payload
+    },
+    receiveTokens: (state, { payload }: PayloadAction<any>) => {
+      state.tokens = payload
+    },
+    receiveToken: (state, { payload }: PayloadAction<any>) => {
+      state.tokenEdit = payload
+      state.newToken = null
+    },
+    receiveNewToken: (state, { payload }: PayloadAction<any>) => {
+      state.newToken = payload
+    },
+    receiveThemeSettings: (state, { payload }: PayloadAction<any>) => {
+      state.themeSettings = payload
+    },
+    receiveThemeSettingsSchema: (state, { payload }: PayloadAction<any>) => {
+      state.themeSettingsSchema = payload
+    },
+    receiveRedirects: (state, { payload }: PayloadAction<any>) => {
+      state.redirects = payload
+    },
+    receiveRedirect: (state, { payload }: PayloadAction<any>) => {
+      state.redirectEdit = payload
+    },
+    receiveWebhooks: (state, { payload }: PayloadAction<any>) => {
+      state.webhooks = payload
+    },
+    receiveWebhook: (state, { payload }: PayloadAction<any>) => {
+      state.webhookEdit = payload
+    },
   },
 })
 
-export const {} = settingsSlice.actions
+export const {
+  exportRequest,
+  exportReceive,
+  installRequest,
+  installReceive,
+  receiveSettings,
+  receiveEmailSettings,
+  receiveImportSettings,
+  receiveEmailTemplate,
+  requestEmailTemplate,
+  receiveCheckoutFields,
+  receiveCheckoutField,
+  requestCheckoutField,
+  receiveCommerceSettings,
+  requestCommerceSettings,
+  receiveShippingMethods,
+  receivePaymentMethods,
+  receivePaymentGateway,
+  receiveShippingMethod,
+  receivePaymentMethod,
+  receiveTokens,
+  receiveToken,
+  receiveNewToken,
+  receiveThemeSettings,
+  receiveThemeSettingsSchema,
+  receiveRedirects,
+  receiveRedirect,
+  receiveWebhooks,
+  receiveWebhook,
+} = settingsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectSettings = (state: RootState) => state.settings
 
 export default settingsSlice.reducer
-
-export function exportRequest() {
-  return {
-    type: t.THEME_EXPORT_REQUEST,
-  }
-}
-
-export function exportReceive() {
-  return {
-    type: t.THEME_EXPORT_RECEIVE,
-  }
-}
-
-export function installRequest() {
-  return {
-    type: t.THEME_INSTALL_REQUEST,
-  }
-}
-
-export function installReceive() {
-  return {
-    type: t.THEME_INSTALL_RECEIVE,
-  }
-}
-
-function receiveSettings(settings) {
-  return {
-    type: t.SETTINGS_RECEIVE,
-    settings,
-  }
-}
-
-function receiveEmailSettings(emailSettings) {
-  return {
-    type: t.EMAIL_SETTINGS_RECEIVE,
-    emailSettings,
-  }
-}
-
-function receiveImportSettings(importSettings) {
-  return {
-    type: t.IMPORT_SETTINGS_RECEIVE,
-    importSettings,
-  }
-}
-
-function receiveEmailTemplate(emailTemplate) {
-  return {
-    type: t.EMAIL_TEMPLATE_RECEIVE,
-    emailTemplate,
-  }
-}
-
-function requestEmailTemplate() {
-  return {
-    type: t.EMAIL_TEMPLATE_REQUEST,
-  }
-}
-
-function receiveCheckoutFields(checkoutFields) {
-  return {
-    type: t.CHECKOUT_FIELDS_RECEIVE,
-    checkoutFields,
-  }
-}
-
-function receiveCheckoutField(checkoutField) {
-  return {
-    type: t.CHECKOUT_FIELD_RECEIVE,
-    checkoutField,
-  }
-}
-
-function requestCheckoutField() {
-  return {
-    type: t.CHECKOUT_FIELD_REQUEST,
-  }
-}
-
-function receiveCommerceSettings(commerceSettings) {
-  return {
-    type: t.COMMERCE_SETTINGS_RECEIVE,
-    commerceSettings,
-  }
-}
-
-function requestCommerceSettings() {
-  return {
-    type: t.COMMERCE_SETTINGS_REQUEST,
-  }
-}
-
-function receiveShippingMethods(shippingMethods) {
-  return {
-    type: t.SHIPPING_METHODS_RECEIVE,
-    shippingMethods,
-  }
-}
-
-function receivePaymentMethods(paymentMethods) {
-  return {
-    type: t.PAYMENT_METHODS_RECEIVE,
-    paymentMethods,
-  }
-}
-
-function receivePaymentGateway(paymentGatewayEdit) {
-  return {
-    type: t.PAYMENT_GATEWAY_RECEIVE,
-    paymentGatewayEdit,
-  }
-}
-
-export function receiveShippingMethod(shippingMethodEdit) {
-  return {
-    type: t.SHIPPING_METHOD_RECEIVE,
-    shippingMethodEdit,
-  }
-}
-
-export function receivePaymentMethod(paymentMethodEdit) {
-  return {
-    type: t.PAYMENT_METHOD_RECEIVE,
-    paymentMethodEdit,
-  }
-}
-
-function receiveTokens(tokens) {
-  return {
-    type: t.TOKENS_RECEIVE,
-    tokens,
-  }
-}
-
-export function receiveToken(tokenEdit) {
-  return {
-    type: t.TOKEN_RECEIVE,
-    tokenEdit,
-  }
-}
-
-export function receiveNewToken(newToken) {
-  return {
-    type: t.NEW_TOKEN_RECEIVE,
-    newToken,
-  }
-}
-
-export function receiveThemeSettings(settings) {
-  return {
-    type: t.THEME_SETTINGS_RECEIVE,
-    settings,
-  }
-}
-
-export function receiveThemeSettingsSchema(schema) {
-  return {
-    type: t.THEME_SETTINGS_SCHEMA_RECEIVE,
-    schema,
-  }
-}
-
-function receiveRedirects(redirects) {
-  return {
-    type: t.REDIRECTS_RECEIVE,
-    redirects,
-  }
-}
-
-export function receiveRedirect(redirectEdit) {
-  return {
-    type: t.REDIRECT_RECEIVE,
-    redirectEdit,
-  }
-}
-
-function receiveWebhooks(webhooks) {
-  return {
-    type: t.WEBHOOKS_RECEIVE,
-    webhooks,
-  }
-}
-
-export function receiveWebhook(webhookEdit) {
-  return {
-    type: t.WEBHOOK_RECEIVE,
-    webhookEdit,
-  }
-}
 
 export function fetchSettings() {
   return (dispatch, getState) => {

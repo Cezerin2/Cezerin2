@@ -30,83 +30,58 @@ export const customerGroupsSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
+    requestGroups: state => {
+      state.isFetching = true
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+    receiveGroups: (state, { payload }: PayloadAction<any>) => {
+      state.isFetching = false
+      state.isFetched = true
+      state.items = payload
+    },
+    receiveErrorGroups: (state, { payload }: PayloadAction<any>) => {
+      state.errorFetch = payload
+    },
+    selectGroup: (state, { payload }: PayloadAction<any>) => {
+      state.selectedId = payload
+    },
+    deselectGroup: state => {
+      state.selectedId = null
+    },
+    requestUpdateGroup: (state, { payload }: PayloadAction<any>) => {
+      state.isSaving = true
+    },
+    receiveUpdateGroup: state => {
+      state.isSaving = false
+    },
+    errorUpdateGroup: (state, { payload }: PayloadAction<any>) => {
+      state.isSaving = false
+      state.errorUpdate = payload
+    },
+    successCreateGroup: (state, { payload }: PayloadAction<string>) => {},
+    successDeleteGroup: (state, { payload }: PayloadAction<string>) => {},
   },
 })
 
-export const {} = customerGroupsSlice.actions
+export const {
+  requestGroups,
+  receiveGroups,
+  receiveErrorGroups,
+  selectGroup,
+  deselectGroup,
+  requestUpdateGroup,
+  receiveUpdateGroup,
+  errorUpdateGroup,
+  successCreateGroup,
+  successDeleteGroup,
+} = customerGroupsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCustomerGroups = (state: RootState) => state.customerGroups
 
 export default customerGroupsSlice.reducer
-
-function requestGroups() {
-  return {
-    type: t.GROUPS_REQUEST,
-  }
-}
-
-function receiveGroups(items) {
-  return {
-    type: t.GROUPS_RECEIVE,
-    items,
-  }
-}
-
-function receiveErrorGroups(error) {
-  return {
-    type: t.GROUPS_FAILURE,
-    error,
-  }
-}
-
-export function selectGroup(id) {
-  return {
-    type: t.GROUPS_SELECT,
-    selectedId: id,
-  }
-}
-
-export function deselectGroup() {
-  return {
-    type: t.GROUPS_DESELECT,
-  }
-}
-
-function requestUpdateGroup(id) {
-  return {
-    type: t.GROUP_UPDATE_REQUEST,
-  }
-}
-
-function receiveUpdateGroup() {
-  return {
-    type: t.GROUP_UPDATE_SUCCESS,
-  }
-}
-
-function errorUpdateGroup(error) {
-  return {
-    type: t.GROUP_UPDATE_FAILURE,
-    error,
-  }
-}
-
-function successCreateGroup(id) {
-  return {
-    type: t.GROUP_CREATE_SUCCESS,
-  }
-}
-
-function successDeleteGroup(id) {
-  return {
-    type: t.GROUP_DELETE_SUCCESS,
-  }
-}
 
 function fetchGroups() {
   return dispatch => {

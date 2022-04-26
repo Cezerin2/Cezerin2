@@ -36,105 +36,68 @@ export const productCategoriesSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+    requestCategories: state => {
+      state.isFetching = true
+    },
+    receiveCategories: (state, { payload }: PayloadAction<any>) => {
+      state.isFetching = false
+      state.isFetched = true
+      state.items = payload
+    },
+    receiveErrorCategories: (state, { payload }: PayloadAction<any>) => {
+      state.errorFetch = payload
+    },
+    selectCategory: (state, { payload }: PayloadAction<string>) => {
+      state.selectedId = payload
+    },
+    deselectCategory: state => {
+      state.selectedId = null
+    },
+    requestUpdateCategory: (state, { payload }: PayloadAction<string>) => {
+      state.isSaving = true
+    },
+    receiveUpdateCategory: state => {
+      state.isSaving = false
+    },
+    errorUpdateCategory: (state, { payload }: PayloadAction<any>) => {
+      state.isSaving = false
+      state.errorUpdate = payload
+    },
+    successCreateCategory: (state, { payload }: PayloadAction<string>) => {},
+    successDeleteCategory: (state, { payload }: PayloadAction<string>) => {},
+    successMoveUpDownCategory: (state, { payload }: PayloadAction<any>) => {},
+    successReplaceCategory: (state, { payload }: PayloadAction<string>) => {},
+    imageUploadStart: state => {
+      state.uploadingImage = true
+    },
+    imageUploadEnd: state => {
+      state.uploadingImage = false
+    },
   },
 })
 
-export const {} = productCategoriesSlice.actions
+export const {
+  requestCategories,
+  receiveCategories,
+  receiveErrorCategories,
+  selectCategory,
+  deselectCategory,
+  requestUpdateCategory,
+  receiveUpdateCategory,
+  errorUpdateCategory,
+  successCreateCategory,
+  successDeleteCategory,
+  successMoveUpDownCategory,
+  successReplaceCategory,
+  imageUploadStart,
+  imageUploadEnd,
+} = productCategoriesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectProductCategories = (state: RootState) =>
   state.productCategories
 
 export default productCategoriesSlice.reducer
-
-function requestCategories() {
-  return {
-    type: t.CATEGORIES_REQUEST,
-  }
-}
-
-function receiveCategories(items) {
-  return {
-    type: t.CATEGORIES_RECEIVE,
-    items,
-  }
-}
-
-function receiveErrorCategories(error) {
-  return {
-    type: t.CATEGORIES_FAILURE,
-    error,
-  }
-}
-
-export function selectCategory(id) {
-  return {
-    type: t.CATEGORIES_SELECT,
-    selectedId: id,
-  }
-}
-
-export function deselectCategory() {
-  return {
-    type: t.CATEGORIES_DESELECT,
-  }
-}
-
-function requestUpdateCategory(id) {
-  return {
-    type: t.CATEGORY_UPDATE_REQUEST,
-  }
-}
-
-function receiveUpdateCategory() {
-  return {
-    type: t.CATEGORY_UPDATE_SUCCESS,
-  }
-}
-
-function errorUpdateCategory(error) {
-  return {
-    type: t.CATEGORY_UPDATE_FAILURE,
-    error,
-  }
-}
-
-function successCreateCategory(id) {
-  return {
-    type: t.CATEGORY_CREATE_SUCCESS,
-  }
-}
-
-function successDeleteCategory(id) {
-  return {
-    type: t.CATEGORY_DELETE_SUCCESS,
-  }
-}
-
-function successMoveUpDownCategory(newPosition) {
-  return {
-    type: t.CATEGORY_MOVE_UPDOWN_SUCCESS,
-    position: newPosition,
-  }
-}
-
-function successReplaceCategory(newParentId) {
-  return {
-    type: t.CATEGORY_REPLACE_SUCCESS,
-  }
-}
-
-function imageUploadStart() {
-  return {
-    type: t.CATEGORY_IMAGE_UPLOAD_START,
-  }
-}
-
-function imageUploadEnd() {
-  return {
-    type: t.CATEGORY_IMAGE_UPLOAD_END,
-  }
-}
 
 export function fetchCategories() {
   return dispatch => {

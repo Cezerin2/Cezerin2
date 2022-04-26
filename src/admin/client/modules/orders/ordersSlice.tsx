@@ -71,174 +71,120 @@ export const ordersSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
+    requestOrder: state => {},
+    receiveOrder: (state, { payload }: PayloadAction<any>) => {
+      state.editOrder = payload
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+    clearOrderDetails: state => {
+      return receiveOrder(null)
+    },
+    requestOrders: state => {
+      state.loadingItems = true
+    },
+    requestMoreOrders: state => {
+      state.loadingItems = true
+    },
+    receiveOrdersMore: (
+      state,
+      {
+        payload: { has_more, total_count, data },
+      }: PayloadAction<{ has_more; total_count; data }>
+    ) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = [...state.items, ...data]
+    },
+    receiveOrders: (
+      state,
+      {
+        payload: { has_more, total_count, data },
+      }: PayloadAction<{ has_more; total_count; data }>
+    ) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = data
+    },
+    receiveOrdersError: (state, { payload }: PayloadAction<any>) => {
+      state.loadingItems = false
+      state.errorLoadingItems = payload
+    },
+    requestOrderCheckout: state => {
+      state.processingCheckout = true
+    },
+    receiveOrderCheckout: state => {
+      state.processingCheckout = false
+    },
+    failOrderCheckout: (state, { payload }: PayloadAction<any>) => {
+      state.processingCheckout = false
+    },
+    selectOrder: (state, { payload }: PayloadAction<string>) => {
+      state.selected = [...state.selected, payload]
+    },
+    deselectOrder: (state, { payload }: PayloadAction<string>) => {
+      state.selected = state.selected.filter(id => id !== payload)
+    },
+    deselectAllOrder: state => {
+      state.selected = []
+    },
+    selectAllOrder: state => {
+      let selected = state.items.map(item => item.id)
+
+      state.selected = selected
+    },
+    setFilter: (state, { payload }: PayloadAction<any>) => {
+      const newFilter = { ...state.filter, ...payload }
+
+      state.filter = newFilter
+    },
+    requestBulkUpdate: () => {},
+    receiveBulkUpdate: () => {},
+    errorBilkUpdate: () => {
+      // TODO: Spelling mistake
+    },
+    deleteOrdersSuccess: () => {},
+    createOrdersSuccess: () => {},
+    requestOrderUpdate: () => {},
+    receiveOrderUpdate: () => {},
+    failOrderUpdate: (state, { payload }: PayloadAction<any>) => {},
   },
 })
 
-export const {} = ordersSlice.actions
+export const {
+  requestOrder,
+  receiveOrder,
+  clearOrderDetails,
+  requestOrders,
+  requestMoreOrders,
+  receiveOrdersMore,
+  receiveOrders,
+  receiveOrdersError,
+  requestOrderCheckout,
+  receiveOrderCheckout,
+  failOrderCheckout,
+  selectOrder,
+  deselectOrder,
+  deselectAllOrder,
+  selectAllOrder,
+  setFilter,
+  requestBulkUpdate,
+  receiveBulkUpdate,
+  errorBilkUpdate,
+  deleteOrdersSuccess,
+  createOrdersSuccess,
+  requestOrderUpdate,
+  receiveOrderUpdate,
+  failOrderUpdate,
+} = ordersSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectOrders = (state: RootState) => state.orders
 
 export default ordersSlice.reducer
-
-function requestOrder() {
-  return {
-    type: t.ORDER_DETAIL_REQUEST,
-  }
-}
-
-function receiveOrder(item) {
-  return {
-    type: t.ORDER_DETAIL_RECEIVE,
-    item,
-  }
-}
-
-export function clearOrderDetails() {
-  return receiveOrder(null)
-}
-
-function requestOrders() {
-  return {
-    type: t.ORDERS_REQUEST,
-  }
-}
-
-function requestMoreOrders() {
-  return {
-    type: t.ORDERS_MORE_REQUEST,
-  }
-}
-
-function receiveOrdersMore({ has_more, total_count, data }) {
-  return {
-    type: t.ORDERS_MORE_RECEIVE,
-    has_more,
-    total_count,
-    data,
-  }
-}
-
-function receiveOrders({ has_more, total_count, data }) {
-  return {
-    type: t.ORDERS_RECEIVE,
-    has_more,
-    total_count,
-    data,
-  }
-}
-
-function receiveOrdersError(error) {
-  return {
-    type: t.ORDERS_FAILURE,
-    error,
-  }
-}
-
-function requestOrderCheckout() {
-  return {
-    type: t.ORDER_CHECKOUT_REQUEST,
-  }
-}
-
-function receiveOrderCheckout() {
-  return {
-    type: t.ORDER_CHECKOUT_RECEIVE,
-  }
-}
-
-function failOrderCheckout(error) {
-  return {
-    type: t.ORDER_CHECKOUT_FAILURE,
-    error,
-  }
-}
-
-export function selectOrder(id) {
-  return {
-    type: t.ORDERS_SELECT,
-    orderId: id,
-  }
-}
-
-export function deselectOrder(id) {
-  return {
-    type: t.ORDERS_DESELECT,
-    orderId: id,
-  }
-}
-
-export function deselectAllOrder() {
-  return {
-    type: t.ORDERS_DESELECT_ALL,
-  }
-}
-
-export function selectAllOrder() {
-  return {
-    type: t.ORDERS_SELECT_ALL,
-  }
-}
-
-export function setFilter(filter) {
-  return {
-    type: t.ORDERS_SET_FILTER,
-    filter: filter,
-  }
-}
-
-function requestBulkUpdate() {
-  return {
-    type: t.ORDERS_BULK_UPDATE_REQUEST,
-  }
-}
-
-function receiveBulkUpdate() {
-  return {
-    type: t.ORDERS_BULK_UPDATE_SUCCESS,
-  }
-}
-
-function errorBilkUpdate() {
-  return {
-    type: t.ORDERS_BULK_UPDATE_FAILURE,
-  }
-}
-
-function deleteOrdersSuccess() {
-  return {
-    type: t.ORDER_DELETE_SUCCESS,
-  }
-}
-
-function createOrdersSuccess() {
-  return {
-    type: t.ORDER_CREATE_SUCCESS,
-  }
-}
-
-function requestOrderUpdate() {
-  return {
-    type: t.ORDER_UPDATE_REQUEST,
-  }
-}
-
-function receiveOrderUpdate() {
-  return {
-    type: t.ORDER_UPDATE_SUCCESS,
-  }
-}
-
-function failOrderUpdate(error) {
-  return {
-    type: t.ORDER_UPDATE_FAILURE,
-    error,
-  }
-}
 
 const getFilter = (state, offset = 0) => {
   const filterState = state.orders.filter

@@ -23,29 +23,21 @@ export const pagesSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+    receivePages: (state, { payload }: PayloadAction<any>) => {
+      state.pages = payload
+    },
+    receivePage: (state, { payload }: PayloadAction<any>) => {
+      state.pageEdit = payload
+    },
   },
 })
 
-export const {} = pagesSlice.actions
+export const { receivePages, receivePage } = pagesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectPages = (state: RootState) => state.pages
 
 export default pagesSlice.reducer
-
-function receivePages(pages) {
-  return {
-    type: t.PAGES_RECEIVE,
-    pages,
-  }
-}
-
-export function receivePage(pageEdit) {
-  return {
-    type: t.PAGE_RECEIVE,
-    pageEdit,
-  }
-}
 
 export function fetchPages() {
   return (dispatch, getState) => {
