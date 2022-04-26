@@ -488,7 +488,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
   } catch (erro) {}
 
   // generate password-hash
-  const inputPassword = decodeUserPassword(customerData.password).password
+  const inputPassword = customerData.password
   const salt = bcrypt.genSaltSync(saltRounds)
   const hashPassword = bcrypt.hashSync(inputPassword, salt)
 
