@@ -1,6 +1,83 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import api from "lib/api"
+import { RootState } from "lib/store"
 import moment from "moment"
 import * as t from "./actionTypes"
+
+// Define a type for the slice state
+interface ProductsState {
+  editProductImages: null
+  editProductOptions: null
+  editProductVariants: null
+  editProduct: null
+  items: []
+  selected: []
+  hasMore: false
+  totalCount: 0
+
+  isUpdating: false
+  loadingItems: false
+  uploadingImages: false
+
+  errorFetchEdit: null
+  errorLoadingItems: null
+  errorUpdate: null
+
+  filter: {
+    search: ""
+    enabled: null
+    discontinued: false
+    onSale: null
+    stockStatus: null
+  }
+}
+
+// Define the initial state using that type
+const initialState: ProductsState = {
+  editProductImages: null,
+  editProductOptions: null,
+  editProductVariants: null,
+  editProduct: null,
+  items: [],
+  selected: [],
+  hasMore: false,
+  totalCount: 0,
+
+  isUpdating: false,
+  loadingItems: false,
+  uploadingImages: false,
+
+  errorFetchEdit: null,
+  errorLoadingItems: null,
+  errorUpdate: null,
+
+  filter: {
+    search: "",
+    enabled: null,
+    discontinued: false,
+    onSale: null,
+    stockStatus: null,
+  },
+}
+
+export const productsSlice = createSlice({
+  name: "products",
+  // `createSlice` will infer the state type from the `initialState` argument
+  initialState,
+  reducers: {
+    // Use the PayloadAction type to declare the contents of `action.payload`
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload
+    },
+  },
+})
+
+export const {} = productsSlice.actions
+
+// Other code such as selectors can use the imported `RootState` type
+export const selectProducts = (state: RootState) => state.apps
+
+export default productsSlice.reducer
 
 function requestProduct() {
   return {

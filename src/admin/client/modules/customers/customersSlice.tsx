@@ -1,5 +1,51 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import api from "lib/api"
+import { RootState } from "lib/store"
 import * as t from "./actionTypes"
+
+// Define a type for the slice state
+interface CustomersState {
+  editCustomer: null
+  items: []
+  selected: []
+  hasMore: false
+  totalCount: 0
+  loadingItems: false
+  errorLoadingItems: null
+  search: ""
+}
+
+// Define the initial state using that type
+const initialState: CustomersState = {
+  editCustomer: null,
+  items: [],
+  selected: [],
+  hasMore: false,
+  totalCount: 0,
+  loadingItems: false,
+  errorLoadingItems: null,
+  search: "",
+}
+
+export const customersSlice = createSlice({
+  name: "customers",
+  // `createSlice` will infer the state type from the `initialState` argument
+  initialState,
+  reducers: {
+    // Use the PayloadAction type to declare the contents of `action.payload`
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload
+    },
+  },
+})
+
+export const {} = customersSlice.actions
+
+// Other code such as selectors can use the imported `RootState` type
+export const selectCustomers = (state: RootState) => state.apps
+
+export default customersSlice.reducer
+
 const push = () => {}
 
 function requestCustomer() {
