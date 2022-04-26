@@ -29,7 +29,7 @@ export const filesSlice = createSlice({
 export const {} = filesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectFiles = (state: RootState) => state.apps
+export const selectFiles = (state: RootState) => state.files
 
 export default filesSlice.reducer
 

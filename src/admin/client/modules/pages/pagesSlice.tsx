@@ -29,7 +29,7 @@ export const pagesSlice = createSlice({
 export const {} = pagesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectPages = (state: RootState) => state.apps
+export const selectPages = (state: RootState) => state.pages
 
 export default pagesSlice.reducer
 

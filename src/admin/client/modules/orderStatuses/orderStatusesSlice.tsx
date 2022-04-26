@@ -40,7 +40,7 @@ export const orderStatusesSlice = createSlice({
 export const {} = orderStatusesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectOrderStatuses = (state: RootState) => state.apps
+export const selectOrderStatuses = (state: RootState) => state.orderStatuses
 
 export default orderStatusesSlice.reducer
 

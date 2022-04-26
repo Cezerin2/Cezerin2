@@ -97,7 +97,7 @@ export const settingsSlice = createSlice({
 export const {} = settingsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectSettings = (state: RootState) => state.apps
+export const selectSettings = (state: RootState) => state.settings
 
 export default settingsSlice.reducer
 

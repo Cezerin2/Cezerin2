@@ -42,7 +42,8 @@ export const productCategoriesSlice = createSlice({
 export const {} = productCategoriesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectProductCategories = (state: RootState) => state.apps
+export const selectProductCategories = (state: RootState) =>
+  state.productCategories
 
 export default productCategoriesSlice.reducer
 
