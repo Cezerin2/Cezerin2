@@ -533,7 +533,6 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
           res.status(200).send(error)
         }
         customerDataObj.customer_settings = result
-
         customerDataObj.customer_settings.password = "*******"
         customerDataObj.token = encodeUserLoginAuth(userID)
         customerData.authenticated = false
