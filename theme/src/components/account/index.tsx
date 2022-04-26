@@ -22,6 +22,7 @@ class AccountForm extends React.Component {
       first_name: values.first_name,
       last_name: values.last_name,
       email: values.email,
+      mobile: values.mobile,
       password: encodeUserPassword(values.password),
       token: Lscache.get("auth_data"),
       shipping_address,
