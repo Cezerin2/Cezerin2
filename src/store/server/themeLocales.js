@@ -11,10 +11,10 @@ export const getText = locale => {
   } else {
     const filePath = path.resolve(THEME_LOCALES_PATH + locale + ".json")
     return new Promise((resolve, reject) => {
-      fse.readFile(filePath, "utf8", (err, data) => {
-        if (err) {
-          winston.error("Fail to read theme locale", filePath, err)
-          reject(err)
+      fse.readFile(filePath, "utf8", (error, data) => {
+        if (error) {
+          winston.error("Fail to read theme locale", filePath, error)
+          reject(error)
         } else {
           text = JSON.parse(data)
           resolve(text)
