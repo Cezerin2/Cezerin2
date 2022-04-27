@@ -504,6 +504,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
     first_name: customerData.first_name,
     last_name: customerData.last_name,
     email: customerData.email.toLowerCase(),
+    mobile: customerData.mobile,
     password: hashPassword,
     addresses: [customerData.billing_address, customerData.shipping_address],
   }

@@ -653,6 +653,10 @@ class Account extends React.Component {
                   name={text.email}
                   value={customerProperties.customer_settings.email}
                 />
+                <ReadOnlyField
+                  name={text.mobile}
+                  value={customerProperties.customer_settings.mobile}
+                />
               </div>
               <div className={accountProfileList}>
                 <div className={accountProfileHeadline}>
@@ -778,7 +782,17 @@ class Account extends React.Component {
                   validate={this.getFieldValidators("email")}
                   placeholder={this.getFieldPlaceholder("email")}
                 />
-
+                <Field
+                  className={accountInputField}
+                  name="mobile"
+                  id="customer.mobile"
+                  autoComplete="new-password"
+                  component={InputField}
+                  type="text"
+                  label={this.getFieldLabel("mobile")}
+                  validate={this.getFieldValidators("mobile")}
+                  placeholder={this.getFieldPlaceholder("mobile")}
+                />
                 <Field
                   className={accountInputField}
                   name="password"
