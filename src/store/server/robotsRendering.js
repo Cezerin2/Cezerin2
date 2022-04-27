@@ -6,8 +6,8 @@ const ROBOTS_TEMPLATE_PATH = "public/robots.template"
 
 const robotsRendering = (req, res) => {
   api.settings.retrieve().then(settingsResponse => {
-    fse.readFile(path.resolve(ROBOTS_TEMPLATE_PATH), "utf8", (err, data) => {
-      if (err) {
+    fse.readFile(path.resolve(ROBOTS_TEMPLATE_PATH), "utf8", (error, data) => {
+      if (error) {
         res.status(500).end()
       } else {
         const robots = data.replace(/{domain}/g, settingsResponse.json.domain)
