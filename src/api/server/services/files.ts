@@ -30,9 +30,9 @@ class FilesService {
 
   getFiles() {
     return new Promise((resolve, reject) => {
-      fse.readdir(contentPath, (err, files) => {
-        if (err) {
-          reject(err)
+      fse.readdir(contentPath, (error, files) => {
+        if (error) {
+          reject(error)
         } else {
           const filesData = this.getFilesData(files)
           resolve(filesData)
@@ -45,7 +45,7 @@ class FilesService {
     return new Promise<void>((resolve, reject) => {
       const filePath = contentPath + "/" + fileName
       if (fse.existsSync(filePath)) {
-        fse.unlink(filePath, err => {
+        fse.unlink(filePath, error => {
           resolve()
         })
       } else {

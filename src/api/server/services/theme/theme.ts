@@ -29,9 +29,9 @@ class ThemesService {
   }
 
   installTheme(req, res) {
-    this.saveThemeFile(req, res, (err, fileName) => {
-      if (err) {
-        res.status(500).send(this.getErrorMessage(err))
+    this.saveThemeFile(req, res, (error, fileName) => {
+      if (error) {
+        res.status(500).send(this.getErrorMessage(error))
       } else {
         // run async NPM script
         winston.info("Installing theme...")
@@ -77,8 +77,8 @@ class ThemesService {
           file_size = file.size
         }
       })
-      .on("error", err => {
-        callback(err)
+      .on("error", error => {
+        callback(error)
       })
       .on("end", () => {
         //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
@@ -92,8 +92,8 @@ class ThemesService {
     form.parse(req)
   }
 
-  getErrorMessage(err) {
-    return { error: true, message: err.toString() }
+  getErrorMessage(error) {
+    return { error: true, message: error.toString() }
   }
 }
 

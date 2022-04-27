@@ -43,14 +43,14 @@ const getReferrerCookieOptions = isHttps => ({
   sameSite: "strict",
 })
 
-const renderError = (req, res, err) => {
+const renderError = (req, res, error) => {
   winston.error(
-    `Error on page rendering\n\tpath: ${req.url}\n\terror: ${err.toString()}`
+    `Error on page rendering\n\tpath: ${req.url}\n\terror: ${error.toString()}`
   )
-  if (err.stack) {
-    winston.error(err.stack)
+  if (error.stack) {
+    winston.error(error.stack)
   }
-  res.status(500).send(err.message ? err.message : err)
+  res.status(500).send(error.message ? error.message : error)
 }
 
 const getAppHtml = (store, location, context = {}) => {
@@ -149,8 +149,8 @@ const pageRendering = (req, res) => {
       )
       renderPage(req, res, store, themeText, placeholders)
     })
-    .catch(err => {
-      renderError(req, res, err)
+    .catch(error => {
+      renderError(req, res, error)
     })
 }
 

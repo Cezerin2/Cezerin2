@@ -1,7 +1,6 @@
-import * as t from "./actionTypes"
 import api from "lib/api"
-import messages from "lib/text"
 import moment from "moment"
+import * as t from "./actionTypes"
 
 function requestProduct() {
   return {
@@ -283,8 +282,8 @@ export function deleteProducts() {
         dispatch(deselectAllProduct())
         dispatch(fetchProducts())
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        console.log(error)
       })
   }
 }
@@ -302,8 +301,8 @@ export function setCategory(category_id) {
         dispatch(deselectAllProduct())
         dispatch(fetchProducts())
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        console.log(error)
       })
   }
 }
