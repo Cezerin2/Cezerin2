@@ -486,7 +486,6 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
   try {
     userID = JSON.stringify(token.userID).replace(/["']/g, "")
   } catch (erro) {}
-
   // generate password-hash
   const inputPassword = decodeUserPassword(customerData.password).password
   const salt = bcrypt.genSaltSync(saltRounds)
