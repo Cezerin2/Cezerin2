@@ -1,7 +1,7 @@
 import settings from "lib/settings"
 import messages from "lib/text"
-import { fetchOrders } from "modules/orders/actions"
-import { installReceive } from "modules/settings/actions"
+import { fetchOrders } from "modules/orders/ordersSlice"
+import { installReceive } from "modules/settings/settingsSlice"
 
 const autoReconnectInterval = 1000 // 1 seconds
 const orderCreated = "order.created"
