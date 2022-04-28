@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchCheckoutFields } from "../actions"
+import { fetchCheckoutFields } from "../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = state => {

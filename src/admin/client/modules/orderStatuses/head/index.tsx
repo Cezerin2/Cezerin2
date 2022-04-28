@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { reset } from "redux-form"
-import { deleteStatus, deselectStatus } from "../actions"
+import { deleteStatus, deselectStatus } from "../orderStatusesSlice"
 import Buttons from "./components/buttons"
 
 const mapStateToProps = state => {

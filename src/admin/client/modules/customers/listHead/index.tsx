@@ -4,7 +4,7 @@ import {
   fetchCustomers,
   setFilterSearch,
   setGroup,
-} from "../actions"
+} from "../customersSlice"
 import Buttons from "./components/buttons"
 
 const mapStateToProps = state => {

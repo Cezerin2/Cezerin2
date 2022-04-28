@@ -1,11 +1,9 @@
 import { connect } from "react-redux"
 import {
-  updateCategory,
-  deselectCategory,
-  fetchCategories,
   deleteImage,
+  updateCategory,
   uploadImage,
-} from "../actions"
+} from "../productCategoriesSlice"
 import ProductCategoryEditForm from "./components/form"
 
 const mapStateToProps = state => {

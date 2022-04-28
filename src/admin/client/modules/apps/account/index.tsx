@@ -1,7 +1,11 @@
-import { connect } from "react-redux"
-import { fetchAccount, updateAccount, updateDeveloperAccount } from "../actions"
-import Details from "./components/details"
 import * as webstoreAuth from "lib/webstoreAuth"
+import { connect } from "react-redux"
+import {
+  fetchAccount,
+  updateAccount,
+  updateDeveloperAccount,
+} from "../appsSlice"
+import Details from "./components/details"
 
 const mapStateToProps = (state, ownProps) => {
   return {

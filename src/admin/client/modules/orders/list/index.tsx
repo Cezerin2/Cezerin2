@@ -1,13 +1,13 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
-  fetchOrders,
-  selectOrder,
-  deselectOrder,
-  selectAllOrder,
   deselectAllOrder,
+  deselectOrder,
   fetchMoreOrders,
-} from "../actions"
+  fetchOrders,
+  selectAllOrder,
+  selectOrder,
+} from "../ordersSlice"
 import List from "./components/list"
 
 const mapStateToProps = (state, ownProps) => {

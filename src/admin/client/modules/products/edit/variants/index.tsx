@@ -1,12 +1,12 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
-  createVariant,
-  updateVariant,
-  setVariantOption,
-  deleteVariant,
   createOption,
-} from "../../actions"
+  createVariant,
+  deleteVariant,
+  setVariantOption,
+  updateVariant,
+} from "../../productsSlice"
 import ProductVariantsGrid from "./components/grid"
 
 const mapStateToProps = (state, ownProps) => {

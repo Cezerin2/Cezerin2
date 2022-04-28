@@ -1,13 +1,13 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
+  createOptionValue,
+  deleteOption,
+  deleteOptionValue,
   fetchOptions,
   updateOption,
-  deleteOption,
-  createOptionValue,
   updateOptionValue,
-  deleteOptionValue,
-} from "../../actions"
+} from "../../productsSlice"
 import ProductOptionForm from "./components/option"
 
 const mapStateToProps = (state, ownProps) => {

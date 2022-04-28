@@ -1,12 +1,12 @@
 import { connect } from "react-redux"
 import {
-  fetchCustomers,
-  selectCustomer,
-  deselectCustomer,
-  selectAllCustomer,
   deselectAllCustomer,
+  deselectCustomer,
+  fetchCustomers,
   fetchMoreCustomers,
-} from "../actions"
+  selectAllCustomer,
+  selectCustomer,
+} from "../customersSlice"
 import List from "./components/list"
 
 const mapStateToProps = state => {

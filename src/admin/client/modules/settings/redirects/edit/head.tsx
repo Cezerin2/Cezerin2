@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { deleteRedirect } from "../../actions"
+import { deleteRedirect } from "../../settingsSlice"
 import Buttons from "./components/headButtons"
 
 const mapStateToProps = (state, ownProps) => ({

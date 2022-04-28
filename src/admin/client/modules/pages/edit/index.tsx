@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchPage, updatePage, createPage, receivePage } from "../actions"
+import { createPage, fetchPage, receivePage, updatePage } from "../pagesSlice"
 import Form from "./components/form"
 
 const mapStateToProps = (state, ownProps) => {

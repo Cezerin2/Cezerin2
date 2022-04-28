@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchImportSettings } from "../actions"
+import { fetchImportSettings } from "../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = state => {

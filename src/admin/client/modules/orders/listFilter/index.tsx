@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchOrders, setFilter } from "../actions"
+import { fetchOrders, setFilter } from "../ordersSlice"
 import Filter from "./components/fields"
 
 const mapStateToProps = state => {

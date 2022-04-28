@@ -1,5 +1,5 @@
 import messages from "lib/text"
-import { fetchCategoriesIfNeeded } from "modules/productCategories/actions"
+import { fetchCategoriesIfNeeded } from "modules/productCategories/productCategoriesSlice"
 import ProductAdditional from "modules/products/edit/additional"
 import ProductAttributes from "modules/products/edit/attributes"
 import ProductGeneral from "modules/products/edit/general"
@@ -9,7 +9,7 @@ import ProductVariants from "modules/products/edit/variants"
 import React from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { cancelProductEdit, fetchProduct } from "../actions"
+import { cancelProductEdit, fetchProduct } from "../productsSlice"
 
 class ProductEditContainer extends React.Component {
   constructor(props) {

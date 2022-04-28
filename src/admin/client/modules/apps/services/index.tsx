@@ -1,7 +1,7 @@
+import * as webstoreAuth from "lib/webstoreAuth"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { fetchServices } from "../actions"
-import * as webstoreAuth from "lib/webstoreAuth"
+import { fetchServices } from "../appsSlice"
 import List from "./components/list"
 
 const mapStateToProps = (state, ownProps) => {

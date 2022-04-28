@@ -6,7 +6,7 @@ import {
   closeOrder,
   deleteCurrentOrder,
   updateOrder,
-} from "../actions"
+} from "../ordersSlice"
 import Buttons from "./components/buttons"
 
 const mapStateToProps = (state, ownProps) => {

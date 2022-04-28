@@ -1,14 +1,14 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
-  fetchCustomer,
   clearCustomerDetails,
-  updateCustomer,
-  updateAddress,
   deleteAddress,
+  fetchCustomer,
   setDefaultBillingAddress,
   setDefaultShippingAddress,
-} from "../actions"
+  updateAddress,
+  updateCustomer,
+} from "../customersSlice"
 import CustomerDetails from "./components/details"
 
 const mapStateToProps = (state, ownProps) => {

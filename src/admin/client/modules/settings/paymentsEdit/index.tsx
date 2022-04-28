@@ -1,11 +1,11 @@
 import { connect } from "react-redux"
 import {
-  fetchPaymentMethod,
-  updatePaymentMethod,
-  fetchShippingMethods,
   createPaymentMethod,
+  fetchPaymentMethod,
+  fetchShippingMethods,
   receivePaymentMethod,
-} from "../actions"
+  updatePaymentMethod,
+} from "../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = (state, ownProps) => {

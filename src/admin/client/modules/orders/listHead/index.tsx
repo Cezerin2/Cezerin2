@@ -1,6 +1,11 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { createOrder, deleteOrders, fetchOrders, setFilter } from "../actions"
+import {
+  createOrder,
+  deleteOrders,
+  fetchOrders,
+  setFilter,
+} from "../ordersSlice"
 import Buttons from "./components/buttons"
 
 const mapStateToProps = (state, ownProps) => {

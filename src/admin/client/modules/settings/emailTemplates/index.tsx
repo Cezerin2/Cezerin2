@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchEmailTemplate, updateEmailTemplate } from "../actions"
+import { fetchEmailTemplate, updateEmailTemplate } from "../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = (state, ownProps) => {

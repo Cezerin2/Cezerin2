@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import { fetchGroupsIfNeeded } from "../actions"
 import List from "../components/list"
+import { fetchGroupsIfNeeded } from "../customerGroupsSlice"
 
 const mapStateToProps = state => {
   return {

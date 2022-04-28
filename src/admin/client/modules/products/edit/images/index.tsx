@@ -2,11 +2,10 @@ import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
   deleteImage,
-  updateImages,
   updateImage,
-  fetchImages,
+  updateImages,
   uploadImages,
-} from "../../actions"
+} from "../../productsSlice"
 import ProductImages from "./components/images"
 
 const mapStateToProps = (state, ownProps) => {

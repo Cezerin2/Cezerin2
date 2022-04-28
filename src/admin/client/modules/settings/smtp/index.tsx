@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchEmailSettings, updateEmailSettings } from "../actions"
+import { fetchEmailSettings, updateEmailSettings } from "../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = state => {

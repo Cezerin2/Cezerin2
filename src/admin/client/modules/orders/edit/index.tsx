@@ -1,14 +1,14 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
+  checkoutOrder,
+  clearOrderDetails,
+  deleteOrderItem,
   fetchOrder,
   updateOrder,
-  deleteOrderItem,
   updateOrderItem,
   updateShippingAddress,
-  clearOrderDetails,
-  checkoutOrder,
-} from "../actions"
+} from "../ordersSlice"
 import OrderDetails from "./components/details"
 
 const mapStateToProps = (state, ownProps) => {

@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import { fetchStatusesIfNeeded } from "../actions"
 import List from "../components/list"
+import { fetchStatusesIfNeeded } from "../orderStatusesSlice"
 
 const mapStateToProps = state => {
   return {

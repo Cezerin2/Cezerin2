@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { reset } from "redux-form"
-import { updateGroup, createGroup, deselectGroup } from "../actions"
+import { createGroup, deselectGroup, updateGroup } from "../customerGroupsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = state => {

@@ -1,13 +1,13 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
-  fetchProducts,
-  fetchMoreProducts,
-  selectProduct,
-  deselectProduct,
-  selectAllProduct,
   deselectAllProduct,
-} from "../actions"
+  deselectProduct,
+  fetchMoreProducts,
+  fetchProducts,
+  selectAllProduct,
+  selectProduct,
+} from "../productsSlice"
 import List from "./components/list"
 
 const mapStateToProps = (state, ownProps) => {

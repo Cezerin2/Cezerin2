@@ -6,7 +6,7 @@ import {
   fetchProducts,
   setCategory,
   setFilter,
-} from "../actions"
+} from "../productsSlice"
 import Buttons from "./components/buttons"
 
 const mapStateToProps = (state, ownProps) => {

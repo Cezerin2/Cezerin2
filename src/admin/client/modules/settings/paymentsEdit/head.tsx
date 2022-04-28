@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { deletePaymentMethod } from "../actions"
+import { deletePaymentMethod } from "../settingsSlice"
 import Buttons from "./components/headButtons"
 
 const mapStateToProps = (state, ownProps) => {

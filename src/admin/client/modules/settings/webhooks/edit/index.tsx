@@ -1,10 +1,10 @@
 import { connect } from "react-redux"
 import {
-  fetchWebhook,
-  updateWebhook,
   createWebhook,
+  fetchWebhook,
   receiveWebhook,
-} from "../../actions"
+  updateWebhook,
+} from "../../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = (state, ownProps) => {

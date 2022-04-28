@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchShippingMethods } from "../actions"
+import { fetchShippingMethods } from "../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = state => {

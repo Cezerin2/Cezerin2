@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
-import { selectStatus, fetchStatusesIfNeeded } from "../actions"
-import { fetchOrders } from "../../orders/actions"
+import { fetchOrders } from "../../orders/ordersSlice"
 import List from "../components/list"
+import { fetchStatusesIfNeeded, selectStatus } from "../orderStatusesSlice"
 
 const mapStateToProps = state => {
   return {

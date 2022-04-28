@@ -7,7 +7,7 @@ import {
   moveDownCategory,
   moveUpCategory,
   replaceCategory,
-} from "../actions"
+} from "../productCategoriesSlice"
 import Buttons from "./components/buttons"
 
 const mapStateToProps = state => {

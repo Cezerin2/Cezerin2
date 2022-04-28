@@ -1,11 +1,11 @@
 import { connect } from "react-redux"
 import {
-  fetchService,
-  enableService,
   disableService,
-  updateServiceSettings,
+  enableService,
+  fetchService,
   fetchServiceLogs,
-} from "../actions"
+  updateServiceSettings,
+} from "../appsSlice"
 import Details from "./components/details"
 
 const mapStateToProps = (state, ownProps) => {

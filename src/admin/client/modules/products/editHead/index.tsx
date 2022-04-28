@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { deleteCurrentProduct } from "../actions"
+import { deleteCurrentProduct } from "../productsSlice"
 import Buttons from "./components/buttons"
 
 const mapStateToProps = (state, ownProps) => {

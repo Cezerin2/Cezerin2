@@ -1,11 +1,11 @@
 import { connect } from "react-redux"
 import {
-  fetchToken,
-  updateToken,
   createToken,
-  receiveToken,
   deleteToken,
-} from "../../actions"
+  fetchToken,
+  receiveToken,
+  updateToken,
+} from "../../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = (state, ownProps) => {

@@ -1,7 +1,10 @@
 import { connect } from "react-redux"
-import { selectCategory, fetchCategoriesIfNeeded } from "../actions"
-import { fetchProducts } from "../../products/actions"
+import { fetchProducts } from "../../products/productsSlice"
 import List from "../components/list"
+import {
+  fetchCategoriesIfNeeded,
+  selectCategory,
+} from "../productCategoriesSlice"
 
 const mapStateToProps = state => {
   return {

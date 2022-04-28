@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchProducts, setFilter } from "../actions"
+import { fetchProducts, setFilter } from "../productsSlice"
 import Filter from "./components/filter"
 
 const mapStateToProps = state => {

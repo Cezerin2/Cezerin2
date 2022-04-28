@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchWebhooks } from "../../actions"
+import { fetchWebhooks } from "../../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = state => {

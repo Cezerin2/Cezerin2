@@ -1,10 +1,10 @@
 import { connect } from "react-redux"
 import {
-  fetchShippingMethod,
-  updateShippingMethod,
   createShippingMethod,
+  fetchShippingMethod,
   receiveShippingMethod,
-} from "../actions"
+  updateShippingMethod,
+} from "../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = (state, ownProps) => {

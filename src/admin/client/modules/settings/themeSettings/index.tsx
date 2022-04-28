@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchThemeSettings, updateThemeSettings } from "../actions"
+import { fetchThemeSettings, updateThemeSettings } from "../settingsSlice"
 import Form from "./components/form"
 
 const mapStateToProps = state => {

@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { importProducts, updateProduct } from "../../actions"
+import { updateProduct } from "../../productsSlice"
 import ProductAdditionalForm from "./components/form"
 
 const mapStateToProps = (state, ownProps) => {
