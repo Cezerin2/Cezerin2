@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import api from "lib/api"
 import { RootState } from "lib/store"
 import messages from "lib/text"
-import * as t from "./actionTypes"
 
 // Define a type for the slice state
 interface ProductCategoriesState {
