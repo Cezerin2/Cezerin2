@@ -8,7 +8,7 @@
     "bulma": "^0.9.3",
     "rc-slider": "^9.7.5",
     "react-image-gallery": "^0.8.7",
-    "react-image-lightbox": "^4.6.0",
+    "react-image-lightbox": "^5.1.4",
     "react-lazyload": "^2.3.0"
   }
 }
