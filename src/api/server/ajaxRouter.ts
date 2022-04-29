@@ -499,6 +499,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
     customer_settings: null,
     order_statuses: null,
   }
+
   const customerDraftObj = {
     full_name: `${customerData.first_name} ${customerData.last_name}`,
     first_name: customerData.first_name,
