@@ -5,11 +5,11 @@ import messages from "lib/text"
 
 // Define a type for the slice state
 interface ProductCategoriesState {
-  items: []
-  isFetched: false
-  isFetching: false
-  isSaving: false
-  uploadingImage: false
+  items: any[]
+  isFetched: boolean
+  isFetching: boolean
+  isSaving: boolean
+  uploadingImage: boolean
   errorFetch: null
   errorUpdate: null
   selectedId: "all"

@@ -9,7 +9,7 @@ interface AppsState {
   service: null
   serviceSettings: null
   serviceLogs: null
-  loadingEnableDisableService: false
+  loadingEnableDisableService: boolean
 }
 
 // Define the initial state using that type

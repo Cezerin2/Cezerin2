@@ -6,9 +6,9 @@ import messages from "lib/text"
 // Define a type for the slice state
 interface CustomerGroupsState {
   items: []
-  isFetched: false
-  isFetching: false
-  isSaving: false
+  isFetched: boolean
+  isFetching: boolean
+  isSaving: boolean
   errorFetch: null
   errorUpdate: null
   selectedId: "all"

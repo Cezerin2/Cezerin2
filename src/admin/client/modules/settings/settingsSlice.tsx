@@ -4,8 +4,8 @@ import { RootState } from "lib/store"
 
 // Define a type for the slice state
 interface SettingsState {
-  exportInProcess: false
-  installInProcess: false
+  exportInProcess: boolean
+  installInProcess: boolean
   settings: {
     language: "en"
     currency_code: "USD"

@@ -5,12 +5,12 @@ import { RootState } from "lib/store"
 // Define a type for the slice state
 interface OrdersState {
   editOrder: null
-  items: []
-  selected: []
-  hasMore: false
+  items: any[]
+  selected: any[]
+  hasMore: boolean
   totalCount: 0
-  loadingItems: false
-  processingCheckout: false
+  loadingItems: boolean
+  processingCheckout: boolean
   errorLoadingItems: null
 
   filter: {
@@ -20,7 +20,7 @@ interface OrdersState {
     delivered: null
     paid: null
     hold: null
-    draft: false
+    draft: boolean
     // status_id: null,
     // customer_id: null,
     // payment_method_id: null,

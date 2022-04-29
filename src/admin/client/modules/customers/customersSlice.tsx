@@ -5,11 +5,11 @@ import { RootState } from "lib/store"
 // Define a type for the slice state
 interface CustomersState {
   editCustomer: null
-  items: []
-  selected: []
-  hasMore: false
+  items: any[]
+  selected: any[]
+  hasMore: boolean
   totalCount: 0
-  loadingItems: false
+  loadingItems: boolean
   errorLoadingItems: null
   search: ""
 }

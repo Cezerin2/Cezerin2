@@ -9,14 +9,14 @@ interface ProductsState {
   editProductOptions: null
   editProductVariants: null
   editProduct: null
-  items: []
-  selected: []
-  hasMore: false
+  items: any[]
+  selected: any[]
+  hasMore: boolean
   totalCount: 0
 
-  isUpdating: false
-  loadingItems: false
-  uploadingImages: false
+  isUpdating: boolean
+  loadingItems: boolean
+  uploadingImages: boolean
 
   errorFetchEdit: null
   errorLoadingItems: null
