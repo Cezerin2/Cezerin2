@@ -34,9 +34,6 @@ export const customersSlice = createSlice({
     requestCustomer: () => {},
     receiveCustomer: (state, { payload }: PayloadAction<any>) => {
       state.editCustomer = payload
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
     },
     clearCustomerDetails: state => {
       return receiveCustomer(null)

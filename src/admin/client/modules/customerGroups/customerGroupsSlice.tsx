@@ -32,9 +32,6 @@ export const customerGroupsSlice = createSlice({
   reducers: {
     requestGroups: state => {
       state.isFetching = true
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
     },
     receiveGroups: (state, { payload }: PayloadAction<any>) => {
       state.isFetching = false
