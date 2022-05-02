@@ -110,7 +110,7 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/lodash": "^4.14.182",
     "@types/lru-cache": "^7.6.1",
-    "@types/node": "^17.0.30",
+    "@types/node": "^17.0.31",
     "@types/nodemailer": "^6.4.4",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
