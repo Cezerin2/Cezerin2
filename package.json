@@ -121,7 +121,7 @@
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^7.1.0",
-    "core-js": "^3.22.3",
+    "core-js": "^3.22.4",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
     "eslint": "^8.14.0",
