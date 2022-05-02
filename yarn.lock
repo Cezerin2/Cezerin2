@@ -2329,12 +2329,10 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-attr-accept@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-1.1.3.tgz#48230c79f93790ef2775fcec4f0db0f5db41ca52"
-  integrity sha512-iT40nudw8zmCweivz6j58g+RT33I4KbaIvRUhjNmDwO2WmsQUxFEZZYZ5w3vXe5x5MX9D7mfvA/XaLOZYFR9EQ==
-  dependencies:
-    core-js "^2.5.0"
+attr-accept@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
+  integrity sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -3263,7 +3261,7 @@ core-js@^1.0.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
-core-js@^2.4.0, core-js@^2.5.0:
+core-js@^2.4.0:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
@@ -4537,6 +4535,13 @@ file-entry-cache@^6.0.1:
   integrity sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==
   dependencies:
     flat-cache "^3.0.4"
+
+file-selector@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.5.0.tgz#21c7126dc9728b31a2742d91cab20d55e67e4fb4"
+  integrity sha512-s8KNnmIDTBoD0p9uJ9uD0XY38SCeBOtj0UMXyQSLg1Ypfrfj8+dAvwsLjYQkQ2GjhVtp2HrnF5cJzMhBjfD8HA==
+  dependencies:
+    tslib "^2.0.3"
 
 file-uri-to-path@1.0.0:
   version "1.0.0"
@@ -7875,13 +7880,14 @@ react-dom@^18.1.0:
     loose-envify "^1.1.0"
     scheduler "^0.22.0"
 
-react-dropzone@^5.0.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-5.1.1.tgz#b05613ea22f1ab71aa1f7cf5367df7b19468a2f3"
-  integrity sha512-C9kXI3D95rVXbLLg9DvzCnmjplKwpfj/2F/MwvGVM05kDwWMzKVKZnmgZHZUebmiVj4mFOmBs2ObLiKvAxunGw==
+react-dropzone@^14.1.1:
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-14.1.1.tgz#44ef66b8806bab7e3e39a4b089e73145de038482"
+  integrity sha512-JYavQrxU66hBHwDAXCMoHNvhMonKDA0VQ8ouJi8Ouxgz9lmtA4OGVBXgOTCq4vCbwTTDT9synvNUCIpT6zWWow==
   dependencies:
-    attr-accept "^1.1.3"
-    prop-types "^15.6.2"
+    attr-accept "^2.2.2"
+    file-selector "^0.5.0"
+    prop-types "^15.8.1"
 
 react-event-listener@^0.6.2:
   version "0.6.6"
