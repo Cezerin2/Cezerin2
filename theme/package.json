@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "bulma": "^0.9.3",
-    "rc-slider": "^9.7.5",
+    "rc-slider": "^10.0.0",
     "react-image-gallery": "^0.8.7",
     "react-image-lightbox": "^4.6.0",
     "react-lazyload": "^2.3.0"
