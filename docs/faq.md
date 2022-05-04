@@ -82,16 +82,18 @@ free - m
 
 Try to clean the cookies of your browser.
 
-
 ### Registration and password forget emails are empty, how to fix?
 
 If you changed your language (and is different from English, Russian and German), you have to create the templates for your own language. Check the file:
+
 ```javascript
-src/api/server/setup.ts 
+src / api / server / setup.ts
 ```
+
 and:
+
 ```javascript
-src/admin/client/modules/settings/email/components/form.tsx
+src / admin / client / modules / settings / email / components / form.tsx
 ```
 
 ### error: uncaughtException: listen EADDRINUSE: address already in use :::3000, how to fix?
@@ -99,16 +101,19 @@ src/admin/client/modules/settings/email/components/form.tsx
 Quitting the store and the api in the wrong way can lead to this error. The solution in linux is killing the process that using the port that gives you the error:
 
 to obtain the PID of the process:
+
 ```javascript
 lsof -t -i:3000
 ```
+
 to kill the PID:
+
 ```javascript
 kill -9 PID
 ```
-or more simply in one command: 
+
+or more simply in one command:
+
 ```javascript
 kill -9 $(lsof -t -i:3001)
 ```
-
-
