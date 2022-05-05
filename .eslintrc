@@ -31,6 +31,10 @@
     ],
     "no-restricted-syntax": 0,
     "import/extensions": ["error", "never", { "tsx": "always" }],
+    "no-param-reassign": [
+      "error",
+      { "props": true, "ignorePropertyModificationsFor": ["state"] }
+    ],
     "react/prop-types": 0,
     "import/no-unresolved": 0,
     "react/no-array-index-key": 0,
