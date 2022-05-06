@@ -2,10 +2,16 @@ import { createSlice } from "@reduxjs/toolkit"
 import { RootState } from "lib/store"
 
 // Define a type for the slice state
-interface State {}
+interface FilesState {
+  files: File[]
+  uploading: boolean
+}
 
 // Define the initial state using that type
-const initialState: State = {}
+const initialState: FilesState = {
+  files: [],
+  uploading: false,
+}
 
 const { actions, reducer } = createSlice({
   name: "",
