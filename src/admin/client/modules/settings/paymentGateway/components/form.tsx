@@ -2,88 +2,78 @@ import messages from "lib/text"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
-import React from "react"
+import React, { FC, useEffect, useRef, useState } from "react"
 import { reduxForm } from "redux-form"
 import { AVAILABLE_PAYMENT_GATEWAYS } from "../availablePaymentGateways"
 import GatewaySettings from "./gatewaySettings"
 import style from "./style.css"
 
-class EditPaymentGatewayForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: false,
-    }
-  }
+interface Props {
+  gateway
+  onLoad
+  handleSubmit
+  pristine
+  submitting
+}
 
-  componentDidMount() {
-    this.props.onLoad()
-  }
+const EditPaymentGatewayForm: FC<Props> = props => {
+  const [open, setOpen] = useState(false)
+  const currentGateway = useRef(props.gateway)
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.gateway !== this.props.gateway) {
-      this.props.onLoad(nextProps.gateway)
-    }
-  }
+  const { gateway, onLoad, handleSubmit, pristine, submitting } = props
 
-  handleOpen = () => {
-    this.setState({ open: true })
-  }
+  useEffect(() => {
+    onLoad()
 
-  handleClose = () => {
-    this.setState({ open: false })
-  }
+    if (currentGateway !== props.gateway) onLoad(gateway)
+  }, [gateway])
 
-  render() {
-    let { handleSubmit, pristine, submitting, initialValues } = this.props
-    const gatewayDetails = AVAILABLE_PAYMENT_GATEWAYS.find(
-      item => item.key === this.props.gateway
-    )
+  const handleClose = () => setOpen(false)
 
-    if (this.props.gateway && this.props.gateway.length > 0) {
-      return (
-        <div>
-          <RaisedButton
-            onClick={this.handleOpen}
-            label={messages.drawer_settings}
-            style={{ margin: "15px 0 30px 0" }}
-          />
+  const gatewayDetails = AVAILABLE_PAYMENT_GATEWAYS.find(
+    item => item.key === gateway
+  )
 
-          <Dialog
-            title={gatewayDetails.name}
-            modal={false}
-            open={this.state.open}
-            autoScrollBodyContent
-            contentStyle={{ width: 600 }}
-            onRequestClose={this.handleClose}
+  if (gateway && gateway.length > 0) {
+    return (
+      <div>
+        <RaisedButton
+          onClick={() => setOpen(true)}
+          label={messages.drawer_settings}
+          style={{ margin: "15px 0 30px 0" }}
+        />
+
+        <Dialog
+          title={gatewayDetails.name}
+          modal={false}
+          open={open}
+          autoScrollBodyContent
+          contentStyle={{ width: 600 }}
+          onRequestClose={handleClose}
+        >
+          <form
+            onSubmit={handleSubmit}
+            style={{ display: "initial", width: "100%" }}
           >
-            <form
-              onSubmit={handleSubmit}
-              style={{ display: "initial", width: "100%" }}
-            >
-              <GatewaySettings gateway={this.props.gateway} />
+            <GatewaySettings gateway={gateway} />
 
-              <div className={style.buttons}>
-                <FlatButton
-                  label={messages.cancel}
-                  onClick={this.handleClose}
-                />
-                <FlatButton
-                  label={messages.save}
-                  primary
-                  type="submit"
-                  onClick={this.handleClose}
-                  style={{ marginLeft: 12 }}
-                  disabled={pristine || submitting}
-                />
-              </div>
-            </form>
-          </Dialog>
-        </div>
-      )
-    } else {
-      return null
-    }
+            <div className={style.buttons}>
+              <FlatButton label={messages.cancel} onClick={handleClose} />
+              <FlatButton
+                label={messages.save}
+                primary
+                type="submit"
+                onClick={handleClose}
+                style={{ marginLeft: 12 }}
+                disabled={pristine || submitting}
+              />
+            </div>
+          </form>
+        </Dialog>
+      </div>
+    )
+  } else {
+    return null
   }
 }
 
