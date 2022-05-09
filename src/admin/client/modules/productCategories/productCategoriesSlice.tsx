@@ -2,10 +2,28 @@ import { createSlice } from "@reduxjs/toolkit"
 import { RootState } from "lib/store"
 
 // Define a type for the slice state
-interface State {}
+interface ProductCategoriesState {
+  items: any[]
+  isFetched: boolean
+  isFetching: boolean
+  isSaving: boolean
+  uploadingImage: boolean
+  errorFetch: null
+  errorUpdate: null
+  selectedId: "all"
+}
 
 // Define the initial state using that type
-const initialState: State = {}
+const initialState: ProductCategoriesState = {
+  items: [],
+  isFetched: false,
+  isFetching: false,
+  isSaving: false,
+  uploadingImage: false,
+  errorFetch: null,
+  errorUpdate: null,
+  selectedId: "all",
+}
 
 const { actions, reducer } = createSlice({
   name: "",

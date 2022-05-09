@@ -2,10 +2,24 @@ import { createSlice } from "@reduxjs/toolkit"
 import { RootState } from "lib/store"
 
 // Define a type for the slice state
-interface State {}
+interface AppsState {
+  account: null
+  services: []
+  service: null
+  serviceSettings: null
+  serviceLogs: null
+  loadingEnableDisableService: boolean
+}
 
 // Define the initial state using that type
-const initialState: State = {}
+const initialState: AppsState = {
+  account: null,
+  services: [],
+  service: null,
+  serviceSettings: null,
+  serviceLogs: null,
+  loadingEnableDisableService: false,
+}
 
 const { actions, reducer } = createSlice({
   name: "",
