@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react"
+import React, { FC, useEffect } from "react"
 import ServiceActions from "./actions"
 import ServiceDescription from "./description"
 import ServiceLogs from "./logs"
@@ -19,8 +19,6 @@ interface Props {
 }
 
 const ServiceDetails: FC<Props> = props => {
-  const [timer, setTimer] = useState(null)
-
   const {
     fetchData,
     serviceId,
@@ -42,8 +40,7 @@ const ServiceDetails: FC<Props> = props => {
       if (service && service.enabled) fetchServiceLogs()
     }, 5000)
 
-    setTimer(interval)
-    return () => clearInterval(timer)
+    return () => clearInterval(interval)
   }, [])
 
   let actions = null
