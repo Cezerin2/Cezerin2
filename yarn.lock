@@ -1422,10 +1422,10 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
-"@tinymce/tinymce-react@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-4.0.0.tgz#bc3cb752b17e9e673ea31dd3b0b7a6723e9bc409"
-  integrity sha512-dECENgV0l2O9ifrergzJVKritePCvYRKwdJLjSkWloPa9KRjwsqnIpB2b0BC0JqGYxwqmc203gB8jCmw3N4vCw==
+"@tinymce/tinymce-react@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-4.1.0.tgz#e2a5e289dc1af03837365bebe969b1a722bf6d99"
+  integrity sha512-7qXheXhyY9a8mY5tXQUz3BFq+Z4TQ7zd/OIaKasbVzojkjCw3VWdwFhHOEcwmDDprepgQwECsYqe3AGOtehfFg==
   dependencies:
     prop-types "^15.6.2"
     tinymce "^6.0.0 || ^5.5.1"
