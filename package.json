@@ -141,7 +141,7 @@
     "prop-types": "^15.8.1",
     "regenerator-runtime": "^0.13.9",
     "sass-loader": "^10.1.1",
-    "ts-node": "^10.7.0",
+    "ts-node": "^10.8.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.4",
     "webpack": "^4.46.0",
