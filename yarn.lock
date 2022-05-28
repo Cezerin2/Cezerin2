@@ -6375,10 +6375,10 @@ lru-cache@^7.9.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.9.0.tgz#29c2a989b6c10f32ceccc66ff44059e1490af3e1"
   integrity sha512-lkcNMUKqdJk96TuIXUidxaPuEg5sJo/+ZyVE2BDFnuZGzwXem7d8582eG8vbu4todLfT14snP6iHriCHXXi5Rw==
 
-lscache@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/lscache/-/lscache-1.3.0.tgz#2221fd39f3393d2dfbc6ed2231beb52e11e43396"
-  integrity sha512-0JwzMSSu3fd3m8QQVbqIxzXywkNLQvgdNehuEtZ66v7f89ybpkZX+WN45SkvChP4AqUPSpDPJKHsAqStOhHgUA==
+lscache@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/lscache/-/lscache-1.3.2.tgz#20f186e97eafd012810ea59d4ab6d81ead5a321b"
+  integrity sha512-CBZT/pDcaK3I3XGwDLaszDe8hj0pCgbuxd3W79gvHApBSdKVXvR9fillbp6eLvp7dLgtaWm3a1mvmhAqn9uCXQ==
 
 magic-string@^0.25.0, magic-string@^0.25.7:
   version "0.25.7"
