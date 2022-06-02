@@ -8,7 +8,7 @@ import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import style from "./style.css"
 
@@ -69,8 +69,8 @@ interface Props {
 export const OrderItem: FC<Props> = props => {
   const [quantity, setQuantity] = useState(props.item.quantity)
   const [variantId, setVariantId] = useState(props.item.variant_id)
-  const [selectedOptions, setSelectedOptions] = useState(getOptionsByVariant())
-  const [selectedVariant, setSelectedVariant] = useState(getCurrentVariant())
+  const [selectedOptions, setSelectedOptions] = useState({})
+  const [selectedVariant, setSelectedVariant] = useState(null)
   const [showEdit, setShowEdit] = useState(false)
 
   const { item, settings, allowEdit, onItemUpdate, onItemDelete } = props
@@ -182,18 +182,28 @@ export const OrderItem: FC<Props> = props => {
   }
 
   const quantityItems = []
-  if (maxItems === 0) {
-    quantityItems.push(
-      <MenuItem key={0} value={0} primaryText={messages.products_outOfStock} />
-    )
-    setQuantity(0)
-  } else {
-    for (let i = 1; i <= maxItems, i <= 100; i++) {
+
+  useEffect(() => {
+    setSelectedOptions(getOptionsByVariant())
+    setSelectedVariant(getCurrentVariant())
+
+    if (maxItems === 0) {
       quantityItems.push(
-        <MenuItem key={i} value={i} primaryText={i.toString()} />
+        <MenuItem
+          key={0}
+          value={0}
+          primaryText={messages.products_outOfStock}
+        />
       )
+      setQuantity(0)
+    } else {
+      for (let i = 1; i <= maxItems, i <= 100; i++) {
+        quantityItems.push(
+          <MenuItem key={i} value={i} primaryText={i.toString()} />
+        )
+      }
     }
-  }
+  }, [])
 
   return (
     <div>
