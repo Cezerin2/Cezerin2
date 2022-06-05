@@ -72,6 +72,7 @@ export const OrderItem: FC<Props> = props => {
   const [selectedOptions, setSelectedOptions] = useState({})
   const [selectedVariant, setSelectedVariant] = useState(null)
   const [showEdit, setShowEdit] = useState(false)
+  const [quantityItems, setQuantityItems] = useState<Element[]>([])
 
   const { item, settings, allowEdit, onItemUpdate, onItemDelete } = props
 
@@ -181,14 +182,14 @@ export const OrderItem: FC<Props> = props => {
     maxItems = 0
   }
 
-  const quantityItems = []
-
   useEffect(() => {
     setSelectedOptions(getOptionsByVariant())
     setSelectedVariant(getCurrentVariant())
 
+    const array = []
+
     if (maxItems === 0) {
-      quantityItems.push(
+      array.push(
         <MenuItem
           key={0}
           value={0}
@@ -198,11 +199,11 @@ export const OrderItem: FC<Props> = props => {
       setQuantity(0)
     } else {
       for (let i = 1; i <= maxItems, i <= 100; i++) {
-        quantityItems.push(
-          <MenuItem key={i} value={i} primaryText={i.toString()} />
-        )
+        array.push(<MenuItem key={i} value={i} primaryText={i.toString()} />)
       }
     }
+
+    setQuantityItems(array)
   }, [])
 
   return (
