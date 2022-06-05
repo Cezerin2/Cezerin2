@@ -1,6 +1,5 @@
 import React from "react"
 import { themeSettings } from "../../lib/settings"
-import { encodeUserPassword } from "../authHeader"
 import Register from "./register"
 
 class RegisterForm extends React.Component {
@@ -17,7 +16,7 @@ class RegisterForm extends React.Component {
       first_name: values.first_name,
       last_name: values.last_name,
       email: values.email,
-      password: encodeUserPassword(values.password),
+      password: values.password,
       history: this.props.history,
     })
   }
