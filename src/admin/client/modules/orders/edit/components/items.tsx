@@ -8,7 +8,7 @@ import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import style from "./style.css"
 
@@ -58,50 +58,37 @@ const ProductOptions = ({ options, onChange, selectedOptions }) => {
   }
 }
 
-export class OrderItem extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      quantity: props.item.quantity,
-      variantId: props.item.variant_id,
-      selectedOptions: this.getOptionsByVariant(),
-      selectedVariant: this.getCurrentVariant(),
-      showEdit: false,
-    }
-  }
+interface Props {
+  item
+  settings
+  allowEdit
+  onItemUpdate
+  onItemDelete
+}
 
-  showEditForm = () => {
-    this.setState({ showEdit: true })
-  }
+export const OrderItem: FC<Props> = props => {
+  const [quantity, setQuantity] = useState(props.item.quantity)
+  const [variantId, setVariantId] = useState(props.item.variant_id)
+  const [selectedOptions, setSelectedOptions] = useState({})
+  const [selectedVariant, setSelectedVariant] = useState(null)
+  const [showEdit, setShowEdit] = useState(false)
+  const [quantityItems, setQuantityItems] = useState<Element[]>([])
 
-  hideEditForm = () => {
-    this.setState({ showEdit: false })
-  }
+  const { item, settings, allowEdit, onItemUpdate, onItemDelete } = props
 
-  quantityChange = (event, index, value) => {
-    this.setState({ quantity: value })
-  }
+  const hideEditForm = () => setShowEdit(false)
 
-  submitEditForm = () => {
-    this.hideEditForm()
+  const quantityChange = (event, index, value) => setQuantity(value)
+
+  const submitEditForm = () => {
+    hideEditForm()
     const newVariantId =
-      this.state.selectedVariant && this.state.selectedVariant.id
-        ? this.state.selectedVariant.id
-        : this.state.variantId
-    this.props.onItemUpdate(
-      this.props.item.id,
-      this.state.quantity,
-      newVariantId
-    )
+      selectedVariant && selectedVariant.id ? selectedVariant.id : variantId
+    onItemUpdate(item.id, quantity, newVariantId)
   }
 
-  deleteItem = () => {
-    this.props.onItemDelete(this.props.item.id)
-  }
-
-  onOptionChange = (optionId, valueId) => {
-    this.setState({ quantity: 1 })
-    let { selectedOptions } = this.state
+  const onOptionChange = (optionId, valueId) => {
+    setQuantity(1)
 
     if (valueId === "") {
       delete selectedOptions[optionId]
@@ -109,30 +96,29 @@ export class OrderItem extends React.Component {
       selectedOptions[optionId] = valueId
     }
 
-    this.setState({ selectedOptions: selectedOptions })
-    this.findVariantBySelectedOptions()
+    setSelectedOptions(selectedOptions)
+    findVariantBySelectedOptions()
   }
 
-  findVariantBySelectedOptions = () => {
-    const { selectedOptions } = this.state
-    const product = this.props.item.product
+  const findVariantBySelectedOptions = () => {
+    const product = item.product
     for (const variant of product.variants) {
       const variantMutchSelectedOptions = variant.options.every(
         variantOption =>
           selectedOptions[variantOption.option_id] === variantOption.value_id
       )
       if (variantMutchSelectedOptions) {
-        this.setState({ selectedVariant: variant })
+        setSelectedVariant(variant)
         return
       }
     }
 
-    this.setState({ selectedVariant: null })
+    setSelectedVariant(null)
   }
 
-  getCurrentVariant = () => {
-    const variantId = this.props.item.variant_id
-    const product = this.props.item.product
+  const getCurrentVariant = () => {
+    const variantId = item.variant_id
+    const product = item.product
     let variant = null
 
     if (
@@ -147,9 +133,9 @@ export class OrderItem extends React.Component {
     return variant
   }
 
-  getOptionsByVariant = () => {
-    const variantId = this.props.item.variant_id
-    const product = this.props.item.product
+  const getOptionsByVariant = () => {
+    const variantId = item.variant_id
+    const product = item.product
     let selectedOptions = {}
     if (
       variantId &&
@@ -168,131 +154,129 @@ export class OrderItem extends React.Component {
     return selectedOptions
   }
 
-  render() {
-    const { item, settings, allowEdit } = this.props
+  const editFormActions = [
+    <FlatButton
+      label={messages.cancel}
+      onClick={hideEditForm}
+      style={{ marginRight: 10 }}
+    />,
+    <FlatButton label={messages.save} primary onClick={submitEditForm} />,
+  ]
 
-    const editFormActions = [
-      <FlatButton
-        label={messages.cancel}
-        onClick={this.hideEditForm}
-        style={{ marginRight: 10 }}
-      />,
-      <FlatButton
-        label={messages.save}
-        primary
-        onClick={this.submitEditForm}
-      />,
-    ]
+  const product = item.product
+  const price = helper.formatCurrency(item.price, settings)
+  const priceTotal = helper.formatCurrency(item.price_total, settings)
+  const discountTotal = helper.formatCurrency(item.discount_total, settings)
+  const imageUrl =
+    product && product.images && product.images.length > 0
+      ? product.images[0].url
+      : null
+  const thumbnailUrl = helper.getThumbnailUrl(imageUrl, 100)
+  const productOptions = product ? product.options : []
 
-    let { quantity } = this.state
-    const { selectedOptions, selectedVariant } = this.state
-    const product = item.product
-    const price = helper.formatCurrency(item.price, settings)
-    const priceTotal = helper.formatCurrency(item.price_total, settings)
-    const discountTotal = helper.formatCurrency(item.discount_total, settings)
-    const imageUrl =
-      product && product.images && product.images.length > 0
-        ? product.images[0].url
-        : null
-    const thumbnailUrl = helper.getThumbnailUrl(imageUrl, 100)
-    const productOptions = product ? product.options : []
+  let maxItems = product ? product.stock_quantity : 0
+  if (selectedVariant) {
+    maxItems = selectedVariant.stock_quantity
+  } else if (product && product.options && product.options.length > 0) {
+    // product variant not exists with this options
+    maxItems = 0
+  }
 
-    let maxItems = product ? product.stock_quantity : 0
-    if (selectedVariant) {
-      maxItems = selectedVariant.stock_quantity
-    } else if (product && product.options && product.options.length > 0) {
-      // product variant not exists with this options
-      maxItems = 0
-    }
+  useEffect(() => {
+    setSelectedOptions(getOptionsByVariant())
+    setSelectedVariant(getCurrentVariant())
 
-    const quantityItems = []
+    const array = []
+
     if (maxItems === 0) {
-      quantityItems.push(
+      array.push(
         <MenuItem
           key={0}
           value={0}
           primaryText={messages.products_outOfStock}
         />
       )
-      quantity = 0
+      setQuantity(0)
     } else {
       for (let i = 1; i <= maxItems, i <= 100; i++) {
-        quantityItems.push(
-          <MenuItem key={i} value={i} primaryText={i.toString()} />
-        )
+        array.push(<MenuItem key={i} value={i} primaryText={i.toString()} />)
       }
     }
 
-    return (
-      <div>
-        <div className={style.item + " row row--no-gutter middle-xs"}>
-          <div className="col-xs-2">
-            {thumbnailUrl && thumbnailUrl !== "" && (
-              <img src={thumbnailUrl} className={style.itemImage} />
-            )}
-          </div>
-          <div className={style.itemName + " col-xs-4"}>
-            <Link to={`/admin/product/${item.product_id}`}>{item.name}</Link>
-            <div>{item.variant_name}</div>
-            <div>
-              {messages.products_sku}: {item.sku}
-            </div>
-          </div>
-          <div className="col-xs-2" style={{ textAlign: "right" }}>
-            {price}
-          </div>
-          <div className="col-xs-1" style={{ textAlign: "center" }}>
-            x {item.quantity}
-          </div>
-          <div className="col-xs-2" style={{ textAlign: "right" }}>
-            {priceTotal}
-            {item.discount_total > 0 && (
-              <small className={style.itemDiscount}>{discountTotal}</small>
-            )}
-          </div>
-          <div className="col-xs-1" style={{ textAlign: "center" }}>
-            {allowEdit && (
-              <IconMenu
-                iconButtonElement={iconButtonElement}
-                targetOrigin={{ horizontal: "right", vertical: "top" }}
-                anchorOrigin={{ horizontal: "right", vertical: "top" }}
-              >
-                <MenuItem onClick={this.showEditForm}>{messages.edit}</MenuItem>
-                <MenuItem onClick={this.deleteItem}>
-                  {messages.actions_delete}
-                </MenuItem>
-              </IconMenu>
-            )}
+    setQuantityItems(array)
+  }, [])
+
+  return (
+    <div>
+      <div className={style.item + " row row--no-gutter middle-xs"}>
+        <div className="col-xs-2">
+          {thumbnailUrl && thumbnailUrl !== "" && (
+            <img src={thumbnailUrl} className={style.itemImage} />
+          )}
+        </div>
+        <div className={style.itemName + " col-xs-4"}>
+          <Link to={`/admin/product/${item.product_id}`}>{item.name}</Link>
+          <div>{item.variant_name}</div>
+          <div>
+            {messages.products_sku}: {item.sku}
           </div>
         </div>
-        <Divider />
-        <Dialog
-          title={messages.editOrderItem}
-          actions={editFormActions}
-          modal={false}
-          open={this.state.showEdit}
-          onRequestClose={this.hideEditForm}
-          contentStyle={{ width: 400 }}
-        >
-          <div>
-            <ProductOptions
-              options={productOptions}
-              onChange={this.onOptionChange}
-              selectedOptions={selectedOptions}
-            />
-            <SelectField
-              floatingLabelText={messages.quantity}
-              fullWidth
-              value={quantity}
-              onChange={this.quantityChange}
+        <div className="col-xs-2" style={{ textAlign: "right" }}>
+          {price}
+        </div>
+        <div className="col-xs-1" style={{ textAlign: "center" }}>
+          x {item.quantity}
+        </div>
+        <div className="col-xs-2" style={{ textAlign: "right" }}>
+          {priceTotal}
+          {item.discount_total > 0 && (
+            <small className={style.itemDiscount}>{discountTotal}</small>
+          )}
+        </div>
+        <div className="col-xs-1" style={{ textAlign: "center" }}>
+          {allowEdit && (
+            <IconMenu
+              iconButtonElement={iconButtonElement}
+              targetOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "top" }}
             >
-              {quantityItems}
-            </SelectField>
-          </div>
-        </Dialog>
+              <MenuItem onClick={() => setShowEdit(true)}>
+                {messages.edit}
+              </MenuItem>
+              <MenuItem onClick={() => onItemDelete(item.id)}>
+                {messages.actions_delete}
+              </MenuItem>
+            </IconMenu>
+          )}
+        </div>
       </div>
-    )
-  }
+      <Divider />
+      <Dialog
+        title={messages.editOrderItem}
+        actions={editFormActions}
+        modal={false}
+        open={showEdit}
+        onRequestClose={hideEditForm}
+        contentStyle={{ width: 400 }}
+      >
+        <div>
+          <ProductOptions
+            options={productOptions}
+            onChange={onOptionChange}
+            selectedOptions={selectedOptions}
+          />
+          <SelectField
+            floatingLabelText={messages.quantity}
+            fullWidth
+            value={quantity}
+            onChange={quantityChange}
+          >
+            {quantityItems}
+          </SelectField>
+        </div>
+      </Dialog>
+    </div>
+  )
 }
 
 const OrderItems = ({ order, settings, onItemDelete, onItemUpdate }) => {

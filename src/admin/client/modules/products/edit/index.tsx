@@ -6,59 +6,57 @@ import ProductGeneral from "modules/products/edit/general"
 import ProductImages from "modules/products/edit/images"
 import ProductInventory from "modules/products/edit/inventory"
 import ProductVariants from "modules/products/edit/variants"
-import React from "react"
+import React, { FC, useEffect } from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import { cancelProductEdit, fetchProduct } from "../actions"
 
-class ProductEditContainer extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+interface Props {
+  fetchData
+  eraseData
+}
 
-  componentDidMount() {
-    this.props.fetchData()
-  }
+const ProductEditContainer: FC<Props> = props => {
+  const { fetchData, eraseData } = props
 
-  componentWillUnmount() {
-    this.props.eraseData()
-  }
+  useEffect(() => {
+    fetchData()
+    return () => eraseData()
+  }, [])
 
-  render() {
-    return (
-      <div>
-        <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
-          {messages.description}
-        </div>
-        <ProductGeneral />
-
-        <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
-          {messages.products_inventory}
-        </div>
-        <ProductInventory />
-
-        <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
-          {messages.productVariants}
-        </div>
-        <ProductVariants />
-
-        <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
-          {messages.attributes}
-        </div>
-        <ProductAttributes />
-
-        <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
-          {messages.additionalInfo}
-        </div>
-        <ProductAdditional />
-
-        <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
-          {messages.images}
-        </div>
-        <ProductImages />
+  return (
+    <div>
+      <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
+        {messages.description}
       </div>
-    )
-  }
+      <ProductGeneral />
+
+      <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
+        {messages.products_inventory}
+      </div>
+      <ProductInventory />
+
+      <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
+        {messages.productVariants}
+      </div>
+      <ProductVariants />
+
+      <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
+        {messages.attributes}
+      </div>
+      <ProductAttributes />
+
+      <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
+        {messages.additionalInfo}
+      </div>
+      <ProductAdditional />
+
+      <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
+        {messages.images}
+      </div>
+      <ProductImages />
+    </div>
+  )
 }
 
 const mapStateToProps = (state, ownProps) => {
