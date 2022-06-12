@@ -43,6 +43,7 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn
 
+      - run: yarn
       - run: yarn theme:compile
       - run: yarn add ./theme
       - run: yarn build
