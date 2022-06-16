@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt"
+import bcrypt, { hashSync } from "bcrypt"
 import CezerinClient from "cezerin2-client"
 import express from "express"
 import handlebars from "handlebars"
@@ -397,8 +397,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
           console.log(error)
         })
       // generate password-hash
-      const salt = bcrypt.genSaltSync(saltRounds)
-      const hashPassword = bcrypt.hashSync(passWord, salt)
+      const hashPassword = hashSync(passWord, saltRounds)
 
       const customerDraft = {
         full_name: `${firstName} ${lastName}`,
@@ -489,8 +488,7 @@ ajaxRouter.put("/customer-account", async (req, res, next) => {
 
   // generate password-hash
   const inputPassword = customerData.password
-  const salt = bcrypt.genSaltSync(saltRounds)
-  const hashPassword = bcrypt.hashSync(inputPassword, salt)
+  const hashPassword = hashSync(inputPassword, saltRounds)
 
   // setup objects and filter
   const customerDataObj = {
