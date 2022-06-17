@@ -4,11 +4,7 @@ import express from "express"
 import handlebars from "handlebars"
 import jwt from "jsonwebtoken"
 import { ObjectID } from "mongodb"
-import {
-  decodeUserLoginAuth,
-  decodeUserPassword,
-  encodeUserLoginAuth,
-} from "./lib/authHeader"
+import { decodeUserLoginAuth, encodeUserLoginAuth } from "./lib/authHeader"
 import { send } from "./lib/mailer"
 import { db } from "./lib/mongo"
 import serverSettings from "./lib/settings"
@@ -314,7 +310,7 @@ ajaxRouter.post("/login", async (req, res, next) => {
       }
 
       const customerPassword = result.password
-      const inputPassword = decodeUserPassword(req.body.password).password
+      const inputPassword = req.body.password
 
       bcrypt.compare(inputPassword, customerPassword, async (error, out) => {
         if (out == true) {
@@ -370,7 +366,7 @@ ajaxRouter.post("/register", async (req, res, next) => {
       const firstName = await decodeUserLoginAuth(requestTokenArray[0]).userID
       const lastName = await decodeUserLoginAuth(requestTokenArray[1]).userID
       const eMail = await decodeUserLoginAuth(requestTokenArray[2]).userID
-      const passWord = await decodeUserPassword(requestTokenArray[3]).password
+      const passWord = requestTokenArray[3]
 
       if (
         requestTokenArray.length < 1 ||
