@@ -147,7 +147,7 @@ Note that if you prefer to use nginx in production mode, update [Nginx config](/
 ```
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
-To avoid CORS errors, you also need to update "localhost" to your domain name in the [config](/config) folder.
+To avoid CORS errors, You need to change all configs in [config](/config) folder and replace all localhost with your ip number or domain name.
 
 ##### On Digitalocean Droplet
 
