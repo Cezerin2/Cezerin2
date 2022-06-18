@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  nginx: 
+    image: nginx:1.20.2
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    restart: always
+    networks:
+      - cezerin
+    volumes: 
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/app
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - cezerin
+    volumes:
+      - .:/app
+      - /app/node_modules/
+    command: sh -c "yarn build && yarn start"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - DB_NAME=shop
+      - DB_USER=
+      - DB_PASS=
+
+  db:
+    image: mongo:4.0
+    ports:
+      - "27017:27017"
+    networks:
+      - cezerin
+    volumes:
+      - db-data:/data/db
+
+networks:
+  cezerin:
+
+volumes:
+  db-data:
