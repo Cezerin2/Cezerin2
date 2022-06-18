@@ -143,7 +143,7 @@ docker-compose build
 docker-compose up -d
 ```
 
-Note that if you prefer to use nginx in production mode, update [Nginx config](/nginx/default.conf) "server_name" and run:
+Note that if you prefer to use nginx in production mode, update [Nginx config](/nginx/default.conf) `server_name` and run:
 ```
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
