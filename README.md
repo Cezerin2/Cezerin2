@@ -116,6 +116,39 @@ If you have installed above requirements,
 2. Extract code, update config at config folder as you need and run setup.sh on the folder
 3. To setup required mongodb collections you will need to run `yarn setup` from command line in the folder
 
+##### Installation using Docker Compose
+
+1. [Docker](https://docs.docker.com/install/)
+2. [Docker Compose](https://docs.docker.com/compose/install/)
+
+If you have installed above requirements,
+
+1. Clone the repository:
+```
+git clone https://github.com/Cezerin2/Cezerin2.git
+```
+
+2. Go to the cloned directory:
+```
+cd Cezerin2
+```
+
+3. Build the application:
+```
+docker-compose build
+```
+
+4. Run the application:
+```
+docker-compose up -d
+```
+
+Note that if you prefer to use nginx in production mode, update [Nginx config](/nginx/default.conf) `server_name` and run:
+```
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+```
+To avoid CORS errors, You need to change all configs in [config](/config) folder and replace all `localhost` with your ip number or domain name.
+
 ##### On Digitalocean Droplet
 
 1. Start a basic ubuntu server
