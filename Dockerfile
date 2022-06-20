@@ -21,4 +21,4 @@ RUN yarn theme:compile
 RUN yarn add ./theme
 RUN yarn build
 
-CMD [ "yarn", "start"] 
+CMD [ "yarn", "start" ] 
