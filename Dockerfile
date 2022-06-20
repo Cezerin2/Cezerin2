@@ -1,6 +1,10 @@
-FROM node:16
-WORKDIR /app
+FROM node:16.14.2
 
+USER node
+
+COPY --chown=node:node . /app
+
+WORKDIR /app
 COPY package.json yarn.lock ./
 COPY theme ./theme
 RUN yarn
