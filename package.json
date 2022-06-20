@@ -44,7 +44,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
-    "@mui/icons-material": "^5.8.3",
+    "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.3",
     "@reduxjs/toolkit": "^1.8.2",
     "@tinymce/tinymce-react": "^4.1.0",
