@@ -74,7 +74,7 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^18.1.0",
-    "react-dropzone": "^5.0.1",
+    "react-dropzone": "^14.2.1",
     "react-final-form": "^6.5.9",
     "react-helmet": "^6.1.0",
     "react-lazyload": "^3.2.0",
