@@ -1,14 +1,12 @@
-FROM node:16.14.2
+FROM node:16
 
 USER node
 
-COPY --chown=node:node . /app
-
 WORKDIR /app
-COPY package.json yarn.lock ./
-COPY theme ./theme
+COPY --chown=node:node package.json yarn.lock ./
+COPY --chown=node:node theme ./theme
 RUN yarn
-COPY . .
+COPY --chown=node:node . .
 
 ARG DB_HOST
 ARG DB_PORT
@@ -25,4 +23,4 @@ RUN yarn theme:compile
 RUN yarn add ./theme
 RUN yarn build
 
-CMD [ "yarn", "start" ] 
+CMD [ "yarn", "start" ]
