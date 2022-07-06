@@ -930,7 +930,7 @@
     source-map "^0.5.7"
     stylis "4.0.13"
 
-"@emotion/cache@^11.7.1", "@emotion/cache@^11.9.3":
+"@emotion/cache@^11.9.3":
   version "11.9.3"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.9.3.tgz#96638449f6929fd18062cfe04d79b29b44c0d6cb"
   dependencies:
@@ -944,7 +944,7 @@
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
 
-"@emotion/is-prop-valid@^1.1.2", "@emotion/is-prop-valid@^1.1.3":
+"@emotion/is-prop-valid@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-1.1.3.tgz#f0907a416368cf8df9e410117068e20fe87c0a3a"
   dependencies:
@@ -1090,16 +1090,16 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@mui/base@5.0.0-alpha.87":
-  version "5.0.0-alpha.87"
-  resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.87.tgz#3cf8c2990cda8b48f26b3f19b1d0c94095ec6dfe"
+"@mui/base@5.0.0-alpha.88":
+  version "5.0.0-alpha.88"
+  resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.88.tgz#0930d1849c74ba62a28ab2d8533de88764173ba4"
   dependencies:
     "@babel/runtime" "^7.17.2"
-    "@emotion/is-prop-valid" "^1.1.2"
+    "@emotion/is-prop-valid" "^1.1.3"
     "@mui/types" "^7.1.4"
     "@mui/utils" "^5.8.6"
     "@popperjs/core" "^2.11.5"
-    clsx "^1.1.1"
+    clsx "^1.2.0"
     prop-types "^15.8.1"
     react-is "^17.0.2"
 
@@ -1109,17 +1109,17 @@
   dependencies:
     "@babel/runtime" "^7.17.2"
 
-"@mui/material@^5.8.6":
-  version "5.8.6"
-  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.8.6.tgz#4019fbf1b95d8ea9f397efaed835ac92a6d8f22d"
+"@mui/material@^5.8.7":
+  version "5.8.7"
+  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.8.7.tgz#28617c5b8a9e354e300f19fc38e1286ba1e15ad3"
   dependencies:
     "@babel/runtime" "^7.17.2"
-    "@mui/base" "5.0.0-alpha.87"
-    "@mui/system" "^5.8.6"
+    "@mui/base" "5.0.0-alpha.88"
+    "@mui/system" "^5.8.7"
     "@mui/types" "^7.1.4"
     "@mui/utils" "^5.8.6"
-    "@types/react-transition-group" "^4.4.4"
-    clsx "^1.1.1"
+    "@types/react-transition-group" "^4.4.5"
+    clsx "^1.2.0"
     csstype "^3.1.0"
     prop-types "^15.8.1"
     react-is "^17.0.2"
@@ -1133,24 +1133,25 @@
     "@mui/utils" "^5.8.6"
     prop-types "^15.8.1"
 
-"@mui/styled-engine@^5.8.0":
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.8.0.tgz#89ed42efe7c8749e5a60af035bc5d3a6bea362bf"
+"@mui/styled-engine@^5.8.7":
+  version "5.8.7"
+  resolved "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.8.7.tgz#63d0779c07677fe76d4705a02c7ae99f89b50780"
   dependencies:
     "@babel/runtime" "^7.17.2"
-    "@emotion/cache" "^11.7.1"
+    "@emotion/cache" "^11.9.3"
+    csstype "^3.1.0"
     prop-types "^15.8.1"
 
-"@mui/system@^5.8.6":
-  version "5.8.6"
-  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.8.6.tgz#aed7e501c513429dab9cfbbe86da5dcd056c2a0a"
+"@mui/system@^5.8.7":
+  version "5.8.7"
+  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.8.7.tgz#6a7ab6ac8d3e6a6c7abcbea84b5697cbb225beb8"
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@mui/private-theming" "^5.8.6"
-    "@mui/styled-engine" "^5.8.0"
+    "@mui/styled-engine" "^5.8.7"
     "@mui/types" "^7.1.4"
     "@mui/utils" "^5.8.6"
-    clsx "^1.1.1"
+    clsx "^1.2.0"
     csstype "^3.1.0"
     prop-types "^15.8.1"
 
@@ -1444,7 +1445,7 @@
     "@types/history" "^4.7.11"
     "@types/react" "*"
 
-"@types/react-transition-group@^4.4.4":
+"@types/react-transition-group@^4.4.5":
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.5.tgz#aae20dcf773c5aa275d5b9f7cdbca638abc5e416"
   dependencies:
@@ -2632,9 +2633,9 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
-clsx@^1.1.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.0.tgz#b0e415ea7537dbac01b169c5cec1caeb11d86566"
+clsx@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
 
 coa@^2.0.2:
   version "2.0.2"
