@@ -1,6 +1,6 @@
 import { Card, CardMedia, CardTitle } from "material-ui/Card"
 import FontIcon from "material-ui/FontIcon"
-import React from "react"
+import React, { FC } from "react"
 import { Link } from "react-router-dom"
 import style from "./style.css"
 
@@ -35,7 +35,17 @@ const styles = {
   },
 }
 
-const Item = ({ path, coverUrl, title, developer, enabled }) => {
+interface Props {
+  path
+  coverUrl
+  title
+  developer
+  enabled
+}
+
+const Item: FC<Props> = props => {
+  const { path, coverUrl, title, developer, enabled } = props
+
   return (
     <Link to={path} style={styles.link}>
       <Card
