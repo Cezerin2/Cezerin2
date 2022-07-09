@@ -2045,6 +2045,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stripe/react-stripe-js@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "@stripe/react-stripe-js@npm:1.9.0"
+  dependencies:
+    prop-types: ^15.7.2
+  peerDependencies:
+    "@stripe/stripe-js": ^1.32.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: aeb68be6c57487040eef47f149b3d086a4ae7c7a8c1dcac5a96943c3ff032709d652fd1a048562f281c82355d6766a3344842f2b6f2c29bb58b25c3081fcfe99
+  languageName: node
+  linkType: hard
+
+"@stripe/stripe-js@npm:^1.32.0":
+  version: 1.32.0
+  resolution: "@stripe/stripe-js@npm:1.32.0"
+  checksum: 47a8c9764318223b0f244e63aabb0d4d2ca3a85a4e99388c6772b6076a5200e7a6f45a175468fc798ae1abafc7859215bf0207e2d5158d2c83a8629a17a92353
+  languageName: node
+  linkType: hard
+
 "@surma/rollup-plugin-off-main-thread@npm:^2.2.3":
   version: 2.2.3
   resolution: "@surma/rollup-plugin-off-main-thread@npm:2.2.3"
@@ -4044,6 +4064,8 @@ __metadata:
     "@mui/icons-material": ^5.8.4
     "@mui/material": ^5.8.7
     "@reduxjs/toolkit": ^1.8.3
+    "@stripe/react-stripe-js": ^1.9.0
+    "@stripe/stripe-js": ^1.32.0
     "@tinymce/tinymce-react": ^4.1.0
     "@types/bcrypt": ^5.0.0
     "@types/cors": ^2.8.12
