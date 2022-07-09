@@ -3,16 +3,25 @@ import FlatButton from "material-ui/FlatButton"
 import FloatingActionButton from "material-ui/FloatingActionButton"
 import FontIcon from "material-ui/FontIcon"
 import Paper from "material-ui/Paper"
-import React from "react"
+import React, { FC } from "react"
 import DynamicEditControl from "./dynamicEditControl"
 import style from "./style.css"
 
-const ArrayEditor = ({
-  label,
-  properties,
-  fields,
-  meta: { touched, error, submitFailed },
-}) => {
+interface Props {
+  label
+  properties
+  fields
+  meta: { touched; error; submitFailed }
+}
+
+const ArrayEditor: FC<Props> = props => {
+  const {
+    label,
+    properties,
+    fields,
+    meta: { touched, error, submitFailed },
+  } = props
+
   return (
     <div>
       <div className={style.arrayTitle}>
