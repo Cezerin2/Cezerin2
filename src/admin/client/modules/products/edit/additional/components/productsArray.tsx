@@ -8,7 +8,7 @@ import MenuItem from "material-ui/MenuItem"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import ProductSearchDialog from "modules/shared/productSearch"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import style from "./style.css"
 
@@ -107,43 +107,28 @@ const RelatedProduct = ({ settings, product, actions }) => {
   )
 }
 
-class ProductsArray extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showAddItem: false,
-      products: [],
-    }
+interface Props {
+  settings
+  fields
+}
+
+const ProductsArray: FC<Props> = props => {
+  const [showAddItem, setShowAddItem] = useState(false)
+  const [products, setProducts] = useState([])
+
+  const { settings, fields } = props
+
+  const addItem = productId => {
+    setShowAddItem(false)
+    fields.push(productId)
   }
 
-  showAddItem = () => {
-    this.setState({ showAddItem: true })
-  }
+  useEffect(() => {
+    const ids = fields.getAll()
+    fetchProducts(ids)
+  }, [fields])
 
-  hideAddItem = () => {
-    this.setState({ showAddItem: false })
-  }
-
-  addItem = productId => {
-    this.hideAddItem()
-    this.props.fields.push(productId)
-  }
-
-  componentDidMount() {
-    const ids = this.props.fields.getAll()
-    this.fetchProducts(ids)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const currentIds = this.props.fields.getAll()
-    const newIds = nextProps.fields.getAll()
-
-    if (currentIds !== newIds) {
-      this.fetchProducts(newIds)
-    }
-  }
-
-  fetchProducts = ids => {
+  const fetchProducts = ids => {
     if (ids && Array.isArray(ids) && ids.length > 0) {
       api.products
         .list({
@@ -153,58 +138,51 @@ class ProductsArray extends React.Component {
           ids,
         })
         .then(productsResponse => {
-          this.setState({ products: productsResponse.json.data })
+          setProducts(productsResponse.json.data)
         })
     } else {
-      this.setState({
-        products: [],
-      })
+      setProducts([])
     }
   }
 
-  render() {
-    const { settings, fields } = this.props
-    const { products } = this.state
+  return (
+    <div>
+      <Paper className={style.relatedProducts} zDepth={1}>
+        {fields.map((field, index) => {
+          const actions = (
+            <RelatedProductActions fields={fields} index={index} />
+          )
+          const productId = fields.get(index)
+          const product = products.find(item => item.id === productId)
+          return (
+            <RelatedProduct
+              key={index}
+              settings={settings}
+              product={product}
+              actions={actions}
+            />
+          )
+        })}
 
-    return (
+        <ProductSearchDialog
+          open={showAddItem}
+          title={messages.addOrderItem}
+          settings={settings}
+          onSubmit={addItem}
+          onCancel={() => setShowAddItem(false)}
+          submitLabel={messages.add}
+          cancelLabel={messages.cancel}
+        />
+      </Paper>
+
       <div>
-        <Paper className={style.relatedProducts} zDepth={1}>
-          {fields.map((field, index) => {
-            const actions = (
-              <RelatedProductActions fields={fields} index={index} />
-            )
-            const productId = fields.get(index)
-            const product = products.find(item => item.id === productId)
-            return (
-              <RelatedProduct
-                key={index}
-                settings={settings}
-                product={product}
-                actions={actions}
-              />
-            )
-          })}
-
-          <ProductSearchDialog
-            open={this.state.showAddItem}
-            title={messages.addOrderItem}
-            settings={settings}
-            onSubmit={this.addItem}
-            onCancel={this.hideAddItem}
-            submitLabel={messages.add}
-            cancelLabel={messages.cancel}
-          />
-        </Paper>
-
-        <div>
-          <RaisedButton
-            label={messages.addOrderItem}
-            onClick={this.showAddItem}
-          />
-        </div>
+        <RaisedButton
+          label={messages.addOrderItem}
+          onClick={() => setShowAddItem(true)}
+        />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default ProductsArray
