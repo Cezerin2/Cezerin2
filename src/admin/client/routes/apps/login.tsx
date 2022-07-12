@@ -4,100 +4,82 @@ import * as auth from "lib/webstoreAuth"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import TextField from "material-ui/TextField"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 
-class LoginForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: localStorage.getItem("webstore_email") || "",
-      isFetching: false,
-      emailIsSent: false,
-      error: null,
-    }
-  }
+const LoginForm: FC = () => {
+  const [email, setEmail] = useState(
+    localStorage.getItem("webstore_email") || ""
+  )
+  const [isFetching, setIsFetching] = useState(false)
+  const [emailIsSent, setEmailIsSent] = useState(false)
+  const [error, setError] = useState(null)
 
-  handleChange = event => {
-    this.setState({
-      email: event.target.value,
-    })
-  }
-
-  handleKeyPress = e => {
+  const handleKeyPress = e => {
     if (e.keyCode === 13 || e.which === 13) {
-      this.handleSubmit()
+      handleSubmit()
     }
   }
 
-  handleSubmit = () => {
-    this.setState({
-      isFetching: true,
-      emailIsSent: false,
-      error: null,
-    })
+  const handleSubmit = () => {
+    setIsFetching(true)
+    setEmailIsSent(false)
+    setError(null)
 
-    CezerinClient.authorizeInWebStore(
-      this.state.email,
-      location.origin + "/admin"
-    ).then(({ status, json }) => {
-      this.setState({
-        isFetching: false,
-        emailIsSent: status === 200,
-        error: status !== 200 && json ? json.message : null,
-      })
-    })
-  }
-
-  componentWillMount() {
-    auth.checkTokenFromUrl()
-  }
-
-  render() {
-    const { email, isFetching, emailIsSent, error } = this.state
-
-    let response = null
-    if (isFetching) {
-      response = (
-        <div className="loginSuccessResponse">{messages.messages_loading}</div>
-      )
-    } else if (emailIsSent) {
-      response = (
-        <div className="loginSuccessResponse">{messages.loginLinkSent}</div>
-      )
-    } else if (emailIsSent === false && error) {
-      response = <div className="loginErrorResponse">{error}</div>
-    }
-
-    return (
-      <div className="row col-full-height center-xs middle-xs">
-        <div className="col-xs-12 col-sm-8 col-md-6 col-lg-4">
-          <Paper className="loginBox" zDepth={1}>
-            <div className="loginTitle">{messages.webstoreLoginTitle}</div>
-            <div className="loginDescription">{messages.loginDescription}</div>
-            <div className="loginInput">
-              <TextField
-                type="email"
-                value={email}
-                onChange={this.handleChange}
-                onKeyPress={this.handleKeyPress}
-                label={messages.email}
-                fullWidth
-                hintStyle={{ width: "100%" }}
-                hintText={messages.email}
-              />
-            </div>
-            <RaisedButton
-              label={messages.loginButton}
-              primary
-              disabled={isFetching || emailIsSent}
-              onClick={this.handleSubmit}
-            />
-            {response}
-          </Paper>
-        </div>
-      </div>
+    CezerinClient.authorizeInWebStore(email, location.origin + "/admin").then(
+      ({ status, json }) => {
+        setIsFetching(false)
+        setEmailIsSent(status === 200)
+        setError(status !== 200 && json ? json.message : null)
+      }
     )
   }
+
+  useEffect(() => {
+    auth.checkTokenFromUrl()
+  }, [])
+
+  let response = null
+  if (isFetching) {
+    response = (
+      <div className="loginSuccessResponse">{messages.messages_loading}</div>
+    )
+  } else if (emailIsSent) {
+    response = (
+      <div className="loginSuccessResponse">{messages.loginLinkSent}</div>
+    )
+  } else if (emailIsSent === false && error) {
+    response = <div className="loginErrorResponse">{error}</div>
+  }
+
+  return (
+    <div className="row col-full-height center-xs middle-xs">
+      <div className="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+        <Paper className="loginBox" zDepth={1}>
+          <div className="loginTitle">{messages.webstoreLoginTitle}</div>
+          <div className="loginDescription">{messages.loginDescription}</div>
+          <div className="loginInput">
+            <TextField
+              type="email"
+              value={email}
+              onChange={({ target }) => setEmail(target.value)}
+              onKeyPress={handleKeyPress}
+              label={messages.email}
+              fullWidth
+              hintStyle={{ width: "100%" }}
+              hintText={messages.email}
+            />
+          </div>
+          <RaisedButton
+            label={messages.loginButton}
+            primary
+            disabled={isFetching || emailIsSent}
+            onClick={handleSubmit}
+          />
+          {response}
+        </Paper>
+      </div>
+    </div>
+  )
 }
 
 export default LoginForm

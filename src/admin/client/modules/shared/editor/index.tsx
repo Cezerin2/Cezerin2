@@ -1,5 +1,5 @@
 import settings from "lib/settings"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 import TinyMCE from "../tinymce"
 
 const config = {
@@ -15,53 +15,38 @@ const config = {
     "undo redo | forecolor paste removeformat table | outdent indent | preview code",
 }
 
-class Editor extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.input.value,
-    }
-  }
+const Editor: FC<{ input; entityId }> = ({ input, entityId }) => {
+  const [value, setValue] = useState(input.value)
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.value !== nextProps.input.value) {
-      this.setState({
-        value: nextProps.input.value,
-      })
-    }
-  }
+  useEffect(() => {
+    setValue(input.value)
+  }, [input.value])
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.value !== nextState.value
-  }
-
-  onChange = e => {
+  const onChange = e => {
     const content = e.target.getContent()
-    this.setState({ value: content })
-    this.props.input.onChange(content)
+    setValue(content)
+    input.onChange(content)
   }
 
-  render() {
-    return (
-      <TinyMCE
-        entityId={this.props.entityId}
-        content={this.state.value}
-        config={{
-          relative_urls: false,
-          remove_script_host: false,
-          convert_urls: false,
-          language: settings.language,
-          themes: config.themes,
-          inline: config.inline,
-          plugins: config.plugins,
-          toolbar1: config.toolbar1,
-          toolbar2: config.toolbar2,
-          menubar: false,
-        }}
-        onChange={this.onChange}
-      />
-    )
-  }
+  return (
+    <TinyMCE
+      entityId={entityId}
+      content={value}
+      config={{
+        relative_urls: false,
+        remove_script_host: false,
+        convert_urls: false,
+        language: settings.language,
+        themes: config.themes,
+        inline: config.inline,
+        plugins: config.plugins,
+        toolbar1: config.toolbar1,
+        toolbar2: config.toolbar2,
+        menubar: false,
+      }}
+      onChange={onChange}
+    />
+  )
 }
 
 export default Editor

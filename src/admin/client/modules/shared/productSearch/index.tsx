@@ -5,7 +5,7 @@ import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import { Table, TableBody, TableRow, TableRowColumn } from "material-ui/Table"
 import TextField from "material-ui/TextField"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 
 const SearchBox = ({ text, onChange }) => {
   return (
@@ -47,54 +47,64 @@ const SearchResult = ({ products, selectedId, settings, onSelect }) => {
   )
 }
 
-class ConfirmationDialog extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: props.open,
-      products: [],
-      search: "",
-      selectedId: null,
+interface Props {
+  open
+  title
+  submitLabel
+  cancelLabel
+  modal?: boolean
+  settings
+  onCancel
+  onSubmit
+}
+
+const ConfirmationDialog: FC<Props> = props => {
+  const [open, setOpen] = useState(props.open)
+  const [products, setProducts] = useState([])
+  const [search, setSearch] = useState("")
+  const [selectedId, setSelectedId] = useState(null)
+
+  const {
+    title,
+    submitLabel,
+    cancelLabel,
+    modal = false,
+    settings,
+    onCancel,
+    onSubmit,
+  } = props
+
+  useEffect(() => {
+    setOpen(props.open)
+  }, [props.open])
+
+  const handleCancel = () => {
+    setOpen(false)
+    if (onCancel) {
+      onCancel()
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.open !== nextProps.open) {
-      this.setState({
-        open: nextProps.open,
-      })
+  const handleSubmit = () => {
+    setOpen(false)
+    if (onSubmit) {
+      onSubmit(selectedId)
     }
   }
 
-  handleCancel = () => {
-    this.setState({ open: false })
-    if (this.props.onCancel) {
-      this.props.onCancel()
-    }
-  }
-
-  handleSubmit = () => {
-    this.setState({ open: false })
-    if (this.props.onSubmit) {
-      this.props.onSubmit(this.state.selectedId)
-    }
-  }
-
-  handleRowSelection = selectedRows => {
+  const handleRowSelection = selectedRows => {
     if (selectedRows && selectedRows.length > 0) {
       const selectedIndex = selectedRows[0]
       const selectedProductId =
-        this.state.products && this.state.products.length >= selectedIndex
-          ? this.state.products[selectedIndex].id
+        products && products.length >= selectedIndex
+          ? products[selectedIndex].id
           : null
-      this.setState({
-        selectedId: selectedProductId,
-      })
+      setSelectedId(selectedProductId)
     }
   }
 
-  handleSearch = (event, value) => {
-    this.setState({ search: value })
+  const handleSearch = (event, value) => {
+    setSearch(value)
 
     api.products
       .list({
@@ -107,51 +117,39 @@ class ConfirmationDialog extends React.Component {
       })
       .then(productsResponse => {
         console.log(productsResponse.json.data)
-        this.setState({
-          products: productsResponse.json.data,
-        })
+        setProducts(productsResponse.json.data)
       })
   }
 
-  render() {
-    const {
-      title,
-      submitLabel,
-      cancelLabel,
-      modal = false,
-      settings,
-    } = this.props
+  const actions = [
+    <FlatButton
+      label={cancelLabel}
+      onClick={handleCancel}
+      style={{ marginRight: 10 }}
+    />,
+    <FlatButton label={submitLabel} primary onClick={handleSubmit} />,
+  ]
 
-    const actions = [
-      <FlatButton
-        label={cancelLabel}
-        onClick={this.handleCancel}
-        style={{ marginRight: 10 }}
-      />,
-      <FlatButton label={submitLabel} primary onClick={this.handleSubmit} />,
-    ]
-
-    return (
-      <Dialog
-        title={title}
-        actions={actions}
-        actionsContainerStyle={{ borderTop: "1px solid rgb(224, 224, 224)" }}
-        modal={modal}
-        open={this.state.open}
-        onRequestClose={this.handleCancel}
-      >
-        <div>
-          <SearchBox text={this.state.search} onChange={this.handleSearch} />
-          <SearchResult
-            products={this.state.products}
-            selectedId={this.state.selectedId}
-            onSelect={this.handleRowSelection}
-            settings={settings}
-          />
-        </div>
-      </Dialog>
-    )
-  }
+  return (
+    <Dialog
+      title={title}
+      actions={actions}
+      actionsContainerStyle={{ borderTop: "1px solid rgb(224, 224, 224)" }}
+      modal={modal}
+      open={open}
+      onRequestClose={handleCancel}
+    >
+      <div>
+        <SearchBox text={search} onChange={handleSearch} />
+        <SearchResult
+          products={products}
+          selectedId={selectedId}
+          onSelect={handleRowSelection}
+          settings={settings}
+        />
+      </div>
+    </Dialog>
+  )
 }
 
 export default ConfirmationDialog
