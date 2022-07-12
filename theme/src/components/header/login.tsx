@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC } from "react"
 import { text } from "../../lib/settings"
 
 const LoginIcon = () => {
@@ -19,15 +19,19 @@ const LoginIcon = () => {
   )
 }
 
-class Login extends React.PureComponent {
-  render() {
-    const { login, onClick } = this.props
-    return (
-      <span className="login-button" onClick={onClick}>
-        <LoginIcon />
-      </span>
-    )
-  }
+interface Props {
+  login
+  onClick
+}
+
+const Login: FC<Props> = props => {
+  const { login, onClick } = props
+
+  return (
+    <span className="login-button" onClick={onClick}>
+      <LoginIcon />
+    </span>
+  )
 }
 
 export default Login
