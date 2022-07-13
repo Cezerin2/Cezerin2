@@ -1,76 +1,49 @@
 import PropTypes from "prop-types"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 import api from "../../lib/api"
 import ProductList from "../productList"
 
-class CustomProducts extends React.Component {
-  static propTypes = {
-    ids: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.arrayOf(PropTypes.string),
-    ]),
-    sku: PropTypes.string,
-    sort: PropTypes.string,
-    limit: PropTypes.number.isRequired,
-    category_id: PropTypes.string,
-    tags: PropTypes.string,
-    attributes: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-      })
-    ),
-    price_from: PropTypes.number,
-    price_to: PropTypes.number,
-    on_sale: PropTypes.bool,
-    settings: PropTypes.shape({}).isRequired,
-    addCartItem: PropTypes.func.isRequired,
-    isCentered: PropTypes.bool,
-    className: PropTypes.string,
-    columnCountOnMobile: PropTypes.number,
-    columnCountOnTablet: PropTypes.number,
-    columnCountOnDesktop: PropTypes.number,
-    columnCountOnWidescreen: PropTypes.number,
-    columnCountOnFullhd: PropTypes.number,
-  }
+interface Props {
+  settings
+  addCartItem
+  isCentered
+  className
+  columnCountOnMobile
+  columnCountOnTablet
+  columnCountOnDesktop
+  columnCountOnWidescreen
+  columnCountOnFullhd
+}
 
-  static defaultProps = {
-    ids: null,
-    sku: null,
-    sort: null,
-    category_id: null,
-    tags: null,
-    attributes: null,
-    price_from: null,
-    price_to: null,
-    on_sale: null,
-    isCentered: true,
-    className: "columns is-multiline is-mobile products",
-    columnCountOnMobile: 2,
-    columnCountOnTablet: 3,
-    columnCountOnDesktop: 4,
-    columnCountOnWidescreen: 4,
-    columnCountOnFullhd: 4,
-  }
+const CustomProducts: FC<Props> = props => {
+  const [products, setProducts] = useState([])
+  const [isCancelled, setIsCancelled] = useState(false)
 
-  state = {
-    products: [],
-  }
+  const {
+    settings,
+    addCartItem,
+    isCentered,
+    className,
+    columnCountOnMobile,
+    columnCountOnTablet,
+    columnCountOnDesktop,
+    columnCountOnWidescreen,
+    columnCountOnFullhd,
+  } = props
 
-  componentDidMount() {
-    this.isCancelled = false
-    this.fetchProducts(this.props)
-  }
+  useEffect(() => {
+    fetchProducts(props)
 
-  componentWillReceiveProps(nextProps) {
-    this.fetchProducts(nextProps)
-  }
+    return () => {
+      setIsCancelled(true)
+    }
+  }, [])
 
-  componentWillUnmount() {
-    this.isCancelled = true
-  }
+  useEffect(() => {
+    fetchProducts(props)
+  }, [props])
 
-  fetchProducts = ({
+  const fetchProducts = ({
     ids,
     sku,
     sort,
@@ -107,47 +80,78 @@ class CustomProducts extends React.Component {
     api.ajax.products
       .list(filter)
       .then(({ json }) => {
-        if (!this.isCancelled) {
-          this.setState({
-            products: json.data,
-          })
+        if (!isCancelled) {
+          setProducts(json.data)
         }
       })
       .catch(() => {})
   }
 
-  render() {
-    const {
-      settings,
-      addCartItem,
-      isCentered,
-      className,
-      columnCountOnMobile,
-      columnCountOnTablet,
-      columnCountOnDesktop,
-      columnCountOnWidescreen,
-      columnCountOnFullhd,
-    } = this.props
+  return (
+    <ProductList
+      products={products}
+      addCartItem={addCartItem}
+      settings={settings}
+      loadMoreProducts={null}
+      hasMore={false}
+      columnCountOnMobile={columnCountOnMobile}
+      columnCountOnTablet={columnCountOnTablet}
+      columnCountOnDesktop={columnCountOnDesktop}
+      columnCountOnWidescreen={columnCountOnWidescreen}
+      columnCountOnFullhd={columnCountOnFullhd}
+      isCentered={isCentered}
+      className={className}
+    />
+  )
+}
 
-    const { products } = this.state
+CustomProducts.propTypes = {
+  ids: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  sku: PropTypes.string,
+  sort: PropTypes.string,
+  limit: PropTypes.number.isRequired,
+  category_id: PropTypes.string,
+  tags: PropTypes.string,
+  attributes: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    })
+  ),
+  price_from: PropTypes.number,
+  price_to: PropTypes.number,
+  on_sale: PropTypes.bool,
+  settings: PropTypes.shape({}).isRequired,
+  addCartItem: PropTypes.func.isRequired,
+  isCentered: PropTypes.bool,
+  className: PropTypes.string,
+  columnCountOnMobile: PropTypes.number,
+  columnCountOnTablet: PropTypes.number,
+  columnCountOnDesktop: PropTypes.number,
+  columnCountOnWidescreen: PropTypes.number,
+  columnCountOnFullhd: PropTypes.number,
+}
 
-    return (
-      <ProductList
-        products={products}
-        addCartItem={addCartItem}
-        settings={settings}
-        loadMoreProducts={null}
-        hasMore={false}
-        columnCountOnMobile={columnCountOnMobile}
-        columnCountOnTablet={columnCountOnTablet}
-        columnCountOnDesktop={columnCountOnDesktop}
-        columnCountOnWidescreen={columnCountOnWidescreen}
-        columnCountOnFullhd={columnCountOnFullhd}
-        isCentered={isCentered}
-        className={className}
-      />
-    )
-  }
+CustomProducts.defaultProps = {
+  ids: null,
+  sku: null,
+  sort: null,
+  category_id: null,
+  tags: null,
+  attributes: null,
+  price_from: null,
+  price_to: null,
+  on_sale: null,
+  isCentered: true,
+  className: "columns is-multiline is-mobile products",
+  columnCountOnMobile: 2,
+  columnCountOnTablet: 3,
+  columnCountOnDesktop: 4,
+  columnCountOnWidescreen: 4,
+  columnCountOnFullhd: 4,
 }
 
 export default CustomProducts
