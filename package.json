@@ -46,7 +46,7 @@
     "@emotion/styled": "^11.9.3",
     "@koa/cors": "^3.3.0",
     "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.8.7",
+    "@mui/material": "^5.9.0",
     "@reduxjs/toolkit": "^1.8.3",
     "@stripe/react-stripe-js": "^1.9.0",
     "@stripe/stripe-js": "^1.32.0",
