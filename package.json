@@ -115,7 +115,7 @@
     "@types/express": "^4.17.13",
     "@types/fs-extra": "^9.0.13",
     "@types/jsonwebtoken": "^8.5.8",
-    "@types/koa": "^2.13.4",
+    "@types/koa": "^2.13.5",
     "@types/koa__cors": "^3.3.0",
     "@types/lodash": "^4.14.182",
     "@types/node": "^18.0.3",
