@@ -1,66 +1,64 @@
-import React, { Fragment } from "react"
+import React, { FC, Fragment, useEffect, useState } from "react"
 import { text } from "../../lib/settings"
 
-class Quantity extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-      quantity: 1,
+interface Props {
+  maxQuantity
+  onChange
+}
+
+const Quantity: FC<Props> = props => {
+  const [quantity, setQuantity] = useState(1)
+
+  const { maxQuantity, onChange } = props
+
+  useEffect(() => {
+    if (quantity > maxQuantity) {
+      updateQuantity(maxQuantity)
     }
+  }, [maxQuantity])
+
+  const handleChange = event => {
+    updateQuantity(event.target.value)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.quantity > nextProps.maxQuantity) {
-      this.setQuantity(nextProps.maxQuantity)
-    }
-  }
-
-  handleChange = event => {
-    this.setQuantity(event.target.value)
-  }
-
-  setQuantity = quantity => {
+  const updateQuantity = quantity => {
     const intQuantity = parseInt(quantity)
-    if (intQuantity > 0 && intQuantity <= this.props.maxQuantity) {
-      this.setState({ quantity: intQuantity })
-      this.props.onChange(intQuantity)
+    if (intQuantity > 0 && intQuantity <= maxQuantity) {
+      setQuantity(intQuantity)
+      onChange(intQuantity)
     }
   }
 
-  increment = () => {
-    const newQuantity = this.state.quantity + 1
-    this.setQuantity(newQuantity)
+  const increment = () => {
+    const newQuantity = quantity + 1
+    updateQuantity(newQuantity)
   }
 
-  decrement = () => {
-    const newQuantity = this.state.quantity - 1
-    this.setQuantity(newQuantity)
+  const decrement = () => {
+    const newQuantity = quantity - 1
+    updateQuantity(newQuantity)
   }
 
-  render() {
-    const { maxQuantity } = this.props
-    const { quantity } = this.state
-    const disabled = maxQuantity === 0
-    const value = disabled ? 0 : quantity
+  const disabled = maxQuantity === 0
+  const value = disabled ? 0 : quantity
 
-    return (
-      <Fragment>
-        <div>{text.qty}</div>
-        <div className="product-quantity">
-          <a className="decrement" onClick={this.decrement} />
-          <input
-            value={value}
-            onChange={this.handleChange}
-            maxLength="3"
-            type="number"
-            pattern="\d*"
-            disabled={disabled}
-          />
-          <a className="increment" onClick={this.increment} />
-        </div>
-      </Fragment>
-    )
-  }
+  return (
+    <Fragment>
+      <div>{text.qty}</div>
+      <div className="product-quantity">
+        <a className="decrement" onClick={decrement} />
+        <input
+          value={value}
+          onChange={handleChange}
+          maxLength="3"
+          type="number"
+          pattern="\d*"
+          disabled={disabled}
+        />
+        <a className="increment" onClick={increment} />
+      </div>
+    </Fragment>
+  )
 }
 
 export default Quantity

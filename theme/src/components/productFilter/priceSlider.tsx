@@ -1,66 +1,61 @@
 import { Range } from "rc-slider"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 import * as helper from "../../lib/helper"
 import { text } from "../../lib/settings"
 
-class PriceSlider extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      minValue: props.minValue > 0 ? props.minValue : props.minPrice,
-      maxValue: props.maxValue > 0 ? props.maxValue : props.maxPrice,
-    }
-  }
+interface Props {
+  minPrice
+  maxPrice
+  setPriceFromAndTo
+  settings
+}
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.minPrice !== this.props.minPrice ||
-      nextProps.maxPrice !== this.props.maxPrice
-    ) {
-      this.setState({
-        minValue: nextProps.minPrice,
-        maxValue: nextProps.maxPrice,
-      })
-    }
-  }
+const PriceSlider: FC<Props> = props => {
+  const [minValue, setMinValue] = useState(
+    props.minValue > 0 ? props.minValue : props.minPrice
+  )
+  const [maxValue, setMaxValue] = useState(
+    props.maxValue > 0 ? props.maxValue : props.maxPrice
+  )
 
-  setValues = values => {
+  const { minPrice, maxPrice, setPriceFromAndTo, settings } = props
+
+  useEffect(() => {
+    setMinValue(minPrice)
+    setMaxValue(maxPrice)
+  }, [minPrice, maxPrice])
+
+  const setValues = values => {
     if (Array.isArray(values) && values.length === 2) {
-      this.setState({
-        minValue: values[0],
-        maxValue: values[1],
-      })
+      setMinValue(values[0])
+      setMaxValue(values[1])
     }
   }
 
-  render() {
-    const { minPrice, maxPrice, setPriceFromAndTo, settings } = this.props
-
-    return (
-      <div className="price-filter">
-        <div className="attribute-title">{text.price}</div>
-        <Range
-          min={minPrice}
-          max={maxPrice}
-          value={[this.state.minValue, this.state.maxValue]}
-          disabled={maxPrice === 0}
-          className="price-filter-range"
-          onAfterChange={values => {
-            setPriceFromAndTo(...values)
-          }}
-          onChange={this.setValues}
-        />
-        <div className="columns is-mobile is-gapless price-filter-values">
-          <div className="column has-text-left">
-            {helper.formatCurrency(this.state.minValue, settings)}
-          </div>
-          <div className="column has-text-right">
-            {helper.formatCurrency(this.state.maxValue, settings)}
-          </div>
+  return (
+    <div className="price-filter">
+      <div className="attribute-title">{text.price}</div>
+      <Range
+        min={minPrice}
+        max={maxPrice}
+        value={[minValue, maxValue]}
+        disabled={maxPrice === 0}
+        className="price-filter-range"
+        onAfterChange={values => {
+          setPriceFromAndTo(...values)
+        }}
+        onChange={setValues}
+      />
+      <div className="columns is-mobile is-gapless price-filter-values">
+        <div className="column has-text-left">
+          {helper.formatCurrency(minValue, settings)}
+        </div>
+        <div className="column has-text-right">
+          {helper.formatCurrency(maxValue, settings)}
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default PriceSlider

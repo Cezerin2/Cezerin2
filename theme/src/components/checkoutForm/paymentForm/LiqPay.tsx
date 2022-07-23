@@ -1,14 +1,19 @@
-import React from "react"
+import React, { FC, useEffect } from "react"
 
 let scriptAdded = false
-class PayPalButton extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
-  addScript = () => {
+interface Props {
+  formSettings
+  shopSettings
+  onPayment
+}
+
+const LiqPayButton: FC<Props> = props => {
+  const { formSettings, shopSettings, onPayment } = props
+
+  const addScript = () => {
     if (scriptAdded) {
-      this.executeScript()
+      executeScript()
       return
     }
 
@@ -17,15 +22,13 @@ class PayPalButton extends React.Component {
     const script = document.createElement("script")
     script.src = SCRIPT_URL
     script.onload = () => {
-      this.executeScript()
+      executeScript()
     }
     container.appendChild(script)
     scriptAdded = true
   }
 
-  executeScript = () => {
-    const { formSettings, shopSettings, onPayment } = this.props
-
+  const executeScript = () => {
     LiqPayCheckout.init({
       data: formSettings.data,
       signature: formSettings.signature,
@@ -46,23 +49,19 @@ class PayPalButton extends React.Component {
       })
   }
 
-  componentDidMount() {
-    this.addScript()
-  }
+  useEffect(() => {
+    addScript()
+  }, [])
 
-  componentDidUpdate() {
-    this.executeScript()
-  }
+  useEffect(() => {
+    executeScript()
+  })
 
-  render() {
-    const { formSettings, shopSettings, onPayment } = this.props
-
-    return (
-      <div>
-        <div id="liqpay_checkout" />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <div id="liqpay_checkout" />
+    </div>
+  )
 }
 
-export default PayPalButton
+export default LiqPayButton

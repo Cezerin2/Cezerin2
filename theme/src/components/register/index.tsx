@@ -1,60 +1,56 @@
-import React from "react"
+import React, { FC, useState } from "react"
 import { themeSettings } from "../../lib/settings"
 import Register from "./register"
 
-class RegisterForm extends React.Component {
-  constructor(props) {
-    super(props)
+interface Props {
+  registerUser
+  history
+  location
+}
 
-    this.state = {
-      verifiedToken: false,
-    }
-  }
+const RegisterForm: FC<Props> = props => {
+  const [verifiedToken, setVerifiedToken] = useState(false)
 
-  handleContactsSubmit = values => {
-    this.props.registerUser({
+  const { registerUser, history, location } = props
+
+  const handleContactsSubmit = values => {
+    registerUser({
       first_name: values.first_name,
       last_name: values.last_name,
       email: values.email,
       password: values.password,
-      history: this.props.history,
+      history: history,
     })
   }
 
-  verifyToken() {
-    this.setState({ verifiedToken: true })
-    this.props.registerUser({
-      token: this.props.location.search.split("=")[1],
+  const verifyToken = () => {
+    setVerifiedToken(true)
+
+    registerUser({
+      token: location.search.split("=")[1],
     })
   }
 
-  render() {
-    const { settings, registerProperties } = this.props.state
-
-    if (
-      this.props.location.search !== "" &&
-      this.props.location.search.indexOf("?token=") !== -1
-    ) {
-      !this.state.verifiedToken ? this.verifyToken() : ""
-    }
-
-    const {
-      checkoutInputClass = "checkout-field",
-      checkoutButtonClass = "checkout-button",
-      checkoutEditButtonClass = "checkout-button-edit",
-    } = themeSettings
-
-    return (
-      <Register
-        inputClassName={checkoutInputClass}
-        buttonClassName={checkoutButtonClass}
-        editButtonClassName={checkoutEditButtonClass}
-        settings={settings}
-        registerProperties={registerProperties}
-        onSubmit={this.handleContactsSubmit}
-      />
-    )
+  if (location.search !== "" && location.search.indexOf("?token=") !== -1) {
+    !verifiedToken ? verifyToken() : ""
   }
+
+  const {
+    checkoutInputClass = "checkout-field",
+    checkoutButtonClass = "checkout-button",
+    checkoutEditButtonClass = "checkout-button-edit",
+  } = themeSettings
+
+  return (
+    <Register
+      inputClassName={checkoutInputClass}
+      buttonClassName={checkoutButtonClass}
+      editButtonClassName={checkoutEditButtonClass}
+      settings={settings}
+      registerProperties={registerProperties}
+      onSubmit={handleContactsSubmit}
+    />
+  )
 }
 
 export default RegisterForm
