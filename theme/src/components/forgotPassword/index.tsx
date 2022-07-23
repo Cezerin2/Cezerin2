@@ -1,39 +1,41 @@
-import React from "react"
+import React, { FC } from "react"
 import { themeSettings } from "../../lib/settings"
 import ForgotPassword from "./forgotPassword"
 
-class ForgotPasswordForm extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+interface Props {
+  forgotPassword
+  history
+  state
+}
 
-  handleFormSubmit = values => {
-    this.props.forgotPassword({
+const ForgotPasswordForm: FC<Props> = props => {
+  const { forgotPassword, history, state } = props
+
+  const handleFormSubmit = values => {
+    forgotPassword({
       email: values.email,
-      history: this.props.history,
+      history: history,
     })
   }
 
-  render() {
-    const { settings, forgotPasswordProperties } = this.props.state
+  const { settings, forgotPasswordProperties } = state
 
-    const {
-      checkoutInputClass = "checkout-field",
-      checkoutButtonClass = "checkout-button",
-    } = themeSettings
+  const {
+    checkoutInputClass = "checkout-field",
+    checkoutButtonClass = "checkout-button",
+  } = themeSettings
 
-    return (
-      <div>
-        <ForgotPassword
-          inputClassName={checkoutInputClass}
-          buttonClassName={checkoutButtonClass}
-          settings={settings}
-          forgotPasswordProperties={forgotPasswordProperties}
-          onSubmit={this.handleFormSubmit}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <ForgotPassword
+        inputClassName={checkoutInputClass}
+        buttonClassName={checkoutButtonClass}
+        settings={settings}
+        forgotPasswordProperties={forgotPasswordProperties}
+        onSubmit={handleFormSubmit}
+      />
+    </div>
+  )
 }
 
 export default ForgotPasswordForm

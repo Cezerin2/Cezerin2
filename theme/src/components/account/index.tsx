@@ -1,23 +1,30 @@
 import Lscache from "lscache"
-import React from "react"
+import React, { FC } from "react"
 import { Redirect } from "react-router-dom"
 import { themeSettings } from "../../lib/settings"
 import Account from "./account"
 
-class AccountForm extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+interface Props {
+  customerData
+  changecustomerProperties
+  state
+  history
+  updateCart
+}
 
-  handlecustomerProperties = () => {
-    this.props.customerData({
+const AccountForm: FC<Props> = props => {
+  const { customerData, changecustomerProperties, state, history, updateCart } =
+    props
+
+  const handlecustomerProperties = () => {
+    customerData({
       token: Lscache.get("auth_data"),
     })
   }
 
-  handleFormSubmit = values => {
+  const handleFormSubmit = values => {
     const { shipping_address, billing_address } = values
-    this.props.changecustomerProperties({
+    changecustomerProperties({
       first_name: values.first_name,
       last_name: values.last_name,
       email: values.email,
@@ -26,12 +33,11 @@ class AccountForm extends React.Component {
       token: Lscache.get("auth_data"),
       shipping_address,
       billing_address,
-      saved_addresses:
-        this.props.state.customerProperties.order_statuses.total_count,
-      history: this.props.history,
+      saved_addresses: state.customerProperties.order_statuses.total_count,
+      history: history,
     })
 
-    this.props.updateCart({
+    updateCart({
       shipping_address: shipping_address,
       billing_address: billing_address,
       payment_method_id: null,
@@ -39,18 +45,30 @@ class AccountForm extends React.Component {
     })
   }
 
-  render() {
-    const {
-      settings,
-      cart,
-      customerProperties,
-      initialValues,
-      cartlayerBtnInitialized,
-    } = this.props.state
+  const {
+    settings,
+    cart,
+    customerProperties,
+    initialValues,
+    cartlayerBtnInitialized,
+  } = state
 
-    Lscache.flushExpired()
+  Lscache.flushExpired()
 
-    if (Lscache.get("auth_data") === null && customerProperties === undefined) {
+  if (Lscache.get("auth_data") === null && customerProperties === undefined) {
+    Lscache.flush()
+    return (
+      <Redirect
+        to={{
+          pathname: "/login",
+        }}
+      />
+    )
+  } else {
+    const cacheTimeStamp = localStorage.getItem(
+      "lscache-auth_data-cacheexpiration"
+    )
+    if (Number(cacheTimeStamp) <= Math.floor(new Date().getTime() / 1000)) {
       Lscache.flush()
       return (
         <Redirect
@@ -59,43 +77,27 @@ class AccountForm extends React.Component {
           }}
         />
       )
-    } else {
-      const cacheTimeStamp = localStorage.getItem(
-        "lscache-auth_data-cacheexpiration"
-      )
-      if (Number(cacheTimeStamp) <= Math.floor(new Date().getTime() / 1000)) {
-        Lscache.flush()
-        return (
-          <Redirect
-            to={{
-              pathname: "/login",
-            }}
-          />
-        )
-      }
-
-      const {
-        checkoutInputClass = "checkout-field",
-        checkoutButtonClass = "checkout-button",
-        checkoutEditButtonClass = "checkout-button-edit",
-      } = themeSettings
-
-      return (
-        <Account
-          inputClassName={checkoutInputClass}
-          buttonClassName={checkoutButtonClass}
-          editButtonClassName={checkoutEditButtonClass}
-          settings={settings}
-          cart={cart}
-          customerProperties={
-            customerProperties || this.handlecustomerProperties()
-          }
-          initialValues={initialValues}
-          cartlayerBtnInitialized={cartlayerBtnInitialized}
-          onSubmit={this.handleFormSubmit}
-        />
-      )
     }
+
+    const {
+      checkoutInputClass = "checkout-field",
+      checkoutButtonClass = "checkout-button",
+      checkoutEditButtonClass = "checkout-button-edit",
+    } = themeSettings
+
+    return (
+      <Account
+        inputClassName={checkoutInputClass}
+        buttonClassName={checkoutButtonClass}
+        editButtonClassName={checkoutEditButtonClass}
+        settings={settings}
+        cart={cart}
+        customerProperties={customerProperties || handlecustomerProperties()}
+        initialValues={initialValues}
+        cartlayerBtnInitialized={cartlayerBtnInitialized}
+        onSubmit={handleFormSubmit}
+      />
+    )
   }
 }
 

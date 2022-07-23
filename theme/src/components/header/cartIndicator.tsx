@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC } from "react"
 import { text } from "../../lib/settings"
 
 const CartCount = ({ cart }) => {
@@ -32,16 +32,21 @@ const CartIcon = ({ cartIsActive }) => {
   )
 }
 
-class CartIndicator extends React.PureComponent {
-  render() {
-    const { cart, onClick, cartIsActive } = this.props
-    return (
-      <span className="cart-button" onClick={onClick}>
-        <CartIcon cartIsActive={cartIsActive} />
-        <CartCount cart={cart} />
-      </span>
-    )
-  }
+interface Props {
+  cart
+  onClick
+  cartIsActive
+}
+
+const CartIndicator: FC<Props> = props => {
+  const { cart, onClick, cartIsActive } = props
+
+  return (
+    <span className="cart-button" onClick={onClick}>
+      <CartIcon cartIsActive={cartIsActive} />
+      <CartCount cart={cart} />
+    </span>
+  )
 }
 
 export default CartIndicator

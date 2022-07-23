@@ -1,50 +1,41 @@
-import PropTypes from "prop-types"
-import React from "react"
+import React, { FC, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { themeSettings } from "../lib/settings"
 
-class FooterMenu extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isActive: false,
-    }
+interface Props {
+  title
+  items
+}
+
+const FooterMenu: FC<Props> = props => {
+  const [isActive, setIsActive] = useState(false)
+
+  const { title, items } = props
+
+  let ulItems = null
+
+  if (items && items.length > 0) {
+    ulItems = items.map((item, index) => (
+      <li key={index}>
+        <NavLink to={item.url || ""}>{item.text}</NavLink>
+      </li>
+    ))
   }
 
-  isActiveToggle = () => {
-    this.setState({
-      isActive: !this.state.isActive,
-    })
-  }
-
-  render() {
-    const { title, items } = this.props
-    let ulItems = null
-
-    if (items && items.length > 0) {
-      ulItems = items.map((item, index) => (
-        <li key={index}>
-          <NavLink to={item.url || ""}>{item.text}</NavLink>
-        </li>
-      ))
-    }
-
-    return (
-      <div className="column is-3">
-        <div
-          className={
-            "footer-title mobile-padding" +
-            (this.state.isActive ? " footer-menu-open" : "")
-          }
-          onClick={this.isActiveToggle}
-        >
-          {title}
-          <span />
-        </div>
-        <ul className="footer-menu">{ulItems}</ul>
+  return (
+    <div className="column is-3">
+      <div
+        className={
+          "footer-title mobile-padding" + (isActive ? " footer-menu-open" : "")
+        }
+        onClick={() => setIsActive(value => !value)}
+      >
+        {title}
+        <span />
       </div>
-    )
-  }
+      <ul className="footer-menu">{ulItems}</ul>
+    </div>
+  )
 }
 
 const SocialIcons = ({ icons }) => {
@@ -85,53 +76,46 @@ const Contacts = ({ contacts }) => {
   }
 }
 
-class Footer extends React.PureComponent {
-  static propTypes = {
-    settings: PropTypes.shape({}).isRequired,
-  }
+const Footer: FC<{ settings }> = ({ settings }) => {
+  const footerLogoUrl =
+    themeSettings.footer_logo_url && themeSettings.footer_logo_url.length > 0
+      ? "/assets/images/" + themeSettings.footer_logo_url
+      : settings.logo
 
-  render() {
-    const { settings } = this.props
-    const footerLogoUrl =
-      themeSettings.footer_logo_url && themeSettings.footer_logo_url.length > 0
-        ? "/assets/images/" + themeSettings.footer_logo_url
-        : settings.logo
-
-    return (
-      <section className="section section-footer">
-        <hr />
-        <footer>
-          <div className="container">
-            <div className="content">
-              <div className="columns is-gapless">
-                <div className="column is-5">
-                  <div className="mobile-padding">
-                    <div className="footer-logo">
-                      <img src={footerLogoUrl} alt="logo" />
-                    </div>
-                    <p>
-                      <small>{themeSettings.footer_about}</small>
-                    </p>
-                    <Contacts contacts={themeSettings.footer_contacts} />
-                    <SocialIcons icons={themeSettings.footer_social} />
+  return (
+    <section className="section section-footer">
+      <hr />
+      <footer>
+        <div className="container">
+          <div className="content">
+            <div className="columns is-gapless">
+              <div className="column is-5">
+                <div className="mobile-padding">
+                  <div className="footer-logo">
+                    <img src={footerLogoUrl} alt="logo" />
                   </div>
+                  <p>
+                    <small>{themeSettings.footer_about}</small>
+                  </p>
+                  <Contacts contacts={themeSettings.footer_contacts} />
+                  <SocialIcons icons={themeSettings.footer_social} />
                 </div>
-                <div className="column is-1 is-hidden-mobile" />
-                <FooterMenu
-                  title={themeSettings.footer_menu_1_title}
-                  items={themeSettings.footer_menu_1_items}
-                />
-                <FooterMenu
-                  title={themeSettings.footer_menu_2_title}
-                  items={themeSettings.footer_menu_2_items}
-                />
               </div>
+              <div className="column is-1 is-hidden-mobile" />
+              <FooterMenu
+                title={themeSettings.footer_menu_1_title}
+                items={themeSettings.footer_menu_1_items}
+              />
+              <FooterMenu
+                title={themeSettings.footer_menu_2_title}
+                items={themeSettings.footer_menu_2_items}
+              />
             </div>
           </div>
-        </footer>
-      </section>
-    )
-  }
+        </div>
+      </footer>
+    </section>
+  )
 }
 
 export default Footer

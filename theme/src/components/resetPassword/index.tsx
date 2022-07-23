@@ -1,73 +1,73 @@
-import React from "react"
+import React, { FC, useState } from "react"
 import { Redirect } from "react-router-dom"
 import { themeSettings } from "../../lib/settings"
 import ResetPassword from "./resetPassword"
 
-class ResetPasswordForm extends React.Component {
-  constructor(props) {
-    super(props)
+interface Props {
+  resetPassword
+  location
+  state
+  history
+}
 
-    this.state = {
-      verifiedToken: false,
-    }
-  }
+const ResetPasswordForm: FC<Props> = props => {
+  const [verifiedToken, setVerifiedToken] = useState(false)
 
-  verifyToken() {
-    this.setState({ verifiedToken: true })
-    this.props.resetPassword({
-      token: this.props.location.search.split("=")[1],
+  const { resetPassword, location, state, history } = props
+
+  const verifyToken = () => {
+    setVerifiedToken(true)
+    resetPassword({
+      token: location.search.split("=")[1],
     })
   }
 
-  handleFormSubmit = values => {
-    const userId = this.props.state.resetPasswordProperties.id
-    this.props.resetPassword({
+  const handleFormSubmit = values => {
+    const userId = state.resetPasswordProperties.id
+    resetPassword({
       id: userId,
       password: values.password,
-      history: this.props.history,
+      history,
     })
   }
 
-  render() {
-    !this.state.verifiedToken ? this.verifyToken() : ""
+  if (!verifiedToken) verifyToken()
 
-    const { settings, forgotPasswordProperties, resetPasswordProperties } =
-      this.props.state
+  const { settings, forgotPasswordProperties, resetPasswordProperties } = state
 
-    if (
-      this.props.location.search === "" ||
-      this.props.location.search.indexOf("?token=") === -1 ||
-      (resetPasswordProperties && !resetPasswordProperties.status)
-    ) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/",
-          }}
-        />
-      )
-    }
-
-    const {
-      checkoutInputClass = "checkout-field",
-      checkoutButtonClass = "checkout-button",
-    } = themeSettings
-
+  if (
+    location.search === "" ||
+    location.search.indexOf("?token=") === -1 ||
+    (resetPasswordProperties && !resetPasswordProperties.status)
+  ) {
     return (
-      <div>
-        {resetPasswordProperties && (
-          <ResetPassword
-            inputClassName={checkoutInputClass}
-            buttonClassName={checkoutButtonClass}
-            settings={settings}
-            forgotPasswordProperties={forgotPasswordProperties}
-            resetPasswordProperties={resetPasswordProperties}
-            onSubmit={this.handleFormSubmit}
-          />
-        )}
-      </div>
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
     )
   }
+
+  const {
+    checkoutInputClass = "checkout-field",
+    checkoutButtonClass = "checkout-button",
+  } = themeSettings
+
+  return (
+    <div>
+      {resetPasswordProperties && (
+        <ResetPassword
+          inputClassName={checkoutInputClass}
+          buttonClassName={checkoutButtonClass}
+          settings={settings}
+          forgotPasswordProperties={forgotPasswordProperties}
+          resetPasswordProperties={resetPasswordProperties}
+          onSubmit={handleFormSubmit}
+        />
+      )}
+    </div>
+  )
 }
 
 export default ResetPasswordForm

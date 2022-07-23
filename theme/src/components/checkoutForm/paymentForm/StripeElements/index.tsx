@@ -1,40 +1,41 @@
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 import { StripeProvider } from "react-stripe-elements"
 import StoreCheckout from "./StoreCheckout"
 
-class StripeElements extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { stripe: null }
-  }
+interface Props {
+  formSettings
+  shopSettings
+  onPayment
+  onCreateToken
+}
 
-  componentDidMount() {
+const StripeElements: FC<Props> = props => {
+  const [stripe, setStripe] = useState(null)
+
+  const { formSettings, shopSettings, onPayment, onCreateToken } = props
+
+  useEffect(() => {
     const SCRIPT_URL = "https://js.stripe.com/v3/"
     const container = document.body || document.head
     const script = document.createElement("script")
     script.src = SCRIPT_URL
     script.async = true
     script.onload = () => {
-      this.setState({
-        stripe: window.Stripe(this.props.formSettings.public_key),
-      })
+      setStripe(window.Stripe(formSettings.public_key))
     }
     container.appendChild(script)
-  }
+  }, [])
 
-  render() {
-    const { formSettings, shopSettings, onPayment, onCreateToken } = this.props
-    return (
-      <StripeProvider stripe={this.state.stripe}>
-        <StoreCheckout
-          formSettings={formSettings}
-          shopSettings={shopSettings}
-          onPayment={onPayment}
-          onCreateToken={onCreateToken}
-        />
-      </StripeProvider>
-    )
-  }
+  return (
+    <StripeProvider stripe={stripe}>
+      <StoreCheckout
+        formSettings={formSettings}
+        shopSettings={shopSettings}
+        onPayment={onPayment}
+        onCreateToken={onCreateToken}
+      />
+    </StripeProvider>
+  )
 }
 
 export default StripeElements

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC, useState } from "react"
 import { Link } from "react-router-dom"
 import { Field, reduxForm } from "redux-form"
 import { text } from "../../lib/settings"
@@ -29,40 +29,48 @@ const InputField = field => (
   </div>
 )
 
-class ResetPassword extends React.Component {
-  constructor(props) {
-    super(props)
+interface Props {
+  handleSubmit
+  forgotPasswordProperties
+  resetPasswordProperties
+  checkoutFields
+}
 
-    this.state = {
-      comparePassword: "",
-    }
+const ResetPassword: FC<Props> = props => {
+  const [comparePassword, setComparePassword] = useState("")
+
+  const {
+    handleSubmit,
+    forgotPasswordProperties,
+    resetPasswordProperties,
+    checkoutFields,
+  } = props
+
+  const passwordTemp = value => {
+    setComparePassword(value.currentTarget.defaultValue)
   }
 
-  passwordTemp = value => {
-    this.setState({ comparePassword: value.currentTarget.defaultValue })
-  }
-
-  getField = fieldName => {
-    const fields = this.props.checkoutFields || []
+  const getField = fieldName => {
+    const fields = checkoutFields || []
     const field = fields.find(item => item.name === fieldName)
     return field
   }
 
-  getFieldStatus = fieldName => {
-    const field = this.getField(fieldName)
+  const getFieldStatus = fieldName => {
+    const field = getField(fieldName)
     return field && field.status ? field.status : "required"
   }
 
-  isFieldOptional = fieldName => {
-    return this.getFieldStatus(fieldName) === "optional"
+  const isFieldOptional = fieldName => {
+    return getFieldStatus(fieldName) === "optional"
   }
 
-  isFieldHidden = fieldName => {
-    return this.getFieldStatus(fieldName) === "hidden"
+  const isFieldHidden = fieldName => {
+    return getFieldStatus(fieldName) === "hidden"
   }
 
-  getFieldValidators = fieldName => {
-    const isOptional = this.isFieldOptional(fieldName)
+  const getFieldValidators = fieldName => {
+    const isOptional = isFieldOptional(fieldName)
     const validatorsArray = []
     if (!isOptional) {
       validatorsArray.push(validateRequired)
@@ -71,27 +79,27 @@ class ResetPassword extends React.Component {
       validatorsArray.push(validateEmail)
     }
     if (fieldName === "password_verify") {
-      validatorsArray.push(this.confirmPassword)
+      validatorsArray.push(confirmPassword)
     }
 
     return validatorsArray
   }
 
-  confirmPassword = (value: string) => {
-    if (value !== this.state.comparePassword) return text.password_verify_failed
+  const confirmPassword = (value: string) => {
+    if (value !== comparePassword) return text.password_verify_failed
 
     return undefined
   }
 
-  getFieldPlaceholder = fieldName => {
-    const field = this.getField(fieldName)
+  const getFieldPlaceholder = fieldName => {
+    const field = getField(fieldName)
     return field && field.placeholder && field.placeholder.length > 0
       ? field.placeholder
       : ""
   }
 
-  getFieldLabelText = (fieldName: string) => {
-    const field = this.getField(fieldName)
+  const getFieldLabelText = (fieldName: string) => {
+    const field = getField(fieldName)
     if (field && field.label && field.label.length > 0) return field.label
 
     switch (fieldName) {
@@ -104,90 +112,86 @@ class ResetPassword extends React.Component {
     }
   }
 
-  getFieldLabel = (fieldName: string) => {
-    const labelText = this.getFieldLabelText(fieldName)
-    return this.isFieldOptional(fieldName)
+  const getFieldLabel = (fieldName: string) => {
+    const labelText = getFieldLabelText(fieldName)
+    return isFieldOptional(fieldName)
       ? `${labelText} (${text.optional})`
       : labelText
   }
 
-  render() {
-    const { handleSubmit, forgotPasswordProperties, resetPasswordProperties } =
-      this.props
+  const inputClassName = "login-input-field"
+  const loginTitleClassName = "login-title"
+  const loginSuccessTitleClassName = "login-success-title"
+  const loginButtonClass = "account-button button"
+  return (
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="login-section">
+          <h1 className={loginTitleClassName}>{text.reset_password}</h1>
+          <p
+            className={
+              !resetPasswordProperties.verified
+                ? loginTitleClassName
+                : loginSuccessTitleClassName
+            }
+          >
+            {!resetPasswordProperties.verified
+              ? text.reset_password_subtitle
+              : text.reset_password_subtitle_success}
+          </p>
 
-    const inputClassName = "login-input-field"
-    const loginTitleClassName = "login-title"
-    const loginSuccessTitleClassName = "login-success-title"
-    const loginButtonClass = "account-button button"
-    return (
-      <div className="login-container">
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="login-section">
-            <h1 className={loginTitleClassName}>{text.reset_password}</h1>
-            <p
-              className={
-                !resetPasswordProperties.verified
-                  ? loginTitleClassName
-                  : loginSuccessTitleClassName
-              }
-            >
-              {!resetPasswordProperties.verified
-                ? text.reset_password_subtitle
-                : text.reset_password_subtitle_success}
-            </p>
+          {!resetPasswordProperties.verified && (
+            <Field
+              className={inputClassName}
+              name="password"
+              id="customer.password"
+              component={InputField}
+              type="password"
+              autoComplete="new-password"
+              onBlur={passwordTemp}
+              label={getFieldLabel("password")}
+              validate={getFieldValidators("password")}
+              placeholder={getFieldPlaceholder("password")}
+            />
+          )}
+          {!resetPasswordProperties.verified && (
+            <Field
+              className={inputClassName}
+              name="password_verify"
+              id="customer.password_verify"
+              component={InputField}
+              type="password"
+              autoComplete="new-password"
+              onBlur={passwordTemp}
+              label={getFieldLabel("password_verify")}
+              validate={getFieldValidators("password_verify")}
+              placeholder={getFieldPlaceholder("password_verify")}
+            />
+          )}
 
+          <div className="login-button-wrap">
             {!resetPasswordProperties.verified && (
-              <Field
-                className={inputClassName}
-                name="password"
-                id="customer.password"
-                component={InputField}
-                type="password"
-                autoComplete="new-password"
-                onBlur={this.passwordTemp}
-                label={this.getFieldLabel("password")}
-                validate={this.getFieldValidators("password")}
-                placeholder={this.getFieldPlaceholder("password")}
-              />
+              <button type="submit" className={loginButtonClass}>
+                {text.forgot_password_submit}
+              </button>
             )}
-            {!resetPasswordProperties.verified && (
-              <Field
-                className={inputClassName}
-                name="password_verify"
-                id="customer.password_verify"
-                component={InputField}
-                type="password"
-                autoComplete="new-password"
-                onBlur={this.passwordTemp}
-                label={this.getFieldLabel("password_verify")}
-                validate={this.getFieldValidators("password_verify")}
-                placeholder={this.getFieldPlaceholder("password_verify")}
-              />
+            {resetPasswordProperties.verified && (
+              <Link
+                to="/login"
+                style={{ textDecoration: "none" }}
+                key="back-to-login"
+                className={loginButtonClass}
+              >
+                {text.back_to_login}
+              </Link>
             )}
-
-            <div className="login-button-wrap">
-              {!resetPasswordProperties.verified && (
-                <button type="submit" className={loginButtonClass}>
-                  {text.forgot_password_submit}
-                </button>
-              )}
-              {resetPasswordProperties.verified && (
-                <Link
-                  to="/login"
-                  style={{ textDecoration: "none" }}
-                  key="back-to-login"
-                  className={loginButtonClass}
-                >
-                  {text.back_to_login}
-                </Link>
-              )}
-            </div>
           </div>
-        </form>
-      </div>
-    )
-  }
+        </div>
+      </form>
+    </div>
+  )
 }
+
 export default reduxForm({
   form: "ResetPassword",
 })(ResetPassword)
