@@ -1,81 +1,82 @@
 import messages from "lib/text"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
-import React from "react"
+import React, { FC, useEffect, useState } from "react"
 
-class ConfirmationDialog extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: props.open,
+interface Props {
+  isSingle?: boolean
+  itemsCount?: number
+  itemName?: string
+  onCancel
+  onDelete
+}
+
+const ConfirmationDialog: FC<Props> = props => {
+  const [open, setOpen] = useState(props.open)
+
+  const {
+    isSingle = true,
+    itemsCount = 0,
+    itemName = "",
+    onCancel,
+    onDelete,
+  } = props
+
+  useEffect(() => {
+    if (open !== props.open) {
+      setOpen(props.open)
+    }
+  }, [props.open])
+
+  const handleCancel = () => {
+    setOpen(false)
+    if (onCancel) {
+      onCancel()
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.open !== nextProps.open) {
-      this.setState({
-        open: nextProps.open,
-      })
+  const handleDelete = () => {
+    setOpen(false)
+    if (onDelete) {
+      onDelete()
     }
   }
 
-  close = () => {
-    this.setState({ open: false })
-  }
+  const title = isSingle
+    ? messages.singleDeleteTitle.replace("{name}", itemName)
+    : messages.multipleDeleteTitle.replace("{count}", itemsCount)
 
-  handleCancel = () => {
-    this.close()
-    if (this.props.onCancel) {
-      this.props.onCancel()
-    }
-  }
+  const description = isSingle
+    ? messages.singleDeleteDescription
+    : messages.multipleDeleteDescription.replace("{count}", itemsCount)
 
-  handleDelete = () => {
-    this.close()
-    if (this.props.onDelete) {
-      this.props.onDelete()
-    }
-  }
+  const actions = [
+    <FlatButton
+      label={messages.cancel}
+      onClick={handleCancel}
+      style={{ marginRight: 10 }}
+    />,
+    <FlatButton
+      label={messages.actions_delete}
+      primary
+      keyboardFocused
+      onClick={handleDelete}
+    />,
+  ]
 
-  render() {
-    const { isSingle = true, itemsCount = 0, itemName = "" } = this.props
-
-    const title = isSingle
-      ? messages.singleDeleteTitle.replace("{name}", itemName)
-      : messages.multipleDeleteTitle.replace("{count}", itemsCount)
-
-    const description = isSingle
-      ? messages.singleDeleteDescription
-      : messages.multipleDeleteDescription.replace("{count}", itemsCount)
-
-    const actions = [
-      <FlatButton
-        label={messages.cancel}
-        onClick={this.handleCancel}
-        style={{ marginRight: 10 }}
-      />,
-      <FlatButton
-        label={messages.actions_delete}
-        primary
-        keyboardFocused
-        onClick={this.handleDelete}
-      />,
-    ]
-
-    return (
-      <Dialog
-        title={title}
-        actions={actions}
-        modal={false}
-        open={this.state.open}
-        onRequestClose={this.handleCancel}
-        contentStyle={{ maxWidth: 540 }}
-        titleStyle={{ fontSize: "18px", lineHeight: "28px" }}
-      >
-        <div style={{ wordWrap: "break-word" }}>{description}</div>
-      </Dialog>
-    )
-  }
+  return (
+    <Dialog
+      title={title}
+      actions={actions}
+      modal={false}
+      open={open}
+      onRequestClose={handleCancel}
+      contentStyle={{ maxWidth: 540 }}
+      titleStyle={{ fontSize: "18px", lineHeight: "28px" }}
+    >
+      <div style={{ wordWrap: "break-word" }}>{description}</div>
+    </Dialog>
+  )
 }
 
 export default ConfirmationDialog

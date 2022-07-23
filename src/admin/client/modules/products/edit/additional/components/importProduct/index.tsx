@@ -4,13 +4,18 @@ import api from "lib/api"
 import messages from "lib/text"
 import FlatButton from "material-ui/FlatButton"
 import Paper from "material-ui/Paper"
-import React, { Fragment } from "react"
+import React, { FC, Fragment, useEffect, useRef, useState } from "react"
 
 const updateProductArray = []
 const categoryIdArray = []
 const imageFilesArray = []
 
 //const API = 'https://sheets.googleapis.com/v4/spreadsheets/1eEa-9dERtjug9rGAycjDjA7L2imu-53-44kkqrmro9c/values:batchGet?ranges=basedata&majorDimension=ROWS&key=AIzaSyCPK118zWL9Qqhl8Lsa3yQoo6YeccpoDKM';
+
+interface Props {
+  onImportProducts
+  files
+}
 
 /**
  * Google Spreadsheet product import mapping
@@ -20,30 +25,24 @@ const imageFilesArray = []
  *
  * @returns {undefined}
  */
-class ProductImport extends React.Component {
-  constructor(props) {
-    super()
-    this.state = {
-      propstate: props,
-      product_items: [],
-      deleteCounter: 1,
-      uploadedProducts: 0,
-      errors: 0,
-      dashboardsettings: true,
-    }
-    this.loader = React.createRef()
-    this.fetchData = this.fetchData.bind(this)
-    this.deleteProducts = this.deleteProducts.bind(this)
-    this.uploadProducts = this.uploadProducts.bind(this)
-  }
+const ProductImport: FC<Props> = props => {
+  const [product_items, setProduct_items] = useState([])
+  const [deleteCounter, setDeleteCounter] = useState(1)
+  const [uploadedProducts, setUploadedProducts] = useState(0)
+  const [errors, setErrors] = useState(0)
+  const [dashboardsettings, setDashboardsettings] = useState(true)
+
+  const loader = useRef<HTMLSpanElement>()
+
+  const { onImportProducts, files } = props
 
   /**
    * Fetch all products and productimages if exists and set ready to remove it
    *
    * @returns {undefined}
    */
-  fetchData = () => {
-    this.loader.current.style.setProperty("display", "inline-block")
+  const fetchData = () => {
+    loader.current.style.setProperty("display", "inline-block")
     const filter = {
       fields:
         "id,name,category_id,category_ids,category_name,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,url",
@@ -54,12 +53,12 @@ class ProductImport extends React.Component {
       .then(({ status, json }) => {
         // db has no products saved
         if (json.data.length < 1) {
-          this.uploadProducts()
+          uploadProducts()
           return
         }
 
         for (let i in json.data) {
-          this.deleteProducts(json.data[i].id, json.data.length)
+          deleteProducts(json.data[i].id, json.data.length)
           if (json.data[i].images.length > 0) {
             api.products.images.delete(
               json.data[i].id,
@@ -78,12 +77,12 @@ class ProductImport extends React.Component {
    *
    * @returns {undefined}
    */
-  deleteProducts(id, arrayLength) {
+  const deleteProducts = (id, arrayLength) => {
     api.products.delete(id).then(() => {
-      if (parseInt(this.state.deleteCounter) === parseInt(arrayLength)) {
-        this.uploadProducts() //upload just once
+      if (parseInt(deleteCounter) === parseInt(arrayLength)) {
+        uploadProducts() //upload just once
       }
-      this.setState({ deleteCounter: this.state.deleteCounter + 1 })
+      setDeleteCounter(value => value + 1)
     })
   }
 
@@ -92,12 +91,12 @@ class ProductImport extends React.Component {
    *
    * @returns {undefined}
    */
-  uploadProducts() {
+  const uploadProducts = () => {
     let productDraft = {}
     const statusCell = document.getElementsByClassName("sheet-cell-state")
-    let errorsCounter = this.state.errors
+    let errorsCounter = errors
 
-    for (let i = 1; i < this.state.product_items.length; i++) {
+    for (let i = 1; i < product_items.length; i++) {
       productDraft = {
         enabled: true,
         category_id: null,
@@ -109,19 +108,15 @@ class ProductImport extends React.Component {
         sku: null,
         path: null,
       }
-      if (this.state.product_items[i] !== undefined) {
-        productDraft.category_name =
-          this.state.product_items[i]["category_name"]
-        productDraft.sub_category_name =
-          this.state.product_items[i]["sub_category_name"]
-        productDraft.name = this.state.product_items[i]["name"]
-        productDraft.stock_quantity =
-          this.state.product_items[i]["stock_quantity"]
-        productDraft.regular_price =
-          this.state.product_items[i]["regular_price"]
-        productDraft.enabled = this.state.product_items[i]["enabled"]
-        productDraft.sku = this.state.product_items[i]["sku"]
-        productDraft.path = this.state.product_items[i]["images"]
+      if (product_items[i] !== undefined) {
+        productDraft.category_name = product_items[i]["category_name"]
+        productDraft.sub_category_name = product_items[i]["sub_category_name"]
+        productDraft.name = product_items[i]["name"]
+        productDraft.stock_quantity = product_items[i]["stock_quantity"]
+        productDraft.regular_price = product_items[i]["regular_price"]
+        productDraft.enabled = product_items[i]["enabled"]
+        productDraft.sku = product_items[i]["sku"]
+        productDraft.path = product_items[i]["images"]
 
         if (
           productDraft.category_name !== "" &&
@@ -135,7 +130,7 @@ class ProductImport extends React.Component {
           statusCell[i].style.color = "green"
         } else {
           errorsCounter += 1
-          this.setState({ errors: errorsCounter })
+          setErrors(errorsCounter)
         }
 
         updateProductArray.push({
@@ -143,12 +138,12 @@ class ProductImport extends React.Component {
           sub_category_name: productDraft.sub_category_name,
           draft: productDraft,
         })
-        if (i === this.state.product_items.length - 1) {
-          this.removeCategories()
+        if (i === product_items.length - 1) {
+          removeCategories()
         }
       } else {
         errorsCounter += 1
-        this.setState({ errors: errorsCounter })
+        setErrors(errorsCounter)
       }
     }
   }
@@ -158,21 +153,21 @@ class ProductImport extends React.Component {
    *
    * @returns {undefined}
    */
-  removeCategories() {
+  const removeCategories = () => {
     let catArray = []
     api.productCategories.list().then(({ status, json }) => {
       catArray = json
-      json.forEach(function (element) {
+      json.forEach(element => {
         api.productCategories.delete(element.id).then(({ status, json }) => {
           if (catArray.length <= 1) {
-            this.recreateCategories()
+            recreateCategories()
           }
         })
       })
     })
 
     if (catArray.length < 1) {
-      this.recreateCategories()
+      recreateCategories()
     }
   }
 
@@ -181,8 +176,7 @@ class ProductImport extends React.Component {
    *
    * @returns {undefined}
    */
-  recreateCategories() {
-    const that = this
+  const recreateCategories = () => {
     const catArray = []
     updateProductArray.forEach((pArrayItem, i) => {
       api.productCategories
@@ -190,7 +184,7 @@ class ProductImport extends React.Component {
         .then(({ status, json }) => {
           catArray.push(json)
           if (i === updateProductArray.length - 1) {
-            that.removeCategoryDuplicates(catArray)
+            removeCategoryDuplicates(catArray)
           }
         })
     })
@@ -202,8 +196,7 @@ class ProductImport extends React.Component {
    *
    * @returns {undefined}
    */
-  removeCategoryDuplicates(catArray) {
-    const that = this
+  const removeCategoryDuplicates = catArray => {
     let newCatArray = []
     newCatArray = Object.values(
       catArray.reduce(
@@ -222,7 +215,7 @@ class ProductImport extends React.Component {
         .create({ enabled: true, name: item.name })
         .then(({ status, json }) => {
           if (i === newCatArray.length - 1) {
-            that.getRootCategoryIds()
+            getRootCategoryIds()
           }
         })
     })
@@ -233,7 +226,7 @@ class ProductImport extends React.Component {
    *
    * @returns {undefined}
    */
-  getRootCategoryIds() {
+  const getRootCategoryIds = () => {
     const CATEGORIES_FIELDS = "name,id"
     api.productCategories
       .list({ enabled: true, fields: CATEGORIES_FIELDS })
@@ -246,7 +239,7 @@ class ProductImport extends React.Component {
           })
 
           if (i === updateProductArray.length - 1) {
-            this.setSubCategories()
+            setSubCategories()
           }
         })
       })
@@ -260,7 +253,7 @@ class ProductImport extends React.Component {
    *
    * @returns {undefined}
    */
-  setSubCategories() {
+  const setSubCategories = () => {
     api.productCategories.list().then(({ status, json }) => {
       json.forEach(item => {
         updateProductArray.forEach((elem, j) => {
@@ -279,7 +272,7 @@ class ProductImport extends React.Component {
                   elem.draft.category_id = json.id
                   elem.draft.category_ids.push(json.id)
                   if (j === updateProductArray.length - 1) {
-                    this.updateProduct()
+                    updateProduct()
                   }
                 })
             }
@@ -294,8 +287,7 @@ class ProductImport extends React.Component {
    *
    * @returns {Boolean} true if there is no products
    */
-  updateProduct() {
-    const that = this
+  const updateProduct = () => {
     /*let uniqProductArray = updateProductArray.reduce((unique, o) => {
 			if(!unique.some(obj => obj.category_name === o.category_name)) {
 			  unique.push(o);
@@ -315,12 +307,12 @@ class ProductImport extends React.Component {
             id: json.id,
             url: pArrayItem.draft.path.split(","),
           })
-          that.setState({ deleteCounter: 0 })
-          that.setState({ uploadedProducts: i + 1 })
+          setDeleteCounter(0)
+          setUploadedProducts(i + 1)
 
-          if (i + 1 === that.state.product_items.length - 1) {
-            that.loader.current.style.setProperty("display", "none")
-            that.uploadImages()
+          if (i + 1 === product_items.length - 1) {
+            loader.current.style.setProperty("display", "none")
+            uploadImages()
           }
         })
         .catch(error => {
@@ -334,7 +326,7 @@ class ProductImport extends React.Component {
    *
    * @returns {undefined}
    */
-  uploadImages() {
+  const uploadImages = () => {
     api.files.list().then(({ status, json }) => {
       imageFilesArray.forEach(aFile => {
         aFile.url.forEach(imageFile => {
@@ -347,7 +339,7 @@ class ProductImport extends React.Component {
 
               xhr.onload = function (e) {
                 // Obtain a blob: URL for the image data.
-                var arrayBufferView = new Uint8Array(this.response)
+                var arrayBufferView = new Uint8Array(xhr.response)
                 var blob = new Blob([arrayBufferView], { type: "image/jpeg" })
                 var urlCreator = window.URL || window.webkitURL
                 let imageUrl = urlCreator.createObjectURL(blob)
@@ -375,7 +367,9 @@ class ProductImport extends React.Component {
     })
   }
 
-  componentDidMount() {
+  const editColumn = () => {}
+
+  useEffect(() => {
     let spreadsheetApiCredentials = null
     document.getElementsByClassName("product-list")[0].style.display = "none"
 
@@ -404,7 +398,7 @@ class ProductImport extends React.Component {
             rows.push(rowObject)
           }
 
-          this.setState({ product_items: rows })
+          setProduct_items(rows)
 
           let status = document.getElementsByClassName("sheet-cell-state")
           ;[].slice.call(status).forEach((element, i) => {
@@ -415,172 +409,157 @@ class ProductImport extends React.Component {
           })
         })
         .catch(error => {
-          this.setState({ dashboardsettings: false })
+          setDashboardsettings(false)
         })
     })
+  }, [])
+
+  let keyCounter = 0
+  const listHeader = product_items.map((p, j) => {
+    if (j < 1) {
+      return (
+        <tr className="tr-header" key={keyCounter}>
+          {Object.keys(p)
+            .filter(k => k !== "id")
+            .map((k, i) => {
+              return (
+                <th className="td-header" key={keyCounter + i}>
+                  <div
+                    ref="status"
+                    className={
+                      k === "state" ? "sheet-cell-state" : "sheet-cell-" + i
+                    }
+                    suppressContentEditableWarning="true"
+                    key={p[i] + j + i + p[j]}
+                    contentEditable="true"
+                    value={k}
+                    onInput={editColumn}
+                  >
+                    {p[k]}
+                  </div>
+                </th>
+              )
+            })}
+        </tr>
+      )
+    }
+    keyCounter++
+  })
+  const list = product_items.map((p, j) => {
+    if (j >= 1) {
+      return (
+        <tr className="tr-body" key={keyCounter + j}>
+          {Object.keys(p)
+            .filter(k => k !== "id")
+            .map((k, i) => {
+              return (
+                <td className="td-body" key={keyCounter + i}>
+                  <div
+                    className={
+                      k === "state" ? "sheet-cell-state" : "sheet-cell-" + i
+                    }
+                    suppressContentEditableWarning="true"
+                    key={p[i] + j + i + p[j]}
+                    contentEditable="true"
+                    value={k}
+                    onInput={editColumn}
+                  >
+                    {p[k]}
+                  </div>
+                </td>
+              )
+            })}
+        </tr>
+      )
+    }
+    keyCounter++
+  })
+
+  const tableStyle = {
+    align: "center",
   }
 
-  render() {
-    const { onImportProducts, files } = this.props
-
-    let keyCounter = 0
-    const listHeader = this.state.product_items.map((p, j) => {
-      if (j < 1) {
-        return (
-          <tr className="tr-header" key={keyCounter}>
-            {Object.keys(p)
-              .filter(k => k !== "id")
-              .map((k, i) => {
-                return (
-                  <th className="td-header" key={keyCounter + i}>
-                    <div
-                      ref="status"
-                      className={
-                        k === "state" ? "sheet-cell-state" : "sheet-cell-" + i
-                      }
-                      suppressContentEditableWarning="true"
-                      key={p[i] + j + i + p[j]}
-                      contentEditable="true"
-                      value={k}
-                      onInput={this.editColumn}
-                    >
-                      {p[k]}
-                    </div>
-                  </th>
-                )
-              })}
-          </tr>
-        )
-      }
-      keyCounter++
-    })
-    const list = this.state.product_items.map((p, j) => {
-      if (j >= 1) {
-        return (
-          <tr className="tr-body" key={keyCounter + j}>
-            {Object.keys(p)
-              .filter(k => k !== "id")
-              .map((k, i) => {
-                return (
-                  <td className="td-body" key={keyCounter + i}>
-                    <div
-                      className={
-                        k === "state" ? "sheet-cell-state" : "sheet-cell-" + i
-                      }
-                      suppressContentEditableWarning="true"
-                      key={p[i] + j + i + p[j]}
-                      contentEditable="true"
-                      value={k}
-                      onInput={this.editColumn}
-                    >
-                      {p[k]}
-                    </div>
-                  </td>
-                )
-              })}
-          </tr>
-        )
-      }
-      keyCounter++
-    })
-
-    const tableStyle = {
-      align: "center",
-    }
-
-    const showLoader = {
-      display: "none",
-    }
-    return (
-      <Fragment>
-        <div style={{ width: "100%" }}>
-          <div
-            className="spread-sheet-container"
-            style={this.state.productsImport}
-          >
-            <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
-              {messages.settings_googlesheet_header}
-              <p>
-                {" "}
-                {messages.settings_googlesheet_products}{" "}
-                {this.state.product_items.length - 1} /{" "}
-                {messages.settings_googlesheet_uploaded}{" "}
-                {this.state.uploadedProducts}
-                {this.state.errors > 0
-                  ? "/ " +
-                    messages.settings_googlesheet_errors +
-                    " " +
-                    this.state.errors
-                  : ""}
-                {this.state.errors > 0 ? this.state.errors : null}
-                <h3 className="dashboardErrorResponse">
-                  {!this.state.dashboardsettings
-                    ? messages.missing_dashboardsettings
-                    : null}
-                </h3>
-                {!this.state.dashboardsettings
-                  ? messages.setup_google_spreadsheet
-                  : null}
-                <span
-                  ref={this.loader}
-                  style={showLoader}
-                  className="loader loader-product-import"
-                >
-                  <svg className="circular" viewBox="25 25 50 50">
-                    <circle
-                      className="path"
-                      cx="50"
-                      cy="50"
-                      r="20"
-                      fill="none"
-                      strokeWidth="2"
-                      strokeMiterlimit="10"
-                    />
-                  </svg>
-                </span>
-              </p>
-            </div>
-            <Paper className="paper-box" zDepth={1}>
-              <fieldset className="spread-sheet-table">
-                <div className="schedule padd-lr">
-                  <div className="tbl-header">
-                    <table
-                      cellPadding="0"
-                      cellSpacing="0"
-                      id="mytable"
-                      style={tableStyle}
-                    >
-                      <thead>{listHeader}</thead>
-                    </table>
-                  </div>
-                  <div className="tbl-content">
-                    <table
-                      cellPadding="0"
-                      cellSpacing="0"
-                      id="mytable"
-                      style={tableStyle}
-                    >
-                      <tbody>{list}</tbody>
-                    </table>
-                  </div>
-                </div>
-              </fieldset>
-              <div className="buttons-box">
-                <FlatButton
-                  label={messages.import}
-                  files={files}
-                  primary
-                  keyboardFocused
-                  onClick={this.fetchData}
-                  className={"spread-sheet-save-btn"}
-                />
-              </div>
-            </Paper>
+  const showLoader = {
+    display: "none",
+  }
+  return (
+    <Fragment>
+      <div style={{ width: "100%" }}>
+        <div className="spread-sheet-container">
+          <div style={{ margin: 20, color: "rgba(0, 0, 0, 0.52)" }}>
+            {messages.settings_googlesheet_header}
+            <p>
+              {" "}
+              {messages.settings_googlesheet_products}{" "}
+              {product_items.length - 1} /{" "}
+              {messages.settings_googlesheet_uploaded} {uploadedProducts}
+              {errors > 0
+                ? "/ " + messages.settings_googlesheet_errors + " " + errors
+                : ""}
+              {errors > 0 ? errors : null}
+              <h3 className="dashboardErrorResponse">
+                {!dashboardsettings ? messages.missing_dashboardsettings : null}
+              </h3>
+              {!dashboardsettings ? messages.setup_google_spreadsheet : null}
+              <span
+                ref={loader}
+                style={showLoader}
+                className="loader loader-product-import"
+              >
+                <svg className="circular" viewBox="25 25 50 50">
+                  <circle
+                    className="path"
+                    cx="50"
+                    cy="50"
+                    r="20"
+                    fill="none"
+                    strokeWidth="2"
+                    strokeMiterlimit="10"
+                  />
+                </svg>
+              </span>
+            </p>
           </div>
+          <Paper className="paper-box" zDepth={1}>
+            <fieldset className="spread-sheet-table">
+              <div className="schedule padd-lr">
+                <div className="tbl-header">
+                  <table
+                    cellPadding="0"
+                    cellSpacing="0"
+                    id="mytable"
+                    style={tableStyle}
+                  >
+                    <thead>{listHeader}</thead>
+                  </table>
+                </div>
+                <div className="tbl-content">
+                  <table
+                    cellPadding="0"
+                    cellSpacing="0"
+                    id="mytable"
+                    style={tableStyle}
+                  >
+                    <tbody>{list}</tbody>
+                  </table>
+                </div>
+              </div>
+            </fieldset>
+            <div className="buttons-box">
+              <FlatButton
+                label={messages.import}
+                files={files}
+                primary
+                keyboardFocused
+                onClick={fetchData}
+                className={"spread-sheet-save-btn"}
+              />
+            </div>
+          </Paper>
         </div>
-      </Fragment>
-    )
-  }
+      </div>
+    </Fragment>
+  )
 }
 
 /*ProductImport.propTypes = {
