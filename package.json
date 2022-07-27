@@ -142,7 +142,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
-    "html-webpack-plugin": "^4.5.2",
+    "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "node-sass": "^6.0.0",
     "postcss-loader": "^3.0.0",
