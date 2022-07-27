@@ -20,6 +20,10 @@ const ViewedProducts: FC<Props> = props => {
     if (product && product.id) {
       addProductIdToLocalStorage(product.id)
     }
+
+    if (viewedProducts && product && product.id) {
+      setViewedProducts(viewedProducts.filter(id => id !== product.id))
+    }
   }, [])
 
   useEffect(() => {
@@ -59,10 +63,6 @@ const ViewedProducts: FC<Props> = props => {
       localStorage.setItem("viewedProducts", JSON.stringify(viewedProductsList))
       setViewedProducts(viewedProductsList)
     }
-  }
-
-  if (viewedProducts && product && product.id) {
-    setViewedProducts(viewedProducts.filter(id => id !== product.id))
   }
 
   if (viewedProducts && viewedProducts.length > 0) {
