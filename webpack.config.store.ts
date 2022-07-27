@@ -57,11 +57,15 @@ module.exports = {
         ],
       },
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/i,
         use: [
+          // Extracts CSS into separate files
           MiniCssExtractPlugin.loader,
+          // Translates CSS into CommonJS
           "css-loader",
+          // Loader to process CSS with PostCSS
           "postcss-loader",
+          // Compiles Sass to CSS
           "sass-loader",
         ],
       },
