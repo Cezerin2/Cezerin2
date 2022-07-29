@@ -6,12 +6,10 @@ import ProductStockService from "../products/stock"
 import OrdersService from "./orders"
 
 class OrderItemsService {
-  async addItem(order_id, data) {
-    if (!ObjectID.isValid(order_id)) {
-      return Promise.reject("Invalid identifier")
-    }
+  async addItem(order_id: string, data) {
+    if (!ObjectID.isValid(order_id)) return Promise.reject("Invalid identifier")
 
-    let newItem = this.getValidDocumentForInsert(data)
+    const newItem = this.getValidDocumentForInsert(data)
     const orderItem = await this.getOrderItemIfExists(
       order_id,
       newItem.product_id,
@@ -27,7 +25,7 @@ class OrderItemsService {
     return OrdersService.getSingleOrder(order_id)
   }
 
-  async updateItemQuantityIfAvailable(order_id, orderItem, newItem) {
+  async updateItemQuantityIfAvailable(order_id: string, orderItem, newItem) {
     const quantityNeeded = orderItem.quantity + newItem.quantity
     const availableQuantity = await this.getAvailableProductQuantity(
       newItem.product_id,
@@ -35,14 +33,13 @@ class OrderItemsService {
       quantityNeeded
     )
 
-    if (availableQuantity > 0) {
+    if (availableQuantity > 0)
       await this.updateItem(order_id, orderItem.id, {
         quantity: availableQuantity,
       })
-    }
   }
 
-  async addNewItem(order_id, newItem) {
+  async addNewItem(order_id: string, newItem) {
     const orderObjectID = new ObjectID(order_id)
     const availableQuantity = await this.getAvailableProductQuantity(
       newItem.product_id,
@@ -68,35 +65,36 @@ class OrderItemsService {
     }
   }
 
-  async getAvailableProductQuantity(product_id, variant_id, quantityNeeded) {
+  async getAvailableProductQuantity(
+    product_id: string,
+    variant_id: string,
+    quantityNeeded
+  ) {
     const product = await ProductsService.getSingleProduct(
       product_id.toString()
     )
 
-    if (!product) {
-      return 0
-    } else if (product.discontinued) {
-      return 0
-    } else if (product.stock_backorder) {
-      return quantityNeeded
-    } else if (product.variable && variant_id) {
+    if (!product) return 0
+    if (product.discontinued) return 0
+    if (product.stock_backorder) return quantityNeeded
+
+    if (product.variable && variant_id) {
       const variant = this.getVariantFromProduct(product, variant_id)
-      if (variant) {
+      if (variant)
         return variant.stock_quantity >= quantityNeeded
           ? quantityNeeded
           : variant.stock_quantity
-      } else {
-        return 0
-      }
-    } else {
-      return product.stock_quantity >= quantityNeeded
-        ? quantityNeeded
-        : product.stock_quantity
+
+      return 0
     }
+
+    return product.stock_quantity >= quantityNeeded
+      ? quantityNeeded
+      : product.stock_quantity
   }
 
   async getOrderItemIfExists(order_id, product_id, variant_id) {
-    let orderObjectID = new ObjectID(order_id)
+    const orderObjectID = new ObjectID(order_id)
     const order = await db.collection("orders").findOne(
       {
         _id: orderObjectID,
@@ -106,76 +104,72 @@ class OrderItemsService {
       }
     )
 
-    if (order && order.items && order.items.length > 0) {
+    if (order && order.items && order.items.length > 0)
       return order.items.find(
         item =>
           item.product_id.toString() === product_id.toString() &&
           (item.variant_id || "").toString() === (variant_id || "").toString()
       )
-    } else {
-      return null
-    }
+
+    return null
   }
 
   async updateItem(order_id, item_id, data) {
-    if (!ObjectID.isValid(order_id) || !ObjectID.isValid(item_id)) {
+    if (!ObjectID.isValid(order_id) || !ObjectID.isValid(item_id))
       return Promise.reject("Invalid identifier")
-    }
-    let orderObjectID = new ObjectID(order_id)
-    let itemObjectID = new ObjectID(item_id)
+
+    const orderObjectID = new ObjectID(order_id)
+    const itemObjectID = new ObjectID(item_id)
     const item = this.getValidDocumentForUpdate(data)
 
     if (parse.getNumberIfPositive(data.quantity) === 0) {
       // delete item
       return this.deleteItem(order_id, item_id)
-    } else {
-      // update
-      await ProductStockService.handleDeleteOrderItem(order_id, item_id)
-      await db.collection("orders").updateOne(
-        {
-          _id: orderObjectID,
-          "items.id": itemObjectID,
-        },
-        {
-          $set: item,
-        }
-      )
-
-      await this.calculateAndUpdateItem(order_id, item_id)
-      await ProductStockService.handleAddOrderItem(order_id, item_id)
-      return OrdersService.getSingleOrder(order_id)
     }
+
+    // update
+    await ProductStockService.handleDeleteOrderItem(order_id, item_id)
+    await db.collection("orders").updateOne(
+      {
+        _id: orderObjectID,
+        "items.id": itemObjectID,
+      },
+      {
+        $set: item,
+      }
+    )
+
+    await this.calculateAndUpdateItem(order_id, item_id)
+    await ProductStockService.handleAddOrderItem(order_id, item_id)
+    return OrdersService.getSingleOrder(order_id)
   }
 
   getVariantFromProduct(product, variantId) {
-    if (product.variants && product.variants.length > 0) {
+    if (product.variants && product.variants.length > 0)
       return product.variants.find(
         variant => variant.id.toString() === variantId.toString()
       )
-    } else {
-      return null
-    }
+
+    return null
   }
 
   getOptionFromProduct(product, optionId) {
-    if (product.options && product.options.length > 0) {
+    if (product.options && product.options.length > 0)
       return product.options.find(
         item => item.id.toString() === optionId.toString()
       )
-    } else {
-      return null
-    }
+
+    return null
   }
 
   getOptionValueFromProduct(product, optionId, valueId) {
     const option = this.getOptionFromProduct(product, optionId)
-    if (option && option.values && option.values.length > 0) {
+    if (option && option.values && option.values.length > 0)
       return option.values.find(
         item => item.id.toString() === valueId.toString()
       )
-    } else {
-      return null
-    }
+
+    return null
   }
 
   getOptionNameFromProduct(product, optionId) {
@@ -191,7 +185,7 @@ class OrderItemsService {
   getVariantNameFromProduct(product, variantId) {
     const variant = this.getVariantFromProduct(product, variantId)
     if (variant) {
-      let optionNames = []
+      const optionNames = []
       for (const option of variant.options) {
         const optionName = this.getOptionNameFromProduct(
           product,
