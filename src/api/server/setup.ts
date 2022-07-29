@@ -226,6 +226,10 @@ const addOrderConfirmationEmailTemplates = async db => {
 				<td style="width: 20%; padding: 10px 0px; text-align: right;">$ {{shipping_total}}</td>
 			  </tr>
 			  <tr>
+				<td style="width: 80%; padding: 10px 0px; text-align: right;"><b>Included Tax (VAT) @{{tax_rate}}</b></td>
+				<td style="width: 20%; padding: 10px 0px; text-align: right;">$ {{tax_total}}</td>
+			  </tr>
+			  <tr>
 				<td style="width: 80%; padding: 10px 0px; text-align: right;"><b>Grand total</b></td>
 				<td style="width: 20%; padding: 10px 0px; text-align: right;">$ {{grand_total}}</td>
 			  </tr>

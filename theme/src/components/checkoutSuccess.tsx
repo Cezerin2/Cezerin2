@@ -170,6 +170,12 @@ const CheckoutSuccess = ({
                 {helper.formatCurrency(order.shipping_total, settings)}
               </span>
             </div>
+            {order.tax_total > 0 && (
+              <div>
+                <b>{text.included_tax}:</b>
+                <b>{helper.formatCurrency(order.tax_total, settings)}</b>
+              </div>
+            )}
             <div>
               <b>{text.grandTotal}:</b>
               <b>{helper.formatCurrency(order.grand_total, settings)}</b>
