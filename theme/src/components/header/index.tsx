@@ -1,5 +1,5 @@
 import Lscache from "lscache"
-import React, { FC, Fragment, useEffect, useState } from "react"
+import React, { FC, Fragment, useEffect, useRef, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { text } from "../../lib/settings"
 import Cart from "./cart"
@@ -55,6 +55,7 @@ interface Props {
 const Header: FC<Props> = props => {
   const [siteState, setSiteState] = useState(state.SITE)
   const [mobileSearchIsActive, setMobileSearchIsActive] = useState(false)
+  const initState = useRef(props.state)
 
   const {
     cartLayerInitialized,
@@ -67,7 +68,10 @@ const Header: FC<Props> = props => {
   } = props
 
   useEffect(() => {
-    if (props.state.currentPage.path !== "/checkout") {
+    if (
+      props.state.currentPage.path !== "/checkout" &&
+      props.state !== initState.current
+    ) {
       updateSiteState(state.CART)
     }
   }, [props.state.cart, props.state.currentPage])
