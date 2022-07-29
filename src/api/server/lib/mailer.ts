@@ -22,24 +22,25 @@ const transportFromConfig = createTransport({
   tls: { rejectUnauthorized: false },
 })
 
-const getSmtpFromEmailSettings = (emailSettings: config) => ({
-  host: emailSettings.host,
-  port: emailSettings.port,
-  secure: emailSettings.port === 465,
-  auth: {
-    user: emailSettings.user,
-    pass: emailSettings.pass,
-  },
-  tls: { rejectUnauthorized: false },
-})
+const transportFromEmailSettings = (emailSettings: config) =>
+  createTransport({
+    host: emailSettings.host,
+    port: emailSettings.port,
+    secure: emailSettings.port === 465,
+    auth: {
+      user: emailSettings.user,
+      pass: emailSettings.pass,
+    },
+    tls: { rejectUnauthorized: false },
+  })
 
 const getTransport = (emailSettings: config) => {
   const useSmtpServerFromConfigFile = emailSettings.host === ""
-  const emailSettingsSMTP = getSmtpFromEmailSettings(emailSettings)
+  const emailSettingsSMTP = transportFromEmailSettings(emailSettings)
 
   const smtp = useSmtpServerFromConfigFile
-    ? createTransport(transportFromConfig)
-    : createTransport(emailSettingsSMTP)
+    ? transportFromConfig
+    : emailSettingsSMTP
 
   return smtp
 }
