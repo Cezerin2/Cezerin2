@@ -3,6 +3,7 @@ import { themeSettings } from "../../lib/settings"
 import Register from "./register"
 
 interface Props {
+  state: { settings; registerProperties }
   registerUser
   history
   location
@@ -11,7 +12,12 @@ interface Props {
 const RegisterForm: FC<Props> = props => {
   const [verifiedToken, setVerifiedToken] = useState(false)
 
-  const { registerUser, history, location } = props
+  const {
+    state: { settings, registerProperties },
+    registerUser,
+    history,
+    location,
+  } = props
 
   const handleContactsSubmit = values => {
     registerUser({
