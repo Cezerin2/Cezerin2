@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
+    "@emotion/styled": "^11.10.0",
     "@koa/cors": "^3.3.0",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.2",
@@ -133,7 +133,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^7.3.0",
     "core-js": "^3.24.1",
-    "css-loader": "^1.0.0",
+    "css-loader": "^6.7.1",
     "cssnano": "^4.1.0",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
