@@ -1279,9 +1279,9 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
-"@tinymce/tinymce-react@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-4.1.0.tgz#e2a5e289dc1af03837365bebe969b1a722bf6d99"
+"@tinymce/tinymce-react@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-4.2.0.tgz#af2a098153e6eeadc36cfb8940880d7dce425ac5"
   dependencies:
     prop-types "^15.6.2"
     tinymce "^6.0.0 || ^5.5.1"
