@@ -7,7 +7,7 @@ import { GenerateSW } from "workbox-webpack-plugin"
 
 module.exports = {
   entry: {
-    app: ["./src/store/client/index.js"],
+    app: ["./src/store/client/index.tsx"],
     theme: ["theme"],
   },
 
@@ -35,10 +35,14 @@ module.exports = {
     },
   },
 
+  resolve: {
+    extensions: [".tsx", ".js"],
+  },
+
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: "babel-loader",
       },
