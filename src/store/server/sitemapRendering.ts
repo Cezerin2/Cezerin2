@@ -1,6 +1,6 @@
+import { Middleware } from "@koa/router"
 import { SitemapStream, streamToPromise } from "sitemap"
 import { Readable } from "stream"
-import winston from "winston"
 import api from "./api"
 
 const SITEMAP_EXCLUDE_PATH = [
@@ -15,43 +15,30 @@ const SITEMAP_EXCLUDE_PATH = [
   "/customer-account",
 ]
 
-const sitemapRendering = (req, res) => {
-  Promise.all([
-    api.sitemap.list({ enabled: true }),
-    api.settings.retrieve(),
-  ]).then(([sitemapResponse, settingsResponse]) => {
-    const sitemapArray = sitemapResponse.json
-    const settings = settingsResponse.json
-    const hostname =
-      settings.domain && settings.domain.length > 0
-        ? settings.domain
-        : `${req.protocol}://${req.hostname}`
+const sitemapRendering: Middleware = async ctx => {
+  const sitemapResponse = await api.sitemap.list({ enabled: true })
+  const settingsResponse = await api.settings.retrieve()
 
-    const links = sitemapArray
-      .filter(
-        item =>
-          item.type !== "reserved" &&
-          item.type !== "search" &&
-          !SITEMAP_EXCLUDE_PATH.includes(item.path)
-      )
-      .map(item => item.path)
+  const sitemapArray = sitemapResponse.json
+  const settings = settingsResponse.json
+  const hostname =
+    settings.domain && settings.domain.length > 0
+      ? settings.domain
+      : `${ctx.protocol}://${ctx.hostname}`
 
-    const stream = new SitemapStream({ hostname })
-
-    const sitemap = streamToPromise(Readable.from(links).pipe(stream)).then(
-      data => data.toString()
+  const links = sitemapArray
+    .filter(
+      item =>
+        item.type !== "reserved" &&
+        item.type !== "search" &&
+        !SITEMAP_EXCLUDE_PATH.includes(item.path)
     )
+    .map(item => item.path)
 
-    sitemap
-      .then(xml => {
-        res.header("Content-Type", "application/xml")
-        res.send(xml)
-      })
-      .catch(error => {
-        winston.error(error.message ? error.message : error)
-        res.status(500).end()
-      })
-  })
+  const stream = new SitemapStream({ hostname })
+
+  ctx.body = await streamToPromise(Readable.from(links).pipe(stream))
+  ctx.set("Content-Type", "application/xml")
 }
 
 export default sitemapRendering

@@ -1,11 +1,12 @@
+import { Middleware, RouterContext } from "@koa/router"
 import api from "./api"
 
 const IGNORE_PATH = ["/"]
 
-const getRedirect = req => {
-  const absoluteUrl = `${req.protocol}://${req.hostname}${req.url}`
-  const relativeUrl = req.url
-  const relativePath = req.path
+const getRedirect = (ctx: RouterContext) => {
+  const absoluteUrl = `${ctx.protocol}://${ctx.hostname}${ctx.url}`
+  const relativeUrl = ctx.url
+  const relativePath = ctx.path
 
   return api.redirects.list().then(({ status, json }) => {
     const items = json
@@ -38,22 +39,14 @@ const redirectUrlIsValid = url => {
   )
 }
 
-const redirects = (req, res, next) => {
-  if (IGNORE_PATH.includes(req.url)) {
-    next()
-  } else {
-    getRedirect(req)
-      .then(redirect => {
-        if (redirect && redirectUrlIsValid(redirect.to)) {
-          res.redirect(redirect.status, redirect.to)
-        } else {
-          next()
-        }
-      })
-      .catch(() => {
-        next()
-      })
+const redirects: Middleware = async (ctx, next) => {
+  if (!IGNORE_PATH.includes(ctx.url)) {
+    const redirect = await getRedirect(ctx)
+
+    if (redirect && redirectUrlIsValid(redirect.to)) ctx.redirect(redirect.to)
   }
+
+  await next()
 }
 
 export default redirects

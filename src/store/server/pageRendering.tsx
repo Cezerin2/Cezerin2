@@ -1,18 +1,20 @@
-import winston from "winston"
+import { Middleware, RouterContext } from "@koa/router"
 import CezerinClient from "cezerin2-client"
+import { SetOption } from "cookies"
 import React, { StrictMode } from "react"
-import { StaticRouter } from "react-router-dom"
 import { renderToString } from "react-dom/server"
-import { createStore, applyMiddleware } from "redux"
-import thunkMiddleware from "redux-thunk"
-import { Provider } from "react-redux"
 import Helmet from "react-helmet"
+import { Provider } from "react-redux"
+import { StaticRouter } from "react-router-dom"
+import { applyMiddleware, createStore } from "redux"
+import thunkMiddleware from "redux-thunk"
 import { initOnServer } from "theme"
-import serverSettings from "./settings"
+import winston from "winston"
+import App from "../shared/app"
 import reducers from "../shared/reducers"
 import { loadState } from "./loadState"
 import { indexHtml } from "./readIndexHtml"
-import App from "../shared/app"
+import serverSettings from "./settings"
 
 initOnServer({
   language: serverSettings.language,
@@ -35,7 +37,7 @@ const getHead = () => {
   }
 }
 
-const getReferrerCookieOptions = isHttps => ({
+const getReferrerCookieOptions = (isHttps): SetOption => ({
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   httpOnly: true,
   signed: true,
@@ -43,14 +45,14 @@ const getReferrerCookieOptions = isHttps => ({
   sameSite: "strict",
 })
 
-const renderError = (req, res, error) => {
+const renderError = (ctx: RouterContext, error) => {
   winston.error(
-    `Error on page rendering\n\tpath: ${req.url}\n\terror: ${error.toString()}`
+    `Error on page rendering\n\tpath: ${ctx.url}\n\terror: ${error.toString()}`
   )
   if (error.stack) {
     winston.error(error.stack)
   }
-  res.status(500).send(error.message ? error.message : error)
+  ctx.throw(error.message ? error.message : error)
 }
 
 const getAppHtml = (store, location, context = {}) => {
@@ -97,8 +99,8 @@ const getPlaceholder = placeholders => {
   return placeholder
 }
 
-const renderPage = (req, res, store, themeText, placeholders) => {
-  const appHtml = getAppHtml(store, req.url)
+const renderPage = (ctx: RouterContext, store, themeText, placeholders) => {
+  const appHtml = getAppHtml(store, ctx.url)
   const state = store.getState()
   const head = getHead()
   const placeholder = getPlaceholder(placeholders)
@@ -117,41 +119,43 @@ const renderPage = (req, res, store, themeText, placeholders) => {
     .replace("{app_state}", JSON.stringify(state))
     .replace("{root}", appHtml)
 
-  const isHttps = req.protocol === "https"
-  const full_url = `${req.protocol}://${req.hostname}${req.url}`
+  const isHttps = ctx.protocol === "https"
+  const full_url = `${ctx.protocol}://${ctx.hostname}${ctx.url}`
   const referrer_url =
-    req.get("referrer") === undefined ? "" : req.get("referrer")
+    ctx.get("referrer") === undefined ? "" : ctx.get("referrer")
   const REFERRER_COOKIE_OPTIONS = getReferrerCookieOptions(isHttps)
 
-  if (!req.signedCookies.referrer_url) {
-    res.cookie("referrer_url", referrer_url, REFERRER_COOKIE_OPTIONS)
+  if (!ctx.cookies.get("referrer_url")) {
+    ctx.cookies.set("referrer_url", referrer_url, REFERRER_COOKIE_OPTIONS)
   }
 
-  if (!req.signedCookies.landing_url) {
-    res.cookie("landing_url", full_url, REFERRER_COOKIE_OPTIONS)
+  if (!ctx.cookies.get("landing_url")) {
+    ctx.cookies.set("landing_url", full_url, REFERRER_COOKIE_OPTIONS)
   }
 
   const httpStatusCode = state.app.currentPage.type === 404 ? 404 : 200
-  res.status(httpStatusCode).send(html)
+
+  ctx.body = html
+  ctx.status = httpStatusCode
 }
 
-const pageRendering = (req, res) => {
-  loadState(req, serverSettings.language)
-    .then(({ state, themeText, placeholders }) => {
-      initOnServer({
-        themeSettings: state.app.themeSettings,
-        text: themeText,
-      })
-      const store = createStore(
-        reducers,
-        state,
-        applyMiddleware(thunkMiddleware)
-      )
-      renderPage(req, res, store, themeText, placeholders)
+const pageRendering: Middleware = async ctx => {
+  try {
+    const { state, themeText, placeholders } = await loadState(
+      ctx,
+      serverSettings.language
+    )
+    initOnServer({
+      themeSettings: state.app.themeSettings,
+      text: themeText,
     })
-    .catch(error => {
-      renderError(req, res, error)
-    })
+
+    const store = createStore(reducers, state, applyMiddleware(thunkMiddleware))
+
+    renderPage(ctx, store, themeText, placeholders)
+  } catch (error) {
+    renderError(ctx, error)
+  }
 }
 
 export default pageRendering

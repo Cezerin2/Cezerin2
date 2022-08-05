@@ -33,7 +33,7 @@
     "import/extensions": ["error", "never", { "tsx": "always" }],
     "no-param-reassign": [
       "error",
-      { "props": true, "ignorePropertyModificationsFor": ["state"] }
+      { "props": true, "ignorePropertyModificationsFor": ["state", "ctx"] }
     ],
     "react/prop-types": 0,
     "import/no-unresolved": 0,
