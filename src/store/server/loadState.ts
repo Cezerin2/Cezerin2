@@ -1,18 +1,12 @@
-import api from "./api"
-import queryString from "query-string"
+import { RouterContext } from "@koa/router"
 import {
   getParsedProductFilter,
   getProductFilterForCategory,
   getProductFilterForSearch,
 } from "../shared/actions"
+import { PAGE, PRODUCT, PRODUCT_CATEGORY, SEARCH } from "../shared/pageTypes"
+import api from "./api"
 import * as themeLocales from "./themeLocales"
-import {
-  PAGE,
-  PRODUCT_CATEGORY,
-  PRODUCT,
-  RESERVED,
-  SEARCH,
-} from "../shared/pageTypes"
 
 const PRODUCT_FIELDS =
   "path,id,name,category_id,category_ids,category_name,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags,position"
@@ -216,11 +210,11 @@ const getFilter = (currentPage, urlQuery, settings) => {
   return productFilter
 }
 
-export const loadState = (req, language) => {
-  const cookie = req.get("cookie")
-  const urlPath = req.path
-  const urlQuery = req.url.includes("?")
-    ? req.url.substring(req.url.indexOf("?"))
+export const loadState = (ctx: RouterContext, language) => {
+  const cookie = ctx.get("cookie")
+  const urlPath = ctx.path
+  const urlQuery = ctx.url.includes("?")
+    ? ctx.url.substring(ctx.url.indexOf("?"))
     : ""
   const location = {
     hasHistory: false,
@@ -230,7 +224,7 @@ export const loadState = (req, language) => {
   }
 
   return Promise.all([
-    getCurrentPage(req.path),
+    getCurrentPage(ctx.path),
     api.settings.retrieve().then(({ status, json }) => json),
     themeLocales.getText(language),
     api.theme.placeholders.list(),
