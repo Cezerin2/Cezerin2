@@ -1,6 +1,6 @@
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
-import React, { FC, useRef, useState } from "react"
+import React, { FC, useEffect, useRef, useState } from "react"
 
 interface Props {
   title
@@ -26,7 +26,9 @@ const ConfirmationDialog: FC<Props> = props => {
     onCancel,
   } = props
 
-  if (currentOpen !== open) setOpen(props.open)
+  useEffect(() => {
+    if (currentOpen !== open) setOpen(props.open)
+  }, [])
 
   const handleCancel = () => {
     setOpen(false)
