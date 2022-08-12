@@ -82,7 +82,7 @@
     "moment": "^2.29.4",
     "mongodb": "^3.1.4",
     "mui-rff": "^5.3.1",
-    "nodemailer": "^6.7.7",
+    "nodemailer": "^6.7.8",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^2.7.4",
