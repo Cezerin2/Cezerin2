@@ -145,7 +145,7 @@
     "concurrently": "^7.3.0",
     "core-js": "^3.24.1",
     "css-loader": "^6.7.1",
-    "cssnano": "^5.1.12",
+    "cssnano": "^5.1.13",
     "eslint": "^8.21.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
