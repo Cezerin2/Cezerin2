@@ -106,7 +106,7 @@
     "sharp": "^0.30.7",
     "sitemap": "^7.1.1",
     "slug": "^6.0.0",
-    "stripe": "^6.7.0",
+    "stripe": "^10.4.0",
     "theme": "./theme",
     "ua-parser-js": "^0.7.18",
     "winston": "^3.8.1",
