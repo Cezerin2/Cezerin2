@@ -79,9 +79,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
-        path.resolve("theme/assets/js/app-*.js"),
-        path.resolve("theme/assets/js/theme-*.js"),
-        path.resolve("theme/assets/css/bundle-*.css"),
+        path.resolve("theme/assets/js"),
+        path.resolve("theme/assets/css"),
         path.resolve("theme/assets/sw.js"),
         path.resolve("theme/assets/workbox-*.js"),
       ],
