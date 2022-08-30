@@ -1,0 +1,6 @@
+# Config used by dashboard client side only
+
+language: "en" # Dashboard UI language
+apiBaseUrl: "http://localhost:3001/api/v1"
+apiWebSocketUrl: "ws://localhost:3001"
+developerMode: true
