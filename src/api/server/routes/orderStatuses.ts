@@ -1,33 +1,42 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import OrderStatusesService from "../services/orders/orderStatuses"
 
-const router = Router()
+const router = new Router()
 
-const getStatuses = (req: Request, res: Response, next: NextFunction) =>
-  OrderStatusesService.getStatuses(req.query)
-    .then(data => res.send(data))
-    .catch(next)
+const getStatuses: Middleware = async ctx => {
+  const data = await OrderStatusesService.getStatuses(ctx.query)
+  ctx.body = data
+}
 
-const getSingleStatus = (req: Request, res: Response, next: NextFunction) =>
-  OrderStatusesService.getSingleStatus(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSingleStatus: Middleware = async ctx => {
+  const data = await OrderStatusesService.getSingleStatus(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const addStatus = (req: Request, res: Response, next: NextFunction) =>
-  OrderStatusesService.addStatus(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const addStatus: Middleware = async ctx => {
+  const data = await OrderStatusesService.addStatus(ctx.request.body)
+  ctx.body = data
+}
 
-const updateStatus = (req: Request, res: Response, next: NextFunction) =>
-  OrderStatusesService.updateStatus(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateStatus: Middleware = async ctx => {
+  const data = await OrderStatusesService.updateStatus(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const deleteStatus = (req: Request, res: Response, next: NextFunction) =>
-  OrderStatusesService.deleteStatus(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
+const deleteStatus: Middleware = async ctx => {
+  const data = await OrderStatusesService.deleteStatus(ctx.params.id)
+  if (data) {
+    ctx.status = 200
+  } else ctx.status = 404
+}
 
 router
   .get(

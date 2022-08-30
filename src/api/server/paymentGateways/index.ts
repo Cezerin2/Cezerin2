@@ -1,3 +1,4 @@
+import { RouterContext } from "@koa/router"
 import OrdersService from "../services/orders/orders"
 import PaymentGatewaysService from "../services/settings/paymentGateways"
 import SettingsService from "../services/settings/settings"
@@ -43,24 +44,23 @@ const getPaymentFormSettings = async (orderID: string) => {
   }
 }
 
-const paymentNotification = (req, res, gateway) => {
-  return PaymentGatewaysService.getGateway(gateway).then(gatewaySettings => {
-    const options = {
-      gateway: gateway,
-      gatewaySettings: gatewaySettings,
-      req: req,
-      res: res,
-    }
+const paymentNotification = async (ctx: RouterContext, gateway) => {
+  const gatewaySettings = await PaymentGatewaysService.getGateway(gateway)
 
-    switch (gateway) {
-      case "paypal-checkout":
-        return PayPalCheckout.paymentNotification(options)
-      case "liqpay":
-        return LiqPay.paymentNotification(options)
-      default:
-        return Promise.reject("Invalid gateway")
-    }
-  })
+  const options = {
+    gateway: gateway,
+    gatewaySettings: gatewaySettings,
+    ctx,
+  }
+
+  switch (gateway) {
+    case "paypal-checkout":
+      return PayPalCheckout.paymentNotification(options)
+    case "liqpay":
+      return LiqPay.paymentNotification(options)
+    default:
+      return Promise.reject("Invalid gateway")
+  }
 }
 
 const processOrderPayment = async order => {

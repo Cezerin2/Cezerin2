@@ -1,3 +1,4 @@
+import { RouterContext } from "@koa/router"
 import handlebars from "handlebars"
 import jwt from "jsonwebtoken"
 import LRUCache from "lru-cache"
@@ -230,8 +231,8 @@ class SecurityTokensService {
     )
   }
 
-  getIP(req) {
-    let ip = req.get("x-forwarded-for") || req.ip
+  getIP(ctx: RouterContext) {
+    let ip = ctx.get("x-forwarded-for") || ctx.ip
 
     if (ip && ip.includes(", ")) {
       ip = ip.split(", ")[0]
@@ -268,11 +269,11 @@ class SecurityTokensService {
       Cezerin Robot`
   }
 
-  async sendDashboardSigninUrl(req) {
-    const email = req.body.email
-    const userAgent = uaParser(req.get("user-agent"))
-    const country = req.get("cf-ipcountry") || ""
-    const ip = this.getIP(req)
+  async sendDashboardSigninUrl(ctx: RouterContext) {
+    const { email } = ctx.request.body
+    const userAgent = uaParser(ctx.get("user-agent"))
+    const country = ctx.get("cf-ipcountry") || ""
+    const ip = this.getIP(ctx)
     const date = moment(new Date()).format("dddd, MMMM DD, YYYY h:mm A")
     const link = await this.getDashboardSigninUrl(email)
 

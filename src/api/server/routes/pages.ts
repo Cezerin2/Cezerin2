@@ -1,35 +1,37 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import PagesService from "../services/pages/pages"
 
-const router = Router()
+const router = new Router()
 
-const getPages = (req: Request, res: Response, next: NextFunction) =>
-  PagesService.getPages(req.query)
-    .then(data => res.send(data))
-    .catch(next)
-
-const getSinglePage = (req: Request, res: Response, next: NextFunction) =>
-  PagesService.getSinglePage(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const addPage = (req: Request, res: Response, next: NextFunction) => {
-  PagesService.addPage(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const getPages: Middleware = async ctx => {
+  const data = await PagesService.getPages(ctx.query)
+  ctx.body = data
 }
 
-const updatePage = (req: Request, res: Response, next: NextFunction) => {
-  PagesService.updatePage(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSinglePage: Middleware = async ctx => {
+  const data = await PagesService.getSinglePage(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
 }
 
-const deletePage = (req: Request, res: Response, next: NextFunction) =>
-  PagesService.deletePage(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
+const addPage: Middleware = async ctx => {
+  const data = await PagesService.addPage(ctx.request.body)
+  ctx.body = data
+}
+
+const updatePage: Middleware = async ctx => {
+  const data = await PagesService.updatePage(ctx.params.id, ctx.request.body)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const deletePage: Middleware = async ctx => {
+  const data = await PagesService.deletePage(ctx.params.id)
+  ctx.status = data ? 200 : 404
+}
 
 router
   .get(

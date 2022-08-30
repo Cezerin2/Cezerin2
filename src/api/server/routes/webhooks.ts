@@ -1,33 +1,40 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import WebhooksService from "../services/webhooks"
 
-const router = Router()
+const router = new Router()
 
-const getWebhooks = (req: Request, res: Response, next: NextFunction) =>
-  WebhooksService.getWebhooks(req.query)
-    .then(data => res.send(data))
-    .catch(next)
+const getWebhooks: Middleware = async ctx => {
+  const data = await WebhooksService.getWebhooks(ctx.query)
+  ctx.body = data
+}
 
-const getSingleWebhook = (req: Request, res: Response, next: NextFunction) =>
-  WebhooksService.getSingleWebhook(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSingleWebhook: Middleware = async ctx => {
+  const data = await WebhooksService.getSingleWebhook(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const addWebhook = (req: Request, res: Response, next: NextFunction) =>
-  WebhooksService.addWebhook(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const addWebhook: Middleware = async ctx => {
+  const data = await WebhooksService.addWebhook(ctx.request.body)
+  ctx.body = data
+}
 
-const updateWebhook = (req: Request, res: Response, next: NextFunction) =>
-  WebhooksService.updateWebhook(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateWebhook: Middleware = async ctx => {
+  const data = await WebhooksService.updateWebhook(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const deleteWebhook = (req: Request, res: Response, next: NextFunction) =>
-  WebhooksService.deleteWebhook(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
+const deleteWebhook: Middleware = async ctx => {
+  const data = await WebhooksService.deleteWebhook(ctx.params.id)
+  ctx.status = data ? 200 : 404
+}
 
 router
   .get(
