@@ -28,13 +28,13 @@ const getPaymentFormSettings = options => {
   return Promise.resolve(formSettings)
 }
 
-const paymentNotification = options => {
-  const { gateway, gatewaySettings, req, res } = options
-  const params = req.body
+const paymentNotification = async options => {
+  const { gateway, gatewaySettings, ctx } = options
+  const params = ctx.request.body
   const dataStr = Buffer.from(params.data, "base64").toString()
   const data = JSON.parse(dataStr)
 
-  res.status(200).end()
+  ctx.status = 200
 
   const sign = getHashFromString(
     gatewaySettings.private_key + params.data + gatewaySettings.private_key
@@ -44,21 +44,19 @@ const paymentNotification = options => {
   const orderId = data.order_id
 
   if (signatureValid && paymentSuccess) {
-    OrdersService.updateOrder(orderId, {
+    await OrdersService.updateOrder(orderId, {
       paid: true,
       date_paid: new Date(),
-    }).then(() => {
-      OrdertTansactionsService.addTransaction(orderId, {
-        transaction_id: data.transaction_id,
-        amount: data.amount,
-        currency: data.currency,
-        status: data.status,
-        details: `${data.paytype}, ${data.sender_card_mask2}`,
-        success: true,
-      })
     })
-  } else {
-    // log
+
+    OrdertTansactionsService.addTransaction(orderId, {
+      transaction_id: data.transaction_id,
+      amount: data.amount,
+      currency: data.currency,
+      status: data.status,
+      details: `${data.paytype}, ${data.sender_card_mask2}`,
+      success: true,
+    })
   }
 }
 

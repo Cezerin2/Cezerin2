@@ -1,3 +1,4 @@
+import { Middleware, RouterContext } from "@koa/router"
 import winston from "winston"
 
 const logsFile = "logs/server.log"
@@ -26,20 +27,22 @@ const getResponse = message => ({
   message,
 })
 
-const logUnauthorizedRequests = req => {
+const logUnauthorizedRequests = (ctx: RouterContext) => {
   // todo
 }
 
-export const sendResponse = (error, req, res, next) => {
-  if (error && error.name === "UnauthorizedError") {
-    logUnauthorizedRequests(req)
-    res.status(401).send(getResponse(error.message))
-  } else if (error) {
-    winston.error(error.stack)
-    res.status(500).send(getResponse(error.message))
-  } else {
-    next()
-  }
+export const sendResponse: Middleware = (ctx, next) => {
+  // if (error && error.name === "UnauthorizedError") {
+  logUnauthorizedRequests(ctx)
+  // ctx.body = getResponse(error.message)
+  ctx.status = 401
+  // } else if (error) {
+  // winston.error(error.stack)
+  // ctx.body = getResponse(error.message)
+  ctx.status = 500
+  // } else {
+  next()
+  // }
 }
 
 export default logger

@@ -1,3 +1,4 @@
+import { RouterContext } from "@koa/router"
 import formidable from "formidable"
 import fse from "fs-extra"
 import path from "path"
@@ -19,7 +20,7 @@ class ThemeAssetsService {
     })
   }
 
-  uploadFile(req, res, next) {
+  uploadFile(ctx: RouterContext) {
     const uploadDir = path.resolve(settings.themeAssetsUploadPath)
 
     let form = new formidable.IncomingForm(),
@@ -39,20 +40,19 @@ class ThemeAssetsService {
         file_size = file.size
       })
       .on("error", error => {
-        res.status(500).send(this.getErrorMessage(error))
+        ctx.throw(this.getErrorMessage(error))
       })
       .on("end", () => {
         //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
         if (file_name) {
-          res.send({ file: file_name, size: file_size })
+          ctx.body = { file: file_name, size: file_size }
         } else {
-          res
-            .status(400)
-            .send(this.getErrorMessage("Required fields are missing"))
+          ctx.body = this.getErrorMessage("Required fields are missing")
+          ctx.status = 400
         }
       })
 
-    form.parse(req)
+    form.parse(ctx.req)
   }
 
   getErrorMessage(error) {

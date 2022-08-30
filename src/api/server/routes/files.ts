@@ -1,21 +1,17 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import FilesService from "../services/files"
 
-const router = Router()
+const router = new Router()
 
-const getFiles = (req: Request, res: Response, next: NextFunction) =>
-  FilesService.getFiles()
-    .then(data => res.send(data))
-    .catch(next)
+const getFiles: Middleware = async ctx => {
+  const data = await FilesService.getFiles()
+  ctx.body = data
+}
 
-const uploadFile = (req: Request, res: Response, next: NextFunction) =>
-  FilesService.uploadFile(req, res, next)
+const { uploadFile } = FilesService
 
-const deleteFile = (req: Request, res: Response, next: NextFunction) =>
-  FilesService.deleteFile(req.params.file)
-    .then(() => res.end())
-    .catch(next)
+const deleteFile: Middleware = ctx => FilesService.deleteFile(ctx.params.file)
 
 router
   .get(

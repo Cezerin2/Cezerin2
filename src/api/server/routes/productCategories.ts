@@ -1,41 +1,45 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import CategoriesService from "../services/products/productCategories"
 
-const router = Router()
+const router = new Router()
 
-const getCategories = (req: Request, res: Response, next: NextFunction) =>
-  CategoriesService.getCategories(req.query)
-    .then(data => res.send(data))
-    .catch(next)
-
-const getSingleCategory = (req: Request, res: Response, next: NextFunction) =>
-  CategoriesService.getSingleCategory(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const addCategory = (req: Request, res: Response, next: NextFunction) =>
-  CategoriesService.addCategory(req.body)
-    .then(data => res.send(data))
-    .catch(next)
-
-const updateCategory = (req: Request, res: Response, next: NextFunction) =>
-  CategoriesService.updateCategory(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const deleteCategory = (req: Request, res: Response, next: NextFunction) =>
-  CategoriesService.deleteCategory(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
-
-const uploadCategoryImage = (req: Request, res: Response, next: NextFunction) =>
-  CategoriesService.uploadCategoryImage(req, res, next)
-
-const deleteCategoryImage = (req: Request, res: Response) => {
-  CategoriesService.deleteCategoryImage(req.params.id)
-  res.end()
+const getCategories: Middleware = async ctx => {
+  const data = await CategoriesService.getCategories(ctx.query)
+  ctx.body = data
 }
+
+const getSingleCategory: Middleware = async ctx => {
+  const data = await CategoriesService.getSingleCategory(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const addCategory: Middleware = async ctx => {
+  const data = await CategoriesService.addCategory(ctx.request.body)
+  ctx.body = data
+}
+
+const updateCategory: Middleware = async ctx => {
+  const data = await CategoriesService.updateCategory(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const deleteCategory: Middleware = async ctx => {
+  const data = await CategoriesService.deleteCategory(ctx.params.id)
+  ctx.status = data ? 200 : 404
+}
+
+const { uploadCategoryImage } = CategoriesService
+
+const deleteCategoryImage: Middleware = ctx =>
+  CategoriesService.deleteCategoryImage(ctx.params.id)
 
 router
   .get(

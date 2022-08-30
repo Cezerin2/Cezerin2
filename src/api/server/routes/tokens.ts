@@ -1,47 +1,48 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import SecurityTokensService from "../services/security/tokens"
 
-const router = Router()
+const router = new Router()
 
-const getTokens = (req: Request, res: Response, next: NextFunction) =>
-  SecurityTokensService.getTokens(req.query)
-    .then(data => res.send(data))
-    .catch(next)
+const getTokens: Middleware = async ctx => {
+  const data = await SecurityTokensService.getTokens(ctx.query)
+  ctx.body = data
+}
 
-const getTokensBlacklist = (req: Request, res: Response, next: NextFunction) =>
-  SecurityTokensService.getTokensBlacklist()
-    .then(data => res.send(data))
-    .catch(next)
+const getTokensBlacklist: Middleware = async ctx => {
+  const data = await SecurityTokensService.getTokensBlacklist()
+  ctx.body = data
+}
 
-const getSingleToken = (req: Request, res: Response, next: NextFunction) =>
-  SecurityTokensService.getSingleToken(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSingleToken: Middleware = async ctx => {
+  const data = await SecurityTokensService.getSingleToken(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const addToken = (req: Request, res: Response, next: NextFunction) =>
-  SecurityTokensService.addToken(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const addToken: Middleware = async ctx => {
+  const data = await SecurityTokensService.addToken(ctx.request.body)
+  ctx.body = data
+}
 
-const updateToken = (req: Request, res: Response, next: NextFunction) =>
-  SecurityTokensService.updateToken(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateToken: Middleware = async ctx => {
+  const data = await SecurityTokensService.updateToken(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const deleteToken = (req: Request, res: Response, next: NextFunction) =>
-  SecurityTokensService.deleteToken(req.params.id)
-    .then(() => res.end())
-    .catch(next)
+const deleteToken: Middleware = ctx =>
+  SecurityTokensService.deleteToken(ctx.params.id)
 
-const sendDashboardSigninUrl = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) =>
-  SecurityTokensService.sendDashboardSigninUrl(req)
-    .then(data => res.send(data))
-    .catch(next)
+const sendDashboardSigninUrl: Middleware = async ctx => {
+  const data = await SecurityTokensService.sendDashboardSigninUrl(ctx)
+  ctx.body = data
+}
 
 router
   .get(

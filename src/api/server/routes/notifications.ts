@@ -1,10 +1,10 @@
-import { Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import PaymentGateways from "../paymentGateways"
 
-const router = Router()
+const router = new Router()
 
-const paymentNotification = (req: Request, res: Response) =>
-  PaymentGateways.paymentNotification(req, res, req.params.gateway)
+const paymentNotification: Middleware = ctx =>
+  PaymentGateways.paymentNotification(ctx, ctx.params.gateway)
 
 router.post("/v1/notifications/:gateway", paymentNotification)
 

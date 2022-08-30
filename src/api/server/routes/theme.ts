@@ -1,69 +1,67 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import ThemeAssetsService from "../services/theme/assets"
 import ThemePlaceholdersService from "../services/theme/placeholders"
 import ThemeSettingsService from "../services/theme/settings"
 import ThemeService from "../services/theme/theme"
 
-const router = Router()
+const router = new Router()
 
-const exportTheme = (req: Request, res: Response) =>
-  ThemeService.exportTheme(req, res)
+const { exportTheme, installTheme } = ThemeService
 
-const installTheme = (req: Request, res: Response) =>
-  ThemeService.installTheme(req, res)
+const getSettings: Middleware = async ctx => {
+  const data = await ThemeSettingsService.getSettings()
+  ctx.body = data
+}
 
-const getSettings = (req: Request, res: Response, next: NextFunction) =>
-  ThemeSettingsService.getSettings()
-    .then(data => res.send(data))
-    .catch(next)
+const updateSettings: Middleware = ctx =>
+  ThemeSettingsService.updateSettings(ctx.request.body)
 
-const updateSettings = (req: Request, res: Response, next: NextFunction) =>
-  ThemeSettingsService.updateSettings(req.body)
-    .then(() => res.end())
-    .catch(next)
+const getSettingsSchema: Middleware = async ctx => {
+  const data = await ThemeSettingsService.getSettingsSchema()
+  ctx.body = data
+}
 
-const getSettingsSchema = (req: Request, res: Response, next: NextFunction) =>
-  ThemeSettingsService.getSettingsSchema()
-    .then(data => res.send(data))
-    .catch(next)
+const { uploadFile } = ThemeAssetsService
 
-const uploadFile = (req: Request, res: Response, next: NextFunction) =>
-  ThemeAssetsService.uploadFile(req, res, next)
+const deleteFile: Middleware = ctx =>
+  ThemeAssetsService.deleteFile(ctx.params.file)
 
-const deleteFile = (req: Request, res: Response, next: NextFunction) =>
-  ThemeAssetsService.deleteFile(req.params.file)
-    .then(() => res.end())
-    .catch(next)
+const getPlaceholders: Middleware = async ctx => {
+  const data = await ThemePlaceholdersService.getPlaceholders()
+  ctx.body = data
+}
 
-const getPlaceholders = (req: Request, res: Response, next: NextFunction) =>
-  ThemePlaceholdersService.getPlaceholders()
-    .then(data => res.send(data))
-    .catch(next)
+const getSinglePlaceholder: Middleware = async ctx => {
+  const data = await ThemePlaceholdersService.getSinglePlaceholder(
+    ctx.params.key
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const getSinglePlaceholder = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) =>
-  ThemePlaceholdersService.getSinglePlaceholder(req.params.key)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const addPlaceholder: Middleware = async ctx => {
+  const data = await ThemePlaceholdersService.addPlaceholder(ctx.request.body)
+  ctx.body = data
+}
 
-const addPlaceholder = (req: Request, res: Response, next: NextFunction) =>
-  ThemePlaceholdersService.addPlaceholder(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const updatePlaceholder: Middleware = async ctx => {
+  const data = await ThemePlaceholdersService.updatePlaceholder(
+    ctx.params.key,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const updatePlaceholder = (req: Request, res: Response, next: NextFunction) =>
-  ThemePlaceholdersService.updatePlaceholder(req.params.key, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const deletePlaceholder = (req: Request, res: Response, next: NextFunction) =>
-  ThemePlaceholdersService.deletePlaceholder(req.params.key)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
+const deletePlaceholder: Middleware = async ctx => {
+  const data = await ThemePlaceholdersService.deletePlaceholder(ctx.params.key)
+  if (data) {
+    ctx.status = 200
+  } else ctx.status = 404
+}
 
 router
   .get(

@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import PaymentGateways from "../paymentGateways"
 import OrderAddressService from "../services/orders/orderAddress"
@@ -7,161 +7,176 @@ import OrderItemsService from "../services/orders/orderItems"
 import OrdersService from "../services/orders/orders"
 import OrdertTansactionsService from "../services/orders/orderTransactions"
 
-const router = Router()
+const router = new Router()
 
-const getOrders = (req: Request, res: Response, next: NextFunction) =>
-  OrdersService.getOrders(req.query)
-    .then(data => res.send(data))
-    .catch(next)
-
-const getSingleOrder = (req: Request, res: Response, next: NextFunction) =>
-  OrdersService.getSingleOrder(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const addOrder = (req: Request, res: Response, next: NextFunction) =>
-  OrdersService.addOrder(req.body)
-    .then(data => res.send(data))
-    .catch(next)
-
-const updateOrder = (req: Request, res: Response, next: NextFunction) =>
-  OrdersService.updateOrder(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const deleteOrder = (req: Request, res: Response, next: NextFunction) =>
-  OrdersService.deleteOrder(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
-
-const recalculateOrder = (req: Request, res: Response, next: NextFunction) =>
-  OrderItemsService.calculateAndUpdateAllItems(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const checkoutOrder = (req: Request, res: Response, next: NextFunction) =>
-  OrdersService.checkoutOrder(req.params.id)
-    .then(data => res.send(data))
-    .catch(next)
-
-const cancelOrder = (req: Request, res: Response, next: NextFunction) =>
-  OrdersService.cancelOrder(req.params.id)
-    .then(data => res.send(data))
-    .catch(next)
-
-const closeOrder = (req: Request, res: Response, next: NextFunction) =>
-  OrdersService.closeOrder(req.params.id)
-    .then(data => res.send(data))
-    .catch(next)
-
-const updateBillingAddress = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) =>
-  OrderAddressService.updateBillingAddress(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const updateShippingAddress = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) =>
-  OrderAddressService.updateShippingAddress(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const addItem = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  OrderItemsService.addItem(orderID, req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const getOrders: Middleware = async ctx => {
+  const data = await OrdersService.getOrders(ctx.query)
+  ctx.body = data
 }
 
-const updateItem = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  const itemID = req.params.item_id
-  OrderItemsService.updateItem(orderID, itemID, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSingleOrder: Middleware = async ctx => {
+  const data = await OrdersService.getSingleOrder(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
 }
 
-const deleteItem = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  const itemID = req.params.item_id
-  OrderItemsService.deleteItem(orderID, itemID)
-    .then(data => res.send(data))
-    .catch(next)
+const addOrder: Middleware = async ctx => {
+  const data = await OrdersService.addOrder(ctx.request.body)
+  ctx.body = data
 }
 
-const addTransaction = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  OrdertTansactionsService.addTransaction(orderID, req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const updateOrder: Middleware = async ctx => {
+  const data = await OrdersService.updateOrder(ctx.params.id, ctx.request.body)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
 }
 
-const updateTransaction = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  const transactionID = req.params.item_id
-  OrdertTansactionsService.updateTransaction(orderID, transactionID, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const deleteOrder: Middleware = async ctx => {
+  const data = await OrdersService.deleteOrder(ctx.params.id)
+  ctx.status = data ? 200 : 404
 }
 
-const deleteTransaction = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  const transactionID = req.params.item_id
-  OrdertTansactionsService.deleteTransaction(orderID, transactionID)
-    .then(data => res.send(data))
-    .catch(next)
+const recalculateOrder: Middleware = async ctx => {
+  const data = await OrderItemsService.calculateAndUpdateAllItems(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
 }
 
-const addDiscount = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  OrdertDiscountsService.addDiscount(orderID, req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const checkoutOrder: Middleware = async ctx => {
+  const data = await OrdersService.checkoutOrder(ctx.params.id)
+  ctx.body = data
 }
 
-const updateDiscount = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  const discountID = req.params.item_id
-  OrdertDiscountsService.updateDiscount(orderID, discountID, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const cancelOrder: Middleware = async ctx => {
+  const data = await OrdersService.cancelOrder(ctx.params.id)
+  ctx.body = data
 }
 
-const deleteDiscount = (req: Request, res: Response, next: NextFunction) => {
-  const orderID = req.params.id
-  const discountID = req.params.item_id
-  OrdertDiscountsService.deleteDiscount(orderID, discountID)
-    .then(data => res.send(data))
-    .catch(next)
+const closeOrder: Middleware = async ctx => {
+  const data = await OrdersService.closeOrder(ctx.params.id)
+  ctx.body = data
 }
 
-const getPaymentFormSettings = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const orderId = req.params.id
-  PaymentGateways.getPaymentFormSettings(orderId)
-    .then(data => {
-      res.send(data)
-    })
-    .catch(next)
+const updateBillingAddress: Middleware = async ctx => {
+  const data = await OrderAddressService.updateBillingAddress(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
 }
 
-const chargeOrder = async (req: Request, res: Response, next: NextFunction) => {
-  const orderId = req.params.id
-  try {
-    const isSuccess = await OrdersService.chargeOrder(orderId)
-    res.status(isSuccess ? 200 : 500).end()
-  } catch (error) {
-    next(error)
-  }
+const updateShippingAddress: Middleware = async ctx => {
+  const data = await OrderAddressService.updateShippingAddress(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const addItem: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const data = await OrderItemsService.addItem(orderID, ctx.request.body)
+  ctx.body = data
+}
+
+const updateItem: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const itemID = ctx.params.item_id
+  const data = await OrderItemsService.updateItem(
+    orderID,
+    itemID,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const deleteItem: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const itemID = ctx.params.item_id
+  const data = await OrderItemsService.deleteItem(orderID, itemID)
+  ctx.body = data
+}
+
+const addTransaction: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const data = await OrdertTansactionsService.addTransaction(
+    orderID,
+    ctx.request.body
+  )
+  ctx.body = data
+}
+
+const updateTransaction: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const transactionID = ctx.params.item_id
+  const data = await OrdertTansactionsService.updateTransaction(
+    orderID,
+    transactionID,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const deleteTransaction: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const transactionID = ctx.params.item_id
+  const data = await OrdertTansactionsService.deleteTransaction(
+    orderID,
+    transactionID
+  )
+  ctx.body = data
+}
+
+const addDiscount: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const data = await OrdertDiscountsService.addDiscount(
+    orderID,
+    ctx.request.body
+  )
+  ctx.body = data
+}
+
+const updateDiscount: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const discountID = ctx.params.item_id
+  const data = await OrdertDiscountsService.updateDiscount(
+    orderID,
+    discountID,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const deleteDiscount: Middleware = async ctx => {
+  const orderID = ctx.params.id
+  const discountID = ctx.params.item_id
+  const data = await OrdertDiscountsService.deleteDiscount(orderID, discountID)
+  ctx.body = data
+}
+
+const getPaymentFormSettings: Middleware = async ctx => {
+  const orderId = ctx.params.id
+  const data = await PaymentGateways.getPaymentFormSettings(orderId)
+  ctx.body = data
+}
+
+const chargeOrder: Middleware = async ctx => {
+  const orderId = ctx.params.id
+  const isSuccess = await OrdersService.chargeOrder(orderId)
+  ctx.status = isSuccess ? 200 : 500
 }
 
 router

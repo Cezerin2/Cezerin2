@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import ProductImagesService from "../services/products/images"
 import ProductOptionsService from "../services/products/options"
@@ -6,181 +6,198 @@ import ProductOptionValuesService from "../services/products/optionValues"
 import ProductsService from "../services/products/products"
 import ProductVariantsService from "../services/products/variants"
 
-const router = Router()
+const router = new Router()
 
-const getProducts = (req: Request, res: Response, next: NextFunction) =>
-  ProductsService.getProducts(req.query)
-    .then(data => res.send(data))
-    .catch(next)
-
-const getSingleProduct = (req: Request, res: Response, next: NextFunction) =>
-  ProductsService.getSingleProduct(req.params.productId)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const addProduct = (req: Request, res: Response, next: NextFunction) =>
-  ProductsService.addProduct(req.body)
-    .then(data => res.send(data))
-    .catch(next)
-
-const updateProduct = (req: Request, res: Response, next: NextFunction) =>
-  ProductsService.updateProduct(req.params.productId, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const deleteProduct = (req: Request, res: Response, next: NextFunction) =>
-  ProductsService.deleteProduct(req.params.productId)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
-
-const getImages = (req: Request, res: Response, next: NextFunction) =>
-  ProductImagesService.getImages(req.params.productId)
-    .then(data => res.send(data))
-    .catch(next)
-
-const addImage = async (req: Request, res: Response, next: NextFunction) => {
-  await ProductImagesService.addImage(req, res, next)
+const getProducts: Middleware = async ctx => {
+  const data = await ProductsService.getProducts(ctx.query)
+  ctx.body = data
 }
 
-const updateImage = (req: Request, res: Response) =>
+const getSingleProduct: Middleware = async ctx => {
+  const data = await ProductsService.getSingleProduct(ctx.params.productId)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const addProduct: Middleware = async ctx => {
+  const data = await ProductsService.addProduct(ctx.request.body)
+  ctx.body = data
+}
+
+const updateProduct: Middleware = async ctx => {
+  const data = await ProductsService.updateProduct(
+    ctx.params.productId,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
+
+const deleteProduct: Middleware = async ctx => {
+  const data = await ProductsService.deleteProduct(ctx.params.productId)
+  ctx.status = data ? 200 : 404
+}
+
+const getImages: Middleware = async ctx => {
+  const data = await ProductImagesService.getImages(ctx.params.productId)
+  ctx.body = data
+}
+
+const { addImage } = ProductImagesService
+
+const updateImage: Middleware = ctx =>
   ProductImagesService.updateImage(
-    req.params.productId,
-    req.params.imageId,
-    req.body
-  ).then(() => res.end())
-
-const deleteImage = (req: Request, res: Response) =>
-  ProductImagesService.deleteImage(
-    req.params.productId,
-    req.params.imageId
-  ).then(() => res.end())
-
-const isSkuExists = (req: Request, res: Response, next: NextFunction) =>
-  ProductsService.isSkuExists(req.query.sku, req.params.productId)
-    .then(exists => res.status(exists ? 200 : 404).end())
-    .catch(next)
-
-const isSlugExists = (req: Request, res: Response, next: NextFunction) =>
-  ProductsService.isSlugExists(req.query.slug, req.params.productId)
-    .then(exists => res.status(exists ? 200 : 404).end())
-    .catch(next)
-
-const getOptions = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionsService.getOptions(req.params.productId)
-    .then(data => res.send(data))
-    .catch(next)
-
-const getSingleOption = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionsService.getSingleOption(
-    req.params.productId,
-    req.params.optionId
+    ctx.params.productId,
+    ctx.params.imageId,
+    ctx.request.body
   )
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
 
-const addOption = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionsService.addOption(req.params.productId, req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const deleteImage: Middleware = ctx =>
+  ProductImagesService.deleteImage(ctx.params.productId, ctx.params.imageId)
 
-const updateOption = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionsService.updateOption(
-    req.params.productId,
-    req.params.optionId,
-    req.body
+const isSkuExists: Middleware = async ctx => {
+  const exists = await ProductsService.isSkuExists(
+    ctx.query.sku,
+    ctx.params.productId
   )
-    .then(data => res.send(data))
-    .catch(next)
+  ctx.status = exists ? 200 : 404
+}
 
-const deleteOption = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionsService.deleteOption(req.params.productId, req.params.optionId)
-    .then(data => res.send(data))
-    .catch(next)
-
-const getOptionValues = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionValuesService.getOptionValues(
-    req.params.productId,
-    req.params.optionId
+const isSlugExists: Middleware = async ctx => {
+  const exists = await ProductsService.isSlugExists(
+    ctx.query.slug,
+    ctx.params.productId
   )
-    .then(data => res.send(data))
-    .catch(next)
+  ctx.status = exists ? 200 : 404
+}
 
-const getSingleOptionValue = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) =>
-  ProductOptionValuesService.getSingleOptionValue(
-    req.params.productId,
-    req.params.optionId,
-    req.params.valueId
+const getOptions: Middleware = async ctx => {
+  const data = await ProductOptionsService.getOptions(ctx.params.productId)
+  ctx.body = data
+}
+
+const getSingleOption: Middleware = async ctx => {
+  const data = await ProductOptionsService.getSingleOption(
+    ctx.params.productId,
+    ctx.params.optionId
   )
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const addOptionValue = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionValuesService.addOptionValue(
-    req.params.productId,
-    req.params.optionId,
-    req.body
+const addOption: Middleware = async ctx => {
+  const data = await ProductOptionsService.addOption(
+    ctx.params.productId,
+    ctx.request.body
   )
-    .then(data => res.send(data))
-    .catch(next)
+  ctx.body = data
+}
 
-const updateOptionValue = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionValuesService.updateOptionValue(
-    req.params.productId,
-    req.params.optionId,
-    req.params.valueId,
-    req.body
+const updateOption: Middleware = async ctx => {
+  const data = await ProductOptionsService.updateOption(
+    ctx.params.productId,
+    ctx.params.optionId,
+    ctx.request.body
   )
-    .then(data => res.send(data))
-    .catch(next)
+  ctx.body = data
+}
 
-const deleteOptionValue = (req: Request, res: Response, next: NextFunction) =>
-  ProductOptionValuesService.deleteOptionValue(
-    req.params.productId,
-    req.params.optionId,
-    req.params.valueId
+const deleteOption: Middleware = async ctx => {
+  const data = await ProductOptionsService.deleteOption(
+    ctx.params.productId,
+    ctx.params.optionId
   )
-    .then(data => res.send(data))
-    .catch(next)
+  ctx.body = data
+}
 
-const getVariants = (req: Request, res: Response, next: NextFunction) =>
-  ProductVariantsService.getVariants(req.params.productId)
-    .then(data => res.send(data))
-    .catch(next)
-
-const addVariant = (req: Request, res: Response, next: NextFunction) =>
-  ProductVariantsService.addVariant(req.params.productId, req.body)
-    .then(data => res.send(data))
-    .catch(next)
-
-const updateVariant = (req: Request, res: Response, next: NextFunction) =>
-  ProductVariantsService.updateVariant(
-    req.params.productId,
-    req.params.variantId,
-    req.body
+const getOptionValues: Middleware = async ctx => {
+  const data = await ProductOptionValuesService.getOptionValues(
+    ctx.params.productId,
+    ctx.params.optionId
   )
-    .then(data => res.send(data))
-    .catch(next)
+  ctx.body = data
+}
 
-const deleteVariant = (req: Request, res: Response, next: NextFunction) =>
-  ProductVariantsService.deleteVariant(
-    req.params.productId,
-    req.params.variantId
+const getSingleOptionValue: Middleware = async ctx => {
+  const data = await ProductOptionValuesService.getSingleOptionValue(
+    ctx.params.productId,
+    ctx.params.optionId,
+    ctx.params.valueId
   )
-    .then(data => res.send(data))
-    .catch(next)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const setVariantOption = (req: Request, res: Response, next: NextFunction) =>
-  ProductVariantsService.setVariantOption(
-    req.params.productId,
-    req.params.variantId,
-    req.body
+const addOptionValue: Middleware = async ctx => {
+  const data = await ProductOptionValuesService.addOptionValue(
+    ctx.params.productId,
+    ctx.params.optionId,
+    ctx.request.body
   )
-    .then(data => res.send(data))
-    .catch(next)
+  ctx.body = data
+}
+
+const updateOptionValue: Middleware = async ctx => {
+  const data = await ProductOptionValuesService.updateOptionValue(
+    ctx.params.productId,
+    ctx.params.optionId,
+    ctx.params.valueId,
+    ctx.request.body
+  )
+  ctx.body = data
+}
+
+const deleteOptionValue: Middleware = async ctx => {
+  const data = await ProductOptionValuesService.deleteOptionValue(
+    ctx.params.productId,
+    ctx.params.optionId,
+    ctx.params.valueId
+  )
+  ctx.body = data
+}
+
+const getVariants: Middleware = async ctx => {
+  const data = await ProductVariantsService.getVariants(ctx.params.productId)
+  ctx.body = data
+}
+
+const addVariant: Middleware = async ctx => {
+  const data = await ProductVariantsService.addVariant(
+    ctx.params.productId,
+    ctx.request.body
+  )
+  ctx.body = data
+}
+
+const updateVariant: Middleware = async ctx => {
+  const data = await ProductVariantsService.updateVariant(
+    ctx.params.productId,
+    ctx.params.variantId,
+    ctx.request.body
+  )
+  ctx.body = data
+}
+
+const deleteVariant: Middleware = async ctx => {
+  const data = await ProductVariantsService.deleteVariant(
+    ctx.params.productId,
+    ctx.params.variantId
+  )
+  ctx.body = data
+}
+
+const setVariantOption: Middleware = async ctx => {
+  const data = await ProductVariantsService.setVariantOption(
+    ctx.params.productId,
+    ctx.params.variantId,
+    ctx.request.body
+  )
+  ctx.body = data
+}
 
 router
   .get(

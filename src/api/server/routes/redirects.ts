@@ -1,33 +1,40 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import RedirectsService from "../services/redirects"
 
-const router = Router()
+const router = new Router()
 
-const getRedirects = (req: Request, res: Response, next: NextFunction) =>
-  RedirectsService.getRedirects(req.query)
-    .then(data => res.send(data))
-    .catch(next)
+const getRedirects: Middleware = async ctx => {
+  const data = await RedirectsService.getRedirects(ctx.query)
+  ctx.body = data
+}
 
-const getSingleRedirect = (req: Request, res: Response, next: NextFunction) =>
-  RedirectsService.getSingleRedirect(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSingleRedirect: Middleware = async ctx => {
+  const data = await RedirectsService.getSingleRedirect(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const addRedirect = (req: Request, res: Response, next: NextFunction) =>
-  RedirectsService.addRedirect(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const addRedirect: Middleware = async ctx => {
+  const data = await RedirectsService.addRedirect(ctx.request.body)
+  ctx.body = data
+}
 
-const updateRedirect = (req: Request, res: Response, next: NextFunction) =>
-  RedirectsService.updateRedirect(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateRedirect: Middleware = async ctx => {
+  const data = await RedirectsService.updateRedirect(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const deleteRedirect = (req: Request, res: Response, next: NextFunction) =>
-  RedirectsService.deleteRedirect(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
+const deleteRedirect: Middleware = async ctx => {
+  const data = await RedirectsService.deleteRedirect(ctx.params.id)
+  ctx.status = data ? 200 : 404
+}
 
 router
   .get(

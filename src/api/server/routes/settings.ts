@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import CheckoutFieldsService from "../services/settings/checkoutFields"
 import CommerceSettingsService from "../services/settings/commerce"
@@ -7,90 +7,98 @@ import EmailTemplatesService from "../services/settings/emailTemplates"
 import ImportSettingsService from "../services/settings/import"
 import SettingsService from "../services/settings/settings"
 
-const router = Router()
+const router = new Router()
 
-const getSettings = (req: Request, res: Response, next: NextFunction) =>
-  SettingsService.getSettings()
-    .then(data => res.send(data))
-    .catch(next)
+const getSettings: Middleware = async ctx => {
+  const data = await SettingsService.getSettings()
+  ctx.body = data
+}
 
-const updateSettings = (req: Request, res: Response, next: NextFunction) =>
-  SettingsService.updateSettings(req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateSettings: Middleware = async ctx => {
+  const data = await SettingsService.updateSettings(ctx.request.body)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const getEmailSettings = (req: Request, res: Response, next: NextFunction) =>
-  EmailSettingsService.getEmailSettings()
-    .then(data => res.send(data))
-    .catch(next)
+const getEmailSettings: Middleware = async ctx => {
+  const data = await EmailSettingsService.getEmailSettings()
+  ctx.body = data
+}
 
-const updateEmailSettings = (req: Request, res: Response, next: NextFunction) =>
-  EmailSettingsService.updateEmailSettings(req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateEmailSettings: Middleware = async ctx => {
+  const data = await EmailSettingsService.updateEmailSettings(ctx.request.body)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const getImportSettings = (req: Request, res: Response, next: NextFunction) =>
-  ImportSettingsService.getImportSettings()
-    .then(data => res.send(data))
-    .catch(next)
+const getImportSettings: Middleware = async ctx => {
+  const data = await ImportSettingsService.getImportSettings()
+  ctx.body = data
+}
 
-const updateImportSettings = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) =>
-  ImportSettingsService.updateImportSettings(req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateImportSettings: Middleware = async ctx => {
+  const data = await ImportSettingsService.updateImportSettings(
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const retrieveCommerceSettings = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) =>
-  CommerceSettingsService.retrieveCommerceSettings()
-    .then(data => res.send(data))
-    .catch(next)
+const retrieveCommerceSettings: Middleware = async ctx => {
+  const data = await CommerceSettingsService.retrieveCommerceSettings()
+  ctx.body = data
+}
 
-const updateCommerceSettings = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) =>
-  CommerceSettingsService.updateCommerceSettings(req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateCommerceSettings: Middleware = async ctx => {
+  const data = await CommerceSettingsService.updateCommerceSettings(
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const getEmailTemplate = (req: Request, res: Response, next: NextFunction) =>
-  EmailTemplatesService.getEmailTemplate(req.params.name)
-    .then(data => res.send(data))
-    .catch(next)
+const getEmailTemplate: Middleware = async ctx => {
+  const data = await EmailTemplatesService.getEmailTemplate(ctx.params.name)
+  ctx.body = data
+}
 
-const updateEmailTemplate = (req: Request, res: Response, next: NextFunction) =>
-  EmailTemplatesService.updateEmailTemplate(req.params.name, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateEmailTemplate: Middleware = async ctx => {
+  const data = await EmailTemplatesService.updateEmailTemplate(
+    ctx.params.name,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const getCheckoutFields = (req: Request, res: Response, next: NextFunction) =>
-  CheckoutFieldsService.getCheckoutFields()
-    .then(data => res.send(data))
-    .catch(next)
+const getCheckoutFields: Middleware = async ctx => {
+  const data = await CheckoutFieldsService.getCheckoutFields()
+  ctx.body = data
+}
 
-const getCheckoutField = (req: Request, res: Response, next: NextFunction) =>
-  CheckoutFieldsService.getCheckoutField(req.params.name)
-    .then(data => res.send(data))
-    .catch(next)
+const getCheckoutField: Middleware = async ctx => {
+  const data = await CheckoutFieldsService.getCheckoutField(ctx.params.name)
+  ctx.body = data
+}
 
-const updateCheckoutField = (req: Request, res: Response, next: NextFunction) =>
-  CheckoutFieldsService.updateCheckoutField(req.params.name, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateCheckoutField: Middleware = async ctx => {
+  const data = await CheckoutFieldsService.updateCheckoutField(
+    ctx.params.name,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const uploadLogo = (req: Request, res: Response, next: NextFunction) =>
-  SettingsService.uploadLogo(req, res, next)
+const { uploadLogo } = SettingsService
 
-const deleteLogo = (req: Request, res: Response) =>
-  SettingsService.deleteLogo().then(() => res.end())
+const deleteLogo: Middleware = () => SettingsService.deleteLogo()
 
 router
   .get(
