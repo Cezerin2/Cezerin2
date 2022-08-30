@@ -130,8 +130,7 @@ module.exports = {
     // }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
-        path.resolve("public/admin-assets/js/app-*.js"),
-        path.resolve("public/admin-assets/js/vendor-*.js"),
+        path.resolve("public/admin-assets/js"),
         path.resolve("public/admin-assets/css/bundle-*.css"),
       ],
     }),
