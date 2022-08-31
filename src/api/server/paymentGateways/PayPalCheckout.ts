@@ -24,39 +24,35 @@ const getPaymentFormSettings = options => {
   return Promise.resolve(formSettings)
 }
 
-const paymentNotification = options => {
-  const { gateway, gatewaySettings, req, res } = options
+const paymentNotification = async options => {
+  const { gateway, gatewaySettings, ctx } = options
   const settings = { allow_sandbox: true }
-  const params = req.body
+  const params = ctx.request.body
   const orderId = params.custom
   const paymentCompleted = params.payment_status === "Completed"
 
-  res.status(200).end()
+  ctx.status = 200
 
-  verify(params, settings)
-    .then(() => {
-      // TODO: Validate that the receiver's email address is registered to you.
-      // TODO: Verify that the price, item description, and so on, match the transaction on your website.
+  await verify(params, settings)
 
-      if (paymentCompleted) {
-        OrdersService.updateOrder(orderId, {
-          paid: true,
-          date_paid: new Date(),
-        }).then(() => {
-          OrdertTansactionsService.addTransaction(orderId, {
-            transaction_id: params.txn_id,
-            amount: params.mc_gross,
-            currency: params.mc_currency,
-            status: params.payment_status,
-            details: `${params.first_name} ${params.last_name}, ${params.payer_email}`,
-            success: true,
-          })
-        })
-      }
+  // TODO: Validate that the receiver's email address is registered to you.
+  // TODO: Verify that the price, item description, and so on, match the transaction on your website.
+
+  if (paymentCompleted) {
+    await OrdersService.updateOrder(orderId, {
+      paid: true,
+      date_paid: new Date(),
     })
-    .catch(e => {
-      console.error(e)
+
+    OrdertTansactionsService.addTransaction(orderId, {
+      transaction_id: params.txn_id,
+      amount: params.mc_gross,
+      currency: params.mc_currency,
+      status: params.payment_status,
+      details: `${params.first_name} ${params.last_name}, ${params.payer_email}`,
+      success: true,
     })
+  }
 }
 
 const verify = (params, settings) => {

@@ -1,32 +1,39 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import ShippingMethodsService from "../services/orders/shippingMethods"
 
-const router = Router()
+const router = new Router()
 
-const getMethods = (req: Request, res: Response, next: NextFunction) =>
-  ShippingMethodsService.getMethods(req.query)
-    .then(data => res.send(data))
-    .catch(next)
+const getMethods: Middleware = async ctx => {
+  const data = await ShippingMethodsService.getMethods(ctx.query)
+  ctx.body = data
+}
 
-const getSingleMethod = (req: Request, res: Response, next: NextFunction) =>
-  ShippingMethodsService.getSingleMethod(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSingleMethod: Middleware = async ctx => {
+  const data = await ShippingMethodsService.getSingleMethod(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const addMethod = (req: Request, res: Response, next: NextFunction) =>
-  ShippingMethodsService.addMethod(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const addMethod: Middleware = async ctx => {
+  const data = await ShippingMethodsService.addMethod(ctx.request.body)
+  ctx.body = data
+}
 
-const updateMethod = (req: Request, res: Response, next: NextFunction) =>
-  ShippingMethodsService.updateMethod(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateMethod: Middleware = async ctx => {
+  const data = await ShippingMethodsService.updateMethod(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const deleteMethod = async (req: Request, res: Response) => {
-  const result = await ShippingMethodsService.deleteMethod(req.params.id)
-  res.status(result ? 200 : 404).end()
+const deleteMethod: Middleware = async ctx => {
+  const result = await ShippingMethodsService.deleteMethod(ctx.params.id)
+  ctx.status = result ? 200 : 404
 }
 
 router

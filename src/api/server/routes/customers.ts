@@ -1,76 +1,61 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import CustomersService from "../services/customers/customers"
 
-const router = Router()
+const router = new Router()
 
-const getCustomers = (req: Request, res: Response, next: NextFunction) =>
-  CustomersService.getCustomers(req.query)
-    .then(data => res.send(data))
-    .catch(next)
-
-const getSingleCustomer = (req: Request, res: Response, next: NextFunction) =>
-  CustomersService.getSingleCustomer(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const addCustomer = (req: Request, res: Response, next: NextFunction) =>
-  CustomersService.addCustomer(req.body)
-    .then(data => res.send(data))
-    .catch(next)
-
-const updateCustomer = (req: Request, res: Response, next: NextFunction) =>
-  CustomersService.updateCustomer(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
-
-const deleteCustomer = (req: Request, res: Response, next: NextFunction) =>
-  CustomersService.deleteCustomer(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
-
-const addAddress = (req: Request, res: Response, next: NextFunction) => {
-  const customerID = req.params.id
-  CustomersService.addAddress(customerID, req.body)
-    .then(() => res.end())
-    .catch(next)
+const getCustomers: Middleware = async ctx => {
+  const data = await CustomersService.getCustomers(ctx.query)
+  ctx.body = data
 }
 
-const updateAddress = (req: Request, res: Response, next: NextFunction) => {
-  const customerID = req.params.id
-  const addressID = req.params.address_id
-  CustomersService.updateAddress(customerID, addressID, req.body)
-    .then(() => res.end())
-    .catch(next)
+const getSingleCustomer: Middleware = async ctx => {
+  const data = await CustomersService.getSingleCustomer(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
 }
 
-const deleteAddress = (req: Request, res: Response, next: NextFunction) => {
-  const customerID = req.params.id
-  const addressID = req.params.address_id
-  CustomersService.deleteAddress(customerID, addressID)
-    .then(() => res.end())
-    .catch(next)
+const addCustomer: Middleware = async ctx => {
+  const data = await CustomersService.addCustomer(ctx.request.body)
+  ctx.body = data
 }
 
-const setDefaultBilling = (req: Request, res: Response, next: NextFunction) => {
-  const customerID = req.params.id
-  const addressID = req.params.address_id
-  CustomersService.setDefaultBilling(customerID, addressID)
-    .then(() => res.end())
-    .catch(next)
+const updateCustomer: Middleware = async ctx => {
+  const data = await CustomersService.updateCustomer(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
 }
 
-const setDefaultShipping = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const customerID = req.params.id
-  const addressID = req.params.address_id
-  CustomersService.setDefaultShipping(customerID, addressID)
-    .then(() => res.end())
-    .catch(next)
+const deleteCustomer: Middleware = async ctx => {
+  const data = await CustomersService.deleteCustomer(ctx.params.id)
+  if (data) {
+    ctx.status = 200
+  } else ctx.status = 404
 }
+
+const addAddress: Middleware = ctx =>
+  CustomersService.addAddress(ctx.params.id, ctx.request.body)
+
+const updateAddress: Middleware = ctx =>
+  CustomersService.updateAddress(
+    ctx.params.id,
+    ctx.params.address_id,
+    ctx.request.body
+  )
+
+const deleteAddress: Middleware = ctx =>
+  CustomersService.deleteAddress(ctx.params.id, ctx.params.address_id)
+
+const setDefaultBilling: Middleware = ctx =>
+  CustomersService.setDefaultBilling(ctx.params.id, ctx.params.address_id)
+
+const setDefaultShipping: Middleware = ctx =>
+  CustomersService.setDefaultShipping(ctx.params.id, ctx.params.address_id)
 
 router
   .get(

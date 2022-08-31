@@ -1,24 +1,25 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import AppSettingsService from "../services/apps/settings"
 
-const router = Router()
+const router = new Router()
 
-const getSettings = (req: Request, res: Response, next: NextFunction) =>
-  AppSettingsService.getSettings(req.params.key)
-    .then(data => res.send(data))
-    .catch(next)
+const getSettings: Middleware = async ctx => {
+  const data = await AppSettingsService.getSettings(ctx.params.key)
+  ctx.body = data
+}
 
-const updateSettings = (req: Request, res: Response, next: NextFunction) =>
-  AppSettingsService.updateSettings(req.params.key, req.body)
-    .then(data => {
-      if (data) {
-        res.send(data)
-      } else {
-        res.status(404).end()
-      }
-    })
-    .catch(next)
+const updateSettings: Middleware = async ctx => {
+  const data = await AppSettingsService.updateSettings(
+    ctx.params.key,
+    ctx.request.body
+  )
+
+  if (data) {
+    ctx.body = data
+  }
+  ctx.status = 404
+}
 
 router
   .get(

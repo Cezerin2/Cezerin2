@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express"
+import { Middleware } from "@koa/router"
 import expressJwt from "express-jwt"
 import jwt from "jsonwebtoken"
 import SecurityTokensService from "../services/security/tokens"
@@ -44,22 +44,23 @@ const scope = {
 }
 
 const checkUserScope =
-  (requiredScope: string) =>
+  (requiredScope: string): Middleware =>
   // TODO: Remove & { user }
-  (req: Request & { user }, res: Response, next: NextFunction) => {
-    if (DEVELOPER_MODE === true) {
-      next()
-    } else if (
-      req.user &&
-      req.user.scopes &&
-      req.user.scopes.length > 0 &&
-      (req.user.scopes.includes(scope.ADMIN) ||
-        req.user.scopes.includes(requiredScope))
-    ) {
-      next()
-    } else {
-      res.status(403).send({ error: true, message: "Forbidden" })
-    }
+  async (ctx, next) => {
+    const isDeveloperMode = DEVELOPER_MODE === true
+    const checkScopes =
+      ctx?.user?.scopes?.length > 0 &&
+      (ctx.user.scopes.includes(scope.ADMIN) ||
+        ctx.user.scopes.includes(requiredScope))
+
+    ctx.assert.strictEqual(
+      isDeveloperMode || checkScopes,
+      true,
+      403,
+      "Forbidden"
+    )
+
+    await next()
   }
 
 const verifyToken = token =>

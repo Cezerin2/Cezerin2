@@ -1,33 +1,40 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import PaymentMethodsService from "../services/orders/paymentMethods"
 
-const router = Router()
+const router = new Router()
 
-const getMethods = (req: Request, res: Response, next: NextFunction) =>
-  PaymentMethodsService.getMethods(req.query)
-    .then(data => res.send(data))
-    .catch(next)
+const getMethods: Middleware = async ctx => {
+  const data = await PaymentMethodsService.getMethods(ctx.query)
+  ctx.body = data
+}
 
-const getSingleMethod = (req: Request, res: Response, next: NextFunction) =>
-  PaymentMethodsService.getSingleMethod(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSingleMethod: Middleware = async ctx => {
+  const data = await PaymentMethodsService.getSingleMethod(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const addMethod = (req: Request, res: Response, next: NextFunction) =>
-  PaymentMethodsService.addMethod(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const addMethod: Middleware = async ctx => {
+  const data = await PaymentMethodsService.addMethod(ctx.request.body)
+  ctx.body = data
+}
 
-const updateMethod = (req: Request, res: Response, next: NextFunction) =>
-  PaymentMethodsService.updateMethod(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateMethod: Middleware = async ctx => {
+  const data = await PaymentMethodsService.updateMethod(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const deleteMethod = (req: Request, res: Response, next: NextFunction) =>
-  PaymentMethodsService.deleteMethod(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
+const deleteMethod: Middleware = async ctx => {
+  const data = await PaymentMethodsService.deleteMethod(ctx.params.id)
+  ctx.status = data ? 200 : 404
+}
 
 router
   .get(

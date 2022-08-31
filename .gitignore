@@ -128,23 +128,21 @@ dist
 
 # Cezerin
 # Admin build directories
-public/admin-assets/js/app-*
-public/admin-assets/js/vendor-*
+public/admin-assets/js
 public/admin-assets/css/bundle-*
 public/admin/index.html
 public/content/*
 !public/content/*.md
 
 # Theme build directories
-theme/dist/*
-theme/assets/js/app-*
-theme/assets/js/theme-*
-theme/assets/css/bundle-*
+theme/dist
+theme/assets/js
+theme/assets/css
 theme/assets/index.html
 theme/assets/sw.js
 theme/assets/workbox-*.js
 theme/assets/*.map
 
 # Logs and store build directories
-dist/*
+dist
 logs/*

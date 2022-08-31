@@ -1,33 +1,42 @@
-import { NextFunction, Request, Response, Router } from "express"
+import Router, { Middleware } from "@koa/router"
 import security from "../lib/security"
 import CustomerGroupsService from "../services/customers/customerGroups"
 
-const router = Router()
+const router = new Router()
 
-const getGroups = (req: Request, res: Response, next: NextFunction) =>
-  CustomerGroupsService.getGroups(req.query)
-    .then(data => res.send(data))
-    .catch(next)
+const getGroups: Middleware = async ctx => {
+  const data = await CustomerGroupsService.getGroups(ctx.query)
+  ctx.body = data
+}
 
-const getSingleGroup = (req: Request, res: Response, next: NextFunction) =>
-  CustomerGroupsService.getSingleGroup(req.params.id)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const getSingleGroup: Middleware = async ctx => {
+  const data = await CustomerGroupsService.getSingleGroup(ctx.params.id)
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const addGroup = (req: Request, res: Response, next: NextFunction) =>
-  CustomerGroupsService.addGroup(req.body)
-    .then(data => res.send(data))
-    .catch(next)
+const addGroup: Middleware = async ctx => {
+  const data = await CustomerGroupsService.addGroup(ctx.request.body)
+  ctx.body = data
+}
 
-const updateGroup = (req: Request, res: Response, next: NextFunction) =>
-  CustomerGroupsService.updateGroup(req.params.id, req.body)
-    .then(data => (data ? res.send(data) : res.status(404).end()))
-    .catch(next)
+const updateGroup: Middleware = async ctx => {
+  const data = await CustomerGroupsService.updateGroup(
+    ctx.params.id,
+    ctx.request.body
+  )
+  if (data) {
+    ctx.body = data
+  } else ctx.status = 404
+}
 
-const deleteGroup = (req: Request, res: Response, next: NextFunction) =>
-  CustomerGroupsService.deleteGroup(req.params.id)
-    .then(data => res.status(data ? 200 : 404).end())
-    .catch(next)
+const deleteGroup: Middleware = async ctx => {
+  const data = await CustomerGroupsService.deleteGroup(ctx.params.id)
+  if (data) {
+    ctx.status = 200
+  } else ctx.status = 404
+}
 
 router
   .get(

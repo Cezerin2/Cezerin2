@@ -1,4 +1,4 @@
-import { Router } from "express"
+import Router from "@koa/router"
 import AppsRoute from "./routes/apps"
 import CustomerGroupsRoute from "./routes/customerGroups"
 import CustomersRoute from "./routes/customers"
@@ -20,27 +20,28 @@ import ThemeRoute from "./routes/theme"
 import SecurityTokensRoute from "./routes/tokens"
 import WebhooksRoute from "./routes/webhooks"
 
-const apiRouter = Router()
+const apiRouter = new Router()
 
-apiRouter.use(ProductsRoute)
-apiRouter.use(ProductCategoriesRoute)
-apiRouter.use(SitemapRoute)
-apiRouter.use(ThemeRoute)
-apiRouter.use(CustomersRoute)
-apiRouter.use(CustomerGroupsRoute)
-apiRouter.use(OrdersRoute)
-apiRouter.use(OrderStatusesRoute)
-apiRouter.use(ShippingMethodsRoute)
-apiRouter.use(PaymentMethodsRoute)
-apiRouter.use(PaymentGatewaysRoute)
-apiRouter.use(SettingsRoute)
-apiRouter.use(PagesRoute)
-apiRouter.use(SecurityTokensRoute)
-apiRouter.use(NotificationsRoute)
-apiRouter.use(RedirectsRoute)
-apiRouter.use(FilesRoute)
-apiRouter.use(AppsRoute)
-apiRouter.use(WebhooksRoute)
-apiRouter.use(StatusRoute)
+apiRouter
+  .use(ProductsRoute.routes())
+  .use(ProductCategoriesRoute.routes())
+  .use(SitemapRoute.routes())
+  .use(ThemeRoute.routes())
+  .use(CustomersRoute.routes())
+  .use(CustomerGroupsRoute.routes())
+  .use(OrdersRoute.routes())
+  .use(OrderStatusesRoute.routes())
+  .use(ShippingMethodsRoute.routes())
+  .use(PaymentMethodsRoute.routes())
+  .use(PaymentGatewaysRoute.routes())
+  .use(SettingsRoute.routes())
+  .use(PagesRoute.routes())
+  .use(SecurityTokensRoute.routes())
+  .use(NotificationsRoute.routes())
+  .use(RedirectsRoute.routes())
+  .use(FilesRoute.routes())
+  .use(AppsRoute.routes())
+  .use(WebhooksRoute.routes())
+  .use(StatusRoute.routes())
 
 export default apiRouter

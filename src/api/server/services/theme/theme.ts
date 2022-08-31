@@ -1,3 +1,4 @@
+import { RouterContext } from "@koa/router"
 import { exec } from "child_process"
 import formidable from "formidable"
 import path from "path"
@@ -6,32 +7,31 @@ import dashboardWebSocket from "../../lib/dashboardWebSocket"
 import settings from "../../lib/settings"
 
 class ThemesService {
-  exportTheme(req, res) {
+  exportTheme(ctx: RouterContext) {
     const randomFileName = Math.floor(Math.random() * 10000)
     exec(
       `npm --silent run theme:export -- ${randomFileName}.zip`,
       (error, stdout, stderr) => {
         if (error) {
           winston.error("Exporting theme failed")
-          res.status(500).send(this.getErrorMessage(error))
+          ctx.throw(this.getErrorMessage(error))
         } else {
           winston.info(`Theme successfully exported to ${randomFileName}.zip`)
           if (stdout.includes("success")) {
-            res.send({ file: `/${randomFileName}.zip` })
+            ctx.body = { file: `/${randomFileName}.zip` }
           } else {
-            res
-              .status(500)
-              .send(this.getErrorMessage("Something went wrong in scripts"))
+            ctx.body = this.getErrorMessage("Something went wrong in scripts")
+            ctx.status = 500
           }
         }
       }
     )
   }
 
-  installTheme(req, res) {
-    this.saveThemeFile(req, res, (error, fileName) => {
+  installTheme(ctx: RouterContext) {
+    this.saveThemeFile(ctx, (error, fileName) => {
       if (error) {
-        res.status(500).send(this.getErrorMessage(error))
+        ctx.throw(this.getErrorMessage(error))
       } else {
         // run async NPM script
         winston.info("Installing theme...")
@@ -48,12 +48,12 @@ class ThemesService {
           }
         })
         // close request and don't wait result from NPM script
-        res.status(200).end()
+        ctx.status = 200
       }
     })
   }
 
-  saveThemeFile(req, res, callback) {
+  saveThemeFile(ctx: RouterContext, callback) {
     const uploadDir = path.resolve(settings.filesUploadPath)
 
     let form = new formidable.IncomingForm(),
@@ -89,7 +89,7 @@ class ThemesService {
         }
       })
 
-    form.parse(req)
+    form.parse(ctx.req)
   }
 
   getErrorMessage(error) {
