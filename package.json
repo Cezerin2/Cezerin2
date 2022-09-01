@@ -81,7 +81,7 @@
     "material-ui": "^0.20.2",
     "moment": "^2.29.4",
     "mongodb": "^3.1.4",
-    "mui-rff": "^5.3.1",
+    "mui-rff": "^5.3.2",
     "nodemailer": "^6.7.8",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
