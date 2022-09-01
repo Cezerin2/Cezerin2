@@ -133,7 +133,7 @@
     "@types/lodash": "^4.14.184",
     "@types/node": "^18.7.14",
     "@types/nodemailer": "^6.4.5",
-    "@types/react": "^18.0.17",
+    "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
