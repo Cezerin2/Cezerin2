@@ -1,5 +1,4 @@
 import React from "react"
-import { Elements } from "react-stripe-elements"
 import InjectedCheckoutForm from "./CheckoutForm"
 
 const StoreCheckout = ({
@@ -8,14 +7,12 @@ const StoreCheckout = ({
   onPayment,
   onCreateToken,
 }) => (
-  <Elements>
-    <InjectedCheckoutForm
-      formSettings={formSettings}
-      shopSettings={shopSettings}
-      onPayment={onPayment}
-      onCreateToken={onCreateToken}
-    />
-  </Elements>
+  <InjectedCheckoutForm
+    formSettings={formSettings}
+    shopSettings={shopSettings}
+    onPayment={onPayment}
+    onCreateToken={onCreateToken}
+  />
 )
 
 export default StoreCheckout

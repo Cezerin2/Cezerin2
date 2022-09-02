@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useState } from "react"
-import { StripeProvider } from "react-stripe-elements"
+import { Elements } from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js"
+import React, { FC } from "react"
 import StoreCheckout from "./StoreCheckout"
 
 interface Props {
@@ -10,31 +11,20 @@ interface Props {
 }
 
 const StripeElements: FC<Props> = props => {
-  const [stripe, setStripe] = useState(null)
-
   const { formSettings, shopSettings, onPayment, onCreateToken } = props
 
-  useEffect(() => {
-    const SCRIPT_URL = "https://js.stripe.com/v3/"
-    const container = document.body || document.head
-    const script = document.createElement("script")
-    script.src = SCRIPT_URL
-    script.async = true
-    script.onload = () => {
-      setStripe(window.Stripe(formSettings.public_key))
-    }
-    container.appendChild(script)
-  }, [])
+  // Create the Stripe object yourself...
+  const stripePromise = loadStripe(formSettings.public_key)
 
   return (
-    <StripeProvider stripe={stripe}>
+    <Elements stripe={stripePromise}>
       <StoreCheckout
         formSettings={formSettings}
         shopSettings={shopSettings}
         onPayment={onPayment}
         onCreateToken={onCreateToken}
       />
-    </StripeProvider>
+    </Elements>
   )
 }
 
