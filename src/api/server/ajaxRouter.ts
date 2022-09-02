@@ -98,7 +98,7 @@ const fillCartItems = async cartResponse => {
 }
 
 ajaxRouter.get("/products", async ctx => {
-  const filter = ctx.params
+  const filter = ctx.query
   filter.enabled = "true"
 
   const { status, json } = await api.products.list(filter)
@@ -746,7 +746,7 @@ ajaxRouter.post("/cart/charge", async ctx => {
 })
 
 ajaxRouter.get("/pages", async ctx => {
-  const { status, json } = await api.pages.list(ctx.params)
+  const { status, json } = await api.pages.list(ctx.query)
 
   ctx.body = json
   ctx.status = status
@@ -763,7 +763,7 @@ ajaxRouter.get("/pages/:id", async ctx => {
 
 ajaxRouter.get("/sitemap", async ctx => {
   let result = null
-  const filter = ctx.params
+  const filter = ctx.query
   filter.enabled = "true"
 
   const sitemapResponse = await api.sitemap.retrieve(filter)
