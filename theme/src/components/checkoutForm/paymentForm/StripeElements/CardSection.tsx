@@ -1,5 +1,5 @@
+import { CardElement } from "@stripe/react-stripe-js"
 import React, { Fragment } from "react"
-import { CardElement } from "react-stripe-elements"
 
 const CardSection = ({ title }) => (
   <Fragment>
