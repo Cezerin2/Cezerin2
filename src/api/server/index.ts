@@ -21,6 +21,21 @@ app.keys = settings.cookieSecretKey
 app.maxIpsCount = 1
 
 app
+  // logger
+  .use(async (ctx, next) => {
+    await next()
+    const rt = ctx.response.get("X-Response-Time")
+    winston.info(`${ctx.method} ${ctx.url} - ${rt}`)
+  })
+
+  // x-response-time
+  .use(async (ctx, next) => {
+    const start = Date.now()
+    await next()
+    const ms = Date.now() - start
+    ctx.set("X-Response-Time", `${ms}ms`)
+  })
+
   .use(
     cors({
       origin: security.getAccessControlAllowOrigin(),
@@ -35,21 +50,6 @@ app
   .use(compress({ threshold: 0 })) // compressor
   .use(router.routes()) // router
   .use(router.allowedMethods()) // router
-
-// logger
-app.use(async (ctx, next) => {
-  await next()
-  const rt = ctx.response.get("X-Response-Time")
-  winston.info(`${ctx.method} ${ctx.url} - ${rt}`)
-})
-
-// x-response-time
-app.use(async (ctx, next) => {
-  const start = Date.now()
-  await next()
-  const ms = Date.now() - start
-  ctx.set("X-Response-Time", `${ms}ms`)
-})
 
 router
   .use("/ajax", ajaxRouter.routes(), ajaxRouter.allowedMethods())
