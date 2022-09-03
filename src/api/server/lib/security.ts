@@ -1,6 +1,7 @@
 import { Middleware } from "@koa/router"
-import expressJwt from "express-jwt"
 import jwt from "jsonwebtoken"
+import { Context } from "koa"
+import koaJWT from "koa-jwt"
 import SecurityTokensService from "../services/security/tokens"
 import settings from "./settings"
 
@@ -75,21 +76,21 @@ const verifyToken = token =>
     })
   })
 
-const checkTokenInBlacklistCallback = async (req, payload, done) => {
+const checkTokenInBlacklistCallback = async (ctx: Context, decodedToken) => {
   try {
-    const jti = payload.jti
+    const jti = decodedToken?.jti
     const blacklist = await SecurityTokensService.getTokensBlacklist()
     const tokenIsRevoked = blacklist.includes(jti)
-    return done(null, tokenIsRevoked)
+    return tokenIsRevoked
   } catch (e) {
-    done(e, SET_TOKEN_AS_REVOKEN_ON_EXCEPTION)
+    ctx.throw(SET_TOKEN_AS_REVOKEN_ON_EXCEPTION, e)
   }
 }
 
 const applyMiddleware = app => {
   if (DEVELOPER_MODE === false) {
     app.use(
-      expressJwt({
+      koaJWT({
         secret: settings.jwtSecretKey,
         isRevoked: checkTokenInBlacklistCallback,
       }).unless({ path: PATHS_WITH_OPEN_ACCESS })
