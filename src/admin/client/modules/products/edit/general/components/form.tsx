@@ -5,7 +5,7 @@ import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import Editor from "modules/shared/editor"
 import React from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
 import style from "./style.css"
 
@@ -48,80 +48,78 @@ const asyncValidate = values => {
   })
 }
 
-const ProductGeneralForm = ({
-  handleSubmit,
-  pristine,
-  reset,
-  submitting,
-  initialValues,
-}) => {
+const ProductGeneralForm = ({ initialValues, onSubmit }) => {
   if (initialValues) {
     return (
-      <form onSubmit={handleSubmit}>
-        <Paper className="paper-box" zDepth={1}>
-          <div className={style.innerBox}>
-            <Field
-              name="name"
-              component={TextField}
-              floatingLabelText={messages.products_name + " *"}
-              fullWidth
-            />
-            <Field
-              name="slug"
-              component={TextField}
-              floatingLabelText={messages.slug}
-              fullWidth
-            />
-            <p className="field-hint">{messages.help_slug}</p>
-            <Field
-              name="meta_title"
-              component={TextField}
-              floatingLabelText={messages.pageTitle}
-              fullWidth
-            />
-            <Field
-              name="meta_description"
-              component={TextField}
-              floatingLabelText={messages.metaDescription}
-              fullWidth
-            />
-            <div className="field-hint" style={{ marginTop: 40 }}>
-              {messages.description}
-            </div>
-            <Field name="description" component={Editor} />
-          </div>
-          <div
-            className={
-              "buttons-box " +
-              (pristine ? "buttons-box-pristine" : "buttons-box-show")
-            }
-          >
-            <FlatButton
-              label={messages.cancel}
-              className={style.button}
-              onClick={reset}
-              disabled={pristine || submitting}
-            />
-            <RaisedButton
-              type="submit"
-              label={messages.save}
-              primary
-              className={style.button}
-              disabled={pristine || submitting}
-            />
-          </div>
-        </Paper>
-      </form>
+      <Form
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validate={validate}
+        asyncValidate={asyncValidate}
+        validateOnBlur
+      >
+        {({ handleSubmit, pristine, form, submitting }) => (
+          <form onSubmit={handleSubmit}>
+            <Paper className="paper-box" zDepth={1}>
+              <div className={style.innerBox}>
+                <Field
+                  name="name"
+                  component={TextField}
+                  floatingLabelText={messages.products_name + " *"}
+                  fullWidth
+                />
+                <Field
+                  name="slug"
+                  component={TextField}
+                  floatingLabelText={messages.slug}
+                  fullWidth
+                />
+                <p className="field-hint">{messages.help_slug}</p>
+                <Field
+                  name="meta_title"
+                  component={TextField}
+                  floatingLabelText={messages.pageTitle}
+                  fullWidth
+                />
+                <Field
+                  name="meta_description"
+                  component={TextField}
+                  floatingLabelText={messages.metaDescription}
+                  fullWidth
+                />
+                <div className="field-hint" style={{ marginTop: 40 }}>
+                  {messages.description}
+                </div>
+                <Field name="description" component={Editor} />
+              </div>
+              <div
+                className={
+                  "buttons-box " +
+                  (pristine ? "buttons-box-pristine" : "buttons-box-show")
+                }
+              >
+                <FlatButton
+                  label={messages.cancel}
+                  className={style.button}
+                  onClick={form.reset}
+                  disabled={pristine || submitting}
+                />
+                <RaisedButton
+                  type="submit"
+                  label={messages.save}
+                  primary
+                  className={style.button}
+                  disabled={pristine || submitting}
+                />
+              </div>
+            </Paper>
+          </form>
+        )}
+      </Form>
     )
   } else {
     return null
   }
 }
 
-export default reduxForm({
-  form: "ProductGeneralForm",
-  validate,
-  asyncValidate,
-  asyncBlurFields: ["slug"],
-  enableReinitialize: true,
-})(ProductGeneralForm)
+export default ProductGeneralForm

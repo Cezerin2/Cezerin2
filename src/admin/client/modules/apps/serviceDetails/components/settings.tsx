@@ -4,16 +4,11 @@ import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import { CustomToggle } from "modules/shared/form"
 import React from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
 import style from "./style.css"
 
-const ServiceSettingsForm = ({
-  handleSubmit,
-  pristine,
-  submitting,
-  initialValues,
-}) => {
+const ServiceSettingsForm = ({ initialValues, onSubmit }) => {
   const fields = Object.keys(initialValues).map((key, index) => {
     const value = initialValues[key]
     return (
@@ -58,34 +53,35 @@ const ServiceSettingsForm = ({
       <div className="gray-title" style={{ margin: "0 0 15px 20px" }}>
         {messages.drawer_settings}
       </div>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "initial",
-          width: "100%",
-        }}
-      >
-        <Paper style={{ margin: "0px 20px" }} zDepth={1}>
-          <div style={{ padding: "10px 30px 30px 30px" }}>{fields}</div>
-          <div
-            className="buttons-box"
-            style={{ display: pristine ? "none" : "block" }}
+      <Form initialValues={initialValues} onSubmit={onSubmit}>
+        {({ handleSubmit, pristine, submitting }) => (
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              display: "initial",
+              width: "100%",
+            }}
           >
-            <RaisedButton
-              type="submit"
-              label={messages.save}
-              primary
-              className={style.button}
-              disabled={pristine || submitting}
-            />
-          </div>
-        </Paper>
-      </form>
+            <Paper style={{ margin: "0px 20px" }} zDepth={1}>
+              <div style={{ padding: "10px 30px 30px 30px" }}>{fields}</div>
+              <div
+                className="buttons-box"
+                style={{ display: pristine ? "none" : "block" }}
+              >
+                <RaisedButton
+                  type="submit"
+                  label={messages.save}
+                  primary
+                  className={style.button}
+                  disabled={pristine || submitting}
+                />
+              </div>
+            </Paper>
+          </form>
+        )}
+      </Form>
     </div>
   )
 }
 
-export default reduxForm({
-  form: "WebStoreServiceSettingsForm",
-  enableReinitialize: true,
-})(ServiceSettingsForm)
+export default ServiceSettingsForm

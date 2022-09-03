@@ -5,7 +5,7 @@ import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import { CustomToggle } from "modules/shared/form"
 import React, { FC, useEffect } from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { SelectField, TextField } from "redux-form-material-ui"
 import style from "./style.css"
 import OptionValues from "./values"
@@ -24,10 +24,8 @@ const validate = values => {
 }
 
 interface Props {
-  handleSubmit
-  pristine: boolean
-  reset
-  submitting: boolean
+  initialValues
+  onSubmit
   deleteOption
   optionValues
   createOptionValue
@@ -38,10 +36,8 @@ interface Props {
 
 const ProductOptionForm: FC<Props> = props => {
   const {
-    handleSubmit,
-    pristine,
-    reset,
-    submitting,
+    initialValues,
+    onSubmit,
     deleteOption,
     optionValues,
     createOptionValue,
@@ -56,70 +52,78 @@ const ProductOptionForm: FC<Props> = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <Paper className="paper-box" zDepth={1}>
-          <div className={style.innerBox}>
-            <Field
-              name="name"
-              component={TextField}
-              floatingLabelText={messages.optionName}
-              fullWidth
-            />
-            <div className="row">
-              <div className="col-xs-6">
+      <Form
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validate={validate}
+      >
+        {({ handleSubmit, pristine, form, submitting }) => (
+          <form onSubmit={handleSubmit}>
+            <Paper className="paper-box" zDepth={1}>
+              <div className={style.innerBox}>
                 <Field
-                  name="position"
+                  name="name"
                   component={TextField}
-                  type="number"
-                  floatingLabelText={messages.position}
+                  floatingLabelText={messages.optionName}
                   fullWidth
                 />
-              </div>
-              <div className="col-xs-6">
-                <Field
-                  component={SelectField}
-                  autoWidth
-                  fullWidth
-                  name="control"
-                  floatingLabelText={messages.optionControl}
-                >
-                  <MenuItem
-                    value="select"
-                    primaryText={messages.optionControlSelect}
+                <div className="row">
+                  <div className="col-xs-6">
+                    <Field
+                      name="position"
+                      component={TextField}
+                      type="number"
+                      floatingLabelText={messages.position}
+                      fullWidth
+                    />
+                  </div>
+                  <div className="col-xs-6">
+                    <Field
+                      component={SelectField}
+                      autoWidth
+                      fullWidth
+                      name="control"
+                      floatingLabelText={messages.optionControl}
+                    >
+                      <MenuItem
+                        value="select"
+                        primaryText={messages.optionControlSelect}
+                      />
+                    </Field>
+                  </div>
+                </div>
+                <div className={style.shortControl}>
+                  <Field
+                    name="required"
+                    component={CustomToggle}
+                    label={messages.settings_fieldRequired}
                   />
-                </Field>
+                </div>
               </div>
-            </div>
-            <div className={style.shortControl}>
-              <Field
-                name="required"
-                component={CustomToggle}
-                label={messages.settings_fieldRequired}
-              />
-            </div>
-          </div>
-          <div className="buttons-box">
-            <RaisedButton
-              label={messages.actions_delete}
-              secondary
-              onClick={deleteOption}
-            />
-            <FlatButton
-              label={messages.cancel}
-              style={{ marginLeft: 12 }}
-              onClick={reset}
-              disabled={pristine || submitting}
-            />
-            <RaisedButton
-              type="submit"
-              label={messages.save}
-              primary
-              className={style.button}
-              disabled={pristine || submitting}
-            />
-          </div>
-        </Paper>
-      </form>
+              <div className="buttons-box">
+                <RaisedButton
+                  label={messages.actions_delete}
+                  secondary
+                  onClick={deleteOption}
+                />
+                <FlatButton
+                  label={messages.cancel}
+                  style={{ marginLeft: 12 }}
+                  onClick={form.reset}
+                  disabled={pristine || submitting}
+                />
+                <RaisedButton
+                  type="submit"
+                  label={messages.save}
+                  primary
+                  className={style.button}
+                  disabled={pristine || submitting}
+                />
+              </div>
+            </Paper>
+          </form>
+        )}
+      </Form>
       <OptionValues
         optionValues={optionValues}
         createOptionValue={createOptionValue}
@@ -130,8 +134,4 @@ const ProductOptionForm: FC<Props> = props => {
   )
 }
 
-export default reduxForm({
-  form: "ProductOptionForm",
-  validate,
-  enableReinitialize: true,
-})(ProductOptionForm)
+export default ProductOptionForm

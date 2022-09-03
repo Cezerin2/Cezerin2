@@ -9,6 +9,7 @@ import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import ProductSearchDialog from "modules/shared/productSearch"
 import React, { FC, useEffect, useState } from "react"
+import { FieldArrayRenderProps } from "react-final-form-arrays"
 import { Link } from "react-router-dom"
 import style from "./style.css"
 
@@ -109,10 +110,11 @@ const RelatedProduct = ({ settings, product, actions }) => {
 
 interface Props {
   settings
-  fields
 }
 
-const ProductsArray: FC<Props> = props => {
+const ProductsArray: FC<
+  FieldArrayRenderProps<any, HTMLElement> & Props
+> = props => {
   const [showAddItem, setShowAddItem] = useState(false)
   const [products, setProducts] = useState([])
 
@@ -124,8 +126,7 @@ const ProductsArray: FC<Props> = props => {
   }
 
   useEffect(() => {
-    const ids = fields.getAll()
-    fetchProducts(ids)
+    fetchProducts(fields)
   }, [fields])
 
   const fetchProducts = ids => {
@@ -152,7 +153,7 @@ const ProductsArray: FC<Props> = props => {
           const actions = (
             <RelatedProductActions fields={fields} index={index} />
           )
-          const productId = fields.get(index)
+          const productId = fields[index]
           const product = products.find(item => item.id === productId)
           return (
             <RelatedProduct

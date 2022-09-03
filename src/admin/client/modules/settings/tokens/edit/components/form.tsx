@@ -4,7 +4,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import ConfirmationDialog from "modules/shared/confirmation"
 import { MultiSelect } from "modules/shared/form"
 import React, { FC, useEffect, useState } from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
 import style from "./style.css"
 
@@ -53,9 +53,8 @@ const validate = values => {
 }
 
 interface Props {
-  handleSubmit
-  pristine
-  submitting
+  initialValues
+  onSubmit
   tokenId
   newToken
   onDelete
@@ -65,15 +64,7 @@ interface Props {
 const EditTokenForm: FC<Props> = props => {
   const [showRevokeDialog, setShowRevokeDialog] = useState(false)
 
-  const {
-    handleSubmit,
-    pristine,
-    submitting,
-    tokenId,
-    newToken,
-    onDelete,
-    onLoad,
-  } = props
+  const { initialValues, onSubmit, tokenId, newToken, onDelete, onLoad } = props
 
   useEffect(() => {
     onLoad()
@@ -84,57 +75,69 @@ const EditTokenForm: FC<Props> = props => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <Paper className="paper-box" zDepth={1}>
-          <div className={style.innerBox}>
-            <Field
-              name="name"
-              component={TextField}
-              floatingLabelText={messages.settings_tokenName}
-              fullWidth
-            />
-            <Field
-              name="email"
-              component={TextField}
-              floatingLabelText={messages.email}
-              fullWidth
-              disabled={!isAdd}
-              type="email"
-            />
-            <Field
-              name="expiration"
-              component={TextField}
-              floatingLabelText={messages.settings_tokenExp}
-              fullWidth
-              type="number"
-            />
-            <div className="blue-title">{messages.settings_selectScopes}</div>
-            <Field
-              name="scopes"
-              component={MultiSelect}
-              items={Scopes}
-              disabled={!isAdd}
-            />
-          </div>
-          <div className="buttons-box">
-            {!isAdd && (
-              <RaisedButton
-                label={messages.settings_revokeAccess}
-                secondary
-                style={{ float: "left" }}
-                onClick={() => setShowRevokeDialog(true)}
-              />
-            )}
-            <RaisedButton
-              type="submit"
-              label={isAdd ? messages.settings_generateToken : messages.save}
-              primary
-              className={style.button}
-              disabled={pristine || submitting}
-            />
-          </div>
-        </Paper>
-      </form>
+      <Form
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validate={validate}
+      >
+        {({ handleSubmit, pristine, submitting }) => (
+          <form onSubmit={handleSubmit}>
+            <Paper className="paper-box" zDepth={1}>
+              <div className={style.innerBox}>
+                <Field
+                  name="name"
+                  component={TextField}
+                  floatingLabelText={messages.settings_tokenName}
+                  fullWidth
+                />
+                <Field
+                  name="email"
+                  component={TextField}
+                  floatingLabelText={messages.email}
+                  fullWidth
+                  disabled={!isAdd}
+                  type="email"
+                />
+                <Field
+                  name="expiration"
+                  component={TextField}
+                  floatingLabelText={messages.settings_tokenExp}
+                  fullWidth
+                  type="number"
+                />
+                <div className="blue-title">
+                  {messages.settings_selectScopes}
+                </div>
+                <Field
+                  name="scopes"
+                  component={MultiSelect}
+                  items={Scopes}
+                  disabled={!isAdd}
+                />
+              </div>
+              <div className="buttons-box">
+                {!isAdd && (
+                  <RaisedButton
+                    label={messages.settings_revokeAccess}
+                    secondary
+                    style={{ float: "left" }}
+                    onClick={() => setShowRevokeDialog(true)}
+                  />
+                )}
+                <RaisedButton
+                  type="submit"
+                  label={
+                    isAdd ? messages.settings_generateToken : messages.save
+                  }
+                  primary
+                  className={style.button}
+                  disabled={pristine || submitting}
+                />
+              </div>
+            </Paper>
+          </form>
+        )}
+      </Form>
 
       <ConfirmationDialog
         open={isTokenAdded}
@@ -157,8 +160,4 @@ const EditTokenForm: FC<Props> = props => {
   )
 }
 
-export default reduxForm({
-  form: "EditTokenForm",
-  validate,
-  enableReinitialize: true,
-})(EditTokenForm)
+export default EditTokenForm

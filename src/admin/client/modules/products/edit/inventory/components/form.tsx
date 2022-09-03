@@ -6,7 +6,7 @@ import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import { CustomToggle } from "modules/shared/form"
 import React from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { DatePicker, TextField } from "redux-form-material-ui"
 import style from "./style.css"
 
@@ -77,185 +77,185 @@ const asyncValidate = values => {
   )
 }
 
-const ProductInventoryForm = ({
-  handleSubmit,
-  pristine,
-  reset,
-  submitting,
-  initialValues,
-  settings,
-}) => {
+const ProductInventoryForm = ({ initialValues, onSubmit, settings }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <Paper className="paper-box" zDepth={1}>
-        <div className={style.innerBox}>
-          <div className="row" style={{ marginBottom: 50 }}>
-            <div className="col-xs-5">
-              <div className="blue-title">{messages.products_pricing}</div>
-              <div className="row">
-                <div className="col-xs-6">
+    <Form
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validate={validate}
+      asyncValidate={asyncValidate}
+      validateOnBlur
+    >
+      {({ handleSubmit, pristine, form, submitting }) => (
+        <form onSubmit={handleSubmit}>
+          <Paper className="paper-box" zDepth={1}>
+            <div className={style.innerBox}>
+              <div className="row" style={{ marginBottom: 50 }}>
+                <div className="col-xs-5">
+                  <div className="blue-title">{messages.products_pricing}</div>
+                  <div className="row">
+                    <div className="col-xs-6">
+                      <Field
+                        name="regular_price"
+                        component={TextField}
+                        floatingLabelText={
+                          messages.products_regularPrice +
+                          ` (${settings.currency_symbol})`
+                        }
+                        fullWidth
+                      />
+                    </div>
+                    <div className="col-xs-6">
+                      <Field
+                        name="sale_price"
+                        component={TextField}
+                        floatingLabelText={
+                          messages.products_salePrice +
+                          ` (${settings.currency_symbol})`
+                        }
+                        fullWidth
+                      />
+                    </div>
+                    <div className="col-xs-6">
+                      <Field
+                        name="date_sale_from"
+                        component={DatePicker}
+                        textFieldStyle={{ width: "100%" }}
+                        format={(value, name) => (value === "" ? null : value)}
+                        floatingLabelText={messages.products_dateSaleFrom}
+                      />
+                    </div>
+                    <div className="col-xs-6">
+                      <Field
+                        name="date_sale_to"
+                        component={DatePicker}
+                        textFieldStyle={{ width: "100%" }}
+                        format={(value, name) => (value === "" ? null : value)}
+                        floatingLabelText={messages.products_dateSaleTo}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-xs-5 col-xs-offset-2">
+                  <div className="blue-title">
+                    {messages.products_inventory}
+                  </div>
+
                   <Field
-                    name="regular_price"
+                    name="sku"
                     component={TextField}
-                    floatingLabelText={
-                      messages.products_regularPrice +
-                      ` (${settings.currency_symbol})`
-                    }
+                    floatingLabelText={messages.products_sku}
                     fullWidth
                   />
-                </div>
-                <div className="col-xs-6">
+
+                  <div className="row">
+                    <div className="col-xs-6">
+                      <Field
+                        name="stock_quantity"
+                        component={TextField}
+                        floatingLabelText={messages.products_stockQuantity}
+                        fullWidth
+                      />
+                    </div>
+                    <div className="col-xs-6">
+                      <Field
+                        name="weight"
+                        component={TextField}
+                        floatingLabelText={
+                          messages.products_weight +
+                          ` (${settings.weight_unit})`
+                        }
+                        fullWidth
+                      />
+                    </div>
+                  </div>
+
                   <Field
-                    name="sale_price"
-                    component={TextField}
-                    floatingLabelText={
-                      messages.products_salePrice +
-                      ` (${settings.currency_symbol})`
-                    }
-                    fullWidth
-                  />
-                </div>
-                <div className="col-xs-6">
-                  <Field
-                    name="date_sale_from"
+                    name="date_stock_expected"
                     component={DatePicker}
                     textFieldStyle={{ width: "100%" }}
                     format={(value, name) => (value === "" ? null : value)}
-                    floatingLabelText={messages.products_dateSaleFrom}
-                  />
-                </div>
-                <div className="col-xs-6">
-                  <Field
-                    name="date_sale_to"
-                    component={DatePicker}
-                    textFieldStyle={{ width: "100%" }}
-                    format={(value, name) => (value === "" ? null : value)}
-                    floatingLabelText={messages.products_dateSaleTo}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xs-5 col-xs-offset-2">
-              <div className="blue-title">{messages.products_inventory}</div>
-
-              <Field
-                name="sku"
-                component={TextField}
-                floatingLabelText={messages.products_sku}
-                fullWidth
-              />
-
-              <div className="row">
-                <div className="col-xs-6">
-                  <Field
-                    name="stock_quantity"
-                    component={TextField}
-                    floatingLabelText={messages.products_stockQuantity}
-                    fullWidth
-                  />
-                </div>
-                <div className="col-xs-6">
-                  <Field
-                    name="weight"
-                    component={TextField}
-                    floatingLabelText={
-                      messages.products_weight + ` (${settings.weight_unit})`
-                    }
-                    fullWidth
+                    floatingLabelText={messages.products_dateStockExpected}
                   />
                 </div>
               </div>
 
               <Field
-                name="date_stock_expected"
-                component={DatePicker}
-                textFieldStyle={{ width: "100%" }}
-                format={(value, name) => (value === "" ? null : value)}
-                floatingLabelText={messages.products_dateStockExpected}
+                name="stock_tracking"
+                component={CustomToggle}
+                label={messages.products_stockTracking}
+              />
+              <Divider
+                style={{
+                  marginTop: 10,
+                  marginBottom: 10,
+                }}
+              />
+              <Field
+                name="stock_preorder"
+                component={CustomToggle}
+                label={messages.products_stockPreorder}
+              />
+              <Divider
+                style={{
+                  marginTop: 10,
+                  marginBottom: 10,
+                }}
+              />
+              <Field
+                name="stock_backorder"
+                component={CustomToggle}
+                label={messages.products_stockBackorder}
+              />
+              <Divider
+                style={{
+                  marginTop: 10,
+                  marginBottom: 10,
+                }}
+              />
+              <Field
+                name="discontinued"
+                component={CustomToggle}
+                label={messages.products_discontinued}
+              />
+              <Divider
+                style={{
+                  marginTop: 10,
+                  marginBottom: 10,
+                }}
+              />
+              <Field
+                name="enabled"
+                component={CustomToggle}
+                label={messages.enabled}
               />
             </div>
-          </div>
-
-          <Field
-            name="stock_tracking"
-            component={CustomToggle}
-            label={messages.products_stockTracking}
-          />
-          <Divider
-            style={{
-              marginTop: 10,
-              marginBottom: 10,
-            }}
-          />
-          <Field
-            name="stock_preorder"
-            component={CustomToggle}
-            label={messages.products_stockPreorder}
-          />
-          <Divider
-            style={{
-              marginTop: 10,
-              marginBottom: 10,
-            }}
-          />
-          <Field
-            name="stock_backorder"
-            component={CustomToggle}
-            label={messages.products_stockBackorder}
-          />
-          <Divider
-            style={{
-              marginTop: 10,
-              marginBottom: 10,
-            }}
-          />
-          <Field
-            name="discontinued"
-            component={CustomToggle}
-            label={messages.products_discontinued}
-          />
-          <Divider
-            style={{
-              marginTop: 10,
-              marginBottom: 10,
-            }}
-          />
-          <Field
-            name="enabled"
-            component={CustomToggle}
-            label={messages.enabled}
-          />
-        </div>
-        <div
-          className={
-            "buttons-box " +
-            (pristine ? "buttons-box-pristine" : "buttons-box-show")
-          }
-        >
-          <FlatButton
-            label={messages.cancel}
-            className={style.button}
-            onClick={reset}
-            disabled={pristine || submitting}
-          />
-          <RaisedButton
-            type="submit"
-            label={messages.save}
-            primary
-            className={style.button}
-            disabled={pristine || submitting}
-          />
-        </div>
-      </Paper>
-    </form>
+            <div
+              className={
+                "buttons-box " +
+                (pristine ? "buttons-box-pristine" : "buttons-box-show")
+              }
+            >
+              <FlatButton
+                label={messages.cancel}
+                className={style.button}
+                onClick={form.reset}
+                disabled={pristine || submitting}
+              />
+              <RaisedButton
+                type="submit"
+                label={messages.save}
+                primary
+                className={style.button}
+                disabled={pristine || submitting}
+              />
+            </div>
+          </Paper>
+        </form>
+      )}
+    </Form>
   )
 }
 
-export default reduxForm({
-  form: "ProductInventoryForm",
-  validate,
-  asyncValidate,
-  asyncBlurFields: ["sku"],
-  enableReinitialize: true,
-})(ProductInventoryForm)
+export default ProductInventoryForm

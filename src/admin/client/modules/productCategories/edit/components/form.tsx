@@ -7,7 +7,7 @@ import Editor from "modules/shared/editor"
 import { CustomToggle } from "modules/shared/form"
 import ImageUpload from "modules/shared/imageUpload"
 import React from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
 import style from "./style.css"
 
@@ -47,15 +47,12 @@ const asyncValidate = values => {
 }
 
 const ProductCategoryEditForm = ({
+  initialValues,
+  onSubmit,
   uploadingImage,
-  handleSubmit,
-  pristine,
-  reset,
-  submitting,
   onImageUpload,
   onImageDelete,
   isSaving,
-  initialValues,
 }) => {
   let imageUrl = null
   let categoryId = null
@@ -68,78 +65,88 @@ const ProductCategoryEditForm = ({
   if (categoryId) {
     return (
       <Paper className="paper-box" zDepth={1}>
-        <form onSubmit={handleSubmit}>
-          <div className={style.innerBox}>
-            <Field
-              name="name"
-              component={TextField}
-              floatingLabelText={messages.productCategories_name + " *"}
-              fullWidth
-            />
-            <div className="field-hint" style={{ marginTop: 40 }}>
-              {messages.description}
-            </div>
-            <Field
-              name="description"
-              entityId={categoryId}
-              component={Editor}
-            />
-            <div className={style.shortBox}>
-              <Field
-                name="enabled"
-                component={CustomToggle}
-                label={messages.enabled}
-                className={style.toggle}
-              />
-              <ImageUpload
-                uploading={uploadingImage}
-                imageUrl={imageUrl}
-                onDelete={onImageDelete}
-                onUpload={onImageUpload}
-              />
-            </div>
-            <div className="blue-title">{messages.seo}</div>
-            <Field
-              name="slug"
-              component={TextField}
-              floatingLabelText={messages.slug}
-              fullWidth
-            />
-            <p className="field-hint">{messages.help_slug}</p>
-            <Field
-              name="meta_title"
-              component={TextField}
-              floatingLabelText={messages.pageTitle}
-              fullWidth
-            />
-            <Field
-              name="meta_description"
-              component={TextField}
-              floatingLabelText={messages.metaDescription}
-              fullWidth
-            />
-          </div>
-          <div
-            className={
-              "buttons-box " +
-              (pristine ? "buttons-box-pristine" : "buttons-box-show")
-            }
-          >
-            <FlatButton
-              label={messages.cancel}
-              className={style.button}
-              onClick={reset}
-              disabled={pristine || submitting}
-            />
-            <RaisedButton
-              type="submit"
-              label={messages.save}
-              primary
-              className={style.button}
-              disabled={pristine || submitting || isSaving}
-            />
-          </div>
-        </form>
+        <Form
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validate={validate}
+          asyncValidate={asyncValidate}
+          validateOnBlur
+        >
+          {({ handleSubmit, pristine, form, submitting }) => (
+            <form onSubmit={handleSubmit}>
+              <div className={style.innerBox}>
+                <Field
+                  name="name"
+                  component={TextField}
+                  floatingLabelText={messages.productCategories_name + " *"}
+                  fullWidth
+                />
+                <div className="field-hint" style={{ marginTop: 40 }}>
+                  {messages.description}
+                </div>
+                <Field
+                  name="description"
+                  entityId={categoryId}
+                  component={Editor}
+                />
+                <div className={style.shortBox}>
+                  <Field
+                    name="enabled"
+                    component={CustomToggle}
+                    label={messages.enabled}
+                    className={style.toggle}
+                  />
+                  <ImageUpload
+                    uploading={uploadingImage}
+                    imageUrl={imageUrl}
+                    onDelete={onImageDelete}
+                    onUpload={onImageUpload}
+                  />
+                </div>
+                <div className="blue-title">{messages.seo}</div>
+                <Field
+                  name="slug"
+                  component={TextField}
+                  floatingLabelText={messages.slug}
+                  fullWidth
+                />
+                <p className="field-hint">{messages.help_slug}</p>
+                <Field
+                  name="meta_title"
+                  component={TextField}
+                  floatingLabelText={messages.pageTitle}
+                  fullWidth
+                />
+                <Field
+                  name="meta_description"
+                  component={TextField}
+                  floatingLabelText={messages.metaDescription}
+                  fullWidth
+                />
+              </div>
+              <div
+                className={
+                  "buttons-box " +
+                  (pristine ? "buttons-box-pristine" : "buttons-box-show")
+                }
+              >
+                <FlatButton
+                  label={messages.cancel}
+                  className={style.button}
+                  onClick={form.reset}
+                  disabled={pristine || submitting}
+                />
+                <RaisedButton
+                  type="submit"
+                  label={messages.save}
+                  primary
+                  className={style.button}
+                  disabled={pristine || submitting || isSaving}
+                />
+              </div>
+            </form>
+          )}
+        </Form>
       </Paper>
     )
   } else {
@@ -147,10 +154,4 @@ const ProductCategoryEditForm = ({
   }
 }
 
-export default reduxForm({
-  form: "ProductCategoryEditForm",
-  validate,
-  asyncValidate,
-  asyncBlurFields: ["slug"],
-  enableReinitialize: true,
-})(ProductCategoryEditForm)
+export default ProductCategoryEditForm

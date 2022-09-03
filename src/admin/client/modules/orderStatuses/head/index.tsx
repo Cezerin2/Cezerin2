@@ -1,5 +1,4 @@
 import { connect } from "react-redux"
-import { reset } from "redux-form"
 import { deleteStatus, deselectStatus } from "../actions"
 import Buttons from "./components/buttons"
 
@@ -15,7 +14,6 @@ const mapDispatchToProps = dispatch => {
   return {
     onDelete: id => {
       dispatch(deleteStatus(id))
-      dispatch(reset("FormOrderStatus"))
     },
     onCreate: () => {
       dispatch(deselectStatus())

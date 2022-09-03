@@ -2,7 +2,7 @@ import * as helper from "lib/helper"
 import messages from "lib/text"
 import FlatButton from "material-ui/FlatButton"
 import React, { FC } from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
 import style from "./style.css"
 
@@ -23,15 +23,14 @@ const getShippingFieldLabel = ({ label, key }) =>
   label && label.length > 0 ? label : helper.getOrderFieldLabelByKey(key)
 
 interface Props {
-  handleSubmit
-  pristine: boolean
-  submitting: boolean
+  initialValues
+  onSubmit
   onCancel
   shippingMethod
 }
 
 const ShippingAddressForm: FC<Props> = props => {
-  const { handleSubmit, pristine, submitting, onCancel, shippingMethod } = props
+  const { initialValues, onSubmit, onCancel, shippingMethod } = props
 
   let shippingFields = null
   if (
@@ -55,56 +54,56 @@ const ShippingAddressForm: FC<Props> = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        {shippingFields}
-        <Field
-          component={TextField}
-          fullWidth
-          name="city"
-          floatingLabelText={messages.city}
-        />
-        <div className="row">
-          <div className="col-xs-6">
+    <Form initialValues={initialValues} onSubmit={onSubmit} validate={validate}>
+      {({ handleSubmit, pristine, submitting }) => (
+        <form onSubmit={handleSubmit}>
+          <div>
+            {shippingFields}
             <Field
               component={TextField}
               fullWidth
-              name="state"
-              floatingLabelText={messages.state}
+              name="city"
+              floatingLabelText={messages.city}
             />
-          </div>
-          <div className="col-xs-6">
+            <div className="row">
+              <div className="col-xs-6">
+                <Field
+                  component={TextField}
+                  fullWidth
+                  name="state"
+                  floatingLabelText={messages.state}
+                />
+              </div>
+              <div className="col-xs-6">
+                <Field
+                  component={TextField}
+                  fullWidth
+                  name="postal_code"
+                  floatingLabelText={messages.postal_code}
+                />
+              </div>
+            </div>
             <Field
               component={TextField}
               fullWidth
-              name="postal_code"
-              floatingLabelText={messages.postal_code}
+              name="country"
+              floatingLabelText={messages.country}
             />
           </div>
-        </div>
-        <Field
-          component={TextField}
-          fullWidth
-          name="country"
-          floatingLabelText={messages.country}
-        />
-      </div>
-      <div className={style.shippingButtons}>
-        <FlatButton label={messages.cancel} onClick={onCancel} />
-        <FlatButton
-          label={messages.save}
-          primary
-          type="submit"
-          style={{ marginLeft: 12 }}
-          disabled={pristine || submitting}
-        />
-      </div>
-    </form>
+          <div className={style.shippingButtons}>
+            <FlatButton label={messages.cancel} onClick={onCancel} />
+            <FlatButton
+              label={messages.save}
+              primary
+              type="submit"
+              style={{ marginLeft: 12 }}
+              disabled={pristine || submitting}
+            />
+          </div>
+        </form>
+      )}
+    </Form>
   )
 }
 
-export default reduxForm({
-  form: "ShippingAddressForm",
-  validate,
-  enableReinitialize: true,
-})(ShippingAddressForm)
+export default ShippingAddressForm

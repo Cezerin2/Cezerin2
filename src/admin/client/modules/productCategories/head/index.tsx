@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import { reset } from "redux-form"
 import {
   createCategory,
   deleteCategory,
@@ -28,11 +27,9 @@ const mapDispatchToProps = dispatch => {
     },
     onDelete: id => {
       dispatch(deleteCategory(id))
-      dispatch(reset("FormProductCategory"))
     },
     onMoveTo: id => {
       dispatch(replaceCategory(id))
-      dispatch(reset("FormProductCategory"))
     },
     onCreate: () => {
       dispatch(createCategory())

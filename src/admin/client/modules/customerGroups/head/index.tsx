@@ -1,5 +1,4 @@
 import { connect } from "react-redux"
-import { reset } from "redux-form"
 import { deleteGroup, deselectGroup } from "../actions"
 import Buttons from "./components/buttons"
 
@@ -15,7 +14,6 @@ const mapDispatchToProps = dispatch => {
   return {
     onDelete: id => {
       dispatch(deleteGroup(id))
-      dispatch(reset("FormCustomerGroup"))
     },
     onCreate: () => {
       dispatch(deselectGroup())

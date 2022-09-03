@@ -1,3 +1,4 @@
+import arrayMutators from "final-form-arrays"
 import messages from "lib/text"
 import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
@@ -5,7 +6,8 @@ import IconButton from "material-ui/IconButton"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import React, { FC } from "react"
-import { Field, FieldArray, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
+import { FieldArray } from "react-final-form-arrays"
 import style from "./style.css"
 
 const AttributesGrid = ({ fields, meta: { touched, error, submitFailed } }) => (
@@ -75,45 +77,47 @@ const AttributesGrid = ({ fields, meta: { touched, error, submitFailed } }) => (
 )
 
 interface Props {
-  handleSubmit
-  pristine
-  reset
-  submitting
   initialValues
+  onSubmit
 }
 
 const ProductAttributesForm: FC<Props> = props => {
-  const { handleSubmit, pristine, reset, submitting, initialValues } = props
+  const { initialValues, onSubmit } = props
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Paper className="paper-box" zDepth={1}>
-        <FieldArray name="attributes" component={AttributesGrid} />
-        <div
-          className={`buttons-box ${
-            pristine ? "buttons-box-pristine" : "buttons-box-show"
-          }`}
-        >
-          <FlatButton
-            label={messages.cancel}
-            className={style.button}
-            onClick={reset}
-            disabled={pristine || submitting}
-          />
-          <RaisedButton
-            type="submit"
-            label={messages.save}
-            primary
-            className={style.button}
-            disabled={pristine || submitting}
-          />
-        </div>
-      </Paper>
-    </form>
+    <Form
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      mutators={{ ...arrayMutators }}
+    >
+      {({ handleSubmit, pristine, form, submitting }) => (
+        <form onSubmit={handleSubmit}>
+          <Paper className="paper-box" zDepth={1}>
+            <FieldArray name="attributes" component={AttributesGrid} />
+            <div
+              className={`buttons-box ${
+                pristine ? "buttons-box-pristine" : "buttons-box-show"
+              }`}
+            >
+              <FlatButton
+                label={messages.cancel}
+                className={style.button}
+                onClick={form.reset}
+                disabled={pristine || submitting}
+              />
+              <RaisedButton
+                type="submit"
+                label={messages.save}
+                primary
+                className={style.button}
+                disabled={pristine || submitting}
+              />
+            </div>
+          </Paper>
+        </form>
+      )}
+    </Form>
   )
 }
 
-export default reduxForm({
-  form: "ProductAttributesForm",
-  enableReinitialize: true,
-})(ProductAttributesForm)
+export default ProductAttributesForm
