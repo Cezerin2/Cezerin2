@@ -1,3 +1,3 @@
-import applicationConfig from "../../../../config/admin"
+import applicationConfig from "../../../../config/admin.yml"
 
 export default applicationConfig
