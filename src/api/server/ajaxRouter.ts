@@ -287,53 +287,51 @@ ajaxRouter.post("/login", async ctx => {
   }
 
   // check if customer exists in database and grant or denie access
-  await db
+  const result = await db
     .collection("customers")
     .find({ email: ctx.request.body.email.toLowerCase() })
     .limit(1)
-    .next(async (error, result) => {
-      if (error) {
-        // alert
-        throw error
-      }
-      if (!result) {
-        api.customers.list().then(({ status }) => {
-          customerData.loggedin_failed = true
-          ctx.body = JSON.stringify(customerData)
-          ctx.status = status
-        })
-        return
-      }
+    .next()
 
-      const customerPassword = result.password
-      const inputPassword = ctx.request.body.password
-
-      const out = await bcrypt.compare(inputPassword, customerPassword)
-
-      if (out === true) {
-        customerData.token = encodeUserLoginAuth(result._id)
-        customerData.authenticated = true
-
-        await api.customers.retrieve(result._id).then(({ json }) => {
-          customerData.customer_settings = json
-          customerData.customer_settings.password = "*******"
-
-          const filter = {
-            customer_id: json.id,
-          }
-
-          api.orders.list(filter).then(({ status, json }) => {
-            customerData.order_statuses = json
-            ctx.body = JSON.stringify(customerData)
-            ctx.status = status
-          })
-        })
-      }
-
+  if (!result) {
+    await api.customers.list().then(({ status }) => {
       customerData.loggedin_failed = true
       ctx.body = JSON.stringify(customerData)
-      ctx.status = 200
+      ctx.status = status
     })
+    return
+  }
+
+  const customerPassword = result.password
+  const inputPassword = ctx.request.body.password
+
+  const out = await bcrypt.compare(inputPassword, customerPassword)
+
+  if (out === true) {
+    customerData.token = encodeUserLoginAuth(result._id)
+    customerData.authenticated = true
+
+    await api.customers.retrieve(result._id).then(async ({ json }) => {
+      customerData.customer_settings = json
+      customerData.customer_settings.password = "*******"
+
+      const filter = {
+        customer_id: json.id,
+      }
+
+      await api.orders.list(filter).then(({ status, json }) => {
+        customerData.order_statuses = json
+        ctx.body = JSON.stringify(customerData)
+        ctx.status = status
+      })
+    })
+
+    return
+  }
+
+  customerData.loggedin_failed = true
+  ctx.body = JSON.stringify(customerData)
+  ctx.status = 200
 })
 
 ajaxRouter.post("/register", async ctx => {
