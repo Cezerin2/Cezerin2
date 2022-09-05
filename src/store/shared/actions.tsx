@@ -30,8 +30,8 @@ export const getProductFilterForCategory = (locationSearch, sortBy) => {
   }
 
   return {
-    priceFrom: parseInt(queryFilter.price_from || 0),
-    priceTo: parseInt(queryFilter.price_to || 0),
+    priceFrom: parseInt(queryFilter.price_from.toString()) || 0,
+    priceTo: parseInt(queryFilter.price_to.toString()) || 0,
     attributes: attributes,
     search: null,
     sort: sortBy,
@@ -43,8 +43,8 @@ export const getProductFilterForSearch = locationSearch => {
 
   return {
     categoryId: null,
-    priceFrom: parseInt(queryFilter.price_from || 0),
-    priceTo: parseInt(queryFilter.price_to || 0),
+    priceFrom: parseInt(queryFilter.price_from.toString()) || 0,
+    priceTo: parseInt(queryFilter.price_to.toString()) || 0,
     search: queryFilter.search,
     sort: "search",
   }
@@ -231,7 +231,7 @@ const handleRegisterProperties = data => ({
   type: t.REGISTER_PROPERTIES,
   data,
 })
-const handleAccountProperties = data => ({ type: t.ACCOUNT_RECEIVE, data })
+const handleAccountProperties = (data?) => ({ type: t.ACCOUNT_RECEIVE, data })
 const handleCartLayerInitialized = data => ({
   type: t.CART_LAYER_INITIALIZED,
   data,

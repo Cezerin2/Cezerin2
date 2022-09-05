@@ -186,7 +186,7 @@ const getState = (currentPage, settings, allData, location, productFilter) => {
 }
 
 const getFilter = (currentPage, urlQuery, settings) => {
-  let productFilter = {}
+  let productFilter = {} as any
 
   if (currentPage.type === PRODUCT_CATEGORY) {
     productFilter = getProductFilterForCategory(

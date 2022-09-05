@@ -23,6 +23,8 @@ import { setCurrentPage } from "./actions"
 import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "./pageTypes"
 
 class SwitchContainers extends React.Component {
+  props = {} as any
+
   constructor(props) {
     super(props)
   }

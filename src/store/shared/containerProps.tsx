@@ -114,7 +114,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 
       if (query[queryKey]) {
         if (Array.isArray(query[queryKey])) {
-          query[queryKey].push(value)
+          ;(query[queryKey] as string[]).push(value)
         } else {
           query[queryKey] = [query[queryKey], value]
         }
