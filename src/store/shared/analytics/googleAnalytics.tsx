@@ -159,11 +159,11 @@ export const purchase = ({ order }) => {
 }
 
 const isGtagInstalled = () => {
-  return typeof gtag !== "undefined"
+  return typeof global.gtag !== "undefined"
 }
 
 const logEvent = ({ eventName, eventParameters }) => {
   if (isGtagInstalled()) {
-    gtag("event", eventName, eventParameters)
+    global.gtag("event", eventName, eventParameters)
   }
 }
