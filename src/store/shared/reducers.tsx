@@ -2,7 +2,7 @@ import { combineReducers } from "redux"
 import { reducer as formReducer } from "redux-form"
 import * as t from "./actionTypes"
 
-const initialState = {}
+const initialState = {} as any
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
