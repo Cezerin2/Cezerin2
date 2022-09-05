@@ -4,6 +4,7 @@ import FlatButton from "material-ui/FlatButton"
 import FontIcon from "material-ui/FontIcon"
 import CategoryMultiselect from "modules/productCategories/components/multiselectList"
 import React, { FC, useState } from "react"
+import { FieldArrayRenderProps } from "react-final-form-arrays"
 
 const CategoryItemActions = ({ fields, index }) => (
   <a
@@ -22,10 +23,11 @@ const CategoryItem = ({ categoryName, actions }) => (
 
 interface Props {
   categories
-  fields
 }
 
-const ProductCategoryMultiSelect: FC<Props> = props => {
+const ProductCategoryMultiSelect: FC<
+  FieldArrayRenderProps<any, HTMLElement> & Props
+> = props => {
   const [open, setOpen] = useState(false)
 
   const { categories, fields } = props
@@ -33,11 +35,10 @@ const ProductCategoryMultiSelect: FC<Props> = props => {
   const close = () => setOpen(false)
 
   const handleCheck = categoryId => {
-    const selectedIds = fields.getAll()
-    if (selectedIds && selectedIds.includes(categoryId)) {
+    if (fields && fields.value.includes(categoryId)) {
       // remove
-      fields.forEach((name, index, fields) => {
-        if (fields.get(index) === categoryId) {
+      fields.forEach((name, index) => {
+        if (fields[index] === categoryId) {
           fields.remove(index)
           return
         }
@@ -47,8 +48,6 @@ const ProductCategoryMultiSelect: FC<Props> = props => {
       fields.push(categoryId)
     }
   }
-
-  const selectedIds = fields.getAll()
 
   const dialogButtons = [
     <FlatButton
@@ -68,7 +67,7 @@ const ProductCategoryMultiSelect: FC<Props> = props => {
     <div className="react-tagsinput">
       <span>
         {fields.map((field, index) => {
-          const categoryId = fields.get(index)
+          const categoryId = fields[index]
           const category = categories.find(item => item.id === categoryId)
           const categoryName = category ? category.name : "-"
           const actions = <CategoryItemActions fields={fields} index={index} />
@@ -90,7 +89,7 @@ const ProductCategoryMultiSelect: FC<Props> = props => {
         >
           <CategoryMultiselect
             items={categories}
-            selectedIds={selectedIds}
+            selectedIds={fields}
             opened={false}
             onCheck={handleCheck}
           />

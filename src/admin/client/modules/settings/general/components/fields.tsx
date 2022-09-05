@@ -3,7 +3,7 @@ import messages from "lib/text"
 import MenuItem from "material-ui/MenuItem"
 import { CustomToggle } from "modules/shared/form"
 import React from "react"
-import { Field } from "redux-form"
+import { Field } from "react-final-form"
 import { SelectField, TextField } from "redux-form-material-ui"
 
 const timezoneItems = []

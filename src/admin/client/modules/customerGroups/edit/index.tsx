@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
-import { reset } from "redux-form"
-import { updateGroup, createGroup, deselectGroup } from "../actions"
+import { createGroup, deselectGroup, updateGroup } from "../actions"
 import Form from "./components/form"
 
 const mapStateToProps = state => {
@@ -25,7 +24,6 @@ const mapDispatchToProps = dispatch => {
     },
     onCancel: () => {
       dispatch(deselectGroup())
-      dispatch(reset("FormCustomerGroup"))
     },
   }
 }

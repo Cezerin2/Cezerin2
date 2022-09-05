@@ -3,24 +3,23 @@ import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
 import React, { FC, useEffect, useRef, useState } from "react"
-import { reduxForm } from "redux-form"
+import { Form } from "react-final-form"
 import { AVAILABLE_PAYMENT_GATEWAYS } from "../availablePaymentGateways"
 import GatewaySettings from "./gatewaySettings"
 import style from "./style.css"
 
 interface Props {
+  initialValues
+  onSubmit
   gateway
   onLoad
-  handleSubmit
-  pristine
-  submitting
 }
 
 const EditPaymentGatewayForm: FC<Props> = props => {
   const [open, setOpen] = useState(false)
   const currentGateway = useRef(props.gateway)
 
-  const { gateway, onLoad, handleSubmit, pristine, submitting } = props
+  const { initialValues, onSubmit, gateway, onLoad } = props
 
   useEffect(() => {
     onLoad()
@@ -51,24 +50,28 @@ const EditPaymentGatewayForm: FC<Props> = props => {
           contentStyle={{ width: 600 }}
           onRequestClose={handleClose}
         >
-          <form
-            onSubmit={handleSubmit}
-            style={{ display: "initial", width: "100%" }}
-          >
-            <GatewaySettings gateway={gateway} />
+          <Form initialValues={initialValues} onSubmit={onSubmit}>
+            {({ handleSubmit, pristine, submitting }) => (
+              <form
+                onSubmit={handleSubmit}
+                style={{ display: "initial", width: "100%" }}
+              >
+                <GatewaySettings gateway={gateway} />
 
-            <div className={style.buttons}>
-              <FlatButton label={messages.cancel} onClick={handleClose} />
-              <FlatButton
-                label={messages.save}
-                primary
-                type="submit"
-                onClick={handleClose}
-                style={{ marginLeft: 12 }}
-                disabled={pristine || submitting}
-              />
-            </div>
-          </form>
+                <div className={style.buttons}>
+                  <FlatButton label={messages.cancel} onClick={handleClose} />
+                  <FlatButton
+                    label={messages.save}
+                    primary
+                    type="submit"
+                    onClick={handleClose}
+                    style={{ marginLeft: 12 }}
+                    disabled={pristine || submitting}
+                  />
+                </div>
+              </form>
+            )}
+          </Form>
         </Dialog>
       </div>
     )
@@ -77,7 +80,4 @@ const EditPaymentGatewayForm: FC<Props> = props => {
   }
 }
 
-export default reduxForm({
-  form: "EditPaymentGatewayForm",
-  enableReinitialize: true,
-})(EditPaymentGatewayForm)
+export default EditPaymentGatewayForm

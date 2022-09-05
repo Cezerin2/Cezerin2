@@ -4,7 +4,7 @@ import Paper from "material-ui/Paper"
 import { RadioButton } from "material-ui/RadioButton"
 import RaisedButton from "material-ui/RaisedButton"
 import React, { FC, useEffect, useState } from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import {
   RadioButtonGroup,
   SelectField,
@@ -45,10 +45,8 @@ let selectFieldValuesSecond = null
 let selectFieldValuesThird = null
 
 interface Props {
-  handleSubmit
-  pristine
-  submitting
   initialValues
+  onSubmit
   onLoad
 }
 
@@ -58,7 +56,7 @@ const CommerceForm: FC<Props> = props => {
   const [isServiceOptions, setIsServiceOptions] = useState(false)
   const [isServiceOptionsCalled, setIsServiceOptionsCalled] = useState(false)
 
-  const { handleSubmit, pristine, submitting, initialValues, onLoad } = props
+  const { initialValues, onSubmit, onLoad } = props
 
   useEffect(() => {
     onLoad()
@@ -101,103 +99,108 @@ const CommerceForm: FC<Props> = props => {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        display: "initial",
-        width: "100%",
-      }}
+    <Form
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      /*initialValues: {
+      serviceOptions: {
+        value: "myFirstName"
+      }
+    },*/
+      /*initialValues: {
+      serviceOptions: 'defaultValue'
+    },*/
+      //keepDirtyOnReinitialize: true,
+      // enableReinitialize: true,
+      //updateUnregisteredFields: true
     >
-      <Paper className="paper-box" zDepth={1}>
-        <div className={style.innerBox}>
-          <div>{messages.commerce_formInfo}</div>
-          <div className="blue-title">{messages.commerce_forms}</div>
-          <div>
-            <Field
-              name="status"
-              component={RadioButtonGroup}
-              onChange={event => setSelectField(event)}
-            >
-              <RadioButton
-                value={messages.commerce_formRestaurant}
-                label={messages.commerce_formRestaurant}
-                style={radioButtonStyle}
+      {({ handleSubmit, pristine, submitting }) => (
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "initial",
+            width: "100%",
+          }}
+        >
+          <Paper className="paper-box" zDepth={1}>
+            <div className={style.innerBox}>
+              <div>{messages.commerce_formInfo}</div>
+              <div className="blue-title">{messages.commerce_forms}</div>
+              <div>
+                <Field
+                  name="status"
+                  component={RadioButtonGroup}
+                  onChange={event => setSelectField(event)}
+                >
+                  <RadioButton
+                    value={messages.commerce_formRestaurant}
+                    label={messages.commerce_formRestaurant}
+                    style={radioButtonStyle}
+                  />
+                  <RadioButton
+                    value={messages.commerce_formEshop}
+                    label={messages.commerce_formEshop}
+                    style={radioButtonStyle}
+                  />
+                  <RadioButton
+                    value={messages.commerce_formWholesale}
+                    label={messages.commerce_formWholesale}
+                    style={radioButtonStyle}
+                  />
+                </Field>
+              </div>
+              <div>
+                {(isSelectField || isServiceOptions) && (
+                  <Field
+                    name="serviceOptions"
+                    component={SelectField}
+                    fullWidth
+                    label={messages.service_options}
+                    hintText={messages.service_options_initial_value}
+                    floatingLabelText={messages.service_options_initial_value}
+                    onChange={(event, index, next) => setTextField(index)}
+                  >
+                    <MenuItem
+                      value={selectFieldValuesFirst[1]}
+                      primaryText={messages.service_delivery}
+                    />
+                    <MenuItem
+                      value={selectFieldValuesSecond[2]}
+                      primaryText={messages.service_togo}
+                    />
+                    <MenuItem
+                      value={selectFieldValuesThird[3]}
+                      primaryText={messages.service_delivery_togo}
+                    />
+                  </Field>
+                )}
+              </div>
+              <div>
+                {isTextField && (isSelectField || isServiceOptions) && (
+                  <Field
+                    component={TextField}
+                    fullWidth
+                    name="deliveryRadius"
+                    hintText={messages.delivery_radius}
+                    floatingLabelText={messages.delivery_radius}
+                  />
+                )}
+              </div>
+            </div>
+            <div className="buttons-box">
+              <RaisedButton
+                type="submit"
+                label={messages.save}
+                primary
+                className={style.button}
+                disabled={pristine || submitting}
               />
-              <RadioButton
-                value={messages.commerce_formEshop}
-                label={messages.commerce_formEshop}
-                style={radioButtonStyle}
-              />
-              <RadioButton
-                value={messages.commerce_formWholesale}
-                label={messages.commerce_formWholesale}
-                style={radioButtonStyle}
-              />
-            </Field>
-          </div>
-          <div>
-            {(isSelectField || isServiceOptions) && (
-              <Field
-                name="serviceOptions"
-                component={SelectField}
-                fullWidth
-                label={messages.service_options}
-                hintText={messages.service_options_initial_value}
-                floatingLabelText={messages.service_options_initial_value}
-                onChange={(event, index, next) => setTextField(index)}
-              >
-                <MenuItem
-                  value={selectFieldValuesFirst[1]}
-                  primaryText={messages.service_delivery}
-                />
-                <MenuItem
-                  value={selectFieldValuesSecond[2]}
-                  primaryText={messages.service_togo}
-                />
-                <MenuItem
-                  value={selectFieldValuesThird[3]}
-                  primaryText={messages.service_delivery_togo}
-                />
-              </Field>
-            )}
-          </div>
-          <div>
-            {isTextField && (isSelectField || isServiceOptions) && (
-              <Field
-                component={TextField}
-                fullWidth
-                name="deliveryRadius"
-                hintText={messages.delivery_radius}
-                floatingLabelText={messages.delivery_radius}
-              />
-            )}
-          </div>
-        </div>
-        <div className="buttons-box">
-          <RaisedButton
-            type="submit"
-            label={messages.save}
-            primary
-            className={style.button}
-            disabled={pristine || submitting}
-          />
-        </div>
-      </Paper>
-    </form>
+            </div>
+          </Paper>
+        </form>
+      )}
+    </Form>
   )
 }
 
-export default reduxForm({
-  form: "CommerceForm",
-  /*initialValues: {
-		serviceOptions: {
-			value: "myFirstName"
-		}
-	},*/
-  /*initialValues: {
-		serviceOptions: 'defaultValue'
-	},*/
-  //keepDirtyOnReinitialize: true,
-  enableReinitialize: true,
-  //updateUnregisteredFields: true
-})(CommerceForm)
+export default CommerceForm

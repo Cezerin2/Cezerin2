@@ -1,6 +1,6 @@
 import MenuItem from "material-ui/MenuItem"
 import React from "react"
-import { Field } from "redux-form"
+import { Field } from "react-final-form"
 import { SelectField, TextField } from "redux-form-material-ui"
 
 const GatewaySettings = ({ gateway }) => {
