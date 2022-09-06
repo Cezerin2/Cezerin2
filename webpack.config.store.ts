@@ -47,6 +47,10 @@ module.exports = {
         use: "babel-loader",
       },
       {
+        test: /\.ya?ml$/,
+        use: "yaml-loader",
+      },
+      {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,

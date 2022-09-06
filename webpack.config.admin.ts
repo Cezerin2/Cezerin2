@@ -1,10 +1,15 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin"
 // import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin"
+import { readFileSync } from "fs-extra"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import path from "path"
 import webpack from "webpack"
-import applicationConfig from "./config/admin"
+import YAML from "yaml"
+import { Admin } from "./config/types/admin"
+
+const file = readFileSync("./config/admin.yml", "utf8")
+const applicationConfig = <Admin>YAML.parse(file)
 
 const applicationText = require(`./locales/${applicationConfig.language}.json`)
 
@@ -67,6 +72,10 @@ module.exports = {
             test: /\.tsx?$/,
             exclude: /node_modules/,
             use: "babel-loader",
+          },
+          {
+            test: /\.ya?ml$/,
+            use: "yaml-loader",
           },
           {
             test: /\.css$/,

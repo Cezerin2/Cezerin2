@@ -1,0 +1,65 @@
+# Config used by server side only
+
+# Database config
+dbHost: ${DB_HOST:"127.0.0.1"}
+dbPort: ${DB_PORT:27017}
+dbName: ${DB_NAME:"shop"}
+dbUser: ${DB_USER:""}
+dbPass: ${DB_PASS:""}
+
+dbUrl: ${DB_URL:""} # If not empty this is used instead of above. Example: mongodb+srv://server.example.com/
+
+# Used by Store (server side)
+apiBaseUrl: "http://localhost:3001/api/v1"
+
+# Used by Store (server and client side)
+ajaxBaseUrl: "http://localhost:3001/ajax"
+
+# Access-Control-Allow-Origin
+storeBaseUrl: "http://localhost:3000"
+
+# Used by API
+adminLoginUrl: "/admin/login"
+
+apiListenPort: 3001
+storeListenPort: 3000
+
+# Your shop's SMTP settings
+smtpServer:
+  host: ""
+  port: 465
+  secure: true
+  user: ""
+  pass: ""
+  fromName: "Cezerin"
+  fromAddress: "example@email.com"
+
+# Key to sign tokens
+jwtSecretKey: "-"
+
+# Key to sign store cookies
+cookieSecretKey: "-"
+
+# Path to uploads
+categoriesUploadPath: "public/content/images/categories"
+productsUploadPath: "public/content/images/products"
+filesUploadPath: "public/content"
+themeAssetsUploadPath: "theme/assets/images"
+
+# URL to uploads
+categoriesUploadUrl: "/images/categories"
+productsUploadUrl: "/images/products"
+filesUploadUrl: ""
+themeAssetsUploadUrl: "/assets/images"
+
+# Store UI language
+language: "en"
+
+# Used by API
+orderStartNumber: 1000
+
+# cost factor, controls how much time is needed to calculate a single BCrypt hash
+# For production: recommended 17 < saltRounds > 14 or 16
+saltRounds: ${SALT_ROUNDS:16}
+
+developerMode: true
