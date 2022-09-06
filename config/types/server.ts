@@ -30,7 +30,7 @@ export interface Server {
 
   jwtSecretKey: string
 
-  cookieSecretKey: string
+  cookieSecretKey: string[]
 
   categoriesUploadPath: string
   productsUploadPath: string
