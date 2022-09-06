@@ -36,6 +36,7 @@ module.exports = {
   },
 
   resolve: {
+    alias: { "fs-extra": false, yaml: false },
     extensions: [".tsx", ".js"],
   },
 
