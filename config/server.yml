@@ -18,6 +18,9 @@ ajaxBaseUrl: "http://localhost:3001/ajax"
 # Access-Control-Allow-Origin
 storeBaseUrl: "http://localhost:3000"
 
+# Content Security Policy
+serverBaseUrl: "http://localhost:3001"
+
 # Used by API
 adminLoginUrl: "/admin/login"
 

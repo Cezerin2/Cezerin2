@@ -13,6 +13,8 @@ export interface Server {
 
   storeBaseUrl: string
 
+  serverBaseUrl: string
+
   adminLoginUrl: string
 
   apiListenPort: number
