@@ -37,8 +37,8 @@ smtpServer:
 # Key to sign tokens
 jwtSecretKey: "-"
 
-# Key to sign store cookies
-cookieSecretKey: "-"
+# Keys to sign store cookies
+cookieSecretKey: ["-"]
 
 # Path to uploads
 categoriesUploadPath: "public/content/images/categories"

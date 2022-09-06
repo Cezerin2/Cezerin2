@@ -22,7 +22,7 @@ const staticOptions = {
   maxAge: 1000 * 60 * 60 * 24 * 365, // One year
 }
 
-app.keys = [settings.cookieSecretKey]
+app.keys = settings.cookieSecretKey
 app.maxIpsCount = 1
 
 app
