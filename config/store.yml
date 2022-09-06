@@ -1,0 +1,4 @@
+# Config used by store client side only
+
+language: "en" # Store UI language
+ajaxBaseUrl: "http://localhost:3001/ajax"

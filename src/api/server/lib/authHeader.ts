@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import serverConfigs from "../../../../config/server"
+import serverConfigs from "./settings"
 
 const cert = serverConfigs.jwtSecretKey
 
