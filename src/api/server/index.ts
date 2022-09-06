@@ -17,7 +17,7 @@ const router = new Router()
 
 security.applyMiddleware(app)
 
-app.keys = [settings.cookieSecretKey]
+app.keys = settings.cookieSecretKey
 app.maxIpsCount = 1
 
 app
