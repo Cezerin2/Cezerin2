@@ -1,7 +1,7 @@
 import Lscache from "lscache"
 import React, { FC, useState } from "react"
+import { Field, Form } from "react-final-form"
 import { Link, NavLink, Redirect } from "react-router-dom"
-import { Field, reduxForm } from "redux-form"
 import { text } from "../../lib/settings"
 
 const validateRequired = value =>
@@ -32,7 +32,6 @@ const InputField = field => (
     <input
       {...field.input}
       placeholder={field.placeholder}
-      type={field.type}
       id={field.id}
       className={field.meta.touched && field.meta.error ? "invalid" : ""}
     />
@@ -40,7 +39,7 @@ const InputField = field => (
 )
 
 interface Props {
-  handleSubmit
+  onSubmit
   customerProperties
   cartlayerBtnInitialized
   checkoutFields
@@ -50,7 +49,7 @@ const Login: FC<Props> = props => {
   const [unauthorized, setUnauthorized] = useState(false)
 
   const {
-    handleSubmit,
+    onSubmit,
     customerProperties,
     cartlayerBtnInitialized,
     checkoutFields,
@@ -81,15 +80,13 @@ const Login: FC<Props> = props => {
 
   const getFieldValidators = fieldName => {
     const isOptional = isFieldOptional(fieldName)
-    let validatorsArray = []
-    if (!isOptional) {
-      validatorsArray.push(validateRequired)
-    }
-    if (fieldName === "email") {
-      validatorsArray.push(validateEmail)
-    }
 
-    return validatorsArray
+    return value => {
+      const checkValidateRequired = !isOptional && validateRequired(value)
+      const checkValidateEmail = fieldName === "email" && validateEmail(value)
+
+      return checkValidateRequired || checkValidateEmail
+    }
   }
 
   const getFieldPlaceholder = fieldName => {
@@ -154,58 +151,62 @@ const Login: FC<Props> = props => {
 
   return (
     <div className="login-container">
-      <form onSubmit={handleSubmit} className={loginForm}>
-        <div className="login-section">
-          <h2 className={titleClassName}>{text.login_title}</h2>
-          {customerProperties !== undefined &&
-          customerProperties.loggedin_failed ? (
-            <p className={errorAlertText}>{text.login_failed}</p>
-          ) : (
-            ""
-          )}
-          {!isFieldHidden("email") && (
-            <Field
-              className={inputClassName}
-              name="email"
-              id="customer.email"
-              component={InputField}
-              type="email"
-              label={getFieldLabel("email")}
-              validate={getFieldValidators("email")}
-              placeholder={getFieldPlaceholder("email")}
-            />
-          )}
+      <Form onSubmit={onSubmit}>
+        {({ handleSubmit }) => (
+          <form onSubmit={handleSubmit} className={loginForm}>
+            <div className="login-section">
+              <h2 className={titleClassName}>{text.login_title}</h2>
+              {customerProperties !== undefined &&
+              customerProperties.loggedin_failed ? (
+                <p className={errorAlertText}>{text.login_failed}</p>
+              ) : (
+                ""
+              )}
+              {!isFieldHidden("email") && (
+                <Field
+                  className={inputClassName}
+                  name="email"
+                  id="customer.email"
+                  component={InputField}
+                  type="email"
+                  label={getFieldLabel("email")}
+                  validate={getFieldValidators("email")}
+                  placeholder={getFieldPlaceholder("email")}
+                />
+              )}
 
-          {!isFieldHidden("password") && (
-            <Field
-              className={inputClassName}
-              name="password"
-              id="customer.password"
-              component={InputField}
-              type="password"
-              label={getFieldLabel("password")}
-              validate={getFieldValidators("password")}
-              placeholder={getFieldPlaceholder("password")}
-            />
-          )}
-          <div className="login-link-wrap">
-            <Link to="/forgot-password">{text.forgot_password}</Link>
-          </div>
-          <div className="login-button-wrap">
-            <button type="submit" className={loginButtonClass}>
-              {text.login}
-            </button>
-          </div>
+              {!isFieldHidden("password") && (
+                <Field
+                  className={inputClassName}
+                  name="password"
+                  id="customer.password"
+                  component={InputField}
+                  type="password"
+                  label={getFieldLabel("password")}
+                  validate={getFieldValidators("password")}
+                  placeholder={getFieldPlaceholder("password")}
+                />
+              )}
+              <div className="login-link-wrap">
+                <Link to="/forgot-password">{text.forgot_password}</Link>
+              </div>
+              <div className="login-button-wrap">
+                <button type="submit" className={loginButtonClass}>
+                  {text.login}
+                </button>
+              </div>
 
-          <NavLink className="logo-image" to="/register">
-            <div className="login-button-wrap">
-              <button type="button" className={loginButtonClass}>
-                {text.register}
-              </button>
+              <NavLink className="logo-image" to="/register">
+                <div className="login-button-wrap">
+                  <button type="button" className={loginButtonClass}>
+                    {text.register}
+                  </button>
+                </div>
+              </NavLink>
             </div>
-          </NavLink>
-        </div>
-      </form>
+          </form>
+        )}
+      </Form>
       {cartlayerBtnInitialized !== undefined && cartlayerBtnInitialized && (
         <div className={loginSectionGuest}>
           <h2>{text.continue_guest_headline}</h2>
@@ -223,6 +224,4 @@ const Login: FC<Props> = props => {
   )
 }
 
-export default reduxForm({
-  form: "Login",
-})(Login)
+export default Login

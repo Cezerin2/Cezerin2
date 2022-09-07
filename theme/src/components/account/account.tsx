@@ -1,7 +1,7 @@
 import Lscache from "lscache"
 import React, { FC, useState } from "react"
+import { Field, Form } from "react-final-form"
 import { Link, Redirect } from "react-router-dom"
-import { Field, reduxForm } from "redux-form"
 import { text } from "../../lib/settings"
 
 const validateRequired = value =>
@@ -30,7 +30,6 @@ const InputField = field => (
     <input
       {...field.input}
       placeholder={field.placeholder}
-      type={field.type}
       id={field.id}
       className={field.meta.touched && field.meta.error ? "invalid" : ""}
     />
@@ -38,11 +37,11 @@ const InputField = field => (
 )
 
 interface Props {
-  handleSubmit
+  initialValues
+  onSubmit
   customerProperties
   cartlayerBtnInitialized
   cart
-  initialValues
   initialize
   checkoutFields
 }
@@ -54,11 +53,11 @@ const Account: FC<Props> = props => {
   const [cartLayer, setCartLayer] = useState(false)
 
   const {
-    handleSubmit,
+    initialValues,
+    onSubmit,
     customerProperties,
     cartlayerBtnInitialized,
     cart,
-    initialValues,
     initialize,
     checkoutFields,
   } = props
@@ -221,15 +220,13 @@ const Account: FC<Props> = props => {
 
   const getFieldValidators = fieldName => {
     const isOptional = isFieldOptional(fieldName)
-    const validatorsArray = []
-    if (!isOptional) {
-      validatorsArray.push(validateRequired)
-    }
-    if (fieldName === "email") {
-      validatorsArray.push(validateEmail)
-    }
 
-    return validatorsArray
+    return value => {
+      const checkValidateRequired = !isOptional && validateRequired(value)
+      const checkValidateEmail = fieldName === "email" && validateEmail(value)
+
+      return checkValidateRequired || checkValidateEmail
+    }
   }
 
   const getFieldPlaceholder = fieldName => {
@@ -700,213 +697,221 @@ const Account: FC<Props> = props => {
         )}
         {profileSection === 1 && profileEdit && (
           <div className={accountProfileContainer}>
-            <form onSubmit={handleSubmit} className={accountForm}>
-              <h3 className={titleClassName}>{text.edit_profile}</h3>
-              <Field
-                className={accountInputField}
-                name="first_name"
-                id="customer.first_name"
-                autoComplete="new-password"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("first_name")}
-                validate={getFieldValidators("first_name")}
-                placeholder={getFieldPlaceholder("first_name")}
-              />
-              <Field
-                className={accountInputField}
-                name="last_name"
-                id="customer.last_name"
-                autoComplete="new-password"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("last_name")}
-                validate={getFieldValidators("last_name")}
-                placeholder={getFieldPlaceholder("last_name")}
-              />
-              <Field
-                className={accountInputField}
-                name="email"
-                id="customer.email"
-                autoComplete="new-password"
-                component={InputField} // this.state.loggedin
-                type="email"
-                label={getFieldLabel("email")}
-                validate={getFieldValidators("email")}
-                placeholder={getFieldPlaceholder("email")}
-              />
-              <Field
-                className={accountInputField}
-                name="mobile"
-                id="customer.mobile"
-                autoComplete="new-password"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("mobile")}
-                validate={getFieldValidators("mobile")}
-                placeholder={getFieldPlaceholder("mobile")}
-              />
-              <Field
-                className={accountInputField}
-                name="password"
-                id="customer.password"
-                autoComplete="new-password"
-                component={InputField}
-                type="password"
-                label={getFieldLabel("password")}
-                validate={getFieldValidators("password")}
-                placeholder={getFieldPlaceholder("password")}
-              />
+            <Form
+              initialValues={initialValues}
+              onSubmit={onSubmit}
+              keepDirtyOnReinitialize
+            >
+              {({ handleSubmit }) => (
+                <form onSubmit={handleSubmit} className={accountForm}>
+                  <h3 className={titleClassName}>{text.edit_profile}</h3>
+                  <Field
+                    className={accountInputField}
+                    name="first_name"
+                    id="customer.first_name"
+                    autoComplete="new-password"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("first_name")}
+                    validate={getFieldValidators("first_name")}
+                    placeholder={getFieldPlaceholder("first_name")}
+                  />
+                  <Field
+                    className={accountInputField}
+                    name="last_name"
+                    id="customer.last_name"
+                    autoComplete="new-password"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("last_name")}
+                    validate={getFieldValidators("last_name")}
+                    placeholder={getFieldPlaceholder("last_name")}
+                  />
+                  <Field
+                    className={accountInputField}
+                    name="email"
+                    id="customer.email"
+                    autoComplete="new-password"
+                    component={InputField} // this.state.loggedin
+                    type="email"
+                    label={getFieldLabel("email")}
+                    validate={getFieldValidators("email")}
+                    placeholder={getFieldPlaceholder("email")}
+                  />
+                  <Field
+                    className={accountInputField}
+                    name="mobile"
+                    id="customer.mobile"
+                    autoComplete="new-password"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("mobile")}
+                    validate={getFieldValidators("mobile")}
+                    placeholder={getFieldPlaceholder("mobile")}
+                  />
+                  <Field
+                    className={accountInputField}
+                    name="password"
+                    id="customer.password"
+                    autoComplete="new-password"
+                    component={InputField}
+                    type="password"
+                    label={getFieldLabel("password")}
+                    validate={getFieldValidators("password")}
+                    placeholder={getFieldPlaceholder("password")}
+                  />
 
-              <Field
-                className={accountInputField}
-                name="password_verify"
-                id="customer.password_verify"
-                autoComplete="new-password"
-                component={InputField}
-                type="password"
-                label={getFieldLabel("password_verify")}
-                validate={getFieldValidators("password_verify")}
-                placeholder={getFieldPlaceholder("password_verify")}
-              />
-              <h3 className={titleClassName}>{text.shippingAddress}</h3>
-              <Field
-                className={accountInputField}
-                name="shipping_address.address1"
-                id="shipping_address.address1"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("address1")}
-                validate={getFieldValidators("address1")}
-                placeholder={getFieldPlaceholder("address1")}
-              />
-              <Field
-                className={accountInputField}
-                name="shipping_address.address2"
-                id="shipping_address.address2"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("address2")}
-                placeholder={getFieldPlaceholder("address2")}
-              />
-              <Field
-                className={accountInputField}
-                name="shipping_address.country"
-                id="shipping_address.country"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("country")}
-                validate={getFieldValidators("country")}
-                placeholder={getFieldPlaceholder("country")}
-              />
+                  <Field
+                    className={accountInputField}
+                    name="password_verify"
+                    id="customer.password_verify"
+                    autoComplete="new-password"
+                    component={InputField}
+                    type="password"
+                    label={getFieldLabel("password_verify")}
+                    validate={getFieldValidators("password_verify")}
+                    placeholder={getFieldPlaceholder("password_verify")}
+                  />
+                  <h3 className={titleClassName}>{text.shippingAddress}</h3>
+                  <Field
+                    className={accountInputField}
+                    name="shipping_address.address1"
+                    id="shipping_address.address1"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("address1")}
+                    validate={getFieldValidators("address1")}
+                    placeholder={getFieldPlaceholder("address1")}
+                  />
+                  <Field
+                    className={accountInputField}
+                    name="shipping_address.address2"
+                    id="shipping_address.address2"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("address2")}
+                    placeholder={getFieldPlaceholder("address2")}
+                  />
+                  <Field
+                    className={accountInputField}
+                    name="shipping_address.country"
+                    id="shipping_address.country"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("country")}
+                    validate={getFieldValidators("country")}
+                    placeholder={getFieldPlaceholder("country")}
+                  />
 
-              <Field
-                className={accountInputField}
-                name="shipping_address.state"
-                id="shipping_address.state"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("state")}
-                validate={getFieldValidators("state")}
-                placeholder={getFieldPlaceholder("state")}
-              />
+                  <Field
+                    className={accountInputField}
+                    name="shipping_address.state"
+                    id="shipping_address.state"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("state")}
+                    validate={getFieldValidators("state")}
+                    placeholder={getFieldPlaceholder("state")}
+                  />
 
-              <Field
-                className={accountInputField}
-                name="shipping_address.postal_code"
-                id="shipping_address.postal_code"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("postal_code")}
-                validate={getFieldValidators("postal_code")}
-                placeholder={getFieldPlaceholder("postal_code")}
-              />
+                  <Field
+                    className={accountInputField}
+                    name="shipping_address.postal_code"
+                    id="shipping_address.postal_code"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("postal_code")}
+                    validate={getFieldValidators("postal_code")}
+                    placeholder={getFieldPlaceholder("postal_code")}
+                  />
 
-              <Field
-                className={accountInputField}
-                name="shipping_address.city"
-                id="shipping_address.city"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("city")}
-                validate={getFieldValidators("city")}
-                placeholder={getFieldPlaceholder("city")}
-              />
+                  <Field
+                    className={accountInputField}
+                    name="shipping_address.city"
+                    id="shipping_address.city"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("city")}
+                    validate={getFieldValidators("city")}
+                    placeholder={getFieldPlaceholder("city")}
+                  />
 
-              <h3 className={titleClassName}>{text.billingAddress}</h3>
-              <Field
-                className={accountInputField}
-                name="billing_address.address1"
-                id="billing_address.address1"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("address1")}
-                validate={getFieldValidators("address1")}
-                placeholder={getFieldPlaceholder("address1")}
-              />
-              <Field
-                className={accountInputField}
-                name="billing_address.address2"
-                id="billing_address.address2"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("address2")}
-                placeholder={getFieldPlaceholder("address2")}
-              />
-              <Field
-                className={accountInputField}
-                name="billing_address.country"
-                id="billing_address.country"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("country")}
-                validate={getFieldValidators("country")}
-                placeholder={getFieldPlaceholder("country")}
-              />
+                  <h3 className={titleClassName}>{text.billingAddress}</h3>
+                  <Field
+                    className={accountInputField}
+                    name="billing_address.address1"
+                    id="billing_address.address1"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("address1")}
+                    validate={getFieldValidators("address1")}
+                    placeholder={getFieldPlaceholder("address1")}
+                  />
+                  <Field
+                    className={accountInputField}
+                    name="billing_address.address2"
+                    id="billing_address.address2"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("address2")}
+                    placeholder={getFieldPlaceholder("address2")}
+                  />
+                  <Field
+                    className={accountInputField}
+                    name="billing_address.country"
+                    id="billing_address.country"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("country")}
+                    validate={getFieldValidators("country")}
+                    placeholder={getFieldPlaceholder("country")}
+                  />
 
-              <Field
-                className={accountInputField}
-                name="billing_address.state"
-                id="billing_address.state"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("state")}
-                validate={getFieldValidators("state")}
-                placeholder={getFieldPlaceholder("state")}
-              />
+                  <Field
+                    className={accountInputField}
+                    name="billing_address.state"
+                    id="billing_address.state"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("state")}
+                    validate={getFieldValidators("state")}
+                    placeholder={getFieldPlaceholder("state")}
+                  />
 
-              <Field
-                className={accountInputField}
-                name="billing_address.postal_code"
-                id="billing_address.postal_code"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("postal_code")}
-                validate={getFieldValidators("postal_code")}
-                placeholder={getFieldPlaceholder("postal_code")}
-              />
+                  <Field
+                    className={accountInputField}
+                    name="billing_address.postal_code"
+                    id="billing_address.postal_code"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("postal_code")}
+                    validate={getFieldValidators("postal_code")}
+                    placeholder={getFieldPlaceholder("postal_code")}
+                  />
 
-              <Field
-                className={accountInputField}
-                name="billing_address.city"
-                id="billing_address.city"
-                component={InputField}
-                type="text"
-                label={getFieldLabel("city")}
-                validate={getFieldValidators("city")}
-                placeholder={getFieldPlaceholder("city")}
-              />
+                  <Field
+                    className={accountInputField}
+                    name="billing_address.city"
+                    id="billing_address.city"
+                    component={InputField}
+                    type="text"
+                    label={getFieldLabel("city")}
+                    validate={getFieldValidators("city")}
+                    placeholder={getFieldPlaceholder("city")}
+                  />
 
-              <div className="checkout-button-wrap">
-                <button
-                  type="submit"
-                  // disabled={invalid}
-                  className={accountEditButtonClass}
-                >
-                  {text.save}
-                </button>
-              </div>
-            </form>
+                  <div className="checkout-button-wrap">
+                    <button
+                      type="submit"
+                      // disabled={invalid}
+                      className={accountEditButtonClass}
+                    >
+                      {text.save}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </Form>
           </div>
         )}
         {profileSection === 2 && (
@@ -972,8 +977,4 @@ const Account: FC<Props> = props => {
   }
 }
 
-export default reduxForm({
-  form: "Account",
-  enableReinitialize: true,
-  keepDirtyOnReinitialize: true,
-})(Account)
+export default Account

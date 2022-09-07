@@ -1,6 +1,6 @@
 import Lscache from "lscache"
 import React, { FC, useEffect, useState } from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { formatCurrency } from "../../lib/helper"
 import { text } from "../../lib/settings"
 import InputField from "./inputField"
@@ -21,16 +21,11 @@ const ReadOnlyField = ({ name, value }) => (
 )
 
 interface Props {
-  handleSubmit
+  initialValues
+  onSubmit
   customerProperties
-  pristine
-  invalid
-  valid
-  reset
-  submitting
   loadingShippingMethods
   loadingPaymentMethods
-  initialValues
   settings
   saveShippingLocation
   saveShippingMethod
@@ -54,16 +49,11 @@ const CheckoutStepContacts: FC<Props> = props => {
   const [comparePassword, setComparePassword] = useState("")
 
   const {
-    handleSubmit,
+    initialValues,
+    onSubmit,
     customerProperties,
-    pristine,
-    invalid,
-    valid,
-    reset,
-    submitting,
     loadingShippingMethods,
     loadingPaymentMethods,
-    initialValues,
     settings,
     saveShippingLocation,
     saveShippingMethod,
@@ -253,18 +243,15 @@ const CheckoutStepContacts: FC<Props> = props => {
 
   const getFieldValidators = fieldName => {
     const isOptional = isFieldOptional(fieldName)
-    const validatorsArray = []
-    if (!isOptional) {
-      validatorsArray.push(validateRequired)
-    }
-    if (fieldName === "email") {
-      validatorsArray.push(validateEmail)
-    }
-    if (fieldName === "password_verify") {
-      validatorsArray.push(confirmPassword)
-    }
 
-    return validatorsArray
+    return value => {
+      const checkValidateRequired = !isOptional && validateRequired(value)
+      const checkValidateEmail = fieldName === "email" && validateEmail(value)
+      const checkConfirmPassword =
+        fieldName === "password_verify" && confirmPassword(value)
+
+      return checkValidateRequired || checkValidateEmail || checkConfirmPassword
+    }
   }
 
   const confirmPassword = value => {
@@ -482,7 +469,7 @@ const CheckoutStepContacts: FC<Props> = props => {
             >
               <Field
                 name="payment_method_id"
-                validate={[validateRequired]}
+                validate={validateRequired}
                 component="input"
                 type="radio"
                 value={method.id}
@@ -509,209 +496,217 @@ const CheckoutStepContacts: FC<Props> = props => {
         <span>1</span>
         {title}
       </h1>
-      <form onSubmit={handleSubmit}>
-        {!isFieldHidden("first_name") && (
-          <Field
-            className={inputClassName}
-            name="first_name"
-            id="customer.first_name"
-            autoComplete="new-password"
-            component={InputField}
-            type="text"
-            label={getFieldLabel("first_name")}
-            validate={getFieldValidators("first_name")}
-            placeholder={getFieldPlaceholder("first_name")}
-          />
-        )}
-
-        {!isFieldHidden("last_name") && (
-          <Field
-            className={inputClassName}
-            name="last_name"
-            id="customer.last_name"
-            autoComplete="new-password"
-            component={InputField}
-            type="text"
-            label={getFieldLabel("last_name")}
-            validate={getFieldValidators("last_name")}
-            placeholder={getFieldPlaceholder("last_name")}
-          />
-        )}
-
-        {loggedin ? (
-          <ReadOnlyField
-            name={text.email}
-            value={emailValues}
-            className="logged-in-email-field"
-            label={getFieldLabel("email")}
-          />
-        ) : (
-          !isFieldHidden("email") && (
-            <Field
-              className={inputClassName}
-              name="email"
-              id="customer.email"
-              autoComplete="new-password"
-              component={InputField} // this.state.loggedin
-              type="email"
-              label={getFieldLabel("email")}
-              validate={getFieldValidators("email")}
-              placeholder={getFieldPlaceholder("email")}
-            />
-          )
-        )}
-
-        {!isFieldHidden("mobile") && (
-          <Field
-            className={inputClassName}
-            name="mobile"
-            id="customer.mobile"
-            autocomplete="new-password"
-            component={InputField}
-            type="tel"
-            label={getFieldLabel("mobile")}
-            validate={getFieldValidators("mobile")}
-            placeholder={getFieldPlaceholder("mobile")}
-          />
-        )}
-
-        {loggedin
-          ? isFieldHidden("password")
-          : !isFieldHidden("password") && (
+      <Form
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        keepDirtyOnReinitialize
+      >
+        {({ handleSubmit, invalid }) => (
+          <form onSubmit={handleSubmit}>
+            {!isFieldHidden("first_name") && (
               <Field
                 className={inputClassName}
-                name="password"
-                id="customer.password"
+                name="first_name"
+                id="customer.first_name"
                 autoComplete="new-password"
                 component={InputField}
-                type="password"
-                onBlur={passwordTemp}
-                label={!loggedin ? getFieldLabel("password") : ""}
-                validate={getFieldValidators("password")}
-                placeholder={getFieldPlaceholder("password")}
+                type="text"
+                label={getFieldLabel("first_name")}
+                validate={getFieldValidators("first_name")}
+                placeholder={getFieldPlaceholder("first_name")}
               />
             )}
 
-        {loggedin
-          ? isFieldHidden("password")
-          : !isFieldHidden("password") && (
+            {!isFieldHidden("last_name") && (
               <Field
                 className={inputClassName}
-                name="password_verify"
-                id="customer.password_verify"
+                name="last_name"
+                id="customer.last_name"
                 autoComplete="new-password"
                 component={InputField}
-                type="password"
-                label={!loggedin ? getFieldLabel("password_verify") : ""}
-                validate={getFieldValidators("password_verify")}
-                placeholder={getFieldPlaceholder("password_verify")}
+                type="text"
+                label={getFieldLabel("last_name")}
+                validate={getFieldValidators("last_name")}
+                placeholder={getFieldPlaceholder("last_name")}
               />
             )}
 
-        {!isFieldHidden("address1") && (
-          <Field
-            className={inputClassName}
-            name="shipping_address.address1"
-            id="shipping_address.address1"
-            component={InputField}
-            type="text"
-            label={getFieldLabel("address1")}
-            validate={getFieldValidators("address1")}
-            placeholder={getFieldPlaceholder("address1")}
-            onBlur={(event, value) =>
-              setTimeout(() => saveShippingLocation({ address1: value }))
-            }
-          />
-        )}
-        {!isFieldHidden("address2") && (
-          <Field
-            className={inputClassName}
-            name="shipping_address.address2"
-            id="shipping_address.address2"
-            component={InputField}
-            type="text"
-            label={getFieldLabel("address2")}
-            placeholder={getFieldPlaceholder("address2")}
-            onBlur={(event, value) =>
-              setTimeout(() => saveShippingLocation({ address2: value }))
-            }
-          />
-        )}
+            {loggedin ? (
+              <ReadOnlyField
+                name={text.email}
+                value={emailValues}
+                className="logged-in-email-field"
+                label={getFieldLabel("email")}
+              />
+            ) : (
+              !isFieldHidden("email") && (
+                <Field
+                  className={inputClassName}
+                  name="email"
+                  id="customer.email"
+                  autoComplete="new-password"
+                  component={InputField} // this.state.loggedin
+                  type="email"
+                  label={getFieldLabel("email")}
+                  validate={getFieldValidators("email")}
+                  placeholder={getFieldPlaceholder("email")}
+                />
+              )
+            )}
 
-        {!isFieldHidden("country") && (
-          <Field
-            className={inputClassName}
-            name="shipping_address.country"
-            id="shipping_address.country"
-            component={InputField}
-            type="text"
-            label={getFieldLabel("country")}
-            validate={getFieldValidators("country")}
-            placeholder={getFieldPlaceholder("country")}
-            onBlur={(event, value) =>
-              setTimeout(() => saveShippingLocation({ country: value }))
-            }
-          />
-        )}
+            {!isFieldHidden("mobile") && (
+              <Field
+                className={inputClassName}
+                name="mobile"
+                id="customer.mobile"
+                autocomplete="new-password"
+                component={InputField}
+                type="tel"
+                label={getFieldLabel("mobile")}
+                validate={getFieldValidators("mobile")}
+                placeholder={getFieldPlaceholder("mobile")}
+              />
+            )}
 
-        {!isFieldHidden("state") && (
-          <Field
-            className={inputClassName}
-            name="shipping_address.state"
-            id="shipping_address.state"
-            component={InputField}
-            type="text"
-            label={getFieldLabel("state")}
-            validate={getFieldValidators("state")}
-            placeholder={getFieldPlaceholder("state")}
-            onBlur={(event, value) =>
-              setTimeout(() => saveShippingLocation({ state: value }))
-            }
-          />
-        )}
-        {!isFieldHidden("postal_code") && (
-          <Field
-            className={inputClassName}
-            name="shipping_address.postal_code"
-            id="shipping_address.postal_code"
-            component={InputField}
-            type="text"
-            label={getFieldLabel("postal_code")}
-            validate={getFieldValidators("postal_code")}
-            placeholder={getFieldPlaceholder("postal_code")}
-            onBlur={(event, value) =>
-              setTimeout(() => saveShippingLocation({ postal_code: value }))
-            }
-          />
-        )}
-        {!isFieldHidden("city") && (
-          <Field
-            className={inputClassName}
-            name="shipping_address.city"
-            id="shipping_address.city"
-            component={InputField}
-            type="text"
-            label={getFieldLabel("city")}
-            validate={getFieldValidators("city")}
-            placeholder={getFieldPlaceholder("city")}
-            onBlur={(event, value) =>
-              setTimeout(() => saveShippingLocation({ city: value }))
-            }
-          />
-        )}
+            {loggedin
+              ? isFieldHidden("password")
+              : !isFieldHidden("password") && (
+                  <Field
+                    className={inputClassName}
+                    name="password"
+                    id="customer.password"
+                    autoComplete="new-password"
+                    component={InputField}
+                    type="password"
+                    onBlur={passwordTemp}
+                    label={!loggedin ? getFieldLabel("password") : ""}
+                    validate={getFieldValidators("password")}
+                    placeholder={getFieldPlaceholder("password")}
+                  />
+                )}
 
-        <div className="checkout-button-wrap">
-          <button type="submit" disabled={invalid} className={buttonClassName}>
-            {text.next}
-          </button>
-        </div>
-      </form>
+            {loggedin
+              ? isFieldHidden("password")
+              : !isFieldHidden("password") && (
+                  <Field
+                    className={inputClassName}
+                    name="password_verify"
+                    id="customer.password_verify"
+                    autoComplete="new-password"
+                    component={InputField}
+                    type="password"
+                    label={!loggedin ? getFieldLabel("password_verify") : ""}
+                    validate={getFieldValidators("password_verify")}
+                    placeholder={getFieldPlaceholder("password_verify")}
+                  />
+                )}
+
+            {!isFieldHidden("address1") && (
+              <Field
+                className={inputClassName}
+                name="shipping_address.address1"
+                id="shipping_address.address1"
+                component={InputField}
+                type="text"
+                label={getFieldLabel("address1")}
+                validate={getFieldValidators("address1")}
+                placeholder={getFieldPlaceholder("address1")}
+                onBlur={(event, value) =>
+                  setTimeout(() => saveShippingLocation({ address1: value }))
+                }
+              />
+            )}
+            {!isFieldHidden("address2") && (
+              <Field
+                className={inputClassName}
+                name="shipping_address.address2"
+                id="shipping_address.address2"
+                component={InputField}
+                type="text"
+                label={getFieldLabel("address2")}
+                placeholder={getFieldPlaceholder("address2")}
+                onBlur={(event, value) =>
+                  setTimeout(() => saveShippingLocation({ address2: value }))
+                }
+              />
+            )}
+
+            {!isFieldHidden("country") && (
+              <Field
+                className={inputClassName}
+                name="shipping_address.country"
+                id="shipping_address.country"
+                component={InputField}
+                type="text"
+                label={getFieldLabel("country")}
+                validate={getFieldValidators("country")}
+                placeholder={getFieldPlaceholder("country")}
+                onBlur={(event, value) =>
+                  setTimeout(() => saveShippingLocation({ country: value }))
+                }
+              />
+            )}
+
+            {!isFieldHidden("state") && (
+              <Field
+                className={inputClassName}
+                name="shipping_address.state"
+                id="shipping_address.state"
+                component={InputField}
+                type="text"
+                label={getFieldLabel("state")}
+                validate={getFieldValidators("state")}
+                placeholder={getFieldPlaceholder("state")}
+                onBlur={(event, value) =>
+                  setTimeout(() => saveShippingLocation({ state: value }))
+                }
+              />
+            )}
+            {!isFieldHidden("postal_code") && (
+              <Field
+                className={inputClassName}
+                name="shipping_address.postal_code"
+                id="shipping_address.postal_code"
+                component={InputField}
+                type="text"
+                label={getFieldLabel("postal_code")}
+                validate={getFieldValidators("postal_code")}
+                placeholder={getFieldPlaceholder("postal_code")}
+                onBlur={(event, value) =>
+                  setTimeout(() => saveShippingLocation({ postal_code: value }))
+                }
+              />
+            )}
+            {!isFieldHidden("city") && (
+              <Field
+                className={inputClassName}
+                name="shipping_address.city"
+                id="shipping_address.city"
+                component={InputField}
+                type="text"
+                label={getFieldLabel("city")}
+                validate={getFieldValidators("city")}
+                placeholder={getFieldPlaceholder("city")}
+                onBlur={(event, value) =>
+                  setTimeout(() => saveShippingLocation({ city: value }))
+                }
+              />
+            )}
+
+            <div className="checkout-button-wrap">
+              <button
+                type="submit"
+                disabled={invalid}
+                className={buttonClassName}
+              >
+                {text.next}
+              </button>
+            </div>
+          </form>
+        )}
+      </Form>
     </div>
   )
 }
 
-export default reduxForm({
-  form: "CheckoutStepContacts",
-  enableReinitialize: true,
-  keepDirtyOnReinitialize: true,
-})(CheckoutStepContacts)
+export default CheckoutStepContacts
