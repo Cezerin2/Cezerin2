@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { text } from "../../lib/settings"
 import InputField from "./inputField"
 import TextareaField from "./textareaField"
@@ -51,7 +51,8 @@ const getFieldLabel = field => {
 }
 
 interface Props {
-  handleSubmit
+  initialValues
+  onSubmit
   pristine
   invalid
   valid
@@ -80,14 +81,9 @@ const CheckoutStepShipping: FC<Props> = props => {
   }
 
   const {
-    handleSubmit,
-    pristine,
-    invalid,
-    valid,
-    reset,
-    submitting,
-    processingCheckout,
     initialValues,
+    onSubmit,
+    processingCheckout,
     shippingMethod,
     checkoutFields,
     settings,
@@ -117,7 +113,7 @@ const CheckoutStepShipping: FC<Props> = props => {
     commentsField && commentsField.status.length > 0
       ? commentsField.status
       : null
-  const commentsValidate =
+  const commentsValidate = () =>
     commentsFieldStatus === "required" ? validateRequired : null
   const hideCommentsField = commentsFieldStatus === "hidden"
 
@@ -188,7 +184,8 @@ const CheckoutStepShipping: FC<Props> = props => {
       const fieldLabel = getFieldLabel(field)
       const fieldId = `shipping_address.${field.key}`
       const fieldClassName = `${inputClassName} shipping-${field.key}`
-      const validate = field.required === true ? validateRequired : null
+      const validate =
+        field.required === true ? validateRequired : () => undefined
 
       return (
         <Field
@@ -211,117 +208,119 @@ const CheckoutStepShipping: FC<Props> = props => {
         <span>2</span>
         {title}
       </h1>
-      <form onSubmit={handleSubmit}>
-        {shippingFields}
+      <Form initialValues={initialValues} onSubmit={onSubmit}>
+        {({ handleSubmit, submitting, invalid }) => (
+          <form onSubmit={handleSubmit}>
+            {shippingFields}
 
-        {!hideCommentsField && (
-          <Field
-            className={`${inputClassName} shipping-comments`}
-            name="comments"
-            id="customer.comments"
-            component={TextareaField}
-            type="text"
-            label={commentsFieldLabel}
-            placeholder={commentsFieldPlaceholder}
-            validate={commentsValidate}
-            rows="3"
-          />
-        )}
-
-        {!hideBillingAddress && (
-          <div>
-            <h2>{text.billingAddress}</h2>
-            <div className="billing-as-shipping">
-              <input
-                id="billingAsShipping"
-                type="checkbox"
-                onChange={onChangeBillingAsShipping}
-                checked={billingAsShipping}
+            {!hideCommentsField && (
+              <Field
+                className={`${inputClassName} shipping-comments`}
+                name="comments"
+                id="customer.comments"
+                component={TextareaField}
+                type="text"
+                label={commentsFieldLabel}
+                placeholder={commentsFieldPlaceholder}
+                validate={commentsValidate}
+                rows="3"
               />
-              <label htmlFor="billingAsShipping">{text.sameAsShipping}</label>
-            </div>
+            )}
 
-            {!billingAsShipping && (
+            {!hideBillingAddress && (
               <div>
-                <Field
-                  className={`${inputClassName} billing-fullname`}
-                  name="billing_address.full_name"
-                  id="billing_address.full_name"
-                  component={InputField}
-                  type="text"
-                  label={text.fullName}
-                  validate={[validateRequired]}
-                />
-                <Field
-                  className={`${inputClassName} billing-address1`}
-                  name="billing_address.address1"
-                  id="billing_address.address1"
-                  component={InputField}
-                  type="text"
-                  label={text.address1}
-                  validate={[validateRequired]}
-                />
-                <Field
-                  className={`${inputClassName} billing-address2`}
-                  name="billing_address.address2"
-                  id="billing_address.address2"
-                  component={InputField}
-                  type="text"
-                  label={`${text.address2} (${text.optional})`}
-                />
-                <Field
-                  className={`${inputClassName} billing-postalcode`}
-                  name="billing_address.postal_code"
-                  id="billing_address.postal_code"
-                  component={InputField}
-                  type="text"
-                  label={`${text.postal_code} (${text.optional})`}
-                />
-                <Field
-                  className={`${inputClassName} billing-phone`}
-                  name="billing_address.phone"
-                  id="billing_address.phone"
-                  component={InputField}
-                  type="text"
-                  label={`${text.phone} (${text.optional})`}
-                />
-                <Field
-                  className={`${inputClassName} billing-company`}
-                  name="billing_address.company"
-                  id="billing_address.company"
-                  component={InputField}
-                  type="text"
-                  label={`${text.company} (${text.optional})`}
-                />
+                <h2>{text.billingAddress}</h2>
+                <div className="billing-as-shipping">
+                  <input
+                    id="billingAsShipping"
+                    type="checkbox"
+                    onChange={onChangeBillingAsShipping}
+                    checked={billingAsShipping}
+                  />
+                  <label htmlFor="billingAsShipping">
+                    {text.sameAsShipping}
+                  </label>
+                </div>
+
+                {!billingAsShipping && (
+                  <div>
+                    <Field
+                      className={`${inputClassName} billing-fullname`}
+                      name="billing_address.full_name"
+                      id="billing_address.full_name"
+                      component={InputField}
+                      type="text"
+                      label={text.fullName}
+                      validate={validateRequired}
+                    />
+                    <Field
+                      className={`${inputClassName} billing-address1`}
+                      name="billing_address.address1"
+                      id="billing_address.address1"
+                      component={InputField}
+                      type="text"
+                      label={text.address1}
+                      validate={validateRequired}
+                    />
+                    <Field
+                      className={`${inputClassName} billing-address2`}
+                      name="billing_address.address2"
+                      id="billing_address.address2"
+                      component={InputField}
+                      type="text"
+                      label={`${text.address2} (${text.optional})`}
+                    />
+                    <Field
+                      className={`${inputClassName} billing-postalcode`}
+                      name="billing_address.postal_code"
+                      id="billing_address.postal_code"
+                      component={InputField}
+                      type="text"
+                      label={`${text.postal_code} (${text.optional})`}
+                    />
+                    <Field
+                      className={`${inputClassName} billing-phone`}
+                      name="billing_address.phone"
+                      id="billing_address.phone"
+                      component={InputField}
+                      type="text"
+                      label={`${text.phone} (${text.optional})`}
+                    />
+                    <Field
+                      className={`${inputClassName} billing-company`}
+                      name="billing_address.company"
+                      id="billing_address.company"
+                      component={InputField}
+                      type="text"
+                      label={`${text.company} (${text.optional})`}
+                    />
+                  </div>
+                )}
               </div>
             )}
-          </div>
-        )}
 
-        <div className="checkout-button-wrap">
-          <button
-            type="submit"
-            disabled={
-              submitting ||
-              processingCheckout ||
-              invalid ||
-              initialValues.shipping_method_id === null ||
-              initialValues.payment_method_id === null
-            }
-            className={`${buttonClassName}${
-              processingCheckout ? " is-loading" : ""
-            }`}
-          >
-            {showPaymentForm ? text.next : text.orderSubmit}
-          </button>
-        </div>
-      </form>
+            <div className="checkout-button-wrap">
+              <button
+                type="submit"
+                disabled={
+                  submitting ||
+                  processingCheckout ||
+                  invalid ||
+                  initialValues.shipping_method_id === null ||
+                  initialValues.payment_method_id === null
+                }
+                className={`${buttonClassName}${
+                  processingCheckout ? " is-loading" : ""
+                }`}
+              >
+                {showPaymentForm ? text.next : text.orderSubmit}
+              </button>
+            </div>
+          </form>
+        )}
+      </Form>
     </div>
   )
 }
 
-export default reduxForm({
-  form: "CheckoutStepShipping",
-  enableReinitialize: true,
-  keepDirtyOnReinitialize: false,
-})(CheckoutStepShipping)
+export default CheckoutStepShipping
