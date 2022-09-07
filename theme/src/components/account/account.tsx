@@ -1,5 +1,5 @@
 import Lscache from "lscache"
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Link, Redirect } from "react-router-dom"
 import { Field, reduxForm } from "redux-form"
 import { text } from "../../lib/settings"
@@ -199,9 +199,6 @@ const Account: FC<Props> = props => {
             : "",
       },
     })
-    setReinitialized(true)
-
-    // setEmailValues(customerProperties.customer_settings.email)
   }
 
   const getField = fieldName => {
@@ -541,9 +538,13 @@ const Account: FC<Props> = props => {
       )
     }
 
-    if (profileEdit && !reinitialized) {
-      setInitialValues()
-    }
+    useEffect(() => {
+      if (profileEdit && !reinitialized) setInitialValues()
+
+      setReinitialized(true)
+
+      // setEmailValues(customerProperties.customer_settings.email)
+    }, [profileEdit, reinitialized])
 
     tableStyle = {
       align: "center",
