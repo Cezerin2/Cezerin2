@@ -1,5 +1,4 @@
 import { combineReducers } from "redux"
-import { reducer as formReducer } from "redux-form"
 import * as t from "./actionTypes"
 
 const initialState = {} as any
@@ -118,4 +117,4 @@ const appReducer = (state = initialState, action) => {
   }
 }
 
-export default combineReducers({ app: appReducer, form: formReducer })
+export default combineReducers({ app: appReducer })

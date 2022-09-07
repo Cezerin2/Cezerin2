@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import { Field, reduxForm } from "redux-form"
+import { Field, Form } from "react-final-form"
 import { text } from "../../lib/settings"
 
 const validateRequired = value =>
@@ -21,7 +21,6 @@ const InputField = field => (
     <input
       {...field.input}
       placeholder={field.placeholder}
-      type={field.type}
       id={field.id}
       disabled={field.disabled}
       className={field.meta.touched && field.meta.error ? "invalid" : ""}
@@ -30,13 +29,13 @@ const InputField = field => (
 )
 
 interface Props {
-  handleSubmit
+  onSubmit
   forgotPasswordProperties
   checkoutFields
 }
 
 const ForgotPassword: FC<Props> = props => {
-  const { handleSubmit, forgotPasswordProperties, checkoutFields } = props
+  const { onSubmit, forgotPasswordProperties, checkoutFields } = props
 
   const getField = fieldName => {
     const fields = checkoutFields || []
@@ -63,15 +62,13 @@ const ForgotPassword: FC<Props> = props => {
 
   const getFieldValidators = fieldName => {
     const isOptional = isFieldOptional(fieldName)
-    let validatorsArray = []
-    if (!isOptional) {
-      validatorsArray.push(validateRequired)
-    }
-    if (fieldName === "email") {
-      validatorsArray.push(validateEmail)
-    }
 
-    return validatorsArray
+    return value => {
+      const checkValidateRequired = !isOptional && validateRequired(value)
+      const checkValidateEmail = fieldName === "email" && validateEmail(value)
+
+      return checkValidateRequired || checkValidateEmail
+    }
   }
 
   const getFieldPlaceholder = fieldName => {
@@ -113,62 +110,64 @@ const ForgotPassword: FC<Props> = props => {
   const loginButtonClass = "account-button button"
   return (
     <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
-        <div className="login-section">
-          <h1 className={loginTitleClassName}>{text.forgot_password}</h1>
-          <p className={loginTitleClassName}>
-            {forgotPasswordProperties === undefined
-              ? text.forgot_password_subtitle
-              : ""}
-          </p>
-          {forgotPasswordProperties !== undefined &&
-          forgotPasswordProperties.status ? (
-            <p className={sendPasswordSuccessTitleClassName}>
-              {text.forgot_password_email_sent_success}
-            </p>
-          ) : (
-            ""
-          )}
-          {forgotPasswordProperties !== undefined &&
-          !forgotPasswordProperties.status ? (
-            <p className={sendPasswordFailedTitleClassName}>
-              {text.forgot_password_email_sent_failed}
-            </p>
-          ) : (
-            ""
-          )}
-          <Field
-            className={inputClassName}
-            name="email"
-            id="customer.email"
-            component={InputField}
-            type="email"
-            props={
-              forgotPasswordProperties !== undefined &&
-              forgotPasswordProperties.status && { disabled: true }
-            }
-            label={getFieldLabel("email")}
-            validate={getFieldValidators("email")}
-            placeholder={getFieldPlaceholder("email")}
-          />
-          <div className="login-button-wrap">
-            <button
-              type="submit"
-              className={loginButtonClass}
-              disabled={
-                forgotPasswordProperties !== undefined &&
-                forgotPasswordProperties.status
-              }
-            >
-              {text.forgot_password_submit}
-            </button>
-          </div>
-        </div>
-      </form>
+      <Form onSubmit={onSubmit}>
+        {({ handleSubmit }) => (
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="login-section">
+              <h1 className={loginTitleClassName}>{text.forgot_password}</h1>
+              <p className={loginTitleClassName}>
+                {forgotPasswordProperties === undefined
+                  ? text.forgot_password_subtitle
+                  : ""}
+              </p>
+              {forgotPasswordProperties !== undefined &&
+              forgotPasswordProperties.status ? (
+                <p className={sendPasswordSuccessTitleClassName}>
+                  {text.forgot_password_email_sent_success}
+                </p>
+              ) : (
+                ""
+              )}
+              {forgotPasswordProperties !== undefined &&
+              !forgotPasswordProperties.status ? (
+                <p className={sendPasswordFailedTitleClassName}>
+                  {text.forgot_password_email_sent_failed}
+                </p>
+              ) : (
+                ""
+              )}
+              <Field
+                className={inputClassName}
+                name="email"
+                id="customer.email"
+                component={InputField}
+                type="email"
+                props={
+                  forgotPasswordProperties !== undefined &&
+                  forgotPasswordProperties.status && { disabled: true }
+                }
+                label={getFieldLabel("email")}
+                validate={getFieldValidators("email")}
+                placeholder={getFieldPlaceholder("email")}
+              />
+              <div className="login-button-wrap">
+                <button
+                  type="submit"
+                  className={loginButtonClass}
+                  disabled={
+                    forgotPasswordProperties !== undefined &&
+                    forgotPasswordProperties.status
+                  }
+                >
+                  {text.forgot_password_submit}
+                </button>
+              </div>
+            </div>
+          </form>
+        )}
+      </Form>
     </div>
   )
 }
 
-export default reduxForm({
-  form: "ForgotPassword",
-})(ForgotPassword)
+export default ForgotPassword
