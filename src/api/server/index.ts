@@ -45,7 +45,7 @@ app
       credentials: true,
     })
   ) // cors
-  .use(helmet({ contentSecurityPolicy: false })) // helmet
+  .use(helmet()) // helmet
   .use(koaBody()) // body parser
   .use(compress({ threshold: 0 })) // compressor
   .use(router.routes()) // router

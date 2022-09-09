@@ -3,11 +3,11 @@ import Router from "@koa/router"
 import Koa from "koa"
 import koaBody from "koa-body"
 import compress from "koa-compress"
-import helmet from "koa-helmet"
 import mount from "koa-mount"
 import send from "koa-send"
 import serve from "koa-static"
 import winston from "winston"
+import { helmetMiddleware } from "./helmet"
 import "./logger"
 import pageRendering from "./pageRendering"
 import redirects from "./redirects"
@@ -42,9 +42,9 @@ app
   })
 
   .use(cors()) // cors
-  .use(helmet({ contentSecurityPolicy: false })) // helmet
   .use(koaBody()) // body parser
   .use(compress({ threshold: 0 })) // compressor
+  .use(helmetMiddleware) // helmet
   .use(serve("public/content", staticOptions))
   .use(mount("/assets", serve("theme/assets", staticOptions)))
   .use(mount("/admin-assets", serve("public/admin-assets", staticOptions)))
