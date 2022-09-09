@@ -1,3 +1,4 @@
+import { toSafeInteger } from "lodash"
 import * as t from "./actionTypes"
 import { PAGE, PRODUCT_CATEGORY, PRODUCT, RESERVED, SEARCH } from "./pageTypes"
 import queryString from "query-string"
@@ -30,8 +31,8 @@ export const getProductFilterForCategory = (locationSearch, sortBy) => {
   }
 
   return {
-    priceFrom: parseInt(queryFilter.price_from.toString()) || 0,
-    priceTo: parseInt(queryFilter.price_to.toString()) || 0,
+    priceFrom: toSafeInteger(queryFilter.price_from),
+    priceTo: toSafeInteger(queryFilter.price_to),
     attributes: attributes,
     search: null,
     sort: sortBy,
@@ -43,8 +44,8 @@ export const getProductFilterForSearch = locationSearch => {
 
   return {
     categoryId: null,
-    priceFrom: parseInt(queryFilter.price_from.toString()) || 0,
-    priceTo: parseInt(queryFilter.price_to.toString()) || 0,
+    priceFrom: toSafeInteger(queryFilter.price_from),
+    priceTo: toSafeInteger(queryFilter.price_to),
     search: queryFilter.search,
     sort: "search",
   }
