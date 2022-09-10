@@ -24,7 +24,7 @@ const initialState: OrderStatusesState = {
 }
 
 const { actions, reducer } = createSlice({
-  name: "",
+  name: "orderStatuses",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {},

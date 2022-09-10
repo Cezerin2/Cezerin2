@@ -14,7 +14,7 @@ const initialState: PagesState = {
 }
 
 const { actions, reducer } = createSlice({
-  name: "",
+  name: "pages",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {},
