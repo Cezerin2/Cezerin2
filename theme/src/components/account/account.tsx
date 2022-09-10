@@ -42,7 +42,6 @@ interface Props {
   customerProperties
   cartlayerBtnInitialized
   cart
-  initialize
   checkoutFields
 }
 
@@ -50,20 +49,19 @@ const Account: FC<Props> = props => {
   const [profileSection, setProfileSection] = useState(1)
   const [profileEdit, setProfileEdit] = useState(false)
   const [reinitialized, setReinitialized] = useState(false)
+  const [initialValues, setInitialValues] = useState(props.initialValues)
   const [cartLayer, setCartLayer] = useState(false)
 
   const {
-    initialValues,
     onSubmit,
     customerProperties,
     cartlayerBtnInitialized,
     cart,
-    initialize,
     checkoutFields,
   } = props
 
-  const setInitialValues = () => {
-    initialize({
+  const initialize = () =>
+    setInitialValues({
       first_name: customerProperties.customer_settings.first_name,
       last_name: customerProperties.customer_settings.last_name,
       email: customerProperties.customer_settings.email,
@@ -198,7 +196,6 @@ const Account: FC<Props> = props => {
             : "",
       },
     })
-  }
 
   const getField = fieldName => {
     const fields = checkoutFields || []
@@ -536,7 +533,7 @@ const Account: FC<Props> = props => {
     }
 
     useEffect(() => {
-      if (profileEdit && !reinitialized) setInitialValues()
+      if (profileEdit && !reinitialized) initialize()
 
       setReinitialized(true)
 

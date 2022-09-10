@@ -38,18 +38,17 @@ interface Props {
   onEdit
   isReadOnly
   title
-  initialize
   checkoutFields
 }
 
 const CheckoutStepContacts: FC<Props> = props => {
   const [loggedin, setLoggedin] = useState(false)
   const [reinitialized, setReinitialized] = useState(false)
+  const [initialValues, setInitialValues] = useState(props.initialValues)
   const [emailValues, setEmailValues] = useState("")
   const [comparePassword, setComparePassword] = useState("")
 
   const {
-    initialValues,
     onSubmit,
     customerProperties,
     loadingShippingMethods,
@@ -66,7 +65,6 @@ const CheckoutStepContacts: FC<Props> = props => {
     onEdit,
     isReadOnly,
     title,
-    initialize,
     checkoutFields,
   } = props
 
@@ -76,151 +74,141 @@ const CheckoutStepContacts: FC<Props> = props => {
     }
   }, [])
 
-  const setInitialValues = () => {
-    Lscache.flushExpired()
-    if (Lscache.get("auth_data") !== null) {
-      initialize({
-        first_name: customerProperties.customer_settings.first_name,
-        last_name: customerProperties.customer_settings.last_name,
-        email: customerProperties.customer_settings.email,
-        mobile:
-          typeof customerProperties.customer_settings.mobile !== "undefined" &&
-          customerProperties.customer_settings.mobile !== null
-            ? customerProperties.customer_settings.mobile
+  const initialize = () =>
+    setInitialValues({
+      first_name: customerProperties.customer_settings.first_name,
+      last_name: customerProperties.customer_settings.last_name,
+      email: customerProperties.customer_settings.email,
+      mobile:
+        typeof customerProperties.customer_settings.mobile !== "undefined" &&
+        customerProperties.customer_settings.mobile !== null
+          ? customerProperties.customer_settings.mobile
+          : "",
+      billing_address: {
+        address1:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].address1 !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].address1 !== null
+            ? customerProperties.customer_settings.addresses[0].address1
             : "",
-        billing_address: {
-          address1:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].address1 !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].address1 !== null
-              ? customerProperties.customer_settings.addresses[0].address1
-              : "",
-          address2:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].address2 !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].address2 !== null
-              ? customerProperties.customer_settings.addresses[0].address2
-              : "",
-          city:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].city !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].city !== null
-              ? customerProperties.customer_settings.addresses[0].city
-              : "",
-          postal_code:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].postal_code !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].postal_code !==
-              null
-              ? customerProperties.customer_settings.addresses[0].postal_code
-              : "",
-          state:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].state !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].state !== null
-              ? customerProperties.customer_settings.addresses[0].state
-              : "",
-          country:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].country !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].country !== null
-              ? customerProperties.customer_settings.addresses[0].country
-              : "",
-        },
-        shipping_address: {
-          address1:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].address1 !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].address1 !== null
-              ? customerProperties.customer_settings.addresses[0].address1
-              : "",
-          address2:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].address2 !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].address2 !== null
-              ? customerProperties.customer_settings.addresses[0].address2
-              : "",
-          city:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].city !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].city !== null
-              ? customerProperties.customer_settings.addresses[0].city
-              : "",
-          postal_code:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].postal_code !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].postal_code !==
-              null
-              ? customerProperties.customer_settings.addresses[0].postal_code
-              : "",
-          state:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].state !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].state !== null
-              ? customerProperties.customer_settings.addresses[0].state
-              : "",
-          country:
-            typeof customerProperties.customer_settings.addresses !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].country !==
-              "undefined" &&
-            customerProperties.customer_settings.addresses.length > 0 &&
-            customerProperties.customer_settings.addresses[0].country !== null
-              ? customerProperties.customer_settings.addresses[0].country
-              : "",
-        },
-      })
-    }
-
-    setReinitialized(true)
-    setEmailValues(customerProperties.customer_settings.email)
-    // this.props.change("input", {disabled: true});
-  }
+        address2:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].address2 !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].address2 !== null
+            ? customerProperties.customer_settings.addresses[0].address2
+            : "",
+        city:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].city !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].city !== null
+            ? customerProperties.customer_settings.addresses[0].city
+            : "",
+        postal_code:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].postal_code !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].postal_code !== null
+            ? customerProperties.customer_settings.addresses[0].postal_code
+            : "",
+        state:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].state !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].state !== null
+            ? customerProperties.customer_settings.addresses[0].state
+            : "",
+        country:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].country !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].country !== null
+            ? customerProperties.customer_settings.addresses[0].country
+            : "",
+      },
+      shipping_address: {
+        address1:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].address1 !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].address1 !== null
+            ? customerProperties.customer_settings.addresses[0].address1
+            : "",
+        address2:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].address2 !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].address2 !== null
+            ? customerProperties.customer_settings.addresses[0].address2
+            : "",
+        city:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].city !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].city !== null
+            ? customerProperties.customer_settings.addresses[0].city
+            : "",
+        postal_code:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].postal_code !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].postal_code !== null
+            ? customerProperties.customer_settings.addresses[0].postal_code
+            : "",
+        state:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].state !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].state !== null
+            ? customerProperties.customer_settings.addresses[0].state
+            : "",
+        country:
+          typeof customerProperties.customer_settings.addresses !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].country !==
+            "undefined" &&
+          customerProperties.customer_settings.addresses.length > 0 &&
+          customerProperties.customer_settings.addresses[0].country !== null
+            ? customerProperties.customer_settings.addresses[0].country
+            : "",
+      },
+    })
 
   const passwordTemp = value => {
     setComparePassword(value.currentTarget.defaultValue)
@@ -337,9 +325,17 @@ const CheckoutStepContacts: FC<Props> = props => {
       : labelText
   }
 
-  if (customerProperties !== undefined && !reinitialized && loggedin) {
-    setInitialValues()
-  }
+  useEffect(() => {
+    if (customerProperties !== undefined && !reinitialized && loggedin) {
+      Lscache.flushExpired()
+
+      if (Lscache.get("auth_data") !== null) initialize()
+
+      setReinitialized(true)
+      setEmailValues(customerProperties.customer_settings.email)
+      // this.props.change("input", {disabled: true});
+    }
+  }, [customerProperties, reinitialized, loggedin])
 
   if (isReadOnly) {
     return (
