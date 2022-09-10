@@ -1625,9 +1625,9 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/koa__router@^8.0.11":
-  version "8.0.11"
-  resolved "https://registry.yarnpkg.com/@types/koa__router/-/koa__router-8.0.11.tgz#d7b37e6db934fc072ea1baa2ab92bc8ac4564f3e"
+"@types/koa__router@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@types/koa__router/-/koa__router-12.0.0.tgz#19b0f287f9708267dfd8842feb5f2de407d93af2"
   dependencies:
     "@types/koa" "*"
 
