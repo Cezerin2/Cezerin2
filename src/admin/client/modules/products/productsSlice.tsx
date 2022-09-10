@@ -43,6 +43,18 @@ const initialState: ProductsState = {
   isUpdating: false,
   loadingItems: false,
   uploadingImages: false,
+
+  errorFetchEdit: null,
+  errorLoadingItems: null,
+  errorUpdate: null,
+
+  filter: {
+    search: "",
+    enabled: null,
+    discontinued: false,
+    onSale: null,
+    stockStatus: null,
+  },
 }
 
 const { actions, reducer } = createSlice({
