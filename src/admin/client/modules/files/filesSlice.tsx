@@ -14,7 +14,7 @@ const initialState: FilesState = {
 }
 
 const { actions, reducer } = createSlice({
-  name: "",
+  name: "files",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {},

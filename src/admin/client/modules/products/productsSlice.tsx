@@ -45,7 +45,7 @@ const initialState: ProductsState = {
   uploadingImages: false,
 
 const { actions, reducer } = createSlice({
-  name: "",
+  name: "products",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {},
