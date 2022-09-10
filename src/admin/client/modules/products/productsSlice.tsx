@@ -43,6 +43,7 @@ const initialState: ProductsState = {
   isUpdating: false,
   loadingItems: false,
   uploadingImages: false,
+}
 
 const { actions, reducer } = createSlice({
   name: "",
