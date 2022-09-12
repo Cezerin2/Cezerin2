@@ -61,7 +61,91 @@ const { actions, reducer } = createSlice({
   name: "products",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    requestProduct: () => {},
+    receiveProduct: (state, { payload }) => {
+      state.editProduct = payload
+    },
+    receiveProductError: (state, { payload }) => {
+      state.errorFetchEdit = payload
+    },
+    receiveImages: (state, { payload }) => {
+      state.editProductImages = payload
+    },
+    receiveVariants: (state, { payload }) => {
+      state.editProductVariants = payload
+    },
+    receiveOptions: (state, { payload }) => {
+      state.editProductOptions = payload
+    },
+    cancelProductEdit: state => {
+      state.isUpdating = false
+      state.editProduct = null
+      state.editProductImages = null
+      state.editProductOptions = null
+      state.editProductVariants = null
+    },
+    requestProducts: state => {
+      state.loadingItems = true
+    },
+    requestMoreProducts: state => {
+      state.loadingItems = true
+    },
+    receiveProductsMore: (
+      state,
+      { payload: { has_more, total_count, data } }
+    ) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = [...state.items, ...data]
+    },
+    receiveProducts: (state, { payload: { has_more, total_count, data } }) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = data
+    },
+    receiveProductsError: (state, { payload }) => {
+      state.errorLoadingItems = payload
+    },
+    selectProduct: (state, { payload }) => {
+      state.selected = [...state.selected, payload]
+    },
+    deselectProduct: (state, { payload }) => {
+      state.selected = state.selected.filter(id => id !== payload)
+    },
+    deselectAllProduct: state => {
+      state.selected = []
+    },
+    selectAllProduct: state => {
+      let selected = state.items.map(item => item.id)
+
+      state.selected = selected
+    },
+    setFilter: (state, { payload }) => {
+      const newFilter = { ...state.filter, ...payload }
+
+      state.filter = newFilter
+    },
+    deleteProductsSuccess: () => {},
+    setCategorySuccess: () => {},
+    requestUpdateProduct: state => {
+      state.isUpdating = true
+    },
+    receiveUpdateProduct: (state, { payload }) => {
+      state.isUpdating = false
+      state.editProduct = payload
+    },
+    errorUpdateProduct: () => {},
+    successCreateProduct: () => {},
+    imagesUploadStart: state => {
+      state.uploadingImages = true
+    },
+    imagesUploadEnd: state => {
+      state.uploadingImages = false
+    },
+  },
 })
 
 export const {} = actions

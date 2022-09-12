@@ -85,7 +85,93 @@ const { actions, reducer } = createSlice({
   name: "settings",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    exportRequest: state => {
+      state.exportInProcess = true
+    },
+    exportReceive: state => {
+      state.exportInProcess = false
+    },
+    installRequest: state => {
+      state.installInProcess = true
+    },
+    installReceive: state => {
+      state.installInProcess = false
+    },
+    receiveSettings: (state, { payload }) => {
+      state.settings = payload
+    },
+    receiveEmailSettings: (state, { payload }) => {
+      state.emailSettings = payload
+    },
+    receiveImportSettings: (state, { payload }) => {
+      state.importSettings = payload
+    },
+    requestEmailTemplate: state => {
+      state.emailTemplate = null
+    },
+    receiveEmailTemplate: (state, { payload }) => {
+      state.emailTemplate = payload
+    },
+    receiveShippingMethods: (state, { payload }) => {
+      state.shippingMethods = payload
+    },
+    receivePaymentMethods: (state, { payload }) => {
+      state.paymentMethods = payload
+    },
+    receiveShippingMethod: (state, { payload }) => {
+      state.shippingMethodEdit = payload
+    },
+    receivePaymentMethod: (state, { payload }) => {
+      state.paymentMethodEdit = payload
+    },
+    receivePaymentGateway: (state, { payload }) => {
+      state.paymentGatewayEdit = payload
+    },
+    requestCheckoutField: state => {
+      state.checkoutField = null
+    },
+    receiveCheckoutField: (state, { payload }) => {
+      state.checkoutField = payload
+    },
+    requestCommerceSettings: state => {
+      state.commerceSettings = null
+    },
+    receiveCommerceSettings: (state, { payload }) => {
+      state.commerceSettings = payload
+    },
+    receiveCheckoutFields: (state, { payload }) => {
+      state.checkoutFields = payload
+    },
+    receiveTokens: (state, { payload }) => {
+      state.tokens = payload
+    },
+    receiveToken: (state, { payload }) => {
+      state.tokenEdit = payload
+      state.newToken = null
+    },
+    receiveNewToken: (state, { payload }) => {
+      state.newToken = payload
+    },
+    receiveThemeSettings: (state, { payload }) => {
+      state.themeSettings = payload
+    },
+    receiveThemeSettingsSchema: (state, { payload }) => {
+      state.themeSettingsSchema = payload
+    },
+    receiveRedirects: (state, { payload }) => {
+      state.redirects = payload
+    },
+    receiveRedirect: (state, { payload }) => {
+      state.redirectEdit = payload
+    },
+    receiveWebhooks: (state, { payload }) => {
+      state.webhooks = payload
+    },
+    receiveWebhook: (state, { payload }) => {
+      state.webhookEdit = payload
+    },
+  },
 })
 
 export const {} = actions

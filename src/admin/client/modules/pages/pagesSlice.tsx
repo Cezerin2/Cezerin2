@@ -17,7 +17,14 @@ const { actions, reducer } = createSlice({
   name: "pages",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    receivePages: (state, { payload }) => {
+      state.pages = payload
+    },
+    receivePage: (state, { payload }) => {
+      state.pageEdit = payload
+    },
+  },
 })
 
 export const {} = actions
