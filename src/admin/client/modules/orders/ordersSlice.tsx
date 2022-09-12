@@ -69,7 +69,75 @@ const { actions, reducer } = createSlice({
   name: "orders",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    requestOrders: state => {
+      state.loadingItems = true
+    },
+    receiveOrders: (state, { payload: { has_more, total_count, data } }) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = data
+    },
+    receiveOrdersError: (state, { payload }) => {
+      state.loadingItems = false
+      state.errorLoadingItems = payload
+    },
+    selectOrder: (state, { payload }) => {
+      state.selected = [...state.selected, payload]
+    },
+    deselectOrder: (state, { payload }) => {
+      state.selected = state.selected.filter(id => id !== payload)
+    },
+    deselectAllOrder: state => {
+      state.selected = []
+    },
+    selectAllOrder: state => {
+      let selected = state.items.map(item => item.id)
+
+      state.selected = selected
+    },
+    setFilter: (state, { payload }) => {
+      const newFilter = { ...state.filter, ...payload }
+
+      state.filter = newFilter
+    },
+    requestMoreOrders: state => {
+      state.loadingItems = true
+    },
+    receiveOrdersMore: (
+      state,
+      { payload: { has_more, total_count, data } }
+    ) => {
+      state.loadingItems = false
+      state.hasMore = has_more
+      state.totalCount = total_count
+      state.items = [...state.items, ...data]
+    },
+    requestOrder: () => {},
+    receiveOrder: (state, { payload }) => {
+      state.editOrder = payload
+    },
+    requestOrderCheckout: state => {
+      state.processingCheckout = true
+    },
+    receiveOrderCheckout: state => {
+      state.processingCheckout = false
+    },
+    failOrderCheckout: state => {
+      state.processingCheckout = false
+    },
+    requestOrderUpdate: () => {},
+    receiveOrderUpdate: () => {},
+    failOrderUpdate: () => {},
+    requestBulkUpdate: () => {},
+    receiveBulkUpdate: () => {},
+    errorBilkUpdate: () => {
+      // TODO: Spelling mistake
+    },
+    deleteOrdersSuccess: () => {},
+    createOrdersSuccess: () => {},
+  },
 })
 
 export const {} = actions

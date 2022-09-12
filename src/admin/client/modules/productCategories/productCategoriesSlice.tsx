@@ -29,7 +29,45 @@ const { actions, reducer } = createSlice({
   name: "productCategories",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    requestCategories: state => {
+      state.isFetching = true
+    },
+    receiveCategories: (state, { payload }) => {
+      state.isFetching = false
+      state.isFetched = true
+      state.items = payload
+    },
+    receiveErrorCategories: (state, { payload }) => {
+      state.errorFetch = payload
+    },
+    selectCategory: (state, { payload }) => {
+      state.selectedId = payload
+    },
+    deselectCategory: state => {
+      state.selectedId = null
+    },
+    requestUpdateCategory: state => {
+      state.isSaving = true
+    },
+    receiveUpdateCategory: state => {
+      state.isSaving = false
+    },
+    errorUpdateCategory: (state, { payload }) => {
+      state.isSaving = false
+      state.errorUpdate = payload
+    },
+    imageUploadStart: state => {
+      state.uploadingImage = true
+    },
+    imageUploadEnd: state => {
+      state.uploadingImage = false
+    },
+    successCreateCategory: () => {},
+    successDeleteCategory: () => {},
+    successMoveUpDownCategory: () => {},
+    // successReplaceCategory: () => {},
+  },
 })
 
 export const {} = actions
