@@ -25,7 +25,32 @@ const { actions, reducer } = createSlice({
   name: "apps",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    receiveAccount: (state, { payload }) => {
+      state.account = payload
+    },
+    receiveServices: (state, { payload }) => {
+      state.services = payload
+    },
+    receiveService: (state, { payload }) => {
+      state.service = payload
+    },
+    requestServiceSettings: state => {
+      state.serviceSettings = null
+    },
+    receiveServiceSettings: (state, { payload }) => {
+      state.serviceSettings = payload
+    },
+    receiveServiceLogs: (state, { payload }) => {
+      state.serviceLogs = payload
+    },
+    requestEnableDisableService: state => {
+      state.loadingEnableDisableService = true
+    },
+    receiveEnableDisableService: state => {
+      state.loadingEnableDisableService = false
+    },
+  },
 })
 
 export const {} = actions

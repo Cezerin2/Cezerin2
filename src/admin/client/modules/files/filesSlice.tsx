@@ -17,7 +17,17 @@ const { actions, reducer } = createSlice({
   name: "files",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    receiveFiles: (state, { payload }) => {
+      state.files = payload
+    },
+    filesUploadStart: state => {
+      state.uploading = true
+    },
+    filesUploadEnd: state => {
+      state.uploading = false
+    },
+  },
 })
 
 export const {} = actions
