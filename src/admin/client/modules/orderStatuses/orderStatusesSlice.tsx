@@ -60,7 +60,18 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const {} = actions
+export const {
+  requestStatuses,
+  receiveStatuses,
+  receiveErrorStatuses,
+  selectStatus,
+  deselectStatus,
+  requestUpdateStatus,
+  receiveUpdateStatus,
+  errorUpdateStatus,
+  successCreateStatus,
+  successDeleteStatus,
+} = actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const select = (state: RootState) => state
