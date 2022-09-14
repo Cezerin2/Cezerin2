@@ -11,8 +11,8 @@ const getPaymentFormSettings = options => {
 
   const formSettings = {
     order_id: order.id,
-    amount: amount,
-    currency: currency,
+    amount,
+    currency,
     env: gatewaySettings.env,
     client: gatewaySettings.client,
     size: gatewaySettings.size,
@@ -55,22 +55,20 @@ const paymentNotification = async options => {
   }
 }
 
-const verify = (params, settings) => {
-  return new Promise((resolve, reject) => {
-    if (!settings) {
+const verify = (params, settings) =>
+  new Promise((resolve, reject) => {
+    if (!settings)
       settings = {
         allow_sandbox: false,
       }
-    }
 
-    if (!params || Object.keys(params).length === 0) {
+    if (!params || Object.keys(params).length === 0)
       return reject("Params is empty")
-    }
 
     params.cmd = "_notify-validate"
     const body = qs.stringify(params)
 
-    //Set up the request to paypal
+    // Set up the request to paypal
     let req_options = {
       host: params.test_ipn ? SANDBOX_URL : REGULAR_URL,
       method: "POST",
@@ -78,11 +76,10 @@ const verify = (params, settings) => {
       headers: { "Content-Length": body.length },
     }
 
-    if (params.test_ipn && !settings.allow_sandbox) {
+    if (params.test_ipn && !settings.allow_sandbox)
       return reject(
         "Received request with test_ipn parameter while sandbox is disabled"
       )
-    }
 
     let req = https.request(req_options, res => {
       let data = []
@@ -92,26 +89,23 @@ const verify = (params, settings) => {
       })
 
       res.on("end", () => {
-        let response = data.join("")
+        const response = data.join("")
 
-        //Check if IPN is valid
-        if (response === "VERIFIED") {
-          return resolve(response)
-        } else {
-          return reject("IPN Verification status: " + response)
-        }
+        // Check if IPN is valid
+        if (response === "VERIFIED") return resolve(response)
+
+        return reject("IPN Verification status: " + response)
       })
     })
 
-    //Add the post parameters to the request body
+    // Add the post parameters to the request body
     req.write(body)
-    //Request error
+    // Request error
     req.on("error", reject)
     req.end()
   })
-}
 
 export default {
-  getPaymentFormSettings: getPaymentFormSettings,
-  paymentNotification: paymentNotification,
+  getPaymentFormSettings,
+  paymentNotification,
 }

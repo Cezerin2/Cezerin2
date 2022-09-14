@@ -3,23 +3,22 @@ import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 
 class ProductOptionsService {
-  getOptions(productId) {
-    if (!ObjectID.isValid(productId)) {
+  getOptions(productId: string) {
+    if (!ObjectID.isValid(productId))
       return Promise.reject("Invalid identifier")
-    }
-    let productObjectID = new ObjectID(productId)
+
+    const productObjectID = new ObjectID(productId)
 
     return db
       .collection("products")
       .findOne({ _id: productObjectID }, { fields: { options: 1 } })
       .then(product => {
-        if (product && product.options && product.options.length > 0) {
+        if (product?.options?.length > 0)
           return product.options
             .map(option => this.changeProperties(option))
             .sort((a, b) => a.position - b.position)
-        } else {
-          return []
-        }
+
+        return []
       })
   }
 
@@ -33,8 +32,8 @@ class ProductOptionsService {
     if (!ObjectID.isValid(productId) || !ObjectID.isValid(optionId)) {
       return Promise.reject("Invalid identifier")
     }
-    let productObjectID = new ObjectID(productId)
-    let optionObjectID = new ObjectID(optionId)
+    const productObjectID = new ObjectID(productId)
+    const optionObjectID = new ObjectID(optionId)
 
     return db
       .collection("products")
@@ -53,11 +52,11 @@ class ProductOptionsService {
       .then(res => this.getOptions(productId))
   }
 
-  addOption(productId, data) {
-    if (!ObjectID.isValid(productId)) {
+  addOption(productId: string, data) {
+    if (!ObjectID.isValid(productId))
       return Promise.reject("Invalid identifier")
-    }
-    let productObjectID = new ObjectID(productId)
+
+    const productObjectID = new ObjectID(productId)
 
     const optionData = this.getValidDocumentForInsert(data)
 
@@ -67,12 +66,12 @@ class ProductOptionsService {
       .then(res => this.getOptions(productId))
   }
 
-  updateOption(productId, optionId, data) {
-    if (!ObjectID.isValid(productId) || !ObjectID.isValid(optionId)) {
+  updateOption(productId: string, optionId: string, data) {
+    if (!ObjectID.isValid(productId) || !ObjectID.isValid(optionId))
       return Promise.reject("Invalid identifier")
-    }
-    let productObjectID = new ObjectID(productId)
-    let optionObjectID = new ObjectID(optionId)
+
+    const productObjectID = new ObjectID(productId)
+    const optionObjectID = new ObjectID(optionId)
 
     const optionData = this.getValidDocumentForUpdate(data)
 
@@ -89,7 +88,7 @@ class ProductOptionsService {
   }
 
   getValidDocumentForInsert(data) {
-    let option = {
+    const option = {
       id: new ObjectID(),
       name: parse.getString(data.name),
       control: parse.getString(data.control),
@@ -98,9 +97,7 @@ class ProductOptionsService {
       values: [],
     }
 
-    if (option.control === "") {
-      option.control = "select"
-    }
+    if (option.control === "") option.control = "select"
 
     return option
   }
@@ -110,7 +107,7 @@ class ProductOptionsService {
       return new Error("Required fields are missing")
     }
 
-    let option = {}
+    const option = {}
 
     if (data.name !== undefined) {
       option["options.$.name"] = parse.getString(data.name)
