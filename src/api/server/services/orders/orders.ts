@@ -43,53 +43,18 @@ class OrdersService {
     const date_closed_min = parse.getDateIfValid(params.date_closed_min)
     const date_closed_max = parse.getDateIfValid(params.date_closed_max)
 
-    if (id) {
-      filter._id = new ObjectID(id)
-    }
-
-    if (status_id) {
-      filter.status_id = status_id
-    }
-
-    if (customer_id) {
-      filter.customer_id = customer_id
-    }
-
-    if (payment_method_id) {
-      filter.payment_method_id = payment_method_id
-    }
-
-    if (shipping_method_id) {
-      filter.shipping_method_id = shipping_method_id
-    }
-
-    if (params.number) {
-      filter.number = params.number
-    }
-
-    if (closed !== null) {
-      filter.closed = closed
-    }
-
-    if (cancelled !== null) {
-      filter.cancelled = cancelled
-    }
-
-    if (delivered !== null) {
-      filter.delivered = delivered
-    }
-
-    if (paid !== null) {
-      filter.paid = paid
-    }
-
-    if (draft !== null) {
-      filter.draft = draft
-    }
-
-    if (hold !== null) {
-      filter.hold = hold
-    }
+    if (id) filter._id = new ObjectID(id)
+    if (status_id) filter.status_id = status_id
+    if (customer_id) filter.customer_id = customer_id
+    if (payment_method_id) filter.payment_method_id = payment_method_id
+    if (shipping_method_id) filter.shipping_method_id = shipping_method_id
+    if (params.number) filter.number = params.number
+    if (closed !== null) filter.closed = closed
+    if (cancelled !== null) filter.cancelled = cancelled
+    if (delivered !== null) filter.delivered = delivered
+    if (paid !== null) filter.paid = paid
+    if (draft !== null) filter.draft = draft
+    if (hold !== null) filter.hold = hold
 
     if (grand_total_min || grand_total_max) {
       filter.grand_total = {}
@@ -267,9 +232,8 @@ class OrdersService {
   }
 
   async deleteOrder(orderId) {
-    if (!ObjectID.isValid(orderId)) {
-      return Promise.reject("Invalid identifier")
-    }
+    if (!ObjectID.isValid(orderId)) return Promise.reject("Invalid identifier")
+
     const orderObjectID = new ObjectID(orderId)
     const order = await this.getSingleOrder(orderId)
     await trigger({
@@ -744,7 +708,7 @@ class OrdersService {
     return order
   }
 
-  cancelOrder(orderId) {
+  cancelOrder(orderId: string) {
     const orderData = {
       cancelled: true,
       date_cancelled: new Date(),
@@ -755,7 +719,7 @@ class OrdersService {
     )
   }
 
-  closeOrder(orderId) {
+  closeOrder(orderId: string) {
     const orderData = {
       closed: true,
       date_closed: new Date(),
