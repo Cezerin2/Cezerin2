@@ -53,7 +53,16 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const {} = actions
+export const {
+  receiveAccount,
+  receiveServices,
+  receiveService,
+  requestServiceSettings,
+  receiveServiceSettings,
+  receiveServiceLogs,
+  requestEnableDisableService,
+  receiveEnableDisableService,
+} = actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const select = (state: RootState) => state
