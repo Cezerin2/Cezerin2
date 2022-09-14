@@ -14,21 +14,18 @@ class WebhooksService {
   async getWebhooks(query?) {
     const webhooksFromCache = cache.get(webhooksCacheKey)
 
-    if (webhooksFromCache) {
-      return webhooksFromCache
-    } else {
-      const items = await db.collection("webhooks").find().toArray()
-      const result = items.map(item => this.changeProperties(item))
-      cache.set(webhooksCacheKey, result)
-      return result
-    }
+    if (webhooksFromCache) return webhooksFromCache
+
+    const items = await db.collection("webhooks").find().toArray()
+    const result = items.map(item => this.changeProperties(item))
+    cache.set(webhooksCacheKey, result)
+    return result
   }
 
-  async getSingleWebhook(id) {
-    if (!ObjectID.isValid(id)) {
-      return Promise.reject("Invalid identifier")
-    }
-    let webhookObjectID = new ObjectID(id)
+  async getSingleWebhook(id: string) {
+    if (!ObjectID.isValid(id)) return Promise.reject("Invalid identifier")
+
+    const webhookObjectID = new ObjectID(id)
 
     const item = await db
       .collection("webhooks")
@@ -46,7 +43,7 @@ class WebhooksService {
     return newWebhook
   }
 
-  async updateWebhook(id, data) {
+  async updateWebhook(id: string, data) {
     if (!ObjectID.isValid(id)) {
       return Promise.reject("Invalid identifier")
     }

@@ -5,11 +5,10 @@ import OrdersService from "./orders"
 
 class OrderAddressService {
   updateBillingAddress(id, data) {
-    if (!ObjectID.isValid(id)) {
-      return Promise.reject("Invalid identifier")
-    }
+    if (!ObjectID.isValid(id)) return Promise.reject("Invalid identifier")
+
     const orderObjectID = new ObjectID(id)
-    const billing_address = this.getValidDocumentForUpdate(
+    const billingAddress = this.getValidDocumentForUpdate(
       id,
       data,
       "billing_address"
@@ -21,17 +20,16 @@ class OrderAddressService {
         {
           _id: orderObjectID,
         },
-        { $set: billing_address }
+        { $set: billingAddress }
       )
       .then(res => OrdersService.getSingleOrder(id))
   }
 
-  updateShippingAddress(id, data) {
-    if (!ObjectID.isValid(id)) {
-      return Promise.reject("Invalid identifier")
-    }
+  updateShippingAddress(id: string, data) {
+    if (!ObjectID.isValid(id)) return Promise.reject("Invalid identifier")
+
     const orderObjectID = new ObjectID(id)
-    const shipping_address = this.getValidDocumentForUpdate(
+    const shippingAddress = this.getValidDocumentForUpdate(
       id,
       data,
       "shipping_address"
@@ -43,7 +41,7 @@ class OrderAddressService {
         {
           _id: orderObjectID,
         },
-        { $set: shipping_address }
+        { $set: shippingAddress }
       )
       .then(res => OrdersService.getSingleOrder(id))
   }
@@ -54,7 +52,7 @@ class OrderAddressService {
       return new Error("Required fields are missing")
     }
 
-    let address = {}
+    const address = {}
 
     keys.forEach(key => {
       const value = data[key]
