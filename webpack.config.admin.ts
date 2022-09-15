@@ -11,7 +11,7 @@ import { Admin } from "./config/types/admin"
 const file = readFileSync("./config/admin.yml", "utf8")
 const applicationConfig = <Admin>YAML.parse(file)
 
-const applicationText = require(`./locales/${applicationConfig.language}.json`)
+const applicationText = require(`./public/admin-assets/locales/${applicationConfig.language}.json`)
 
 module.exports = {
   entry: {

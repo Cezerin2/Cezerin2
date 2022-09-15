@@ -2,7 +2,7 @@ import fse from "fs-extra"
 import path from "path"
 import winston from "winston"
 
-const THEME_LOCALES_PATH = "theme/locales/"
+const THEME_LOCALES_PATH = "theme/assets/locales/"
 let text = null
 
 export const getText = locale => {
