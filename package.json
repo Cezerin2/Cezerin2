@@ -48,7 +48,7 @@
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
     "@reduxjs/toolkit": "^1.8.5",
-    "@sentry/node": "^7.12.1",
+    "@sentry/node": "^7.13.0",
     "@sentry/react": "^7.13.0",
     "@sentry/tracing": "^7.13.0",
     "@stripe/react-stripe-js": "^1.10.0",
