@@ -49,7 +49,7 @@
     "@mui/material": "^5.10.5",
     "@reduxjs/toolkit": "^1.8.5",
     "@sentry/node": "^7.12.1",
-    "@sentry/react": "^7.12.1",
+    "@sentry/react": "^7.13.0",
     "@sentry/tracing": "^7.13.0",
     "@stripe/react-stripe-js": "^1.10.0",
     "@stripe/stripe-js": "^1.36.0",
