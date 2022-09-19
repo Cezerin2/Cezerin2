@@ -1785,15 +1785,14 @@
     "@types/node" "*"
     "@types/webidl-conversions" "*"
 
-"@typescript-eslint/eslint-plugin@^5.37.0":
-  version "5.37.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.37.0.tgz#5ccdd5d9004120f28fc6e717fb4b5c9bddcfbc04"
+"@typescript-eslint/eslint-plugin@^5.38.0":
+  version "5.38.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.38.0.tgz#ac919a199548861012e8c1fb2ec4899ac2bc22ae"
   dependencies:
-    "@typescript-eslint/scope-manager" "5.37.0"
-    "@typescript-eslint/type-utils" "5.37.0"
-    "@typescript-eslint/utils" "5.37.0"
+    "@typescript-eslint/scope-manager" "5.38.0"
+    "@typescript-eslint/type-utils" "5.38.0"
+    "@typescript-eslint/utils" "5.38.0"
     debug "^4.3.4"
-    functional-red-black-tree "^1.0.1"
     ignore "^5.2.0"
     regexpp "^3.2.0"
     semver "^7.3.7"
@@ -1815,18 +1814,29 @@
     "@typescript-eslint/types" "5.37.0"
     "@typescript-eslint/visitor-keys" "5.37.0"
 
-"@typescript-eslint/type-utils@5.37.0":
-  version "5.37.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/type-utils/-/type-utils-5.37.0.tgz#43ed2f567ada49d7e33a6e4b6f9babd060445fe5"
+"@typescript-eslint/scope-manager@5.38.0":
+  version "5.38.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.38.0.tgz#8f0927024b6b24e28671352c93b393a810ab4553"
   dependencies:
-    "@typescript-eslint/typescript-estree" "5.37.0"
-    "@typescript-eslint/utils" "5.37.0"
+    "@typescript-eslint/types" "5.38.0"
+    "@typescript-eslint/visitor-keys" "5.38.0"
+
+"@typescript-eslint/type-utils@5.38.0":
+  version "5.38.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/type-utils/-/type-utils-5.38.0.tgz#c8b7f681da825fcfc66ff2b63d70693880496876"
+  dependencies:
+    "@typescript-eslint/typescript-estree" "5.38.0"
+    "@typescript-eslint/utils" "5.38.0"
     debug "^4.3.4"
     tsutils "^3.21.0"
 
 "@typescript-eslint/types@5.37.0":
   version "5.37.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.37.0.tgz#09e4870a5f3af7af3f84e08d792644a87d232261"
+
+"@typescript-eslint/types@5.38.0":
+  version "5.38.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.38.0.tgz#8cd15825e4874354e31800dcac321d07548b8a5f"
 
 "@typescript-eslint/typescript-estree@5.37.0":
   version "5.37.0"
@@ -1840,14 +1850,26 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/utils@5.37.0":
-  version "5.37.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.37.0.tgz#7784cb8e91390c4f90ccaffd24a0cf9874df81b2"
+"@typescript-eslint/typescript-estree@5.38.0":
+  version "5.38.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.38.0.tgz#89f86b2279815c6fb7f57d68cf9b813f0dc25d98"
+  dependencies:
+    "@typescript-eslint/types" "5.38.0"
+    "@typescript-eslint/visitor-keys" "5.38.0"
+    debug "^4.3.4"
+    globby "^11.1.0"
+    is-glob "^4.0.3"
+    semver "^7.3.7"
+    tsutils "^3.21.0"
+
+"@typescript-eslint/utils@5.38.0":
+  version "5.38.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.38.0.tgz#5b31f4896471818153790700eb02ac869a1543f4"
   dependencies:
     "@types/json-schema" "^7.0.9"
-    "@typescript-eslint/scope-manager" "5.37.0"
-    "@typescript-eslint/types" "5.37.0"
-    "@typescript-eslint/typescript-estree" "5.37.0"
+    "@typescript-eslint/scope-manager" "5.38.0"
+    "@typescript-eslint/types" "5.38.0"
+    "@typescript-eslint/typescript-estree" "5.38.0"
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
@@ -1856,6 +1878,13 @@
   resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.37.0.tgz#7b72dd343295ea11e89b624995abc7103c554eee"
   dependencies:
     "@typescript-eslint/types" "5.37.0"
+    eslint-visitor-keys "^3.3.0"
+
+"@typescript-eslint/visitor-keys@5.38.0":
+  version "5.38.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.38.0.tgz#60591ca3bf78aa12b25002c0993d067c00887e34"
+  dependencies:
+    "@typescript-eslint/types" "5.38.0"
     eslint-visitor-keys "^3.3.0"
 
 "@webassemblyjs/ast@1.11.1":
@@ -2856,7 +2885,7 @@ date-fns@^2.25.0, date-fns@^2.29.1:
   version "2.29.2"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.2.tgz#0d4b3d0f3dff0f920820a070920f0d9662c51931"
 
-debug@4, debug@4.x, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
+debug@*, debug@4, debug@4.x, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   dependencies:
@@ -2923,7 +2952,7 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
 
-delegates@^1.0.0:
+delegates@1.0.0, delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
@@ -3644,10 +3673,6 @@ function.prototype.name@^1.1.5:
     es-abstract "^1.19.0"
     functions-have-names "^1.2.2"
 
-functional-red-black-tree@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
-
 functions-have-names@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
@@ -3932,6 +3957,13 @@ https-proxy-agent@^5.0.0:
 hyphenate-style-name@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
+
+i18n-2@*:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/i18n-2/-/i18n-2-0.7.3.tgz#c0dfd7793c7ae2c0d6ea00552dc6ee8651154d25"
+  dependencies:
+    debug "^3.1.0"
+    sprintf-js "^1.1.1"
 
 i18next-browser-languagedetector@^6.1.5:
   version "6.1.5"
@@ -4435,6 +4467,13 @@ koa-helmet@^6.1.0:
   dependencies:
     helmet "^4.4.1"
 
+koa-i18n@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/koa-i18n/-/koa-i18n-2.1.0.tgz#c5d399218a5307c11be54313a038b1937e529362"
+  dependencies:
+    debug "*"
+    i18n-2 "*"
+
 koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
@@ -4446,6 +4485,12 @@ koa-jwt@^4.0.3:
     jsonwebtoken "^8.5.1"
     koa-unless "^1.0.7"
     p-any "^2.1.0"
+
+koa-locale@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/koa-locale/-/koa-locale-1.3.0.tgz#95289ae6fa4098804a1ee8aadd46b0af1c82cbcb"
+  dependencies:
+    delegates "1.0.0"
 
 koa-mount@^4.0.0:
   version "4.0.0"
@@ -6422,6 +6467,10 @@ spawn-command@^0.0.2-1:
 split-on-first@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+
+sprintf-js@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.2.tgz#da1765262bf8c0f571749f2ad6c26300207ae673"
 
 stable@^0.1.8:
   version "0.1.8"
