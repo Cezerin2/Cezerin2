@@ -1,5 +1,16 @@
+import {
+  Email as EmailIcon,
+  GetApp,
+  Http,
+  LocalShipping,
+  Palette,
+  Payment,
+  Settings as SettingsIcon,
+  ShoppingCart,
+  SwapCalls,
+  VpnKey,
+} from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import Checkout from "modules/settings/checkout"
 import CheckoutFields from "modules/settings/checkoutFields"
@@ -46,7 +57,7 @@ const SettingsMenu = () => (
     >
       <ListItem
         primaryText={messages.settings_general}
-        leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
+        leftIcon={<SettingsIcon />}
       />
     </NavLink>
     <NavLink
@@ -56,9 +67,7 @@ const SettingsMenu = () => (
     >
       <ListItem
         primaryText={messages.settings_shipping}
-        leftIcon={
-          <FontIcon className="material-icons">local_shipping</FontIcon>
-        }
+        leftIcon={<LocalShipping />}
       />
     </NavLink>
     <NavLink
@@ -68,7 +77,7 @@ const SettingsMenu = () => (
     >
       <ListItem
         primaryText={messages.settings_payments}
-        leftIcon={<FontIcon className="material-icons">payment</FontIcon>}
+        leftIcon={<Payment />}
       />
     </NavLink>
     <NavLink
@@ -76,10 +85,7 @@ const SettingsMenu = () => (
       activeStyle={styles.linkActive}
       to="/admin/settings/theme"
     >
-      <ListItem
-        primaryText={messages.settings_theme}
-        leftIcon={<FontIcon className="material-icons">palette</FontIcon>}
-      />
+      <ListItem primaryText={messages.settings_theme} leftIcon={<Palette />} />
     </NavLink>
     <NavLink
       style={styles.link}
@@ -88,7 +94,7 @@ const SettingsMenu = () => (
     >
       <ListItem
         primaryText={messages.settings_checkout}
-        leftIcon={<FontIcon className="material-icons">shopping_cart</FontIcon>}
+        leftIcon={<ShoppingCart />}
       />
     </NavLink>
     <NavLink
@@ -98,7 +104,7 @@ const SettingsMenu = () => (
     >
       <ListItem
         primaryText={messages.settings_emails}
-        leftIcon={<FontIcon className="material-icons">email</FontIcon>}
+        leftIcon={<EmailIcon />}
       />
     </NavLink>
     <NavLink
@@ -106,10 +112,7 @@ const SettingsMenu = () => (
       activeStyle={styles.linkActive}
       to="/admin/settings/redirects"
     >
-      <ListItem
-        primaryText={messages.redirects}
-        leftIcon={<FontIcon className="material-icons">swap_calls</FontIcon>}
-      />
+      <ListItem primaryText={messages.redirects} leftIcon={<SwapCalls />} />
     </NavLink>
     <NavLink
       style={styles.link}
@@ -117,33 +120,24 @@ const SettingsMenu = () => (
       to="/admin/settings/import"
       exact
     >
-      <ListItem
-        primaryText={messages.drawer_importing}
-        leftIcon={<FontIcon className="material-icons">get_app</FontIcon>}
-      />
+      <ListItem primaryText={messages.drawer_importing} leftIcon={<GetApp />} />
     </NavLink>
     <NavLink
       style={styles.link}
       activeStyle={styles.linkActive}
       to="/admin/settings/webhooks"
     >
-      <ListItem
-        primaryText={messages.webhooks}
-        leftIcon={<FontIcon className="material-icons">http</FontIcon>}
-      />
+      <ListItem primaryText={messages.webhooks} leftIcon={<Http />} />
     </NavLink>
     <NavLink
       style={styles.link}
       activeStyle={styles.linkActive}
       to="/admin/settings/tokens"
     >
-      <ListItem
-        primaryText={messages.settings_tokens}
-        leftIcon={<FontIcon className="material-icons">vpn_key</FontIcon>}
-      />
+      <ListItem primaryText={messages.settings_tokens} leftIcon={<VpnKey />} />
     </NavLink>
-    {/* <NavLink style={styles.link} activeStyle={styles.linkActive} to="/admin/settings/taxes"><ListItem primaryText={messages.settings_taxes} leftIcon={<FontIcon className="material-icons">attach_money</FontIcon>}/></NavLink>
-    <NavLink style={styles.link} activeStyle={styles.linkActive} to="/admin/settings/security"><ListItem primaryText={messages.settings_security} leftIcon={<FontIcon className="material-icons">security</FontIcon>}/></NavLink> */}
+    {/* <NavLink style={styles.link} activeStyle={styles.linkActive} to="/admin/settings/taxes"><ListItem primaryText={messages.settings_taxes} leftIcon={<AttachMoney/>}/></NavLink>
+    <NavLink style={styles.link} activeStyle={styles.linkActive} to="/admin/settings/security"><ListItem primaryText={messages.settings_security} leftIcon={<Security/>}/></NavLink> */}
   </List>
 )
 

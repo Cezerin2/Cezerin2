@@ -1,7 +1,7 @@
+import { Create } from "@mui/icons-material"
 import { Dialog, DialogActions } from "@mui/material"
 import messages from "lib/text"
 import FlatButton from "material-ui/FlatButton"
-import FontIcon from "material-ui/FontIcon"
 import CategorySelect from "modules/productCategories/select"
 import React, { FC, useState } from "react"
 
@@ -51,11 +51,7 @@ const ProductCategorySelect: FC<Props> = props => {
       <FlatButton
         label={categoryName}
         onClick={() => setOpen(true)}
-        icon={
-          <FontIcon color="#777" className="material-icons">
-            create
-          </FontIcon>
-        }
+        icon={<Create htmlColor="#777" />}
       />
     </>
   )

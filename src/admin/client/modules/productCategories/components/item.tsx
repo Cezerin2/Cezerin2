@@ -1,4 +1,4 @@
-import FontIcon from "material-ui/FontIcon"
+import { Folder, VisibilityOff } from "@mui/icons-material"
 import { ListItem } from "material-ui/List"
 import React, { FC } from "react"
 
@@ -14,8 +14,8 @@ export const styles = {
   },
 }
 
-const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>
-const DraftIcon = <FontIcon className="material-icons">visibility_off</FontIcon>
+const FolderIcon = <Folder />
+const DraftIcon = <VisibilityOff />
 
 interface props {
   item

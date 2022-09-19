@@ -1,8 +1,15 @@
+import {
+  Done,
+  Edit,
+  LocalShipping,
+  MonetizationOn,
+  NotInterested,
+  PauseCircleOutline,
+} from "@mui/icons-material"
 import * as helper from "lib/helper"
 import messages from "lib/text"
 import Checkbox from "material-ui/Checkbox"
 import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
 import { ListItem } from "material-ui/List"
 import moment from "moment"
 import React from "react"
@@ -14,79 +21,61 @@ const getOrderStateIcons = order => {
 
   if (order.hold) {
     icons.push(
-      <FontIcon
+      <PauseCircleOutline
         key="hold"
-        title={messages.orders_hold}
+        titleAccess={messages.orders_hold}
         style={{ color: "rgba(0, 0, 0, 0.2)" }}
-        className="material-icons"
-      >
-        pause_circle_outline
-      </FontIcon>
+      />
     )
   }
 
   if (order.paid) {
     icons.push(
-      <FontIcon
+      <MonetizationOn
         key="paid"
-        title={messages.orders_paid}
+        titleAccess={messages.orders_paid}
         style={{ color: "rgba(251, 184, 41, 1)" }}
-        className="material-icons"
-      >
-        monetization_on
-      </FontIcon>
+      />
     )
   }
 
   if (order.delivered) {
     icons.push(
-      <FontIcon
+      <LocalShipping
         key="delivered"
-        title={messages.orders_delivered}
+        titleAccess={messages.orders_delivered}
         style={{ color: "rgba(127, 175, 27, 1)" }}
-        className="material-icons"
-      >
-        local_shipping
-      </FontIcon>
+      />
     )
   }
 
   if (order.cancelled) {
     return [
-      <FontIcon
+      <NotInterested
         key="cancelled"
-        title={messages.orders_cancelled}
+        titleAccess={messages.orders_cancelled}
         style={{ color: "rgba(0, 0, 0, 0.3)" }}
-        className="material-icons"
-      >
-        not_interested
-      </FontIcon>,
+      />,
     ]
   }
 
   if (order.closed) {
     return [
-      <FontIcon
+      <Done
         key="closed"
-        title={messages.orders_closed}
+        titleAccess={messages.orders_closed}
         style={{ color: "rgba(127, 175, 27, 1)" }}
-        className="material-icons"
-      >
-        done
-      </FontIcon>,
+      />,
     ]
   }
 
   if (icons.length === 0 && order.draft) {
     icons.unshift(
-      <FontIcon
+      <Edit
         key="draft"
-        title={messages.orders_draft}
+        titleAccess={messages.orders_draft}
         style={{ color: "rgba(0, 0, 0, 0.1)" }}
-        className="material-icons"
-      >
-        edit
-      </FontIcon>
+      />
     )
   }
 

@@ -1,6 +1,6 @@
+import { Delete } from "@mui/icons-material"
 import messages from "lib/text"
 import DropDownMenu from "material-ui/DropDownMenu"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import MenuItem from "material-ui/MenuItem"
 import Paper from "material-ui/Paper"
@@ -121,9 +121,7 @@ const VariantRow = ({
           }}
           tabIndex={-1}
         >
-          <FontIcon color="#a1a1a1" className="material-icons">
-            delete
-          </FontIcon>
+          <Delete htmlColor="#a1a1a1" />
         </IconButton>
       </div>
     </div>

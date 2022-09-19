@@ -1,5 +1,5 @@
+import { KeyboardArrowRight } from "@mui/icons-material"
 import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import Paper from "material-ui/Paper"
 import React, { FC, useEffect } from "react"
@@ -14,9 +14,7 @@ const MethodItem = ({ method }) => {
         style={{ textDecoration: "none" }}
       >
         <ListItem
-          rightIcon={
-            <FontIcon className="material-icons">keyboard_arrow_right</FontIcon>
-          }
+          rightIcon={<KeyboardArrowRight />}
           style={!method.enabled ? { color: "rgba(0, 0, 0, 0.3)" } : {}}
           primaryText={
             <div className="row">

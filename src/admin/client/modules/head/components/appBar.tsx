@@ -1,6 +1,6 @@
+import { ArrowBack, ChevronRight, Menu } from "@mui/icons-material"
 import messages from "lib/text"
 import AppBar from "material-ui/AppBar"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import AppsHead from "modules/apps/head"
 import CustomerGroupHead from "modules/customerGroups/head/index"
@@ -61,12 +61,12 @@ const AppBarTop: FC<Props> = props => {
   let title = messages.dashboard
   let leftButton = (
     <IconButton onClick={() => setOpen(!open)}>
-      <FontIcon className="material-icons">menu</FontIcon>
+      <Menu />
     </IconButton>
   )
   let rightElements = null
   {
-    /* <IconButton><FontIcon color="#fff" className="material-icons">notifications</FontIcon></IconButton> */
+    /* <IconButton><Notifications htmlColor="#fff"/></IconButton> */
   }
 
   if (pathname === "/admin/products") {
@@ -76,9 +76,7 @@ const AppBarTop: FC<Props> = props => {
       title = (
         <span>
           {messages.products_title}
-          <FontIcon style={{ top: 6 }} color="#fff" className="material-icons">
-            chevron_right
-          </FontIcon>
+          <ChevronRight style={{ top: 6 }} htmlColor="#fff" />
           {productCategoryName}
         </span>
       )
@@ -97,9 +95,7 @@ const AppBarTop: FC<Props> = props => {
       title = (
         <span>
           {messages.drawer_importing}
-          <FontIcon style={{ top: 6 }} color="#fff" className="material-icons">
-            chevron_right
-          </FontIcon>
+          <ChevronRight style={{ top: 6 }} htmlColor="#fff" />
           {productCategoryName}
         </span>
       )
@@ -118,9 +114,7 @@ const AppBarTop: FC<Props> = props => {
       title = (
         <span>
           {messages.orders_title}
-          <FontIcon style={{ top: 6 }} color="#fff" className="material-icons">
-            chevron_right
-          </FontIcon>
+          <ChevronRight style={{ top: 6 }} htmlColor="#fff" />
           {orderStatusName}
         </span>
       )
@@ -136,9 +130,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/orders">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -148,9 +140,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/orders">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -160,9 +150,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/customers">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -176,9 +164,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to={`/admin/product/${productId}`}>
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -187,9 +173,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/products">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -201,9 +185,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/products">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -215,9 +197,7 @@ const AppBarTop: FC<Props> = props => {
       title = (
         <span>
           {messages.customers_title}
-          <FontIcon style={{ top: 6 }} color="#fff" className="material-icons">
-            chevron_right
-          </FontIcon>
+          <ChevronRight style={{ top: 6 }} htmlColor="#fff" />
           {customerGroupName}
         </span>
       )
@@ -235,9 +215,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/customers">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -249,9 +227,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/email">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -262,9 +238,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/email">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -273,9 +247,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/email">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -286,9 +258,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/email">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -303,9 +273,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -314,9 +282,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -325,9 +291,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -336,9 +300,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -347,9 +309,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -358,9 +318,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -369,9 +327,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -380,9 +336,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -391,9 +345,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -402,9 +354,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -413,9 +363,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -424,9 +372,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -435,9 +381,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/checkout">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -452,9 +396,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/shipping">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -463,9 +405,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/payments">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -474,9 +414,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/shipping">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -486,9 +424,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/payments">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -503,9 +439,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -517,9 +451,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/pages">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -528,9 +460,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/pages">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -546,9 +476,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/tokens">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -557,9 +485,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/tokens">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -571,9 +497,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/redirects">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -582,9 +506,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/redirects">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -597,9 +519,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/webhooks">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -608,9 +528,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/settings/webhooks">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -624,9 +542,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/apps">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -635,9 +551,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/apps">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )
@@ -649,9 +563,7 @@ const AppBarTop: FC<Props> = props => {
     leftButton = (
       <Link to="/admin/apps">
         <IconButton>
-          <FontIcon color="#fff" className="material-icons">
-            arrow_back
-          </FontIcon>
+          <ArrowBack htmlColor="#fff" />
         </IconButton>
       </Link>
     )

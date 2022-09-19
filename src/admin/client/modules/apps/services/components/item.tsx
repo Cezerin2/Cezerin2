@@ -1,5 +1,5 @@
+import { CheckCircle } from "@mui/icons-material"
 import { Card, CardMedia, CardTitle } from "material-ui/Card"
-import FontIcon from "material-ui/FontIcon"
 import React, { FC } from "react"
 import { Link } from "react-router-dom"
 import style from "./style.css"
@@ -63,12 +63,7 @@ const Item: FC<Props> = props => {
             <div>
               {developer}
               {enabled && (
-                <FontIcon
-                  style={{ color: "#FF9900", float: "right" }}
-                  className="material-icons"
-                >
-                  check_circle
-                </FontIcon>
+                <CheckCircle style={{ color: "#FF9900", float: "right" }} />
               )}
             </div>
           }
