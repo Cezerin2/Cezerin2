@@ -9,6 +9,7 @@ import { Provider } from "react-redux"
 import "../../../public/admin-assets/css/flexboxgrid.min.css"
 import "../../../public/admin-assets/css/style.css"
 import App from "./app"
+import "./i18n"
 import reducer from "./rootReducer"
 
 if (!settings.developerMode) auth.validateCurrentToken()
