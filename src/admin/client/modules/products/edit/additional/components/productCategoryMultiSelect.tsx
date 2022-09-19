@@ -1,7 +1,7 @@
+import { Add } from "@mui/icons-material"
 import messages from "lib/text"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
-import FontIcon from "material-ui/FontIcon"
 import CategoryMultiselect from "modules/productCategories/components/multiselectList"
 import React, { FC, useState } from "react"
 import { FieldArrayRenderProps } from "react-final-form-arrays"
@@ -97,11 +97,7 @@ const ProductCategoryMultiSelect: FC<
         <FlatButton
           style={{ minWidth: 52 }}
           onClick={() => setOpen(true)}
-          icon={
-            <FontIcon color="#333" className="material-icons">
-              add
-            </FontIcon>
-          }
+          icon={<Add htmlColor="#333" />}
         />
       </span>
     </div>

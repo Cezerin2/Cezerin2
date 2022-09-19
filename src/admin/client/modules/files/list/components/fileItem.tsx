@@ -1,6 +1,6 @@
+import { MoreVert } from "@mui/icons-material"
 import * as helper from "lib/helper"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
@@ -11,9 +11,7 @@ import style from "./style.css"
 
 const iconButtonElement = (
   <IconButton touch>
-    <FontIcon color="rgb(189, 189, 189)" className="material-icons">
-      more_vert
-    </FontIcon>
+    <MoreVert htmlColor="rgb(189, 189, 189)" />
   </IconButton>
 )
 

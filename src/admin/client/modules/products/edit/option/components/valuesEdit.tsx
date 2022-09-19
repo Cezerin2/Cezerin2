@@ -1,5 +1,5 @@
+import { Delete } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import React, { FC, useState } from "react"
 import style from "./style.css"
@@ -32,9 +32,7 @@ const OptionValueEdit: FC<Props> = props => {
           onClick={() => onDelete(propValue)}
           tabIndex={-1}
         >
-          <FontIcon color="#a1a1a1" className="material-icons">
-            delete
-          </FontIcon>
+          <Delete htmlColor="#a1a1a1" />
         </IconButton>
       </div>
     </div>

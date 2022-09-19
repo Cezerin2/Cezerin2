@@ -1,5 +1,5 @@
+import { KeyboardArrowRight } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import Paper from "material-ui/Paper"
 import React, { FC, useEffect } from "react"
@@ -32,11 +32,7 @@ const EmailSettings: FC<Props> = props => {
               style={{ textDecoration: "none" }}
             >
               <ListItem
-                rightIcon={
-                  <FontIcon className="material-icons">
-                    keyboard_arrow_right
-                  </FontIcon>
-                }
+                rightIcon={<KeyboardArrowRight />}
                 primaryText={
                   <div className="row">
                     <div className="col-xs-6">
@@ -66,11 +62,7 @@ const EmailSettings: FC<Props> = props => {
               style={{ textDecoration: "none" }}
             >
               <ListItem
-                rightIcon={
-                  <FontIcon className="material-icons">
-                    keyboard_arrow_right
-                  </FontIcon>
-                }
+                rightIcon={<KeyboardArrowRight />}
                 primaryText={messages.settings_orderConfirmation}
               />
             </Link>
@@ -79,11 +71,7 @@ const EmailSettings: FC<Props> = props => {
               style={{ textDecoration: "none" }}
             >
               <ListItem
-                rightIcon={
-                  <FontIcon className="material-icons">
-                    keyboard_arrow_right
-                  </FontIcon>
-                }
+                rightIcon={<KeyboardArrowRight />}
                 primaryText={messages.settings_customerRegistration}
               />
             </Link>
@@ -93,9 +81,7 @@ const EmailSettings: FC<Props> = props => {
 							>
 								<ListItem
 									rightIcon={
-										<FontIcon className="material-icons">
-											keyboard_arrow_right
-										</FontIcon>
+										<KeyboardArrowRight/>
 									}
 									primaryText={messages.settings_customerRegistration}
 								/>
@@ -106,9 +92,7 @@ const EmailSettings: FC<Props> = props => {
 							>
 								<ListItem
 									rightIcon={
-										<FontIcon className="material-icons">
-											keyboard_arrow_right
-										</FontIcon>
+										<KeyboardArrowRight/>
 									}
 									primaryText={messages.settings_customerRegistration}
 								/>
@@ -118,11 +102,7 @@ const EmailSettings: FC<Props> = props => {
               style={{ textDecoration: "none" }}
             >
               <ListItem
-                rightIcon={
-                  <FontIcon className="material-icons">
-                    keyboard_arrow_right
-                  </FontIcon>
-                }
+                rightIcon={<KeyboardArrowRight />}
                 primaryText={messages.settings_customerRecovery}
               />
             </Link>
@@ -132,9 +112,7 @@ const EmailSettings: FC<Props> = props => {
 							>
 								<ListItem
 									rightIcon={
-										<FontIcon className="material-icons">
-											keyboard_arrow_right
-										</FontIcon>
+										<KeyboardArrowRight/>
 									}
 									primaryText={messages.settings_customerRecovery}
 								/>
@@ -145,9 +123,7 @@ const EmailSettings: FC<Props> = props => {
 							>
 								<ListItem
 									rightIcon={
-										<FontIcon className="material-icons">
-											keyboard_arrow_right
-										</FontIcon>
+										<KeyboardArrowRight/>
 									}
 									primaryText={messages.settings_customerRecovery}
 								/>

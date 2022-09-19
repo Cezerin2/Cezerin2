@@ -1,5 +1,5 @@
+import { Create, Delete } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import Paper from "material-ui/Paper"
 import React from "react"
@@ -17,9 +17,7 @@ const GalleryItem = ({ url, alt, id, onDelete, onImageEdit }) => (
         tooltipPosition="top-right"
         onClick={onImageEdit}
       >
-        <FontIcon color="rgba(0,0,0,0.5)" className="material-icons">
-          create
-        </FontIcon>
+        <Create htmlColor="rgba(0,0,0,0.5)" />
       </IconButton>
       <IconButton
         touch
@@ -29,9 +27,7 @@ const GalleryItem = ({ url, alt, id, onDelete, onImageEdit }) => (
           onDelete(id)
         }}
       >
-        <FontIcon color="rgba(0,0,0,0.5)" className="material-icons">
-          delete
-        </FontIcon>
+        <Delete htmlColor="rgba(0,0,0,0.5)" />
       </IconButton>
     </div>
   </Paper>

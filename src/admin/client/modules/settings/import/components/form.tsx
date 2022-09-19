@@ -1,5 +1,5 @@
+import { KeyboardArrowRight } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import Paper from "material-ui/Paper"
 import React, { FC, useEffect } from "react"
@@ -26,11 +26,7 @@ const ImportSettings: FC<Props> = props => {
             style={{ textDecoration: "none" }}
           >
             <ListItem
-              rightIcon={
-                <FontIcon className="material-icons">
-                  keyboard_arrow_right
-                </FontIcon>
-              }
+              rightIcon={<KeyboardArrowRight />}
               primaryText={
                 <div className="row">
                   <div className="col-xs-6">

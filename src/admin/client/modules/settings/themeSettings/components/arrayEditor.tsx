@@ -1,7 +1,7 @@
+import { Add } from "@mui/icons-material"
 import messages from "lib/text"
 import FlatButton from "material-ui/FlatButton"
 import FloatingActionButton from "material-ui/FloatingActionButton"
-import FontIcon from "material-ui/FontIcon"
 import Paper from "material-ui/Paper"
 import React, { FC } from "react"
 import DynamicEditControl from "./dynamicEditControl"
@@ -32,7 +32,7 @@ const ArrayEditor: FC<Props> = props => {
           onClick={() => fields.push({})}
           style={{ marginLeft: "20px" }}
         >
-          <FontIcon className="material-icons">add</FontIcon>
+          <Add />
         </FloatingActionButton>
       </div>
 

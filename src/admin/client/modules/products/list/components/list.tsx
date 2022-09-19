@@ -1,6 +1,6 @@
+import { Refresh } from "@mui/icons-material"
 import messages from "lib/text"
 import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
 import { List } from "material-ui/List"
 import RaisedButton from "material-ui/RaisedButton"
 import React, { FC, useEffect } from "react"
@@ -66,7 +66,7 @@ const ProductsList: FC<Props> = props => {
             label={messages.actions_loadMore}
             labelPosition="before"
             primary={false}
-            icon={<FontIcon className="material-icons">refresh</FontIcon>}
+            icon={<Refresh />}
             onClick={loadMore}
           />
         </div>

@@ -1,6 +1,6 @@
+import { MoreVert } from "@mui/icons-material"
 import messages from "lib/text"
 import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
@@ -143,9 +143,7 @@ const Buttons: FC<Props> = props => {
         <IconMenu
           iconButtonElement={
             <IconButton touch>
-              <FontIcon color="#fff" className="material-icons">
-                more_vert
-              </FontIcon>
+              <MoreVert htmlColor="#fff" />
             </IconButton>
           }
           targetOrigin={{ horizontal: "right", vertical: "top" }}

@@ -1,8 +1,19 @@
+import {
+  Apps,
+  Description,
+  ExitToApp,
+  Folder,
+  Home,
+  LocalOffer,
+  Menu as MenuIcon,
+  Person,
+  Settings,
+  ShoppingCart,
+} from "@mui/icons-material"
 import messages from "lib/text"
 import AppBar from "material-ui/AppBar"
 import Divider from "material-ui/Divider"
 import Drawer from "material-ui/Drawer"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import Menu from "material-ui/Menu"
 import MenuItem from "material-ui/MenuItem"
@@ -13,51 +24,51 @@ const menuItems = [
   {
     title: messages.drawer_home,
     url: "/admin/",
-    icon: "home",
+    icon: Home,
   },
   {
     title: messages.drawer_products,
     url: "/admin/products",
-    icon: "local_offer",
+    icon: LocalOffer,
   },
   {
     title: messages.drawer_orders,
     url: "/admin/orders",
-    icon: "shopping_cart",
+    icon: ShoppingCart,
   },
   {
     title: messages.drawer_customers,
     url: "/admin/customers",
-    icon: "person",
+    icon: Person,
   },
   {
     title: messages.settings_pages,
     url: "/admin/pages",
-    icon: "description",
+    icon: Description,
   },
   {
     title: messages.files,
     url: "/admin/files",
-    icon: "folder",
+    icon: Folder,
   },
   {
     title: "-",
-    url: "settings",
+    url: Settings,
   },
   {
     title: messages.drawer_settings,
     url: "/admin/settings",
-    icon: "settings",
+    icon: Settings,
   },
   {
     title: messages.apps,
     url: "/admin/apps",
-    icon: "apps",
+    icon: Apps,
   },
   {
     title: messages.drawer_logout,
     url: "/admin/logout",
-    icon: "exit_to_app",
+    icon: ExitToApp,
   },
 ]
 
@@ -119,12 +130,9 @@ const DrawerMenu = ({ open, onClose, currentUrl }) => {
           innerDivStyle={styles.itemInnerDiv}
           style={styles.item}
           leftIcon={
-            <FontIcon
+            <item.icon
               style={item.url === currentUrl ? styles.iconActive : styles.icon}
-              className="material-icons"
-            >
-              {item.icon}
-            </FontIcon>
+            />
           }
         />
       </NavLink>
@@ -140,9 +148,7 @@ const DrawerMenu = ({ open, onClose, currentUrl }) => {
         zDepth={0}
         iconElementLeft={
           <IconButton onClick={onClose}>
-            <FontIcon color="#9e9e9e" className="material-icons">
-              menu
-            </FontIcon>
+            <MenuIcon htmlColor="#9e9e9e" />
           </IconButton>
         }
       />

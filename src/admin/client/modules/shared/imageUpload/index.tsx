@@ -1,5 +1,5 @@
+import { Delete, FileUpload, PhotoCamera } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import Paper from "material-ui/Paper"
 import Snackbar from "material-ui/Snackbar"
@@ -35,12 +35,7 @@ const ImageUpload: FC<Props> = props => {
 
   let htmlPreview = (
     <div className={style.noImage}>
-      <FontIcon
-        style={{ fontSize: 90, color: "#cccccc" }}
-        className="material-icons"
-      >
-        photo_camera
-      </FontIcon>
+      <PhotoCamera style={{ fontSize: 90, color: "#cccccc" }} />
       <div className={style.dropText}>{messages.help_dropHere}</div>
     </div>
   )
@@ -76,9 +71,7 @@ const ImageUpload: FC<Props> = props => {
           }}
           tooltipPosition="top-right"
         >
-          <FontIcon color="rgba(0,0,0,0.5)" className="material-icons">
-            file_upload
-          </FontIcon>
+          <FileUpload htmlColor="rgba(0,0,0,0.5)" />
         </IconButton>
         {hasPreview && (
           <IconButton
@@ -90,9 +83,7 @@ const ImageUpload: FC<Props> = props => {
             }}
             tooltipPosition="top-right"
           >
-            <FontIcon color="rgba(0,0,0,0.5)" className="material-icons">
-              delete
-            </FontIcon>
+            <Delete htmlColor="rgba(0,0,0,0.5)" />
           </IconButton>
         )}
       </div>

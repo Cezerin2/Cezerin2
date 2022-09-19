@@ -1,5 +1,5 @@
+import { KeyboardArrowRight, LockOutlined } from "@mui/icons-material"
 import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import Paper from "material-ui/Paper"
 import React, { FC, useEffect } from "react"
@@ -13,14 +13,8 @@ const PageItem = ({ page }) => {
       <Divider />
       <Link to={`/admin/pages/${page.id}`} style={{ textDecoration: "none" }}>
         <ListItem
-          rightIcon={
-            <FontIcon className="material-icons">keyboard_arrow_right</FontIcon>
-          }
-          leftIcon={
-            page.is_system ? (
-              <FontIcon className="material-icons">lock_outline</FontIcon>
-            ) : null
-          }
+          rightIcon={<KeyboardArrowRight />}
+          leftIcon={page.is_system ? <LockOutlined /> : null}
           style={!page.enabled ? { color: "rgba(0, 0, 0, 0.3)" } : {}}
           primaryText={
             <div className="row">
