@@ -1,5 +1,5 @@
+import { Delete, OpenInNew } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
 import React, { FC, useState } from "react"
@@ -30,9 +30,7 @@ const Buttons: FC<Props> = props => {
         tooltip={messages.deleteProduct}
         onClick={() => setOpenDelete(true)}
       >
-        <FontIcon color="#fff" className="material-icons">
-          delete
-        </FontIcon>
+        <Delete htmlColor="#fff" />
       </IconButton>
       {product && product.enabled && (
         <a href={product.url} target="_blank">
@@ -41,9 +39,7 @@ const Buttons: FC<Props> = props => {
             tooltipPosition="bottom-left"
             tooltip={messages.viewOnWebsite}
           >
-            <FontIcon color="#fff" className="material-icons">
-              open_in_new
-            </FontIcon>
+            <OpenInNew htmlColor="#fff" />
           </IconButton>
         </a>
       )}

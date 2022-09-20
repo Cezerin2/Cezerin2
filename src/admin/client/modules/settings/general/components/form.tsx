@@ -1,7 +1,7 @@
+import { KeyboardArrowRight } from "@mui/icons-material"
 import data from "lib/data"
 import messages from "lib/text"
 import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import MenuItem from "material-ui/MenuItem"
 import Paper from "material-ui/Paper"
@@ -67,11 +67,7 @@ const GeneralSettings: FC<Props> = props => {
                     style={{ textDecoration: "none" }}
                   >
                     <ListItem
-                      rightIcon={
-                        <FontIcon className="material-icons">
-                          keyboard_arrow_right
-                        </FontIcon>
-                      }
+                      rightIcon={<KeyboardArrowRight />}
                       primaryText={messages.logo}
                     />
                   </Link>

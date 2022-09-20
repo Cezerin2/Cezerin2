@@ -1,5 +1,5 @@
+import { MoreVert } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import IconMenu from "material-ui/IconMenu"
 import MenuItem from "material-ui/MenuItem"
@@ -63,9 +63,7 @@ const FieldsEditor = ({ fields, meta: { touched, error, submitFailed } }) => {
                   anchorOrigin={{ horizontal: "right", vertical: "top" }}
                   iconButtonElement={
                     <IconButton touch>
-                      <FontIcon color="#777" className="material-icons">
-                        more_vert
-                      </FontIcon>
+                      <MoreVert htmlColor="#777" />
                     </IconButton>
                   }
                 >

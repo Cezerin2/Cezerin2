@@ -1,7 +1,7 @@
+import { Delete } from "@mui/icons-material"
 import arrayMutators from "final-form-arrays"
 import messages from "lib/text"
 import FlatButton from "material-ui/FlatButton"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
@@ -54,13 +54,7 @@ const AttributesGrid = ({ fields, meta: { touched, error, submitFailed } }) => (
               onClick={() => fields.remove(index)}
               tabIndex={-1}
             >
-              <FontIcon
-                color="#a1a1a1"
-                className="material-icons"
-                data-index={index}
-              >
-                delete
-              </FontIcon>
+              <Delete htmlColor="#a1a1a1" data-index={index} />
             </IconButton>
           </div>
         </div>

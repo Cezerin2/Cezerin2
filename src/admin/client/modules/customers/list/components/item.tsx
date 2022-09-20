@@ -1,7 +1,7 @@
+import { Place } from "@mui/icons-material"
 import * as helper from "lib/helper"
 import Checkbox from "material-ui/Checkbox"
 import Divider from "material-ui/Divider"
-import FontIcon from "material-ui/FontIcon"
 import { ListItem } from "material-ui/List"
 import React from "react"
 import { Link } from "react-router-dom"
@@ -41,16 +41,13 @@ const CustomersListItem = ({ customer, onSelect, selected, settings }) => {
             <div className={"col-xs-3 " + style.location}>
               {customer.shipping && customer.shipping.city && (
                 <span>
-                  <FontIcon
+                  <Place
                     style={{
                       color: "rgba(0, 0, 0, 0.4)",
                       fontSize: 16,
                       marginRight: 6,
                     }}
-                    className="material-icons"
-                  >
-                    place
-                  </FontIcon>
+                  />
                   {customer.shipping.city}
                 </span>
               )}

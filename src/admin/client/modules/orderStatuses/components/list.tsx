@@ -1,5 +1,5 @@
+import { Folder, Settings } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import { List, ListItem } from "material-ui/List"
 import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
@@ -13,7 +13,7 @@ const styles = {
   },
 }
 
-const FolderIcon = <FontIcon className="material-icons">folder</FontIcon>
+const FolderIcon = <Folder />
 
 interface Props {
   onSelect
@@ -68,7 +68,7 @@ const StatusesList: FC<Props> = props => {
             className="treeItem"
             primaryText={messages.manageOrderStatuses}
             innerDivStyle={styles.innerItem}
-            leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
+            leftIcon={<Settings/>}
           />
         </Link>
       )}

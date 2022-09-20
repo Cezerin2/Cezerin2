@@ -1,5 +1,5 @@
+import { AddCircle } from "@mui/icons-material"
 import messages from "lib/text"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import Paper from "material-ui/Paper"
 import React, { FC, useState } from "react"
@@ -36,9 +36,7 @@ const OptionValueAdd: FC<{ onCreate }> = props => {
       </div>
       <div className={style.gridColButton}>
         <IconButton title={messages.add} onClick={onCreate} tabIndex={-1}>
-          <FontIcon color="#a1a1a1" className="material-icons">
-            add_circle
-          </FontIcon>
+          <AddCircle htmlColor="#a1a1a1" />
         </IconButton>
       </div>
     </div>

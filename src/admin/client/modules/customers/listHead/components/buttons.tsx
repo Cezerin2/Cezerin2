@@ -1,7 +1,7 @@
+import { Delete, Folder } from "@mui/icons-material"
 import messages from "lib/text"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
-import FontIcon from "material-ui/FontIcon"
 import IconButton from "material-ui/IconButton"
 import GroupSelect from "modules/customerGroups/select"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
@@ -60,9 +60,7 @@ const Buttons: FC<Props> = props => {
             tooltip={messages.actions_delete}
             onClick={() => setOpenDelete(true)}
           >
-            <FontIcon color="#fff" className="material-icons">
-              delete
-            </FontIcon>
+            <Delete htmlColor="#fff" />
           </IconButton>
           <IconButton
             touch
@@ -70,9 +68,7 @@ const Buttons: FC<Props> = props => {
             tooltip={messages.customers_setGroup}
             onClick={() => setOpenSetGroup(true)}
           >
-            <FontIcon color="#fff" className="material-icons">
-              folder
-            </FontIcon>
+            <Folder htmlColor="#fff" />
           </IconButton>
           <DeleteConfirmation
             open={openDelete}
