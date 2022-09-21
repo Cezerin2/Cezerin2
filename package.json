@@ -52,7 +52,7 @@
     "@sentry/react": "^7.13.0",
     "@sentry/tracing": "^7.13.0",
     "@stripe/react-stripe-js": "^1.10.0",
-    "@stripe/stripe-js": "^1.36.0",
+    "@stripe/stripe-js": "^1.37.0",
     "@tinymce/tinymce-react": "^4.2.0",
     "@types/formidable": "1.0.31",
     "axios": "^0.27.2",
