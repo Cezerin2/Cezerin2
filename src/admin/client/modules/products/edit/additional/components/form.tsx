@@ -11,7 +11,7 @@ import { TextField } from "redux-form-material-ui"
 import ProductCategoryMultiSelect from "./productCategoryMultiSelect"
 import ProductCategorySelect from "./productCategorySelect"
 import ProductsArray from "./productsArray"
-import style from "./style.css"
+import style from "./style.sass"
 
 const TagsField = ({ input, placeholder }) => {
   const tagsArray = input.value && Array.isArray(input.value) ? input.value : []

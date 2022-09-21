@@ -3,7 +3,7 @@ import FlatButton from "material-ui/FlatButton"
 import React, { FC } from "react"
 import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 
 const validate = values => {
   const errors = {}

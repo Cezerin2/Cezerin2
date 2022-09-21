@@ -5,7 +5,7 @@ import FloatingActionButton from "material-ui/FloatingActionButton"
 import Paper from "material-ui/Paper"
 import React, { FC } from "react"
 import DynamicEditControl from "./dynamicEditControl"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   label

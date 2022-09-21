@@ -7,7 +7,7 @@ import { CustomToggle } from "modules/shared/form"
 import React, { FC, useEffect } from "react"
 import { Field, Form } from "react-final-form"
 import { SelectField, TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 import OptionValues from "./values"
 
 const validate = values => {

@@ -4,7 +4,7 @@ import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import moment from "moment"
 import React, { FC, useState } from "react"
-import style from "./style.css"
+import style from "./style.sass"
 import SummaryForm from "./summaryForm"
 
 const getOrderStates = order => {

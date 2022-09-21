@@ -8,7 +8,7 @@ import React, { FC, useEffect } from "react"
 import { Field, Form } from "react-final-form"
 import TagsInput from "react-tagsinput"
 import { TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 
 const TagsField = ({ input, placeholder }) => {
   const tagsArray = input.value && Array.isArray(input.value) ? input.value : []

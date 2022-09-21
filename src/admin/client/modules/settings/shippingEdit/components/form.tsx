@@ -9,7 +9,7 @@ import { Field, Form } from "react-final-form"
 import { FieldArray } from "react-final-form-arrays"
 import { TextField } from "redux-form-material-ui"
 import FieldsEditor from "./fieldsEditor"
-import style from "./style.css"
+import style from "./style.sass"
 
 const validate = values => {
   const errors = {}

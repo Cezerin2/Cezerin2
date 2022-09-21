@@ -3,7 +3,7 @@ import ServiceActions from "./actions"
 import ServiceDescription from "./description"
 import ServiceLogs from "./logs"
 import ServiceSettings from "./settings"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   fetchData

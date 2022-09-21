@@ -8,7 +8,7 @@ import Paper from "material-ui/Paper"
 import ConfirmationDialog from "modules/shared/confirmation"
 import React, { FC, useEffect, useState } from "react"
 import AddressForm from "./addressForm"
-import style from "./style.css"
+import style from "./style.sass"
 
 let countRender = 0
 

@@ -5,7 +5,7 @@ import MenuItem from "material-ui/MenuItem"
 import React, { FC, useEffect, useState } from "react"
 import { Field, Form } from "react-final-form"
 import { SelectField, TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 
 const validate = values => {
   const errors = {}

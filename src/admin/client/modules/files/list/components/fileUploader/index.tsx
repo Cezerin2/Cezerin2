@@ -3,7 +3,7 @@ import FlatButton from "material-ui/FlatButton"
 import Snackbar from "material-ui/Snackbar"
 import React, { FC, useRef } from "react"
 import Dropzone from "react-dropzone"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   uploading

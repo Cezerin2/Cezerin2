@@ -6,7 +6,7 @@ import { FieldArray } from "react-final-form-arrays"
 import { SelectField, TextField } from "redux-form-material-ui"
 import ArrayEditor from "./arrayEditor"
 import ImageEditor from "./imageEditor"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   type

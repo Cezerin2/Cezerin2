@@ -2,7 +2,7 @@ import messages from "lib/text"
 import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
 import React, { FC } from "react"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   isClosed

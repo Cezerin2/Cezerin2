@@ -3,7 +3,7 @@ import MenuItem from "material-ui/MenuItem"
 import SelectField from "material-ui/SelectField"
 import Toggle from "material-ui/Toggle"
 import React, { FC } from "react"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   active

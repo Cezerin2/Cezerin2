@@ -5,7 +5,7 @@ import { CustomToggle, MultiSelect } from "modules/shared/form"
 import React, { FC, useEffect } from "react"
 import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 
 const WEBHOOK_EVENTS = [
   "order.created",

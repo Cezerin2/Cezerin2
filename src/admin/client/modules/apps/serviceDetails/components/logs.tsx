@@ -2,7 +2,7 @@ import messages from "lib/text"
 import Paper from "material-ui/Paper"
 import moment from "moment"
 import React from "react"
-import style from "./style.css"
+import style from "./style.sass"
 
 const ServiceLogs = ({ logs }) => {
   const list = logs.map((action, index) => {

@@ -5,7 +5,7 @@ import { CustomToggle } from "modules/shared/form"
 import React from "react"
 import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 
 const AccountForm = ({ initialValues, onSubmit }) => (
   <div style={{ maxWidth: 720, width: "100%" }}>
