@@ -64,6 +64,15 @@ module.exports = {
     extensions: [".tsx", ".js"],
   },
 
+  ignoreWarnings: [
+    (warning?: unknown) =>
+      typeof warning === "string"
+        ? !warning?.includes(
+            "This selector doesn't have any properties and won't be rendered."
+          )
+        : true,
+  ],
+
   module: {
     rules: [
       {
@@ -103,7 +112,7 @@ module.exports = {
                 options: {
                   importLoaders: 1,
                   modules: {
-                    localIdentName: "[name]__[local]___[hash:base64:5]",
+                    localIdentName: "[path][name]__[local]___[hash:base64:5]",
                   },
                 },
               },
