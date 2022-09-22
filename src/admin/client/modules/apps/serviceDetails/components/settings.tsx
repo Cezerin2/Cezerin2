@@ -6,7 +6,7 @@ import { CustomToggle } from "modules/shared/form"
 import React from "react"
 import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 
 const ServiceSettingsForm = ({ initialValues, onSubmit }) => {
   const fields = Object.keys(initialValues).map((key, index) => {

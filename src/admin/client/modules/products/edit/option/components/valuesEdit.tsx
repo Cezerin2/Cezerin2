@@ -2,7 +2,7 @@ import { Delete } from "@mui/icons-material"
 import messages from "lib/text"
 import IconButton from "material-ui/IconButton"
 import React, { FC, useState } from "react"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   value

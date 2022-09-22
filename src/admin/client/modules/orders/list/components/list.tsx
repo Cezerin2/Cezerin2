@@ -6,7 +6,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import React, { FC, useEffect } from "react"
 import Head from "./head"
 import OrdersListItem from "./item"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   items

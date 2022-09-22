@@ -3,7 +3,7 @@ import Paper from "material-ui/Paper"
 import React, { FC, useEffect } from "react"
 import FileItem from "./fileItem"
 import FileUploader from "./fileUploader"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   files

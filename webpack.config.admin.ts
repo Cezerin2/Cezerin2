@@ -4,6 +4,7 @@ import { readFileSync } from "fs-extra"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import path from "path"
+import sass from "sass"
 import webpack from "webpack"
 import YAML from "yaml"
 import { Admin } from "./config/types/admin"
@@ -111,16 +112,31 @@ module.exports = {
             ],
           },
           {
-            test: /\.s[ac]ss$/i,
+            test: /\.sass$/i,
             use: [
               // Extracts CSS into separate files
               MiniCssExtractPlugin.loader,
               // Translates CSS into CommonJS
-              "css-loader",
+              {
+                loader: "css-loader",
+                options: {
+                  esModule: true,
+                  modules: {
+                    // TODO namedExport: true,
+                  },
+                },
+              },
               // Loader to process CSS with PostCSS
               "postcss-loader",
-              // Compiles Sass to CSS
-              "sass-loader",
+              // Compiles SASS to CSS
+              {
+                loader: "sass-loader",
+                options: {
+                  sassOptions: {
+                    logger: sass.Logger.silent,
+                  },
+                },
+              },
             ],
           },
         ],

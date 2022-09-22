@@ -5,7 +5,7 @@ import Paper from "material-ui/Paper"
 import Snackbar from "material-ui/Snackbar"
 import React, { FC, useEffect, useRef, useState } from "react"
 import Dropzone from "react-dropzone"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   uploading

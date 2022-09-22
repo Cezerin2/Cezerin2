@@ -7,7 +7,7 @@ import MenuItem from "material-ui/MenuItem"
 import DeleteConfirmation from "modules/shared/deleteConfirmation"
 import moment from "moment"
 import React, { FC, useState } from "react"
-import style from "./style.css"
+import style from "./style.sass"
 
 const iconButtonElement = (
   <IconButton touch>

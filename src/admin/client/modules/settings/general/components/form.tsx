@@ -11,7 +11,7 @@ import { Field, Form } from "react-final-form"
 import { Link } from "react-router-dom"
 import { SelectField, TextField } from "redux-form-material-ui"
 import { fields } from "./fields"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   initialValues

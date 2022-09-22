@@ -5,7 +5,7 @@ import {
   SortableElement,
 } from "react-sortable-hoc"
 import GalleryItem from "./item"
-import style from "./style.css"
+import style from "./style.sass"
 import MultiUploader from "./uploader"
 
 const SortableItem = SortableElement(({ image, onDelete, onImageEdit }) => (

@@ -6,7 +6,7 @@ import React, { FC, useEffect, useRef, useState } from "react"
 import { Form } from "react-final-form"
 import { AVAILABLE_PAYMENT_GATEWAYS } from "../availablePaymentGateways"
 import GatewaySettings from "./gatewaySettings"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   initialValues

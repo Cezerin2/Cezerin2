@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react"
 import Account from "./account"
 import Developer from "./developer"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface props {
   account

@@ -14,7 +14,7 @@ import { ListItem } from "material-ui/List"
 import moment from "moment"
 import React from "react"
 import { Link } from "react-router-dom"
-import style from "./style.css"
+import style from "./style.sass"
 
 const getOrderStateIcons = order => {
   let icons = []

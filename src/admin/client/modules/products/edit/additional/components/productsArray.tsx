@@ -11,7 +11,7 @@ import ProductSearchDialog from "modules/shared/productSearch"
 import React, { FC, useEffect, useState } from "react"
 import { FieldArrayRenderProps } from "react-final-form-arrays"
 import { Link } from "react-router-dom"
-import style from "./style.css"
+import style from "./style.sass"
 
 const ProductShort = ({
   id,

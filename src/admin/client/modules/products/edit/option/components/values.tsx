@@ -3,7 +3,7 @@ import messages from "lib/text"
 import IconButton from "material-ui/IconButton"
 import Paper from "material-ui/Paper"
 import React, { FC, useState } from "react"
-import style from "./style.css"
+import style from "./style.sass"
 import OptionValueEdit from "./valuesEdit"
 
 const OptionValueAdd: FC<{ onCreate }> = props => {

@@ -7,7 +7,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import React, { FC, useEffect } from "react"
 import { Form } from "react-final-form"
 import DynamicEditControl from "./dynamicEditControl"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   initialValues

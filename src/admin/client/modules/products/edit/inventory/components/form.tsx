@@ -8,7 +8,7 @@ import { CustomToggle } from "modules/shared/form"
 import React from "react"
 import { Field, Form } from "react-final-form"
 import { DatePicker, TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 
 const validate = values => {
   const errors = {}

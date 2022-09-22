@@ -2,7 +2,7 @@ import messages from "lib/text"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import React from "react"
-import style from "./style.css"
+import style from "./style.sass"
 
 const ServiceDescription = ({
   service,

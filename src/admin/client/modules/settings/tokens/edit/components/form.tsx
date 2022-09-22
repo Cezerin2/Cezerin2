@@ -6,7 +6,7 @@ import { MultiSelect } from "modules/shared/form"
 import React, { FC, useEffect, useState } from "react"
 import { Field, Form } from "react-final-form"
 import { TextField } from "redux-form-material-ui"
-import style from "./style.css"
+import style from "./style.sass"
 
 const Scopes = [
   "admin",

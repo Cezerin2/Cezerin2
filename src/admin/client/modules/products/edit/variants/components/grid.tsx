@@ -7,7 +7,7 @@ import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
 import React, { FC, useState } from "react"
 import { Link } from "react-router-dom"
-import style from "./style.css"
+import style from "./style.sass"
 
 interface Props {
   type

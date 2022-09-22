@@ -2,7 +2,7 @@ import { CheckCircle } from "@mui/icons-material"
 import { Card, CardMedia, CardTitle } from "material-ui/Card"
 import React, { FC } from "react"
 import { Link } from "react-router-dom"
-import style from "./style.css"
+import style from "./style.sass"
 
 const styles = {
   card: {

@@ -8,7 +8,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import React, { FC } from "react"
 import { Field, Form } from "react-final-form"
 import { FieldArray } from "react-final-form-arrays"
-import style from "./style.css"
+import style from "./style.sass"
 
 const AttributesGrid = ({ fields, meta: { touched, error, submitFailed } }) => (
   <div>

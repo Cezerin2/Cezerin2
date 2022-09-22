@@ -4,7 +4,7 @@ import messages from "lib/text"
 import Divider from "material-ui/Divider"
 import React from "react"
 import { Link } from "react-router-dom"
-import style from "./style.css"
+import style from "./style.sass"
 
 const THUMBNAIL_WIDTH = 100
 const ImagePlaceholder = (

@@ -5,7 +5,7 @@ import Divider from "material-ui/Divider"
 import { ListItem } from "material-ui/List"
 import React from "react"
 import { Link } from "react-router-dom"
-import style from "./style.css"
+import style from "./style.sass"
 
 const CustomersListItem = ({ customer, onSelect, selected, settings }) => {
   const checked = selected.includes(customer.id)
