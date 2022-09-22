@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react"
 import { Field, Form } from "react-final-form"
 import { Link } from "react-router-dom"
+import { getValidation } from "../../lib/helper"
 import { text } from "../../lib/settings"
 
 const validateRequired = value =>
@@ -67,6 +68,19 @@ const ResetPassword: FC<Props> = props => {
   const isFieldHidden = fieldName => {
     return getFieldStatus(fieldName) === "hidden"
   }
+
+  const validate = getValidation((value, key, string, values) => {
+    const isEmail = key === "email" ? string.email(text.emailInvalid) : string
+    const isConfirmPassword =
+      key === "password_verify" && typeof values.password === "string"
+        ? isEmail.oneOf([values.password], text.password_verify_failed)
+        : isEmail
+    const isRequired = isFieldOptional(key)
+      ? isConfirmPassword
+      : isConfirmPassword.required(text.required)
+
+    return isRequired
+  })
 
   const getFieldValidators = fieldName => {
     const isOptional = isFieldOptional(fieldName)

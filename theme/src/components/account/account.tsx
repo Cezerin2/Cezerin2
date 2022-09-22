@@ -2,6 +2,7 @@ import Lscache from "lscache"
 import React, { FC, useEffect, useState } from "react"
 import { Field, Form } from "react-final-form"
 import { Link, Redirect } from "react-router-dom"
+import { getValidation } from "../../lib/helper"
 import { text } from "../../lib/settings"
 
 const validateRequired = value =>
@@ -211,6 +212,15 @@ const Account: FC<Props> = props => {
   const isFieldOptional = fieldName => getFieldStatus(fieldName) === "optional"
 
   const isFieldHidden = fieldName => getFieldStatus(fieldName) === "hidden"
+
+  const validate = getValidation((value, key, string) => {
+    const isEmail = key === "email" ? string.email(text.emailInvalid) : string
+    const isRequired = isFieldOptional(key)
+      ? isEmail
+      : isEmail.required(text.required)
+
+    return isRequired
+  })
 
   const getFieldValidators = fieldName => {
     const isOptional = isFieldOptional(fieldName)
