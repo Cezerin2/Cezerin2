@@ -931,21 +931,11 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@date-io/core@^2.11.0", "@date-io/core@^2.15.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.15.0.tgz#8133860c8ce163b8d0cca3c1caed8d5d1fbfb14e"
-
-"@date-io/core@^2.16.0":
+"@date-io/core@^2.11.0", "@date-io/core@^2.15.0", "@date-io/core@^2.16.0":
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.16.0.tgz#7871bfc1d9bca9aa35ad444a239505589d0f22f6"
 
-"@date-io/date-fns@^2.11.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-2.15.0.tgz#2541144f4fc40365efd7d0b7affa5d77dbe59102"
-  dependencies:
-    "@date-io/core" "^2.15.0"
-
-"@date-io/date-fns@^2.15.0":
+"@date-io/date-fns@^2.11.0", "@date-io/date-fns@^2.15.0":
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-2.16.0.tgz#bd5e09b6ecb47ee55e593fc3a87e7b2caaa3da40"
   dependencies:
@@ -1263,9 +1253,9 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
-"@mui/x-date-pickers@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-5.0.2.tgz#42bf6b0f9b86718bb56b08c6fa105500db37fc7d"
+"@mui/x-date-pickers@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-5.0.3.tgz#970362d93f7cc99bc2210370d1f254f7f8f61ef5"
   dependencies:
     "@babel/runtime" "^7.18.9"
     "@date-io/core" "^2.15.0"
