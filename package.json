@@ -66,6 +66,7 @@
     "fs-extra": "^10.1.0",
     "handlebars": "^4.7.7",
     "helmet": "^6.0.0",
+    "html-react-parser": "^3.0.4",
     "i18next": "^21.9.2",
     "i18next-browser-languagedetector": "^6.1.5",
     "i18next-http-backend": "^1.4.4",
