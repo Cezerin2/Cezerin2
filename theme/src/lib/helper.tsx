@@ -1,5 +1,9 @@
+/* eslint-disable no-unused-vars */
+import { mapValues } from "lodash"
+import { makeValidate } from "mui-rff"
 import React from "react"
 import { NavLink } from "react-router-dom"
+import { object, string, StringSchema } from "yup"
 import { text } from "./settings"
 
 export const formatNumber = (number, settings) => {
@@ -173,3 +177,24 @@ export const getShippingFieldLabel = ({ label, key }) =>
 
 export const getCheckoutFieldLabel = ({ label, name }) =>
   label && label.length > 0 ? label : getFieldLabelByKey(name)
+
+type getValidationCallback = (
+  value: unknown,
+  key: string,
+  yupString: StringSchema,
+  formValues: Record<string, unknown>
+) => StringSchema
+
+export const getValidation =
+  (callback: getValidationCallback) =>
+  async (values: Record<string, unknown>) => {
+    const newObject = mapValues(values, (value, key, formValues) =>
+      callback(value, key, string(), formValues)
+    )
+
+    const schema = object().shape(newObject)
+    const validator = makeValidate<Record<string, unknown>>(schema)
+    const errors = await validator(values)
+
+    return errors
+  }
