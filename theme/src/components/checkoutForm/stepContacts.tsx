@@ -1,7 +1,7 @@
 import Lscache from "lscache"
 import React, { FC, useEffect, useState } from "react"
 import { Field, Form } from "react-final-form"
-import { formatCurrency } from "../../lib/helper"
+import { formatCurrency, getValidation } from "../../lib/helper"
 import { text } from "../../lib/settings"
 import InputField from "./inputField"
 
@@ -228,6 +228,19 @@ const CheckoutStepContacts: FC<Props> = props => {
   const isFieldOptional = fieldName => getFieldStatus(fieldName) === "optional"
 
   const isFieldHidden = fieldName => getFieldStatus(fieldName) === "hidden"
+
+  const validate = getValidation((value, key, string, values) => {
+    const isEmail = key === "email" ? string.email(text.emailInvalid) : string
+    const isConfirmPassword =
+      key === "password_verify" && typeof values.password === "string"
+        ? isEmail.oneOf([values.password], text.password_verify_failed)
+        : isEmail
+    const isRequired = isFieldOptional(key)
+      ? isConfirmPassword
+      : isConfirmPassword.required(text.required)
+
+    return isRequired
+  })
 
   const getFieldValidators = fieldName => {
     const isOptional = isFieldOptional(fieldName)

@@ -1,5 +1,6 @@
 import React, { FC } from "react"
 import { Field, Form } from "react-final-form"
+import { getValidation } from "../../lib/helper"
 import { text } from "../../lib/settings"
 
 const validateRequired = value =>
@@ -59,6 +60,15 @@ const ForgotPassword: FC<Props> = props => {
   const isFieldDisabled = fieldName => {
     return getFieldStatus(fieldName) === "disabled"
   }
+
+  const validate = getValidation((value, key, string) => {
+    const isEmail = key === "email" ? string.email(text.emailInvalid) : string
+    const isRequired = isFieldOptional(key)
+      ? isEmail
+      : isEmail.required(text.required)
+
+    return isRequired
+  })
 
   const getFieldValidators = fieldName => {
     const isOptional = isFieldOptional(fieldName)
