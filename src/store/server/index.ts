@@ -1,11 +1,13 @@
 import cors from "@koa/cors"
 import Router from "@koa/router"
+import { ensureDir, pathExists } from "fs-extra"
 import Koa from "koa"
 import koaBody from "koa-body"
 import compress from "koa-compress"
 import mount from "koa-mount"
 import send from "koa-send"
 import serve from "koa-static"
+import sharp from "sharp"
 import winston from "winston"
 import { helmetMiddleware } from "./helmet"
 import "./logger"
@@ -54,9 +56,18 @@ app
 router
   .get("/", pageRendering)
   .get("/images/:entity/:id/:size/:filename", async ctx => {
-    // A stub of image resizing (can be done with Nginx)
-    const newUrl = `/images/${ctx.params.entity}/${ctx.params.id}/${ctx.params.filename}`
-    ctx.redirect(newUrl)
+    const filePath = `public/content/images/${ctx.params.entity}/${ctx.params.id}`
+    const tempPath = `${filePath}/temp/${ctx.params.size}`
+    const tempFile = `${tempPath}/${ctx.params.filename}.webp`
+
+    await ensureDir(tempPath)
+
+    if (!(await pathExists(tempFile)))
+      await sharp(`${filePath}/${ctx.params.filename}`)
+        .resize(Number(ctx.params.size))
+        .toFile(tempFile)
+
+    await send(ctx, tempFile)
   })
   .use("/sw.js", ctx => send(ctx, "theme/assets/sw.js"))
   .use("/admin", ctx => send(ctx, "public/admin/index.html"))
