@@ -156,7 +156,7 @@
     "core-js": "^3.25.2",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.13",
-    "eslint": "^8.23.1",
+    "eslint": "^8.24.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
