@@ -1,3 +1,5 @@
+import { sanitize } from "dompurify"
+import parse from "html-react-parser"
 import PropTypes from "prop-types"
 import React from "react"
 import CategoryBreadcrumbs from "../components/categoryBreadcrumbs"
@@ -44,10 +46,9 @@ const CategoryHero = ({ categoryDetails, categories }) => (
           />
         )}
         <h1 className="category-title">{categoryDetails.name}</h1>
-        <div
-          className="category-description is-hidden-mobile content"
-          dangerouslySetInnerHTML={{ __html: categoryDetails.description }}
-        />
+        <div className="category-description is-hidden-mobile content">
+          {parse(sanitize(categoryDetails.description))}
+        </div>
       </div>
     </div>
   </section>

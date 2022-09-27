@@ -1,3 +1,5 @@
+import { sanitize } from "dompurify"
+import parse from "html-react-parser"
 import messages from "lib/text"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
@@ -43,10 +45,9 @@ const ServiceDescription = ({
                 )}
               </div>
             </div>
-            <div
-              className={style.description}
-              dangerouslySetInnerHTML={{ __html: service.description }}
-            />
+            <div className={style.description}>
+              {parse(sanitize(service.description))}
+            </div>
           </div>
         </Paper>
       </div>

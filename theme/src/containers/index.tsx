@@ -1,3 +1,5 @@
+import { sanitize } from "dompurify"
+import parse from "html-react-parser"
 import PropTypes from "prop-types"
 import React, { Fragment } from "react"
 import HomeSlider from "../components/homeSlider"
@@ -27,11 +29,7 @@ const IndexContainer = props => {
         <section className="section">
           <div className="container">
             <div className="content">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: pageDetails.content,
-                }}
-              />
+              {parse(sanitize(pageDetails.content))}
             </div>
           </div>
         </section>
