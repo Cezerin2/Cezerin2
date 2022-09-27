@@ -160,7 +160,7 @@ const Register: FC<Props> = props => {
   const loginButtonClass = "account-button button"
   return (
     <div className="login-container">
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} validate={validate}>
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit} className="login-form">
             <div className="register-section">
@@ -202,7 +202,6 @@ const Register: FC<Props> = props => {
                     registerProperties.status && { disabled: true }
                   }
                   label={getFieldLabel("first_name")}
-                  validate={getFieldValidators("first_name")}
                   placeholder={getFieldPlaceholder("first_name")}
                 />
               )}
@@ -219,7 +218,6 @@ const Register: FC<Props> = props => {
                     registerProperties.status && { disabled: true }
                   }
                   label={getFieldLabel("last_name")}
-                  validate={getFieldValidators("last_name")}
                   placeholder={getFieldPlaceholder("last_name")}
                 />
               )}
@@ -236,7 +234,6 @@ const Register: FC<Props> = props => {
                     registerProperties.status && { disabled: true }
                   }
                   label={getFieldLabel("email")}
-                  validate={getFieldValidators("email")}
                   placeholder={getFieldPlaceholder("email")}
                 />
               )}
@@ -256,7 +253,6 @@ const Register: FC<Props> = props => {
                   onBlur={({ currentTarget }) =>
                     setComparePassword(currentTarget.defaultValue)
                   }
-                  validate={getFieldValidators("password")}
                   placeholder={getFieldPlaceholder("password")}
                 />
               )}
@@ -273,7 +269,6 @@ const Register: FC<Props> = props => {
                     registerProperties.status && { disabled: true }
                   }
                   label={getFieldLabel("password_verify")}
-                  validate={getFieldValidators("password_verify")}
                   placeholder={getFieldPlaceholder("password_verify")}
                 />
               )}

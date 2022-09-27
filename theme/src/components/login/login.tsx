@@ -161,7 +161,7 @@ const Login: FC<Props> = props => {
 
   return (
     <div className="login-container">
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} validate={validate}>
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit} className={loginForm}>
             <div className="login-section">
@@ -180,7 +180,6 @@ const Login: FC<Props> = props => {
                   component={InputField}
                   type="email"
                   label={getFieldLabel("email")}
-                  validate={getFieldValidators("email")}
                   placeholder={getFieldPlaceholder("email")}
                 />
               )}
@@ -193,7 +192,6 @@ const Login: FC<Props> = props => {
                   component={InputField}
                   type="password"
                   label={getFieldLabel("password")}
-                  validate={getFieldValidators("password")}
                   placeholder={getFieldPlaceholder("password")}
                 />
               )}

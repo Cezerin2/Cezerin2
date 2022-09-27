@@ -708,6 +708,7 @@ const Account: FC<Props> = props => {
             <Form
               initialValues={initialValues}
               onSubmit={onSubmit}
+              validate={validate}
               keepDirtyOnReinitialize
             >
               {({ handleSubmit }) => (
@@ -721,7 +722,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("first_name")}
-                    validate={getFieldValidators("first_name")}
                     placeholder={getFieldPlaceholder("first_name")}
                   />
                   <Field
@@ -732,7 +732,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("last_name")}
-                    validate={getFieldValidators("last_name")}
                     placeholder={getFieldPlaceholder("last_name")}
                   />
                   <Field
@@ -743,7 +742,6 @@ const Account: FC<Props> = props => {
                     component={InputField} // this.state.loggedin
                     type="email"
                     label={getFieldLabel("email")}
-                    validate={getFieldValidators("email")}
                     placeholder={getFieldPlaceholder("email")}
                   />
                   <Field
@@ -754,7 +752,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("mobile")}
-                    validate={getFieldValidators("mobile")}
                     placeholder={getFieldPlaceholder("mobile")}
                   />
                   <Field
@@ -765,7 +762,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="password"
                     label={getFieldLabel("password")}
-                    validate={getFieldValidators("password")}
                     placeholder={getFieldPlaceholder("password")}
                   />
 
@@ -777,7 +773,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="password"
                     label={getFieldLabel("password_verify")}
-                    validate={getFieldValidators("password_verify")}
                     placeholder={getFieldPlaceholder("password_verify")}
                   />
                   <h3 className={titleClassName}>{text.shippingAddress}</h3>
@@ -788,7 +783,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("address1")}
-                    validate={getFieldValidators("address1")}
                     placeholder={getFieldPlaceholder("address1")}
                   />
                   <Field
@@ -807,7 +801,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("country")}
-                    validate={getFieldValidators("country")}
                     placeholder={getFieldPlaceholder("country")}
                   />
 
@@ -818,7 +811,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("state")}
-                    validate={getFieldValidators("state")}
                     placeholder={getFieldPlaceholder("state")}
                   />
 
@@ -829,7 +821,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("postal_code")}
-                    validate={getFieldValidators("postal_code")}
                     placeholder={getFieldPlaceholder("postal_code")}
                   />
 
@@ -840,7 +831,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("city")}
-                    validate={getFieldValidators("city")}
                     placeholder={getFieldPlaceholder("city")}
                   />
 
@@ -852,7 +842,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("address1")}
-                    validate={getFieldValidators("address1")}
                     placeholder={getFieldPlaceholder("address1")}
                   />
                   <Field
@@ -871,7 +860,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("country")}
-                    validate={getFieldValidators("country")}
                     placeholder={getFieldPlaceholder("country")}
                   />
 
@@ -882,7 +870,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("state")}
-                    validate={getFieldValidators("state")}
                     placeholder={getFieldPlaceholder("state")}
                   />
 
@@ -893,7 +880,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("postal_code")}
-                    validate={getFieldValidators("postal_code")}
                     placeholder={getFieldPlaceholder("postal_code")}
                   />
 
@@ -904,7 +890,6 @@ const Account: FC<Props> = props => {
                     component={InputField}
                     type="text"
                     label={getFieldLabel("city")}
-                    validate={getFieldValidators("city")}
                     placeholder={getFieldPlaceholder("city")}
                   />
 
