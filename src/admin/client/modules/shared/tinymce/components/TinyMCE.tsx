@@ -1,3 +1,5 @@
+import { sanitize } from "dompurify"
+import parse from "html-react-parser"
 import clone from "lodash/clone"
 import isEqual from "lodash/isEqual"
 import React from "react"
@@ -117,11 +119,9 @@ class TinyMCE extends React.Component {
 
   render() {
     return this.props.config.inline ? (
-      <div
-        id={this.id}
-        className={this.props.className}
-        dangerouslySetInnerHTML={{ __html: this.props.content }}
-      />
+      <div id={this.id} className={this.props.className}>
+        {parse(sanitize(this.props.content))}
+      </div>
     ) : (
       <textarea
         id={this.id}

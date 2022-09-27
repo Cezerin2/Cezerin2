@@ -1,3 +1,5 @@
+import { sanitize } from "dompurify"
+import parse from "html-react-parser"
 import React, { FC, useState } from "react"
 import { themeSettings } from "../../lib/settings"
 import ViewedProducts from "../products/viewed"
@@ -13,10 +15,7 @@ import RelatedProducts from "./relatedProducts"
 import Tags from "./tags"
 
 const Description = ({ description }) => (
-  <div
-    className="product-content"
-    dangerouslySetInnerHTML={{ __html: description }}
-  />
+  <div className="product-content">{parse(sanitize(description))}</div>
 )
 
 interface Props {
