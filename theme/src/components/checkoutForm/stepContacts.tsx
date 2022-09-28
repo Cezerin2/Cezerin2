@@ -508,6 +508,7 @@ const CheckoutStepContacts: FC<Props> = props => {
       <Form
         initialValues={initialValues}
         onSubmit={onSubmit}
+        validate={validate}
         keepDirtyOnReinitialize
       >
         {({ handleSubmit, invalid }) => (
@@ -521,7 +522,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                 component={InputField}
                 type="text"
                 label={getFieldLabel("first_name")}
-                validate={getFieldValidators("first_name")}
                 placeholder={getFieldPlaceholder("first_name")}
               />
             )}
@@ -535,7 +535,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                 component={InputField}
                 type="text"
                 label={getFieldLabel("last_name")}
-                validate={getFieldValidators("last_name")}
                 placeholder={getFieldPlaceholder("last_name")}
               />
             )}
@@ -557,7 +556,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                   component={InputField} // this.state.loggedin
                   type="email"
                   label={getFieldLabel("email")}
-                  validate={getFieldValidators("email")}
                   placeholder={getFieldPlaceholder("email")}
                 />
               )
@@ -572,7 +570,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                 component={InputField}
                 type="tel"
                 label={getFieldLabel("mobile")}
-                validate={getFieldValidators("mobile")}
                 placeholder={getFieldPlaceholder("mobile")}
               />
             )}
@@ -589,7 +586,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                     type="password"
                     onBlur={passwordTemp}
                     label={!loggedin ? getFieldLabel("password") : ""}
-                    validate={getFieldValidators("password")}
                     placeholder={getFieldPlaceholder("password")}
                   />
                 )}
@@ -605,7 +601,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                     component={InputField}
                     type="password"
                     label={!loggedin ? getFieldLabel("password_verify") : ""}
-                    validate={getFieldValidators("password_verify")}
                     placeholder={getFieldPlaceholder("password_verify")}
                   />
                 )}
@@ -618,7 +613,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                 component={InputField}
                 type="text"
                 label={getFieldLabel("address1")}
-                validate={getFieldValidators("address1")}
                 placeholder={getFieldPlaceholder("address1")}
                 onBlur={(event, value) =>
                   setTimeout(() => saveShippingLocation({ address1: value }))
@@ -648,7 +642,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                 component={InputField}
                 type="text"
                 label={getFieldLabel("country")}
-                validate={getFieldValidators("country")}
                 placeholder={getFieldPlaceholder("country")}
                 onBlur={(event, value) =>
                   setTimeout(() => saveShippingLocation({ country: value }))
@@ -664,7 +657,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                 component={InputField}
                 type="text"
                 label={getFieldLabel("state")}
-                validate={getFieldValidators("state")}
                 placeholder={getFieldPlaceholder("state")}
                 onBlur={(event, value) =>
                   setTimeout(() => saveShippingLocation({ state: value }))
@@ -679,7 +671,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                 component={InputField}
                 type="text"
                 label={getFieldLabel("postal_code")}
-                validate={getFieldValidators("postal_code")}
                 placeholder={getFieldPlaceholder("postal_code")}
                 onBlur={(event, value) =>
                   setTimeout(() => saveShippingLocation({ postal_code: value }))
@@ -694,7 +685,6 @@ const CheckoutStepContacts: FC<Props> = props => {
                 component={InputField}
                 type="text"
                 label={getFieldLabel("city")}
-                validate={getFieldValidators("city")}
                 placeholder={getFieldPlaceholder("city")}
                 onBlur={(event, value) =>
                   setTimeout(() => saveShippingLocation({ city: value }))

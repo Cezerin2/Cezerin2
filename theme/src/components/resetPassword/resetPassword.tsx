@@ -135,7 +135,7 @@ const ResetPassword: FC<Props> = props => {
   const loginButtonClass = "account-button button"
   return (
     <div className="login-container">
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} validate={validate}>
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit} className="login-form">
             <div className="login-section">
@@ -162,7 +162,6 @@ const ResetPassword: FC<Props> = props => {
                   autoComplete="new-password"
                   onBlur={passwordTemp}
                   label={getFieldLabel("password")}
-                  validate={getFieldValidators("password")}
                   placeholder={getFieldPlaceholder("password")}
                 />
               )}
@@ -176,7 +175,6 @@ const ResetPassword: FC<Props> = props => {
                   autoComplete="new-password"
                   onBlur={passwordTemp}
                   label={getFieldLabel("password_verify")}
-                  validate={getFieldValidators("password_verify")}
                   placeholder={getFieldPlaceholder("password_verify")}
                 />
               )}

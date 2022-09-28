@@ -120,7 +120,7 @@ const ForgotPassword: FC<Props> = props => {
   const loginButtonClass = "account-button button"
   return (
     <div className="login-container">
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} validate={validate}>
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit} className="login-form">
             <div className="login-section">
@@ -157,7 +157,6 @@ const ForgotPassword: FC<Props> = props => {
                   forgotPasswordProperties.status && { disabled: true }
                 }
                 label={getFieldLabel("email")}
-                validate={getFieldValidators("email")}
                 placeholder={getFieldPlaceholder("email")}
               />
               <div className="login-button-wrap">
