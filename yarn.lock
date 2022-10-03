@@ -7469,9 +7469,9 @@ yaml@^1.10.0, yaml@^1.10.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
 
-yaml@^2.0.0, yaml@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.1.1.tgz#1e06fb4ca46e60d9da07e4f786ea370ed3c3cfec"
+yaml@^2.0.0, yaml@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.1.2.tgz#eb0f535eb309811b60276a9cc8c02af4355db420"
 
 yargs-parser@^21.0.0:
   version "21.1.1"
