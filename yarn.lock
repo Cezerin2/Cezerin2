@@ -1351,15 +1351,6 @@
     "@sentry/utils" "7.14.1"
     tslib "^1.9.3"
 
-"@sentry/core@7.14.0":
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-7.14.0.tgz#89178822de75c6023e1718c29bee8d588687cedd"
-  dependencies:
-    "@sentry/hub" "7.14.0"
-    "@sentry/types" "7.14.0"
-    "@sentry/utils" "7.14.0"
-    tslib "^1.9.3"
-
 "@sentry/core@7.14.1":
   version "7.14.1"
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-7.14.1.tgz#6b046181a1c13ed0fbc90d88d9c18ab1d70d98da"
@@ -1385,14 +1376,14 @@
     "@sentry/utils" "7.14.1"
     tslib "^1.9.3"
 
-"@sentry/node@^7.14.0":
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-7.14.0.tgz#51f69a0a75388100cc06b332cffd995009ca558f"
+"@sentry/node@^7.14.1":
+  version "7.14.1"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-7.14.1.tgz#96e0dcafa7b8f2471c9b67ccb4c4a37933914502"
   dependencies:
-    "@sentry/core" "7.14.0"
-    "@sentry/hub" "7.14.0"
-    "@sentry/types" "7.14.0"
-    "@sentry/utils" "7.14.0"
+    "@sentry/core" "7.14.1"
+    "@sentry/hub" "7.14.1"
+    "@sentry/types" "7.14.1"
+    "@sentry/utils" "7.14.1"
     cookie "^0.4.1"
     https-proxy-agent "^5.0.0"
     lru_map "^0.3.3"
