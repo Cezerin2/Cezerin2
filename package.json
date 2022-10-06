@@ -112,7 +112,7 @@
     "redux-form-material-ui": "^4.3.4",
     "redux-thunk": "^2.3.0",
     "sass": "^1.55.0",
-    "sharp": "^0.31.0",
+    "sharp": "^0.31.1",
     "sitemap": "^7.1.1",
     "slug": "^8.0.0",
     "stripe": "^6.7.0",
