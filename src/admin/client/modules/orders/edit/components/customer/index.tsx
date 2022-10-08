@@ -7,7 +7,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import React, { FC, useState } from "react"
 import { Link } from "react-router-dom"
 import ShippingAddressForm from "../shippingAddressForm"
-import style from "../style.css"
+import style from "../style.sass"
 import { BillingAddress, ShippingAddress } from "./components"
 
 interface Props {
