@@ -69,7 +69,7 @@
     "helmet": "^6.0.0",
     "html-react-parser": "^3.0.4",
     "i18next": "^21.10.0",
-    "i18next-browser-languagedetector": "^6.1.5",
+    "i18next-browser-languagedetector": "^6.1.8",
     "i18next-http-backend": "^1.4.4",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
