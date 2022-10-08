@@ -1,9 +1,28 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
-
-const reducer = combineReducers({})
+import { configureStore } from "@reduxjs/toolkit"
+import apps from "modules/apps/appsSlice"
+import customerGroups from "modules/customerGroups/customerGroupsSlice"
+import customers from "modules/customers/customersSlice"
+import files from "modules/files/filesSlice"
+import orders from "modules/orders/ordersSlice"
+import orderStatuses from "modules/orderStatuses/orderStatusesSlice"
+import pages from "modules/pages/pagesSlice"
+import productCategories from "modules/productCategories/productCategoriesSlice"
+import products from "modules/products/productsSlice"
+import settings from "modules/settings/settingsSlice"
 
 export const store = configureStore({
-  reducer,
+  reducer: {
+    apps,
+    customerGroups,
+    customers,
+    files,
+    orders,
+    orderStatuses,
+    pages,
+    productCategories,
+    products,
+    settings,
+  },
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
