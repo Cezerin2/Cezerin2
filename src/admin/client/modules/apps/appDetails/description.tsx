@@ -1,3 +1,5 @@
+import { sanitize } from "dompurify"
+import parse from "html-react-parser"
 import Paper from "material-ui/Paper"
 import React from "react"
 import style from "./style.sass"
@@ -27,10 +29,7 @@ const AppDescription = ({
             } */}
           </div>
         </div>
-        <div
-          className={style.description}
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
+        <div className={style.description}>{parse(sanitize(description))}</div>
       </div>
     </Paper>
   </div>

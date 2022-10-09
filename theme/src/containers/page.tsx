@@ -1,3 +1,5 @@
+import { sanitize } from "dompurify"
+import parse from "html-react-parser"
 import PropTypes from "prop-types"
 import React, { Fragment } from "react"
 import MetaTags from "../components/metaTags"
@@ -27,12 +29,9 @@ const PageContainer = props => {
       <section className="section">
         <div className="container">
           <div className="content">
-            <div
-              className="page-content"
-              dangerouslySetInnerHTML={{
-                __html: pageDetails.content,
-              }}
-            />
+            <div className="page-content">
+              {parse(sanitize(pageDetails.content))}
+            </div>
             {showPageList && (
               <PageList tags={pageListTag} sort="-date_created" />
             )}

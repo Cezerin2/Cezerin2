@@ -1,3 +1,5 @@
+import { sanitize } from "dompurify"
+import parse from "html-react-parser"
 import PropTypes from "prop-types"
 import React from "react"
 import * as helper from "../lib/helper"
@@ -113,13 +115,7 @@ const CheckoutSuccess = ({
           <br />
           {text.checkoutSuccessTitle}
         </h1>
-
-        <div
-          dangerouslySetInnerHTML={{
-            __html: pageDetails.content,
-          }}
-        />
-
+        {parse(sanitize(pageDetails.content))}
         <hr />
 
         <div className="columns" style={{ marginBottom: "3rem" }}>
