@@ -25,7 +25,6 @@ module.exports = {
       "react-router-dom",
       "react-dropzone",
       "redux",
-      "redux-form",
       "redux-form-material-ui",
       "material-ui",
     ],

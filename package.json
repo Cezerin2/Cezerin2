@@ -108,7 +108,6 @@
     "react-tagsinput": "^3.19.0",
     "react-use": "^17.4.0",
     "redux": "^4.2.0",
-    "redux-form": "^7.4.2",
     "redux-form-material-ui": "^4.3.4",
     "redux-thunk": "^2.3.0",
     "sass": "^1.55.0",
