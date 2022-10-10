@@ -177,6 +177,6 @@ export const {
 } = actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const select = (state: RootState) => state
+export const selectProducts = (state: RootState) => state.products
 
 export default reducer

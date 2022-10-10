@@ -33,6 +33,6 @@ const { actions, reducer } = createSlice({
 export const { receiveFiles, filesUploadStart, filesUploadEnd } = actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const select = (state: RootState) => state
+export const selectFiles = (state: RootState) => state.files
 
 export default reducer
