@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
@@ -10,6 +11,13 @@ import {
   checkoutOrder,
 } from "../actions"
 import OrderDetails from "./components/details"
+
+const Redux = props => {
+  const {} = useAppSelector()
+  const dispatch = useAppDispatch()
+
+  return null
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {

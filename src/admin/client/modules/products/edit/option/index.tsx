@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
@@ -9,6 +10,13 @@ import {
   deleteOptionValue,
 } from "../../actions"
 import ProductOptionForm from "./components/option"
+
+const Redux = props => {
+  const {} = useAppSelector()
+  const dispatch = useAppDispatch()
+
+  return null
+}
 
 const mapStateToProps = (state, ownProps) => {
   const { productId, optionId } = ownProps.match.params

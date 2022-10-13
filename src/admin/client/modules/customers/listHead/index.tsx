@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import {
   deleteCustomers,
@@ -6,6 +7,13 @@ import {
   setGroup,
 } from "../actions"
 import Buttons from "./components/buttons"
+
+const Redux = props => {
+  const {} = useAppSelector()
+  const dispatch = useAppDispatch()
+
+  return null
+}
 
 const mapStateToProps = state => {
   return {

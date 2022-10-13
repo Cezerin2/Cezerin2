@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from "lib/hooks"
 import messages from "lib/text"
 import { fetchCategoriesIfNeeded } from "modules/productCategories/actions"
 import ProductAdditional from "modules/products/edit/additional"
@@ -57,6 +58,13 @@ const ProductEditContainer: FC<Props> = props => {
       <ProductImages />
     </div>
   )
+}
+
+const Redux = props => {
+  const {} = useAppSelector()
+  const dispatch = useAppDispatch()
+
+  return null
 }
 
 const mapStateToProps = (state, ownProps) => {
