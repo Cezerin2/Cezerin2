@@ -1397,9 +1397,9 @@
     "@sentry/types" "7.15.0"
     tslib "^1.9.3"
 
-"@stripe/react-stripe-js@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.12.0.tgz#61d772f6271dacd19b1c9a3fb190bb7fcb568947"
+"@stripe/react-stripe-js@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.13.0.tgz#8e0bde2b116870d2aca52976f46a92d81983e235"
   dependencies:
     prop-types "^15.7.2"
 
