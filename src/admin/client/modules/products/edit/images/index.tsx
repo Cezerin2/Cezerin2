@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
@@ -8,6 +9,13 @@ import {
   uploadImages,
 } from "../../actions"
 import ProductImages from "./components/images"
+
+const Redux = props => {
+  const {} = useAppSelector()
+  const dispatch = useAppDispatch()
+
+  return null
+}
 
 const mapStateToProps = (state, ownProps) => {
   const { productId } = ownProps.match.params

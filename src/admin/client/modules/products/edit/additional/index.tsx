@@ -1,7 +1,15 @@
+import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import { importProducts, updateProduct } from "../../actions"
 import ProductAdditionalForm from "./components/form"
+
+const Redux = props => {
+  const {} = useAppSelector()
+  const dispatch = useAppDispatch()
+
+  return null
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {

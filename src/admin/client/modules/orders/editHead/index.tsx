@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import {
@@ -8,6 +9,13 @@ import {
   updateOrder,
 } from "../actions"
 import Buttons from "./components/buttons"
+
+const Redux = props => {
+  const {} = useAppSelector()
+  const dispatch = useAppDispatch()
+
+  return null
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {

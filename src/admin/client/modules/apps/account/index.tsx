@@ -1,7 +1,15 @@
+import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { fetchAccount, updateAccount, updateDeveloperAccount } from "../actions"
 import Details from "./components/details"
 import * as webstoreAuth from "lib/webstoreAuth"
+
+const Redux = props => {
+  const {} = useAppSelector()
+  const dispatch = useAppDispatch()
+
+  return null
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
