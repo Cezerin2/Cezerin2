@@ -89,7 +89,7 @@
     "moment": "^2.29.4",
     "mongodb": "^3.1.4",
     "mongoose": "^6.6.5",
-    "mui-rff": "^5.3.2",
+    "mui-rff": "^6.1.2",
     "nodemailer": "^6.8.0",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
