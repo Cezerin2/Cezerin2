@@ -168,7 +168,7 @@
     "postcss-loader": "^7.0.1",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
-    "regenerator-runtime": "^0.13.9",
+    "regenerator-runtime": "^0.13.10",
     "sass-loader": "^13.1.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
