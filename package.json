@@ -56,7 +56,7 @@
     "@stripe/stripe-js": "^1.41.0",
     "@tinymce/tinymce-react": "^4.2.0",
     "@types/formidable": "1.0.31",
-    "axios": "^1.1.2",
+    "axios": "^1.1.3",
     "bcrypt": "^5.1.0",
     "cezerin2-client": "^0.38.0",
     "chart.js": "^2.7.2",
