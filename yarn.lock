@@ -4946,9 +4946,9 @@ mongodb@^3.1.4:
   optionalDependencies:
     saslprep "^1.0.0"
 
-mongoose@^6.6.5:
-  version "6.6.5"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.6.5.tgz#fcc7ba9594db711b3d4d7a1b3522c5dbc8f0bf52"
+mongoose@^6.6.6:
+  version "6.6.6"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.6.6.tgz#2c78149ce97e966df20bf494f8b60859b6cd06e3"
   dependencies:
     bson "^4.6.5"
     kareem "2.4.1"
