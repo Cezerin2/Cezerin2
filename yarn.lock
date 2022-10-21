@@ -1347,14 +1347,6 @@
     "@sentry/utils" "7.16.0"
     tslib "^1.9.3"
 
-"@sentry/core@7.15.0":
-  version "7.15.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-7.15.0.tgz#983e08326afdb8ddb10494372cd22b3886d683c9"
-  dependencies:
-    "@sentry/types" "7.15.0"
-    "@sentry/utils" "7.15.0"
-    tslib "^1.9.3"
-
 "@sentry/core@7.16.0":
   version "7.16.0"
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-7.16.0.tgz#60f9b54ef2ec524176b329e1d15be39c36da5953"
@@ -1385,29 +1377,18 @@
     hoist-non-react-statics "^3.3.2"
     tslib "^1.9.3"
 
-"@sentry/tracing@^7.15.0":
-  version "7.15.0"
-  resolved "https://registry.yarnpkg.com/@sentry/tracing/-/tracing-7.15.0.tgz#ea516957b2ed39f389c21132f433b6470d54b465"
+"@sentry/tracing@^7.16.0":
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/@sentry/tracing/-/tracing-7.16.0.tgz#823b84abf0df08ecd16669547b4281e3c7a96ac9"
   dependencies:
-    "@sentry/core" "7.15.0"
-    "@sentry/types" "7.15.0"
-    "@sentry/utils" "7.15.0"
+    "@sentry/core" "7.16.0"
+    "@sentry/types" "7.16.0"
+    "@sentry/utils" "7.16.0"
     tslib "^1.9.3"
-
-"@sentry/types@7.15.0":
-  version "7.15.0"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.15.0.tgz#50c57c924993d4dd16b43172d310c66384d17463"
 
 "@sentry/types@7.16.0":
   version "7.16.0"
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.16.0.tgz#79c06ada153a84feb949fa49b1c9d15f91decd79"
-
-"@sentry/utils@7.15.0":
-  version "7.15.0"
-  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.15.0.tgz#cda642a353a58fd6631979c1e5986788e6db6c43"
-  dependencies:
-    "@sentry/types" "7.15.0"
-    tslib "^1.9.3"
 
 "@sentry/utils@7.16.0":
   version "7.16.0"
