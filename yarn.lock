@@ -1970,13 +1970,13 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@sentry/browser@7.16.0":
-  version "7.16.0"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-7.16.0.tgz#afd2bac91857d2359272a0d9d2b1ee5ca7d69828"
+"@sentry/browser@7.17.2":
+  version "7.17.2"
+  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-7.17.2.tgz#624c2c371c9d771311672c484fe24666a92bdbdd"
   dependencies:
-    "@sentry/core" "7.16.0"
-    "@sentry/types" "7.16.0"
-    "@sentry/utils" "7.16.0"
+    "@sentry/core" "7.17.2"
+    "@sentry/types" "7.17.2"
+    "@sentry/utils" "7.17.2"
     tslib "^1.9.3"
 
 "@sentry/core@7.16.0":
@@ -1985,6 +1985,14 @@
   dependencies:
     "@sentry/types" "7.16.0"
     "@sentry/utils" "7.16.0"
+    tslib "^1.9.3"
+
+"@sentry/core@7.17.2":
+  version "7.17.2"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-7.17.2.tgz#0d3b5f0155f3ecefb7ddb2f050c25bf0fb69e0fb"
+  dependencies:
+    "@sentry/types" "7.17.2"
+    "@sentry/utils" "7.17.2"
     tslib "^1.9.3"
 
 "@sentry/node@^7.16.0":
@@ -1999,13 +2007,13 @@
     lru_map "^0.3.3"
     tslib "^1.9.3"
 
-"@sentry/react@^7.16.0":
-  version "7.16.0"
-  resolved "https://registry.yarnpkg.com/@sentry/react/-/react-7.16.0.tgz#7b214736804b7516ba66230301bc6f0202060a91"
+"@sentry/react@^7.17.2":
+  version "7.17.2"
+  resolved "https://registry.yarnpkg.com/@sentry/react/-/react-7.17.2.tgz#d7867516f1f5cdb33d3bc77ee99cb07d434fff30"
   dependencies:
-    "@sentry/browser" "7.16.0"
-    "@sentry/types" "7.16.0"
-    "@sentry/utils" "7.16.0"
+    "@sentry/browser" "7.17.2"
+    "@sentry/types" "7.17.2"
+    "@sentry/utils" "7.17.2"
     hoist-non-react-statics "^3.3.2"
     tslib "^1.9.3"
 
@@ -2022,11 +2030,22 @@
   version "7.16.0"
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.16.0.tgz#79c06ada153a84feb949fa49b1c9d15f91decd79"
 
+"@sentry/types@7.17.2":
+  version "7.17.2"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.17.2.tgz#49dee17896e3814d0ce6dae1b7efead5f1af8c8c"
+
 "@sentry/utils@7.16.0":
   version "7.16.0"
   resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.16.0.tgz#b832520c661d4435808969ee04814ff8e20497b1"
   dependencies:
     "@sentry/types" "7.16.0"
+    tslib "^1.9.3"
+
+"@sentry/utils@7.17.2":
+  version "7.17.2"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.17.2.tgz#934f900715dacc51699b44e8e61df8c7fbdd0b5f"
+  dependencies:
+    "@sentry/types" "7.17.2"
     tslib "^1.9.3"
 
 "@stripe/react-stripe-js@^1.13.0":
