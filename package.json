@@ -73,7 +73,7 @@
     "i18next-http-backend": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
-    "koa-body": "^5.0.0",
+    "koa-body": "^6.0.1",
     "koa-compress": "^5.1.0",
     "koa-helmet": "^6.1.0",
     "koa-i18n": "^2.1.0",
