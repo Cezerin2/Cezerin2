@@ -2035,9 +2035,9 @@
   dependencies:
     prop-types "^15.7.2"
 
-"@stripe/stripe-js@^1.42.0":
-  version "1.42.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.42.0.tgz#6074d0ac184bd70c9e5b5bc00e126719277e0128"
+"@stripe/stripe-js@^1.42.1":
+  version "1.42.1"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.42.1.tgz#09f303fe298f81e5dc618f0df88bf929d758fa0f"
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
