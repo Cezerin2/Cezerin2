@@ -70,7 +70,7 @@
     "html-react-parser": "^3.0.4",
     "i18next": "^22.0.4",
     "i18next-browser-languagedetector": "^7.0.0",
-    "i18next-http-backend": "^2.0.0",
+    "i18next-http-backend": "^2.0.1",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "koa-body": "^6.0.1",
