@@ -185,6 +185,8 @@ Anyone can file an expense. If the expense makes sense for the development of th
 ### Contributors
 
 Thank you to all the people who have already contributed to cezerin2!
+
+<img src="https://github.com/ekarailiev.png" alt="Emil K." height="36" style="border-radius: 100%" />
 <a href="https://github.com/Cezerin2/cezerin2/graphs/contributors"><img src="https://opencollective.com/cezerin2/contributors.svg?width=890" /></a>
 
 ## Contributing
