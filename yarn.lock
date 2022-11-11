@@ -6926,9 +6926,9 @@ saslprep@^1.0.0, saslprep@^1.0.3:
   dependencies:
     sparse-bitfield "^3.0.3"
 
-sass-loader@^13.1.0:
-  version "13.1.0"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.1.0.tgz#e5b9acf14199a9bc6eaed7a0b8b23951c2cebf6f"
+sass-loader@^13.2.0:
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.2.0.tgz#80195050f58c9aac63b792fa52acb6f5e0f6bdc3"
   dependencies:
     klona "^2.0.4"
     neo-async "^2.6.2"
