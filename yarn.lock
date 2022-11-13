@@ -1977,21 +1977,13 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@sentry/browser@7.18.0":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-7.18.0.tgz#3eae6bb07705ce2a05bff898effc6ece6cc4087b"
+"@sentry/browser@7.19.0":
+  version "7.19.0"
+  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-7.19.0.tgz#ce21544b843d5c4d5dcb9fe9b7ee31c5c4e91f42"
   dependencies:
-    "@sentry/core" "7.18.0"
-    "@sentry/types" "7.18.0"
-    "@sentry/utils" "7.18.0"
-    tslib "^1.9.3"
-
-"@sentry/core@7.18.0":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-7.18.0.tgz#9fe4c6f45086c20ad45a6357a33381a500a8b704"
-  dependencies:
-    "@sentry/types" "7.18.0"
-    "@sentry/utils" "7.18.0"
+    "@sentry/core" "7.19.0"
+    "@sentry/types" "7.19.0"
+    "@sentry/utils" "7.19.0"
     tslib "^1.9.3"
 
 "@sentry/core@7.19.0":
@@ -2014,13 +2006,13 @@
     lru_map "^0.3.3"
     tslib "^1.9.3"
 
-"@sentry/react@^7.18.0":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@sentry/react/-/react-7.18.0.tgz#2b032f3f382d1770d77c015cc4a61677b709ff8c"
+"@sentry/react@^7.19.0":
+  version "7.19.0"
+  resolved "https://registry.yarnpkg.com/@sentry/react/-/react-7.19.0.tgz#de2599b27023fe24f508b34b00929ff6c19bfb23"
   dependencies:
-    "@sentry/browser" "7.18.0"
-    "@sentry/types" "7.18.0"
-    "@sentry/utils" "7.18.0"
+    "@sentry/browser" "7.19.0"
+    "@sentry/types" "7.19.0"
+    "@sentry/utils" "7.19.0"
     hoist-non-react-statics "^3.3.2"
     tslib "^1.9.3"
 
@@ -2033,20 +2025,9 @@
     "@sentry/utils" "7.19.0"
     tslib "^1.9.3"
 
-"@sentry/types@7.18.0":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.18.0.tgz#8b0eacd19cc9bcd1f14ca5dcaf7065ebd3186632"
-
 "@sentry/types@7.19.0":
   version "7.19.0"
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.19.0.tgz#3ebb96670399b637a945fa499fa7436f7b930147"
-
-"@sentry/utils@7.18.0":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.18.0.tgz#ede662acf8ac9af9a973d58e277d7afa77721b6c"
-  dependencies:
-    "@sentry/types" "7.18.0"
-    tslib "^1.9.3"
 
 "@sentry/utils@7.19.0":
   version "7.19.0"
