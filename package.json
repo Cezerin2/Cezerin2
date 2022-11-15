@@ -153,7 +153,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^7.5.0",
     "core-js": "^3.26.0",
-    "css-loader": "^6.7.1",
+    "css-loader": "^6.7.2",
     "cssnano": "^5.1.14",
     "eslint": "^8.27.0",
     "eslint-config-airbnb": "^19.0.4",
