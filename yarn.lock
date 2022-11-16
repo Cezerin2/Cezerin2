@@ -12944,14 +12944,13 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=4a76ec&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=88928b&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
-  checksum: 280d9d70e3c3916c6b102639e61b34cd5adbca2dc1c14b50e03ca630d9a904f0224b524afc9928341c87c1f8a6d35f9868ba96c8544437df6c09a1064648a8d8
   languageName: node
   linkType: hard
 
