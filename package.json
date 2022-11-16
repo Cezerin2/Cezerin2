@@ -19,6 +19,7 @@
     "type": "git",
     "url": "https://github.com/Cezerin2/cezerin2"
   },
+  "packageManager": "yarn@3.3.0",
   "scripts": {
     "setup": "ts-node src/api/server/setup.ts",
     "webpack:admin": "webpack --config webpack.config.admin.ts --mode production",
