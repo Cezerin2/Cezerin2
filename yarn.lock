@@ -2308,9 +2308,9 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/lodash@^4.14.175", "@types/lodash@^4.14.188":
-  version "4.14.188"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.188.tgz#e4990c4c81f7c9b00c5ff8eae389c10f27980da5"
+"@types/lodash@^4.14.175", "@types/lodash@^4.14.189":
+  version "4.14.189"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.189.tgz#975ff8c38da5ae58b751127b19ad5e44b5b7f6d2"
 
 "@types/mime@*":
   version "3.0.1"
