@@ -6762,7 +6762,7 @@ __metadata:
     mini-css-extract-plugin: ^2.6.1
     moment: ^2.29.4
     mongodb: ^3.1.4
-    mongoose: ^6.7.2
+    mongoose: ^6.7.4
     mui-rff: ^6.1.2
     nodemailer: ^6.8.0
     postcss-loader: ^7.0.1
@@ -13579,9 +13579,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:^6.7.2":
-  version: 6.7.2
-  resolution: "mongoose@npm:6.7.2"
+"mongoose@npm:^6.7.4":
+  version: 6.7.4
+  resolution: "mongoose@npm:6.7.4"
   dependencies:
     bson: ^4.7.0
     kareem: 2.4.1
@@ -13590,7 +13590,7 @@ __metadata:
     mquery: 4.0.3
     ms: 2.1.3
     sift: 16.0.1
-  checksum: 5e3822603a143dbf3739a3fe4250a23b2433fe478809d662009724bf6311e13e59b2ba6bd4f1847567fe4f4d65e4972d3b5b892c27163adec4d18aff57a5e278
+  checksum: 7d86bcf3cb71fc4c598a2b6bd98ef5ddc8233f4d27faafaa40c2ad1ec6d4c6020ab7948ae825ec1dd216358e0eecfc12d968c7705acabf1d1473085b15afb3cb
   languageName: node
   linkType: hard
 
@@ -18780,13 +18780,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=88928b&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=8ca7cb&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 4b0c02113961cf1828b0efc9ba27b67094f101e29aa4fda07e80b1a30c44378d823813869067f36514b8e67c8c709ef0b22805a53f856c533398f868e929472a
   languageName: node
   linkType: hard
 
