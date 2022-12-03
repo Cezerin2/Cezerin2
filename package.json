@@ -23,7 +23,7 @@
   "scripts": {
     "setup": "ts-node src/api/server/setup.ts",
     "webpack:admin": "webpack --config webpack.config.admin.ts --mode production",
-    "webpack:store": "webpack --config webpack.config.store.ts --mode production",
+    "webpack:store": "razzle build --noninteractive",
     "webpack:admin:watch": "webpack --config webpack.config.admin.ts --mode development --watch",
     "webpack:store:watch": "webpack --config webpack.config.store.ts --mode development --watch",
     "theme:install": "./scripts/theme-install.sh",
@@ -37,8 +37,8 @@
     "lint:fix": "eslint --fix --ignore-path .gitignore .",
     "format": "prettier --write .",
     "start:api": "ts-node src/api/server/index.ts",
-    "start:store": "node --loader ts-node/esm src/store/server/server.ts",
-    "start": "concurrently npm:start:*",
+    "start:store": "cross-env NODE_ENV=production node build/server.js",
+    "start": "conc 'npm:start:*'",
     "watch:api": "tsnd --respawn src/api/server/index.ts"
   },
   "dependencies": {

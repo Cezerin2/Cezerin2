@@ -147,4 +147,6 @@ theme/assets/*.map
 
 # Logs and store build directories
 dist
+build
+cache
 logs/*
