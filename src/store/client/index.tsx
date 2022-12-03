@@ -7,9 +7,17 @@ import { BrowserRouter } from "react-router-dom"
 import { initOnClient } from "theme"
 import clientSettings from "./settings"
 import reducers from "../shared/reducers"
+import locale from "theme/assets/locales/en.json"
 import * as analytics from "../shared/analytics"
 import App from "../shared/app"
 import api from "./api"
+
+declare global {
+  interface Window {
+    __APP_STATE__: { app: any }
+    __APP_TEXT__: typeof locale
+  }
+}
 
 const initialState = window.__APP_STATE__
 const themeText = window.__APP_TEXT__
@@ -51,3 +59,5 @@ if ("serviceWorker" in navigator) {
       })
   })
 }
+
+if (module.hot) module.hot.accept()
