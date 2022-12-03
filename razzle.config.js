@@ -94,6 +94,7 @@ module.exports = {
       if (!dev) {
         config.plugins.push(plugin)
         config.devtool = undefined
+        config.performance = { hints: false }
       }
     }
 
