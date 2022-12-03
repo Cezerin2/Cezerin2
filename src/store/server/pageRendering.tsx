@@ -1,6 +1,7 @@
 import { Middleware, RouterContext } from "@koa/router"
 import CezerinClient from "cezerin2-client"
 import { SetOption } from "cookies"
+import { readFile } from "fs-extra"
 import React, { StrictMode } from "react"
 import { renderToString } from "react-dom/server"
 import Helmet from "react-helmet"
@@ -99,11 +100,46 @@ const getPlaceholder = placeholders => {
   return placeholder
 }
 
-const renderPage = (ctx: RouterContext, store, themeText, placeholders) => {
+const getFromAssets = async (entrypoint: string, ...extra: string[]) => {
+  const assetsPromise = await readFile(
+    process.env.RAZZLE_ASSETS_MANIFEST,
+    "utf8"
+  )
+
+  const assets = JSON.parse(assetsPromise) as Record<
+    string,
+    { css?: string[]; js?: string[] }
+  >
+
+  const asset = assets[entrypoint]
+
+  const css =
+    asset?.css
+      ?.map(link => `<link rel="stylesheet" href="${link}">`)
+      .join("") || ""
+
+  const js =
+    assets[entrypoint]?.js
+      ?.map(link => `<script src="${link}" ${extra.join(" ")}></script>`)
+      .join("") || ""
+
+  return { css, js }
+}
+
+const renderPage = async (
+  ctx: RouterContext,
+  store,
+  themeText,
+  placeholders
+) => {
   const appHtml = getAppHtml(store, ctx.url)
   const state = store.getState()
   const head = getHead()
   const placeholder = getPlaceholder(placeholders)
+
+  const { css, js } = await getFromAssets("client", "defer", "crossorigin")
+  const link = `${head.link}${css}`
+  const script = `${head.script}${js}`
 
   const html = indexHtml
     .replace("{placeholder_head_start}", placeholder.head_start)
@@ -113,8 +149,8 @@ const renderPage = (ctx: RouterContext, store, themeText, placeholders) => {
     .replace("{language}", serverSettings.language)
     .replace("{title}", head.title)
     .replace("{meta}", head.meta)
-    .replace("{link}", head.link)
-    .replace("{script}", head.script)
+    .replace("{link}", link)
+    .replace("{script}", script)
     .replace("{app_text}", JSON.stringify(themeText))
     .replace("{app_state}", JSON.stringify(state))
     .replace("{root}", appHtml)
@@ -152,7 +188,7 @@ const pageRendering: Middleware = async ctx => {
 
     const store = createStore(reducers, state, applyMiddleware(thunkMiddleware))
 
-    renderPage(ctx, store, themeText, placeholders)
+    await renderPage(ctx, store, themeText, placeholders)
   } catch (error) {
     renderError(ctx, error)
   }

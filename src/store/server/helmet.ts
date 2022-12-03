@@ -15,7 +15,7 @@ export const helmetMiddleware: Middleware = async (ctx, next) => {
     ctx.body = ctx.body?.toString()
     buffer = true
   }
-  if (typeof ctx.body === "string" && ctx.body.includes("<!doctype html>"))
+  if (typeof ctx.body === "string" && ctx.body.includes("<!DOCTYPE html>"))
     ctx.body = ctx.body.replace(/<script/g, `<script nonce="${nonce}"`)
   if (buffer) ctx.body = Buffer.from(ctx.body)
 

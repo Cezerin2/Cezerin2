@@ -10,7 +10,6 @@ import serve from "koa-static"
 import sharp from "sharp"
 import winston from "winston"
 import { helmetMiddleware } from "./helmet"
-import "./logger"
 import pageRendering from "./pageRendering"
 import redirects from "./redirects"
 import robotsRendering from "./robotsRendering"
@@ -82,6 +81,4 @@ router
   .get("(.*)", redirects)
   .get("(.*)", pageRendering)
 
-app.listen(settings.storeListenPort, () => {
-  winston.info(`Store running at http://localhost:${settings.storeListenPort}`)
-})
+export default app
