@@ -47,6 +47,7 @@ app
   .use(compress({ threshold: 0 })) // compressor
   .use(helmetMiddleware) // helmet
   .use(serve("public/content", staticOptions))
+  .use(serve(process.env.RAZZLE_PUBLIC_DIR, staticOptions))
   .use(mount("/assets", serve("theme/assets", staticOptions)))
   .use(mount("/admin-assets", serve("public/admin-assets", staticOptions)))
   .use(router.routes()) // router
