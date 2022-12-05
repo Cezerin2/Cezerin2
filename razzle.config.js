@@ -1,7 +1,8 @@
+const { readFileSync } = require("fs-extra")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path")
 const { GenerateSW } = require("workbox-webpack-plugin")
 const YAML = require("yaml")
-const { readFileSync } = require("fs-extra")
 
 const plugin = new GenerateSW({
   swDest: "assets/sw.js",
@@ -86,11 +87,39 @@ module.exports = {
 
     return config
   },
-  modifyWebpackConfig({ env: { target, dev }, webpackConfig }) {
+  modifyWebpackConfig({
+    env: { target, dev },
+    webpackConfig,
+    options: { webpackOptions },
+  }) {
     const config = webpackConfig
 
     if (target === "web") {
       config.resolve.fallback = { url: false }
+
+      if (dev) {
+        // Replacing style-loader with MiniCssExtractPlugin
+        const rules = [...config.module.rules]
+        const { cssOutputFilename, cssOutputChunkFilename } = webpackOptions
+
+        const { use } = rules.find(({ test }) =>
+          test?.source?.includes(".(sa|sc)ss$")
+        )
+
+        const index = use.findIndex(({ loader }) =>
+          loader.includes("style-loader")
+        )
+
+        if (index > -1) use[index] = MiniCssExtractPlugin.loader
+
+        config.plugins.push(
+          new MiniCssExtractPlugin({
+            filename: cssOutputFilename,
+            chunkFilename: cssOutputChunkFilename,
+          })
+        )
+      }
+
       if (!dev) {
         config.plugins.push(plugin)
         config.devtool = undefined

@@ -39,7 +39,9 @@
     "start:api": "ts-node src/api/server/index.ts",
     "start:store": "cross-env NODE_ENV=production node build/server.js",
     "start": "conc 'npm:start:*'",
-    "watch:api": "tsnd --respawn src/api/server/index.ts"
+    "watch:server": "tsnd --respawn src/api/server/index.ts",
+    "watch:store": "cross-env PORT=3002 razzle start",
+    "watch": "conc 'npm:watch:*'"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
