@@ -1,5 +1,5 @@
-import { sanitize } from "dompurify"
 import parse from "html-react-parser"
+import { sanitize } from "isomorphic-dompurify"
 import Paper from "material-ui/Paper"
 import React from "react"
 import style from "./style.sass"

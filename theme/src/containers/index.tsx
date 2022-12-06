@@ -1,5 +1,5 @@
-import { sanitize } from "dompurify"
 import parse from "html-react-parser"
+import { sanitize } from "isomorphic-dompurify"
 import PropTypes from "prop-types"
 import React, { Fragment } from "react"
 import HomeSlider from "../components/homeSlider"
