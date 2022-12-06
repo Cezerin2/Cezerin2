@@ -6757,7 +6757,7 @@ __metadata:
     i18next-http-backend: ^2.0.1
     isomorphic-dompurify: ^0.24.0
     jsonwebtoken: ^8.5.1
-    koa: ^2.13.4
+    koa: ^2.14.0
     koa-body: ^6.0.1
     koa-compress: ^5.1.0
     koa-helmet: ^6.1.0
@@ -12784,9 +12784,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"koa@npm:^2.13.4":
-  version: 2.13.4
-  resolution: "koa@npm:2.13.4"
+"koa@npm:^2.14.0":
+  version: 2.14.0
+  resolution: "koa@npm:2.14.0"
   dependencies:
     accepts: ^1.3.5
     cache-content-type: ^1.0.0
@@ -12811,7 +12811,7 @@ __metadata:
     statuses: ^1.5.0
     type-is: ^1.6.16
     vary: ^1.1.2
-  checksum: c9a6f9c803433b2d143a0788308048c1432a71c5febcfea2af7f2e8bd732b9bfd75c2c220d553752ee9ab9a3f52490f006cfd521db97cd01d8461d67cc1ccc1f
+  checksum: da17421e44559e4c2cc94c6cca79a027f73cbfba4035ed04c5ae676206b16974c09a632c49b57f75ac0c5f34227a42f3cc9b02c37bc98d47f364ed6c6ddf46ce
   languageName: node
   linkType: hard
 
@@ -18908,13 +18908,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=88928b&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=8ca7cb&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 4b0c02113961cf1828b0efc9ba27b67094f101e29aa4fda07e80b1a30c44378d823813869067f36514b8e67c8c709ef0b22805a53f856c533398f868e929472a
   languageName: node
   linkType: hard
 
