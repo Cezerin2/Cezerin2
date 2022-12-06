@@ -6754,7 +6754,7 @@ __metadata:
     html-webpack-plugin: ^5.5.0
     i18next: ^22.0.5
     i18next-browser-languagedetector: ^7.0.1
-    i18next-http-backend: ^2.0.1
+    i18next-http-backend: ^2.0.2
     isomorphic-dompurify: ^0.24.0
     jsonwebtoken: ^8.5.1
     koa: ^2.13.4
@@ -10949,12 +10949,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-http-backend@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "i18next-http-backend@npm:2.0.1"
+"i18next-http-backend@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "i18next-http-backend@npm:2.0.2"
   dependencies:
     cross-fetch: 3.1.5
-  checksum: c7bacdafc0c758e60c96efcd9f5d2b052d361fc3eb7613144291ba724964ec1f718620613e8a63f0c1174e5ed5addbbded69ff024ae636f8a5430410c8c385c9
+  checksum: 02244583f8dde79bf7fcc4ffb56d78c69b5061e760dd6d380cfd6421f6989e4ab320254dbac77b1c75a0893727af339a24b87944d0d2c1fd651cd79f019bdfb8
   languageName: node
   linkType: hard
 
@@ -18908,13 +18908,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=88928b&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=8ca7cb&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 4b0c02113961cf1828b0efc9ba27b67094f101e29aa4fda07e80b1a30c44378d823813869067f36514b8e67c8c709ef0b22805a53f856c533398f868e929472a
   languageName: node
   linkType: hard
 
