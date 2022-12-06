@@ -6792,7 +6792,7 @@ __metadata:
     react-final-form: ^6.5.9
     react-final-form-arrays: ^3.1.4
     react-helmet: ^6.1.0
-    react-i18next: ^12.0.0
+    react-i18next: ^12.1.0
     react-lazyload: ^3.2.0
     react-redux: ^8.0.5
     react-router-dom: ^5.3.1
@@ -16329,9 +16329,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:^12.0.0":
-  version: 12.0.0
-  resolution: "react-i18next@npm:12.0.0"
+"react-i18next@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "react-i18next@npm:12.1.0"
   dependencies:
     "@babel/runtime": ^7.14.5
     html-parse-stringify: ^3.0.1
@@ -16343,7 +16343,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: f523d7ec5dcb7f5fd36efc9385639d01160071f4dadbbc5a3f1daa64b0f332f709347bdd3bc68f5aefbd72c8742233aa715b308b1ca87179ad501acc19c72068
+  checksum: 2ff5df732279d526305f72072c8053a203b005d0e3786009003f1f65b5954a831f12c032573cb24a23327fab6d429373f7f230131c6ec266c26b54084ae24a3e
   languageName: node
   linkType: hard
 
@@ -18908,13 +18908,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=88928b&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=8ca7cb&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 4b0c02113961cf1828b0efc9ba27b67094f101e29aa4fda07e80b1a30c44378d823813869067f36514b8e67c8c709ef0b22805a53f856c533398f868e929472a
   languageName: node
   linkType: hard
 
