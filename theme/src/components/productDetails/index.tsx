@@ -1,5 +1,5 @@
-import { sanitize } from "dompurify"
 import parse from "html-react-parser"
+import { sanitize } from "isomorphic-dompurify"
 import React, { FC, useState } from "react"
 import { themeSettings } from "../../lib/settings"
 import ViewedProducts from "../products/viewed"

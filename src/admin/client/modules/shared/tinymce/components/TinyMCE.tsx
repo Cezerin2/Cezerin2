@@ -1,5 +1,5 @@
-import { sanitize } from "dompurify"
 import parse from "html-react-parser"
+import { sanitize } from "isomorphic-dompurify"
 import clone from "lodash/clone"
 import isEqual from "lodash/isEqual"
 import React from "react"
