@@ -3970,18 +3970,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/node@npm:^7.19.0":
-  version: 7.19.0
-  resolution: "@sentry/node@npm:7.19.0"
+"@sentry/core@npm:7.24.2":
+  version: 7.24.2
+  resolution: "@sentry/core@npm:7.24.2"
   dependencies:
-    "@sentry/core": 7.19.0
-    "@sentry/types": 7.19.0
-    "@sentry/utils": 7.19.0
+    "@sentry/types": 7.24.2
+    "@sentry/utils": 7.24.2
+    tslib: ^1.9.3
+  checksum: b8d8ae16590eee8c2a2e67c931609e55f6dc39218d43b23ccf6c5555a8dfcd8fd6f9c3e3e8bab83eb990c83b20c94158f6bfab5394ab59fcf3170639ccb3786c
+  languageName: node
+  linkType: hard
+
+"@sentry/node@npm:^7.24.2":
+  version: 7.24.2
+  resolution: "@sentry/node@npm:7.24.2"
+  dependencies:
+    "@sentry/core": 7.24.2
+    "@sentry/types": 7.24.2
+    "@sentry/utils": 7.24.2
     cookie: ^0.4.1
     https-proxy-agent: ^5.0.0
     lru_map: ^0.3.3
     tslib: ^1.9.3
-  checksum: 4a52a9cf8ad5555a024bb5b1f194e0bdf11b03e3f77b68eac34bd4aa88a85aeccdd373c8e1a1ac892e6a717a2c9af7ac46a93ab1c3a5da2e1073bfb267ab6e17
+  checksum: a600fba01ad06ea547adeeba564f08fc0dcd6fadf39a06f881c1314ab23da7dbb12f0c62c365162556b94b6965f16735924b3c85a6c261129b60f4b5c1f66b3d
   languageName: node
   linkType: hard
 
@@ -4019,6 +4030,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/types@npm:7.24.2":
+  version: 7.24.2
+  resolution: "@sentry/types@npm:7.24.2"
+  checksum: d272217660190e9bf7944de8d9b2f8d2b1ebb712d1ca15771e5b18b0e872eb3ea0929ff845305cc323802ecbadf8aa4fcaa685490746743583f7c74c4c1d6ef0
+  languageName: node
+  linkType: hard
+
 "@sentry/utils@npm:7.19.0":
   version: 7.19.0
   resolution: "@sentry/utils@npm:7.19.0"
@@ -4026,6 +4044,16 @@ __metadata:
     "@sentry/types": 7.19.0
     tslib: ^1.9.3
   checksum: 8d1e8c9288e60aed5a1ac22722a5da9606ae821ac39232a0eeba128b1512c48cf22145f7b989f7dca4ad55274bf4e1189871b672bb7387c66866009e0a5f4448
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.24.2":
+  version: 7.24.2
+  resolution: "@sentry/utils@npm:7.24.2"
+  dependencies:
+    "@sentry/types": 7.24.2
+    tslib: ^1.9.3
+  checksum: bd32d7f26804ea44226af0100a9f3fdc1a6330f06aeee9cca820439b5addae3531fcc3926737c4682bbf83f16a625adaa57e62543c72187f8ff0cd0dc8478e02
   languageName: node
   linkType: hard
 
@@ -6694,7 +6722,7 @@ __metadata:
     "@mui/material": ^5.10.14
     "@mui/x-date-pickers": ^5.0.8
     "@reduxjs/toolkit": ^1.9.0
-    "@sentry/node": ^7.19.0
+    "@sentry/node": ^7.24.2
     "@sentry/react": ^7.19.0
     "@sentry/tracing": ^7.19.0
     "@stripe/react-stripe-js": ^1.15.0
@@ -18908,13 +18936,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=88928b&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=8ca7cb&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 4b0c02113961cf1828b0efc9ba27b67094f101e29aa4fda07e80b1a30c44378d823813869067f36514b8e67c8c709ef0b22805a53f856c533398f868e929472a
   languageName: node
   linkType: hard
 
