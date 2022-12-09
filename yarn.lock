@@ -4642,6 +4642,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:>=8.1.0":
+  version: 18.11.12
+  resolution: "@types/node@npm:18.11.12"
+  checksum: 6c67f0998a9ad8ef0f357fcc0d72841c579576c746cfbac67c9d0229e1cd219d3b96297c2caaeaa4084ba7e9ad112b412e64af4066e522faa0be4ef9ad0a613a
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^17.0.5":
   version: 17.0.45
   resolution: "@types/node@npm:17.0.45"
@@ -6809,7 +6816,7 @@ __metadata:
     sharp: ^0.31.2
     sitemap: ^7.1.1
     slug: ^8.2.2
-    stripe: ^6.7.0
+    stripe: ^11.3.0
     theme: ./theme
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
@@ -15874,7 +15881,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.11.0, qs@npm:^6.5.2, qs@npm:^6.6.0":
+"qs@npm:6.11.0, qs@npm:^6.11.0, qs@npm:^6.5.2":
   version: 6.11.0
   resolution: "qs@npm:6.11.0"
   dependencies:
@@ -18515,15 +18522,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stripe@npm:^6.7.0":
-  version: 6.36.0
-  resolution: "stripe@npm:6.36.0"
+"stripe@npm:^11.3.0":
+  version: 11.3.0
+  resolution: "stripe@npm:11.3.0"
   dependencies:
-    lodash.isplainobject: ^4.0.6
-    qs: ^6.6.0
-    safe-buffer: ^5.1.1
-    uuid: ^3.3.2
-  checksum: f82adb98ca66614b964ebe6cbca98ec1dc184c661fb46e0b4e4d04ae3959cb04eed5852ace81b73985f4974c529553dff8badee7e61f7c9d647bcd758ffe6d81
+    "@types/node": ">=8.1.0"
+    qs: ^6.11.0
+  checksum: 10475b530cdc2ef15fc484f48d221fb2cfa4b7a95ce33259029b1d691416069fafc4afcb84b7085adef398bc8f471686f9e0e7936190054c0009e60dad8f725c
   languageName: node
   linkType: hard
 
@@ -18908,13 +18913,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=88928b&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=8ca7cb&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 4b0c02113961cf1828b0efc9ba27b67094f101e29aa4fda07e80b1a30c44378d823813869067f36514b8e67c8c709ef0b22805a53f856c533398f868e929472a
   languageName: node
   linkType: hard
 
@@ -19738,15 +19744,6 @@ __metadata:
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
   checksum: c81095493225ecfc28add49c106ca4f09cdf56bc66731aa8dabc2edbbccb1e1bfe2de6a115e5c6a380d3ea166d1636410b62ef216bb07b3feb1cfde1d95d5080
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^3.3.2":
-  version: 3.4.0
-  resolution: "uuid@npm:3.4.0"
-  bin:
-    uuid: ./bin/uuid
-  checksum: 58de2feed61c59060b40f8203c0e4ed7fd6f99d42534a499f1741218a1dd0c129f4aa1de797bcf822c8ea5da7e4137aa3673431a96dae729047f7aca7b27866f
   languageName: node
   linkType: hard
 
