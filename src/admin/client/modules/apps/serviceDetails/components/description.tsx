@@ -1,5 +1,5 @@
-import { sanitize } from "dompurify"
 import parse from "html-react-parser"
+import { sanitize } from "isomorphic-dompurify"
 import messages from "lib/text"
 import Paper from "material-ui/Paper"
 import RaisedButton from "material-ui/RaisedButton"
