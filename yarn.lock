@@ -6780,7 +6780,7 @@ __metadata:
     postcss-loader: ^7.0.1
     prettier: ^2.7.1
     prop-types: ^15.8.1
-    query-string: ^7.1.1
+    query-string: ^8.0.3
     razzle: ^4.2.18
     razzle-dev-utils: ^4.2.18
     razzle-plugin-scss: ^4.2.18
@@ -8105,6 +8105,13 @@ __metadata:
   version: 0.2.0
   resolution: "decode-uri-component@npm:0.2.0"
   checksum: f3749344ab9305ffcfe4bfe300e2dbb61fc6359e2b736812100a3b1b6db0a5668cba31a05e4b45d4d63dbf1a18dfa354cd3ca5bb3ededddabb8cd293f4404f94
+  languageName: node
+  linkType: hard
+
+"decode-uri-component@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "decode-uri-component@npm:0.2.2"
+  checksum: 95476a7d28f267292ce745eac3524a9079058bbb35767b76e3ee87d42e34cd0275d2eb19d9d08c3e167f97556e8a2872747f5e65cbebcac8b0c98d83e285f139
   languageName: node
   linkType: hard
 
@@ -9726,6 +9733,13 @@ __metadata:
   version: 1.1.0
   resolution: "filter-obj@npm:1.1.0"
   checksum: cf2104a7c45ff48e7f505b78a3991c8f7f30f28bd8106ef582721f321f1c6277f7751aacd5d83026cb079d9d5091082f588d14a72e7c5d720ece79118fa61e10
+  languageName: node
+  linkType: hard
+
+"filter-obj@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "filter-obj@npm:5.1.0"
+  checksum: ba7c24d9b2c0552ee87d268e07eca74483af61fb740545ffa809f7e9e5294de38cf163ecc55af0e8a40020af9a49512c32f4022de2a858b110420fc8bffa7c9c
   languageName: node
   linkType: hard
 
@@ -15902,15 +15916,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"query-string@npm:^7.1.1":
-  version: 7.1.1
-  resolution: "query-string@npm:7.1.1"
+"query-string@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "query-string@npm:8.0.3"
   dependencies:
-    decode-uri-component: ^0.2.0
-    filter-obj: ^1.1.0
+    decode-uri-component: ^0.2.2
+    filter-obj: ^5.1.0
     split-on-first: ^1.0.0
-    strict-uri-encode: ^2.0.0
-  checksum: b227d1f588ae93f9f0ad078c6b811295fa151dc5a160a03bb2bac5fa0e6919cb1daa570aad1d288e77c8e89fde5362ba505b1014e6e793da9b1e885b59a690a6
+  checksum: 8df50f572f202d5e04f8fb9d347b7fe43f0bfa4a37dbc2df07bfb96ec72c0f1a08de4edf9450179e76c245a06d6b2920d1399a96f1a3ddd8bcc40937b2fecba2
   languageName: node
   linkType: hard
 
@@ -18908,13 +18921,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=c727ce&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=a5fb27&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: fbecd0c0f7fb7db92701441bce0b77b3f43c79b7483aaeb01f8313e96db82e32908415efb854eb6de3ebbc786301f8c289f8b9e6bd09cbbaa9419c582e07afc1
   languageName: node
   linkType: hard
 
