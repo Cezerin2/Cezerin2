@@ -95,7 +95,10 @@ module.exports = {
     const config = webpackConfig
 
     if (target === "web") {
-      config.resolve.fallback = { url: false }
+      config.resolve.fallback = {
+        theme: require.resolve("theme"),
+        url: require.resolve("url"),
+      }
 
       if (dev) {
         // Replacing style-loader with MiniCssExtractPlugin
