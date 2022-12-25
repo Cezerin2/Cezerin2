@@ -19,13 +19,28 @@ export const helmetMiddleware: Middleware = async (ctx, next) => {
     ctx.body = ctx.body.replace(/<script/g, `<script nonce="${nonce}"`)
   if (buffer) ctx.body = Buffer.from(ctx.body)
 
+  const join = (array: string[]) => [
+    "'self'",
+    process.env.NODE_ENV === "development" && "*",
+    ...array,
+  ]
+
+  const stripeURL = "https://checkout.stripe.com"
+
   helmet({
     contentSecurityPolicy: {
       useDefaults: true,
       directives: {
-        defaultSrc: ["'self'", "*.stripe.com"],
-        scriptSrc: ["'self'", "*.stripe.com", () => `'nonce-${nonce}'`],
-        connectSrc: ["'self'", settings.serverBaseUrl || "*", "ws:", "wss:"],
+        defaultSrc: join([]),
+        scriptSrc: join([stripeURL, `'nonce-${nonce}'`]),
+        imgSrc: join(["data:", "https://*.stripe.com"]),
+        connectSrc: join([
+          stripeURL,
+          settings.serverBaseUrl || "*",
+          "ws:",
+          "wss:",
+        ]),
+        frameSrc: join([stripeURL]),
         "require-trusted-types-for": buffer ? "'script'" : "",
       },
     },
