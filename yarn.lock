@@ -6774,7 +6774,7 @@ __metadata:
     mini-css-extract-plugin: ^2.6.1
     moment: ^2.29.4
     mongodb: ^3.1.4
-    mongoose: ^6.7.2
+    mongoose: ^6.8.1
     mui-rff: ^6.1.2
     nodemailer: ^6.8.0
     postcss-loader: ^7.0.1
@@ -8233,13 +8233,6 @@ __metadata:
   version: 1.5.1
   resolution: "denque@npm:1.5.1"
   checksum: 4375ad19d5cea99f90effa82a8cecdaa10f4eb261fbcd7e47cd753ff2737f037aac8f7f4e031cc77f3966314c491c86a0d3b20c128aeee57f791b4662c45108e
-  languageName: node
-  linkType: hard
-
-"denque@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "denque@npm:2.1.0"
-  checksum: 1d4ae1d05e59ac3a3481e7b478293f4b4c813819342273f3d5b826c7ffa9753c520919ba264f377e09108d24ec6cf0ec0ac729a5686cbb8f32d797126c5dae74
   languageName: node
   linkType: hard
 
@@ -12588,10 +12581,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kareem@npm:2.4.1":
-  version: 2.4.1
-  resolution: "kareem@npm:2.4.1"
-  checksum: 83c8d8f5ea82e58fa9f43f62f65576ac32fc7c5f817deb2708c68996eb586bf3dc236404a4570c548730a041e29a6553f61f8a744fa96a1093e5dc28b4ce598f
+"kareem@npm:2.5.0":
+  version: 2.5.0
+  resolution: "kareem@npm:2.5.0"
+  checksum: 292e80b32fb44e1801c5eb25b150e4b42e6ddf8a9c38ac67f99d4e7164dc7d9e874ea9b6ffaa42d6c3e76c8dd28ae5723643f3b5c8cb5c481af07118ce1475e3
   languageName: node
   linkType: hard
 
@@ -13641,13 +13634,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:4.11.0":
-  version: 4.11.0
-  resolution: "mongodb@npm:4.11.0"
+"mongodb@npm:4.12.1":
+  version: 4.12.1
+  resolution: "mongodb@npm:4.12.1"
   dependencies:
     "@aws-sdk/credential-providers": ^3.186.0
     bson: ^4.7.0
-    denque: ^2.1.0
     mongodb-connection-string-url: ^2.5.4
     saslprep: ^1.0.3
     socks: ^2.7.1
@@ -13656,7 +13648,7 @@ __metadata:
       optional: true
     saslprep:
       optional: true
-  checksum: 3080c2f58dc712ca6d0a34b0f4101c3ca66fbf86360b2a5ea2b64a9f757b4a0d7b77851688657fc3240ac748ddcd69c21ec2f7c785f10cb7d41e00e863f415ec
+  checksum: 84590484b2c93bce849ec1e334b064e983444ed73942061c91e09556348c80db9d4a40544b927cd795bdfbfc51d1b713a7df5ced4ecf13cd00fab5e3c3e32ada
   languageName: node
   linkType: hard
 
@@ -13690,18 +13682,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:^6.7.2":
-  version: 6.7.2
-  resolution: "mongoose@npm:6.7.2"
+"mongoose@npm:^6.8.1":
+  version: 6.8.1
+  resolution: "mongoose@npm:6.8.1"
   dependencies:
     bson: ^4.7.0
-    kareem: 2.4.1
-    mongodb: 4.11.0
+    kareem: 2.5.0
+    mongodb: 4.12.1
     mpath: 0.9.0
     mquery: 4.0.3
     ms: 2.1.3
     sift: 16.0.1
-  checksum: 5e3822603a143dbf3739a3fe4250a23b2433fe478809d662009724bf6311e13e59b2ba6bd4f1847567fe4f4d65e4972d3b5b892c27163adec4d18aff57a5e278
+  checksum: 8590e163a7e83a3fda929b45c6845525ca0ef3e1068558f4d5f95d5dec6613576b205ebec434bf76362d7371c92b7a890999a51d355fd3eb7679c56c34f4a7dc
   languageName: node
   linkType: hard
 
@@ -18923,13 +18915,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=c727ce&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=a5fb27&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: fbecd0c0f7fb7db92701441bce0b77b3f43c79b7483aaeb01f8313e96db82e32908415efb854eb6de3ebbc786301f8c289f8b9e6bd09cbbaa9419c582e07afc1
   languageName: node
   linkType: hard
 
