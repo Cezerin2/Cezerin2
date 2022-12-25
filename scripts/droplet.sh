@@ -8,11 +8,7 @@ sudo apt upgrade -y
 echo "................................"
 
 echo "Installing nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 echo "................................"
 
 echo "Installing node and enabling yarn"
@@ -31,7 +27,7 @@ echo "................................"
 
 echo "Installing mongodb and nginx"
 wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 sudo apt update
 sudo apt install mongodb-org nginx -y
 echo "................................"
@@ -71,10 +67,6 @@ echo "................................"
 echo "Starting Cezerin"
 pm2 start process.json
 pm2 status
-
-echo "To run node commands, run: source ~/.bashrc"
-echo "To restart bash for nvm"
-
 echo "................................"
 
 echo "Thank you for using Cezerin"
