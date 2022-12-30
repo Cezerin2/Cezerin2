@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react"
 import { Field, Form } from "react-final-form"
 import { text } from "../../lib/settings"
-import InputField from "./inputField"
+import InputField, { SingleInput } from "./inputField"
 import TextareaField from "./textareaField"
 
 const validateRequired = value =>
@@ -188,7 +188,7 @@ const CheckoutStepShipping: FC<Props> = props => {
         field.required === true ? validateRequired : () => undefined
 
       return (
-        <Field
+        <SingleInput
           key={index}
           className={fieldClassName}
           name={fieldId}
