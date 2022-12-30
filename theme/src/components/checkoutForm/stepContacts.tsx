@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from "react"
 import { Field, Form } from "react-final-form"
 import { formatCurrency, getValidation } from "../../lib/helper"
 import { text } from "../../lib/settings"
-import InputField from "./inputField"
+import InputField, { SingleInput } from "./inputField"
 
 const validateRequired = value =>
   value && value.length > 0 ? undefined : text.required
@@ -30,8 +30,21 @@ interface Props {
   saveShippingLocation
   saveShippingMethod
   savePaymentMethod
-  paymentMethods
-  shippingMethods
+  paymentMethods: { name: string; enabled: boolean; id: string }[]
+  shippingMethods: {
+    name: string
+    enabled: boolean
+    conditions: {
+      countries: []
+      states: []
+      cities: []
+      subtotal_min: number
+      subtotal_max: number
+      weight_total_min: number
+      weight_total_max: number
+    }
+    id: string
+  }[]
   inputClassName
   buttonClassName
   editButtonClassName
@@ -442,11 +455,11 @@ const CheckoutStepContacts: FC<Props> = props => {
                 method.id === initialValues.shipping_method_id ? " active" : ""
               }`}
             >
-              <Field
+              <SingleInput
                 name="shipping_method_id"
                 component="input"
                 type="radio"
-                value={method.id}
+                value={method.enabled}
                 onClick={() => {
                   saveShippingMethod(method.id)
                 }}
@@ -476,12 +489,12 @@ const CheckoutStepContacts: FC<Props> = props => {
                 method.id === initialValues.payment_method_id ? " active" : ""
               }`}
             >
-              <Field
+              <SingleInput
                 name="payment_method_id"
                 validate={validateRequired}
                 component="input"
                 type="radio"
-                value={method.id}
+                value={method.enabled}
                 onClick={() => {
                   savePaymentMethod(method.id)
                 }}
