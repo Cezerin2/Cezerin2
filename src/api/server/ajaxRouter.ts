@@ -3,6 +3,7 @@ import bcrypt, { hashSync } from "bcrypt"
 import CezerinClient from "cezerin2-client"
 import handlebars from "handlebars"
 import jwt from "jsonwebtoken"
+import { toSafeInteger } from "lodash"
 import { ObjectID } from "mongodb"
 import { decodeUserLoginAuth, encodeUserLoginAuth } from "./lib/authHeader"
 import { send } from "./lib/mailer"
@@ -389,7 +390,7 @@ ajaxRouter.post("/register", async ctx => {
       })
 
       // generate password-hash
-      const hashPassword = hashSync(passWord, saltRounds)
+      const hashPassword = hashSync(passWord, toSafeInteger(saltRounds)) // TODO: Types are incorrect, found string
 
       const customerDraft = {
         full_name: `${firstName} ${lastName}`,
@@ -421,6 +422,14 @@ ajaxRouter.post("/register", async ctx => {
         ),
       ])
 
+      const tokenConcatString = `${encodeUserLoginAuth(
+        ctx.request.body.first_name
+      )}xXx${encodeUserLoginAuth(
+        ctx.request.body.last_name
+      )}xXx${encodeUserLoginAuth(ctx.request.body.email)}xXx${
+        ctx.request.body.password
+      }`
+
       handlebars.registerHelper("register_doi_link", () => {
         const url = `${serverSettings.storeBaseUrl}${
           countryCode !== undefined ? `/${countryCode}/` : "/"
@@ -438,14 +447,6 @@ ajaxRouter.post("/register", async ctx => {
         handlebars.compile(emailTemp.body),
         SettingsService.getSettings(),
       ])
-
-      const tokenConcatString = `${encodeUserLoginAuth(
-        ctx.request.body.first_name
-      )}xXx${encodeUserLoginAuth(
-        ctx.request.body.last_name
-      )}xXx${encodeUserLoginAuth(ctx.request.body.email)}xXx${
-        ctx.request.body.password
-      }`
 
       await send({
         to: ctx.request.body.email,
