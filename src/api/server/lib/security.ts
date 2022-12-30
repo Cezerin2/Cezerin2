@@ -49,10 +49,10 @@ const checkUserScope =
   // TODO: Remove & { user }
   async (ctx, next) => {
     const isDeveloperMode = DEVELOPER_MODE === true
+    const scopes = ctx?.state?.user?.scopes
     const checkScopes =
-      ctx?.user?.scopes?.length > 0 &&
-      (ctx.user.scopes.includes(scope.ADMIN) ||
-        ctx.user.scopes.includes(requiredScope))
+      scopes?.length > 0 &&
+      (scopes.includes(scope.ADMIN) || scopes.includes(requiredScope))
 
     ctx.assert.strictEqual(
       isDeveloperMode || checkScopes,
