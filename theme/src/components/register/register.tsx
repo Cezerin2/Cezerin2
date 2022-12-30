@@ -39,12 +39,6 @@ const InputField = field => (
   </div>
 )
 
-const initialData = {
-  status: false,
-  isRightToken: null,
-  isCustomerSaved: null,
-}
-
 interface Props {
   onSubmit
   registerProperties
@@ -149,8 +143,13 @@ const Register: FC<Props> = props => {
       : labelText
   }
 
-  registerProperties =
-    registerProperties === undefined ? initialData : registerProperties
+  const initialData = {
+    status: false,
+    isRightToken: null,
+    isCustomerSaved: null,
+  }
+
+  const registerProps = registerProperties || initialData
 
   const registerButtonClassName = "account-button button"
   const inputClassName = "login-input-field"
@@ -166,31 +165,31 @@ const Register: FC<Props> = props => {
             <div className="register-section">
               <h2 className={titleClassName}>{text.register_title}</h2>
 
-              {!registerProperties.status &&
-              !registerProperties.isCustomerSaved &&
-              registerProperties.isCustomerSaved !== null &&
-              registerProperties.isRightToken ? (
+              {!registerProps.status &&
+              !registerProps.isCustomerSaved &&
+              registerProps.isCustomerSaved !== null &&
+              registerProps.isRightToken ? (
                 <p className={errorAlertText}>{text.registry_failed}</p>
               ) : (
                 ""
               )}
-              {registerProperties.status ? (
+              {registerProps.status ? (
                 <p className={successAlertText}>{text.registry_doi_success}</p>
               ) : (
                 ""
               )}
-              {registerProperties.isCustomerSaved ? (
+              {registerProps.isCustomerSaved ? (
                 <p className={successAlertText}>{text.registry_completed}</p>
               ) : (
                 ""
               )}
-              {!registerProperties.isRightToken &&
-              registerProperties.isRightToken !== null ? (
+              {!registerProps.isRightToken &&
+              registerProps.isRightToken !== null ? (
                 <p className={errorAlertText}>{text.registry_wrong_token}</p>
               ) : (
                 ""
               )}
-              {!registerProperties.isCustomerSaved && (
+              {!registerProps.isCustomerSaved && (
                 <Field
                   className={inputClassName}
                   name="first_name"
@@ -198,15 +197,15 @@ const Register: FC<Props> = props => {
                   component={InputField}
                   type="text"
                   props={
-                    registerProperties !== undefined &&
-                    registerProperties.status && { disabled: true }
+                    registerProps !== undefined &&
+                    registerProps.status && { disabled: true }
                   }
                   label={getFieldLabel("first_name")}
                   placeholder={getFieldPlaceholder("first_name")}
                 />
               )}
 
-              {!registerProperties.isCustomerSaved && (
+              {!registerProps.isCustomerSaved && (
                 <Field
                   className={inputClassName}
                   name="last_name"
@@ -214,15 +213,15 @@ const Register: FC<Props> = props => {
                   component={InputField}
                   type="text"
                   props={
-                    registerProperties !== undefined &&
-                    registerProperties.status && { disabled: true }
+                    registerProps !== undefined &&
+                    registerProps.status && { disabled: true }
                   }
                   label={getFieldLabel("last_name")}
                   placeholder={getFieldPlaceholder("last_name")}
                 />
               )}
 
-              {!registerProperties.isCustomerSaved && (
+              {!registerProps.isCustomerSaved && (
                 <Field
                   className={inputClassName}
                   name="email"
@@ -230,15 +229,15 @@ const Register: FC<Props> = props => {
                   component={InputField}
                   type="email"
                   props={
-                    registerProperties !== undefined &&
-                    registerProperties.status && { disabled: true }
+                    registerProps !== undefined &&
+                    registerProps.status && { disabled: true }
                   }
                   label={getFieldLabel("email")}
                   placeholder={getFieldPlaceholder("email")}
                 />
               )}
 
-              {!registerProperties.isCustomerSaved && (
+              {!registerProps.isCustomerSaved && (
                 <Field
                   className={inputClassName}
                   name="password"
@@ -246,8 +245,8 @@ const Register: FC<Props> = props => {
                   component={InputField}
                   type="password"
                   props={
-                    registerProperties !== undefined &&
-                    registerProperties.status && { disabled: true }
+                    registerProps !== undefined &&
+                    registerProps.status && { disabled: true }
                   }
                   label={getFieldLabel("password")}
                   onBlur={({ currentTarget }) =>
@@ -257,7 +256,7 @@ const Register: FC<Props> = props => {
                 />
               )}
 
-              {!registerProperties.isCustomerSaved && (
+              {!registerProps.isCustomerSaved && (
                 <Field
                   className={inputClassName}
                   name="password_verify"
@@ -265,8 +264,8 @@ const Register: FC<Props> = props => {
                   component={InputField}
                   type="password"
                   props={
-                    registerProperties !== undefined &&
-                    registerProperties.status && { disabled: true }
+                    registerProps !== undefined &&
+                    registerProps.status && { disabled: true }
                   }
                   label={getFieldLabel("password_verify")}
                   placeholder={getFieldPlaceholder("password_verify")}
@@ -274,19 +273,18 @@ const Register: FC<Props> = props => {
               )}
 
               <div className="login-button-wrap">
-                {!registerProperties.isCustomerSaved && (
+                {!registerProps.isCustomerSaved && (
                   <button
                     type="submit"
                     className={registerButtonClassName}
                     disabled={
-                      registerProperties !== undefined &&
-                      registerProperties.status
+                      registerProps !== undefined && registerProps.status
                     }
                   >
                     {text.register}
                   </button>
                 )}
-                {registerProperties.isCustomerSaved && (
+                {registerProps.isCustomerSaved && (
                   <Link
                     to="/login"
                     style={{ textDecoration: "none" }}
