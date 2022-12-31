@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
@@ -18992,9 +18993,9 @@ __metadata:
   linkType: hard
 
 "tinymce@npm:^6.0.0 || ^5.5.1":
-  version: 6.1.2
-  resolution: "tinymce@npm:6.1.2"
-  checksum: 9069dac3f503f36802ac34a91ca8297d433d92543e3a79437cb97ca9742e95582a446a67cbafea8c1a4ac0a4ae4026bdfb522b5fda4a1c15868ef5e25dc63111
+  version: 6.3.1
+  resolution: "tinymce@npm:6.3.1"
+  checksum: 43c5dd3de9bfbdc3092b4eeeca56cff5df39a097764b60bc12940161f69e396f9fed590528d9d29457f8887c97e4213f603ed8cee9796d851dcce5dfb998d934
   languageName: node
   linkType: hard
 
