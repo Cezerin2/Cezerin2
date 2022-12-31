@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import * as helper from "../lib/helper"
 import { text, themeSettings } from "../lib/settings"
 
-const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
+const SummaryItem = ({ settings, item, updateCartItemQuantity }) => {
   const thumbnail = helper.getThumbnailUrl(
     item.image_url,
     themeSettings.cartThumbnailWidth
@@ -51,7 +51,7 @@ const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
           <span className="select is-small">
             <select
               onChange={e => {
-                updateCartItemQuantiry(item.id, e.target.value)
+                updateCartItemQuantity(item.id, e.target.value)
               }}
               value={item.quantity}
             >
@@ -70,12 +70,12 @@ const SummaryItem = ({ settings, item, updateCartItemQuantiry }) => {
 SummaryItem.propTypes = {
   settings: PropTypes.shape({}).isRequired,
   item: PropTypes.shape({}).isRequired,
-  updateCartItemQuantiry: PropTypes.func.isRequired,
+  updateCartItemQuantity: PropTypes.func.isRequired,
 }
 
 const OrderSummary = props => {
   const {
-    updateCartItemQuantiry,
+    updateCartItemQuantity,
     state: { cart, settings },
   } = props
 
@@ -84,7 +84,7 @@ const OrderSummary = props => {
       <SummaryItem
         key={item.id}
         item={item}
-        updateCartItemQuantiry={updateCartItemQuantiry}
+        updateCartItemQuantity={updateCartItemQuantity}
         settings={settings}
       />
     ))
@@ -140,7 +140,7 @@ const OrderSummary = props => {
 }
 
 OrderSummary.propTypes = {
-  updateCartItemQuantiry: PropTypes.func.isRequired,
+  updateCartItemQuantity: PropTypes.func.isRequired,
   state: PropTypes.shape({
     cart: PropTypes.shape({}),
     settings: PropTypes.shape({}).isRequired,
