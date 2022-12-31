@@ -1,4 +1,5 @@
 const { readFileSync } = require("fs-extra")
+const { toSafeInteger } = require("lodash")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path")
 const { GenerateSW } = require("workbox-webpack-plugin")
@@ -36,7 +37,7 @@ const parse = fileName => {
   const file = readFileSync(`./config/${fileName}.yml`, "utf8")
   const configFile = YAML.parse(file, { strict: false })
 
-  const mapEnvVariables = (key, value) => {
+  const mapEnvVariables = value => {
     if (typeof value === "string" && value.includes("${")) {
       const [env, defaultValue = ""] = value.slice(2, -1).split(":")
 
@@ -48,18 +49,25 @@ const parse = fileName => {
         : defaultValue
 
       const getString = defaultValueString.length > 0 ? defaultValueString : ""
+      const getValue = `${getEnv || getString}`
 
-      return `'${getEnv || getString}'`
+      const intValue = toSafeInteger(getValue)
+      const booleanValue =
+        getValue === "true" || getValue === "false" ? false : null
+      const getParsedValue =
+        intValue.toString() === getValue ? intValue : booleanValue || getValue
+
+      return getParsedValue
     }
 
-    return `'${value}'`
+    return typeof value === "string" ? `"${value}"` : value
   }
 
   // Parsing environment variables
   const config = Object.fromEntries(
     Object.entries(configFile).map(([key, value]) => [
       key,
-      mapEnvVariables(key, value),
+      mapEnvVariables(value),
     ])
   )
 
