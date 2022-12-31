@@ -161,7 +161,7 @@
     "concurrently": "^7.5.0",
     "core-js": "^3.26.1",
     "cross-env": "^7.0.3",
-    "css-loader": "^6.7.2",
+    "css-loader": "^6.7.3",
     "cssnano": "^5.1.14",
     "eslint": "^8.27.0",
     "eslint-config-airbnb": "^19.0.4",
