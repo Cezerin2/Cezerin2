@@ -6804,7 +6804,7 @@ __metadata:
     redux-form-material-ui: ^4.3.4
     redux-thunk: ^2.4.2
     regenerator-runtime: ^0.13.10
-    sass: ^1.56.1
+    sass: ^1.57.1
     sass-loader: ^13.2.0
     sharp: ^0.31.2
     sitemap: ^7.1.1
@@ -17455,7 +17455,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.29.0, sass@npm:^1.56.1":
+"sass@npm:^1.29.0":
   version: 1.56.1
   resolution: "sass@npm:1.56.1"
   dependencies:
@@ -17465,6 +17465,19 @@ __metadata:
   bin:
     sass: sass.js
   checksum: 78e693e5992b149574c95d5adfe39ca3e5b97d80befa11191a20d1daa41fe201a98ac099beab726cd3095e2d2e7991a2c408ba0fcc3fa9f525879de7eee18dad
+  languageName: node
+  linkType: hard
+
+"sass@npm:^1.57.1":
+  version: 1.57.1
+  resolution: "sass@npm:1.57.1"
+  dependencies:
+    chokidar: ">=3.0.0 <4.0.0"
+    immutable: ^4.0.0
+    source-map-js: ">=0.6.2 <2.0.0"
+  bin:
+    sass: sass.js
+  checksum: 734a08781bcbe0e8defb2d54864e7012014ed3e68ba5fcb766189b002929019fc37b2f83a18d4be0b5f69ad77317c92396ce6112447ab47a194ed600ae1afb27
   languageName: node
   linkType: hard
 
@@ -18923,13 +18936,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
