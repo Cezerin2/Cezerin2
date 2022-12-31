@@ -6796,7 +6796,7 @@ __metadata:
     react-lazyload: ^3.2.0
     react-redux: ^8.0.5
     react-router-dom: ^5.3.1
-    react-scroll: ^1.8.8
+    react-scroll: ^1.8.9
     react-sortable-hoc: ^2.0.0
     react-tagsinput: ^3.20.0
     react-use: ^17.4.0
@@ -16535,16 +16535,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-scroll@npm:^1.8.8":
-  version: 1.8.8
-  resolution: "react-scroll@npm:1.8.8"
+"react-scroll@npm:^1.8.9":
+  version: 1.8.9
+  resolution: "react-scroll@npm:1.8.9"
   dependencies:
     lodash.throttle: ^4.1.1
     prop-types: ^15.7.2
   peerDependencies:
     react: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
     react-dom: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 66c86d25e2d8032c3c00fdd4909a188b00d8ddabf4744f5a86829199ac9f100e042199f336442f403332ac1082687213e6966cb0f500e64e4392217f715c6c1a
+  checksum: 534ea65713a59ef7ddf623e38058220b654730352b624371cb2250bcf99784806b4564f3fa9295c969980e227e3de15903d95e069f9a3ca520ff0c0c1fb2e362
   languageName: node
   linkType: hard
 
@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
