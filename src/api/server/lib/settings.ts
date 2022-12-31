@@ -1,11 +1,12 @@
 import { readFileSync } from "fs-extra"
+import { toSafeInteger } from "lodash"
 import YAML from "yaml"
 import { Server } from "../../../../config/types/server"
 
 const file = readFileSync("./config/server.yml", "utf8")
 const configFile = <Server>YAML.parse(file, { strict: false })
 
-const mapEnvVariables = (key: string, value: unknown) => {
+const mapEnvVariables = (value: unknown) => {
   if (typeof value === "string" && value.includes("${")) {
     const [env, defaultValue = ""] = value.slice(2, -1).split(":")
 
@@ -17,8 +18,15 @@ const mapEnvVariables = (key: string, value: unknown) => {
       : defaultValue
 
     const getString = defaultValueString.length > 0 ? defaultValueString : ""
+    const getValue = `${getEnv || getString}`
 
-    return getEnv || getString
+    const intValue = toSafeInteger(getValue)
+    const booleanValue =
+      getValue === "true" || getValue === "false" ? false : null
+    const getParsedValue =
+      intValue.toString() === getValue ? intValue : booleanValue || getValue
+
+    return getParsedValue
   }
 
   return value
@@ -28,7 +36,7 @@ const mapEnvVariables = (key: string, value: unknown) => {
 const config = Object.fromEntries(
   Object.entries(configFile).map(([key, value]) => [
     key,
-    mapEnvVariables(key, value),
+    mapEnvVariables(value),
   ])
 ) as unknown as Server
 
