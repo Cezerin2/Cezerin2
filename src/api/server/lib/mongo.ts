@@ -1,9 +1,8 @@
 import { MongoClient } from "mongodb"
-import url from "url"
 import winston from "winston"
 import { mongodbConnection } from "./settings"
 
-const mongoPathName = url.parse(mongodbConnection).pathname
+const mongoPathName = new URL(mongodbConnection).pathname
 const dbName = mongoPathName.substring(mongoPathName.lastIndexOf("/") + 1)
 
 const reconnectInterval = 1000

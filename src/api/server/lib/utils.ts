@@ -44,6 +44,16 @@ const getProjectionFromFields = fields => {
   return Object.assign({}, ...fieldsArray.map(key => ({ [key]: 1 })))
 }
 
+export const URLResolve = (from: string, to: string) => {
+  const resolvedUrl = new URL(to, new URL(from, "resolve://"))
+  if (resolvedUrl.protocol === "resolve:") {
+    // `from` is a relative URL.
+    const { pathname, search, hash } = resolvedUrl
+    return pathname + search + hash
+  }
+  return resolvedUrl.toString()
+}
+
 export default {
   cleanSlug: cleanSlug,
   getAvailableSlug: getAvailableSlug,

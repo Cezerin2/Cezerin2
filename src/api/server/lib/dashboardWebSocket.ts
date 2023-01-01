@@ -1,6 +1,5 @@
 import { Server } from "http"
-import url from "url"
-import WebSocket from "ws"
+import WebSocket, { VerifyClientCallbackAsync } from "ws"
 import security from "./security"
 
 let wss = null
@@ -20,19 +19,22 @@ const listen = (server: Server) => {
 
 const getTokenFromRequestPath = requestPath => {
   try {
-    const urlObj = url.parse(requestPath, true)
-    return urlObj.query.token
+    const urlObj = new URL(requestPath)
+    return urlObj.searchParams.get("token")
   } catch (error) {
     console.error(error)
     return null
   }
 }
 
-const verifyClient = async (info, done) => {
+const verifyClient: VerifyClientCallbackAsync = async (
+  { origin, req },
+  done
+) => {
   if (security.DEVELOPER_MODE === true) {
     done(true)
   } else {
-    const requestPath = info.req.url
+    const requestPath = `${origin}${req.url}`
     const token = getTokenFromRequestPath(requestPath)
     try {
       // TODO: check access to dashboard

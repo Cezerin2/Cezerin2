@@ -2,11 +2,10 @@ import formidable from "formidable"
 import fse from "fs-extra"
 import { ObjectID } from "mongodb"
 import path from "path"
-import url from "url"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import utils from "../../lib/utils"
+import utils, { URLResolve } from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 class ProductImagesService {
@@ -26,7 +25,7 @@ class ProductImagesService {
         .then(product => {
           if (product && product.images && product.images.length > 0) {
             let images = product.images.map(image => {
-              image.url = url.resolve(
+              image.url = URLResolve(
                 generalSettings.domain,
                 `${settings.productsUploadUrl}/${product._id}/${image.filename}`
               )
