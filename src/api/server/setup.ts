@@ -1,10 +1,9 @@
 import { MongoClient } from "mongodb"
-import url from "url"
 import winston from "winston"
 import "./lib/logger"
 import { mongodbConnection } from "./lib/settings"
 
-const mongoPathName = url.parse(mongodbConnection).pathname
+const mongoPathName = new URL(mongodbConnection).pathname
 const dbName = mongoPathName.substring(mongoPathName.lastIndexOf("/") + 1)
 
 const CONNECT_OPTIONS = {

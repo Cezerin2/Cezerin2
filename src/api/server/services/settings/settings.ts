@@ -2,11 +2,10 @@ import { RouterContext } from "@koa/router"
 import formidable from "formidable"
 import fse from "fs-extra"
 import path from "path"
-import url from "url"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import utils from "../../lib/utils"
+import utils, { URLResolve } from "../../lib/utils"
 
 class SettingsService {
   defaultSettings: {
@@ -247,7 +246,7 @@ class SettingsService {
     }
 
     if (data.logo_file && data.logo_file.length > 0) {
-      data.logo = url.resolve(
+      data.logo = URLResolve(
         data.domain,
         settings.filesUploadUrl + "/" + data.logo_file
       )
