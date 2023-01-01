@@ -1,8 +1,7 @@
 import { ObjectID } from "mongodb"
-import url from "url"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
-import utils from "../../lib/utils"
+import utils, { URLResolve } from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 const DEFAULT_SORT = { is_system: -1, date_created: 1 }
@@ -178,8 +177,8 @@ class PagesService {
         item.slug = ""
       }
 
-      item.url = url.resolve(domain, `/${item.slug}`)
-      item.path = url.resolve("/", item.slug)
+      item.url = URLResolve(domain, `/${item.slug}`)
+      item.path = URLResolve("/", item.slug)
     }
 
     return item

@@ -3,11 +3,10 @@ import formidable from "formidable"
 import fse from "fs-extra"
 import { ObjectID } from "mongodb"
 import path from "path"
-import url from "url"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import utils from "../../lib/utils"
+import utils, { URLResolve } from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 class ProductCategoriesService {
@@ -258,12 +257,12 @@ class ProductCategoriesService {
       }
 
       if (item.slug) {
-        item.url = url.resolve(domain, `/${item.slug}`)
-        item.path = url.resolve("/", item.slug)
+        item.url = URLResolve(domain, `/${item.slug}`)
+        item.path = URLResolve("/", item.slug)
       }
 
       if (item.image) {
-        item.image = url.resolve(
+        item.image = URLResolve(
           domain,
           `${settings.categoriesUploadUrl}/${item.id}/${item.image}`
         )

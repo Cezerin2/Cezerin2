@@ -5,11 +5,11 @@ import LRUCache from "lru-cache"
 import moment from "moment"
 import { ObjectID } from "mongodb"
 import uaParser from "ua-parser-js"
-import url from "url"
 import { send } from "../../lib/mailer"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
+import { URLResolve } from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 const cache = new LRUCache({
@@ -219,8 +219,8 @@ class SecurityTokensService {
       this.getSingleTokenByEmail(email).then(token => {
         if (token)
           return this.getSignedToken(token).then(signedToken => {
-            const loginUrl = url.resolve(
-              generalSettings.domain,
+            const loginUrl = URLResolve(
+              generalSettings.domain || settings.storeBaseUrl,
               settings.adminLoginUrl
             )
             return `${loginUrl}?token=${signedToken}`
@@ -278,8 +278,7 @@ class SecurityTokensService {
     const link = await this.getDashboardSigninUrl(email)
 
     if (link) {
-      const linkObj = url.parse(link)
-      // TODO: received as null//null
+      const linkObj = new URL(link)
       const domain = `${linkObj.protocol}//${linkObj.host}`
       const device = userAgent.device.vendor
         ? `${userAgent.device.vendor} ${userAgent.device.model}, `

@@ -2,11 +2,10 @@ import fse from "fs-extra"
 import { escapeRegExp } from "lodash"
 import { ObjectID } from "mongodb"
 import path from "path"
-import url from "url"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import utils from "../../lib/utils"
+import utils, { URLResolve } from "../../lib/utils"
 import SettingsService from "../settings/settings"
 import CategoriesService from "./productCategories"
 
@@ -943,7 +942,7 @@ class ProductsService {
   }
 
   getImageUrl(domain, productId, imageFileName) {
-    return url.resolve(
+    return URLResolve(
       domain,
       `${settings.productsUploadUrl}/${productId}/${imageFileName}`
     )
@@ -973,7 +972,7 @@ class ProductsService {
             const productSlug = item.slug || ""
 
             if (item.url === "") {
-              item.url = url.resolve(domain, `/${categorySlug}/${productSlug}`)
+              item.url = URLResolve(domain, `/${categorySlug}/${productSlug}`)
             }
 
             if (item.path === "") {
