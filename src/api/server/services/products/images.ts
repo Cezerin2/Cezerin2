@@ -1,3 +1,4 @@
+import { RouterContext } from "@koa/router"
 import formidable from "formidable"
 import fse from "fs-extra"
 import { ObjectID } from "mongodb"
@@ -76,12 +77,10 @@ class ProductImagesService {
       .then(() => true)
   }
 
-  async addImage(req, res, next?) {
-    const productID = req.params.productId
-    if (!ObjectID.isValid(productID)) {
-      res.status(500).send(this.getErrorMessage("Invalid identifier"))
-      return
-    }
+  async addImage(ctx: RouterContext) {
+    const productID = ctx.params.productId
+    if (!ObjectID.isValid(productID))
+      ctx.throw(this.getErrorMessage("Invalid identifier"))
 
     const uploadedFiles = []
     const productObjectID = new ObjectID(productID)
@@ -122,13 +121,13 @@ class ProductImagesService {
         }
       })
       .on("error", error => {
-        res.status(500).send(this.getErrorMessage(error))
+        ctx.throw(this.getErrorMessage(error))
       })
       .on("end", () => {
-        res.send(uploadedFiles)
+        ctx.body = uploadedFiles
       })
 
-    form.parse(req)
+    form.parse(ctx.req)
   }
 
   updateImage(productID, imageID, data) {
