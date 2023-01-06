@@ -6750,7 +6750,7 @@ __metadata:
     fs-extra: ^10.1.0
     handlebars: ^4.7.7
     helmet: ^6.0.0
-    html-react-parser: ^3.0.4
+    html-react-parser: ^3.0.7
     html-webpack-plugin: ^5.5.0
     i18next: ^22.0.5
     i18next-browser-languagedetector: ^7.0.1
@@ -10718,17 +10718,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-react-parser@npm:^3.0.4":
-  version: 3.0.4
-  resolution: "html-react-parser@npm:3.0.4"
+"html-react-parser@npm:^3.0.7":
+  version: 3.0.7
+  resolution: "html-react-parser@npm:3.0.7"
   dependencies:
     domhandler: 5.0.3
     html-dom-parser: 3.1.2
     react-property: 2.0.0
-    style-to-js: 1.1.1
+    style-to-js: 1.1.2
   peerDependencies:
     react: 0.14 || 15 || 16 || 17 || 18
-  checksum: cfd3e8da305b95c6b67196d1806a793b439c0c36f91994b90fb83c2ba8e57b7f8489899a0ca502443ee41c7206ab64aedb1c7e218afd3d9b5bde5f8bd3ed6ff4
+  checksum: a797cc3849351169235604f84061e49c7f97c7707c86d1231b8c15c27ccef1a7650db299e0d3e61b1d3ef530adcdbdb8edf817a3e2172044c43575fe0d67cfe9
   languageName: node
   linkType: hard
 
@@ -18561,21 +18561,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-to-js@npm:1.1.1":
-  version: 1.1.1
-  resolution: "style-to-js@npm:1.1.1"
+"style-to-js@npm:1.1.2":
+  version: 1.1.2
+  resolution: "style-to-js@npm:1.1.2"
   dependencies:
-    style-to-object: 0.3.0
-  checksum: 91b9742af9fc389118e5c3f39a95cbebe1a456b65530aba7595e789783d015aab4bbbf4bc3e0998c41ce7c46661f1244aeffd9e7c407ad8ac928e2ba2be37aa0
+    style-to-object: 0.4.0
+  checksum: 9e42b6a0e23c21282ed3d80ebc4194c3a5b5d42528873483532fe8623df91e28db4171715a96520be88f68bc98b1a9a18f65a03eb917617df492f096d174ad32
   languageName: node
   linkType: hard
 
-"style-to-object@npm:0.3.0":
-  version: 0.3.0
-  resolution: "style-to-object@npm:0.3.0"
+"style-to-object@npm:0.4.0":
+  version: 0.4.0
+  resolution: "style-to-object@npm:0.4.0"
   dependencies:
     inline-style-parser: 0.1.1
-  checksum: 4d7084015207f2a606dfc10c29cb5ba569f2fe8005551df7396110dd694d6ff650f2debafa95bd5d147dfb4ca50f57868e2a7f91bf5d11ef734fe7ccbd7abf59
+  checksum: ad4c2cef5e80c4e981f6747b5c415453b11be5b70c925bc58a69373a7711f6c722a0b11fe9909599b46505329f9e8641c09e7ee5d270be1fe40d7ebdb5b72b81
   languageName: node
   linkType: hard
 
@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
