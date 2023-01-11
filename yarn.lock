@@ -6743,7 +6743,7 @@ __metadata:
     eslint-plugin-jsx-a11y: ^6.6.1
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-react: ^7.31.10
-    final-form: ^4.20.7
+    final-form: ^4.20.8
     final-form-arrays: ^3.0.2
     fork-ts-checker-webpack-plugin: ^7.2.13
     formidable: ^1.2.1
@@ -9739,12 +9739,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"final-form@npm:^4.20.7":
-  version: 4.20.7
-  resolution: "final-form@npm:4.20.7"
+"final-form@npm:^4.20.8":
+  version: 4.20.8
+  resolution: "final-form@npm:4.20.8"
   dependencies:
     "@babel/runtime": ^7.10.0
-  checksum: 0e2a9a9cf70814e1099da38e8a79ff6dc2862f07217dae041ba70c5a4bcc8284c74b0500f00b4935331f5fbe7dc119f63ca4776495ecc8c486c939daa23598ec
+  checksum: ad9b446fa1c35daee2247ddb589e65af5244eab2d07c8183fd75ed1cf1b40865655cfb4f7cf1454bf2e2f9ab7f8a25c41596ab39d86425c634fc761f6be729b4
   languageName: node
   linkType: hard
 
@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
