@@ -174,7 +174,7 @@
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss-loader": "^7.0.1",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.3",
     "prop-types": "^15.8.1",
     "razzle": "^4.2.18",
     "razzle-dev-utils": "^4.2.18",
