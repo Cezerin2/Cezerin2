@@ -4079,16 +4079,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tinymce/tinymce-react@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "@tinymce/tinymce-react@npm:4.2.0"
+"@tinymce/tinymce-react@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "@tinymce/tinymce-react@npm:4.3.0"
   dependencies:
     prop-types: ^15.6.2
-    tinymce: ^6.0.0 || ^5.5.1
+    tinymce: ^6.3.1
   peerDependencies:
     react: ^18.0.0 || ^17.0.1 || ^16.7.0
     react-dom: ^18.0.0 || ^17.0.1 || ^16.7.0
-  checksum: 4aed633830e79aff8c1ba3518180f9a12edecc3c681d150cb7959e2b04d6c6d0af2fed97d3ef6afae5722c0c1fe5499da648756621e3ecf2f2bc48aeb614947b
+  checksum: 73b3765ae9bacc58df760c1bb8968fc6c8dd498373a8f99f782292f0c3bbc4c1ff71d6aaa1d8ac66349a79ebfc6091698c2891532c3efd8f795399b59bb427b8
   languageName: node
   linkType: hard
 
@@ -6699,7 +6699,7 @@ __metadata:
     "@sentry/tracing": ^7.19.0
     "@stripe/react-stripe-js": ^1.15.0
     "@stripe/stripe-js": ^1.44.1
-    "@tinymce/tinymce-react": ^4.2.0
+    "@tinymce/tinymce-react": ^4.3.0
     "@types/bcrypt": ^5.0.0
     "@types/dompurify": ^2.4.0
     "@types/formidable": 1.0.31
@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
@@ -18991,10 +18992,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinymce@npm:^6.0.0 || ^5.5.1":
-  version: 6.1.2
-  resolution: "tinymce@npm:6.1.2"
-  checksum: 9069dac3f503f36802ac34a91ca8297d433d92543e3a79437cb97ca9742e95582a446a67cbafea8c1a4ac0a4ae4026bdfb522b5fda4a1c15868ef5e25dc63111
+"tinymce@npm:^6.3.1":
+  version: 6.3.1
+  resolution: "tinymce@npm:6.3.1"
+  checksum: 43c5dd3de9bfbdc3092b4eeeca56cff5df39a097764b60bc12940161f69e396f9fed590528d9d29457f8887c97e4213f603ed8cee9796d851dcce5dfb998d934
   languageName: node
   linkType: hard
 
