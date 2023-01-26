@@ -5863,14 +5863,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "axios@npm:1.1.3"
+"axios@npm:^1.2.5":
+  version: 1.2.5
+  resolution: "axios@npm:1.2.5"
   dependencies:
     follow-redirects: ^1.15.0
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
-  checksum: cab3b17bf6092c9387f7023d699db093cfa23650b56c4422cd474d124b78b2e3b5a520f932c330664a58ab85b867b1c25a95cace475ef72d236888c852b84e6d
+  checksum: 3d7a3b029b9f46fb296bcecf84fbe4be32b09511aba2256d44fc5c1a75824f364d2ce22fd0ea61adfd564e1c353c6d2000b4cc340c65b27102528101557dd9db
   languageName: node
   linkType: hard
 
@@ -6723,7 +6723,7 @@ __metadata:
     "@types/webpack-env": ^1.18.0
     "@typescript-eslint/eslint-plugin": ^5.43.0
     "@typescript-eslint/parser": ^5.43.0
-    axios: ^1.1.3
+    axios: ^1.2.5
     babel-loader: ^9.1.0
     babel-preset-razzle: ^4.2.18
     bcrypt: ^5.1.0
@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
