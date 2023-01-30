@@ -2892,7 +2892,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@date-io/core@npm:^2.11.0, @date-io/core@npm:^2.15.0":
+"@date-io/core@npm:^2.15.0":
   version: 2.15.0
   resolution: "@date-io/core@npm:2.15.0"
   checksum: 5ecb264230a5bbf753177f84c7fa4e778b03d85bafb63709ca9211c373d52dae5decb6884bbe8f0a17bb2f17fc9184e418ca54da147106dfdb83fce6fb96631f
@@ -2906,21 +2906,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@date-io/date-fns@npm:^2.11.0":
-  version: 2.15.0
-  resolution: "@date-io/date-fns@npm:2.15.0"
-  dependencies:
-    "@date-io/core": ^2.15.0
-  peerDependencies:
-    date-fns: ^2.0.0
-  peerDependenciesMeta:
-    date-fns:
-      optional: true
-  checksum: 5aacac0efc50b6ae2d53d78b827a62a64fcf51e61dc4091aefec53db668ceadea0695f3cf878f89955b23a961deae5410dcbc5fd1d9326945c51bbb2f00d7aa9
-  languageName: node
-  linkType: hard
-
-"@date-io/date-fns@npm:^2.15.0":
+"@date-io/date-fns@npm:^2.15.0, @date-io/date-fns@npm:^2.16.0":
   version: 2.16.0
   resolution: "@date-io/date-fns@npm:2.16.0"
   dependencies:
@@ -6775,7 +6761,7 @@ __metadata:
     moment: ^2.29.4
     mongodb: ^3.1.4
     mongoose: ^6.7.2
-    mui-rff: ^6.1.2
+    mui-rff: ^6.1.3
     nodemailer: ^6.8.0
     postcss-loader: ^7.0.1
     prettier: ^2.7.1
@@ -8044,14 +8030,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.25.0":
-  version: 2.29.1
-  resolution: "date-fns@npm:2.29.1"
-  checksum: 9d07f77dffc1eb8c213391bde39f2963ffe7c0019d9edde14487882d627224f3a39b963e6e99d0cc58afff220a6a1a7e8864d2789958f4eaa77714de94d4d076
-  languageName: node
-  linkType: hard
-
-"date-fns@npm:^2.29.1":
+"date-fns@npm:^2.29.1, date-fns@npm:^2.29.3":
   version: 2.29.3
   resolution: "date-fns@npm:2.29.3"
   checksum: e01cf5b62af04e05dfff921bb9c9933310ed0e1ae9a81eb8653452e64dc841acf7f6e01e1a5ae5644d0337e9a7f936175fd2cb6819dc122fdd9c5e86c56be484
@@ -13763,13 +13742,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mui-rff@npm:^6.1.2":
-  version: 6.1.2
-  resolution: "mui-rff@npm:6.1.2"
+"mui-rff@npm:^6.1.3":
+  version: 6.1.3
+  resolution: "mui-rff@npm:6.1.3"
   dependencies:
-    "@date-io/core": ^2.11.0
-    "@date-io/date-fns": ^2.11.0
-    date-fns: ^2.25.0
+    "@date-io/core": ^2.16.0
+    "@date-io/date-fns": ^2.16.0
+    date-fns: ^2.29.3
     yup: ^0.32.11
   peerDependencies:
     "@emotion/react": ^11.10.4
@@ -13789,7 +13768,7 @@ __metadata:
       optional: true
     yup:
       optional: true
-  checksum: a88c1172df45ad27e0a567db7a7c4beccbb661793ba50fcf0c306ed3be19dd7b389f7a676c890a84bfed8aaf866c36aaa7f5ce1f4cff42fe700da142c573da82
+  checksum: 68638ec3639216af688d080faf93041a8d5927f8f2f585d1b64f2261db1d826714c634b35971e38b70b6e307123fa65f2f621ce048ba65a02ff9ceba2486cfc4
   languageName: node
   linkType: hard
 
@@ -18923,13 +18902,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
