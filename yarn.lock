@@ -3708,9 +3708,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/x-date-pickers@npm:^5.0.8":
-  version: 5.0.8
-  resolution: "@mui/x-date-pickers@npm:5.0.8"
+"@mui/x-date-pickers@npm:^5.0.17":
+  version: 5.0.17
+  resolution: "@mui/x-date-pickers@npm:5.0.17"
   dependencies:
     "@babel/runtime": ^7.18.9
     "@date-io/core": ^2.15.0
@@ -3748,7 +3748,7 @@ __metadata:
       optional: true
     moment:
       optional: true
-  checksum: a7a9c1ebbe7cb4d18e6271b1082b941690402c1258aee445ad7390aba582e1b51a2af9f42f489dc3ab8060d130aefb491c510659f381d86f94d4eb652163cf30
+  checksum: e11319638129dc1cf8306d86925a0f0c19e7763807a5f55dd56c256ffeb1afb3f3b318ae1f9064ae2bf841e82215b17047f638b8858a74b18f1e4dbd470f0295
   languageName: node
   linkType: hard
 
@@ -6692,7 +6692,7 @@ __metadata:
     "@koa/router": ^12.0.0
     "@mui/icons-material": ^5.10.14
     "@mui/material": ^5.10.14
-    "@mui/x-date-pickers": ^5.0.8
+    "@mui/x-date-pickers": ^5.0.17
     "@reduxjs/toolkit": ^1.9.0
     "@sentry/node": ^7.19.0
     "@sentry/react": ^7.19.0
@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
