@@ -4649,10 +4649,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.9":
-  version: 18.11.9
-  resolution: "@types/node@npm:18.11.9"
-  checksum: cc0aae109e9b7adefc32eecb838d6fad931663bb06484b5e9cbbbf74865c721b03d16fd8d74ad90e31dbe093d956a7c2c306ba5429ba0c00f3f7505103d7a496
+"@types/node@npm:^18.11.19":
+  version: 18.11.19
+  resolution: "@types/node@npm:18.11.19"
+  checksum: d7cd19fcfc59cbdd3f9ba0b4072cb7adc21bd575bd8eb7d7e698975e63564aaa83f03434f32b12331f84f73d0b369d9cbe2371e359d9d7f5c3361f4987f4f7da
   languageName: node
   linkType: hard
 
@@ -6712,7 +6712,7 @@ __metadata:
     "@types/koa__cors": ^3.3.0
     "@types/koa__router": ^12.0.0
     "@types/lodash": ^4.14.189
-    "@types/node": ^18.11.9
+    "@types/node": ^18.11.19
     "@types/nodemailer": ^6.4.6
     "@types/react": ^18.0.25
     "@types/react-dom": ^18.0.9
@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
