@@ -55,7 +55,7 @@
     "@sentry/node": "^7.19.0",
     "@sentry/react": "^7.19.0",
     "@sentry/tracing": "^7.19.0",
-    "@stripe/react-stripe-js": "^1.15.0",
+    "@stripe/react-stripe-js": "^1.16.5",
     "@stripe/stripe-js": "^1.44.1",
     "@tinymce/tinymce-react": "^4.2.0",
     "@types/formidable": "1.0.31",
