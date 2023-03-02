@@ -4060,10 +4060,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stripe/stripe-js@npm:^1.44.1":
-  version: 1.44.1
-  resolution: "@stripe/stripe-js@npm:1.44.1"
-  checksum: f65476472ac7952c0c7c7c321ae64ace89e09fc13c4979f98f58db7be98a5e88e47cb2ef00f038402fd99c417706f0331cde2e1f4b131bd3a8c879dd1ab0e79d
+"@stripe/stripe-js@npm:^1.48.0":
+  version: 1.48.0
+  resolution: "@stripe/stripe-js@npm:1.48.0"
+  checksum: 2ded18662ddb6234191d2ecf6d9ab0eb743148c3946ef42706f091bdeb57f396b610cd6528a8a0eb52aa516233c52bc6e7ff2a98c636d265e221d0d468123dea
   languageName: node
   linkType: hard
 
@@ -6698,7 +6698,7 @@ __metadata:
     "@sentry/react": ^7.19.0
     "@sentry/tracing": ^7.19.0
     "@stripe/react-stripe-js": ^1.15.0
-    "@stripe/stripe-js": ^1.44.1
+    "@stripe/stripe-js": ^1.48.0
     "@tinymce/tinymce-react": ^4.2.0
     "@types/bcrypt": ^5.0.0
     "@types/dompurify": ^2.4.0
@@ -18923,13 +18923,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=8bf52f&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=179a4e&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 66a4023611dd52050f51c808fe01bba09ee46b52d19ba7fd3fee340eb8f1c6690661893993de19cfb8459206f3a5ce257f22f9be217b843c46c39a0c1ac27786
   languageName: node
   linkType: hard
 
