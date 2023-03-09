@@ -67,7 +67,7 @@ const ImageUpload: FC<Props> = props => {
           touch
           tooltip={messages.actions_upload}
           onClick={() => {
-            dropzone.open()
+            dropzone.current.open()
           }}
           tooltipPosition="top-right"
         >

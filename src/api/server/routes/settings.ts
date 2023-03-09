@@ -1,4 +1,4 @@
-import Router, { Middleware } from "@koa/router"
+import Router, { Middleware, RouterContext } from "@koa/router"
 import security from "../lib/security"
 import CheckoutFieldsService from "../services/settings/checkoutFields"
 import CommerceSettingsService from "../services/settings/commerce"
@@ -96,8 +96,8 @@ const updateCheckoutField: Middleware = async ctx => {
   } else ctx.status = 404
 }
 
-const { uploadLogo } = SettingsService
-
+//? Need to call directly or will not work!
+const uploadLogo = (ctx: RouterContext) => SettingsService.uploadLogo(ctx)
 const deleteLogo: Middleware = () => SettingsService.deleteLogo()
 
 router
