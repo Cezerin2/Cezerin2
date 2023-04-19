@@ -104,7 +104,7 @@ module.exports = {
 
     if (target === "web") {
       config.resolve.fallback = {
-        theme: require.resolve("theme"),
+        theme: require.resolve("./theme/src/index.tsx"),
         url: require.resolve("url"),
       }
 
