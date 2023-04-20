@@ -50,7 +50,7 @@ const Quantity: FC<Props> = props => {
         <input
           value={value}
           onChange={handleChange}
-          maxLength="3"
+          maxLength={3}
           type="number"
           pattern="\d*"
           disabled={disabled}

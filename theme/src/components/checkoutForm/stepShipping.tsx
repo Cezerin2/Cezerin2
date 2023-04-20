@@ -53,13 +53,12 @@ const getFieldLabel = field => {
 interface Props {
   initialValues
   onSubmit
-  pristine
-  invalid
-  valid
-  reset
-  submitting
+  pristine?
+  invalid?
+  valid?
+  reset?
+  submitting?
   processingCheckout
-  initialValues
   shippingMethod
   checkoutFields
   settings

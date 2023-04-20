@@ -29,7 +29,7 @@ const LiqPayButton: FC<Props> = props => {
   }
 
   const executeScript = () => {
-    LiqPayCheckout.init({
+    window.LiqPayCheckout.init({
       data: formSettings.data,
       signature: formSettings.signature,
       language: formSettings.language,

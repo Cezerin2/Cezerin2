@@ -43,7 +43,7 @@ interface Props {
   onSubmit
   customerProperties
   cartlayerBtnInitialized
-  checkoutFields
+  checkoutFields?
 }
 
 const Login: FC<Props> = props => {

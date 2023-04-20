@@ -42,7 +42,7 @@ const InputField = field => (
 interface Props {
   onSubmit
   registerProperties
-  checkoutFields
+  checkoutFields?
 }
 
 const Register: FC<Props> = props => {

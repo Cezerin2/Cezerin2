@@ -33,7 +33,7 @@ interface Props {
   onSubmit
   forgotPasswordProperties
   resetPasswordProperties
-  checkoutFields
+  checkoutFields?
 }
 
 const ResetPassword: FC<Props> = props => {

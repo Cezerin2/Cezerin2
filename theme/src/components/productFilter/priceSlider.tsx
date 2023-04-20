@@ -7,6 +7,8 @@ interface Props {
   minPrice
   maxPrice
   setPriceFromAndTo
+  minValue
+  maxValue
   settings
 }
 

@@ -47,13 +47,8 @@ const LoginForm: FC<Props> = props => {
 
   return (
     <Login
-      inputClassName={checkoutInputClass}
-      buttonClassName={checkoutButtonClass}
-      editButtonClassName={checkoutEditButtonClass}
-      settings={settings}
       customerProperties={customerProperties}
       cartlayerBtnInitialized={cartlayerBtnInitialized}
-      readOnly={true}
       onSubmit={handleFormSubmit}
     />
   )

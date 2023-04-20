@@ -20,12 +20,11 @@ const LoginIcon = () => {
 }
 
 interface Props {
-  login
   onClick
 }
 
 const Login: FC<Props> = props => {
-  const { login, onClick } = props
+  const { onClick } = props
 
   return (
     <span className="login-button" onClick={onClick}>

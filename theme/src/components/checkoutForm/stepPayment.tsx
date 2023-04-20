@@ -9,7 +9,7 @@ interface Props {
   handleSuccessPayment
   inputClassName
   buttonClassName
-  shippingMethod
+  shippingMethod?
   show
   title
   onCreateToken
@@ -51,10 +51,7 @@ const CheckoutStepPayment: FC<Props> = props => {
             gateway={payment_method_gateway}
             amount={grand_total}
             shopSettings={settings}
-            shippingMethod={shippingMethod}
             onPayment={handleSuccessPayment}
-            inputClassName={inputClassName}
-            buttonClassName={buttonClassName}
             onCreateToken={onCreateToken}
           />
         )}

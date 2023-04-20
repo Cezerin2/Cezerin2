@@ -17,7 +17,7 @@ const NewAndOldPrices = ({ newPrice, oldPrice, settings }) => (
 )
 
 const Price = ({ product, variant, isAllOptionsSelected, settings }) => {
-  let priceStyle = {}
+  let priceStyle: any = {}
   if (
     themeSettings.details_price_size &&
     themeSettings.details_price_size > 0

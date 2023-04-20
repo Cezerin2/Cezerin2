@@ -6,7 +6,7 @@ const FormattedCurrency = ({ number, settings }) =>
   helper.formatCurrency(number, settings)
 
 const ItemPrice = ({ product, settings }) => {
-  const priceStyle = {}
+  const priceStyle: any = {}
   if (themeSettings.list_price_size && themeSettings.list_price_size > 0) {
     priceStyle.fontSize = `${themeSettings.list_price_size}px`
   }

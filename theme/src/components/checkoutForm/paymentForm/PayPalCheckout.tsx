@@ -31,7 +31,7 @@ const PayPalButton: FC<Props> = props => {
   const executeScript = () => {
     document.getElementById("paypal-button-container").innerHTML = null
 
-    paypal.Button.render(
+    window.paypal.Button.render(
       {
         // Set your environment
         env: formSettings.env, // sandbox | production

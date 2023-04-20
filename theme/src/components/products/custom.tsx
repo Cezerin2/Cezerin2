@@ -4,15 +4,25 @@ import api from "../../lib/api"
 import ProductList from "../productList"
 
 interface Props {
+  ids?
+  sku?
+  sort?
+  limit
+  category_id?
+  tags?
+  attributes?
+  price_from?
+  price_to?
+  on_sale?
   settings
   addCartItem
-  isCentered
-  className
-  columnCountOnMobile
-  columnCountOnTablet
-  columnCountOnDesktop
-  columnCountOnWidescreen
-  columnCountOnFullhd
+  isCentered?
+  className?
+  columnCountOnMobile?
+  columnCountOnTablet?
+  columnCountOnDesktop?
+  columnCountOnWidescreen?
+  columnCountOnFullhd?
 }
 
 const CustomProducts: FC<Props> = props => {
@@ -31,19 +41,7 @@ const CustomProducts: FC<Props> = props => {
     columnCountOnFullhd,
   } = props
 
-  useEffect(() => {
-    fetchProducts(props)
-
-    return () => {
-      setIsCancelled(true)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchProducts(props)
-  }, [props])
-
-  const fetchProducts = ({
+  const {
     ids,
     sku,
     sort,
@@ -54,7 +52,21 @@ const CustomProducts: FC<Props> = props => {
     price_from,
     price_to,
     on_sale,
-  }) => {
+  } = props
+
+  useEffect(() => {
+    fetchProducts()
+
+    return () => {
+      setIsCancelled(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
+  const fetchProducts = () => {
     const filter = {
       ids,
       sku,
