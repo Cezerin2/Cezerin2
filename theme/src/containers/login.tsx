@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import Login from "../components/login/index"
 
 const LoginContainer = props => {
@@ -7,7 +7,7 @@ const LoginContainer = props => {
   } = props
 
   return (
-    <Fragment>
+    <>
       <section className="section">
         <div className="container">
           <div className="content">
@@ -15,7 +15,7 @@ const LoginContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

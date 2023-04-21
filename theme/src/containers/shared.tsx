@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import React, { Fragment } from "react"
+import React from "react"
 import Footer from "../components/footer"
 import Header from "../components/header"
 import { themeSettings } from "../lib/settings"
@@ -15,12 +15,12 @@ const SharedContainer = props => {
     themeSettings.hide_footer_on_checkout === true
 
   return (
-    <Fragment>
+    <>
       <Header {...props} />
 
       {children}
       {!hideFooter && <Footer settings={settings} />}
-    </Fragment>
+    </>
   )
 }
 
