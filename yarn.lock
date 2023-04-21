@@ -6705,7 +6705,7 @@ __metadata:
     chart.js: ^2.7.2
     clean-webpack-plugin: ^4.0.0
     concurrently: ^7.5.0
-    core-js: ^3.26.1
+    core-js: ^3.30.1
     cross-env: ^7.0.3
     css-loader: ^6.7.2
     cssnano: ^5.1.14
@@ -7486,10 +7486,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.26.1":
-  version: 3.26.1
-  resolution: "core-js@npm:3.26.1"
-  checksum: 0a01149f51ff1e9f41d1ea49cc4c9222047949ea597189ede7c4cf8cde3b097766b9c7615acc77c86fe65b4002f20b638a133dfba7b41dba830d707aeeed45ad
+"core-js@npm:^3.30.1":
+  version: 3.30.1
+  resolution: "core-js@npm:3.30.1"
+  checksum: 6d4a00b488694d4c715c424e15dfef31433ac7aa395c39c518a0cfacec918ada1c716fed74682033197e0164e23bbf38bfd598ee9a239c4aaa590ab1ba862ac8
   languageName: node
   linkType: hard
 
@@ -18861,13 +18861,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=0bc21a&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=72411f&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 4ebbdc5ce8818df9543868a04ec0807847ab2eb4afffe80f7851f2a15c1ec839454eb68db26778ed73cccfc98f67864737927032c8df48118391159f2a4e435b
   languageName: node
   linkType: hard
 
