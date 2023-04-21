@@ -87,10 +87,6 @@ const AccountForm: FC<Props> = props => {
 
     return (
       <Account
-        inputClassName={checkoutInputClass}
-        buttonClassName={checkoutButtonClass}
-        editButtonClassName={checkoutEditButtonClass}
-        settings={settings}
         cart={cart}
         customerProperties={customerProperties || handlecustomerProperties()}
         initialValues={initialValues}

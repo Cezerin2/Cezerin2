@@ -7,7 +7,7 @@ const AddToCartButton = ({
   addCartItem,
   isAllOptionsSelected,
 }) => {
-  let buttonStyle = {}
+  let buttonStyle: any = {}
   if (
     themeSettings.button_addtocart_bg &&
     themeSettings.button_addtocart_bg.length > 0

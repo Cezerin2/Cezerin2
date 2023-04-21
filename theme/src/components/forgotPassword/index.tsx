@@ -28,9 +28,6 @@ const ForgotPasswordForm: FC<Props> = props => {
   return (
     <div>
       <ForgotPassword
-        inputClassName={checkoutInputClass}
-        buttonClassName={checkoutButtonClass}
-        settings={settings}
         forgotPasswordProperties={forgotPasswordProperties}
         onSubmit={handleFormSubmit}
       />

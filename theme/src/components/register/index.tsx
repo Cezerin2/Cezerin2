@@ -49,10 +49,6 @@ const RegisterForm: FC<Props> = props => {
 
   return (
     <Register
-      inputClassName={checkoutInputClass}
-      buttonClassName={checkoutButtonClass}
-      editButtonClassName={checkoutEditButtonClass}
-      settings={settings}
       registerProperties={registerProperties}
       onSubmit={handleContactsSubmit}
     />

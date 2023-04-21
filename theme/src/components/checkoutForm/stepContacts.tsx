@@ -27,12 +27,20 @@ interface Props {
   loadingShippingMethods
   loadingPaymentMethods
   settings
-  saveShippingLocation
+  saveShippingLocation?
   saveShippingMethod
   savePaymentMethod
-  paymentMethods: { name: string; enabled: boolean; id: string }[]
-  shippingMethods: {
+  paymentMethods: {
+    id: string
     name: string
+    description: string
+    enabled: boolean
+  }[]
+  shippingMethods: {
+    id: string
+    name: string
+    description: string
+    price: number
     enabled: boolean
     conditions: {
       countries: []
@@ -43,7 +51,6 @@ interface Props {
       weight_total_min: number
       weight_total_max: number
     }
-    id: string
   }[]
   inputClassName
   buttonClassName
@@ -553,12 +560,7 @@ const CheckoutStepContacts: FC<Props> = props => {
             )}
 
             {loggedin ? (
-              <ReadOnlyField
-                name={text.email}
-                value={emailValues}
-                className="logged-in-email-field"
-                label={getFieldLabel("email")}
-              />
+              <ReadOnlyField name={text.email} value={emailValues} />
             ) : (
               !isFieldHidden("email") && (
                 <Field

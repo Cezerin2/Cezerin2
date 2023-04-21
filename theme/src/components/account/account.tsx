@@ -43,7 +43,7 @@ interface Props {
   customerProperties
   cartlayerBtnInitialized
   cart
-  checkoutFields
+  checkoutFields?
 }
 
 const Account: FC<Props> = props => {
@@ -375,8 +375,8 @@ const Account: FC<Props> = props => {
   const accountProfileHeadline = "account-profile-headline"
   const isActive = "is-active"
 
-  const billingAddress = {}
-  const shippingAddress = {}
+  const billingAddress: any = {}
+  const shippingAddress: any = {}
   let orderHistory = {}
   const list = []
   let tableStyle = null
@@ -482,9 +482,8 @@ const Account: FC<Props> = props => {
                   return (
                     <td className="td-body" key={`${p.id}${k}`}>
                       <div
-                        suppressContentEditableWarning="true"
+                        suppressContentEditableWarning
                         contentEditable="false"
-                        value={k}
                       >
                         <a
                           href={
@@ -503,11 +502,7 @@ const Account: FC<Props> = props => {
                 }
                 return (
                   <td className="td-body" key={`${p.id}${k}`}>
-                    <div
-                      suppressContentEditableWarning="true"
-                      contentEditable="false"
-                      value={k}
-                    >
+                    <div suppressContentEditableWarning contentEditable="false">
                       <a
                         href={
                           urlContent.length <= 1
@@ -526,11 +521,7 @@ const Account: FC<Props> = props => {
               if (!["id", "variant_id"].includes(k)) {
                 return (
                   <td className="td-body" key={`${p.id}${k}`}>
-                    <div
-                      suppressContentEditableWarning="true"
-                      contentEditable="false"
-                      value={k}
-                    >
+                    <div suppressContentEditableWarning contentEditable="false">
                       {p[k]}
                     </div>
                   </td>

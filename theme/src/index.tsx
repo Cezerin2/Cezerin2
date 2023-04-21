@@ -1,6 +1,13 @@
 import "core-js/stable"
 import "regenerator-runtime/runtime"
 
+declare global {
+  interface Window {
+    paypal?: any
+    LiqPayCheckout?: any
+  }
+}
+
 export { default as AccountContainer } from "./containers/account"
 export { default as CategoryContainer } from "./containers/category"
 export { default as CheckoutContainer } from "./containers/checkout"

@@ -220,7 +220,6 @@ const Header: FC<Props> = props => {
                 cart={cart}
                 onClick={cartToggle}
                 cartIsActive={cartIsActive()}
-                cartlayerBtnInitialized={cartlayerBtnInitialized}
               />
               <div className={cartIsActive() ? "mini-cart-open" : ""}>
                 <Cart
@@ -228,18 +227,13 @@ const Header: FC<Props> = props => {
                   deleteCartItem={deleteCartItem}
                   settings={settings}
                   cartToggle={cartToggle}
-                  cartlayerBtnInitialized={cartlayerBtnInitialized}
                 />
               </div>
             </div>
           </div>
 
           <div className="primary-nav is-hidden-mobile">
-            <HeadMenu
-              categories={categories}
-              location={location}
-              isMobile={false}
-            />
+            <HeadMenu categories={categories} isMobile={false} />
           </div>
         </div>
       </header>
@@ -259,7 +253,6 @@ const Header: FC<Props> = props => {
         <HeadMenu
           isMobile={true}
           categories={categories}
-          location={location}
           onClick={() => updateSiteState(state.SITE)}
         />
       </div>

@@ -141,7 +141,6 @@ const CheckoutForm: FC<Props> = props => {
       <div className="checkout-form">
         <CheckoutStepContacts
           isReadOnly={step > 1}
-          step={step}
           title={text.customerDetails}
           inputClassName={checkoutInputClass}
           buttonClassName={checkoutButtonClass}
@@ -150,7 +149,6 @@ const CheckoutForm: FC<Props> = props => {
           settings={settings}
           customerProperties={customerProperties}
           paymentMethods={paymentMethods}
-          shippingMethod={shippingMethod}
           shippingMethods={shippingMethods}
           loadingShippingMethods={loadingShippingMethods}
           loadingPaymentMethods={loadingPaymentMethods}
@@ -163,12 +161,10 @@ const CheckoutForm: FC<Props> = props => {
               payment_method_id: paymentMethodID,
             })
           }
-          cartlayerBtnInitialized={cartlayerBtnInitialized}
         />
 
         <CheckoutStepShipping
           show={step >= 2}
-          step={step}
           isReadOnly={step > 2}
           title={text.shipping}
           inputClassName={checkoutInputClass}
@@ -178,10 +174,8 @@ const CheckoutForm: FC<Props> = props => {
           settings={settings}
           processingCheckout={processingCheckout}
           shippingMethod={shippingMethod}
-          paymentMethod={paymentMethod}
           checkoutFields={checkoutFields}
           showPaymentForm={showPaymentForm}
-          onSave={() => setStep(3)}
           onEdit={() => setStep(2)}
           onSubmit={handleShippingSubmit}
         />
@@ -189,7 +183,6 @@ const CheckoutForm: FC<Props> = props => {
         {showPaymentForm && (
           <CheckoutStepPayment
             show={step === 3}
-            step={step}
             title={text.payment}
             inputClassName={checkoutInputClass}
             buttonClassName={checkoutButtonClass}

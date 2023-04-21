@@ -82,7 +82,7 @@ const HeadMenuItem: FC<HeadMenuItemProps> = props => {
 
 interface HeadMenuProps {
   categories
-  onClick
+  onClick?
   isMobile
 }
 

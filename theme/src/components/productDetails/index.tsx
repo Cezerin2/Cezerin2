@@ -64,10 +64,7 @@ const ProductDetails: FC<Props> = props => {
     let item = {
       product_id: product.id,
       quantity: quantity,
-    }
-
-    if (selectedVariant) {
-      item.variant_id = selectedVariant.id
+      variant_id: selectedVariant?.id,
     }
 
     addCartItem(item)

@@ -58,9 +58,6 @@ const ResetPasswordForm: FC<Props> = props => {
     <div>
       {resetPasswordProperties && (
         <ResetPassword
-          inputClassName={checkoutInputClass}
-          buttonClassName={checkoutButtonClass}
-          settings={settings}
           forgotPasswordProperties={forgotPasswordProperties}
           resetPasswordProperties={resetPasswordProperties}
           onSubmit={handleFormSubmit}

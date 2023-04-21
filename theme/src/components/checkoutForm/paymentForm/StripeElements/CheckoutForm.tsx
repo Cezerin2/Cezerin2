@@ -36,7 +36,7 @@ const CheckoutForm: FC<Props> = props => {
     //   },
     // })
 
-    if (token && token !== "undefined") {
+    if (token) {
       onCreateToken(token.id)
     } else {
       setInProgress(false)

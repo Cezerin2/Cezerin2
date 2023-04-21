@@ -32,7 +32,7 @@ const InputField = field => (
 interface Props {
   onSubmit
   forgotPasswordProperties
-  checkoutFields
+  checkoutFields?
 }
 
 const ForgotPassword: FC<Props> = props => {
