@@ -1,7 +1,7 @@
 import parse from "html-react-parser"
 import { sanitize } from "isomorphic-dompurify"
 import PropTypes from "prop-types"
-import React, { Fragment } from "react"
+import React from "react"
 import MetaTags from "../components/metaTags"
 import PageList from "../components/pageList"
 import { themeSettings } from "../lib/settings"
@@ -16,7 +16,7 @@ const PageContainer = props => {
   const showPageList = pageListTagDefined && pageDetails.path === pageListPath
 
   return (
-    <Fragment>
+    <>
       <MetaTags
         title={pageDetails.meta_title}
         description={pageDetails.meta_description}
@@ -38,7 +38,7 @@ const PageContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

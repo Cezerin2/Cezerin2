@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import ResetPassword from "../components/resetPassword/index"
 
 const ResetPasswordContainer = props => {
@@ -7,7 +7,7 @@ const ResetPasswordContainer = props => {
   } = props
 
   return (
-    <Fragment>
+    <>
       <section className="section">
         <div className="container">
           <div className="content">
@@ -15,7 +15,7 @@ const ResetPasswordContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 
