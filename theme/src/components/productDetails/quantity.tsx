@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { text } from "../../lib/settings"
 
 interface Props {
@@ -43,7 +43,7 @@ const Quantity: FC<Props> = props => {
   const value = disabled ? 0 : quantity
 
   return (
-    <Fragment>
+    <>
       <div>{text.qty}</div>
       <div className="product-quantity">
         <a className="decrement" onClick={decrement} />
@@ -57,7 +57,7 @@ const Quantity: FC<Props> = props => {
         />
         <a className="increment" onClick={increment} />
       </div>
-    </Fragment>
+    </>
   )
 }
 

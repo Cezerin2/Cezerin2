@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import Item from "./item"
 import LoadMore from "./loadMore"
 
@@ -37,7 +37,7 @@ const ProductList = (props: any) => {
     : null
 
   return (
-    <Fragment>
+    <>
       <div
         className={
           className +
@@ -54,7 +54,7 @@ const ProductList = (props: any) => {
           loading={loadingMoreProducts}
         />
       </div>
-    </Fragment>
+    </>
   )
 }
 

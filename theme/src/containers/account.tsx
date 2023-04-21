@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import Account from "../components/account/index"
 
 const AccountContainer = props => {
@@ -7,7 +7,7 @@ const AccountContainer = props => {
   } = props
 
   return (
-    <Fragment>
+    <>
       <section className="section">
         <div className="container">
           <div className="content">
@@ -15,7 +15,7 @@ const AccountContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 
