@@ -29,22 +29,6 @@ const getUpdates: Middleware = ctx => {
     winston.info(stdout)
   })
 
-  exec("yarn theme:compile", (error, stdout, stderr) => {
-    if (error) {
-      winston.error(error)
-      return
-    }
-    winston.info(stdout)
-  })
-
-  exec("yarn add ./theme", (error, stdout, stderr) => {
-    if (error) {
-      winston.error(error)
-      return
-    }
-    winston.info(stdout)
-  })
-
   exec("yarn build", (error, stdout, stderr) => {
     if (error) {
       winston.error(error)

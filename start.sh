@@ -8,14 +8,6 @@ echo "Installing Packages"
 yarn
 echo "................................"
 
-echo "Building theme file"
-yarn theme:compile
-echo "................................"
-
-echo "Adding theme file"
-yarn add ./theme
-echo "................................"
-
 echo "Building Cezerin"
 yarn build
 echo "................................"
