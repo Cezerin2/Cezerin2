@@ -93,6 +93,12 @@ module.exports = {
       ...config.definePluginOptions,
     }
 
+    config.notNodeExternalResMatch = request => /theme/.test(request)
+
+    config.babelRule.include = webpackOptions.babelRule.include.concat([
+      /theme/,
+    ])
+
     return config
   },
   modifyWebpackConfig({

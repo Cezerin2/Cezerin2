@@ -2,7 +2,7 @@
   "name": "theme",
   "version": "1.0.0",
   "description": "Default theme for cezerin.",
-  "main": "dist/index.js",
+  "main": "src/index.tsx",
   "license": "MIT",
   "dependencies": {
     "bulma": "^0.9.3",
