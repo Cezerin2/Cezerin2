@@ -18868,6 +18868,7 @@ __metadata:
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: d1d2373a6194a0af9cad8c41081e911efe2c9399858308612f3d315c90424bc54b35607a1dc2fb9382c699c8a0f1f48549dabe95242c8760725ba0c0059b3a24
   languageName: node
   linkType: hard
 
