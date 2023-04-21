@@ -18937,14 +18937,13 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=fe1b02&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=fdd992&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
-  checksum: 00debb58cf1b8ba17cbb6c21bc2de476d6e131af1d1ceff6a07875c08fa6cb1685cd4c5d204b9dd53aacaba53608408e646e9230f9fb2f7d0d253e6a3c3b79f6
   languageName: node
   linkType: hard
 
