@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import React, { Fragment } from "react"
+import React from "react"
 import CheckoutSuccess from "../components/checkoutSuccess"
 import MetaTags from "../components/metaTags"
 import * as helper from "../lib/helper"
@@ -14,7 +14,7 @@ const CheckoutSuccessContainer = props => {
   )
 
   return (
-    <Fragment>
+    <>
       <MetaTags
         title={pageDetails.meta_title}
         description={pageDetails.meta_description}
@@ -40,7 +40,7 @@ const CheckoutSuccessContainer = props => {
           </div>
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

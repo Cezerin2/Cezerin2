@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from "react"
+import React, { FC, useState } from "react"
 import ImageGallery from "react-image-gallery"
 import Lightbox from "react-image-lightbox"
 import * as helper from "../../lib/helper"
@@ -26,7 +26,7 @@ const Gallery: FC<{ images }> = ({ images }) => {
     const showThumbnails = images.length > 1
 
     return (
-      <Fragment>
+      <>
         <ImageGallery
           items={imagesArray}
           showThumbnails={showThumbnails}
@@ -69,7 +69,7 @@ const Gallery: FC<{ images }> = ({ images }) => {
             }
           />
         )}
-      </Fragment>
+      </>
     )
   } else {
     return <div className="large-image-placeholder" />

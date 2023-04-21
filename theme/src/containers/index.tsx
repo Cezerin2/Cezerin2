@@ -1,7 +1,7 @@
 import parse from "html-react-parser"
 import { sanitize } from "isomorphic-dompurify"
 import PropTypes from "prop-types"
-import React, { Fragment } from "react"
+import React from "react"
 import HomeSlider from "../components/homeSlider"
 import MetaTags from "../components/metaTags"
 import CustomProducts from "../components/products/custom"
@@ -14,7 +14,7 @@ const IndexContainer = props => {
   } = props
 
   return (
-    <Fragment>
+    <>
       <MetaTags
         title={pageDetails.meta_title}
         description={pageDetails.meta_description}
@@ -49,7 +49,7 @@ const IndexContainer = props => {
           />
         </div>
       </section>
-    </Fragment>
+    </>
   )
 }
 

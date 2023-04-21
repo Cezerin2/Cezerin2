@@ -1,5 +1,5 @@
 import Lscache from "lscache"
-import React, { FC, Fragment, useEffect, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { text } from "../../lib/settings"
 import Cart from "./cart"
@@ -179,7 +179,7 @@ const Header: FC<Props> = props => {
   const showBackButton = currentPage.type === "product" && location.hasHistory
 
   return (
-    <Fragment>
+    <>
       <header className={mobileSearchIsActive ? "search-active" : ""}>
         <div className="container">
           <div className="columns is-gapless is-mobile header-container">
@@ -256,7 +256,7 @@ const Header: FC<Props> = props => {
           onClick={() => updateSiteState(state.SITE)}
         />
       </div>
-    </Fragment>
+    </>
   )
 }
 
