@@ -4617,6 +4617,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:>=8.1.0":
+  version: 18.15.13
+  resolution: "@types/node@npm:18.15.13"
+  checksum: 79cc5a2b5f98e8973061a4260a781425efd39161a0e117a69cd089603964816c1a14025e1387b4590c8e82d05133b7b4154fa53a7dffb3877890a66145e76515
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^17.0.5":
   version: 17.0.45
   resolution: "@types/node@npm:17.0.45"
@@ -6782,7 +6789,7 @@ __metadata:
     sharp: ^0.31.2
     sitemap: ^7.1.1
     slug: ^8.2.2
-    stripe: ^6.7.0
+    stripe: ^12.2.0
     theme: ./theme
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
@@ -15822,7 +15829,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.11.0, qs@npm:^6.5.2, qs@npm:^6.6.0":
+"qs@npm:6.11.0, qs@npm:^6.5.2":
   version: 6.11.0
   resolution: "qs@npm:6.11.0"
   dependencies:
@@ -15835,6 +15842,15 @@ __metadata:
   version: 6.9.3
   resolution: "qs@npm:6.9.3"
   checksum: 89cd1b5e521c19a7e0a7a056ddc261c5c30889664608cf9ce6085f9f25606fc48568cf6a6249e641b4b5c04dac7889e3b82133142523abf397228eb4f488fc38
+  languageName: node
+  linkType: hard
+
+"qs@npm:^6.11.0":
+  version: 6.11.1
+  resolution: "qs@npm:6.11.1"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: 82ee78ef12a16f3372fae5b64f76f8aedecb000feea882bbff1af146c147f6eb66b08f9c3f34d7e076f28563586956318b9b2ca41141846cdd6d5ad6f241d52f
   languageName: node
   linkType: hard
 
@@ -18468,15 +18484,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stripe@npm:^6.7.0":
-  version: 6.36.0
-  resolution: "stripe@npm:6.36.0"
+"stripe@npm:^12.2.0":
+  version: 12.2.0
+  resolution: "stripe@npm:12.2.0"
   dependencies:
-    lodash.isplainobject: ^4.0.6
-    qs: ^6.6.0
-    safe-buffer: ^5.1.1
-    uuid: ^3.3.2
-  checksum: f82adb98ca66614b964ebe6cbca98ec1dc184c661fb46e0b4e4d04ae3959cb04eed5852ace81b73985f4974c529553dff8badee7e61f7c9d647bcd758ffe6d81
+    "@types/node": ">=8.1.0"
+    qs: ^6.11.0
+  checksum: dbd478d43aff4d9ea6197fa72c303626b56277d0a5f6c021f3877d739b3f4a6bcf2d212be0ed4714b1a29ac6f5642dfb160d997f2ccabf88401ab733c9f446c8
   languageName: node
   linkType: hard
 
@@ -18861,13 +18875,14 @@ __metadata:
 
 "theme@file:./theme::locator=cezerin%40workspace%3A.":
   version: 1.0.0
-  resolution: "theme@file:./theme#./theme::hash=0bc21a&locator=cezerin%40workspace%3A."
+  resolution: "theme@file:./theme#./theme::hash=72411f&locator=cezerin%40workspace%3A."
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
+  checksum: 4ebbdc5ce8818df9543868a04ec0807847ab2eb4afffe80f7851f2a15c1ec839454eb68db26778ed73cccfc98f67864737927032c8df48118391159f2a4e435b
   languageName: node
   linkType: hard
 
@@ -19701,15 +19716,6 @@ __metadata:
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
   checksum: c81095493225ecfc28add49c106ca4f09cdf56bc66731aa8dabc2edbbccb1e1bfe2de6a115e5c6a380d3ea166d1636410b62ef216bb07b3feb1cfde1d95d5080
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^3.3.2":
-  version: 3.4.0
-  resolution: "uuid@npm:3.4.0"
-  bin:
-    uuid: ./bin/uuid
-  checksum: 58de2feed61c59060b40f8203c0e4ed7fd6f99d42534a499f1741218a1dd0c129f4aa1de797bcf822c8ea5da7e4137aa3673431a96dae729047f7aca7b27866f
   languageName: node
   linkType: hard
 
