@@ -16,7 +16,7 @@ const applicationText = require(`./public/admin-assets/locales/${applicationConf
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "src/admin/client/index.tsx"),
+    app: path.resolve(__dirname, "src/admin/index.tsx"),
     vendor: [
       "react",
       "react-dom",
@@ -56,10 +56,10 @@ module.exports = {
 
   resolve: {
     alias: {
-      src: path.resolve(__dirname, "src/admin/client"),
-      routes: path.resolve(__dirname, "src/admin/client/routes"),
-      modules: path.resolve(__dirname, "src/admin/client/modules"),
-      lib: path.resolve(__dirname, "src/admin/client/lib"),
+      src: path.resolve(__dirname, "src/admin"),
+      routes: path.resolve(__dirname, "src/admin/routes"),
+      modules: path.resolve(__dirname, "src/admin/modules"),
+      lib: path.resolve(__dirname, "src/admin/lib"),
     },
     extensions: [".tsx", ".js"],
   },
@@ -166,7 +166,7 @@ module.exports = {
       chunkFilename: "admin-assets/css/bundle-[contenthash].css",
     }),
     new HtmlWebpackPlugin({
-      template: "src/admin/client/index.html",
+      template: "src/admin/index.html",
       language: applicationConfig.language,
       inject: "body",
       filename: "admin/index.html",
