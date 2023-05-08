@@ -4,7 +4,7 @@
       "name": "api",
       "script": "npm",
       "args": "run start:api",
-      "watch": ["./config", "./src/api/server"],
+      "watch": ["./config", "./src/server"],
       "instances": "1",
       "exec_mode": "fork",
       "watch_options": {

@@ -1,3 +1,3 @@
-import settings from "../../api/server/lib/settings"
+import settings from "../../server/lib/settings"
 
 export default settings
