@@ -20,6 +20,9 @@
     "url": "https://github.com/Cezerin2/cezerin2"
   },
   "packageManager": "yarn@3.5.0",
+  "workspaces": [
+    "theme"
+  ],
   "scripts": {
     "setup": "ts-node src/server/setup.ts",
     "theme:export": "./scripts/theme-export.sh",
@@ -112,7 +115,6 @@
     "sitemap": "^7.1.1",
     "slug": "^8.2.2",
     "stripe": "^6.7.0",
-    "theme": "./theme",
     "ua-parser-js": "^1.0.32",
     "url": "^0.11.0",
     "winston": "^3.8.2",
