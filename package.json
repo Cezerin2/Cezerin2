@@ -48,7 +48,7 @@
     "@mui/material": "^5.10.14",
     "@mui/x-date-pickers": "^5.0.8",
     "@reduxjs/toolkit": "^1.9.0",
-    "@sentry/node": "^7.19.0",
+    "@sentry/node": "^7.51.2",
     "@sentry/react": "^7.19.0",
     "@sentry/tracing": "^7.19.0",
     "@stripe/react-stripe-js": "^1.15.0",
