@@ -179,4 +179,4 @@ setup project as:
 │ └── dockerfile # proxy dockerfile
 └── docker-compose.yml # Tools and utilities
 
-[cezerin2 docker-compose](./cezerin2-docker-compose.md)
+[cezerin2 docker-compose](cezerin2-docker-compose.md)

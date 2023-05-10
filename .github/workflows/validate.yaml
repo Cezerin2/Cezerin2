@@ -27,8 +27,10 @@ jobs:
           # Configure which scopes are allowed.
           scopes: |
             admin
+            client
+            docs
+            server
             store
             theme
-            server
           # Configure that a scope must always be provided.
           requireScope: false

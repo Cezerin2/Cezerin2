@@ -38,8 +38,8 @@
 | `webpack:store:dev`  | Assemble store bundles **and watch**.                                 |
 | `webpack:admin:prod` | Assemble admin bundles.                                               |
 | `webpack:store:prod` | Assemble store bundles.                                               |
-| `theme:install`      | Install theme from /public/<file>.zip                                 |
-| `theme:export`       | Zip current theme to /public/<file>.zip                               |
+| `theme:install`      | Install theme from /public/<file\>.zip                                |
+| `theme:export`       | Zip current theme to /public/<file\>.zip                              |
 | `theme:copy`         | Compile theme and copy assets to /public/                             |
 | `theme:build:dev`    | Refresh theme after modification **and watch**.                       |
 | `theme:build:prod`   | Refresh theme after modification.                                     |

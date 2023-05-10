@@ -1,3 +1,4 @@
+```nginx
 server { # Dynamic image resizing server
 listen 127.0.0.1:8888;
 server_tokens off;
@@ -112,3 +113,4 @@ if ($host = www.cezerin.net) {
     return 404; # managed by Certbot
 
 }
+```
