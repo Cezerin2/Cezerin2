@@ -18,6 +18,18 @@ updates:
       - "vamcart"
 
   - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/src/docs" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      # Prefix all commit messages with "feat"
+      prefix: "feat: Package "
+    open-pull-requests-limit: 100
+    reviewers:
+      - "ValerioBob"
+      - "vamcart"
+
+  - package-ecosystem: "npm" # See documentation for possible values
     directory: "/theme" # Location of package manifests
     schedule:
       interval: "daily"
