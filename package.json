@@ -21,6 +21,7 @@
   },
   "packageManager": "yarn@3.5.0",
   "workspaces": [
+    "src/docs",
     "theme"
   ],
   "scripts": {
