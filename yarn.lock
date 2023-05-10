@@ -4696,10 +4696,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.9":
-  version: 18.11.9
-  resolution: "@types/node@npm:18.11.9"
-  checksum: cc0aae109e9b7adefc32eecb838d6fad931663bb06484b5e9cbbbf74865c721b03d16fd8d74ad90e31dbe093d956a7c2c306ba5429ba0c00f3f7505103d7a496
+"@types/node@npm:^20.1.1":
+  version: 20.1.1
+  resolution: "@types/node@npm:20.1.1"
+  checksum: 47961ee23f873c14c3f6045422ff3059f3bfb10231ef3080a7a72d7215cc8c2623fa8cedb7b246305962fa9c1e0c9e381e04b12eb3e9ec5d076025c6231ac8da
   languageName: node
   linkType: hard
 
@@ -6804,7 +6804,7 @@ __metadata:
     "@types/koa__cors": ^3.3.0
     "@types/koa__router": ^12.0.0
     "@types/lodash": ^4.14.189
-    "@types/node": ^18.11.9
+    "@types/node": ^20.1.1
     "@types/nodemailer": ^6.4.6
     "@types/react": ^18.0.25
     "@types/react-dom": ^18.0.9
