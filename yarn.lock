@@ -4830,12 +4830,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.9":
-  version: 18.0.9
-  resolution: "@types/react-dom@npm:18.0.9"
+"@types/react-dom@npm:^18.2.4":
+  version: 18.2.4
+  resolution: "@types/react-dom@npm:18.2.4"
   dependencies:
     "@types/react": "*"
-  checksum: e744e3feba25fc43733289d4df4d9c0e59fcca7f34e8c89d75f81a339accb2bd70236d69382d47d2c0ad06a1529b2e56aa6171fe175854d60e07156ddceedfcb
+  checksum: 8301f35cf1cbfec8c723e9477aecf87774e3c168bd457d353b23c45064737213d3e8008b067c6767b7b08e4f2b3823ee239242a6c225fc91e7f8725ef8734124
   languageName: node
   linkType: hard
 
@@ -6885,7 +6885,7 @@ __metadata:
     "@types/node": ^20.1.2
     "@types/nodemailer": ^6.4.6
     "@types/react": ^18.0.25
-    "@types/react-dom": ^18.0.9
+    "@types/react-dom": ^18.2.4
     "@types/react-redux": ^7.1.24
     "@types/react-router-dom": ^5.3.3
     "@types/sharp": ^0.31.0
