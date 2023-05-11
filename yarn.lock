@@ -4910,14 +4910,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.0.25":
-  version: 18.0.25
-  resolution: "@types/react@npm:18.0.25"
+"@types/react@npm:^18.2.6":
+  version: 18.2.6
+  resolution: "@types/react@npm:18.2.6"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 231d658c45abdef044a716b4502774f1585d8336d73b2f5bd68f181acbfc874b7a457686ecd29b415b43ed0922c309bab7e2cf96832d188a3f4f1b02f2af760a
+  checksum: dea9d232d8df7ac357367a69dcb557711ab3d5501807ffa77cebeee73d49ee94d095f298e36853c63ed47cce097eee4c7eae2aaa8c02fac3f0171ec1b523a819
   languageName: node
   linkType: hard
 
@@ -6884,7 +6884,7 @@ __metadata:
     "@types/lodash": ^4.14.189
     "@types/node": ^20.1.2
     "@types/nodemailer": ^6.4.6
-    "@types/react": ^18.0.25
+    "@types/react": ^18.2.6
     "@types/react-dom": ^18.0.9
     "@types/react-redux": ^7.1.24
     "@types/react-router-dom": ^5.3.3
