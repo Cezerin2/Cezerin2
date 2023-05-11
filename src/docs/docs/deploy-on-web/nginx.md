@@ -1,3 +1,4 @@
+```nginx
 server { # Dynamic image resizing server
 listen 127.0.0.1:8888;
 server_tokens off;
@@ -88,3 +89,4 @@ server_name *;
         }
 
 }
+```
