@@ -57,9 +57,10 @@ module.exports = {
   resolve: {
     alias: {
       src: path.resolve(__dirname, "src/admin"),
-      routes: path.resolve(__dirname, "src/admin/routes"),
-      modules: path.resolve(__dirname, "src/admin/modules"),
-      lib: path.resolve(__dirname, "src/admin/lib"),
+      routes: path.resolve(__dirname, "src/admin/src/routes"),
+      apps: path.resolve(__dirname, "src/admin/src/apps"),
+      modules: path.resolve(__dirname, "src/admin/src/modules"),
+      lib: path.resolve(__dirname, "src/admin/src/lib"),
     },
     extensions: [".tsx", ".js"],
   },
