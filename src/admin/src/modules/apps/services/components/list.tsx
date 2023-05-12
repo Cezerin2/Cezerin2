@@ -1,8 +1,8 @@
+import apps from "apps"
 import messages from "lib/text"
 import RaisedButton from "material-ui/RaisedButton"
 import React, { FC, useEffect } from "react"
 import { Link } from "react-router-dom"
-import apps from "src/apps"
 import AppItem from "./appItem"
 import ServiceItem from "./serviceItem"
 
