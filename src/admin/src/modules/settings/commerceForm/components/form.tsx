@@ -10,7 +10,6 @@ import {
   SelectField,
   TextField,
 } from "redux-form-material-ui"
-import style from "./style.sass"
 
 const radioButtonStyle = {
   marginTop: 14,
