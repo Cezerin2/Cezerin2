@@ -68,7 +68,7 @@ const StatusesList: FC<Props> = props => {
             className="treeItem"
             primaryText={messages.manageOrderStatuses}
             innerDivStyle={styles.innerItem}
-            leftIcon={<Settings/>}
+            leftIcon={<Settings />}
           />
         </Link>
       )}
