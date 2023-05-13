@@ -3,7 +3,7 @@ import { toSafeInteger } from "lodash"
 import YAML from "yaml"
 import { Server } from "../../../config/types/server"
 
-const file = readFileSync("./config/server.yml", "utf8")
+const file = readFileSync("../../config/server.yml", "utf8")
 const configFile = <Server>YAML.parse(file, { strict: false })
 
 const mapEnvVariables = (value: unknown) => {

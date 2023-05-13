@@ -1,7 +1,7 @@
 import { Middleware, RouterContext } from "@koa/router"
 import winston from "winston"
 
-const logsFile = "logs/server.log"
+const logsFile = "../../logs/server.log"
 
 const logger = winston.configure({
   transports: [

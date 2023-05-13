@@ -23,21 +23,22 @@
   "workspaces": [
     "src/admin",
     "src/docs",
+    "src/server",
     "theme"
   ],
   "scripts": {
-    "setup": "ts-node src/server/setup.ts",
+    "setup": "yarn src/server setup",
     "theme:export": "./scripts/theme-export.sh",
     "theme:install": "./scripts/theme-install.sh",
     "build:store": "razzle build --noninteractive",
     "build:admin": "webpack --config webpack.config.admin.ts --mode production",
     "build": "yarn build:admin && yarn build:store",
     "start:store": "cross-env NODE_ENV=production node build/server.js",
-    "start:server": "ts-node src/server/index.ts",
+    "start:server": "yarn src/server start",
     "start": "conc 'npm:start:*'",
     "watch:store": "cross-env PORT=3002 razzle start",
     "watch:admin": "webpack --config webpack.config.admin.ts --mode development --watch",
-    "watch:server": "tsnd --respawn src/server/index.ts",
+    "watch:server": "yarn src/server watch",
     "watch": "conc 'npm:watch:*'",
     "lint": "eslint --ignore-path .gitignore ."
   },
