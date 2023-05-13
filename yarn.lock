@@ -10125,7 +10125,7 @@ __metadata:
     mongoose: ^6.7.2
     mui-rff: ^6.1.2
     nodemailer: ^6.8.0
-    postcss-loader: ^7.0.1
+    postcss-loader: ^7.3.0
     prop-types: ^15.8.1
     query-string: ^7.1.1
     razzle: ^4.2.18
@@ -21226,7 +21226,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-loader@npm:^7.0.0":
+"postcss-loader@npm:^7.0.0, postcss-loader@npm:^7.3.0":
   version: 7.3.0
   resolution: "postcss-loader@npm:7.3.0"
   dependencies:
@@ -21238,20 +21238,6 @@ __metadata:
     postcss: ^7.0.0 || ^8.0.1
     webpack: ^5.0.0
   checksum: f09fe68bde5f686c264cc96c51bcdc0be00c55e856d73161ce86b302fdd503098fe5c9172231eb3b316a1969080101a4c46463bda784b408d4a4cb15e7b01fc5
-  languageName: node
-  linkType: hard
-
-"postcss-loader@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "postcss-loader@npm:7.0.1"
-  dependencies:
-    cosmiconfig: ^7.0.0
-    klona: ^2.0.5
-    semver: ^7.3.7
-  peerDependencies:
-    postcss: ^7.0.0 || ^8.0.1
-    webpack: ^5.0.0
-  checksum: 2a3cbcaaade598d4919824d384ae34ffbfc14a9c8db6cc3b154582356f4f44a1c9af9e731b81cf1947b089accf7d0ab7a0c51c717946985f89aa1708d2b4304d
   languageName: node
   linkType: hard
 
