@@ -37,7 +37,7 @@
     "html-react-parser": "^3.0.16",
     "i18next": "^22.0.5",
     "i18next-browser-languagedetector": "^7.0.1",
-    "i18next-http-backend": "^2.0.1",
+    "i18next-http-backend": "^2.2.0",
     "isomorphic-dompurify": "^0.24.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
