@@ -1,50 +1,11 @@
 {
-  "name": "cezerin",
-  "version": "0.33.0",
-  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.org",
-  "keywords": [
-    "cezerin",
-    "cezerin2",
-    "ecommerce",
-    "shopping cart",
-    "shop",
-    "cms"
-  ],
-  "homepage": "https://cezerin.org",
-  "bugs": "https://github.com/Cezerin2/cezerin2/issues",
-  "license": "MIT",
-  "author": "Restmount <jsonmount@gmail.com> (https://github.com/restmount)",
-  "main": "src/server/index.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Cezerin2/cezerin2"
-  },
-  "packageManager": "yarn@3.5.0",
-  "workspaces": [
-    "src/admin",
-    "src/docs",
-    "src/server",
-    "src/store",
-    "src/themes/default",
-    "src/themes/fullfluid",
-    "src/themes/plusha",
-    "theme"
-  ],
+  "name": "store",
   "scripts": {
-    "setup": "yarn src/server setup",
     "theme:export": "./scripts/theme-export.sh",
     "theme:install": "./scripts/theme-install.sh",
-    "build:store": "razzle build --noninteractive",
-    "build:admin": "webpack --config webpack.config.admin.ts --mode production",
-    "build": "yarn build:admin && yarn build:store",
-    "start:store": "cross-env NODE_ENV=production node build/server.js",
-    "start:server": "yarn src/server start",
-    "start": "conc 'npm:start:*'",
-    "watch:store": "cross-env PORT=3002 razzle start",
-    "watch:admin": "webpack --config webpack.config.admin.ts --mode development --watch",
-    "watch:server": "yarn src/server watch",
-    "watch": "conc 'npm:watch:*'",
-    "lint": "eslint --ignore-path .gitignore ."
+    "build": "razzle build --noninteractive",
+    "start": "cross-env NODE_ENV=production node build/server.js",
+    "watch": "cross-env PORT=3002 razzle start"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -164,13 +125,6 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.2",
     "cssnano": "^5.1.14",
-    "eslint": "^8.40.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.10",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.6.1",
