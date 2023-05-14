@@ -125,7 +125,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.2",
     "cssnano": "^5.1.14",
-    "fork-ts-checker-webpack-plugin": "^7.2.13",
+    "fork-ts-checker-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss-loader": "^7.3.0",
