@@ -10095,7 +10095,7 @@ __metadata:
     html-webpack-plugin: ^5.5.1
     i18next: ^22.0.5
     i18next-browser-languagedetector: ^7.0.1
-    i18next-http-backend: ^2.0.1
+    i18next-http-backend: ^2.2.0
     isomorphic-dompurify: ^0.24.0
     jsonwebtoken: ^8.5.1
     koa: ^2.13.4
@@ -15606,12 +15606,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-http-backend@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "i18next-http-backend@npm:2.0.1"
+"i18next-http-backend@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "i18next-http-backend@npm:2.2.0"
   dependencies:
     cross-fetch: 3.1.5
-  checksum: c7bacdafc0c758e60c96efcd9f5d2b052d361fc3eb7613144291ba724964ec1f718620613e8a63f0c1174e5ed5addbbded69ff024ae636f8a5430410c8c385c9
+  checksum: 21d22d947a23a1b95f9bb7d4e1071639e4cfd5f6c2bd21eded7fe2df848108a87cdab31586764d9ef9c1ee0fba38a887bfe9c0daadc049f22760d8de0bfb4a4f
   languageName: node
   linkType: hard
 
@@ -25815,7 +25815,7 @@ __metadata:
     html-webpack-plugin: ^5.5.1
     i18next: ^22.0.5
     i18next-browser-languagedetector: ^7.0.1
-    i18next-http-backend: ^2.0.1
+    i18next-http-backend: ^2.2.0
     isomorphic-dompurify: ^0.24.0
     jsonwebtoken: ^8.5.1
     koa: ^2.13.4
