@@ -8,7 +8,12 @@
     "ecommerce",
     "shopping cart",
     "shop",
-    "cms"
+    "cms",
+    "cezerin api",
+    "cezerin ajax",
+    "cezerin web store",
+    "ecommerce api",
+    "shopping cart api"
   ],
   "homepage": "https://cezerin.org",
   "bugs": "https://github.com/Cezerin2/cezerin2/issues",
@@ -22,6 +27,7 @@
   "packageManager": "yarn@3.5.0",
   "workspaces": [
     "src/admin",
+    "src/client",
     "src/docs",
     "src/server",
     "src/store",
