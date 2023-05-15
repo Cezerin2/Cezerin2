@@ -18,6 +18,30 @@ updates:
       - "vamcart"
 
   - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/src/admin" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      # Prefix all commit messages with "feat"
+      prefix: "feat: Package "
+    open-pull-requests-limit: 100
+    reviewers:
+      - "ValerioBob"
+      - "vamcart"
+
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/src/client" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      # Prefix all commit messages with "feat"
+      prefix: "feat: Package "
+    open-pull-requests-limit: 100
+    reviewers:
+      - "ValerioBob"
+      - "vamcart"
+
+  - package-ecosystem: "npm" # See documentation for possible values
     directory: "/src/docs" # Location of package manifests
     schedule:
       interval: "daily"
@@ -30,7 +54,55 @@ updates:
       - "vamcart"
 
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/src/admin" # Location of package manifests
+    directory: "/src/server" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      # Prefix all commit messages with "feat"
+      prefix: "feat: Package "
+    open-pull-requests-limit: 100
+    reviewers:
+      - "ValerioBob"
+      - "vamcart"
+
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/src/store" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      # Prefix all commit messages with "feat"
+      prefix: "feat: Package "
+    open-pull-requests-limit: 100
+    reviewers:
+      - "ValerioBob"
+      - "vamcart"
+
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/src/themes/default" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      # Prefix all commit messages with "feat"
+      prefix: "feat: Package "
+    open-pull-requests-limit: 100
+    reviewers:
+      - "ValerioBob"
+      - "vamcart"
+
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/src/themes/fullfluid" # Location of package manifests
+    schedule:
+      interval: "daily"
+    commit-message:
+      # Prefix all commit messages with "feat"
+      prefix: "feat: Package "
+    open-pull-requests-limit: 100
+    reviewers:
+      - "ValerioBob"
+      - "vamcart"
+
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/src/themes/plusha" # Location of package manifests
     schedule:
       interval: "daily"
     commit-message:
