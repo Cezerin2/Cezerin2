@@ -179,7 +179,7 @@
     "eslint-plugin-react": "^7.31.10",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.5.1",
-    "mini-css-extract-plugin": "^2.6.1",
+    "mini-css-extract-plugin": "^2.7.5",
     "postcss-loader": "^7.3.0",
     "prop-types": "^15.8.1",
     "razzle": "^4.2.18",
