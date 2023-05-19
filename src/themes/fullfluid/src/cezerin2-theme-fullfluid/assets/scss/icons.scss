@@ -1,0 +1,1126 @@
+////
+/// @group icons
+////
+
+/// This logo is used in the header across all viewports
+///
+/// @type File
+$logo-image-url: url('../images/logo/logo_mop.svg') no-repeat;
+
+/// This logo is used in the loyalty section
+///
+/// @type File
+$logo-formembers-image-url: url('../images/logo/logo_mop_for_members_loyalty.svg') no-repeat;
+
+/// This logo is used in the account section
+///
+/// @type File
+$person-image-url: url('../images/icons/person.svg') no-repeat;
+
+/// This logo is used in the account section
+///
+/// @type File
+$address-image-url: url('../images/icons/address.svg') no-repeat;
+
+/// This logo is used in the storelocator and account section
+///
+/// @type File
+$pin-image-url: url('../images/icons/pin.svg') no-repeat;
+
+/// This logo is used in the storelocator and account section
+///
+/// @type File
+$pin-filled-image-url: url('../images/icons/pin-filled.svg') no-repeat;
+
+/// This logo is used in the storelocator Input field for geo location
+///
+/// @type File
+$target-image-url: url('../images/icons/storefinder.svg') no-repeat;
+
+/// This logo is used in the storelocator and account section
+///
+/// @type File
+$star-image-url: url('../images/icons/star.svg') no-repeat;
+
+/// This logo is used in the storelocator and account section
+///
+/// @type File
+$star-filled-image-url: url('../images/icons/star-filled.svg') no-repeat;
+
+/// This logo is used in the sticky header and in the navigation menu up to and including viewport M (768px - see $breakpoint-map and $viewport-map in _metrics.scss)
+///
+/// @type File
+$logo-signet-image-url: url('../images/logo/logo_mop_signet.svg') no-repeat;
+
+/// This logo is used for products of the MOP Denim category
+///
+/// @type File
+$logo-denim-image-url: url('../images/logo/logo_mop_denim_round.svg') no-repeat;
+
+/// This logo is used for products of the MOP White Label category
+///
+/// @type File
+$logo-whitelabel-image-url: url('../images/logo/logo_mop_whitelabel.svg') no-repeat;
+
+/// This icon is used in select tables and accordions
+///
+/// @type File
+$arrow-select-image-url: url('../images/icons/arrow_select.svg') no-repeat;
+
+/// This icon is used in buttons
+///
+/// @type File
+$arrow-short-image-url: url('../images/icons/arrow_short.svg') no-repeat;
+
+/// This icon is used in inputfields
+///
+/// @type File
+$arrow-success-image-url: url('../images/icons/arrow_success.svg') no-repeat;
+
+/// This icon is used for global success notifications
+///
+/// @type File
+$arrow-success-green-image-url: url('../images/icons/arrow_success_green.svg') no-repeat;
+
+/// This icon is used in disabled checkboxes
+///
+/// @type File
+$arrow-success-grey-image-url: url('../images/icons/arrow_success_grey.svg') no-repeat;
+
+/// This icon is used to display the cart in the header
+///
+/// @type File
+$bag-image-url: url('../images/icons/bag.svg') no-repeat;
+
+/// This icon is used for the burger menu button
+///
+/// @type File
+$burger-image-url: url('../images/icons/burger.svg') no-repeat;
+
+/// This icon is used to display the wishlist in the header and in the account section
+///
+/// @type File
+$heart-image-url: url('../images/icons/heart.svg') no-repeat;
+
+/// This icon is used to display status of product in the wishlist
+///
+/// @type File
+$heart-filled-image-url: url('../images/icons/heart-filled.svg') no-repeat;
+
+/// This icon is used as a button to display the search input field and start the search
+///
+/// @type File
+$search-image-url: url('../images/icons/search.svg') no-repeat;
+
+/// This icon is used as a close button in the header mobile toggle-layer
+///
+/// @type File
+$x-burger-image-url: url('../images/icons/x_big.svg') no-repeat;
+
+/// This icon is used as a close button in the header and in layers, e. g. the cart layer
+///
+/// @type File
+$x-big-image-url: url('../images/icons/x_big.svg') no-repeat;
+
+/// This icon is used for e.g. global warning notification
+///
+/// @type File
+$x-small-red-image-url: url('../images/icons/x_small_red.svg') no-repeat;
+
+// The following three icons represent the different delivery methods
+//
+/// @type File
+$dhl-express-image-url: url('../images/icons/delivery/delivery_dhl_express.svg') no-repeat;
+
+/// @type File
+$dhl-image-url: url('../images/icons/delivery/delivery_dhl.svg') no-repeat;
+
+/// @type File
+$hermes-image-url: url('../images/icons/delivery/delivery_hermes.svg') no-repeat;
+
+/// @type File
+$ups-image-url: url('../images/icons/delivery/delivery_ups.svg') no-repeat;
+
+/// @type File
+$post-swiss-image-url: url('../images/icons/delivery/delivery_swiss-post.svg') no-repeat;
+
+/// @type File
+$post-nl-image-url: url('../images/icons/delivery/delivery_postnl.svg') no-repeat;
+
+/// @type File
+$post-at-image-url: url('../images/icons/delivery/delivery_postat.svg') no-repeat;
+
+/// @type File
+$gls-image-url: url('../images/icons/delivery/delivery_gls.svg') no-repeat;
+
+// The following icons represent the different payment methods
+//
+/// @type File
+$amex-image-url: url('../images/icons/payment/payment_amex.svg') no-repeat;
+
+/// @type File
+$carte-bleue-image-url: url('../images/icons/payment/payment_carte-bleue.svg') no-repeat;
+
+/// @type File
+$ideal-image-url: url('../images/icons/payment/payment_ideal.svg') no-repeat;
+
+/// @type File
+$mastercard-image-url: url('../images/icons/payment/payment_mastercard.svg') no-repeat;
+
+/// @type File
+$paypal-image-url: url('../images/icons/payment/payment_paypal.svg') no-repeat;
+
+/// @type File
+$visa-image-url: url('../images/icons/payment/payment_visa.svg') no-repeat;
+
+// The following six icons represent the different social media icons
+//
+/// @type File
+$facebook-image-url: url('../images/icons/social_media/socialmedia_fb.svg') no-repeat;
+
+/// @type File
+$instagram-image-url: url('../images/icons/social_media/socialmedia_instagram.svg') no-repeat;
+
+/// @type File
+$pinterest-image-url: url('../images/icons/social_media/socialmedia_pinterest.svg') no-repeat;
+
+/// @type File
+$tumblr-image-url: url('../images/icons/social_media/socialmedia_tumblr.svg') no-repeat;
+
+/// @type File
+$twitter-image-url: url('../images/icons/social_media/socialmedia_twitter.svg') no-repeat;
+
+/// @type File
+$youtube-image-url: url('../images/icons/social_media/socialmedia_youtube.svg') no-repeat;
+
+// The following icons represent the different country flags
+//
+/// @type File
+$at-flag-image-url: url('../images/icons/flags/AT.svg') no-repeat;
+
+/// @type File
+$be-flag-image-url: url('../images/icons/flags/BE.svg') no-repeat;
+
+/// @type File
+$bg-flag-image-url: url('../images/icons/flags/BG.svg') no-repeat;
+
+/// @type File
+$ch-flag-image-url: url('../images/icons/flags/CH.svg') no-repeat;
+
+/// @type File
+$cz-flag-image-url: url('../images/icons/flags/CZ.svg') no-repeat;
+
+/// @type File
+$de-flag-image-url: url('../images/icons/flags/DE.svg') no-repeat;
+
+/// @type File
+$ee-flag-image-url: url('../images/icons/flags/EE.svg') no-repeat;
+
+/// @type File
+$es-flag-image-url: url('../images/icons/flags/ES.svg') no-repeat;
+
+/// @type File
+$fi-flag-image-url: url('../images/icons/flags/FI.svg') no-repeat;
+
+/// @type File
+$fr-flag-image-url: url('../images/icons/flags/FR.svg') no-repeat;
+
+/// @type File
+$gb-flag-image-url: url('../images/icons/flags/GB.svg') no-repeat;
+
+/// @type File
+$ie-flag-image-url: url('../images/icons/flags/IE.svg') no-repeat;
+
+/// @type File
+$it-flag-image-url: url('../images/icons/flags/IT.svg') no-repeat;
+
+/// @type File
+$lu-flag-image-url: url('../images/icons/flags/LU.svg') no-repeat;
+
+/// @type File
+$lt-flag-image-url: url('../images/icons/flags/LT.svg') no-repeat;
+
+/// @type File
+$lv-flag-image-url: url('../images/icons/flags/LV.svg') no-repeat;
+
+/// @type File
+$nl-flag-image-url: url('../images/icons/flags/NL.svg') no-repeat;
+
+/// @type File
+$pl-flag-image-url: url('../images/icons/flags/PL.svg') no-repeat;
+
+/// @type File
+$se-flag-image-url: url('../images/icons/flags/SE.svg') no-repeat;
+
+/// @type File
+$si-flag-image-url: url('../images/icons/flags/SI.svg') no-repeat;
+
+/// @type File
+$sk-flag-image-url: url('../images/icons/flags/SK.svg') no-repeat;
+
+// Following icons represent care instructions
+//
+/// @type File
+$care-1a-image-url: url('../images/icons/care_instructions/1a.svg') no-repeat;
+
+/// @type File
+$care-1b-image-url: url('../images/icons/care_instructions/1b.svg') no-repeat;
+
+/// @type File
+$care-10-image-url: url('../images/icons/care_instructions/10.svg') no-repeat;
+
+/// @type File
+$care-11-image-url: url('../images/icons/care_instructions/11.svg') no-repeat;
+
+/// @type File
+$care-12-image-url: url('../images/icons/care_instructions/12.svg') no-repeat;
+
+/// @type File
+$care-13-image-url: url('../images/icons/care_instructions/13.svg') no-repeat;
+
+/// @type File
+$care-14-image-url: url('../images/icons/care_instructions/14.svg') no-repeat;
+
+/// @type File
+$care-16-image-url: url('../images/icons/care_instructions/16.svg') no-repeat;
+
+/// @type File
+$care-17-image-url: url('../images/icons/care_instructions/17.svg') no-repeat;
+
+/// @type File
+$care-18-image-url: url('../images/icons/care_instructions/18.svg') no-repeat;
+
+/// @type File
+$care-19-image-url: url('../images/icons/care_instructions/19.svg') no-repeat;
+
+/// @type File
+$care-20-image-url: url('../images/icons/care_instructions/20.svg') no-repeat;
+
+/// @type File
+$care-21-image-url: url('../images/icons/care_instructions/21.svg') no-repeat;
+
+/// @type File
+$care-22-image-url: url('../images/icons/care_instructions/22.svg') no-repeat;
+
+/// @type File
+$care-30-image-url: url('../images/icons/care_instructions/30.svg') no-repeat;
+
+/// @type File
+$care-31-image-url: url('../images/icons/care_instructions/31.svg') no-repeat;
+
+/// @type File
+$care-32-image-url: url('../images/icons/care_instructions/32.svg') no-repeat;
+
+/// @type File
+$care-40-image-url: url('../images/icons/care_instructions/40.svg') no-repeat;
+
+/// @type File
+$care-41-image-url: url('../images/icons/care_instructions/41.svg') no-repeat;
+
+/// @type File
+$care-42-image-url: url('../images/icons/care_instructions/42.svg') no-repeat;
+
+/// @type File
+$care-43-image-url: url('../images/icons/care_instructions/43.svg') no-repeat;
+
+/// @type File
+$care-50-image-url: url('../images/icons/care_instructions/50.svg') no-repeat;
+
+/// @type File
+$care-53-image-url: url('../images/icons/care_instructions/53.svg') no-repeat;
+
+/// @type File
+$care-54-image-url: url('../images/icons/care_instructions/54.svg') no-repeat;
+
+/// @type File
+$care-55-image-url: url('../images/icons/care_instructions/55.svg') no-repeat;
+
+/// @type File
+$care-56-image-url: url('../images/icons/care_instructions/56.svg') no-repeat;
+
+/// @type File
+$care-57-image-url: url('../images/icons/care_instructions/57.svg') no-repeat;
+
+/// @type File
+$care-58-image-url: url('../images/icons/care_instructions/58.svg') no-repeat;
+
+/// @type File
+$care-washing-machine-image-url: url('../images/icons/care_instructions/washing_machine.svg') no-repeat;
+
+/// @type File
+$email-image-url: url('../images/icons/email.svg') no-repeat;
+
+/// @type File
+$chain-image-url: url('../images/icons/chain.svg') no-repeat;
+
+/// @type File
+$zoom-in-image-url: url('../images/icons/zoom-in.svg');
+
+/// @type File
+$zoom-out-image-url: url('../images/icons/zoom-out.svg');
+
+/// @type File
+$select-arrow-down-url: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiMzODNlNDQiIHZpZXdCb3g9IjAgMCAxMSA2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMSA2Ij48cGF0aCBkPSJNNS4yNjEgNS43MTJsLTQuOTY4LTUuMDMzLjcxMS0uNzAzIDQuMjU2IDQuMzEyIDQuMjU2LTQuMzEyLjcxMi43MDN6IiBpZD0iU2hhcGUiLz48L3N2Zz4='); // sass-lint:disable-line max-line-length
+
+/// @type File
+$select-arrow-down-disabled-url: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiM5OTk5OTkiIHZpZXdCb3g9IjAgMCAxMSA2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMSA2Ij48cGF0aCBkPSJNNS4yNjEgNS43MTJsLTQuOTY4LTUuMDMzLjcxMS0uNzAzIDQuMjU2IDQuMzEyIDQuMjU2LTQuMzEyLjcxMi43MDN6IiBpZD0iU2hhcGUiLz48L3N2Zz4='); // sass-lint:disable-line max-line-length
+
+// sass-lint:disable max-line-length
+/// @type File
+$arrow-next-url: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMSAxMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTEgMTAiPjxwYXRoIGQ9Ik0xMC43MTIgNC45ODlsLTUuMDMzLTQuOTY4LS43MDMuNzExIDMuODE2IDMuNzY3aC04LjYxNXYxaDguNTkzbC0zLjc5NSAzLjc0NS43MDMuNzEyeiIvPjwvc3ZnPg==');
+
+/// @type File
+$arrow-next-white-url: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJFYmVuZV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMTEgMTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDExIDEwOyI+Cgk8cG9seWdvbiBmaWxsPSIjZmZmIiBwb2ludHM9IjEwLjcxMTkxLDQuOTg5MjYgNS42Nzg3MSwwLjAyMTQ4IDQuOTc2MDcsMC43MzI5MSA4Ljc5MjQyLDQuNSAwLjE3NzczLDQuNSAwLjE3NzczLDUuNSA4Ljc3MDYzLDUuNQoJNC45NzYwNyw5LjI0NTEyIDUuNjc4NzEsOS45NTcwMyAiLz4KPC9zdmc+Cg==');
+// sass-lint:enable max-line-length
+
+/// @type File
+$video-play-image-url: url('../images/icons/video/play.svg');
+
+/// @type File
+$video-pause-image-url: url('../images/icons/video/pause.svg');
+
+/// This map is used to define the styling of each icon, which includes width, height and background.
+/// The keys and values are rendered 1:1 to css rules and values.
+///
+/// @type Map
+///
+/// @property {Map} arrow-long - The styling for the arrow-long icon
+/// @property {Map} arrow-select - The styling for the arrow-select icon
+/// @property {Map} arrow-short - The styling for the arrow-short icon
+/// @property {Map} arrow-success - The styling for the arrow-success icon
+/// @property {Map} arrow-success-grey - The styling for the arrow-success with grey color icon
+/// @property {Map} arrow-success-green - The styling for the arrow-success with green color icon
+/// @property {Map} bag - The styling for the bag icon
+/// @property {Map} burger - The styling for the burger icon
+/// @property {Map} heart - The styling for the heart icon
+/// @property {Map} heart-filled - The styling for the heart-filled icon
+/// @property {Map} search - The styling for the search icon
+/// @property {Map} x-burger - The styling for the x-burger icon
+/// @property {Map} x-big - The styling for the x-big icon
+/// @property {Map} x-small - The styling for the x-small icon
+/// @property {Map} dhl-express - The styling for the dhl-express icon
+/// @property {Map} dhl - The styling for the dhl icon
+/// @property {Map} hermes - The styling for the hermes icon
+/// @property {Map} ups - The styling for the ups icon
+/// @property {Map} post-swiss - The styling for the post-swiss icon
+/// @property {Map} post-nl - The styling for the post-nl icon
+/// @property {Map} post-at - The styling for the post-at icon
+/// @property {Map} gls - The styling for the gls icon
+/// @property {Map} amex - The styling for the amex icon
+/// @property {Map} carte-bleue - The styling for the carte-bleue icon
+/// @property {Map} ideal - The styling for the ideal icon
+/// @property {Map} mastercard - The styling for the mastercard icon
+/// @property {Map} paypal - The styling for the paypal icon
+/// @property {Map} visa - The styling for the visa icon
+/// @property {Map} facebook - The styling for the facebook icon
+/// @property {Map} instagram - The styling for the instagram icon
+/// @property {Map} pinterest - The styling for the pinterest icon
+/// @property {Map} tumblr - The styling for the tumblr icon
+/// @property {Map} twitter - The styling for the twitter icon
+/// @property {Map} youtube - The styling for the youtube icon
+/// @property {Map} at-flag - The styling for the at-flag icon
+/// @property {Map} be-flag - The styling for the be-flag icon
+/// @property {Map} bg-flag - The styling for the bg-flag icon
+/// @property {Map} ch-flag - The styling for the ch-flag icon
+/// @property {Map} cz-flag - The styling for the cz-flag icon
+/// @property {Map} de-flag - The styling for the de-flag icon
+/// @property {Map} ee-flag - The styling for the ee-flag icon
+/// @property {Map} es-flag - The styling for the es-flag icon
+/// @property {Map} fi-flag - The styling for the fi-flag icon
+/// @property {Map} fr-flag - The styling for the fr-flag icon
+/// @property {Map} gb-flag - The styling for the gb-flag icon
+/// @property {Map} ie-flag - The styling for the ie-flag icon
+/// @property {Map} it-flag - The styling for the it-flag icon
+/// @property {Map} lu-flag - The styling for the lu-flag icon
+/// @property {Map} lt-flag - The styling for the lt-flag icon
+/// @property {Map} lv-flag - The styling for the lv-flag icon
+/// @property {Map} nl-flag - The styling for the nl-flag icon
+/// @property {Map} pl-flag - The styling for the pl-flag icon
+/// @property {Map} se-flag - The styling for the se-flag icon
+/// @property {Map} si-flag - The styling for the si-flag icon
+/// @property {Map} sk-flag - The styling for the sk-flag icon
+/// @property {Map} care-1a - The styling for the care instruction icon
+/// @property {Map} care-1b - The styling for the care instruction icon
+/// @property {Map} care-10 - The styling for the care instruction icon
+/// @property {Map} care-11 - The styling for the care instruction icon
+/// @property {Map} care-12 - The styling for the care instruction icon
+/// @property {Map} care-13 - The styling for the care instruction icon
+/// @property {Map} care-14 - The styling for the care instruction icon
+/// @property {Map} care-16 - The styling for the care instruction icon
+/// @property {Map} care-17 - The styling for the care instruction icon
+/// @property {Map} care-18 - The styling for the care instruction icon
+/// @property {Map} care-19 - The styling for the care instruction icon
+/// @property {Map} care-20 - The styling for the care instruction icon
+/// @property {Map} care-21 - The styling for the care instruction icon
+/// @property {Map} care-22 - The styling for the care instruction icon
+/// @property {Map} care-30 - The styling for the care instruction icon
+/// @property {Map} care-31 - The styling for the care instruction icon
+/// @property {Map} care-32 - The styling for the care instruction icon
+/// @property {Map} care-40 - The styling for the care instruction icon
+/// @property {Map} care-41 - The styling for the care instruction icon
+/// @property {Map} care-42 - The styling for the care instruction icon
+/// @property {Map} care-43 - The styling for the care instruction icon
+/// @property {Map} care-50 - The styling for the care instruction icon
+/// @property {Map} care-53 - The styling for the care instruction icon
+/// @property {Map} care-54 - The styling for the care instruction icon
+/// @property {Map} care-55 - The styling for the care instruction icon
+/// @property {Map} care-56 - The styling for the care instruction icon
+/// @property {Map} care-57 - The styling for the care instruction icon
+/// @property {Map} care-58 - The styling for the care instruction icon
+/// @property {Map} care-washing_machine - The styling for the care instruction icon
+/// @property {Map} person-image-url - The style for the account person icon
+/// @property {Map} address-image-url - The style for the account address icon
+/// @property {Map} pin-image-url - The style for the account pin icon
+/// @property {Map} pin-filled-image-url - The style for the account pin icon
+/// @property {Map} star - The style for the account pin icon
+/// @property {Map} star-filled-image-url - The style for the account pin icon
+/// @property {Map} logo-formembers-image-url - The style for the account members logo icon
+/// @property {Map} email - The styling for the email icon
+/// @property {Map} chain - The styling for the chain icon
+/// @property {Map} zoom in - The image zoom in icon
+/// @property {Map} zoom out - The image zoom out icon
+/// @property {Map} brand-logo-denim - The denim logo
+/// @property {Map} brand-logo-whitelabel - The white label logo
+/// @property {Map} notification-note - Notification type note
+/// @property {Map} notification-note-small - Notification type note-small
+/// @property {Map} notification-alert - Notification type alert
+/// @property {Map} notification-success - Notification type success
+/// @property {Map} target - Geo location target icon
+/// @property {Map} loading-asset - Image and video loading spinner
+/// @property {Map} video-play - Video play button
+/// @property {Map} video-pause - Video pause button
+$icons-map: (
+	arrow-long: (
+		display: inline-flex,
+		position: relative,
+		align-items: center,
+		justify-content: flex-end,
+		color: inherit,
+		after: (
+			display: block,
+			content: '""',
+			width: 38px,
+			height: 1px,
+			background-color: currentColor
+		),
+		before: (
+			display: block,
+			position: absolute,
+			top: 0,
+			right: 0,
+			bottom: 0,
+			width: 7px,
+			height: 7px,
+			margin: auto,
+			padding: 0,
+			//property for percentage steps transformation
+			transform-origin: 50% 50%,
+			transform: rotate(45deg),
+			border-top: solid 1px currentColor,
+			border-right: solid 1px currentColor,
+			content: '""'
+		)
+	),
+	arrow-select: (
+		display: 'inline-block',
+		width: 8px,
+		height: 8px,
+		//border-right: '1px solid #{$icon-outline}',
+		//border-bottom: '1px solid #{$icon-outline}',
+		transform: 'translateY(-4px) rotateZ(45deg)',
+		content: '""'
+		),
+	arrow-short: (
+		background: $arrow-short-image-url,
+		width: 11px,
+		height: 10px
+	),
+	arrow-success: (
+		background: $arrow-success-image-url,
+		width: 13px,
+		height: 9px
+	),
+	arrow-success-grey: (
+		background: $arrow-success-grey-image-url,
+		width: 13px,
+		height: 9px
+	),
+	arrow-success-green: (
+		background: $arrow-success-green-image-url,
+		width: 13px,
+		height: 9px
+	),
+	bag: (
+		background: $bag-image-url,
+		width: 14px,
+		height: 19px
+	),
+	burger: (
+		background: $burger-image-url,
+		width: 14px,
+		height: 19px,
+		after: (
+			position: absolute,
+			content: '""',
+			width: 25px,
+			height: 25px
+		)
+	),
+	heart: (
+		background: $heart-image-url,
+		width: 17px,
+		height: 19px
+	),
+	heart-filled: (
+		background: $heart-filled-image-url,
+		width: 17px,
+		height: 19px
+	),
+	search: (
+		background: $search-image-url,
+		width: 14px,
+		height: 19px
+	),
+	x-burger: (
+		background: $x-burger-image-url,
+		width: 13px,
+		height: 19px,
+		after: (
+			position: absolute,
+			content: '""',
+			width: 25px,
+			height: 25px
+		)
+	),
+	x-big: (
+		background: $x-big-image-url,
+		width: 14px,
+		height: 19px
+	),
+	x-small: (
+		after: (
+			display: inline-block,
+			transform: rotate(45deg) scale(1.5),
+			content: '"+"',
+		)
+	),
+	minus: (
+		width: 10px,
+		height: 1px,
+		//background-color: $brand,
+		//color: $brand
+	),
+	plus: (
+		width: 10px,
+		//color: $brand,
+		before: (
+			position: 'absolute',
+			width: 10px,
+			height: 1px,
+			//background-color: $brand,
+			content: '""'
+		),
+		after: (
+			position: 'absolute',
+			width: 10px,
+			height: 1px,
+			transform: 'rotate(90deg)',
+			//background-color: $brand,
+			content: '""'
+		)
+	),
+	dhl-express: (
+		background: $dhl-express-image-url,
+		background-size: 35px 30px,
+		width: 35px,
+		height: 30px
+	),
+	dhl: (
+		background: $dhl-image-url,
+		background-size: 31px 30px,
+		width: 31px,
+		height: 30px
+	),
+	hermes: (
+		background: $hermes-image-url,
+		background-size: 46px 30px,
+		width: 46px,
+		height: 30px
+	),
+	ups: (
+		background: $ups-image-url,
+		background-size: 20px 30px,
+		width: 20px,
+		height: 30px
+	),
+	post-swiss: (
+		background: $post-swiss-image-url,
+		background-size: 70px 30px,
+		width: 70px,
+		height: 30px
+	),
+	post-nl: (
+		background: $post-nl-image-url,
+		background-size: 24px 30px,
+		width: 24px,
+		height: 30px
+	),
+	post-at: (
+		background: $post-at-image-url,
+		background-size: 70px 30px,
+		width: 70px,
+		height: 30px
+	),
+	gls: (
+		background: $gls-image-url,
+		background-size: 41px 30px,
+		width: 41px,
+		height: 30px
+	),
+	amex: (
+		background: $amex-image-url,
+		width: 33px,
+		height: 30px
+	),
+	carte-bleue: (
+		background: $carte-bleue-image-url,
+		width: 33px,
+		height: 30px
+	),
+	ideal: (
+		background: $ideal-image-url,
+		width: 33px,
+		height: 30px
+	),
+	mastercard: (
+		background: $mastercard-image-url,
+		width: 22px,
+		height: 30px
+	),
+	paypal: (
+		background: $paypal-image-url,
+		width: 32px,
+		height: 30px
+	),
+	visa: (
+		background: $visa-image-url,
+		width: 28px,
+		height: 30px
+	),
+	facebook: (
+		background: $facebook-image-url,
+		width: 36px,
+		height: 36px
+	),
+	instagram: (
+		background: $instagram-image-url,
+		width: 36px,
+		height: 36px
+	),
+	pinterest: (
+		background: $pinterest-image-url,
+		width: 36px,
+		height: 36px
+	),
+	tooltip-info: (
+		//color: $brand,
+		position: relative,
+		width: 15px,
+		height: 15px,
+		border: solid 1px currentColor,
+		border-radius: 100%,
+		after: (
+			position: absolute,
+			top: 5px,
+			left: 6px,
+			width: 2px,
+			height: 6px,
+			background-color: currentColor,
+			content: '""'
+		),
+		before: (
+			position: absolute,
+			top: 2px,
+			left: 6px,
+			width: 2px,
+			height: 2px,
+			border-radius: 100%,
+			background-color: currentColor,
+			content: '""'
+		)
+	),
+	tumblr: (
+		background: $tumblr-image-url,
+		width: 36px,
+		height: 36px
+	),
+	twitter: (
+		background: $twitter-image-url,
+		width: 36px,
+		height: 36px
+	),
+	youtube: (
+		background: $youtube-image-url,
+		width: 36px,
+		height: 36px
+	),
+	at-flag: (
+		background: $at-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	be-flag: (
+		background: $be-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	bg-flag: (
+		background: $bg-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	ch-flag: (
+		background: $ch-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	cz-flag: (
+		background: $cz-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	de-flag: (
+		background: $de-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	ee-flag: (
+		background: $ee-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	es-flag: (
+		background: $es-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	fi-flag: (
+		background: $fi-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	fr-flag: (
+		background: $fr-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	gb-flag: (
+		background: $gb-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	ie-flag: (
+		background: $ie-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	it-flag: (
+		background: $it-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	lu-flag: (
+		background: $lu-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	lt-flag: (
+		background: $lt-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	lv-flag: (
+		background: $lv-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	nl-flag: (
+		background: $nl-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	pl-flag: (
+		background: $pl-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	se-flag: (
+		background: $se-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	si-flag: (
+		background: $si-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	sk-flag: (
+		background: $sk-flag-image-url,
+		width: 13px,
+		height: 10px
+	),
+	logo-signet: (
+		background: $logo-signet-image-url,
+		width: 36px,
+		height: 36px
+	),
+	care-1a: (
+		background: $care-1a-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-1b: (
+		background: $care-1b-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-10: (
+		background: $care-10-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-11: (
+		background: $care-11-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-12: (
+		background: $care-12-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-13: (
+		background: $care-13-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-14: (
+		background: $care-14-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-16: (
+		background: $care-16-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-17: (
+		background: $care-17-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-18: (
+		background: $care-18-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-19: (
+		background: $care-19-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-20: (
+		background: $care-20-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-21: (
+		background: $care-21-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-22: (
+		background: $care-22-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-30: (
+		background: $care-30-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-31: (
+		background: $care-31-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-32: (
+		background: $care-32-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-40: (
+		background: $care-40-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-41: (
+		background: $care-41-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-42: (
+		background: $care-42-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-43: (
+		background: $care-43-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-50: (
+		background: $care-50-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-53: (
+		background: $care-53-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-54: (
+		background: $care-54-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-55: (
+		background: $care-55-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-56: (
+		background: $care-56-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-57: (
+		background: $care-57-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-58: (
+		background: $care-58-image-url,
+		width: 25px,
+		height: 27px
+	),
+	care-washing_machine: (
+		background: $care-washing-machine-image-url,
+		width: 25px,
+		height: 27px
+	),
+	person-image-url: (
+		background: url('../images/icons/person.svg') no-repeat,
+		width: 25px,
+		height: 20px
+	),
+	address-image-url: (
+		background: $address-image-url,
+		width: 25px,
+		height: 20px
+	),
+	pin-image-url: (
+		background: $pin-image-url,
+		width: 25px,
+		height: 20px
+	),
+	pin-filled: (
+		background: $pin-filled-image-url,
+		background-size: 17px,
+		width: 17px,
+		height: 19px
+	),
+	star: (
+		background: $star-image-url,
+		width: 17px,
+		height: 19px
+	),
+	star-filled: (
+		background: $star-filled-image-url,
+		width: 17px,
+		height: 19px
+	),
+	email: (
+		background: $email-image-url,
+		width: 16px,
+		height: 18px
+	),
+	chain: (
+		background: $chain-image-url,
+		width: 16px,
+		height: 18px
+	),
+	logo-formembers-image-url: (
+		background: $logo-formembers-image-url,
+		width: 87px,
+		height: 87px
+	),
+	zoom-in: (
+		background: $zoom-in-image-url,
+		width: 35px,
+		height: 35px
+	),
+	zoom-out: (
+		background: $zoom-out-image-url,
+		width: 35px,
+		height: 35px
+	),
+	brand-logo-denim: (
+		background: $logo-denim-image-url,
+		width: 37px,
+		height: 37px
+	),
+	brand-logo-whitelabel: (
+		background: $logo-whitelabel-image-url,
+		width: 50px,
+		height: 23px
+	),
+	arrow-next: (
+		background: $arrow-next-url,
+		width: 11px,
+		height: 10px,
+	),
+	arrow-next-white: (
+		background: $arrow-next-white-url,
+		width: 11px,
+		height: 10px,
+	)
+	
+);
+
+/// The icon mixin returns the css rules defined in the map for each icon
+///
+/// @parameter {String} $icon-name - The name of the icon
+///
+/// @require $icons-map
+///
+/// @example
+///		.abstract-symbol__icon--arrow-long {
+///			@include icon-dimensions(arrow-long);
+///		}
+@mixin icon($icon-name) {
+	$icons-definition: map-get($icons-map, $icon-name);
+
+	@each $css-rule, $value in $icons-definition {
+		@if $css-rule == before or $css-rule == after {
+			&::#{$css-rule} {
+				@each $sub-rule, $sub-value in $value {
+					#{$sub-rule}: #{$sub-value};
+				}
+			}
+		} @else {
+			#{$css-rule}: #{$value};
+		}
+	}
+}
+

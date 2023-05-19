@@ -1,0 +1,101 @@
+.big-banner {
+    @media screen and (max-width: 768px) {
+        padding: 0;
+    }
+    margin-top: 70px;
+    @media screen and (min-width: $vtablet-width) {
+        margin-top: 100px;
+    }
+}
+
+.big-banner__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    white-space: normal;
+    height: 147px;
+    background-color: #FBF7F2;
+    border-radius: 5px;
+    padding-left: 20px;
+    position: relative;
+    overflow: hidden;
+    @media screen and (min-width: $vtablet-width) {
+        height: 255px;
+        padding-left: 50px;
+    }
+    @media screen and (min-width: $tablet-width) {
+        padding-left: 100px;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        width: 75%;
+        height: 254px;
+        border-radius: 172px;
+        top: -48px;
+        left: -30px;
+        background-color: $mustard;
+        z-index: 1;
+        @media screen and (min-width: $vtablet-width) {
+            width: 68%;
+            height: 662px;
+            border-radius: 331px;
+            top: -128px;
+            left: -83px;
+        }
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        width: 75%;
+        height: 253px;
+        border-radius: 172px;
+        top: -53px;
+        left: -47px;
+        background-color: $choco;
+        z-index: 2;
+        @media screen and (min-width: $vtablet-width) {
+            width: 68%;
+            height: 662px;
+            border-radius: 331px;
+            top: -142px;
+            left: -138px;
+        }
+    }
+}
+
+.big-banner__image img {
+    position: absolute;
+    right: 20%;
+    transform: translateX(25%);
+    top: 0;
+    z-index: 0;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    @media screen and (min-width: $vtablet-width) {
+        right: 0;
+        transform: translateX(0);
+    }
+}
+
+.big-banner__text {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    width: 170px;
+    z-index: 3;
+    @media screen and (min-width: $vtablet-width) {
+        font-size: 30px;
+        width: 450px;
+    }
+}
+
+.big-banner__button {
+    display: none;
+    @media screen and (min-width: $vtablet-width) {
+        margin-top: 35px;
+        display: flex;
+    }
+}

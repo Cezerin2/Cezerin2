@@ -1,0 +1,182 @@
+.search {
+    @media screen and (min-width: $tablet-width) {
+        padding: 0 calc(50% - 600px);
+    }
+}
+
+.products__item {
+    width: 270px!important;
+    min-height: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+    @media screen and (min-width: $vtablet-width) {
+        width: 300px !important;
+        height: 461px;
+        padding: 15px;
+        &:hover {
+            background: #FFFFFF;
+            box-shadow: 0px 4px 20px rgba(78, 55, 42, 0.2);
+            border-radius: 5px;
+        }
+    }
+    .image-gallery-image {
+        width: 270px;
+        height: 315px;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+    .image-gallery-bullets {
+        width: calc(100% + 12px);
+        margin: 0 -6px;
+        .image-gallery-bullets-container {
+            margin: 0;
+        }
+        .image-gallery-bullet {
+            background: $border;
+        }
+        .image-gallery-bullet.active {
+            background: $choco;
+        }
+    }
+    .image-gallery-slides {
+        border-radius: 5px;
+        z-index: 0;
+        img {
+            background: #F1D836;
+            width: auto;
+            max-height: 315px;
+            margin: 0 auto;
+        }
+    }
+}
+
+.products_list {
+    @media screen and (min-width: $vtablet-width) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+}
+
+.products_list .products__item {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    @media screen and (min-width: $vtablet-width) {
+        margin-right: 0;
+        margin-left: 0;
+        margin-top: 0;
+    }
+}
+
+.products__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 430px;
+    z-index: 1;
+    @media screen and (min-width: $vtablet-width) {
+        width: 300px !important;
+        height: 461px;
+    }
+}
+
+.products__content {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 85px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.products__name {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 150%;
+    width: 100%;
+    flex: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: auto;
+    pointer-events: initial;
+    a {
+        pointer-events: initial;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+
+.products__price {
+    display: flex;
+    flex-direction: column;
+    color: $text;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 28px;
+    margin-top: auto;
+    &_old {
+        text-decoration: none;
+        align-self: flex-start;
+        background-color: transparent;
+        background-image: repeating-linear-gradient(170deg, transparent, transparent 48%, #3C2F22 50%, transparent 52%, transparent);
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: 400;
+    }
+    &_new {
+        margin-top: 10px;
+    }
+}
+
+.products__button {
+    margin: auto 0 0;
+    pointer-events: initial;
+    .is-success {
+        background-color: $choco;
+        &:active,
+        &:hover {
+            background-color: $choco-light;
+        }
+        &:focus:not(:active) {
+            box-shadow: 0 0 0 0.125em $choco;
+        }
+    }
+}
+
+.products__tags {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    @media screen and (min-width: $vtablet-width) {
+        top: 15px;
+        left: 15px;
+        width: calc(100% - 30px);
+    }
+}
+
+.tag:not(body) {
+    background: #f9ba4f;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #fff;
+    height: 40px;
+    padding: 5px 15px 3px;
+    &:not(:last-child) {
+        margin-right: 20px;
+    }
+}
