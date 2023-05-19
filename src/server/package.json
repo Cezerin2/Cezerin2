@@ -22,7 +22,7 @@
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.14.2",
     "koa-body": "^6.0.1",
-    "koa-compress": "^5.1.0",
+    "koa-compress": "^5.1.1",
     "koa-helmet": "^6.1.0",
     "koa-i18n": "^2.1.0",
     "koa-jwt": "^4.0.3",

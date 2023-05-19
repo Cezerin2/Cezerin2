@@ -10730,7 +10730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bytes@npm:3.1.2, bytes@npm:^3.0.0":
+"bytes@npm:3.1.2, bytes@npm:^3.1.2":
   version: 3.1.2
   resolution: "bytes@npm:3.1.2"
   checksum: e4bcd3948d289c5127591fbedf10c0b639ccbf00243504e4e127374a15c3bc8eed0d28d4aaab08ff6f1cf2abc0cce6ba3085ed32f4f90e82a5683ce0014e1b6e
@@ -11123,7 +11123,7 @@ __metadata:
     jsonwebtoken: ^8.5.1
     koa: ^2.14.2
     koa-body: ^6.0.1
-    koa-compress: ^5.1.0
+    koa-compress: ^5.1.1
     koa-helmet: ^6.1.0
     koa-i18n: ^2.1.0
     koa-jwt: ^4.0.3
@@ -11902,7 +11902,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"compressible@npm:^2.0.0, compressible@npm:~2.0.16":
+"compressible@npm:^2.0.18, compressible@npm:~2.0.16":
   version: 2.0.18
   resolution: "compressible@npm:2.0.18"
   dependencies:
@@ -16757,7 +16757,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:^1.6.3, http-errors@npm:^1.7.3, http-errors@npm:^1.8.0, http-errors@npm:~1.8.0":
+"http-errors@npm:^1.6.3, http-errors@npm:^1.7.3, http-errors@npm:^1.8.1, http-errors@npm:~1.8.0":
   version: 1.8.1
   resolution: "http-errors@npm:1.8.1"
   dependencies:
@@ -19612,16 +19612,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"koa-compress@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "koa-compress@npm:5.1.0"
+"koa-compress@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "koa-compress@npm:5.1.1"
   dependencies:
-    bytes: ^3.0.0
-    compressible: ^2.0.0
-    http-errors: ^1.8.0
+    bytes: ^3.1.2
+    compressible: ^2.0.18
+    http-errors: ^1.8.1
     koa-is-json: ^1.0.0
-    statuses: ^2.0.1
-  checksum: 3d1c72fe1e59d17e84a5109632b1cfe9ab76be3811517f604c6f637e09756c7c255f8aca8b09ba0fc553f02a821d0eeb6decdfb40202d427243e6ab702fe14bd
+  checksum: e768d336756e2009cd65db28c48472827a0eb503cdf3055bdb0af0e5d74b821bb8b9820dfdcb956e359fdea3c302286d2a17eef28bd4683217a6e8d503749e68
   languageName: node
   linkType: hard
 
@@ -26881,7 +26880,7 @@ __metadata:
     jsonwebtoken: ^8.5.1
     koa: ^2.14.2
     koa-body: ^6.0.1
-    koa-compress: ^5.1.0
+    koa-compress: ^5.1.1
     koa-helmet: ^6.1.0
     koa-i18n: ^2.1.0
     koa-jwt: ^4.0.3
@@ -27625,7 +27624,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"statuses@npm:2.0.1, statuses@npm:^2.0.1":
+"statuses@npm:2.0.1":
   version: 2.0.1
   resolution: "statuses@npm:2.0.1"
   checksum: 18c7623fdb8f646fb213ca4051be4df7efb3484d4ab662937ca6fbef7ced9b9e12842709872eb3020cc3504b93bde88935c9f6417489627a7786f24f8031cbcb
@@ -27729,7 +27728,7 @@ __metadata:
     jsonwebtoken: ^8.5.1
     koa: ^2.14.2
     koa-body: ^6.0.1
-    koa-compress: ^5.1.0
+    koa-compress: ^5.1.1
     koa-helmet: ^6.1.0
     koa-i18n: ^2.1.0
     koa-jwt: ^4.0.3
