@@ -11176,7 +11176,7 @@ __metadata:
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
     typescript: ^4.9.3
-    ua-parser-js: ^1.0.32
+    ua-parser-js: ^1.0.35
     url: ^0.11.0
     webpack: ^5.82.1
     webpack-cli: ^5.1.1
@@ -26898,7 +26898,7 @@ __metadata:
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
     typescript: ^4.9.3
-    ua-parser-js: ^1.0.32
+    ua-parser-js: ^1.0.35
     winston: ^3.8.2
     ws: ^8.11.0
     yaml: ^2.2.2
@@ -27782,7 +27782,7 @@ __metadata:
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
     typescript: ^4.9.3
-    ua-parser-js: ^1.0.32
+    ua-parser-js: ^1.0.35
     url: ^0.11.0
     webpack: ^5.82.1
     webpack-cli: ^5.1.1
@@ -29225,10 +29225,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ua-parser-js@npm:^1.0.32":
-  version: 1.0.32
-  resolution: "ua-parser-js@npm:1.0.32"
-  checksum: 79a80efd9c21511fdafc042ab748e0e93c8cdb0e8925bf6d48ad7dbb08e808c60fcecd49e679670def44ef428c005aa1810810f6773e7d8135a7817338080813
+"ua-parser-js@npm:^1.0.35":
+  version: 1.0.35
+  resolution: "ua-parser-js@npm:1.0.35"
+  checksum: 02370d38a0c8b586f2503d1c3bbba5cbc0b97d407282f9023201a99e4c03eae4357a2800fdf50cf80d73ec25c0b0cc5bfbaa03975b0add4043d6e4c86712c9c1
   languageName: node
   linkType: hard
 
