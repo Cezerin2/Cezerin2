@@ -1,0 +1,32 @@
+.viewed,
+.popular {
+    @media screen and (max-width: 768px) {
+        padding: 0;
+    }
+}
+
+.products-gallery {
+    margin-top: 20px;
+    @media screen and (min-width: $vtablet-width) {
+        margin: 0;
+    }
+}
+
+.products-gallery .slick-list {
+    @media screen and (min-width: $vtablet-width) {
+        width: 1000px;
+        margin: 0 auto;
+        padding: 15px 0 20px;
+    }
+}
+
+.products-gallery__pager {
+    margin-top: 42px;
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 18px;
+    line-height: 38px;
+    text-align: center;
+    @media screen and (min-width: $vtablet-width) {
+        display: none;
+    }
+}

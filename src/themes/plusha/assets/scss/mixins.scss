@@ -1,0 +1,48 @@
+@mixin marginAuto{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@mixin backgroundImage($url, $backgroundPos: 0% 0%, $backgroundRepeat: no-repeat, $backgroundSize: auto){
+	background-image: url($url);
+	background-position: $backgroundPos;
+	background-repeat: $backgroundRepeat;
+	background-size: $backgroundSize;
+}
+
+@mixin before($top, $left, $right: auto, $bottom: auto){
+	content: '';
+	position: absolute;
+	top: $top;
+	left: $left;
+	right: $right;
+	bottom: $bottom;
+}
+
+@mixin textPreview($max-height: 132px, $lines: 6){
+	display: block;
+    display: -webkit-box;
+    height: auto;
+    max-height: $max-height;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@mixin fontStyle($font, $fontSize: 12px, $lineHeight: 1, $fontWeight: normal){
+    font-family: $font;
+    font-size: $fontSize;
+    line-height: $lineHeight/$fontSize;
+    font-weight: $fontWeight;
+}
+@mixin flex($horizontal, $vertical, $wrap) {
+    display: flex;
+    justify-content: $horizontal;
+    align-items: $vertical;
+    flex-wrap: $wrap;
+}
+@mixin flexWidth($procent) {
+    flex: 0 0 $procent;
+    width: $procent;
+    max-width: $procent;
+}

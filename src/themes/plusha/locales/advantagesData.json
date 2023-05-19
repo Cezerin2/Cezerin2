@@ -1,0 +1,26 @@
+[
+  {
+    "id": "adv1",
+    "name": "Awesome Design",
+    "icon": "/assets/images/icons/adv_design.svg",
+    "path": ""
+  },
+  {
+    "id": "adv2",
+    "name": "Fast Delivery",
+    "icon": "/assets/images/icons/adv_truck.svg",
+    "path": ""
+  },
+  {
+    "id": "adv3",
+    "name": "Customer Protect",
+    "icon": "/assets/images/icons/adv_cert.svg",
+    "path": ""
+  },
+  {
+    "id": "adv4",
+    "name": "Shipping Wordwide",
+    "icon": "/assets/images/icons/adv_geo.svg",
+    "path": ""
+  }
+]

@@ -1,0 +1,151 @@
+.section-product-description {
+  background-color: #f5f5f5;
+  padding: 3rem 1.5rem;
+}
+
+.product-attribute {
+  border-bottom: 1px solid #ccc;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  margin: 0 !important;
+}
+
+.attribute-name {
+  font-weight: 500;
+}
+
+.attribute-value {}
+
+.section-product h1.product-name {
+  margin-bottom: 0.75rem;
+}
+
+.section-product .product-price {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: #363636;
+  font-weight: 500;
+}
+
+.section-product .product-old-price {
+  padding-left: 10px;
+  color: #636363;
+}
+
+.section-product .product-new-price {
+  color: #e72b1e;
+}
+
+.section-product .product-option {
+  margin-bottom: 1.25rem;
+}
+
+.section-product .product-option-name {
+  margin-bottom: 0.5rem;
+}
+
+.button-addtocart {
+  margin: 1.5rem 0;
+  max-width: 280px;
+}
+
+.discount-countdown {
+  max-width: 300px;
+  margin: 2rem 0;
+}
+.discount-title {}
+.discount-numbers {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.discount-numbers .column.is-2 {
+  background-color: #f1f1f1;
+  border-radius: 6px;
+}
+.discount-labels {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #7a7a7a;
+}
+
+.section-product .image-gallery-image {
+  cursor: zoom-in;
+}
+
+.section-product .image-gallery-slide-wrapper {
+  min-height: 200px;
+}
+
+.ReactModalPortal img {
+  max-width: none;
+}
+
+.product-quantity {
+  display: flex;
+  height: 2.25em;
+  width: 152px;
+  margin: 0.5rem 0;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.product-quantity input {
+  width: 70px;
+  text-align: center;
+  font-size: 1rem;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+.product-quantity a {
+  width: 40px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
+}
+.product-quantity a:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+.product-quantity a:active {
+  background-color: rgba(0,0,0,0.1);
+}
+.product-quantity a.decrement {
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQyIDQyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MiA0MjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8cmVjdCB5PSIxOSIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAwMDAiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+}
+.product-quantity a.increment {
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQyIDQyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MiA0MjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8cG9seWdvbiBwb2ludHM9IjQyLDE5IDIzLDE5IDIzLDAgMTksMCAxOSwxOSAwLDE5IDAsMjMgMTksMjMgMTksNDIgMjMsNDIgMjMsMjMgNDIsMjMgIiBmaWxsPSIjMDAwMDAwIi8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
+}
+.product-content a {
+  text-decoration: underline;
+}
+
+/*
+Mobile
+*/
+@media screen and (max-width: 769px) {
+  .section-product .image-gallery-thumbnails-wrapper {
+    display: none !important;
+  }
+
+  .section-product .image-gallery-slide-wrapper.left, .image-gallery-slide-wrapper.right {
+    width: 100%;
+  }
+
+  .section-product .image-gallery {
+    margin: -1.5rem -1.5rem 0 -1.5rem;
+  }
+
+  .button-addtocart {
+    max-width: 100%;
+  }
+
+  .product-breadcrumb {
+    display: none;
+  }
+
+  .product-quantity a {
+    background-color: rgba(0,0,0,0.05);
+  }
+}

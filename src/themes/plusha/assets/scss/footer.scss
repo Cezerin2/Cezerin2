@@ -1,0 +1,143 @@
+.footer {
+    margin-top: 60px;
+    text-align: center;
+    padding: 45px 40px;
+    @media (min-width: $mobile-width) {
+        text-align: left;
+        padding: 50px calc(50% - 220px);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 150px;
+    }
+    @media (min-width: $mintablet-width) {
+        padding: 50px calc(50% - 330px);
+    }
+    @media (min-width: $vtablet-width) {
+        padding: 50px calc(50% - 480px);
+    }
+    @media (min-width: $tablet-width) {
+        flex-wrap: nowrap;
+        padding: 50px calc(50% - 585px);
+        display: flex;
+        justify-content: space-between;
+        margin-right: -80px;
+        margin-top: 150px;
+        justify-self: flex-end;
+        flex: 1;
+    }
+}
+
+.footer a {
+    color: #636363;
+    &:hover {
+        color: $mustard;
+    }
+}
+
+.footer__title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 150%;
+    margin-bottom: 20px;
+}
+
+.footer__contacts {
+    margin-bottom: 40px;
+    @media (min-width: $mintablet-width) {
+        margin-right: 110px;
+    }
+}
+
+.footer-contacts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 150%;
+    li {
+        margin-top: 10px;
+    }
+}
+
+.footer-contacts__phone {
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.footer__socials {
+    @media (min-width: $mintablet-width) {
+        margin-right: 110px;
+    }
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    @media (min-width: $vtablet-width) {
+        justify-content: flex-start;
+    }
+}
+
+.social-icons a {
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    margin-right: 17px;
+}
+
+.social-icons a.facebook {
+    background-image: url(/assets/images/icons/facebook.svg)
+}
+
+.social-icons a.twitter {
+    background-image: url(/assets/images/icons/twitter.svg)
+}
+
+.social-icons a.instagram {
+    background-image: url(/assets/images/icons/instagram.svg)
+}
+
+.social-icons a.vk {
+    background-image: url(/assets/images/icons/vk.svg)
+}
+
+.footer__socials {
+    margin-bottom: 40px;
+}
+
+.footer__menu {
+    @media (min-width: $mobile-width) {
+        flex: auto;
+        width: 100%;
+    }
+    @media (min-width: $tablet-width) {
+        width: auto;
+    }
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    @media (min-width: $mobile-width) {
+        text-align: left;
+        flex-wrap: wrap;
+        height: 140px;
+    }
+}
+
+.footer-menu__link {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    @media (min-width: $vtablet-width) {
+        margin-right: 80px;
+    }
+}

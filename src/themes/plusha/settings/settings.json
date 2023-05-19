@@ -1,0 +1,76 @@
+{
+  "checkoutInputClass": "checkout__field",
+  "checkoutButtonClass": "checkout__button button",
+  "checkoutEditButtonClass": "checkout__button button",
+  "cartThumbnailWidth": 100,
+  "footer_contacts": [
+    { "text": "104 N Stagecoach Rd" },
+    { "text": "Dover Foxcroft, ME, 04426" },
+    { "text": "(207) 564-8482" },
+    { "text": "sales@shop.com" }
+  ],
+  "footer_about": "Store - just to show you what it can. Some text go here.",
+  "footer_menu_2_title": "Customer service",
+  "footer_menu_1_title": "Company",
+  "footer_social": [
+    { "type": "facebook", "url": "https://facebook.com/cezerin" },
+    { "type": "twitter", "url": "https://twitter.com/cezerin2" }
+  ],
+  "footer_menu_1_items": [
+    { "text": "About", "url": "/about" },
+    { "text": "Blog", "url": "/blog" },
+    { "text": "Terms of Service", "url": "/tos" },
+    { "text": "Privacy Policy", "url": "/privacy-policy" },
+    { "text": "Made with ❤ by Cezerin.org", "url": "" }
+  ],
+  "footer_menu_2_items": [
+    { "text": "Shipping & returns", "url": "/returns" },
+    { "text": "About", "url": "/about" },
+    { "text": "Contacts", "url": "/contacts" }
+  ],
+  "search_placeholder": "",
+  "home_products_limit": 8,
+  "home_products_title": "Featured Products",
+  "home_products_sort": "-date_updated",
+  "home_slider": [
+    {
+      "path": "/page-1",
+      "image": "slide8.jpg",
+      "description": "eCommerce Complete Solution.",
+      "title": "Cezerin - React Shopping Cart CMS"
+    },
+    {
+      "path": "/page-2",
+      "image": "slide8.jpg",
+      "title": "API Centric PWA/SPA Shopping Cart",
+      "description": "Headless eCommerce CMS."
+    },
+    {
+      "image": "slide8.jpg",
+      "path": "/page-3",
+      "title": "100% JS. MERN Technology Stack",
+      "description": "MongoDB + ExpressJS + ReactJS + NodeJS"
+    }
+  ],
+  "home_slider_color": "#848484",
+  "button_addtocart_text": "",
+  "maxCartItemQty": 100,
+  "product_thumbnail_position": "left",
+  "bigThumbnailWidth": 800,
+  "previewThumbnailWidth": 100,
+  "list_image_max_height": 280,
+  "listThumbnailWidth": 340,
+  "show_product_filter": true,
+  "show_category_breadcrumbs": true,
+  "show_discount_countdown": true,
+  "show_product_breadcrumbs": true,
+  "sortNewest": "-date_created",
+  "sortPriceLow": "price",
+  "sortPriceHigh": "-price",
+  "footer_logo_url": "logo.png",
+  "limit_viewed_products": 4,
+  "show_viewed_products": true,
+  "product_gallery_shownav": true,
+  "page_list_tag": "blog",
+  "home_gallery_shownav": true
+}

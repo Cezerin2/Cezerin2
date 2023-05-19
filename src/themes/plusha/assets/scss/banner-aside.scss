@@ -1,0 +1,20 @@
+.banner-aside {
+    margin-top: 140px;
+    background-color: $choco;
+}
+
+.banner-aside__image {
+    img {
+        width: 100%;
+        display: block;
+    }
+}
+
+.banner-aside__text {
+    padding: 20px 30px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 150%;
+    text-align: center;
+    color: #FCF3EC;
+}
