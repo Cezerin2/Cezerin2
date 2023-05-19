@@ -11183,7 +11183,7 @@ __metadata:
     webpack-dev-server: ^4.15.0
     winston: ^3.8.2
     workbox-webpack-plugin: ^6.5.4
-    ws: ^8.11.0
+    ws: ^8.13.0
     yaml: ^2.2.2
     yaml-loader: ^0.8.0
     yup: ^0.32.11
@@ -26900,7 +26900,7 @@ __metadata:
     typescript: ^4.9.3
     ua-parser-js: ^1.0.32
     winston: ^3.8.2
-    ws: ^8.11.0
+    ws: ^8.13.0
     yaml: ^2.2.2
     yup: ^0.32.11
   languageName: unknown
@@ -27789,7 +27789,7 @@ __metadata:
     webpack-dev-server: ^4.15.0
     winston: ^3.8.2
     workbox-webpack-plugin: ^6.5.4
-    ws: ^8.11.0
+    ws: ^8.13.0
     yaml: ^2.2.2
     yaml-loader: ^0.8.0
     yup: ^0.32.11
