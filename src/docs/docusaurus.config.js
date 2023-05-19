@@ -4,6 +4,14 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 
+const tailwindPlugin = (context, options) => ({
+  name: "docusaurus-tailwindcss",
+  configurePostCss(postcssOptions) {
+    postcssOptions.plugins.push(require("tailwindcss"))
+    return postcssOptions
+  },
+})
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Cezerin",
@@ -142,6 +150,8 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+
+  plugins: [tailwindPlugin],
 }
 
 module.exports = config
