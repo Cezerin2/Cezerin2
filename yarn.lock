@@ -11240,7 +11240,7 @@ __metadata:
     redux-thunk: ^2.4.2
     regenerator-runtime: ^0.13.10
     sass: ^1.62.1
-    sass-loader: ^13.2.0
+    sass-loader: ^13.3.0
     sharp: ^0.32.1
     sitemap: ^7.1.1
     slug: ^8.2.2
@@ -26685,15 +26685,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:^13.2.0":
-  version: 13.2.0
-  resolution: "sass-loader@npm:13.2.0"
+"sass-loader@npm:^13.3.0":
+  version: 13.3.0
+  resolution: "sass-loader@npm:13.3.0"
   dependencies:
-    klona: ^2.0.4
+    klona: ^2.0.6
     neo-async: ^2.6.2
   peerDependencies:
     fibers: ">= 3.1.0"
-    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
+    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
     sass: ^1.3.0
     sass-embedded: "*"
     webpack: ^5.0.0
@@ -26706,7 +26706,7 @@ __metadata:
       optional: true
     sass-embedded:
       optional: true
-  checksum: ed6cdb5f5508e1a8a020d1451160a5e94805d0c2a97be5719c6a44ed28a258b5f37a1478d01b9d545f269367ae91ccb88adc93bd6202bfd609dbe3193228d51e
+  checksum: a3b57eaf09ae853fa95298bd7a42d64409f3f3b97f46ec4c61178763ffb61edddd5f89cc03940ef963aa328b4f6dcd4f1153e810e5eb29fb07ac02ddc121749c
   languageName: node
   linkType: hard
 
@@ -27961,7 +27961,7 @@ __metadata:
     redux-thunk: ^2.4.2
     regenerator-runtime: ^0.13.10
     sass: ^1.62.1
-    sass-loader: ^13.2.0
+    sass-loader: ^13.3.0
     sharp: ^0.32.1
     sitemap: ^7.1.1
     slug: ^8.2.2
