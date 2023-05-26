@@ -11256,7 +11256,7 @@ __metadata:
     winston: ^3.8.2
     workbox-webpack-plugin: ^6.5.4
     ws: ^8.11.0
-    yaml: ^2.2.2
+    yaml: ^2.3.0
     yaml-loader: ^0.8.0
     yup: ^0.32.11
   languageName: unknown
@@ -27088,7 +27088,7 @@ __metadata:
     ua-parser-js: ^1.0.32
     winston: ^3.8.2
     ws: ^8.11.0
-    yaml: ^2.2.2
+    yaml: ^2.3.0
     yup: ^0.32.11
   languageName: unknown
   linkType: soft
@@ -27977,7 +27977,7 @@ __metadata:
     winston: ^3.8.2
     workbox-webpack-plugin: ^6.5.4
     ws: ^8.11.0
-    yaml: ^2.2.2
+    yaml: ^2.3.0
     yaml-loader: ^0.8.0
     yup: ^0.32.11
   languageName: unknown
@@ -31146,10 +31146,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.1.1, yaml@npm:^2.2.2":
+"yaml@npm:^2.1.1":
   version: 2.2.2
   resolution: "yaml@npm:2.2.2"
   checksum: d90c235e099e30094dcff61ba3350437aef53325db4a6bcd04ca96e1bfe7e348b191f6a7a52b5211e2dbc4eeedb22a00b291527da030de7c189728ef3f2b4eb3
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "yaml@npm:2.3.0"
+  checksum: 9c3d16c226472041fbdc9fb55e1645786d3a3e8d4fde67a502ed7bfbd9067b811e466679db590a0731b4405d4a3bef1f35d098fb650d2cf4bc24732fc829b961
   languageName: node
   linkType: hard
 
