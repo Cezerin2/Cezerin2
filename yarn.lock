@@ -7256,17 +7256,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stripe/stripe-js@npm:^1.44.1":
-  version: 1.44.1
-  resolution: "@stripe/stripe-js@npm:1.44.1"
-  checksum: f65476472ac7952c0c7c7c321ae64ace89e09fc13c4979f98f58db7be98a5e88e47cb2ef00f038402fd99c417706f0331cde2e1f4b131bd3a8c879dd1ab0e79d
-  languageName: node
-  linkType: hard
-
-"@stripe/stripe-js@npm:^1.52.1":
-  version: 1.52.1
-  resolution: "@stripe/stripe-js@npm:1.52.1"
-  checksum: db1971b064d3c8c6f79da01e9f49d6bb8084bfa5282efc46570508059423ed148bfa71aa1f21d17a259fad2597a832840fdf59a64311b0703f045599cd6bb0f0
+"@stripe/stripe-js@npm:^1.53.0":
+  version: 1.53.0
+  resolution: "@stripe/stripe-js@npm:1.53.0"
+  checksum: a554f71f605705662c30cbccebf41f2ed522ef68ddc31fca5822fec1105ccd62e987161dbcaecbe18e26f3e128b9facf3fc795848a34583a418d44c889069484
   languageName: node
   linkType: hard
 
@@ -11134,7 +11127,7 @@ __metadata:
     "@sentry/react": ^7.51.2
     "@sentry/tracing": ^7.51.2
     "@stripe/react-stripe-js": ^1.15.0
-    "@stripe/stripe-js": ^1.44.1
+    "@stripe/stripe-js": ^1.53.0
     "@tinymce/tinymce-react": ^4.2.0
     "@types/bcrypt": ^5.0.0
     "@types/dompurify": ^3.0.2
@@ -13556,7 +13549,7 @@ __metadata:
     "@docusaurus/preset-classic": 2.4.0
     "@mdx-js/react": ^1.6.22
     "@stripe/react-stripe-js": ^2.1.0
-    "@stripe/stripe-js": ^1.52.1
+    "@stripe/stripe-js": ^1.53.0
     "@tsconfig/docusaurus": ^1.0.5
     clsx: ^1.2.1
     final-form: ^4.20.9
@@ -27045,7 +27038,7 @@ __metadata:
     "@koa/cors": ^4.0.0
     "@koa/router": ^12.0.0
     "@sentry/node": ^7.51.2
-    "@stripe/stripe-js": ^1.44.1
+    "@stripe/stripe-js": ^1.53.0
     "@types/bcrypt": ^5.0.0
     "@types/formidable": 1.0.31
     "@types/fs-extra": ^9.0.13
@@ -27862,7 +27855,7 @@ __metadata:
     "@sentry/react": ^7.51.2
     "@sentry/tracing": ^7.51.2
     "@stripe/react-stripe-js": ^1.15.0
-    "@stripe/stripe-js": ^1.44.1
+    "@stripe/stripe-js": ^1.53.0
     "@tinymce/tinymce-react": ^4.2.0
     "@types/bcrypt": ^5.0.0
     "@types/dompurify": ^3.0.2
