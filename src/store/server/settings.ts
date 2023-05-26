@@ -1,3 +1,5 @@
-import settings from "../../server/lib/settings"
+import { Server } from "../../../config/types/server"
 
-export default settings
+const config = process.env.SERVER_CONFIG as unknown as Server
+
+export default config

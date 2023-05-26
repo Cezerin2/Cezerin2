@@ -9,11 +9,11 @@ const cache = new LRUCache({
 })
 
 const themeSettingsCacheKey = "themesettings"
-const settingsFile = path.resolve("theme/settings/settings.json")
+const settingsFile = path.resolve("../../theme/settings/settings.json")
 const settingsSchemaFile = path.resolve(
-  `theme/settings/${serverSettings.language}.json`
+  `../../theme/settings/${serverSettings.language}.json`
 )
-const settingsSchemaFileEn = path.resolve("theme/settings/en.json")
+const settingsSchemaFileEn = path.resolve("../../theme/settings/en.json")
 
 class ThemeSettingsService {
   readFile(file) {
