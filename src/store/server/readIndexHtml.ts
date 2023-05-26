@@ -1,8 +1,8 @@
 import fse from "fs-extra"
-import path from "path"
+import { resolve } from "path"
 import winston from "winston"
 
-const filePath = path.resolve("theme/index.html")
+const filePath = resolve(`${process.env.THEME_DIR}/index.html`)
 export let indexHtml = null
 
 try {
