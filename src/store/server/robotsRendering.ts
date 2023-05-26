@@ -1,15 +1,13 @@
 import { Middleware } from "@koa/router"
 import fse from "fs-extra"
-import path from "path"
+import { resolve } from "path"
 import api from "./api"
-
-const ROBOTS_TEMPLATE_PATH = "public/robots.template"
 
 const robotsRendering: Middleware = async ctx => {
   const settingsResponse = await api.settings.retrieve()
 
   const template = await fse.readFile(
-    path.resolve(ROBOTS_TEMPLATE_PATH),
+    resolve(process.env.PUBLIC_DIR, "/robots.template"),
     "utf8"
   )
 

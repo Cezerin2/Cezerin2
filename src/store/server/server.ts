@@ -19,6 +19,8 @@ import sitemapRendering from "./sitemapRendering"
 const app = new Koa()
 const router = new Router()
 
+const publicDir = process.env.PUBLIC_DIR
+const themeDir = process.env.THEME_DIR
 const staticOptions = {
   maxAge: 1000 * 60 * 60 * 24 * 365, // One year
 }
@@ -46,17 +48,19 @@ app
   .use(koaBody()) // body parser
   .use(compress({ threshold: 0 })) // compressor
   .use(helmetMiddleware) // helmet
-  .use(serve("public/content", staticOptions))
+  .use(serve(`${publicDir}/content`, staticOptions))
   .use(serve(process.env.RAZZLE_PUBLIC_DIR, staticOptions))
-  .use(mount("/assets", serve("theme/assets", staticOptions)))
-  .use(mount("/admin-assets", serve("public/admin-assets", staticOptions)))
+  .use(mount("/assets", serve(`${themeDir}/assets`, staticOptions)))
+  .use(
+    mount("/admin-assets", serve(`${publicDir}/admin-assets`, staticOptions))
+  )
   .use(router.routes()) // router
   .use(router.allowedMethods()) // router
 
 router
   .get("/", pageRendering)
   .get("/images/:entity/:id/:size/:filename", async ctx => {
-    const filePath = `public/content/images/${ctx.params.entity}/${ctx.params.id}`
+    const filePath = `${publicDir}/content/images/${ctx.params.entity}/${ctx.params.id}`
     const tempPath = `${filePath}/temp/${ctx.params.size}`
     const tempFile = `${tempPath}/${ctx.params.filename}.webp`
 
@@ -69,8 +73,8 @@ router
 
     await send(ctx, tempFile)
   })
-  .use("/sw.js", ctx => send(ctx, "theme/assets/sw.js"))
-  .use("/admin", ctx => send(ctx, "public/admin/index.html"))
+  .use("/sw.js", ctx => send(ctx, `${publicDir}/../build/public/assets/sw.js`))
+  .use("/admin", ctx => send(ctx, `${publicDir}/admin/index.html`))
   .get(
     /^.+\.(jpg|jpeg|gif|png|bmp|ico|webp|svg|css|js|zip|rar|flv|swf|xls)$/,
     ctx => {
