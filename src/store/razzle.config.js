@@ -1,7 +1,7 @@
 const { readFileSync } = require("fs-extra")
 const { toSafeInteger } = require("lodash")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const path = require("path")
+const { resolve, join } = require("path")
 const { GenerateSW } = require("workbox-webpack-plugin")
 const YAML = require("yaml")
 
@@ -34,11 +34,11 @@ const plugin = new GenerateSW({
 })
 
 const parse = fileName => {
-  const file = readFileSync(`./config/${fileName}.yml`, "utf8")
+  const file = readFileSync(`../../config/${fileName}.yml`, "utf8")
   const configFile = YAML.parse(file, { strict: false })
 
   const mapEnvVariables = value => {
-    if (typeof value === "string" && value.includes("${")) {
+    const parseEnvVariable = () => {
       const [env, defaultValue = ""] = value.slice(2, -1).split(":")
 
       const getEnv = process.env[env]
@@ -60,42 +60,65 @@ const parse = fileName => {
       return getParsedValue
     }
 
-    return typeof value === "string" ? `"${value}"` : value
+    const variable =
+      typeof value === "string" && value.includes("${")
+        ? parseEnvVariable()
+        : value
+
+    return variable
   }
 
   // Parsing environment variables
-  const config = Object.fromEntries(
-    Object.entries(configFile).map(([key, value]) => [
-      key,
-      mapEnvVariables(value),
-    ])
-  )
+  const config = configObject =>
+    Object.fromEntries(
+      Object.entries(configObject).map(([key, value]) => [
+        key,
+        typeof value === "object" && !Array.isArray(value) && value !== null
+          ? config(value)
+          : mapEnvVariables(value),
+      ])
+    )
 
-  return config
+  return JSON.stringify(config(configFile))
 }
 
 module.exports = {
   modifyPaths({ paths }) {
-    const values = paths
+    const values = Object.fromEntries(
+      Object.entries(paths).map(([key, value]) => [
+        key,
+        value?.replace("src\\store\\build", "build"),
+      ])
+    )
 
-    values.appServerIndexJs = path.resolve("./src/store/server")
-    values.appClientIndexJs = path.resolve("./src/store/client")
+    values.appPublic = resolve("../../public")
+    values.appServerIndexJs = resolve("./server")
+    values.appClientIndexJs = resolve("./client")
 
     return values
   },
   modifyWebpackOptions({ options: { webpackOptions } }) {
     const config = webpackOptions
 
+    const rootDir = path =>
+      `${join(
+        `${config.definePluginOptions["process.env.RAZZLE_PUBLIC_DIR"]}`,
+        `../${path}`
+      )}"`.replace(/\\/g, "/")
+
     config.definePluginOptions = {
       "process.env.ADMIN_CONFIG": parse("admin"),
       "process.env.SERVER_CONFIG": parse("server"),
       "process.env.STORE_CONFIG": parse("store"),
+      "process.env.PUBLIC_DIR": rootDir("public"),
+      "process.env.THEME_DIR": rootDir("theme"),
       ...config.definePluginOptions,
     }
 
-    config.notNodeExternalResMatch = request => /theme/.test(request)
+    config.notNodeExternalResMatch = request => /\.tsx?$|theme/.test(request)
 
     config.babelRule.include = webpackOptions.babelRule.include.concat([
+      /\.tsx?$/,
       /theme/,
     ])
 

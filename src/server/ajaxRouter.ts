@@ -131,7 +131,9 @@ ajaxRouter.get("/cart", async ctx => {
 })
 
 ajaxRouter.post("/reset-password", async ctx => {
-  const hash = await bcrypt.hash(ctx.request.body.password, saltRounds)
+  const hash = ctx.request.body?.password
+    ? await bcrypt.hash(ctx.request.body.password, saltRounds)
+    : ""
 
   const data = {
     status: false,
