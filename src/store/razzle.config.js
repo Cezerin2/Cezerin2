@@ -102,10 +102,11 @@ module.exports = {
 
     const rootDir = path =>
       `${join(
-        `${config.definePluginOptions["process.env.RAZZLE_PUBLIC_DIR"]}`,
+        config.definePluginOptions["process.env.RAZZLE_PUBLIC_DIR"],
         `../${path}`
       )}"`.replace(/\\/g, "/")
 
+    config.terserPluginOptions = undefined
     config.definePluginOptions = {
       "process.env.ADMIN_CONFIG": parse("admin"),
       "process.env.SERVER_CONFIG": parse("server"),

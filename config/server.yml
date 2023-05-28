@@ -44,10 +44,10 @@ jwtSecretKey: "-"
 cookieSecretKey: ["-"]
 
 # Path to uploads
-categoriesUploadPath: "public/content/images/categories"
-productsUploadPath: "public/content/images/products"
-filesUploadPath: "public/content"
-themeAssetsUploadPath: "theme/assets/images"
+categoriesUploadPath: "../../public/content/images/categories"
+productsUploadPath: "../../public/content/images/products"
+filesUploadPath: "../../public/content"
+themeAssetsUploadPath: "../../theme/assets/images"
 
 # URL to uploads
 categoriesUploadUrl: "/images/categories"

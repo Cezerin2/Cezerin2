@@ -1,5 +1,5 @@
 import { RouterContext } from "@koa/router"
-import formidable from "formidable"
+import formidable, { File } from "formidable"
 import fse from "fs-extra"
 import path from "path"
 import settings from "../../lib/settings"
@@ -20,39 +20,32 @@ class ThemeAssetsService {
     })
   }
 
-  uploadFile(ctx: RouterContext) {
+  async uploadFile(ctx: RouterContext) {
     const uploadDir = path.resolve(settings.themeAssetsUploadPath)
 
-    let form = new formidable.IncomingForm(),
-      file_name = null,
-      file_size = 0
+    const form = new formidable.IncomingForm()
 
     form.uploadDir = uploadDir
+    form.keepExtensions = true
 
-    form
-      .on("fileBegin", (name, file) => {
-        // Emitted whenever a field / value pair has been received.
-        file.path = uploadDir + "/" + file.name
-      })
-      .on("file", function (field, file) {
-        // every time a file has been uploaded successfully,
-        file_name = file.name
-        file_size = file.size
-      })
-      .on("error", error => {
-        ctx.throw(this.getErrorMessage(error))
-      })
-      .on("end", () => {
-        //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
-        if (file_name) {
-          ctx.body = { file: file_name, size: file_size }
-        } else {
-          ctx.body = this.getErrorMessage("Required fields are missing")
-          ctx.status = 400
-        }
-      })
+    form.on("fileBegin", (_formName, file) => {
+      // eslint-disable-next-line no-param-reassign
+      file.path = `${uploadDir}/${file.name}`
+    })
 
-    form.parse(ctx.req)
+    const file = await new Promise<File>((resolve, reject) => {
+      form.parse(ctx.req, (error, _fields, files) => {
+        if (error) reject(this.getErrorMessage(error))
+
+        resolve(files.file)
+      })
+    })
+
+    if (file.name) ctx.body = { file: file.name, size: file.size }
+    else {
+      ctx.body = this.getErrorMessage("Required fields are missing")
+      ctx.status = 400
+    }
   }
 
   getErrorMessage(error) {
