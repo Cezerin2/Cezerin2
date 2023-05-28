@@ -101,8 +101,8 @@ module.exports = {
     const config = webpackOptions
 
     const rootDir = path =>
-      `${join(
-        `${config.definePluginOptions["process.env.RAZZLE_PUBLIC_DIR"]}`,
+      `"${join(
+        config.definePluginOptions["process.env.RAZZLE_PUBLIC_DIR"],
         `../${path}`
       )}"`.replace(/\\/g, "/")
 
