@@ -43,7 +43,7 @@
     "theme:install": "./scripts/theme-install.sh",
     "build:store": "yarn src/store build",
     "build:admin": "webpack --config webpack.config.admin.ts --mode production",
-    "build": "yarn build:admin && yarn build:store",
+    "build": "conc 'npm:build:*'",
     "start:store": "yarn src/store start",
     "start:server": "yarn src/server start",
     "start": "conc 'npm:start:*'",

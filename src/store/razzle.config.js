@@ -1,7 +1,7 @@
 const { readFileSync } = require("fs-extra")
 const { toSafeInteger } = require("lodash")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const { resolve, join } = require("path")
+const { resolve, join, normalize } = require("path")
 const { GenerateSW } = require("workbox-webpack-plugin")
 const YAML = require("yaml")
 
@@ -87,7 +87,7 @@ module.exports = {
     const values = Object.fromEntries(
       Object.entries(paths).map(([key, value]) => [
         key,
-        value?.replace("src\\store\\build", "build"),
+        value?.replace(normalize("src/store/build"), "build"),
       ])
     )
 
@@ -106,7 +106,7 @@ module.exports = {
           1,
           -1
         ),
-        `../../${path}`
+        `../${path}`
       )}"`.replace(/\\/g, "/")
 
     config.terserPluginOptions = undefined

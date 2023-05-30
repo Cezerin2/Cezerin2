@@ -229,10 +229,10 @@ export const loadState = async (ctx: RouterContext, language) => {
     return JSON.parse(file)
   }
 
-  const currentPage = getCurrentPage(ctx.path)
+  const currentPage = await getCurrentPage(ctx.path)
   const { json } = await api.settings.retrieve()
   const themeText = await getText(language)
-  const placeholdersResponse = api.theme.placeholders.list()
+  const placeholdersResponse = await api.theme.placeholders.list()
 
   const productFilter = getFilter(currentPage, urlQuery, json)
   const allData = await getAllData(currentPage, productFilter, cookie)
