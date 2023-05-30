@@ -14,7 +14,6 @@ import winston from "winston"
 import App from "../shared/app"
 import reducers from "../shared/reducers"
 import { loadState } from "./loadState"
-import { indexHtml } from "./readIndexHtml"
 import serverSettings from "./settings"
 
 initOnServer({
@@ -140,6 +139,9 @@ const renderPage = async (
   const { css, js } = await getFromAssets("client", "defer", "crossorigin")
   const link = `${head.link}${css}`
   const script = `${head.script}${js}`
+
+  const filePath = `${process.env.THEME_DIR}/index.html`
+  const indexHtml = await readFile(filePath, "utf8")
 
   const html = indexHtml
     .replace("{placeholder_head_start}", placeholder.head_start)

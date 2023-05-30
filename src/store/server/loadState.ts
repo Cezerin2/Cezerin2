@@ -1,4 +1,5 @@
 import { RouterContext } from "@koa/router"
+import { readFile } from "fs-extra"
 import {
   getParsedProductFilter,
   getProductFilterForCategory,
@@ -6,7 +7,6 @@ import {
 } from "../shared/actions"
 import { PAGE, PRODUCT, PRODUCT_CATEGORY, SEARCH } from "../shared/pageTypes"
 import api from "./api"
-import * as themeLocales from "./themeLocales"
 
 const PRODUCT_FIELDS =
   "path,id,name,category_id,category_ids,category_name,sku,images,enabled,discontinued,stock_status,stock_quantity,price,on_sale,regular_price,attributes,tags,position"
@@ -210,7 +210,7 @@ const getFilter = (currentPage, urlQuery, settings) => {
   return productFilter
 }
 
-export const loadState = (ctx: RouterContext, language) => {
+export const loadState = async (ctx: RouterContext, language) => {
   const cookie = ctx.get("cookie")
   const urlPath = ctx.path
   const urlQuery = ctx.url.includes("?")
@@ -223,27 +223,24 @@ export const loadState = (ctx: RouterContext, language) => {
     hash: "",
   }
 
-  return Promise.all([
-    getCurrentPage(ctx.path),
-    api.settings.retrieve().then(({ status, json }) => json),
-    themeLocales.getText(language),
-    api.theme.placeholders.list(),
-  ]).then(([currentPage, settings, themeText, placeholdersResponse]) => {
-    const productFilter = getFilter(currentPage, urlQuery, settings)
+  const getText = async (locale: string) => {
+    const filePath = `${process.env.THEME_DIR}/assets/locales/${locale}.json`
+    const file = await readFile(filePath, "utf8")
+    return JSON.parse(file)
+  }
 
-    return getAllData(currentPage, productFilter, cookie).then(allData => {
-      const state = getState(
-        currentPage,
-        settings,
-        allData,
-        location,
-        productFilter
-      )
-      return {
-        state: state,
-        themeText: themeText,
-        placeholders: placeholdersResponse.json,
-      }
-    })
-  })
+  const currentPage = getCurrentPage(ctx.path)
+  const { json } = await api.settings.retrieve()
+  const themeText = await getText(language)
+  const placeholdersResponse = api.theme.placeholders.list()
+
+  const productFilter = getFilter(currentPage, urlQuery, json)
+  const allData = await getAllData(currentPage, productFilter, cookie)
+  const state = getState(currentPage, json, allData, location, productFilter)
+
+  return {
+    state,
+    themeText,
+    placeholders: placeholdersResponse.json,
+  }
 }
