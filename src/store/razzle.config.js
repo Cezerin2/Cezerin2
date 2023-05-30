@@ -101,9 +101,12 @@ module.exports = {
     const config = webpackOptions
 
     const rootDir = path =>
-      `${join(
-        config.definePluginOptions["process.env.RAZZLE_PUBLIC_DIR"],
-        `../${path}`
+      `"${join(
+        config.definePluginOptions["process.env.RAZZLE_PUBLIC_DIR"].slice(
+          1,
+          -1
+        ),
+        `../../${path}`
       )}"`.replace(/\\/g, "/")
 
     config.terserPluginOptions = undefined

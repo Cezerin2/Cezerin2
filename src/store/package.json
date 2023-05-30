@@ -4,7 +4,7 @@
     "theme:export": "./scripts/theme-export.sh",
     "theme:install": "./scripts/theme-install.sh",
     "build": "razzle build --noninteractive",
-    "start": "cross-env NODE_ENV=production node build/server.js",
+    "start": "cross-env NODE_ENV=production node ../../build/server.js",
     "watch": "cross-env PORT=3002 razzle start"
   },
   "dependencies": {
