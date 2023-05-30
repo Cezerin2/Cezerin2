@@ -49,8 +49,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/Cezerin2/Cezerin2/tree/main/src/docs/docs",
+          editUrl: "https://github.com/Cezerin2/Cezerin2/tree/main/src/docs",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -77,6 +76,7 @@ const config = {
             position: "left",
             label: "Tutorial",
           },
+          { to: "/pay", label: "CHost", position: "left" },
           {
             href: "https://github.com/Cezerin2/Cezerin2",
             label: "GitHub",

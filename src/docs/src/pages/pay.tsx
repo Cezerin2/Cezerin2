@@ -14,7 +14,7 @@ const StripePricingTable = () => {
   }, [])
 
   return createElement("stripe-pricing-table", {
-    "pricing-table-id": "rctbl_1NDBSbDshTneKUZ5YECOSS5p",
+    "pricing-table-id": "prctbl_1NDBSbDshTneKUZ5YECOSS5p",
     "publishable-key":
       "pk_live_51NBBLLDshTneKUZ5goj7zlTz1z0VPrJXXYWdGzdmhT1pYyLUtYNN6SgeA9HsDvEFdELeXMmNaPanIU5Yk0NAqYUD00BBhPylNc",
   })
