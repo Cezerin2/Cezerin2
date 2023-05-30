@@ -74,7 +74,7 @@ router
     await send(ctx, ctx.params.filename, { root: filePath })
   })
   .use("/sw.js", ctx => send(ctx, `${publicDir}/../build/public/assets/sw.js`))
-  .use("/admin/(.*)", ctx =>
+  .use("/admin/(.*)|/admin", ctx =>
     send(ctx, "index.html", { root: `${publicDir}/admin` })
   )
   .get(
