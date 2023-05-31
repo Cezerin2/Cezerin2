@@ -28,7 +28,7 @@
     "react-final-form": "^6.5.9"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.4.0",
+    "@docusaurus/module-type-aliases": "2.4.1",
     "@tsconfig/docusaurus": "^1.0.5",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
