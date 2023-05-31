@@ -106,7 +106,7 @@ module.exports = {
           1,
           -1
         ),
-        `../${path}`
+        `../../${path}`
       )}"`.replace(/\\/g, "/")
 
     config.terserPluginOptions = undefined
