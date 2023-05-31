@@ -7,7 +7,7 @@
     "react-image-gallery": "^0.8.7",
     "react-image-lightbox": "^4.6.0",
     "react-input-mask": "^3.0.0-alpha.2",
-    "react-lazyload": "^2.3.0",
+    "react-lazyload": "^3.2.0",
     "react-slick": "^0.25.2",
     "react-yandex-maps": "^4.2.0"
   }

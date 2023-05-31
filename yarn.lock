@@ -12657,7 +12657,7 @@ __metadata:
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
-    react-lazyload: ^2.3.0
+    react-lazyload: ^3.2.0
   languageName: unknown
   linkType: soft
 
@@ -15210,7 +15210,7 @@ __metadata:
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
-    react-lazyload: ^2.3.0
+    react-lazyload: ^3.2.0
   languageName: unknown
   linkType: soft
 
@@ -22128,7 +22128,7 @@ __metadata:
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
     react-input-mask: ^3.0.0-alpha.2
-    react-lazyload: ^2.3.0
+    react-lazyload: ^3.2.0
     react-slick: ^0.25.2
     react-yandex-maps: ^4.2.0
   languageName: unknown
@@ -24633,16 +24633,6 @@ __metadata:
     react: ^17.0.0 || ^16.3.0 || ^15.5.4
     react-dom: ^17.0.0 || ^16.3.0 || ^15.5.4
   checksum: 5718bcd9210ad5b06eb9469cf8b9b44be9498845a7702e621343618e8251f26357e6e1c865532cf170db6165df1cb30202787e057309d8848c220bc600ec0d1a
-  languageName: node
-  linkType: hard
-
-"react-lazyload@npm:^2.3.0":
-  version: 2.6.9
-  resolution: "react-lazyload@npm:2.6.9"
-  peerDependencies:
-    react: ^0.14.0 || ^15.0.0 || ^16.0.0
-    react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0
-  checksum: 93f79f58f24a2eb0fb94a55a8c97b42b3f8c08f276b72fd20f24f16128e6cd14ee003759b8c31b5c070338c9532d81c4eecba214958700355524c7961c0108da
   languageName: node
   linkType: hard
 
@@ -28062,7 +28052,7 @@ __metadata:
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
-    react-lazyload: ^2.3.0
+    react-lazyload: ^3.2.0
   languageName: unknown
   linkType: soft
 
@@ -28219,7 +28209,7 @@ __metadata:
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
     react-image-lightbox: ^4.6.0
-    react-lazyload: ^2.3.0
+    react-lazyload: ^3.2.0
   languageName: unknown
   linkType: soft
 
