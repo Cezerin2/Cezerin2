@@ -98,7 +98,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/dompurify": "^3.0.2",
     "@types/fs-extra": "^9.0.13",
-    "@types/jsonwebtoken": "^8.5.9",
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/koa": "^2.13.6",
     "@types/koa-compress": "^4.0.3",
     "@types/koa-mount": "^4.0.2",
