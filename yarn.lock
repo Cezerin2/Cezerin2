@@ -22129,7 +22129,7 @@ __metadata:
     react-image-lightbox: ^4.6.0
     react-input-mask: ^3.0.0-alpha.2
     react-lazyload: ^2.3.0
-    react-slick: ^0.25.2
+    react-slick: ^0.29.0
     react-yandex-maps: ^4.2.0
   languageName: unknown
   linkType: soft
@@ -24917,9 +24917,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-slick@npm:^0.25.2":
-  version: 0.25.2
-  resolution: "react-slick@npm:0.25.2"
+"react-slick@npm:^0.29.0":
+  version: 0.29.0
+  resolution: "react-slick@npm:0.29.0"
   dependencies:
     classnames: ^2.2.5
     enquire.js: ^2.1.6
@@ -24927,9 +24927,9 @@ __metadata:
     lodash.debounce: ^4.0.8
     resize-observer-polyfill: ^1.5.0
   peerDependencies:
-    react: ^0.14.0 || ^15.0.1 || ^16.0.0
-    react-dom: ^0.14.0 || ^15.0.1 || ^16.0.0
-  checksum: a728161f6d6dd09a626db9d0c089d3eed3e8087246c0307c7e1343f6420c645d1760498c41733fce67138eadaf14a67552fd9e5d85227617cd54c750f4f542dc
+    react: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 67ce4981914da8a76c6efb4bc8ee7ab69e04c33bd4b3517419ab2165679a3c701dae781556149713fe2c542f84188b7ca101ea58883537be5c05756408f48c8b
   languageName: node
   linkType: hard
 
