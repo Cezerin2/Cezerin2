@@ -61,7 +61,7 @@
     "nodemailer": "^6.9.3",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
-    "react-chartjs-2": "^2.7.4",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^5.0.1",
     "react-final-form": "^6.5.9",
