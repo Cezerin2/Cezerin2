@@ -59,7 +59,7 @@
     "mongoose": "^7.2.2",
     "mui-rff": "^6.1.2",
     "nodemailer": "^6.9.3",
-    "query-string": "^7.1.1",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^18.2.0",
