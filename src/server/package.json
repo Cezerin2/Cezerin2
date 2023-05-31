@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.1",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/koa": "^2.13.6",
     "@types/koa-compress": "^4.0.3",
