@@ -5,7 +5,7 @@
     "bulma": "^0.9.3",
     "rc-slider": "^9.7.5",
     "react-image-gallery": "^0.8.7",
-    "react-image-lightbox": "^4.6.0",
+    "react-image-lightbox": "^5.1.4",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-lazyload": "^2.3.0",
     "react-slick": "^0.25.2",

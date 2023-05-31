@@ -12656,7 +12656,7 @@ __metadata:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
-    react-image-lightbox: ^4.6.0
+    react-image-lightbox: ^5.1.4
     react-lazyload: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -15209,7 +15209,7 @@ __metadata:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
-    react-image-lightbox: ^4.6.0
+    react-image-lightbox: ^5.1.4
     react-lazyload: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -22126,7 +22126,7 @@ __metadata:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
-    react-image-lightbox: ^4.6.0
+    react-image-lightbox: ^5.1.4
     react-input-mask: ^3.0.0-alpha.2
     react-lazyload: ^2.3.0
     react-slick: ^0.25.2
@@ -24573,16 +24573,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-image-lightbox@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "react-image-lightbox@npm:4.6.0"
+"react-image-lightbox@npm:^5.1.4":
+  version: 5.1.4
+  resolution: "react-image-lightbox@npm:5.1.4"
   dependencies:
-    prop-types: ^15.5.8
-    react-modal: ^3.1.10
+    prop-types: ^15.7.2
+    react-modal: ^3.11.1
   peerDependencies:
-    react: ^15.5.0 || ^16.0.0
-    react-dom: ^15.5.0 || ^16.0.0
-  checksum: 8af903d39b18645c34980c375a1f1f6dcef5fbb50fd272179579fe2376c6cc42c1fe1d3841860713fc50ee8909c7a9e8ab7c3c56e8252c6c69e62263b882a4ae
+    react: 16.x || 17.x
+    react-dom: 16.x || 17.x
+  checksum: 59a209eba5d23301ae450413d2ce87c72c645964e8d797d55060c9261ba9043c6f8c44347ae51ed9db47fd696db13a1e05dfea33da08ef09a4e0acaa0b9065bc
   languageName: node
   linkType: hard
 
@@ -24675,7 +24675,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-modal@npm:^3.1.10":
+"react-modal@npm:^3.11.1":
   version: 3.16.1
   resolution: "react-modal@npm:3.16.1"
   dependencies:
@@ -28061,7 +28061,7 @@ __metadata:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
-    react-image-lightbox: ^4.6.0
+    react-image-lightbox: ^5.1.4
     react-lazyload: ^2.3.0
   languageName: unknown
   linkType: soft
@@ -28218,7 +28218,7 @@ __metadata:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
     react-image-gallery: ^0.8.7
-    react-image-lightbox: ^4.6.0
+    react-image-lightbox: ^5.1.4
     react-lazyload: ^2.3.0
   languageName: unknown
   linkType: soft
