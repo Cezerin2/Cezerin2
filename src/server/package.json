@@ -32,7 +32,7 @@
     "mongodb": "^3.1.4",
     "mongoose": "^7.2.2",
     "nodemailer": "^6.9.3",
-    "query-string": "^7.1.1",
+    "query-string": "^8.1.0",
     "sharp": "^0.32.1",
     "slug": "^8.2.2",
     "stripe": "^6.7.0",
