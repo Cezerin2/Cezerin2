@@ -12655,7 +12655,7 @@ __metadata:
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
-    react-image-gallery: ^0.8.7
+    react-image-gallery: ^1.2.11
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
   languageName: unknown
@@ -15208,7 +15208,7 @@ __metadata:
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
-    react-image-gallery: ^0.8.7
+    react-image-gallery: ^1.2.11
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
   languageName: unknown
@@ -22125,7 +22125,7 @@ __metadata:
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
-    react-image-gallery: ^0.8.7
+    react-image-gallery: ^1.2.11
     react-image-lightbox: ^4.6.0
     react-input-mask: ^3.0.0-alpha.2
     react-lazyload: ^2.3.0
@@ -24559,17 +24559,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-image-gallery@npm:^0.8.7":
-  version: 0.8.18
-  resolution: "react-image-gallery@npm:0.8.18"
-  dependencies:
-    lodash.debounce: ^4.0.8
-    lodash.throttle: ^4.1.1
-    prop-types: ^15.5.8
-    react: ^16.4.0
-    react-swipeable: ^5.2.0
-    resize-observer-polyfill: ^1.5.0
-  checksum: 735117dfdc13ea1bfcfe34b14c94b0a61d73b35772603b06c1e08e0688e66fd4db4254403a78f4a14c6792d65fba320ae6d6c540a423c6915e9e1b9efaf00f79
+"react-image-gallery@npm:^1.2.11":
+  version: 1.2.11
+  resolution: "react-image-gallery@npm:1.2.11"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 0399bab83b343e395ed20b8c663ae0c1be60ae35de18b9697ebe045b51d0267e2d572e647eb2c69cef0e78351207304c181c746ef29f07f5472c4f479f1460c9
   languageName: node
   linkType: hard
 
@@ -24948,17 +24943,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-swipeable@npm:^5.2.0":
-  version: 5.5.1
-  resolution: "react-swipeable@npm:5.5.1"
-  dependencies:
-    prop-types: ^15.6.2
-  peerDependencies:
-    react: ^16.0.0-0
-  checksum: 474e281c619a4ca61cede4a1c9acb712241c16c1d226145cc3af66ac77525b585b510739879dc5404ead280fcd606e5b3ed26ddd76d9eb853bf4b11578201d4b
-  languageName: node
-  linkType: hard
-
 "react-tagsinput@npm:^3.20.0":
   version: 3.20.0
   resolution: "react-tagsinput@npm:3.20.0"
@@ -25057,17 +25041,6 @@ __metadata:
   peerDependencies:
     react: ^0.14.9 || ^15.x || ^16.x || ^17.x
   checksum: 3715e75e5156391e71eda383d05e5dfc9327a3523e5ea54e392b87a054add335d647d9e9aa0a63c7e37b4b78c93022d0020ffdebdc4354a793767252932d26e8
-  languageName: node
-  linkType: hard
-
-"react@npm:^16.4.0":
-  version: 16.14.0
-  resolution: "react@npm:16.14.0"
-  dependencies:
-    loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-    prop-types: ^15.6.2
-  checksum: 8484f3ecb13414526f2a7412190575fc134da785c02695eb92bb6028c930bfe1c238d7be2a125088fec663cc7cda0a3623373c46807cf2c281f49c34b79881ac
   languageName: node
   linkType: hard
 
@@ -28060,7 +28033,7 @@ __metadata:
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
-    react-image-gallery: ^0.8.7
+    react-image-gallery: ^1.2.11
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
   languageName: unknown
@@ -28217,7 +28190,7 @@ __metadata:
   dependencies:
     bulma: ^0.9.3
     rc-slider: ^9.7.5
-    react-image-gallery: ^0.8.7
+    react-image-gallery: ^1.2.11
     react-image-lightbox: ^4.6.0
     react-lazyload: ^2.3.0
   languageName: unknown
