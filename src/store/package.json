@@ -127,7 +127,7 @@
     "cssnano": "^5.1.14",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.5.1",
-    "mini-css-extract-plugin": "^2.6.1",
+    "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^7.3.2",
     "prop-types": "^15.8.1",
     "razzle": "^4.2.18",
