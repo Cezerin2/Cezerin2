@@ -30,7 +30,7 @@
     "lru-cache": "^7.14.1",
     "moment": "^2.29.4",
     "mongodb": "^3.1.4",
-    "mongoose": "^6.7.2",
+    "mongoose": "^7.2.2",
     "nodemailer": "^6.8.0",
     "query-string": "^7.1.1",
     "sharp": "^0.32.1",
