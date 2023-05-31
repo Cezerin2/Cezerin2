@@ -8010,12 +8010,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/sharp@npm:^0.31.0":
-  version: 0.31.0
-  resolution: "@types/sharp@npm:0.31.0"
+"@types/sharp@npm:^0.32.0":
+  version: 0.32.0
+  resolution: "@types/sharp@npm:0.32.0"
   dependencies:
-    "@types/node": "*"
-  checksum: c7698de18183a0574bf2f703226a5a7dc32b8a7340b52790eff0f6775b8ad708b6782f48fcaaf4d1be15fd76215c81c3ea55595d55484bf7ce870923c8174294
+    sharp: "*"
+  checksum: 9d0ca925ebb18e870740db0e0abcaaa2458645673068166b9f26e042640fa430644fe39aada320e03834f7ba3600e678de822201ffc312f9df1f515ba107ebd5
   languageName: node
   linkType: hard
 
@@ -10553,7 +10553,7 @@ __metadata:
     "@types/react-dom": ^18.0.9
     "@types/react-redux": ^7.1.24
     "@types/react-router-dom": ^5.3.3
-    "@types/sharp": ^0.31.0
+    "@types/sharp": ^0.32.0
     "@types/ua-parser-js": ^0.7.36
     "@types/webpack-env": ^1.18.0
     "@typescript-eslint/eslint-plugin": ^5.59.5
@@ -26617,7 +26617,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.32.1":
+"sharp@npm:*, sharp@npm:^0.32.1":
   version: 0.32.1
   resolution: "sharp@npm:0.32.1"
   dependencies:
@@ -27343,7 +27343,7 @@ __metadata:
     "@types/react-dom": ^18.0.9
     "@types/react-redux": ^7.1.24
     "@types/react-router-dom": ^5.3.3
-    "@types/sharp": ^0.31.0
+    "@types/sharp": ^0.32.0
     "@types/ua-parser-js": ^0.7.36
     "@types/webpack-env": ^1.18.0
     "@typescript-eslint/eslint-plugin": ^5.59.5
