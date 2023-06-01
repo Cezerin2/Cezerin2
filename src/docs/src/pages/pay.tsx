@@ -51,7 +51,7 @@ const Purchase = (): JSX.Element => (
   <Layout title="Pay" description="Start your new store.">
     <header>
       <p>
-        We have a base rate of 2$/month (Since we are startup price is subject
+        We have a base rate of 10$/month (Since we are startup price is subject
         to change but we will promise to keep it competitive and will notify on
         change. Also if you want to leave our service we will help you to move
         to a different provider with no additional cost!). For your convienience
