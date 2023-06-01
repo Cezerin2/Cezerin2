@@ -10603,7 +10603,7 @@ __metadata:
     koa-send: ^5.0.1
     koa-static: ^5.0.0
     lodash: ^4.17.21
-    lru-cache: ^7.14.1
+    lru-cache: ^9.1.2
     lscache: ^1.3.2
     material-ui: ^0.20.2
     mini-css-extract-plugin: ^2.6.1
@@ -19792,17 +19792,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^7.14.1":
-  version: 7.14.1
-  resolution: "lru-cache@npm:7.14.1"
-  checksum: d72c6713c6a6d86836a7a6523b3f1ac6764768cca47ec99341c3e76db06aacd4764620e5e2cda719a36848785a52a70e531822dc2b33fb071fa709683746c104
-  languageName: node
-  linkType: hard
-
 "lru-cache@npm:^7.7.1":
   version: 7.14.0
   resolution: "lru-cache@npm:7.14.0"
   checksum: efdd329f2c1bb790b71d497c6c59272e6bc2d7dd060ba55fc136becd3dd31fc8346edb446275504d94cb60d3c8385dbf5267b79b23789e409b2bdf302d13f0d7
+  languageName: node
+  linkType: hard
+
+"lru-cache@npm:^9.1.2":
+  version: 9.1.2
+  resolution: "lru-cache@npm:9.1.2"
+  checksum: d3415634be3908909081fc4c56371a8d562d9081eba70543d86871b978702fffd0e9e362b83921b27a29ae2b37b90f55675aad770a54ac83bb3e4de5049d4b15
   languageName: node
   linkType: hard
 
@@ -26534,7 +26534,7 @@ __metadata:
     koa-i18n: ^2.1.0
     koa-jwt: ^4.0.3
     lodash: ^4.17.21
-    lru-cache: ^7.14.1
+    lru-cache: ^9.1.2
     moment: ^2.29.4
     mongodb: ^3.1.4
     mongoose: ^7.2.2
@@ -27386,7 +27386,7 @@ __metadata:
     koa-send: ^5.0.1
     koa-static: ^5.0.0
     lodash: ^4.17.21
-    lru-cache: ^7.14.1
+    lru-cache: ^9.1.2
     lscache: ^1.3.2
     material-ui: ^0.20.2
     mini-css-extract-plugin: ^2.6.1
