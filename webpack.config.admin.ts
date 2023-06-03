@@ -16,7 +16,7 @@ const applicationText = require(`./public/admin-assets/locales/${applicationConf
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "src/admin/index.tsx"),
+    app: path.resolve(__dirname, "src/admin/src/index.tsx"),
     vendor: [
       "react",
       "react-dom",
