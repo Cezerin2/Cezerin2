@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { fetchPage, updatePage, createPage, receivePage } from "../actions"
+import { selectPages } from "../pagesSlice"
 import Form from "./components/form"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectPages)
   const dispatch = useAppDispatch()
 
   return null

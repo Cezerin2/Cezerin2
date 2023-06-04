@@ -3,9 +3,10 @@ import { connect } from "react-redux"
 import { selectGroup, fetchGroupsIfNeeded } from "../actions"
 import { fetchCustomers } from "../../customers/actions"
 import List from "../components/list"
+import { selectCustomerGroups } from "../customerGroupsSlice"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectCustomerGroups)
   const dispatch = useAppDispatch()
 
   return null

@@ -10,10 +10,11 @@ import {
   clearOrderDetails,
   checkoutOrder,
 } from "../actions"
+import { selectOrder } from "../ordersSlice"
 import OrderDetails from "./components/details"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectOrder)
   const dispatch = useAppDispatch()
 
   return null

@@ -7,10 +7,11 @@ import {
   deleteImage,
   uploadImage,
 } from "../actions"
+import { selectProductCategories } from "../productCategoriesSlice"
 import ProductCategoryEditForm from "./components/form"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProductCategories)
   const dispatch = useAppDispatch()
 
   return null

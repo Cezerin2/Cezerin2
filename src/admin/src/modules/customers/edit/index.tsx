@@ -10,10 +10,11 @@ import {
   setDefaultBillingAddress,
   setDefaultShippingAddress,
 } from "../actions"
+import { selectCustomer } from "../customersSlice"
 import CustomerDetails from "./components/details"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectCustomer)
   const dispatch = useAppDispatch()
 
   return null

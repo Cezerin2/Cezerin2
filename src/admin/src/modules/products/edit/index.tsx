@@ -11,6 +11,7 @@ import React, { FC, useEffect } from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import { cancelProductEdit, fetchProduct } from "../actions"
+import { selectProduct } from "../productsSlice"
 
 interface Props {
   fetchData
@@ -61,7 +62,7 @@ const ProductEditContainer: FC<Props> = props => {
 }
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProduct)
   const dispatch = useAppDispatch()
 
   return null

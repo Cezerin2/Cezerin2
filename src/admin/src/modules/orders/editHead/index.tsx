@@ -8,10 +8,11 @@ import {
   deleteCurrentOrder,
   updateOrder,
 } from "../actions"
+import { selectOrder } from "../ordersSlice"
 import Buttons from "./components/buttons"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectOrder)
   const dispatch = useAppDispatch()
 
   return null

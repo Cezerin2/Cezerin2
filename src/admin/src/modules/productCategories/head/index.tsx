@@ -8,10 +8,11 @@ import {
   moveUpCategory,
   replaceCategory,
 } from "../actions"
+import { selectProductCategories } from "../productCategoriesSlice"
 import Buttons from "./components/buttons"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProductCategories)
   const dispatch = useAppDispatch()
 
   return null

@@ -2,10 +2,11 @@ import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import { createOrder, deleteOrders, fetchOrders, setFilter } from "../actions"
+import { selectOrder } from "../ordersSlice"
 import Buttons from "./components/buttons"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectOrder)
   const dispatch = useAppDispatch()
 
   return null

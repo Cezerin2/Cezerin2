@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { fetchOrders, setFilter } from "../actions"
+import { selectOrder } from "../ordersSlice"
 import Filter from "./components/fields"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectOrder)
   const dispatch = useAppDispatch()
 
   return null

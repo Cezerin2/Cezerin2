@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { fetchFiles, uploadFiles, deleteFile } from "../actions"
+import { selectFiles } from "../filesSlice"
 import Form from "./components/form"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectFiles)
   const dispatch = useAppDispatch()
 
   return null

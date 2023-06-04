@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { deleteStatus, deselectStatus } from "../actions"
+import { selectOrderStatuses } from "../orderStatusesSlice"
 import Buttons from "./components/buttons"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectOrderStatuses)
   const dispatch = useAppDispatch()
 
   return null
