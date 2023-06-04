@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { fetchAccount, updateAccount, updateDeveloperAccount } from "../actions"
+import { selectApps } from "../appsSlice"
 import Details from "./components/details"
 import * as webstoreAuth from "lib/webstoreAuth"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectApps)
   const dispatch = useAppDispatch()
 
   return null

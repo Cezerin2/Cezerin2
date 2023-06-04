@@ -7,10 +7,11 @@ import {
   updateServiceSettings,
   fetchServiceLogs,
 } from "../actions"
+import { selectApps } from "../appsSlice"
 import Details from "./components/details"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectApps)
   const dispatch = useAppDispatch()
 
   return null

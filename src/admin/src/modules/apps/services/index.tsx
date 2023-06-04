@@ -3,10 +3,11 @@ import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import { fetchServices } from "../actions"
 import * as webstoreAuth from "lib/webstoreAuth"
+import { selectApps } from "../appsSlice"
 import List from "./components/list"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectApps)
   const dispatch = useAppDispatch()
 
   return null

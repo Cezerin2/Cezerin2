@@ -8,10 +8,11 @@ import {
   deleteVariant,
   createOption,
 } from "../../actions"
+import { selectProduct } from "../../productsSlice"
 import ProductVariantsGrid from "./components/grid"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProduct)
   const dispatch = useAppDispatch()
 
   return null

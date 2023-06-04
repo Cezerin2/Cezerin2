@@ -4,15 +4,16 @@ import { withRouter } from "react-router-dom"
 import {
   fetchProducts,
   fetchMoreProducts,
-  selectProduct,
   deselectProduct,
   selectAllProduct,
   deselectAllProduct,
+  selectProduct as selectProductAction,
 } from "../actions"
+import { selectProduct } from "../productsSlice"
 import List from "./components/list"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProduct)
   const dispatch = useAppDispatch()
 
   return null
@@ -39,7 +40,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const checked = event.target.checked
 
       if (checked) {
-        dispatch(selectProduct(productId))
+        dispatch(selectProductAction(productId))
       } else {
         dispatch(deselectProduct(productId))
       }

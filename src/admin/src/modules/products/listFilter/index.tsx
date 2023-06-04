@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { fetchProducts, setFilter } from "../actions"
+import { selectProduct } from "../productsSlice"
 import Filter from "./components/filter"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProduct)
   const dispatch = useAppDispatch()
 
   return null

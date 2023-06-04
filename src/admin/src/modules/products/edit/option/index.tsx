@@ -9,10 +9,11 @@ import {
   updateOptionValue,
   deleteOptionValue,
 } from "../../actions"
+import { selectProduct } from "../../productsSlice"
 import ProductOptionForm from "./components/option"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProduct)
   const dispatch = useAppDispatch()
 
   return null
