@@ -6,10 +6,11 @@ import {
   installRequest,
   installReceive,
 } from "../actions"
+import { selectSettings } from "../settingsSlice"
 import Form from "./components/form"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectSettings)
   const dispatch = useAppDispatch()
 
   return null

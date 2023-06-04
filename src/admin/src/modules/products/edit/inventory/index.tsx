@@ -2,10 +2,11 @@ import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import { updateProduct } from "../../actions"
+import { selectProduct } from "../../productsSlice"
 import ProductInventoryForm from "./components/form"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProduct)
   const dispatch = useAppDispatch()
 
   return null

@@ -3,9 +3,10 @@ import { connect } from "react-redux"
 import { selectCategory, fetchCategoriesIfNeeded } from "../actions"
 import { fetchProducts } from "../../products/actions"
 import List from "../components/list"
+import { selectProductCategories } from "../productCategoriesSlice"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProductCategories)
   const dispatch = useAppDispatch()
 
   return null

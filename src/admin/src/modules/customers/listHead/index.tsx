@@ -6,10 +6,11 @@ import {
   setFilterSearch,
   setGroup,
 } from "../actions"
+import { selectCustomer } from "../customersSlice"
 import Buttons from "./components/buttons"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectCustomer)
   const dispatch = useAppDispatch()
 
   return null

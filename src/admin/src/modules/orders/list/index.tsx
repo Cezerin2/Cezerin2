@@ -9,10 +9,11 @@ import {
   deselectAllOrder,
   fetchMoreOrders,
 } from "../actions"
+import { selectOrders } from "../ordersSlice"
 import List from "./components/list"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectOrders)
   const dispatch = useAppDispatch()
 
   return null

@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { deleteGroup, deselectGroup } from "../actions"
+import { selectCustomerGroups } from "../customerGroupsSlice"
 import Buttons from "./components/buttons"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectCustomerGroups)
   const dispatch = useAppDispatch()
 
   return null

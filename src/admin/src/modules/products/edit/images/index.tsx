@@ -8,10 +8,11 @@ import {
   fetchImages,
   uploadImages,
 } from "../../actions"
+import { selectProduct } from "../../productsSlice"
 import ProductImages from "./components/images"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProduct)
   const dispatch = useAppDispatch()
 
   return null

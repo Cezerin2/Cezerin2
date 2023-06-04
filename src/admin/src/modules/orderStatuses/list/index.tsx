@@ -3,9 +3,10 @@ import { connect } from "react-redux"
 import { selectStatus, fetchStatusesIfNeeded } from "../actions"
 import { fetchOrders } from "../../orders/actions"
 import List from "../components/list"
+import { selectOrderStatuses } from "../orderStatusesSlice"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectOrderStatuses)
   const dispatch = useAppDispatch()
 
   return null

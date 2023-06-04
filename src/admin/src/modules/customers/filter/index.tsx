@@ -7,10 +7,11 @@ import {
   setFilterOnSale,
   setFilterStock,
 } from "../actions"
+import { selectCustomer } from "../customersSlice"
 import Filter from "./components/fields"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectCustomer)
   const dispatch = useAppDispatch()
 
   return null

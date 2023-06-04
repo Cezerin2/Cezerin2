@@ -6,9 +6,10 @@ import {
   createCategory,
 } from "../actions"
 import List from "../components/list"
+import { selectProductCategories } from "../productCategoriesSlice"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProductCategories)
   const dispatch = useAppDispatch()
 
   return null

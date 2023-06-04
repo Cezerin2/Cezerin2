@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import { createStatus, deselectStatus, updateStatus } from "../actions"
+import { selectOrderStatuses } from "../orderStatusesSlice"
 import Form from "./components/form"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectOrderStatuses)
   const dispatch = useAppDispatch()
 
   return null

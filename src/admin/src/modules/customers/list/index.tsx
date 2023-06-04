@@ -2,16 +2,17 @@ import { useAppDispatch, useAppSelector } from "lib/hooks"
 import { connect } from "react-redux"
 import {
   fetchCustomers,
-  selectCustomer,
   deselectCustomer,
   selectAllCustomer,
   deselectAllCustomer,
   fetchMoreCustomers,
+  selectCustomer as selectCustomerAction,
 } from "../actions"
+import { selectCustomer } from "../customersSlice"
 import List from "./components/list"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectCustomer)
   const dispatch = useAppDispatch()
 
   return null
@@ -34,7 +35,7 @@ const mapDispatchToProps = dispatch => {
     },
     onSelect: (customerId, checked) => {
       if (checked) {
-        dispatch(selectCustomer(customerId))
+        dispatch(selectCustomerAction(customerId))
       } else {
         dispatch(deselectCustomer(customerId))
       }

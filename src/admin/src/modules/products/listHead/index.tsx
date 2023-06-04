@@ -8,10 +8,11 @@ import {
   setCategory,
   setFilter,
 } from "../actions"
+import { selectProduct } from "../productsSlice"
 import Buttons from "./components/buttons"
 
 const Redux = props => {
-  const {} = useAppSelector()
+  const {} = useAppSelector(selectProduct)
   const dispatch = useAppDispatch()
 
   return null
