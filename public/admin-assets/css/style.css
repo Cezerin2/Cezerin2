@@ -1,0 +1,352 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+}
+
+form {
+  display: initial;
+}
+
+#root,
+#container {
+  height: 100%;
+}
+
+#bodyContainer {
+  overflow: hidden;
+}
+
+.scroll {
+  overflow: auto;
+}
+
+.col-full-height {
+  height: 100%;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  margin: 0;
+}
+
+.row--no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.col--no-gutter {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.appBar {
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+}
+
+.searchField {
+  float: left;
+  margin-right: 10px;
+}
+
+.right-border {
+  border-right: 1px solid #ccc;
+}
+
+.field-hint {
+  color: #a1a1a1;
+  font-size: 12px;
+}
+
+.buttons-box {
+  background-color: rgba(0, 0, 0, 0.05);
+  /*border-top: 1px solid #e0e0e0;*/
+  height: 80px;
+  transition: height 0.2s ease-out;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+  padding-right: 30px;
+}
+
+.buttons-box-pristine {
+  height: 0px;
+}
+.buttons-box-show {
+  height: 80px;
+}
+
+.blue-title {
+  color: rgb(25, 118, 210);
+  font-size: 16px;
+  font-weight: 400;
+  padding: 20px 0 5px 0;
+}
+
+.gray-title {
+  color: #616161;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
+}
+
+.mce-content-body {
+  border-bottom: 1px solid rgb(224, 224, 224) !important;
+}
+
+.mce-content-body img {
+  max-width: 100%;
+}
+
+#mceu_22 {
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+#mceu_23 {
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+
+.mce-toolbar .mce-btn {
+  background-color: #f0f0f0 !important;
+  border-radius: 2px;
+}
+
+.mce-toolbar .mce-btn.mce-active {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.mce-toolbar .mce-btn.mce-active i {
+  color: #000 !important;
+}
+
+.mce-toolbar .mce-btn:hover,
+.mce-toolbar div.mce-btn:focus {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #f0f0f0;
+}
+
+.products-item,
+.orders-item,
+.customers-item {
+  background-color: #fff;
+  border-left: 1px solid rgb(224, 224, 224);
+}
+
+.products-item.selected,
+.orders-item.selected,
+.customers-item.selected {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+.block404 {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.block404 .title {
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 90px;
+  margin-bottom: 20px;
+}
+
+.block404 .description {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+}
+
+.paper-box {
+  margin: 20px;
+  text-align: left;
+}
+
+.loginBox {
+  margin: 10px;
+  padding: 60px 30px;
+  text-align: left;
+}
+
+.loginErrorResponse {
+  color: rgb(244, 67, 54);
+  margin-top: 30px;
+  font-size: 120%;
+}
+
+.loginSuccessResponse {
+  color: rgb(33, 160, 84);
+  margin-top: 30px;
+  font-size: 120%;
+}
+
+.loginTitle {
+  font-size: 32px;
+}
+
+.loginDescription {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.loginInput {
+  margin: 30px 0 30px 0;
+}
+
+.react-tagsinput {
+  overflow: hidden;
+  margin: 10px 0 0 0;
+}
+
+.react-tagsinput--focused {
+}
+
+.react-tagsinput-tag {
+  background-color: rgb(224, 224, 224);
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 8px 16px;
+  cursor: default;
+  border-radius: 16px;
+}
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.react-tagsinput-tag a::before {
+  content: " ×";
+}
+
+.react-tagsinput-input {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  margin-top: 1px;
+  outline: none;
+  padding: 0;
+  width: 120px;
+}
+
+.treeItem {
+  font-size: 14px !important;
+  line-height: 14px !important;
+}
+
+/*
+MOBILE
+*/
+@media screen and (max-width: 769px) {
+  .scroll {
+    overflow: inherit;
+  }
+
+  .appBar {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .searchField {
+    font-size: 14px !important;
+    width: 140px !important;
+    margin-right: 0px;
+  }
+}
+
+/* Custom Modules Product Import */
+.heading h3 {
+  margin-bottom: 0;
+}
+
+.heading p {
+  line-height: 50px;
+  margin-top: 0;
+}
+
+.spread-sheet-table {
+  border: none;
+  margin-bottom: 15px;
+}
+
+.spread-sheet-save-btn {
+  margin-left: 15px !important;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  /*font-family: 'Roboto', sans-serif;*/
+}
+.tbl-header {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.tbl-content {
+  height: 500px;
+  overflow-x: auto;
+  margin-top: 0px;
+}
+.tbl-header th {
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.tbl-content td {
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 13px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+}
+
+.sheet-cell-state {
+  text-align: center;
+}
+
+thead tr th:first-child,
+tbody tr td:first-child {
+  width: 2em;
+  min-width: 2em;
+  max-width: 2em;
+  word-break: break-all;
+}
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
