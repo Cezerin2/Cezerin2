@@ -1,11 +1,11 @@
 import { RouterContext } from "@koa/router"
-import formidable from "formidable"
-import fse from "fs-extra"
+import fse, { ensureDir } from "fs-extra"
+import koaBody from "koa-body"
 import path from "path"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import utils, { URLResolve } from "../../lib/utils"
+import { URLResolve } from "../../lib/utils"
 
 class SettingsService {
   defaultSettings: {
@@ -269,42 +269,26 @@ class SettingsService {
     })
   }
 
-  uploadLogo(ctx: RouterContext) {
+  async uploadLogo(ctx: RouterContext) {
     const uploadDir = path.resolve(settings.filesUploadPath)
-    fse.ensureDirSync(uploadDir)
 
-    const form = new formidable.IncomingForm()
-    let fileName = null
-    let fileSize = 0
+    await ensureDir(uploadDir)
+    await koaBody({
+      formidable: { keepExtensions: true, multiples: false, uploadDir },
+      multipart: true,
+    })(ctx, async () => undefined)
 
-    form.uploadDir = uploadDir
+    const file = ctx.request.files?.file
+    if (file && !Array.isArray(file)) {
+      this.updateSettings({ logo_file: file.newFilename })
 
-    form
-      .on("fileBegin", (name, file) => {
-        // Emitted whenever a field / value pair has been received.
-        file.name = utils.getCorrectFileName(file.name)
-        file.path = `${uploadDir}/${file.name}`
-      })
-      .on("file", (field, file) => {
-        // every time a file has been uploaded successfully,
-        fileName = file.name
-        fileSize = file.size
-      })
-      .on("error", error => {
-        ctx.throw(this.getErrorMessage(error))
-      })
-      .on("end", () => {
-        // Emitted when the entire request has been received, and all contained files have finished flushing to disk.
-        if (fileName) {
-          this.updateSettings({ logo_file: fileName })
-          ctx.body = { file: fileName, size: fileSize }
-        } else {
-          ctx.body = this.getErrorMessage("Required fields are missing")
-          ctx.status = 400
-        }
-      })
+      ctx.body = { file: file.newFilename, size: file.size }
 
-    form.parse(ctx.req)
+      return
+    }
+
+    ctx.body = this.getErrorMessage("Required fields are missing")
+    ctx.status = 400
   }
 
   getErrorMessage(error) {
