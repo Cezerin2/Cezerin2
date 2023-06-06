@@ -2,6 +2,10 @@
 
 By default, Cezerin is in developer mode. This means you can access API and Dashboard without authorization (access tokens).
 
+when the shop owner/administrator wants to update the product name or process an order they have to go to [Your Site].com/admin and it will send a link to email which kinda contains a password or a token so once clicked on that link one can log into the admin panel. No password required.
+
+Also if there are multiple admins or different people with different roles like, one updating products another processing orders each will receive different tokens to their respective email, again no password required.
+
 Don't forget to switch off developer mode at working store.
 At dev mode api's and dashboard available for all without any restrictions.
 
