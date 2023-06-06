@@ -1,12 +1,12 @@
 import { RouterContext } from "@koa/router"
-import formidable from "formidable"
-import fse from "fs-extra"
+import { ensureDir, removeSync } from "fs-extra"
+import koaBody from "koa-body"
 import { ObjectID } from "mongodb"
 import path from "path"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import utils, { URLResolve } from "../../lib/utils"
+import { URLResolve } from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 class ProductImagesService {
@@ -60,7 +60,7 @@ class ProductImagesService {
             const filepath = path.resolve(
               `${settings.productsUploadPath}/${productID}/${filename}`
             )
-            fse.removeSync(filepath)
+            removeSync(filepath)
             return db
               .collection("products")
               .updateOne(
@@ -87,47 +87,40 @@ class ProductImagesService {
     const uploadDir = path.resolve(
       `${settings.productsUploadPath}/${productID}`
     )
-    fse.ensureDirSync(uploadDir)
 
-    const form = new formidable.IncomingForm()
-    form.uploadDir = uploadDir
+    await ensureDir(uploadDir)
+    await koaBody({
+      formidable: { keepExtensions: true, uploadDir },
+      multipart: true,
+    })(ctx, async () => undefined)
 
-    form
-      .on("fileBegin", (name, file) => {
-        // Emitted whenever a field / value pair has been received.
-        file.name = utils.getCorrectFileName(file.name)
-        file.path = `${uploadDir}/${file.name}`
-      })
-      .on("file", async (field, file) => {
-        // Every time a file has been uploaded successfully,
-        if (file.name) {
-          const imageData = {
-            id: new ObjectID(),
-            alt: "",
-            position: 99,
-            filename: file.name,
-          }
+    const onEachFile = async file => {
+      const imageData = {
+        id: new ObjectID(),
+        alt: "",
+        position: 99,
+        filename: file.newFilename,
+      }
 
-          uploadedFiles.push(imageData)
+      uploadedFiles.push(imageData)
 
-          await db.collection("products").updateOne(
-            {
-              _id: productObjectID,
-            },
-            {
-              $push: { images: imageData },
-            }
-          )
+      await db.collection("products").updateOne(
+        {
+          _id: productObjectID,
+        },
+        {
+          $push: { images: imageData },
         }
-      })
-      .on("error", error => {
-        ctx.throw(this.getErrorMessage(error))
-      })
-      .on("end", () => {
-        ctx.body = uploadedFiles
-      })
+      )
+    }
 
-    form.parse(ctx.req)
+    const files = ctx.request.files?.file
+    if (files)
+      if (Array.isArray(files))
+        for await (const file of files) await onEachFile(file)
+      else await onEachFile(files)
+
+    ctx.body = uploadedFiles
   }
 
   updateImage(productID, imageID, data) {
