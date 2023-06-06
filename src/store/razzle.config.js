@@ -83,6 +83,9 @@ const parse = fileName => {
 }
 
 module.exports = {
+  options: {
+    disableWebpackbar: true,
+  },
   modifyPaths({ paths }) {
     const values = Object.fromEntries(
       Object.entries(paths).map(([key, value]) => [
@@ -91,7 +94,6 @@ module.exports = {
       ])
     )
 
-    values.appPublic = resolve("../../public")
     values.appServerIndexJs = resolve("./server")
     values.appClientIndexJs = resolve("./client")
 
@@ -100,15 +102,7 @@ module.exports = {
   modifyWebpackOptions({ options: { webpackOptions } }) {
     const config = webpackOptions
 
-    const rootDir = path =>
-      `"${resolve(
-        config.definePluginOptions["process.env.RAZZLE_PUBLIC_DIR"].slice(
-          1,
-          -1
-        ),
-        "../",
-        path
-      )}"`.replace(/\\/g, "/")
+    const rootDir = path => `"${resolve("../../", path)}"`.replace(/\\/g, "/")
 
     config.terserPluginOptions = undefined
     config.definePluginOptions = {
