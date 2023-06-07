@@ -8577,6 +8577,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"acorn-import-assertions@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "acorn-import-assertions@npm:1.9.0"
+  peerDependencies:
+    acorn: ^8
+  checksum: 944fb2659d0845c467066bdcda2e20c05abe3aaf11972116df457ce2627628a81764d800dd55031ba19de513ee0d43bb771bc679cc0eda66dc8b4fade143bc0c
+  languageName: node
+  linkType: hard
+
 "acorn-jsx@npm:^5.3.2":
   version: 5.3.2
   resolution: "acorn-jsx@npm:5.3.2"
@@ -10649,7 +10658,7 @@ __metadata:
     typescript: ^4.9.3
     ua-parser-js: ^1.0.32
     url: ^0.11.0
-    webpack: ^5.82.1
+    webpack: ^5.86.0
     webpack-cli: ^5.1.1
     webpack-dev-server: ^4.15.0
     winston: ^3.8.2
@@ -13397,6 +13406,16 @@ __metadata:
     graceful-fs: ^4.2.4
     tapable: ^2.2.0
   checksum: fff1aaebbf376371e5df4502e111967f6247c37611ad3550e4e7fca657f6dcb29ef7ffe88bf14e5010b78997f1ddd984a8db97af87ee0a5477771398fd326f5b
+  languageName: node
+  linkType: hard
+
+"enhanced-resolve@npm:^5.14.1":
+  version: 5.14.1
+  resolution: "enhanced-resolve@npm:5.14.1"
+  dependencies:
+    graceful-fs: ^4.2.4
+    tapable: ^2.2.0
+  checksum: ad2a31928b6649eed40d364838449587f731baa63863e83d2629bebaa8be1eabac18b90f89c1784bc805b0818363e99b22547159edd485d7e5ccf18cdc640642
   languageName: node
   linkType: hard
 
@@ -27432,7 +27451,7 @@ __metadata:
     typescript: ^4.9.3
     ua-parser-js: ^1.0.32
     url: ^0.11.0
-    webpack: ^5.82.1
+    webpack: ^5.86.0
     webpack-cli: ^5.1.1
     webpack-dev-server: ^4.15.0
     winston: ^3.8.2
@@ -29870,7 +29889,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.64.4, webpack@npm:^5.73.0, webpack@npm:^5.74.0, webpack@npm:^5.82.1":
+"webpack@npm:^5.64.4, webpack@npm:^5.73.0, webpack@npm:^5.74.0":
   version: 5.82.1
   resolution: "webpack@npm:5.82.1"
   dependencies:
@@ -29904,6 +29923,43 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 747ee7ebd238c15249c2652060e3c6ca6d62cc66dcf7e4e2824ecd4875b7ea5e01fce8f4179080a3e84dfdb3c8d0992700444c7c5a05ef47b38c0623d3ac76de
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5.86.0":
+  version: 5.86.0
+  resolution: "webpack@npm:5.86.0"
+  dependencies:
+    "@types/eslint-scope": ^3.7.3
+    "@types/estree": ^1.0.0
+    "@webassemblyjs/ast": ^1.11.5
+    "@webassemblyjs/wasm-edit": ^1.11.5
+    "@webassemblyjs/wasm-parser": ^1.11.5
+    acorn: ^8.7.1
+    acorn-import-assertions: ^1.9.0
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.14.1
+    es-module-lexer: ^1.2.1
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-even-better-errors: ^2.3.1
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.1.2
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.3.7
+    watchpack: ^2.4.0
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 682b1aa8328bb9d52ae66a1d0a1078af88f9e3b3b3a9c9e1ce203e669581a8e61d522420ef253130eacd510d24d7275b840c1311d50bd048d6fd7c1af186ce55
   languageName: node
   linkType: hard
 
