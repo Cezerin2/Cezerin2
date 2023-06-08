@@ -1,12 +1,11 @@
 import { RouterContext } from "@koa/router"
-import formidable from "formidable"
-import fse from "fs-extra"
+import fse, { emptyDir } from "fs-extra"
 import { ObjectID } from "mongodb"
 import path from "path"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import utils, { URLResolve } from "../../lib/utils"
+import utils, { URLResolve, saveFile } from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 class ProductCategoriesService {
@@ -278,40 +277,18 @@ class ProductCategoriesService {
     this.updateCategory(id, { image: "" })
   }
 
-  uploadCategoryImage(ctx: RouterContext) {
-    let categoryId = ctx.params.id
-    let form = new formidable.IncomingForm(),
-      file_name = null,
-      file_size = 0
+  async uploadCategoryImage(ctx: RouterContext) {
+    const categoryId = ctx.params.id
+    const dir = path.resolve(
+      `${settings.categoriesUploadPath} + "/" + ${categoryId}`
+    )
 
-    form
-      .on("fileBegin", (name, file) => {
-        // Emitted whenever a field / value pair has been received.
-        let dir = path.resolve(settings.categoriesUploadPath + "/" + categoryId)
-        fse.emptyDirSync(dir)
-        file.name = utils.getCorrectFileName(file.name)
-        file.path = dir + "/" + file.name
-      })
-      .on("file", function (field, file) {
-        // every time a file has been uploaded successfully,
-        file_name = file.name
-        file_size = file.size
-      })
-      .on("error", error => {
-        ctx.throw(this.getErrorMessage(error))
-      })
-      .on("end", () => {
-        //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
-        if (file_name) {
-          this.updateCategory(categoryId, { image: file_name })
-          ctx.body = { file: file_name, size: file_size }
-        } else {
-          ctx.body = this.getErrorMessage("Required fields are missing")
-          ctx.status = 400
-        }
-      })
+    await emptyDir(dir)
 
-    form.parse(ctx.req)
+    const { newFilename, size } = await saveFile(ctx, dir, false)
+
+    this.updateCategory(categoryId, { image: newFilename })
+    ctx.body = { file: newFilename, size }
   }
 }
 

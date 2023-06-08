@@ -1,9 +1,8 @@
 import { RouterContext } from "@koa/router"
-import formidable from "formidable"
 import fse from "fs-extra"
 import path from "path"
 import settings from "../lib/settings"
-import utils from "../lib/utils"
+import { saveFile } from "../lib/utils"
 
 const contentPath = path.resolve(settings.filesUploadPath)
 
@@ -54,40 +53,9 @@ class FilesService {
     })
   }
 
-  uploadFile(ctx: RouterContext) {
-    const uploadDir = contentPath
-
-    let form = new formidable.IncomingForm(),
-      file_name = null,
-      file_size = 0
-
-    form.uploadDir = uploadDir
-
-    form
-      .on("fileBegin", (name, file) => {
-        // Emitted whenever a field / value pair has been received.
-        file.name = utils.getCorrectFileName(file.name)
-        file.path = uploadDir + "/" + file.name
-      })
-      .on("file", (name, file) => {
-        // every time a file has been uploaded successfully,
-        file_name = file.name
-        file_size = file.size
-      })
-      .on("error", error => {
-        ctx.throw(this.getErrorMessage(error))
-      })
-      .on("end", () => {
-        //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
-        if (file_name) {
-          ctx.body = { file: file_name, size: file_size }
-        } else {
-          ctx.body = this.getErrorMessage("Required fields are missing!")
-          ctx.status = 400
-        }
-      })
-
-    form.parse(ctx.req)
+  async uploadFile(ctx: RouterContext) {
+    const { newFilename, size } = await saveFile(ctx, contentPath, false)
+    ctx.body = { file: newFilename, size }
   }
 
   getErrorMessage(error: string) {
