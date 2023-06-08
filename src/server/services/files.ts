@@ -54,7 +54,12 @@ class FilesService {
   }
 
   async uploadFile(ctx: RouterContext) {
-    const { newFilename, size } = await saveFile(ctx, contentPath, false)
+    const { newFilename, size } = await saveFile(
+      ctx,
+      settings.filesUploadPath,
+      false
+    )
+
     ctx.body = { file: newFilename, size }
   }
 

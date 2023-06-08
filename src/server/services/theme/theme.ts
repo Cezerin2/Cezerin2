@@ -1,6 +1,5 @@
 import { RouterContext } from "@koa/router"
 import { exec } from "child_process"
-import path from "path"
 import winston from "winston"
 import dashboardWebSocket from "../../lib/dashboardWebSocket"
 import settings from "../../lib/settings"
@@ -54,8 +53,11 @@ class ThemesService {
   }
 
   async saveThemeFile(ctx: RouterContext, callback) {
-    const uploadDir = path.resolve(settings.filesUploadPath)
-    const { newFilename, size } = await saveFile(ctx, uploadDir, false)
+    const { newFilename, size } = await saveFile(
+      ctx,
+      settings.filesUploadPath,
+      false
+    )
 
     // form
     //   .on("fileBegin", (name, file) => {

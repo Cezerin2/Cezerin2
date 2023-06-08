@@ -83,9 +83,7 @@ class ProductImagesService {
 
     const uploadedFiles = []
     const productObjectID = new ObjectID(productID)
-    const uploadDir = path.resolve(
-      `${settings.productsUploadPath}/${productID}`
-    )
+    const uploadDir = `${settings.productsUploadPath}/${productID}`
 
     const onEachFile = async (file: SaveFileReturn) => {
       const imageData = {
