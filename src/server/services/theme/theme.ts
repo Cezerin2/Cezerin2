@@ -1,10 +1,10 @@
 import { RouterContext } from "@koa/router"
 import { exec } from "child_process"
-import formidable from "formidable"
 import path from "path"
 import winston from "winston"
 import dashboardWebSocket from "../../lib/dashboardWebSocket"
 import settings from "../../lib/settings"
+import { saveFile } from "../../lib/utils"
 
 class ThemesService {
   exportTheme(ctx: RouterContext) {
@@ -53,43 +53,33 @@ class ThemesService {
     })
   }
 
-  saveThemeFile(ctx: RouterContext, callback) {
+  async saveThemeFile(ctx: RouterContext, callback) {
     const uploadDir = path.resolve(settings.filesUploadPath)
+    const { newFilename, size } = await saveFile(ctx, uploadDir, false)
 
-    let form = new formidable.IncomingForm(),
-      file_name = null,
-      file_size = 0
-
-    form.multiples = false
-
-    form
-      .on("fileBegin", (name, file) => {
-        // Emitted whenever a field / value pair has been received.
-        if (file.name.endsWith(".zip")) {
-          file.path = uploadDir + "/" + file.name
-        }
-        // else - will save to /tmp
-      })
-      .on("file", function (field, file) {
-        // every time a file has been uploaded successfully,
-        if (file.name.endsWith(".zip")) {
-          file_name = file.name
-          file_size = file.size
-        }
-      })
-      .on("error", error => {
-        callback(error)
-      })
-      .on("end", () => {
-        //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
-        if (file_name) {
-          callback(null, file_name)
-        } else {
-          callback("Cant upload file")
-        }
-      })
-
-    form.parse(ctx.req)
+    // form
+    //   .on("fileBegin", (name, file) => {
+    //     // Emitted whenever a field / value pair has been received.
+    //     if (file.name.endsWith(".zip")) {
+    //       file.path = uploadDir + "/" + file.name
+    //     }
+    //     // else - will save to /tmp
+    //   })
+    //   .on("file", function (field, file) {
+    //     // every time a file has been uploaded successfully,
+    //     if (file.name.endsWith(".zip")) {
+    //       file_name = file.name
+    //       file_size = file.size
+    //     }
+    //   })
+    //   .on("end", () => {
+    //     //Emitted when the entire request has been received, and all contained files have finished flushing to disk.
+    //     if (file_name) {
+    //       callback(null, file_name)
+    //     } else {
+    //       callback("Cant upload file")
+    //     }
+    //   })
   }
 
   getErrorMessage(error) {

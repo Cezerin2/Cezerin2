@@ -1,12 +1,11 @@
 import { RouterContext } from "@koa/router"
-import { ensureDir, removeSync } from "fs-extra"
-import koaBody from "koa-body"
+import { removeSync } from "fs-extra"
 import { ObjectID } from "mongodb"
 import path from "path"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import { URLResolve } from "../../lib/utils"
+import { SaveFileReturn, URLResolve, saveFile } from "../../lib/utils"
 import SettingsService from "../settings/settings"
 
 class ProductImagesService {
@@ -88,13 +87,7 @@ class ProductImagesService {
       `${settings.productsUploadPath}/${productID}`
     )
 
-    await ensureDir(uploadDir)
-    await koaBody({
-      formidable: { keepExtensions: true, uploadDir },
-      multipart: true,
-    })(ctx, async () => undefined)
-
-    const onEachFile = async file => {
+    const onEachFile = async (file: SaveFileReturn) => {
       const imageData = {
         id: new ObjectID(),
         alt: "",
@@ -114,11 +107,8 @@ class ProductImagesService {
       )
     }
 
-    const files = ctx.request.files?.file
-    if (files)
-      if (Array.isArray(files))
-        for await (const file of files) await onEachFile(file)
-      else await onEachFile(files)
+    const files = await saveFile(ctx, uploadDir, true)
+    for await (const file of files) await onEachFile(file)
 
     ctx.body = uploadedFiles
   }

@@ -1,3 +1,6 @@
+import { RouterContext } from "@koa/router"
+import { ensureDir } from "fs-extra"
+import koaBody from "koa-body"
 import slug from "slug"
 import SitemapService from "../services/sitemap"
 
@@ -52,6 +55,37 @@ export const URLResolve = (from: string, to: string) => {
     return pathname + search + hash
   }
   return resolvedUrl.toString()
+}
+
+export interface SaveFileReturn {
+  newFilename: string
+  size: number
+}
+
+export const saveFile = async <Multiples extends boolean>(
+  ctx: RouterContext,
+  uploadDir: string,
+  multiples?: Multiples
+) => {
+  await ensureDir(uploadDir)
+  await koaBody({
+    formidable: { keepExtensions: true, multiples, uploadDir },
+    multipart: true,
+  })(ctx, async () => undefined)
+
+  const files = ctx.request.files?.file
+
+  if (!files) return ctx.throw("Required fields are missing!", 400)
+
+  const arrayReturn: SaveFileReturn[] = Array.isArray(files)
+    ? files.map(({ newFilename, size }) => ({
+        newFilename,
+        size,
+      }))
+    : [{ newFilename: files.newFilename, size: files.size }]
+
+  const value = multiples ? arrayReturn : arrayReturn[0]
+  return value as Multiples extends true ? SaveFileReturn[] : SaveFileReturn
 }
 
 export default {
