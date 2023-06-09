@@ -71,12 +71,16 @@ router
         .resize(Number(ctx.params.size))
         .toFile(tempFile)
 
-    await send(ctx, ctx.params.filename, { root: filePath })
+    await send(ctx, ctx.params.filename, { root: filePath, ...staticOptions })
   })
-  .use("/sw.js", ctx => send(ctx, `${publicDir}/../build/public/assets/sw.js`))
-  .use("/admin", ctx => send(ctx, "index.html", { root: `${publicDir}/admin` }))
+  .use("/sw.js", ctx =>
+    send(ctx, `${publicDir}/../build/public/assets/sw.js`, staticOptions)
+  )
+  .use("/admin", ctx =>
+    send(ctx, "index.html", { root: `${publicDir}/admin`, ...staticOptions })
+  )
   .use("/admin/(.*)", ctx =>
-    send(ctx, "index.html", { root: `${publicDir}/admin` })
+    send(ctx, "index.html", { root: `${publicDir}/admin`, ...staticOptions })
   )
   .get(
     /^.+\.(jpg|jpeg|gif|png|bmp|ico|webp|svg|css|js|zip|rar|flv|swf|xls)$/,

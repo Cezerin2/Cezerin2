@@ -21,8 +21,11 @@ class ThemeAssetsService {
   }
 
   async uploadFile(ctx: RouterContext) {
-    const uploadDir = path.resolve(settings.themeAssetsUploadPath)
-    const { newFilename, size } = await saveFile(ctx, uploadDir, false)
+    const { newFilename, size } = await saveFile(
+      ctx,
+      settings.themeAssetsUploadPath,
+      false
+    )
 
     ctx.body = { file: newFilename, size }
   }

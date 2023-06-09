@@ -1,11 +1,10 @@
 import { RouterContext } from "@koa/router"
-import fse, { ensureDir } from "fs-extra"
-import koaBody from "koa-body"
+import fse from "fs-extra"
 import path from "path"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
-import { URLResolve } from "../../lib/utils"
+import { URLResolve, saveFile } from "../../lib/utils"
 
 class SettingsService {
   defaultSettings: {
@@ -270,25 +269,15 @@ class SettingsService {
   }
 
   async uploadLogo(ctx: RouterContext) {
-    const uploadDir = path.resolve(settings.filesUploadPath)
+    const { newFilename, size } = await saveFile(
+      ctx,
+      settings.filesUploadPath,
+      false
+    )
 
-    await ensureDir(uploadDir)
-    await koaBody({
-      formidable: { keepExtensions: true, multiples: false, uploadDir },
-      multipart: true,
-    })(ctx, async () => undefined)
+    this.updateSettings({ logo_file: newFilename })
 
-    const file = ctx.request.files?.file
-    if (file && !Array.isArray(file)) {
-      this.updateSettings({ logo_file: file.newFilename })
-
-      ctx.body = { file: file.newFilename, size: file.size }
-
-      return
-    }
-
-    ctx.body = this.getErrorMessage("Required fields are missing")
-    ctx.status = 400
+    ctx.body = { file: newFilename, size }
   }
 
   getErrorMessage(error) {

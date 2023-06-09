@@ -279,9 +279,7 @@ class ProductCategoriesService {
 
   async uploadCategoryImage(ctx: RouterContext) {
     const categoryId = ctx.params.id
-    const dir = path.resolve(
-      `${settings.categoriesUploadPath} + "/" + ${categoryId}`
-    )
+    const dir = `${settings.categoriesUploadPath} + "/" + ${categoryId}`
 
     await emptyDir(dir)
 

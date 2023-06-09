@@ -1,6 +1,7 @@
 import { RouterContext } from "@koa/router"
 import { ensureDir } from "fs-extra"
 import koaBody from "koa-body"
+import { resolve } from "path"
 import slug from "slug"
 import SitemapService from "../services/sitemap"
 
@@ -67,7 +68,7 @@ export const saveFile = async <Multiples extends boolean>(
   uploadDir: string,
   multiples?: Multiples
 ) => {
-  await ensureDir(uploadDir)
+  await ensureDir(resolve(uploadDir))
   await koaBody({
     formidable: { keepExtensions: true, multiples, uploadDir },
     multipart: true,
