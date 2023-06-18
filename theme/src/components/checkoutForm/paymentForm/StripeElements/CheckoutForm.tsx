@@ -25,8 +25,9 @@ const CheckoutForm: FC<Props> = props => {
 
     // Pass the Element directly to other Stripe.js methods:
     // e.g. createToken - https://stripe.com/docs/js/tokens_sources/create_token?type=cardElement
-    const { token } = await stripe.createToken(cardElement, {
-      name: formSettings.email,
+    const { paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement,
     })
 
     // TODO: confirmCardPayment - https://stripe.com/docs/js/payment_intents/confirm_card_payment
@@ -36,8 +37,8 @@ const CheckoutForm: FC<Props> = props => {
     //   },
     // })
 
-    if (token) {
-      onCreateToken(token.id)
+    if (paymentMethod) {
+      onCreateToken(paymentMethod.id)
     } else {
       setInProgress(false)
     }
