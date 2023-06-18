@@ -2,7 +2,7 @@ import messages from "lib/text"
 import Dialog from "material-ui/Dialog"
 import FlatButton from "material-ui/FlatButton"
 import RaisedButton from "material-ui/RaisedButton"
-import React, { FC, useEffect, useRef, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Form } from "react-final-form"
 import { AVAILABLE_PAYMENT_GATEWAYS } from "../availablePaymentGateways"
 import GatewaySettings from "./gatewaySettings"
@@ -17,15 +17,16 @@ interface Props {
 
 const EditPaymentGatewayForm: FC<Props> = props => {
   const [open, setOpen] = useState(false)
-  const currentGateway = useRef(props.gateway)
 
   const { initialValues, onSubmit, gateway, onLoad } = props
 
   useEffect(() => {
     onLoad()
+  }, [onLoad])
 
-    if (currentGateway !== props.gateway) onLoad(gateway)
-  }, [gateway])
+  useEffect(() => {
+    onLoad(gateway)
+  }, [gateway, onLoad])
 
   const handleClose = () => setOpen(false)
 
