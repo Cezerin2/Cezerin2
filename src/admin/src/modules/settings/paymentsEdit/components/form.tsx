@@ -6,7 +6,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import PaymentGateway from "modules/settings/paymentGateway"
 import { AVAILABLE_PAYMENT_GATEWAYS } from "modules/settings/paymentGateway/availablePaymentGateways"
 import { CustomToggle } from "modules/shared/form"
-import React, { FC, useEffect, useRef, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Field, Form } from "react-final-form"
 import { SelectField, TextField } from "redux-form-material-ui"
 import SelectShippingMethodsField from "./selectShipping"
@@ -36,7 +36,6 @@ interface Props {
 
 const EditPaymentMethodForm: FC<Props> = props => {
   const [gateway, setGateway] = useState(null)
-  const currentInitialValues = useRef(props.initialValues)
 
   const {
     initialValues,
@@ -49,10 +48,11 @@ const EditPaymentMethodForm: FC<Props> = props => {
 
   useEffect(() => {
     onLoad()
+  }, [onLoad])
 
-    if (currentInitialValues !== initialValues)
-      setGateway(initialValues.gateway)
-  }, [props])
+  useEffect(() => {
+    setGateway(initialValues.gateway)
+  }, [initialValues.gateway])
 
   const isAdd = methodId === null || methodId === undefined
   let paymentGateways = []
