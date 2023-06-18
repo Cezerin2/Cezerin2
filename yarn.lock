@@ -7725,6 +7725,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:>=8.1.0":
+  version: 20.3.1
+  resolution: "@types/node@npm:20.3.1"
+  checksum: 63a393ab6d947be17320817b35d7277ef03728e231558166ed07ee30b09fd7c08861be4d746f10fdc63ca7912e8cd023939d4eab887ff6580ff704ff24ed810c
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^17.0.5":
   version: 17.0.45
   resolution: "@types/node@npm:17.0.45"
@@ -23964,6 +23971,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qs@npm:^6.11.0":
+  version: 6.11.2
+  resolution: "qs@npm:6.11.2"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: e812f3c590b2262548647d62f1637b6989cc56656dc960b893fe2098d96e1bd633f36576f4cd7564dfbff9db42e17775884db96d846bebe4f37420d073ecdc0b
+  languageName: node
+  linkType: hard
+
 "query-string@npm:^6.1.0":
   version: 6.14.1
   resolution: "query-string@npm:6.14.1"
@@ -26542,7 +26558,7 @@ __metadata:
     query-string: ^7.1.1
     sharp: ^0.32.1
     slug: ^8.2.2
-    stripe: ^6.7.0
+    stripe: ^12.9.0
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
     typescript: ^4.9.3
@@ -27695,6 +27711,16 @@ __metadata:
   version: 3.1.1
   resolution: "strip-json-comments@npm:3.1.1"
   checksum: 492f73e27268f9b1c122733f28ecb0e7e8d8a531a6662efbd08e22cccb3f9475e90a1b82cab06a392f6afae6d2de636f977e231296400d0ec5304ba70f166443
+  languageName: node
+  linkType: hard
+
+"stripe@npm:^12.9.0":
+  version: 12.9.0
+  resolution: "stripe@npm:12.9.0"
+  dependencies:
+    "@types/node": ">=8.1.0"
+    qs: ^6.11.0
+  checksum: a860736592ec96b4468697c3636591cee781e1483afa963d75be4c2e4d8d413983328129e4b15dab578494ffc5fd22a11eebc74bbdb3b675dd4a99c37c70ab76
   languageName: node
   linkType: hard
 
