@@ -9,12 +9,9 @@
 
 ## Reporting a Vulnerability
 
-You can report a vulnerability directly to following members of the telegram group,
+You can report a vulnerability directly to following member(s) of the telegram group,
 [Telegram Chat: Cezerin](https://t.me/cezerin),
 
-- [@lortschi](https://t.me/lortschi)
-- [@vamhost](https://t.me/vamhost)
-- [@ngoyal16](https://t.me/ngoyal16)
 - [@Himadu2000](https://t.me/Himadu2000)
 
 It's recommended to send to all of above because some members maybe inactive.

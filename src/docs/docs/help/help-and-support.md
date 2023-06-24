@@ -7,8 +7,6 @@ https://github.com/cezerin2/cezerin2/issues
 
 If you need some help with deployment and something does not quite work, message on:
 
-- [**Cezerin Community Site**](https://cezerin.org): https://cezerin.org
-
 - [**GitHub Issues**](https://github.com/cezerin2/cezerin2/issues): https://github.com/cezerin2/cezerin2/issues
 
 - [**Telegram Chat: Cezerin**](https://t.me/cezerin): https://t.me/cezerin
@@ -17,4 +15,4 @@ If you need some help with deployment and something does not quite work, message
 
 ### Need Private Support?
 
-https://github.com/vamcart
+[@Himadu2000](https://t.me/Himadu2000)

@@ -51,7 +51,7 @@
   -p 27017:27017
   ```
 
-  Then you can Deloy normally with pm2. [here](https://cezerin.org/docs/#/using-source-code)
+  Then you can Deloy normally with pm2. [here](using-source-code)
 
   ```shell
   pm2 start app.js
