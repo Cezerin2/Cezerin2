@@ -5,8 +5,7 @@
  */
 
 /* Tailwind */
-/* base is removed since it's conflicting with the theme. */
-/* @tailwind base; */
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
