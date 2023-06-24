@@ -70,13 +70,14 @@ const config = {
           alt: "Site Logo",
         },
         items: [
+          { to: "/", label: "Home", position: "left" },
+          { to: "/pay", label: "Payments", position: "left" },
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
             label: "Tutorial",
           },
-          { to: "/pay", label: "CHost", position: "left" },
           {
             href: "https://github.com/Cezerin2/Cezerin2",
             label: "GitHub",

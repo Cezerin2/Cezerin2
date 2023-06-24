@@ -1,6 +1,27 @@
 import Layout from "@theme/Layout"
 import React, { createElement, useEffect } from "react"
 
+const publishableKey =
+  "pk_live_51NBBLLDshTneKUZ5goj7zlTz1z0VPrJXXYWdGzdmhT1pYyLUtYNN6SgeA9HsDvEFdELeXMmNaPanIU5Yk0NAqYUD00BBhPylNc"
+
+const StripeBuyButton = () => {
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "https://js.stripe.com/v3/buy-button.js"
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
+
+  return createElement("stripe-buy-button", {
+    "buy-button-id": "buy_btn_1NMcaDDshTneKUZ5gFTrF7iE",
+    "publishable-key": publishableKey,
+  })
+}
+
 const StripePricingTable = () => {
   useEffect(() => {
     const script = document.createElement("script")
@@ -15,8 +36,7 @@ const StripePricingTable = () => {
 
   return createElement("stripe-pricing-table", {
     "pricing-table-id": "prctbl_1NDBSbDshTneKUZ5YECOSS5p",
-    "publishable-key":
-      "pk_live_51NBBLLDshTneKUZ5goj7zlTz1z0VPrJXXYWdGzdmhT1pYyLUtYNN6SgeA9HsDvEFdELeXMmNaPanIU5Yk0NAqYUD00BBhPylNc",
+    "publishable-key": publishableKey,
   })
 }
 
@@ -36,6 +56,9 @@ const DashboardPage = () => (
     <a href="https://billing.stripe.com/p/login/6oEaI59t2bsx5igfYY">
       Manage your stripe subscription
     </a>
+    <br />
+    Or Pay a Custom Amount
+    <StripeBuyButton />
     <br />
     <h3>Bank transfer</h3>
     <br />
