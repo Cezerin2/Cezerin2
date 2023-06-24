@@ -1,3 +1,5 @@
+# Not a developer? Want a already configured, highly customizable, e-commerce platform? Checkout [CHost](https://chost.ansiglobal.com)
+
 # Cezerin is React and Node.js based eCommerce platform. React Shopping Cart.
 
 Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
@@ -22,7 +24,7 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 ## Links
 
 - [GitHub](https://github.com/Cezerin2)
-- [Community Site](https://cezerin.org)
+- [Community Site](https://chost.ansiglobal.com)
 - [Demo Store - Plusha Theme](https://plusha.cezerin.net)
 - [Demo Store - Default Theme](https://cezerin.net)
 - [Demo Dashboard](https://cezerin.net/admin)
@@ -40,12 +42,12 @@ SEO Friendly. Google Analytics eCommerce Tracking included.
 
 [Online Demo Store - Plusha Theme](https://plusha.cezerin.net)
 
-[![Cezerin Store Plusha Theme](https://cezerin.org/assets/images/cezerin-plusha-theme.png)](https://plusha.cezerin.net)
+[![Cezerin Store Plusha Theme](https://chost.ansiglobal.com/img/cezerin-plusha-theme.png)](https://plusha.cezerin.net)
 
 [Online Demo Store - Default Theme](https://cezerin.net)
 
-[![Cezerin Store Default Theme](https://cezerin.org/assets/images/cezerin-default-theme.png)](https://cezerin.net)
-[![Cezerin Store Default Theme](https://cezerin.org/assets/images/cezerin-mobile-order-summary.png)](https://cezerin.net)
+[![Cezerin Store Default Theme](https://chost.ansiglobal.com/img/cezerin-default-theme.png)](https://cezerin.net)
+[![Cezerin Store Default Theme](https://chost.ansiglobal.com/img/cezerin-mobile-order-summary.png)](https://cezerin.net)
 
 ## Dashboard
 
@@ -53,7 +55,7 @@ Client-side dashboard use JSON Web Token (JWT) to access REST API.
 
 [Online Demo Dashboard](https://cezerin.net/admin)
 
-![Cezerin Dashboard](https://cezerin.org/assets/images/cezerin-dashboard-products.png)
+![Cezerin Dashboard](https://chost.ansiglobal.com/img/cezerin-dashboard-products.png)
 
 ## Docs
 

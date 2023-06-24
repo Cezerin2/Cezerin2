@@ -1,7 +1,7 @@
 {
   "name": "cezerin",
   "version": "0.33.0",
-  "description": "Cezerin is React and Node.js based eCommerce platform. https://cezerin.org",
+  "description": "Cezerin is React and Node.js based eCommerce platform. https://chost.ansiglobal.com",
   "keywords": [
     "cezerin",
     "cezerin2",
@@ -15,7 +15,7 @@
     "ecommerce api",
     "shopping cart api"
   ],
-  "homepage": "https://cezerin.org",
+  "homepage": "https://chost.ansiglobal.com",
   "bugs": "https://github.com/Cezerin2/cezerin2/issues",
   "license": "MIT",
   "author": "Restmount <jsonmount@gmail.com> (https://github.com/restmount)",
