@@ -1,11 +1,14 @@
 import Layout from "@theme/Layout"
-import React, { createElement, useEffect } from "react"
+import React, { createElement, useEffect, useState } from "react"
 
-const StripePricingTable = () => {
+const publishableKey =
+  "pk_live_51NBBLLDshTneKUZ5goj7zlTz1z0VPrJXXYWdGzdmhT1pYyLUtYNN6SgeA9HsDvEFdELeXMmNaPanIU5Yk0NAqYUD00BBhPylNc"
+
+const useAddScript = (src: string) =>
   useEffect(() => {
     const script = document.createElement("script")
-    script.src = "https://js.stripe.com/v3/pricing-table.js"
     script.async = true
+    script.src = src
     document.body.appendChild(script)
 
     return () => {
@@ -13,14 +16,51 @@ const StripePricingTable = () => {
     }
   }, [])
 
-  return createElement("stripe-pricing-table", {
+const PricingTable = () =>
+  createElement("stripe-pricing-table", {
     "pricing-table-id": "prctbl_1NDBSbDshTneKUZ5YECOSS5p",
-    "publishable-key":
-      "pk_live_51NBBLLDshTneKUZ5goj7zlTz1z0VPrJXXYWdGzdmhT1pYyLUtYNN6SgeA9HsDvEFdELeXMmNaPanIU5Yk0NAqYUD00BBhPylNc",
+    "publishable-key": publishableKey,
   })
+
+const BuyButton = () =>
+  createElement("stripe-buy-button", {
+    "buy-button-id": "buy_btn_1NMcaDDshTneKUZ5gFTrF7iE",
+    "publishable-key": publishableKey,
+  })
+
+const StripePayment = () => {
+  const [isPlan, setIsPlan] = useState(true)
+
+  useAddScript("https://js.stripe.com/v3/pricing-table.js")
+  useAddScript("https://js.stripe.com/v3/buy-button.js")
+
+  return (
+    <>
+      <a href="https://stripe.com/pricing/local-payment-methods">Stripe fees</a>
+      <button
+        type="button"
+        onClick={() => setIsPlan(true)}
+        className="rounded-3xl bg-lime-600 p-2 px-6"
+      >
+        Our Plans
+      </button>
+      <button
+        type="button"
+        onClick={() => setIsPlan(false)}
+        className="rounded-3xl bg-lime-600 p-2 px-6"
+      >
+        Or Pay a Custom Amount
+      </button>
+      <br />
+      {isPlan ? <PricingTable /> : <BuyButton />}
+      <a href="https://billing.stripe.com/p/login/6oEaI59t2bsx5igfYY">
+        Manage your stripe subscription
+      </a>
+    </>
+  )
 }
 
-const DashboardPage = () => (
+const PaymentPage = () => (
   <div className="text-center">
     <h2>Payment Methods</h2>
     <br />
@@ -31,11 +71,7 @@ const DashboardPage = () => (
     <br />
     <h3>Stripe</h3>
     <br />
-    <a href="https://stripe.com/pricing/local-payment-methods">Stripe fees</a>
-    <StripePricingTable />
-    <a href="https://billing.stripe.com/p/login/6oEaI59t2bsx5igfYY">
-      Manage your stripe subscription
-    </a>
+    <StripePayment />
     <br />
     <h3>Bank transfer</h3>
     <br />
@@ -47,7 +83,7 @@ const DashboardPage = () => (
   </div>
 )
 
-const Purchase = (): JSX.Element => (
+const Payment = (): JSX.Element => (
   <Layout title="Pay" description="Start your new store.">
     <header>
       <p>
@@ -61,9 +97,9 @@ const Purchase = (): JSX.Element => (
       </p>
     </header>
     <main>
-      <DashboardPage />
+      <PaymentPage />
     </main>
   </Layout>
 )
 
-export default Purchase
+export default Payment

@@ -19,7 +19,7 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://cezerin.org",
+  url: "https://chost.ansiglobal.com",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -70,13 +70,14 @@ const config = {
           alt: "Site Logo",
         },
         items: [
+          { to: "/", label: "Home", position: "left" },
+          { to: "/pay", label: "Payments", position: "left" },
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
             label: "Tutorial",
           },
-          { to: "/pay", label: "CHost", position: "left" },
           {
             href: "https://github.com/Cezerin2/Cezerin2",
             label: "GitHub",

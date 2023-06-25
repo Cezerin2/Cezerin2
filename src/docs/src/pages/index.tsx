@@ -8,9 +8,9 @@ const links = [
   { title: "Default Theme", link: "https://cezerin.net" },
   { title: "Dashboard", link: "https://cezerin.net/admin" },
   { title: "Telegram Chat", link: "https://t.me/cezerin" },
-  { title: "Docs", link: "https://cezerin.org/docs" },
-  { title: "FAQ", link: "https://cezerin.org/docs/#/faq" },
-  { title: "HowTos", link: "https://cezerin.org/docs/#/howtos" },
+  { title: "Docs", link: "/docs" },
+  { title: "FAQ", link: "/docs/help/faq" },
+  { title: "HowTos", link: "/docs/help/howtos" },
   { title: "Facebook", link: "https://facebook.com/cezerin" },
   { title: "Twitter", link: "https://twitter.com/cezerin2" },
 ]
@@ -30,8 +30,10 @@ const LinkElement = (): JSX.Element => (
 
 const Home = (): JSX.Element => (
   <Layout
-    title="Cezerin - ReactJS eCommerce platform. React Shopping Cart."
-    description="Cezerin is open-source ecommerce platform. React Shopping Cart. Allows creating a Progressive Web Apps built with React and Node.js. API-first CMS."
+    // title="Cezerin - ReactJS eCommerce platform. React Shopping Cart."
+    // description="Cezerin is open-source ecommerce platform. React Shopping Cart. Allows creating a Progressive Web Apps built with React and Node.js. API-first CMS."
+    title="Ecommerce platform which is highly customizable."
+    description="Ecommerce platform which is highly customizable, strong customer support and cheap for startups and established businesses. Give your details, start your store. It's that easy."
   >
     <div className="mx-10 my-6 grid gap-12 md:mx-44 md:my-24">
       <header className="text-center">
