@@ -11,7 +11,7 @@ class ApiClient extends RestClient {
       body: JSON.stringify({ email }),
     }
     return fetch(`${baseUrl}/authorize`, config).then(
-      RestClient.returnStatusAndJson
+      RestClient.returnStatusAndJsonStatic
     )
   }
 }
