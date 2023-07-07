@@ -8,7 +8,7 @@
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build",
-    "preinstall": "yarn",
+    "prepack": "yarn",
     "prepublish": "yarn build",
     "test": "yarn build && c8 ava",
     "test:watch": "yarn build && ava --watch"
