@@ -10640,7 +10640,7 @@ __metadata:
     react-router-dom: ^5.3.1
     react-scroll: ^1.8.8
     react-sortable-hoc: ^2.0.0
-    react-tagsinput: ^3.20.0
+    react-tagsinput: ^3.20.3
     react-use: ^17.4.0
     redux: ^4.2.0
     redux-form-material-ui: ^4.3.4
@@ -24976,12 +24976,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-tagsinput@npm:^3.20.0":
-  version: 3.20.0
-  resolution: "react-tagsinput@npm:3.20.0"
+"react-tagsinput@npm:^3.20.3":
+  version: 3.20.3
+  resolution: "react-tagsinput@npm:3.20.3"
   peerDependencies:
     react: ^18.0.0 || ^17.0.0 || ^16.0.0 || ^15.0.0
-  checksum: 22b5738fc7fde1848fb10edda62221922d57682160a1c1a4e6b9bf1418d72e0978b5ab532e8d86ba98bb6c60ba4933ac0bdaadf1770a73207da4858240289484
+  checksum: a5debb0db588153a4a5e745252f3b694deab6472cc225dee51e49ad63a7c08c266ce8c5e5a5bf983d796386f8a43d49a0b9e07a71f39f966ca853d80a4e147e7
   languageName: node
   linkType: hard
 
@@ -27443,7 +27443,7 @@ __metadata:
     react-router-dom: ^5.3.1
     react-scroll: ^1.8.8
     react-sortable-hoc: ^2.0.0
-    react-tagsinput: ^3.20.0
+    react-tagsinput: ^3.20.3
     react-use: ^17.4.0
     redux: ^4.2.0
     redux-form-material-ui: ^4.3.4
