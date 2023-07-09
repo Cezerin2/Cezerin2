@@ -24,7 +24,7 @@ class Products {
     return this.client.get(this.resourceUrl, filter)
   }
 
-  retrieve(id, filter) {
+  retrieve(id, filter?) {
     return this.client.get(`${this.resourceUrl}/${id}`, filter)
   }
 

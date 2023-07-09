@@ -1,9 +1,13 @@
+import AjaxClient from "../ajaxClient"
+
 class AjaxCart {
+  client: AjaxClient
+
   constructor(client) {
     this.client = client
   }
 
-  retrieve(cookie) {
+  retrieve(cookie?) {
     return this.client.get(`/cart`, null, cookie)
   }
 

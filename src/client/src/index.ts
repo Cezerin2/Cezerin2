@@ -32,75 +32,27 @@ import Theme from "./api/theme/theme"
 import Tokens from "./api/tokens"
 import Webhooks from "./api/webhooks"
 import ApiClient from "./apiClient"
+import { ClientType, Options } from "./types"
 import WebStoreAccount from "./webstore/account"
 import WebStoreServices from "./webstore/services"
 import WebStoreClient from "./webstoreClient"
 
-interface Options {
-  apiBaseUrl?: string
-  apiToken?: string
-  ajaxBaseUrl?: string
-  webstoreToken?: string
-}
-
-class Client {
-  apiBaseUrl?: string
-  apiToken?: string
-  ajaxBaseUrl?: string
-  webstoreToken?: string
-  products: Products
-  productCategories: ProductCategories
-  customers: Customers
-  orders: Orders
-  orderStatuses: OrderStatuses
-  shippingMethods: ShippingMethods
-  paymentMethods: PaymentMethods
-  paymentGateways: PaymentGateways
-  customerGroups: CustomerGroups
-  sitemap: Sitemap
-  theme: Theme
-  countries: Countries
-  currencies: Currencies
-  text: Text
-  settings: Settings
-  checkoutFields: CheckoutFields
-  pages: Pages
-  tokens: Tokens
-  redirects: Redirects
-  webhooks: Webhooks
-  files: Files
-  apps: { settings: AppSettings }
-  ajax: {
-    products: Products
-    sitemap: Sitemap
-    cart: AjaxCart
-    login: AjaxLogin
-    register: AjaxRegister
-    account: AjaxAccount
-    forgotPassword: AjaxForgotPassword
-    resetPassword: AjaxResetPassword
-    cookieBanner: AjaxCookieBanner
-    countries: Countries
-    currencies: Currencies
-    shippingMethods: AjaxShippingMethods
-    paymentMethods: AjaxPaymentMethods
-    paymentFormSettings: AjaxPaymentFormSettings
-    pages: Pages
-  }
-  webstore: { account: WebStoreAccount; services: WebStoreServices }
-
-  constructor(options: Options = {}) {
-    this.apiBaseUrl = options.apiBaseUrl || "/api/v1"
-    this.apiToken = options.apiToken
-    this.ajaxBaseUrl = options.ajaxBaseUrl || "/ajax"
-    this.webstoreToken = options.webstoreToken
+class Client extends ClientType {
+  constructor(
+    { apiBaseUrl, apiToken, ajaxBaseUrl, webstoreToken }: Options = {
+      apiBaseUrl: "/api/v1",
+      ajaxBaseUrl: "/ajax",
+    }
+  ) {
+    super()
 
     const apiClient = new ApiClient({
-      baseUrl: this.apiBaseUrl,
-      token: this.apiToken,
+      baseUrl: apiBaseUrl,
+      token: apiToken,
     })
-    const ajaxClient = new AjaxClient({ baseUrl: this.ajaxBaseUrl })
-    const webstoreClient = new WebStoreClient({ token: this.webstoreToken })
+
+    const ajaxClient = new AjaxClient({ baseUrl: ajaxBaseUrl })
+    const webstoreClient = new WebStoreClient({ token: webstoreToken })
 
     this.products = new Products(apiClient)
     this.productCategories = new ProductCategories(apiClient)

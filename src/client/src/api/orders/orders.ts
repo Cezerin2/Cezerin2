@@ -23,7 +23,7 @@ class Orders {
     return this.client.get(this.resourceUrl, filter)
   }
 
-  retrieve(orderId: string, filter) {
+  retrieve(orderId: string, filter?) {
     return this.client.get(`${this.resourceUrl}/${orderId}`, filter)
   }
 
