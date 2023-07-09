@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@ava/typescript": "^3.0.1",
-    "@parcel/packager-ts": "^2.6.2",
+    "@parcel/packager-ts": "^2.9.3",
     "@parcel/transformer-typescript-types": "^2.9.3",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
