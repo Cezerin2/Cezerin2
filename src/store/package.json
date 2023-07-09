@@ -135,7 +135,7 @@
     "razzle-plugin-scss": "^4.2.18",
     "razzle-plugin-typescript": "^4.2.18",
     "regenerator-runtime": "^0.13.10",
-    "sass-loader": "^13.2.0",
+    "sass-loader": "^13.3.2",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.3",
