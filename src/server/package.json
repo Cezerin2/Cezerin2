@@ -10,7 +10,7 @@
     "@koa/cors": "^4.0.0",
     "@koa/router": "^12.0.0",
     "@sentry/node": "^7.51.2",
-    "@stripe/stripe-js": "^1.44.1",
+    "@stripe/stripe-js": "^1.54.1",
     "@types/formidable": "1.0.31",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
