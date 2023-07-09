@@ -6638,29 +6638,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stripe/react-stripe-js@npm:^1.15.0":
-  version: 1.15.0
-  resolution: "@stripe/react-stripe-js@npm:1.15.0"
+"@stripe/react-stripe-js@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@stripe/react-stripe-js@npm:2.1.1"
   dependencies:
     prop-types: ^15.7.2
   peerDependencies:
     "@stripe/stripe-js": ^1.44.1
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 29ac46419b7aa3ed44bcfd7f9333e41e83d1bc1ed3e25792a95b88b760b60fb952d44eb5f6b17799f835f275344132dc2f67610a9d48afc4a48f4be35657808c
-  languageName: node
-  linkType: hard
-
-"@stripe/react-stripe-js@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@stripe/react-stripe-js@npm:2.1.0"
-  dependencies:
-    prop-types: ^15.7.2
-  peerDependencies:
-    "@stripe/stripe-js": ^1.44.1
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: ae5a26e44bd43bcb36ea7d578a2fe0920e75eb46f6f942eae88c3758cb8328a70f891d3a492760d3e6021e7dd93b0d4e4e279ffe169cfa671049c690c210fba0
+  checksum: b9c0a2d3f98d757c84698560ba78ca619bdf21f6730157663ceb51396d494f6a2c221eada7dd518bcdde5cf7da242a26be0df385962e231c4bdecb38d9076923
   languageName: node
   linkType: hard
 
@@ -10540,7 +10527,7 @@ __metadata:
     "@sentry/node": ^7.51.2
     "@sentry/react": ^7.51.2
     "@sentry/tracing": ^7.51.2
-    "@stripe/react-stripe-js": ^1.15.0
+    "@stripe/react-stripe-js": ^2.1.1
     "@stripe/stripe-js": ^1.44.1
     "@tinymce/tinymce-react": ^4.2.0
     "@types/bcrypt": ^5.0.0
@@ -12955,7 +12942,7 @@ __metadata:
     "@docusaurus/module-type-aliases": 2.4.0
     "@docusaurus/preset-classic": 2.4.0
     "@mdx-js/react": ^1.6.22
-    "@stripe/react-stripe-js": ^2.1.0
+    "@stripe/react-stripe-js": ^2.1.1
     "@stripe/stripe-js": ^1.52.1
     "@tsconfig/docusaurus": ^1.0.5
     clsx: ^1.2.1
@@ -27350,7 +27337,7 @@ __metadata:
     "@sentry/node": ^7.51.2
     "@sentry/react": ^7.51.2
     "@sentry/tracing": ^7.51.2
-    "@stripe/react-stripe-js": ^1.15.0
+    "@stripe/react-stripe-js": ^2.1.1
     "@stripe/stripe-js": ^1.44.1
     "@tinymce/tinymce-react": ^4.2.0
     "@types/bcrypt": ^5.0.0
