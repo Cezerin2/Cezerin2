@@ -1,30 +1,29 @@
-import RestClient from "./restClient"
+import { RestClient } from "./restClient"
 
-class AjaxClient extends RestClient {
-  getConfig(method, data, cookie) {
+export const AjaxClient = (baseUrl: string, token?: string) => {
+  const client = RestClient(baseUrl, token)
+
+  const getCredentialsConfig = (toParseBaseURL: string) => {
+    const includePrefix =
+      toParseBaseURL.includes("http://") || toParseBaseURL.includes("https://")
+    return includePrefix ? "include" : "same-origin"
+  }
+
+  const getConfig = (method, data, cookie) => {
     const config = {
-      credentials: this.getCredentialsConfig(this.baseUrl),
+      credentials: getCredentialsConfig(baseUrl),
       method,
       headers: {
         "Content-Type": "application/json",
+        Cookie: cookie,
       },
+      body: data && JSON.stringify(data),
     }
 
-    if (cookie) {
-      config.headers.Cookie = cookie
-    }
-
-    if (data) {
-      config.body = JSON.stringify(data)
-    }
     return config
   }
 
-  getCredentialsConfig(baseUrl) {
-    const includePrefix =
-      baseUrl.includes("http://") || baseUrl.includes("https://")
-    return includePrefix ? "include" : "same-origin"
-  }
+  return { ...client, getConfig, getCredentialsConfig }
 }
 
 export default AjaxClient
