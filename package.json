@@ -81,7 +81,7 @@
     "handlebars": "^4.7.7",
     "helmet": "^6.0.0",
     "html-react-parser": "^3.0.16",
-    "i18next": "^22.0.5",
+    "i18next": "^23.2.11",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
     "isomorphic-dompurify": "^0.24.0",
