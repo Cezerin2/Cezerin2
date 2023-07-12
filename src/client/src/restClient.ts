@@ -1,26 +1,19 @@
 import fetch from "cross-fetch"
 import queryString from "query-string"
 
-interface Client {
-  baseUrl: string
-  token?: string
-}
+export const returnStatusAndJson = response =>
+  response
+    .json()
+    .then(json => ({ status: response.status, json }))
+    .catch(() => ({ status: response.status, json: null }))
 
-class RestClient {
-  baseUrl: string
-  token?: string
-
-  constructor({ baseUrl, token }: Client) {
-    this.baseUrl = baseUrl
-    this.token = token
-  }
-
-  getConfig(method: string, data?, cookie?) {
+export const RestClient = (baseUrl: string, token?: string) => {
+  const getConfig = (method: string, data?) => {
     const config = {
       method,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${this.token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: data ? JSON.stringify(data) : undefined,
     }
@@ -28,56 +21,38 @@ class RestClient {
     return config
   }
 
-  postFormDataConfig = formData => ({
+  const postFormDataConfig = formData => ({
     method: "post",
     body: formData,
     headers: {
-      Authorization: `Bearer ${this.token}`,
+      Authorization: `Bearer ${token}`,
     },
   })
 
-  returnStatusAndJson = response =>
-    response
-      .json()
-      .then(json => ({ status: response.status, json }))
-      .catch(() => ({ status: response.status, json: null }))
+  return {
+    getConfig,
+    postFormDataConfig,
+    returnStatusAndJson,
 
-  static returnStatusAndJsonStatic = response =>
-    response
-      .json()
-      .then(json => ({ status: response.status, json }))
-      .catch(() => ({ status: response.status, json: null }))
-
-  get(endpoint: string, filter?, cookie?) {
-    return fetch(
-      `${this.baseUrl}${endpoint}?${queryString.stringify(filter)}`,
-      this.getConfig("get", null, cookie)
-    ).then(this.returnStatusAndJson)
-  }
-
-  post(endpoint: string, data?) {
-    return fetch(this.baseUrl + endpoint, this.getConfig("post", data)).then(
-      this.returnStatusAndJson
-    )
-  }
-
-  postFormData(endpoint: string, formData) {
-    return fetch(
-      this.baseUrl + endpoint,
-      this.postFormDataConfig(formData)
-    ).then(this.returnStatusAndJson)
-  }
-
-  put(endpoint: string, data?) {
-    return fetch(this.baseUrl + endpoint, this.getConfig("put", data)).then(
-      this.returnStatusAndJson
-    )
-  }
-
-  delete(endpoint: string) {
-    return fetch(this.baseUrl + endpoint, this.getConfig("delete")).then(
-      this.returnStatusAndJson
-    )
+    get: (endpoint: string, filter?) =>
+      fetch(
+        `${baseUrl}${endpoint}?${queryString.stringify(filter)}`,
+        getConfig("get", null)
+      ).then(returnStatusAndJson),
+    post: (endpoint: string, data?) =>
+      fetch(baseUrl + endpoint, getConfig("post", data)).then(
+        returnStatusAndJson
+      ),
+    postFormData: (endpoint: string, formData) =>
+      fetch(baseUrl + endpoint, postFormDataConfig(formData)).then(
+        returnStatusAndJson
+      ),
+    put: (endpoint: string, data?) =>
+      fetch(baseUrl + endpoint, getConfig("put", data)).then(
+        returnStatusAndJson
+      ),
+    delete: (endpoint: string) =>
+      fetch(baseUrl + endpoint, getConfig("delete")).then(returnStatusAndJson),
   }
 }
 
