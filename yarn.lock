@@ -6463,6 +6463,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry-internal/tracing@npm:7.58.1":
+  version: 7.58.1
+  resolution: "@sentry-internal/tracing@npm:7.58.1"
+  dependencies:
+    "@sentry/core": 7.58.1
+    "@sentry/types": 7.58.1
+    "@sentry/utils": 7.58.1
+    tslib: ^2.4.1 || ^1.9.3
+  checksum: dd9b67cda7eb42659fec948a7f229cc52cc00e46e7f0dc1e6b916284db0d879f697f4ddbc817259de31a59c744e0475556692a0bb2cbe0a1978fa68fbd2517c5
+  languageName: node
+  linkType: hard
+
 "@sentry/browser@npm:7.51.2":
   version: 7.51.2
   resolution: "@sentry/browser@npm:7.51.2"
@@ -6488,19 +6500,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/node@npm:^7.51.2":
-  version: 7.51.2
-  resolution: "@sentry/node@npm:7.51.2"
+"@sentry/core@npm:7.58.1":
+  version: 7.58.1
+  resolution: "@sentry/core@npm:7.58.1"
   dependencies:
-    "@sentry-internal/tracing": 7.51.2
-    "@sentry/core": 7.51.2
-    "@sentry/types": 7.51.2
-    "@sentry/utils": 7.51.2
+    "@sentry/types": 7.58.1
+    "@sentry/utils": 7.58.1
+    tslib: ^2.4.1 || ^1.9.3
+  checksum: 1008d4b8e3a8f2e508f7bc41c474736fc6be3a3fe803a2e5054ea192a69d2e1fa44d435428bd92b3274aac2a0bd2f5bd78e1e10ee78aa1586eaebc95d03960f6
+  languageName: node
+  linkType: hard
+
+"@sentry/node@npm:^7.58.1":
+  version: 7.58.1
+  resolution: "@sentry/node@npm:7.58.1"
+  dependencies:
+    "@sentry-internal/tracing": 7.58.1
+    "@sentry/core": 7.58.1
+    "@sentry/types": 7.58.1
+    "@sentry/utils": 7.58.1
     cookie: ^0.4.1
     https-proxy-agent: ^5.0.0
     lru_map: ^0.3.3
-    tslib: ^1.9.3
-  checksum: 86abe40ccd69268c0ab3cf57ef9f93126e70a222da962476b3d8157c2f8225537344bfe29fc0bbb2148f9f30d3377afd6f1b20cbe3fa8f349bc27796171ad18b
+    tslib: ^2.4.1 || ^1.9.3
+  checksum: b2bf358f02de721ee132d1dcf59bb7001bfd2771e8ff5c7a6196a2fd19bb45213b08ab8d42d7ff42333c54d240a872104b7713995cd6f70089fdf7fa1cb496d1
   languageName: node
   linkType: hard
 
@@ -6546,6 +6569,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/types@npm:7.58.1":
+  version: 7.58.1
+  resolution: "@sentry/types@npm:7.58.1"
+  checksum: 29874507bb0e348c35eedbb0169f7b6bfb84fbc131b8d1c4eeb368f1b67da39dc8cabd319a7068c0b7fdfa2447b6f243d9316ab08a361ae5c321daefff8fddeb
+  languageName: node
+  linkType: hard
+
 "@sentry/utils@npm:7.51.2":
   version: 7.51.2
   resolution: "@sentry/utils@npm:7.51.2"
@@ -6553,6 +6583,16 @@ __metadata:
     "@sentry/types": 7.51.2
     tslib: ^1.9.3
   checksum: 626e4ceb17677f67b5276624509e14bc3849244d4ea103df25ab5a3b2f341d2a3e791d9bb366dc79aa39b4085418a7562ee16037ceb8d05eb4f1b4874a8f3d06
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.58.1":
+  version: 7.58.1
+  resolution: "@sentry/utils@npm:7.58.1"
+  dependencies:
+    "@sentry/types": 7.58.1
+    tslib: ^2.4.1 || ^1.9.3
+  checksum: e2435a3ca2c240691ce23661754b2afa37a76b5cfd6287a6e36089fadfca859aefaa5d88afbd27b1c85b3d6ba1e73e988dd0a4bb2665dd25416b79e4c7112333
   languageName: node
   linkType: hard
 
@@ -10537,7 +10577,7 @@ __metadata:
     "@mui/x-date-pickers": ^5.0.8
     "@parcel/transformer-typescript-types": 2.9.3
     "@reduxjs/toolkit": ^1.9.0
-    "@sentry/node": ^7.51.2
+    "@sentry/node": ^7.58.1
     "@sentry/react": ^7.51.2
     "@sentry/tracing": ^7.51.2
     "@stripe/react-stripe-js": ^1.15.0
@@ -26533,7 +26573,7 @@ __metadata:
   dependencies:
     "@koa/cors": ^4.0.0
     "@koa/router": ^12.0.0
-    "@sentry/node": ^7.51.2
+    "@sentry/node": ^7.58.1
     "@stripe/stripe-js": ^1.44.1
     "@types/bcrypt": ^5.0.0
     "@types/formidable": 1.0.31
@@ -27347,7 +27387,7 @@ __metadata:
     "@mui/material": ^5.13.0
     "@mui/x-date-pickers": ^5.0.8
     "@reduxjs/toolkit": ^1.9.0
-    "@sentry/node": ^7.51.2
+    "@sentry/node": ^7.58.1
     "@sentry/react": ^7.51.2
     "@sentry/tracing": ^7.51.2
     "@stripe/react-stripe-js": ^1.15.0
@@ -28716,6 +28756,13 @@ __metadata:
   version: 2.5.0
   resolution: "tslib@npm:2.5.0"
   checksum: ae3ed5f9ce29932d049908ebfdf21b3a003a85653a9a140d614da6b767a93ef94f460e52c3d787f0e4f383546981713f165037dc2274df212ea9f8a4541004e1
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.4.1 || ^1.9.3":
+  version: 2.6.0
+  resolution: "tslib@npm:2.6.0"
+  checksum: c01066038f950016a18106ddeca4649b4d76caa76ec5a31e2a26e10586a59fceb4ee45e96719bf6c715648e7c14085a81fee5c62f7e9ebee68e77a5396e5538f
   languageName: node
   linkType: hard
 
