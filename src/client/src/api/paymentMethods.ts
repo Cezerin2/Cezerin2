@@ -1,7 +1,7 @@
 const PaymentMethods {
   constructor(client) {
     client = client
-    resourceUrl = "/payment_methods"
+    const resourceUrl =  "/payment_methods"
   }
 
   list(filter) {

@@ -1,7 +1,7 @@
 const ThemePlaceholders {
   constructor(client) {
     client = client
-    resourceUrl = "/theme/placeholders"
+    const resourceUrl =  "/theme/placeholders"
   }
 
   list() {

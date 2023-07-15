@@ -1,7 +1,7 @@
 const Customers {
   constructor(client) {
     client = client
-    resourceUrl = "/customers"
+    const resourceUrl =  "/customers"
   }
 
   list(filter?) {

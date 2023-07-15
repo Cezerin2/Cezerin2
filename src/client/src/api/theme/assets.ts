@@ -1,7 +1,7 @@
 const ThemeAssets {
   constructor(client) {
     client = client
-    resourceUrl = "/theme/assets"
+    const resourceUrl =  "/theme/assets"
   }
 
   uploadFile(formData) {

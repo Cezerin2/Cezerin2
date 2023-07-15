@@ -6,7 +6,7 @@ const WebStoreAccount {
 
   constructor(client: WebStoreClient) {
     client = client
-    resourceUrl = "/account"
+    const resourceUrl =  "/account"
   }
 
   retrieve() {

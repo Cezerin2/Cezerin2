@@ -1,7 +1,7 @@
 const AppSettings {
   constructor(client) {
     client = client
-    resourceUrl = "/apps"
+    const resourceUrl =  "/apps"
   }
 
   retrieve(appKey) {
