@@ -1,4 +1,4 @@
-class AjaxLogin {
+const AjaxLogin {
   constructor(client) {
     this.client = client
   }

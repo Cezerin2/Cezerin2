@@ -1,4 +1,4 @@
-class Settings {
+const Settings {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/settings"

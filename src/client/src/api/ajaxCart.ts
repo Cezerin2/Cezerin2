@@ -1,6 +1,6 @@
 import AjaxClient from "../ajaxClient"
 
-class AjaxCart {
+const AjaxCart {
   client: AjaxClient
 
   constructor(client) {

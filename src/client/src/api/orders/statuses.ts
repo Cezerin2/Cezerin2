@@ -1,4 +1,4 @@
-class OrderStatuses {
+const OrderStatuses {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/order_statuses"

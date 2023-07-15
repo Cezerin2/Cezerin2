@@ -1,4 +1,4 @@
-class AjaxResetPassword {
+const AjaxResetPassword {
   constructor(client) {
     this.client = client
   }

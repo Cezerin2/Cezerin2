@@ -1,4 +1,4 @@
-class ProductCategories {
+const ProductCategories {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/product_categories"

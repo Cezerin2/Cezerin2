@@ -1,4 +1,4 @@
-class AjaxAccount {
+const AjaxAccount {
   constructor(client) {
     this.client = client
   }

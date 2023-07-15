@@ -1,4 +1,4 @@
-class Redirects {
+const Redirects {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/redirects"

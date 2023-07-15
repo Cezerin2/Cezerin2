@@ -1,6 +1,6 @@
 import WebStoreClient from "../webstoreClient"
 
-class WebStoreServices {
+const WebStoreServices {
   client: WebStoreClient
 
   constructor(client: WebStoreClient) {

@@ -1,4 +1,4 @@
-class Sitemap {
+const Sitemap {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/sitemap"

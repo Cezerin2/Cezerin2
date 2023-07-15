@@ -1,6 +1,6 @@
 import WebStoreClient from "../webstoreClient"
 
-class WebStoreAccount {
+const WebStoreAccount {
   client: WebStoreClient
   resourceUrl: string
 

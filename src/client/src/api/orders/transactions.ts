@@ -1,6 +1,6 @@
 import ApiClient from "../../apiClient"
 
-class OrderTransactions {
+const OrderTransactions {
   client: ApiClient
 
   constructor(client: ApiClient) {

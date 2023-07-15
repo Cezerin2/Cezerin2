@@ -1,4 +1,4 @@
-class AjaxShippingMethods {
+const AjaxShippingMethods {
   constructor(client) {
     this.client = client
   }

@@ -1,4 +1,4 @@
-class Text {
+const Text {
   constructor(client) {
     this.client = client
   }

@@ -1,4 +1,4 @@
-class AjaxCookieBanner {
+const AjaxCookieBanner {
   constructor(client) {
     this.client = client
   }

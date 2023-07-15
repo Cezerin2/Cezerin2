@@ -3,7 +3,7 @@ import ThemeAssets from "./assets"
 import ThemePlaceholders from "./placeholders"
 import ThemeSettings from "./settings"
 
-class Theme {
+const Theme {
   client: ApiClient
   settings: ThemeSettings
   assets: ThemeAssets

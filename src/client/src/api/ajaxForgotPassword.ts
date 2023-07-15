@@ -1,4 +1,4 @@
-class AjaxForgotPassword {
+const AjaxForgotPassword {
   constructor(client) {
     this.client = client
   }

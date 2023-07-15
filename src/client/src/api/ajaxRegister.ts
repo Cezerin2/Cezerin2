@@ -1,4 +1,4 @@
-class AjaxRegister {
+const AjaxRegister {
   constructor(client) {
     this.client = client
   }

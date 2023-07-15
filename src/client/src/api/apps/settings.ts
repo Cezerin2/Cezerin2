@@ -1,4 +1,4 @@
-class AppSettings {
+const AppSettings {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/apps"

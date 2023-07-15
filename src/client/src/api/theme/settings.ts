@@ -1,6 +1,6 @@
 import ApiClient from "../../apiClient"
 
-class ThemeSettings {
+const ThemeSettings {
   client: ApiClient
 
   constructor(client: ApiClient) {

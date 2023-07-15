@@ -1,4 +1,4 @@
-class ShippingMethods {
+const ShippingMethods {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/shipping_methods"
