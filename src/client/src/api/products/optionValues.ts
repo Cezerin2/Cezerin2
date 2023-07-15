@@ -1,4 +1,4 @@
-class ProductOptionValues {
+const ProductOptionValues {
   constructor(client) {
     this.client = client
   }

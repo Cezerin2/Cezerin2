@@ -1,4 +1,4 @@
-class Countries {
+const Countries {
   constructor(client) {
     this.client = client
   }

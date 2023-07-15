@@ -4,7 +4,7 @@ import ProductImages from "./images"
 import ProductOptions from "./options"
 import ProductVariants from "./variants"
 
-class Products {
+const Products {
   client: ApiClient | AjaxClient
   resourceUrl: string
   options: ProductOptions

@@ -1,4 +1,4 @@
-class ProductVariants {
+const ProductVariants {
   constructor(client) {
     this.client = client
   }

@@ -3,7 +3,7 @@ import WebStoreServiceActions from "./serviceActions"
 import WebStoreServiceLogs from "./serviceLogs"
 import WebStoreServiceSettings from "./serviceSettings"
 
-class WebStoreServices {
+const WebStoreServices {
   client: WebStoreClient
   resourceUrl: string
   settings: WebStoreServiceSettings

@@ -1,4 +1,4 @@
-class PaymentMethods {
+const PaymentMethods {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/payment_methods"

@@ -1,6 +1,6 @@
 import ApiClient from "../apiClient"
 
-class Webhooks {
+const Webhooks {
   client: ApiClient
   resourceUrl: string
 

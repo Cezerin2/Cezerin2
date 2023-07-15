@@ -1,4 +1,4 @@
-class Customers {
+const Customers {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/customers"

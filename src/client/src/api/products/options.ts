@@ -2,7 +2,7 @@ import AjaxClient from "../../ajaxClient"
 import ApiClient from "../../apiClient"
 import ProductOptionValues from "./optionValues"
 
-class ProductOptions {
+const ProductOptions {
   client: ApiClient | AjaxClient
   values: ProductOptionValues
 

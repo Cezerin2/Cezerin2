@@ -1,4 +1,4 @@
-class ThemeAssets {
+const ThemeAssets {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/theme/assets"

@@ -1,4 +1,4 @@
-class Files {
+const Files {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/files"

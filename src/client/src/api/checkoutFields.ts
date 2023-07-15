@@ -1,4 +1,4 @@
-class CheckoutFields {
+const CheckoutFields {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/settings/checkout/fields"

@@ -1,4 +1,4 @@
-class Currencies {
+const Currencies {
   constructor(client) {
     this.client = client
   }

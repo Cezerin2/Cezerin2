@@ -3,7 +3,7 @@ import OrderDiscounts from "./discounts"
 import OrderItems from "./items"
 import OrderTransactions from "./transactions"
 
-class Orders {
+const Orders {
   client: ApiClient
   resourceUrl: string
   discounts: OrderDiscounts

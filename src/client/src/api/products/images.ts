@@ -1,4 +1,4 @@
-class ProductImages {
+const ProductImages {
   constructor(client) {
     this.client = client
   }

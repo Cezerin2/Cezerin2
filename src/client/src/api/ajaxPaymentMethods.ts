@@ -1,4 +1,4 @@
-class AjaxPaymentMethods {
+const AjaxPaymentMethods {
   constructor(client) {
     this.client = client
   }

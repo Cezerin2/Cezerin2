@@ -1,4 +1,4 @@
-class Tokens {
+const Tokens {
   constructor(client) {
     this.client = client
     this.resourceUrl = "/security/tokens"
