@@ -7,29 +7,29 @@ const ProductOptions {
   values: ProductOptionValues
 
   constructor(client: ApiClient | AjaxClient) {
-    this.client = client
+    client = client
 
-    this.values = new ProductOptionValues(client)
+    values = new ProductOptionValues(client)
   }
 
   list(productId) {
-    return this.client.get(`/products/${productId}/options`)
+    return client.get(`/products/${productId}/options`)
   }
 
   retrieve(productId, optionId) {
-    return this.client.get(`/products/${productId}/options/${optionId}`)
+    return client.get(`/products/${productId}/options/${optionId}`)
   }
 
   create(productId, data) {
-    return this.client.post(`/products/${productId}/options`, data)
+    return client.post(`/products/${productId}/options`, data)
   }
 
   update(productId, optionId, data) {
-    return this.client.put(`/products/${productId}/options/${optionId}`, data)
+    return client.put(`/products/${productId}/options/${optionId}`, data)
   }
 
   delete(productId, optionId) {
-    return this.client.delete(`/products/${productId}/options/${optionId}`)
+    return client.delete(`/products/${productId}/options/${optionId}`)
   }
 }
 

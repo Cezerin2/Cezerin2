@@ -1,14 +1,14 @@
 const AjaxResetPassword {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   retrieve(data) {
-    return this.client.post(`/reset-password`, data)
+    return client.post(`/reset-password`, data)
   }
 
   update(data) {
-    return this.client.put(`/reset-password`, data)
+    return client.put(`/reset-password`, data)
   }
 }
 

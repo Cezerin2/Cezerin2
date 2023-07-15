@@ -1,10 +1,10 @@
 const AjaxShippingMethods {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   list() {
-    return this.client.get("/shipping_methods")
+    return client.get("/shipping_methods")
   }
 }
 

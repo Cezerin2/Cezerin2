@@ -1,22 +1,22 @@
 const ProductImages {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   list(productId) {
-    return this.client.get(`/products/${productId}/images`)
+    return client.get(`/products/${productId}/images`)
   }
 
   update(productId, imageId, data) {
-    return this.client.put(`/products/${productId}/images/${imageId}`, data)
+    return client.put(`/products/${productId}/images/${imageId}`, data)
   }
 
   upload(productId, formData) {
-    return this.client.postFormData(`/products/${productId}/images`, formData)
+    return client.postFormData(`/products/${productId}/images`, formData)
   }
 
   delete(productId, imageId) {
-    return this.client.delete(`/products/${productId}/images/${imageId}`)
+    return client.delete(`/products/${productId}/images/${imageId}`)
   }
 }
 

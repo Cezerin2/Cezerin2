@@ -1,27 +1,27 @@
 const ThemePlaceholders {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/theme/placeholders"
+    client = client
+    resourceUrl = "/theme/placeholders"
   }
 
   list() {
-    return this.client.get(this.resourceUrl)
+    return client.get(resourceUrl)
   }
 
   retrieve(placeholderKey) {
-    return this.client.get(`${this.resourceUrl}/${placeholderKey}`)
+    return client.get(`${resourceUrl}/${placeholderKey}`)
   }
 
   create(data) {
-    return this.client.post(this.resourceUrl, data)
+    return client.post(resourceUrl, data)
   }
 
   update(placeholderKey, data) {
-    return this.client.put(`${this.resourceUrl}/${placeholderKey}`, data)
+    return client.put(`${resourceUrl}/${placeholderKey}`, data)
   }
 
   delete(placeholderKey) {
-    return this.client.delete(`${this.resourceUrl}/${placeholderKey}`)
+    return client.delete(`${resourceUrl}/${placeholderKey}`)
   }
 }
 

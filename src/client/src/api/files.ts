@@ -1,19 +1,19 @@
 const Files {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/files"
+    client = client
+    resourceUrl = "/files"
   }
 
   list(filter) {
-    return this.client.get(this.resourceUrl, filter)
+    return client.get(resourceUrl, filter)
   }
 
   upload(formData) {
-    return this.client.postFormData(this.resourceUrl, formData)
+    return client.postFormData(resourceUrl, formData)
   }
 
   delete(fileName) {
-    return this.client.delete(`${this.resourceUrl}/${fileName}`)
+    return client.delete(`${resourceUrl}/${fileName}`)
   }
 }
 

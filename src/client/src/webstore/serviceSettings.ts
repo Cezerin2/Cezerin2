@@ -4,15 +4,15 @@ const WebStoreServices {
   client: WebStoreClient
 
   constructor(client: WebStoreClient) {
-    this.client = client
+    client = client
   }
 
   retrieve(id: string) {
-    return this.client.get(`/services/${id}/settings`)
+    return client.get(`/services/${id}/settings`)
   }
 
   update(id: string, data) {
-    return this.client.post(`/services/${id}/settings`, data)
+    return client.post(`/services/${id}/settings`, data)
   }
 }
 

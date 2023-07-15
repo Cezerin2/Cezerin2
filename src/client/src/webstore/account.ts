@@ -5,20 +5,20 @@ const WebStoreAccount {
   resourceUrl: string
 
   constructor(client: WebStoreClient) {
-    this.client = client
-    this.resourceUrl = "/account"
+    client = client
+    resourceUrl = "/account"
   }
 
   retrieve() {
-    return this.client.get(this.resourceUrl)
+    return client.get(resourceUrl)
   }
 
   update(data) {
-    return this.client.put(this.resourceUrl, data)
+    return client.put(resourceUrl, data)
   }
 
   updateDeveloper(data) {
-    return this.client.put(`${this.resourceUrl}/developer`, data)
+    return client.put(`${resourceUrl}/developer`, data)
   }
 }
 

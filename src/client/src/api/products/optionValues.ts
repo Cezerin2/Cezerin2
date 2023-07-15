@@ -1,34 +1,34 @@
 const ProductOptionValues {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   list(productId, optionId) {
-    return this.client.get(`/products/${productId}/options/${optionId}/values`)
+    return client.get(`/products/${productId}/options/${optionId}/values`)
   }
 
   retrieve(productId, optionId, valueId) {
-    return this.client.get(
+    return client.get(
       `/products/${productId}/options/${optionId}/values/${valueId}`
     )
   }
 
   create(productId, optionId, data) {
-    return this.client.post(
+    return client.post(
       `/products/${productId}/options/${optionId}/values`,
       data
     )
   }
 
   update(productId, optionId, valueId, data) {
-    return this.client.put(
+    return client.put(
       `/products/${productId}/options/${optionId}/values/${valueId}`,
       data
     )
   }
 
   delete(productId, optionId, valueId) {
-    return this.client.delete(
+    return client.delete(
       `/products/${productId}/options/${optionId}/values/${valueId}`
     )
   }
