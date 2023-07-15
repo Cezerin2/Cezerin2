@@ -1,15 +1,15 @@
 const PaymentGateways {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/payment_gateways"
+    client = client
+    resourceUrl = "/payment_gateways"
   }
 
   retrieve(gatewayName) {
-    return this.client.get(`${this.resourceUrl}/${gatewayName}`)
+    return client.get(`${resourceUrl}/${gatewayName}`)
   }
 
   update(gatewayName, data) {
-    return this.client.put(`${this.resourceUrl}/${gatewayName}`, data)
+    return client.put(`${resourceUrl}/${gatewayName}`, data)
   }
 }
 

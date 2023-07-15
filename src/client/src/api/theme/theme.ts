@@ -10,19 +10,19 @@ const Theme {
   placeholders: ThemePlaceholders
 
   constructor(client: ApiClient) {
-    this.client = client
+    client = client
 
-    this.settings = new ThemeSettings(client)
-    this.assets = new ThemeAssets(client)
-    this.placeholders = new ThemePlaceholders(client)
+    settings = new ThemeSettings(client)
+    assets = new ThemeAssets(client)
+    placeholders = new ThemePlaceholders(client)
   }
 
   export() {
-    return this.client.get("/theme/export")
+    return client.get("/theme/export")
   }
 
   install(formData) {
-    return this.client.postFormData("/theme/install", formData)
+    return client.postFormData("/theme/install", formData)
   }
 }
 

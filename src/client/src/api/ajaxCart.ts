@@ -4,39 +4,39 @@ const AjaxCart {
   client: AjaxClient
 
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   retrieve(cookie?) {
-    return this.client.get(`/cart`, null, cookie)
+    return client.get(`/cart`, null, cookie)
   }
 
   update(data) {
-    return this.client.put(`/cart`, data)
+    return client.put(`/cart`, data)
   }
 
   checkout() {
-    return this.client.put(`/cart/checkout`)
+    return client.put(`/cart/checkout`)
   }
 
   updateBillingAddress(address) {
-    return this.client.put(`/cart/billing_address`, address)
+    return client.put(`/cart/billing_address`, address)
   }
 
   updateShippingAddress(address) {
-    return this.client.put(`/cart/shipping_address`, address)
+    return client.put(`/cart/shipping_address`, address)
   }
 
   addItem(data) {
-    return this.client.post(`/cart/items`, data)
+    return client.post(`/cart/items`, data)
   }
 
   updateItem(id, data) {
-    return this.client.put(`/cart/items/${id}`, data)
+    return client.put(`/cart/items/${id}`, data)
   }
 
   deleteItem(id) {
-    return this.client.delete(`/cart/items/${id}`)
+    return client.delete(`/cart/items/${id}`)
   }
 }
 

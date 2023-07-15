@@ -1,10 +1,10 @@
 const Text {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   list() {
-    return this.client.get("/text")
+    return client.get("/text")
   }
 }
 

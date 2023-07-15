@@ -1,27 +1,27 @@
 const Tokens {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/security/tokens"
+    client = client
+    resourceUrl = "/security/tokens"
   }
 
   list(filter) {
-    return this.client.get(this.resourceUrl, filter)
+    return client.get(resourceUrl, filter)
   }
 
   retrieve(id) {
-    return this.client.get(`${this.resourceUrl}/${id}`)
+    return client.get(`${resourceUrl}/${id}`)
   }
 
   create(data) {
-    return this.client.post(this.resourceUrl, data)
+    return client.post(resourceUrl, data)
   }
 
   update(id, data) {
-    return this.client.put(`${this.resourceUrl}/${id}`, data)
+    return client.put(`${resourceUrl}/${id}`, data)
   }
 
   delete(id) {
-    return this.client.delete(`${this.resourceUrl}/${id}`)
+    return client.delete(`${resourceUrl}/${id}`)
   }
 }
 

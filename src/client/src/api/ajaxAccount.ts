@@ -1,14 +1,14 @@
 const AjaxAccount {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   retrieve(data) {
-    return this.client.post(`/customer-account`, data)
+    return client.post(`/customer-account`, data)
   }
 
   update(data) {
-    return this.client.put(`/customer-account`, data)
+    return client.put(`/customer-account`, data)
   }
 }
 

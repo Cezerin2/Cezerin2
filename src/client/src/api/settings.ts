@@ -1,47 +1,47 @@
 const Settings {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/settings"
+    client = client
+    resourceUrl = "/settings"
   }
 
   retrieve() {
-    return this.client.get(this.resourceUrl)
+    return client.get(resourceUrl)
   }
 
   update(data) {
-    return this.client.put(this.resourceUrl, data)
+    return client.put(resourceUrl, data)
   }
 
   retrieveEmailSettings() {
-    return this.client.get(`${this.resourceUrl}/email`)
+    return client.get(`${resourceUrl}/email`)
   }
 
   updateEmailSettings(data) {
-    return this.client.put(`${this.resourceUrl}/email`, data)
+    return client.put(`${resourceUrl}/email`, data)
   }
 
   retrieveImportSettings() {
-    return this.client.get(`${this.resourceUrl}/import`)
+    return client.get(`${resourceUrl}/import`)
   }
 
   updateImportSettings(data) {
-    return this.client.put(`${this.resourceUrl}/import`, data)
+    return client.put(`${resourceUrl}/import`, data)
   }
 
   retrieveEmailTemplate(name) {
-    return this.client.get(`${this.resourceUrl}/email/templates/${name}`)
+    return client.get(`${resourceUrl}/email/templates/${name}`)
   }
 
   updateEmailTemplate(name, data) {
-    return this.client.put(`${this.resourceUrl}/email/templates/${name}`, data)
+    return client.put(`${resourceUrl}/email/templates/${name}`, data)
   }
 
   uploadLogo(formData) {
-    return this.client.postFormData(`${this.resourceUrl}/logo`, formData)
+    return client.postFormData(`${resourceUrl}/logo`, formData)
   }
 
   deleteLogo() {
-    return this.client.delete(`${this.resourceUrl}/logo`)
+    return client.delete(`${resourceUrl}/logo`)
   }
 }
 

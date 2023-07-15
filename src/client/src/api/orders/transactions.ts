@@ -4,22 +4,22 @@ const OrderTransactions {
   client: ApiClient
 
   constructor(client: ApiClient) {
-    this.client = client
+    client = client
   }
 
   create(orderId: string, data) {
-    return this.client.post(`/orders/${orderId}/transactions`, data)
+    return client.post(`/orders/${orderId}/transactions`, data)
   }
 
   update(orderId: string, transactionId: string, data) {
-    return this.client.put(
+    return client.put(
       `/orders/${orderId}/transactions/${transactionId}`,
       data
     )
   }
 
   delete(orderId: string, transactionId: string) {
-    return this.client.delete(
+    return client.delete(
       `/orders/${orderId}/transactions/${transactionId}`
     )
   }

@@ -1,10 +1,10 @@
 const AjaxPaymentFormSettings {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   retrieve() {
-    return this.client.get("/payment_form_settings")
+    return client.get("/payment_form_settings")
   }
 }
 

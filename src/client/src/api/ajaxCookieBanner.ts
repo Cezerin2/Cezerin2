@@ -1,10 +1,10 @@
 const AjaxCookieBanner {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   retrieve(data) {
-    return this.client.post(`/`, data)
+    return client.post(`/`, data)
   }
 }
 

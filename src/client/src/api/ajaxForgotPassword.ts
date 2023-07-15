@@ -1,14 +1,14 @@
 const AjaxForgotPassword {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   retrieve(data) {
-    return this.client.post(`/forgot-password`, data)
+    return client.post(`/forgot-password`, data)
   }
 
   update(data) {
-    return this.client.put(`/forgot-password`, data)
+    return client.put(`/forgot-password`, data)
   }
 }
 

@@ -11,67 +11,67 @@ const Orders {
   items: OrderItems
 
   constructor(client: ApiClient) {
-    this.client = client
-    this.resourceUrl = "/orders"
+    client = client
+    resourceUrl = "/orders"
 
-    this.discounts = new OrderDiscounts(client)
-    this.transactions = new OrderTransactions(client)
-    this.items = new OrderItems(client)
+    discounts = new OrderDiscounts(client)
+    transactions = new OrderTransactions(client)
+    items = new OrderItems(client)
   }
 
   list(filter) {
-    return this.client.get(this.resourceUrl, filter)
+    return client.get(resourceUrl, filter)
   }
 
   retrieve(orderId: string, filter?) {
-    return this.client.get(`${this.resourceUrl}/${orderId}`, filter)
+    return client.get(`${resourceUrl}/${orderId}`, filter)
   }
 
   create(data) {
-    return this.client.post(this.resourceUrl, data)
+    return client.post(resourceUrl, data)
   }
 
   update(orderId: string, data) {
-    return this.client.put(`${this.resourceUrl}/${orderId}`, data)
+    return client.put(`${resourceUrl}/${orderId}`, data)
   }
 
   delete(orderId: string) {
-    return this.client.delete(`${this.resourceUrl}/${orderId}`)
+    return client.delete(`${resourceUrl}/${orderId}`)
   }
 
   recalculate(orderId: string) {
-    return this.client.put(`${this.resourceUrl}/${orderId}/recalculate`)
+    return client.put(`${resourceUrl}/${orderId}/recalculate`)
   }
 
   checkout(orderId: string) {
-    return this.client.put(`${this.resourceUrl}/${orderId}/checkout`)
+    return client.put(`${resourceUrl}/${orderId}/checkout`)
   }
 
   cancel(orderId: string) {
-    return this.client.put(`${this.resourceUrl}/${orderId}/cancel`)
+    return client.put(`${resourceUrl}/${orderId}/cancel`)
   }
 
   close(orderId: string) {
-    return this.client.put(`${this.resourceUrl}/${orderId}/close`)
+    return client.put(`${resourceUrl}/${orderId}/close`)
   }
 
   updateBillingAddress(orderId: string, address) {
-    return this.client.put(
-      `${this.resourceUrl}/${orderId}/billing_address`,
+    return client.put(
+      `${resourceUrl}/${orderId}/billing_address`,
       address
     )
   }
 
   updateShippingAddress(orderId: string, address) {
-    return this.client.put(
-      `${this.resourceUrl}/${orderId}/shipping_address`,
+    return client.put(
+      `${resourceUrl}/${orderId}/shipping_address`,
       address
     )
   }
 
   getPaymentFormSettings(orderId: string) {
-    return this.client.get(
-      `${this.resourceUrl}/${orderId}/payment_form_settings`
+    return client.get(
+      `${resourceUrl}/${orderId}/payment_form_settings`
     )
   }
 }

@@ -4,19 +4,19 @@ const ThemeSettings {
   client: ApiClient
 
   constructor(client: ApiClient) {
-    this.client = client
+    client = client
   }
 
   retrieve() {
-    return this.client.get("/theme/settings")
+    return client.get("/theme/settings")
   }
 
   update(data) {
-    return this.client.put("/theme/settings", data)
+    return client.put("/theme/settings", data)
   }
 
   retrieveSchema() {
-    return this.client.get("/theme/settings_schema")
+    return client.get("/theme/settings_schema")
   }
 }
 
