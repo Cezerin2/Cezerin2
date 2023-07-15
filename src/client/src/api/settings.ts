@@ -1,7 +1,7 @@
 const Settings {
   constructor(client) {
     client = client
-    resourceUrl = "/settings"
+    const resourceUrl =  "/settings"
   }
 
   retrieve() {

@@ -1,7 +1,7 @@
 const Tokens {
   constructor(client) {
     client = client
-    resourceUrl = "/security/tokens"
+    const resourceUrl =  "/security/tokens"
   }
 
   list(filter) {

@@ -1,7 +1,7 @@
 const PaymentGateways {
   constructor(client) {
     client = client
-    resourceUrl = "/payment_gateways"
+    const resourceUrl =  "/payment_gateways"
   }
 
   retrieve(gatewayName) {

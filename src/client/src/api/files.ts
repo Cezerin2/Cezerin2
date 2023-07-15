@@ -1,7 +1,7 @@
 const Files {
   constructor(client) {
     client = client
-    resourceUrl = "/files"
+    const resourceUrl =  "/files"
   }
 
   list(filter) {

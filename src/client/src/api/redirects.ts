@@ -1,7 +1,7 @@
 const Redirects {
   constructor(client) {
     client = client
-    resourceUrl = "/redirects"
+    const resourceUrl =  "/redirects"
   }
 
   list() {
