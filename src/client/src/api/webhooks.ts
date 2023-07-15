@@ -5,28 +5,28 @@ const Webhooks {
   resourceUrl: string
 
   constructor(client: ApiClient) {
-    this.client = client
-    this.resourceUrl = "/webhooks"
+    client = client
+    resourceUrl = "/webhooks"
   }
 
   list() {
-    return this.client.get(this.resourceUrl)
+    return client.get(resourceUrl)
   }
 
   retrieve(id: string) {
-    return this.client.get(`${this.resourceUrl}/${id}`)
+    return client.get(`${resourceUrl}/${id}`)
   }
 
   create(data) {
-    return this.client.post(`${this.resourceUrl}`, data)
+    return client.post(`${resourceUrl}`, data)
   }
 
   update(id: string, data) {
-    return this.client.put(`${this.resourceUrl}/${id}`, data)
+    return client.put(`${resourceUrl}/${id}`, data)
   }
 
   delete(id: string) {
-    return this.client.delete(`${this.resourceUrl}/${id}`)
+    return client.delete(`${resourceUrl}/${id}`)
   }
 }
 

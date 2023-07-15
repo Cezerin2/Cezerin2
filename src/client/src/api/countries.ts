@@ -1,10 +1,10 @@
 const Countries {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   list() {
-    return this.client.get("/countries")
+    return client.get("/countries")
   }
 }
 

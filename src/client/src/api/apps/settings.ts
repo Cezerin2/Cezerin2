@@ -1,15 +1,15 @@
 const AppSettings {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/apps"
+    client = client
+    resourceUrl = "/apps"
   }
 
   retrieve(appKey) {
-    return this.client.get(`${this.resourceUrl}/${appKey}/settings`)
+    return client.get(`${resourceUrl}/${appKey}/settings`)
   }
 
   update(appKey, data) {
-    return this.client.put(`${this.resourceUrl}/${appKey}/settings`, data)
+    return client.put(`${resourceUrl}/${appKey}/settings`, data)
   }
 }
 

@@ -4,11 +4,11 @@ const WebStoreServices {
   client: WebStoreClient
 
   constructor(client: WebStoreClient) {
-    this.client = client
+    client = client
   }
 
   list(serviceId: string) {
-    return this.client.get(`/services/${serviceId}/logs`)
+    return client.get(`/services/${serviceId}/logs`)
   }
 }
 

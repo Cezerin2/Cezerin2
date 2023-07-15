@@ -1,10 +1,10 @@
 const AjaxPaymentMethods {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   list() {
-    return this.client.get("/payment_methods")
+    return client.get("/payment_methods")
   }
 }
 

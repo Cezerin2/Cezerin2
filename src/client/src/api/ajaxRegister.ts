@@ -1,10 +1,10 @@
 const AjaxRegister {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   retrieve(data) {
-    return this.client.post(`/register`, data)
+    return client.post(`/register`, data)
   }
 }
 

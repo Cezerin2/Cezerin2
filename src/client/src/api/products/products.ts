@@ -12,40 +12,40 @@ const Products {
   images: ProductImages
 
   constructor(client: ApiClient | AjaxClient) {
-    this.client = client
-    this.resourceUrl = "/products"
+    client = client
+    resourceUrl = "/products"
 
-    this.options = new ProductOptions(client)
-    this.variants = new ProductVariants(client)
-    this.images = new ProductImages(client)
+    options = new ProductOptions(client)
+    variants = new ProductVariants(client)
+    images = new ProductImages(client)
   }
 
   list(filter) {
-    return this.client.get(this.resourceUrl, filter)
+    return client.get(resourceUrl, filter)
   }
 
   retrieve(id, filter?) {
-    return this.client.get(`${this.resourceUrl}/${id}`, filter)
+    return client.get(`${resourceUrl}/${id}`, filter)
   }
 
   create(data) {
-    return this.client.post(this.resourceUrl, data)
+    return client.post(resourceUrl, data)
   }
 
   update(id, data) {
-    return this.client.put(`${this.resourceUrl}/${id}`, data)
+    return client.put(`${resourceUrl}/${id}`, data)
   }
 
   delete(id) {
-    return this.client.delete(`${this.resourceUrl}/${id}`)
+    return client.delete(`${resourceUrl}/${id}`)
   }
 
   skuExists(productId, sku) {
-    return this.client.get(`${this.resourceUrl}/${productId}/sku`, { sku })
+    return client.get(`${resourceUrl}/${productId}/sku`, { sku })
   }
 
   slugExists(productId, slug) {
-    return this.client.get(`${this.resourceUrl}/${productId}/slug`, { slug })
+    return client.get(`${resourceUrl}/${productId}/slug`, { slug })
   }
 }
 

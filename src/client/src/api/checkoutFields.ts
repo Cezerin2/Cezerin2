@@ -1,19 +1,19 @@
 const CheckoutFields {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/settings/checkout/fields"
+    client = client
+    resourceUrl = "/settings/checkout/fields"
   }
 
   list() {
-    return this.client.get(this.resourceUrl)
+    return client.get(resourceUrl)
   }
 
   retrieve(name) {
-    return this.client.get(`${this.resourceUrl}/${name}`)
+    return client.get(`${resourceUrl}/${name}`)
   }
 
   update(name, data) {
-    return this.client.put(`${this.resourceUrl}/${name}`, data)
+    return client.put(`${resourceUrl}/${name}`, data)
   }
 }
 

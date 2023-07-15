@@ -1,15 +1,15 @@
 const Sitemap {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/sitemap"
+    client = client
+    resourceUrl = "/sitemap"
   }
 
   list(filter) {
-    return this.client.get(this.resourceUrl, filter)
+    return client.get(resourceUrl, filter)
   }
 
   retrieve(filter) {
-    return this.client.get(this.resourceUrl, filter)
+    return client.get(resourceUrl, filter)
   }
 }
 

@@ -1,55 +1,55 @@
 const Customers {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/customers"
+    client = client
+    resourceUrl = "/customers"
   }
 
   list(filter?) {
-    return this.client.get(this.resourceUrl, filter)
+    return client.get(resourceUrl, filter)
   }
 
   retrieve(id, filter?) {
-    return this.client.get(`${this.resourceUrl}/${id}`, filter)
+    return client.get(`${resourceUrl}/${id}`, filter)
   }
 
   create(data) {
-    return this.client.post(this.resourceUrl, data)
+    return client.post(resourceUrl, data)
   }
 
   update(id, data) {
-    return this.client.put(`${this.resourceUrl}/${id}`, data)
+    return client.put(`${resourceUrl}/${id}`, data)
   }
 
   delete(id) {
-    return this.client.delete(`${this.resourceUrl}/${id}`)
+    return client.delete(`${resourceUrl}/${id}`)
   }
 
   createAddress(customerId, data) {
-    return this.client.post(`${this.resourceUrl}/${customerId}`, data)
+    return client.post(`${resourceUrl}/${customerId}`, data)
   }
 
   updateAddress(customerId, addressId, data) {
-    return this.client.put(
-      `${this.resourceUrl}/${customerId}/addresses/${addressId}`,
+    return client.put(
+      `${resourceUrl}/${customerId}/addresses/${addressId}`,
       data
     )
   }
 
   deleteAddress(customerId, addressId) {
-    return this.client.delete(
-      `${this.resourceUrl}/${customerId}/addresses/${addressId}`
+    return client.delete(
+      `${resourceUrl}/${customerId}/addresses/${addressId}`
     )
   }
 
   setDefaultBillingAddress(customerId, addressId) {
-    return this.client.post(
-      `${this.resourceUrl}/${customerId}/addresses/${addressId}/default_billing`
+    return client.post(
+      `${resourceUrl}/${customerId}/addresses/${addressId}/default_billing`
     )
   }
 
   setDefaultShippingAddress(customerId, addressId) {
-    return this.client.post(
-      `${this.resourceUrl}/${customerId}/addresses/${addressId}/default_shipping`
+    return client.post(
+      `${resourceUrl}/${customerId}/addresses/${addressId}/default_shipping`
     )
   }
 }

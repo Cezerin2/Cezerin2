@@ -1,10 +1,10 @@
 const AjaxLogin {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   retrieve(data) {
-    return this.client.post(`/login`, data)
+    return client.post(`/login`, data)
   }
 }
 

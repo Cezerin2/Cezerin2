@@ -1,15 +1,15 @@
 const ThemeAssets {
   constructor(client) {
-    this.client = client
-    this.resourceUrl = "/theme/assets"
+    client = client
+    resourceUrl = "/theme/assets"
   }
 
   uploadFile(formData) {
-    return this.client.postFormData(this.resourceUrl, formData)
+    return client.postFormData(resourceUrl, formData)
   }
 
   deleteFile(fileName) {
-    return this.client.delete(`${this.resourceUrl}/${fileName}`)
+    return client.delete(`${resourceUrl}/${fileName}`)
   }
 }
 

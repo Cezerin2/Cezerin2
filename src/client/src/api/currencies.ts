@@ -1,10 +1,10 @@
 const Currencies {
   constructor(client) {
-    this.client = client
+    client = client
   }
 
   list() {
-    return this.client.get("/currencies")
+    return client.get("/currencies")
   }
 }
 

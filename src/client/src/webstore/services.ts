@@ -11,28 +11,28 @@ const WebStoreServices {
   logs: WebStoreServiceLogs
 
   constructor(client: WebStoreClient) {
-    this.client = client
-    this.resourceUrl = "/services"
+    client = client
+    resourceUrl = "/services"
 
-    this.settings = new WebStoreServiceSettings(client)
-    this.actions = new WebStoreServiceActions(client)
-    this.logs = new WebStoreServiceLogs(client)
+    settings = new WebStoreServiceSettings(client)
+    actions = new WebStoreServiceActions(client)
+    logs = new WebStoreServiceLogs(client)
   }
 
   list(filter) {
-    return this.client.get(this.resourceUrl, filter)
+    return client.get(resourceUrl, filter)
   }
 
   retrieve(id: string) {
-    return this.client.get(`${this.resourceUrl}/${id}`)
+    return client.get(`${resourceUrl}/${id}`)
   }
 
   enable(id: string) {
-    return this.client.post(`${this.resourceUrl}/${id}/enable`)
+    return client.post(`${resourceUrl}/${id}/enable`)
   }
 
   disable(id: string) {
-    return this.client.post(`${this.resourceUrl}/${id}/disable`)
+    return client.post(`${resourceUrl}/${id}/disable`)
   }
 }
 
