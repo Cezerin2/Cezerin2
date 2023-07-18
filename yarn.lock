@@ -10617,7 +10617,7 @@ __metadata:
     mini-css-extract-plugin: ^2.6.1
     moment: ^2.29.4
     mongodb: ^3.1.4
-    mongoose: ^7.2.2
+    mongoose: ^7.3.4
     mui-rff: ^6.1.2
     nodemailer: ^6.9.3
     postcss-loader: ^7.3.2
@@ -20455,9 +20455,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:5.5.0":
-  version: 5.5.0
-  resolution: "mongodb@npm:5.5.0"
+"mongodb@npm:5.6.0":
+  version: 5.6.0
+  resolution: "mongodb@npm:5.6.0"
   dependencies:
     bson: ^5.3.0
     mongodb-connection-string-url: ^2.6.0
@@ -20477,7 +20477,7 @@ __metadata:
       optional: true
     snappy:
       optional: true
-  checksum: fafb75195d605767cf7269aa82a1f4704c3357240d0fef7296d55e83eab592158844988af3b94165769459ff1b2a0af2fc49bc44c9bbabd10d6ddc319668a0e0
+  checksum: 5b1594b24795b2a7824095a917ede2fc37aaef31e60320c833ee9b11cc2f3de9dd87d5afacea2e41eb5eb579ac9780f5bc4b0bb11d3b1be78e8bf0014528192a
   languageName: node
   linkType: hard
 
@@ -20511,18 +20511,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:^7.2.2":
-  version: 7.2.2
-  resolution: "mongoose@npm:7.2.2"
+"mongoose@npm:^7.3.4":
+  version: 7.3.4
+  resolution: "mongoose@npm:7.3.4"
   dependencies:
     bson: ^5.3.0
     kareem: 2.5.1
-    mongodb: 5.5.0
+    mongodb: 5.6.0
     mpath: 0.9.0
     mquery: 5.0.0
     ms: 2.1.3
     sift: 16.0.1
-  checksum: 8111a126f44bc119866b6d905311001a66eaa0dd309ec533752abe7302752f7245efe8a3e14655613b297aefa06d8849bbca396f29ffbcfca502f3d24fbad056
+  checksum: 1ffdb8449c7e151c1057679070b00072fb6f676ffcde5e33ff4e180c672a1ba4e7447c02bc0985e32ae25f795744a67974ded06df5a6124bd2dd0c2785974f5c
   languageName: node
   linkType: hard
 
@@ -26565,7 +26565,7 @@ __metadata:
     lru-cache: ^7.14.1
     moment: ^2.29.4
     mongodb: ^3.1.4
-    mongoose: ^7.2.2
+    mongoose: ^7.3.4
     nodemailer: ^6.9.3
     query-string: ^7.1.1
     sharp: ^0.32.1
@@ -27420,7 +27420,7 @@ __metadata:
     mini-css-extract-plugin: ^2.6.1
     moment: ^2.29.4
     mongodb: ^3.1.4
-    mongoose: ^7.2.2
+    mongoose: ^7.3.4
     mui-rff: ^6.1.2
     nodemailer: ^6.9.3
     postcss-loader: ^7.3.2
