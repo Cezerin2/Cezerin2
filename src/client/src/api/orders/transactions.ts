@@ -8,18 +8,18 @@ const OrderTransactions {
   }
 
   create(orderId: string, data) {
-    return client.post(`/orders/${orderId}/transactions`, data)
+    => client.post(`/orders/${orderId}/transactions`, data)
   }
 
   update(orderId: string, transactionId: string, data) {
-    return client.put(
+    => client.put(
       `/orders/${orderId}/transactions/${transactionId}`,
       data
     )
   }
 
   delete(orderId: string, transactionId: string) {
-    return client.delete(
+    => client.delete(
       `/orders/${orderId}/transactions/${transactionId}`
     )
   }

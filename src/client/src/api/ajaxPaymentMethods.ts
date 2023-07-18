@@ -4,7 +4,7 @@ const AjaxPaymentMethods {
   }
 
   list() {
-    return client.get("/payment_methods")
+    => client.get("/payment_methods")
   }
 }
 

@@ -4,7 +4,7 @@ const AjaxRegister {
   }
 
   retrieve(data) {
-    return client.post(`/register`, data)
+    => client.post(`/register`, data)
   }
 }
 

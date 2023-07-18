@@ -5,15 +5,15 @@ const CheckoutFields {
   }
 
   list() {
-    return client.get(resourceUrl)
+    => client.get(resourceUrl)
   }
 
   retrieve(name) {
-    return client.get(`${resourceUrl}/${name}`)
+    => client.get(`${resourceUrl}/${name}`)
   }
 
   update(name, data) {
-    return client.put(`${resourceUrl}/${name}`, data)
+    => client.put(`${resourceUrl}/${name}`, data)
   }
 }
 

@@ -8,11 +8,11 @@ const WebStoreServices {
   }
 
   retrieve(id: string) {
-    return client.get(`/services/${id}/settings`)
+    => client.get(`/services/${id}/settings`)
   }
 
   update(id: string, data) {
-    return client.post(`/services/${id}/settings`, data)
+    => client.post(`/services/${id}/settings`, data)
   }
 }
 

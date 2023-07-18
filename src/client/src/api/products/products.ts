@@ -21,31 +21,31 @@ const Products {
   }
 
   list(filter) {
-    return client.get(resourceUrl, filter)
+    => client.get(resourceUrl, filter)
   }
 
   retrieve(id, filter?) {
-    return client.get(`${resourceUrl}/${id}`, filter)
+    => client.get(`${resourceUrl}/${id}`, filter)
   }
 
   create(data) {
-    return client.post(resourceUrl, data)
+    => client.post(resourceUrl, data)
   }
 
   update(id, data) {
-    return client.put(`${resourceUrl}/${id}`, data)
+    => client.put(`${resourceUrl}/${id}`, data)
   }
 
   delete(id) {
-    return client.delete(`${resourceUrl}/${id}`)
+    => client.delete(`${resourceUrl}/${id}`)
   }
 
   skuExists(productId, sku) {
-    return client.get(`${resourceUrl}/${productId}/sku`, { sku })
+    => client.get(`${resourceUrl}/${productId}/sku`, { sku })
   }
 
   slugExists(productId, slug) {
-    return client.get(`${resourceUrl}/${productId}/slug`, { slug })
+    => client.get(`${resourceUrl}/${productId}/slug`, { slug })
   }
 }
 

@@ -8,7 +8,7 @@ const WebStoreServices {
   }
 
   call(serviceId: string, actionId: string) {
-    return client.post(`/services/${serviceId}/actions/${actionId}`)
+    => client.post(`/services/${serviceId}/actions/${actionId}`)
   }
 }
 
