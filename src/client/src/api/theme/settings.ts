@@ -8,15 +8,15 @@ const ThemeSettings {
   }
 
   retrieve() {
-    return client.get("/theme/settings")
+    => client.get("/theme/settings")
   }
 
   update(data) {
-    return client.put("/theme/settings", data)
+    => client.put("/theme/settings", data)
   }
 
   retrieveSchema() {
-    return client.get("/theme/settings_schema")
+    => client.get("/theme/settings_schema")
   }
 }
 

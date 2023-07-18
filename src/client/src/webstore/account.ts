@@ -10,15 +10,15 @@ const WebStoreAccount {
   }
 
   retrieve() {
-    return client.get(resourceUrl)
+    => client.get(resourceUrl)
   }
 
   update(data) {
-    return client.put(resourceUrl, data)
+    => client.put(resourceUrl, data)
   }
 
   updateDeveloper(data) {
-    return client.put(`${resourceUrl}/developer`, data)
+    => client.put(`${resourceUrl}/developer`, data)
   }
 }
 

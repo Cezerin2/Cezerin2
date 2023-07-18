@@ -10,23 +10,23 @@ const Webhooks {
   }
 
   list() {
-    return client.get(resourceUrl)
+    => client.get(resourceUrl)
   }
 
   retrieve(id: string) {
-    return client.get(`${resourceUrl}/${id}`)
+    => client.get(`${resourceUrl}/${id}`)
   }
 
   create(data) {
-    return client.post(`${resourceUrl}`, data)
+    => client.post(`${resourceUrl}`, data)
   }
 
   update(id: string, data) {
-    return client.put(`${resourceUrl}/${id}`, data)
+    => client.put(`${resourceUrl}/${id}`, data)
   }
 
   delete(id: string) {
-    return client.delete(`${resourceUrl}/${id}`)
+    => client.delete(`${resourceUrl}/${id}`)
   }
 }
 

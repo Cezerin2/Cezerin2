@@ -18,11 +18,11 @@ const Theme {
   }
 
   export() {
-    return client.get("/theme/export")
+    => client.get("/theme/export")
   }
 
   install(formData) {
-    return client.postFormData("/theme/install", formData)
+    => client.postFormData("/theme/install", formData)
   }
 }
 

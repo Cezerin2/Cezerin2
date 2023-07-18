@@ -4,7 +4,7 @@ const AjaxShippingMethods {
   }
 
   list() {
-    return client.get("/shipping_methods")
+    => client.get("/shipping_methods")
   }
 }
 

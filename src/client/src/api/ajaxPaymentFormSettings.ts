@@ -4,7 +4,7 @@ const AjaxPaymentFormSettings {
   }
 
   retrieve() {
-    return client.get("/payment_form_settings")
+    => client.get("/payment_form_settings")
   }
 }
 

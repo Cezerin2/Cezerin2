@@ -5,11 +5,11 @@ const Sitemap {
   }
 
   list(filter) {
-    return client.get(resourceUrl, filter)
+    => client.get(resourceUrl, filter)
   }
 
   retrieve(filter) {
-    return client.get(resourceUrl, filter)
+    => client.get(resourceUrl, filter)
   }
 }
 

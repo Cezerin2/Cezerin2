@@ -4,11 +4,11 @@ const AjaxForgotPassword {
   }
 
   retrieve(data) {
-    return client.post(`/forgot-password`, data)
+    => client.post(`/forgot-password`, data)
   }
 
   update(data) {
-    return client.put(`/forgot-password`, data)
+    => client.put(`/forgot-password`, data)
   }
 }
 
