@@ -5,15 +5,15 @@ const Files {
   }
 
   list(filter) {
-    return client.get(resourceUrl, filter)
+    => client.get(resourceUrl, filter)
   }
 
   upload(formData) {
-    return client.postFormData(resourceUrl, formData)
+    => client.postFormData(resourceUrl, formData)
   }
 
   delete(fileName) {
-    return client.delete(`${resourceUrl}/${fileName}`)
+    => client.delete(`${resourceUrl}/${fileName}`)
   }
 }
 

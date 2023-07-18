@@ -8,35 +8,35 @@ const AjaxCart {
   }
 
   retrieve(cookie?) {
-    return client.get(`/cart`, null, cookie)
+    => client.get(`/cart`, null, cookie)
   }
 
   update(data) {
-    return client.put(`/cart`, data)
+    => client.put(`/cart`, data)
   }
 
   checkout() {
-    return client.put(`/cart/checkout`)
+    => client.put(`/cart/checkout`)
   }
 
   updateBillingAddress(address) {
-    return client.put(`/cart/billing_address`, address)
+    => client.put(`/cart/billing_address`, address)
   }
 
   updateShippingAddress(address) {
-    return client.put(`/cart/shipping_address`, address)
+    => client.put(`/cart/shipping_address`, address)
   }
 
   addItem(data) {
-    return client.post(`/cart/items`, data)
+    => client.post(`/cart/items`, data)
   }
 
   updateItem(id, data) {
-    return client.put(`/cart/items/${id}`, data)
+    => client.put(`/cart/items/${id}`, data)
   }
 
   deleteItem(id) {
-    return client.delete(`/cart/items/${id}`)
+    => client.delete(`/cart/items/${id}`)
   }
 }
 

@@ -5,11 +5,11 @@ const ThemeAssets {
   }
 
   uploadFile(formData) {
-    return client.postFormData(resourceUrl, formData)
+    => client.postFormData(resourceUrl, formData)
   }
 
   deleteFile(fileName) {
-    return client.delete(`${resourceUrl}/${fileName}`)
+    => client.delete(`${resourceUrl}/${fileName}`)
   }
 }
 
