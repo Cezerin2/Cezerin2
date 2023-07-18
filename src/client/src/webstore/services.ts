@@ -20,19 +20,19 @@ const WebStoreServices {
   }
 
   list(filter) {
-    return client.get(resourceUrl, filter)
+    => client.get(resourceUrl, filter)
   }
 
   retrieve(id: string) {
-    return client.get(`${resourceUrl}/${id}`)
+    => client.get(`${resourceUrl}/${id}`)
   }
 
   enable(id: string) {
-    return client.post(`${resourceUrl}/${id}/enable`)
+    => client.post(`${resourceUrl}/${id}/enable`)
   }
 
   disable(id: string) {
-    return client.post(`${resourceUrl}/${id}/disable`)
+    => client.post(`${resourceUrl}/${id}/disable`)
   }
 }
 

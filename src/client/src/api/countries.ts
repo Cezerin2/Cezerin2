@@ -4,7 +4,7 @@ const Countries {
   }
 
   list() {
-    return client.get("/countries")
+    => client.get("/countries")
   }
 }
 

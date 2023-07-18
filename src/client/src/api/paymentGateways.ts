@@ -5,11 +5,11 @@ const PaymentGateways {
   }
 
   retrieve(gatewayName) {
-    return client.get(`${resourceUrl}/${gatewayName}`)
+    => client.get(`${resourceUrl}/${gatewayName}`)
   }
 
   update(gatewayName, data) {
-    return client.put(`${resourceUrl}/${gatewayName}`, data)
+    => client.put(`${resourceUrl}/${gatewayName}`, data)
   }
 }
 

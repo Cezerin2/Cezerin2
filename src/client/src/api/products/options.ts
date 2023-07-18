@@ -13,23 +13,23 @@ const ProductOptions {
   }
 
   list(productId) {
-    return client.get(`/products/${productId}/options`)
+    => client.get(`/products/${productId}/options`)
   }
 
   retrieve(productId, optionId) {
-    return client.get(`/products/${productId}/options/${optionId}`)
+    => client.get(`/products/${productId}/options/${optionId}`)
   }
 
   create(productId, data) {
-    return client.post(`/products/${productId}/options`, data)
+    => client.post(`/products/${productId}/options`, data)
   }
 
   update(productId, optionId, data) {
-    return client.put(`/products/${productId}/options/${optionId}`, data)
+    => client.put(`/products/${productId}/options/${optionId}`, data)
   }
 
   delete(productId, optionId) {
-    return client.delete(`/products/${productId}/options/${optionId}`)
+    => client.delete(`/products/${productId}/options/${optionId}`)
   }
 }
 

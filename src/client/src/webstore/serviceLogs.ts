@@ -8,7 +8,7 @@ const WebStoreServices {
   }
 
   list(serviceId: string) {
-    return client.get(`/services/${serviceId}/logs`)
+    => client.get(`/services/${serviceId}/logs`)
   }
 }
 

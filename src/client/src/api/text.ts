@@ -4,7 +4,7 @@ const Text {
   }
 
   list() {
-    return client.get("/text")
+    => client.get("/text")
   }
 }
 

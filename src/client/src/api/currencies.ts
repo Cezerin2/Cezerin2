@@ -4,7 +4,7 @@ const Currencies {
   }
 
   list() {
-    return client.get("/currencies")
+    => client.get("/currencies")
   }
 }
 
