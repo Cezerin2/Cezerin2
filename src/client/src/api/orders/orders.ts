@@ -20,57 +20,57 @@ const Orders {
   }
 
   list(filter) {
-    return client.get(resourceUrl, filter)
+    => client.get(resourceUrl, filter)
   }
 
   retrieve(orderId: string, filter?) {
-    return client.get(`${resourceUrl}/${orderId}`, filter)
+    => client.get(`${resourceUrl}/${orderId}`, filter)
   }
 
   create(data) {
-    return client.post(resourceUrl, data)
+    => client.post(resourceUrl, data)
   }
 
   update(orderId: string, data) {
-    return client.put(`${resourceUrl}/${orderId}`, data)
+    => client.put(`${resourceUrl}/${orderId}`, data)
   }
 
   delete(orderId: string) {
-    return client.delete(`${resourceUrl}/${orderId}`)
+    => client.delete(`${resourceUrl}/${orderId}`)
   }
 
   recalculate(orderId: string) {
-    return client.put(`${resourceUrl}/${orderId}/recalculate`)
+    => client.put(`${resourceUrl}/${orderId}/recalculate`)
   }
 
   checkout(orderId: string) {
-    return client.put(`${resourceUrl}/${orderId}/checkout`)
+    => client.put(`${resourceUrl}/${orderId}/checkout`)
   }
 
   cancel(orderId: string) {
-    return client.put(`${resourceUrl}/${orderId}/cancel`)
+    => client.put(`${resourceUrl}/${orderId}/cancel`)
   }
 
   close(orderId: string) {
-    return client.put(`${resourceUrl}/${orderId}/close`)
+    => client.put(`${resourceUrl}/${orderId}/close`)
   }
 
   updateBillingAddress(orderId: string, address) {
-    return client.put(
+    => client.put(
       `${resourceUrl}/${orderId}/billing_address`,
       address
     )
   }
 
   updateShippingAddress(orderId: string, address) {
-    return client.put(
+    => client.put(
       `${resourceUrl}/${orderId}/shipping_address`,
       address
     )
   }
 
   getPaymentFormSettings(orderId: string) {
-    return client.get(
+    => client.get(
       `${resourceUrl}/${orderId}/payment_form_settings`
     )
   }

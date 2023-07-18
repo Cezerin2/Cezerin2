@@ -4,31 +4,31 @@ const ProductOptionValues {
   }
 
   list(productId, optionId) {
-    return client.get(`/products/${productId}/options/${optionId}/values`)
+    => client.get(`/products/${productId}/options/${optionId}/values`)
   }
 
   retrieve(productId, optionId, valueId) {
-    return client.get(
+    => client.get(
       `/products/${productId}/options/${optionId}/values/${valueId}`
     )
   }
 
   create(productId, optionId, data) {
-    return client.post(
+    => client.post(
       `/products/${productId}/options/${optionId}/values`,
       data
     )
   }
 
   update(productId, optionId, valueId, data) {
-    return client.put(
+    => client.put(
       `/products/${productId}/options/${optionId}/values/${valueId}`,
       data
     )
   }
 
   delete(productId, optionId, valueId) {
-    return client.delete(
+    => client.delete(
       `/products/${productId}/options/${optionId}/values/${valueId}`
     )
   }

@@ -4,23 +4,23 @@ const ProductVariants {
   }
 
   list(productId) {
-    return client.get(`/products/${productId}/variants`)
+    => client.get(`/products/${productId}/variants`)
   }
 
   create(productId, data) {
-    return client.post(`/products/${productId}/variants`, data)
+    => client.post(`/products/${productId}/variants`, data)
   }
 
   update(productId, variantId, data) {
-    return client.put(`/products/${productId}/variants/${variantId}`, data)
+    => client.put(`/products/${productId}/variants/${variantId}`, data)
   }
 
   delete(productId, variantId) {
-    return client.delete(`/products/${productId}/variants/${variantId}`)
+    => client.delete(`/products/${productId}/variants/${variantId}`)
   }
 
   setOption(productId, variantId, data) {
-    return client.put(
+    => client.put(
       `/products/${productId}/variants/${variantId}/options`,
       data
     )

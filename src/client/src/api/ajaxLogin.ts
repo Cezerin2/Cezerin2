@@ -4,7 +4,7 @@ const AjaxLogin {
   }
 
   retrieve(data) {
-    return client.post(`/login`, data)
+    => client.post(`/login`, data)
   }
 }
 

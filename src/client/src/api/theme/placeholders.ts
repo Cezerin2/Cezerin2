@@ -5,23 +5,23 @@ const ThemePlaceholders {
   }
 
   list() {
-    return client.get(resourceUrl)
+    => client.get(resourceUrl)
   }
 
   retrieve(placeholderKey) {
-    return client.get(`${resourceUrl}/${placeholderKey}`)
+    => client.get(`${resourceUrl}/${placeholderKey}`)
   }
 
   create(data) {
-    return client.post(resourceUrl, data)
+    => client.post(resourceUrl, data)
   }
 
   update(placeholderKey, data) {
-    return client.put(`${resourceUrl}/${placeholderKey}`, data)
+    => client.put(`${resourceUrl}/${placeholderKey}`, data)
   }
 
   delete(placeholderKey) {
-    return client.delete(`${resourceUrl}/${placeholderKey}`)
+    => client.delete(`${resourceUrl}/${placeholderKey}`)
   }
 }
 
