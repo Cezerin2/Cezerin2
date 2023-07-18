@@ -12,7 +12,7 @@ const WebStoreServices {
 
   constructor(client: WebStoreClient) {
     client = client
-    resourceUrl = "/services"
+    const resourceUrl =  "/services"
 
     settings = new WebStoreServiceSettings(client)
     actions = new WebStoreServiceActions(client)

@@ -1,7 +1,7 @@
 const Sitemap {
   constructor(client) {
     client = client
-    resourceUrl = "/sitemap"
+    const resourceUrl =  "/sitemap"
   }
 
   list(filter) {

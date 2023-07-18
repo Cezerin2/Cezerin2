@@ -1,7 +1,7 @@
 const CheckoutFields {
   constructor(client) {
     client = client
-    resourceUrl = "/settings/checkout/fields"
+    const resourceUrl =  "/settings/checkout/fields"
   }
 
   list() {

@@ -1,7 +1,7 @@
 const CustomerGroups {
   constructor(client) {
     client = client
-    resourceUrl = "/customer_groups"
+    const resourceUrl =  "/customer_groups"
   }
 
   list(filter) {

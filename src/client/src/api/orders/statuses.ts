@@ -1,7 +1,7 @@
 const OrderStatuses {
   constructor(client) {
     client = client
-    resourceUrl = "/order_statuses"
+    const resourceUrl =  "/order_statuses"
   }
 
   list(filter) {

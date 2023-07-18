@@ -1,7 +1,7 @@
 const ProductCategories {
   constructor(client) {
     client = client
-    resourceUrl = "/product_categories"
+    const resourceUrl =  "/product_categories"
   }
 
   list(filter) {

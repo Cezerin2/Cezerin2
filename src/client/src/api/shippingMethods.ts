@@ -1,7 +1,7 @@
 const ShippingMethods {
   constructor(client) {
     client = client
-    resourceUrl = "/shipping_methods"
+    const resourceUrl =  "/shipping_methods"
   }
 
   list(filter) {

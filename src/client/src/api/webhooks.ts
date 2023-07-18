@@ -6,7 +6,7 @@ const Webhooks {
 
   constructor(client: ApiClient) {
     client = client
-    resourceUrl = "/webhooks"
+    const resourceUrl =  "/webhooks"
   }
 
   list() {

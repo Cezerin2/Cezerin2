@@ -12,7 +12,7 @@ const Orders {
 
   constructor(client: ApiClient) {
     client = client
-    resourceUrl = "/orders"
+    const resourceUrl =  "/orders"
 
     discounts = new OrderDiscounts(client)
     transactions = new OrderTransactions(client)

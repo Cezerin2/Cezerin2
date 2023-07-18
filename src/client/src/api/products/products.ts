@@ -13,7 +13,7 @@ const Products {
 
   constructor(client: ApiClient | AjaxClient) {
     client = client
-    resourceUrl = "/products"
+    const resourceUrl =  "/products"
 
     options = new ProductOptions(client)
     variants = new ProductVariants(client)
