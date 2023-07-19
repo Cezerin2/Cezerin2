@@ -10146,10 +10146,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^5.3.0":
-  version: 5.3.0
-  resolution: "bson@npm:5.3.0"
-  checksum: c1e57630fea6b82ad8bc0fb83fd8f16a2620a836ab69f6b9433250cd19704c0c8995681a3bfab9f967eae30512f0c8ee921d42ace4c1781726600c4a367593cf
+"bson@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "bson@npm:5.4.0"
+  checksum: 1c07e3d09f139d414bd226bf7f4e9aaa7a726e0c9718c55b53bb23ffa2805cac8b66e4fa46b424c73a35c6e292ed5f7432df5c76ea5d08052642b2ac9e0399e3
   languageName: node
   linkType: hard
 
@@ -10617,7 +10617,7 @@ __metadata:
     mini-css-extract-plugin: ^2.6.1
     moment: ^2.29.4
     mongodb: ^3.1.4
-    mongoose: ^7.2.2
+    mongoose: ^7.4.0
     mui-rff: ^6.1.2
     nodemailer: ^6.9.3
     postcss-loader: ^7.3.2
@@ -20455,16 +20455,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:5.5.0":
-  version: 5.5.0
-  resolution: "mongodb@npm:5.5.0"
+"mongodb@npm:5.7.0":
+  version: 5.7.0
+  resolution: "mongodb@npm:5.7.0"
   dependencies:
-    bson: ^5.3.0
+    bson: ^5.4.0
     mongodb-connection-string-url: ^2.6.0
     saslprep: ^1.0.3
     socks: ^2.7.1
   peerDependencies:
     "@aws-sdk/credential-providers": ^3.201.0
+    "@mongodb-js/zstd": ^1.1.0
+    kerberos: ^2.0.1
     mongodb-client-encryption: ">=2.3.0 <3"
     snappy: ^7.2.2
   dependenciesMeta:
@@ -20473,11 +20475,15 @@ __metadata:
   peerDependenciesMeta:
     "@aws-sdk/credential-providers":
       optional: true
+    "@mongodb-js/zstd":
+      optional: true
+    kerberos:
+      optional: true
     mongodb-client-encryption:
       optional: true
     snappy:
       optional: true
-  checksum: fafb75195d605767cf7269aa82a1f4704c3357240d0fef7296d55e83eab592158844988af3b94165769459ff1b2a0af2fc49bc44c9bbabd10d6ddc319668a0e0
+  checksum: 16357b6229abac165aecea15a6efa873ec8662a00411ecb9e49853f05a590be31aab63d404486125778eedaafe76d70e84eea682fa89b138decc247f4870d2ec
   languageName: node
   linkType: hard
 
@@ -20511,18 +20517,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:^7.2.2":
-  version: 7.2.2
-  resolution: "mongoose@npm:7.2.2"
+"mongoose@npm:^7.4.0":
+  version: 7.4.0
+  resolution: "mongoose@npm:7.4.0"
   dependencies:
-    bson: ^5.3.0
+    bson: ^5.4.0
     kareem: 2.5.1
-    mongodb: 5.5.0
+    mongodb: 5.7.0
     mpath: 0.9.0
     mquery: 5.0.0
     ms: 2.1.3
     sift: 16.0.1
-  checksum: 8111a126f44bc119866b6d905311001a66eaa0dd309ec533752abe7302752f7245efe8a3e14655613b297aefa06d8849bbca396f29ffbcfca502f3d24fbad056
+  checksum: 391e28eb2e783150e81579a2cc1543224df621883c61ece45d977298cc11f392b5939f7f4066847f05fce2abad0aaeaf2ec72de8a1c0b7a9898651082c3bcf2d
   languageName: node
   linkType: hard
 
@@ -26565,7 +26571,7 @@ __metadata:
     lru-cache: ^7.14.1
     moment: ^2.29.4
     mongodb: ^3.1.4
-    mongoose: ^7.2.2
+    mongoose: ^7.4.0
     nodemailer: ^6.9.3
     query-string: ^7.1.1
     sharp: ^0.32.1
@@ -27420,7 +27426,7 @@ __metadata:
     mini-css-extract-plugin: ^2.6.1
     moment: ^2.29.4
     mongodb: ^3.1.4
-    mongoose: ^7.2.2
+    mongoose: ^7.4.0
     mui-rff: ^6.1.2
     nodemailer: ^6.9.3
     postcss-loader: ^7.3.2
