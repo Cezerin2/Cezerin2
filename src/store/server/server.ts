@@ -1,12 +1,14 @@
 import cors from "@koa/cors"
 import Router from "@koa/router"
-import { ensureDir, pathExists } from "fs-extra"
+import { ensureDir, mkdtempSync, pathExists } from "fs-extra"
 import Koa from "koa"
 import koaBody from "koa-body"
 import compress from "koa-compress"
 import mount from "koa-mount"
 import send from "koa-send"
 import serve from "koa-static"
+import { tmpdir } from "node:os"
+import { basename, extname, join } from "node:path"
 import sharp from "sharp"
 import winston from "winston"
 import { helmetMiddleware } from "./helmet"
@@ -24,6 +26,7 @@ const themeDir = process.env.THEME_DIR
 const staticOptions = {
   maxAge: 1000 * 60 * 60 * 24 * 365, // One year
 }
+const tmpDir = mkdtempSync(join(tmpdir(), "Cezerin-"))
 
 app.keys = settings.cookieSecretKey
 app.maxIpsCount = 1
@@ -60,18 +63,18 @@ app
 router
   .get("/", pageRendering)
   .get("/images/:entity/:id/:size/:filename", async ctx => {
-    const filePath = `${publicDir}/content/images/${ctx.params.entity}/${ctx.params.id}`
-    const tempPath = `${filePath}/temp/${ctx.params.size}`
-    const tempFile = `${tempPath}/${ctx.params.filename}.webp`
+    const { entity, id, filename, size } = ctx.params
 
-    await ensureDir(tempPath)
+    const filePath = `${publicDir}/content/images/${entity}/${id}/${filename}`
+    const fileName = `${basename(filename, extname(filename))}.${size}.webp`
+    const tempFile = `${tmpDir}/${fileName}`
+
+    await ensureDir(tmpDir)
 
     if (!(await pathExists(tempFile)))
-      await sharp(`${filePath}/${ctx.params.filename}`)
-        .resize(Number(ctx.params.size))
-        .toFile(tempFile)
+      await sharp(filePath).resize(Number(size)).toFile(tempFile)
 
-    await send(ctx, ctx.params.filename, { root: filePath, ...staticOptions })
+    await send(ctx, fileName, { root: tmpDir, ...staticOptions })
   })
   .use("/sw.js", ctx =>
     send(ctx, `${publicDir}/../build/public/assets/sw.js`, staticOptions)
