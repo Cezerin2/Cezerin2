@@ -3,19 +3,19 @@ const ProductImages {
     client = client
   }
 
-  list(productId) {
+  list:(productId) {
     => client.get(`/products/${productId}/images`)
   }
 
-  update(productId, imageId, data) {
+  update:(productId, imageId, data) {
     => client.put(`/products/${productId}/images/${imageId}`, data)
   }
 
-  upload(productId, formData) {
+  upload:(productId, formData) {
     => client.postFormData(`/products/${productId}/images`, formData)
   }
 
-  delete(productId, imageId) {
+  delete:(productId, imageId) {
     => client.delete(`/products/${productId}/images/${imageId}`)
   }
 }

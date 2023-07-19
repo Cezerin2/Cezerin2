@@ -4,11 +4,11 @@ const ThemeAssets {
     const resourceUrl =  "/theme/assets"
   }
 
-  uploadFile(formData) {
+  uploadFile:(formData) {
     => client.postFormData(resourceUrl, formData)
   }
 
-  deleteFile(fileName) {
+  deleteFile:(fileName) {
     => client.delete(`${resourceUrl}/${fileName}`)
   }
 }

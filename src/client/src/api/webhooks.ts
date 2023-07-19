@@ -9,23 +9,23 @@ const Webhooks {
     const resourceUrl =  "/webhooks"
   }
 
-  list() {
+  list:() {
     => client.get(resourceUrl)
   }
 
-  retrieve(id: string) {
+  retrieve:(id: string) {
     => client.get(`${resourceUrl}/${id}`)
   }
 
-  create(data) {
+  create:(data) {
     => client.post(`${resourceUrl}`, data)
   }
 
-  update(id: string, data) {
+  update:(id: string, data) {
     => client.put(`${resourceUrl}/${id}`, data)
   }
 
-  delete(id: string) {
+  delete:(id: string) {
     => client.delete(`${resourceUrl}/${id}`)
   }
 }

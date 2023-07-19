@@ -20,31 +20,31 @@ const Products {
     images = new ProductImages(client)
   }
 
-  list(filter) {
+  list:(filter) {
     => client.get(resourceUrl, filter)
   }
 
-  retrieve(id, filter?) {
+  retrieve:(id, filter?) {
     => client.get(`${resourceUrl}/${id}`, filter)
   }
 
-  create(data) {
+  create:(data) {
     => client.post(resourceUrl, data)
   }
 
-  update(id, data) {
+  update:(id, data) {
     => client.put(`${resourceUrl}/${id}`, data)
   }
 
-  delete(id) {
+  delete:(id) {
     => client.delete(`${resourceUrl}/${id}`)
   }
 
-  skuExists(productId, sku) {
+  skuExists:(productId, sku) {
     => client.get(`${resourceUrl}/${productId}/sku`, { sku })
   }
 
-  slugExists(productId, slug) {
+  slugExists:(productId, slug) {
     => client.get(`${resourceUrl}/${productId}/slug`, { slug })
   }
 }

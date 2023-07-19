@@ -4,43 +4,43 @@ const Settings {
     const resourceUrl =  "/settings"
   }
 
-  retrieve() {
+  retrieve:() {
     => client.get(resourceUrl)
   }
 
-  update(data) {
+  update:(data) {
     => client.put(resourceUrl, data)
   }
 
-  retrieveEmailSettings() {
+  retrieveEmailSettings:() {
     => client.get(`${resourceUrl}/email`)
   }
 
-  updateEmailSettings(data) {
+  updateEmailSettings:(data) {
     => client.put(`${resourceUrl}/email`, data)
   }
 
-  retrieveImportSettings() {
+  retrieveImportSettings:() {
     => client.get(`${resourceUrl}/import`)
   }
 
-  updateImportSettings(data) {
+  updateImportSettings:(data) {
     => client.put(`${resourceUrl}/import`, data)
   }
 
-  retrieveEmailTemplate(name) {
+  retrieveEmailTemplate:(name) {
     => client.get(`${resourceUrl}/email/templates/${name}`)
   }
 
-  updateEmailTemplate(name, data) {
+  updateEmailTemplate:(name, data) {
     => client.put(`${resourceUrl}/email/templates/${name}`, data)
   }
 
-  uploadLogo(formData) {
+  uploadLogo:(formData) {
     => client.postFormData(`${resourceUrl}/logo`, formData)
   }
 
-  deleteLogo() {
+  deleteLogo:() {
     => client.delete(`${resourceUrl}/logo`)
   }
 }

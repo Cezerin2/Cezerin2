@@ -3,7 +3,7 @@ const AjaxLogin {
     client = client
   }
 
-  retrieve(data) {
+  retrieve:(data) {
     => client.post(`/login`, data)
   }
 }

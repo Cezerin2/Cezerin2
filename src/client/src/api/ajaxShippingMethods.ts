@@ -3,7 +3,7 @@ const AjaxShippingMethods {
     client = client
   }
 
-  list() {
+  list:() {
     => client.get("/shipping_methods")
   }
 }

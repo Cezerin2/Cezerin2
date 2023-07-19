@@ -4,11 +4,11 @@ const Sitemap {
     const resourceUrl =  "/sitemap"
   }
 
-  list(filter) {
+  list:(filter) {
     => client.get(resourceUrl, filter)
   }
 
-  retrieve(filter) {
+  retrieve:(filter) {
     => client.get(resourceUrl, filter)
   }
 }

@@ -4,15 +4,15 @@ const Files {
     const resourceUrl =  "/files"
   }
 
-  list(filter) {
+  list:(filter) {
     => client.get(resourceUrl, filter)
   }
 
-  upload(formData) {
+  upload:(formData) {
     => client.postFormData(resourceUrl, formData)
   }
 
-  delete(fileName) {
+  delete:(fileName) {
     => client.delete(`${resourceUrl}/${fileName}`)
   }
 }
