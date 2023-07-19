@@ -4,34 +4,34 @@ const ProductCategories {
     const resourceUrl =  "/product_categories"
   }
 
-  list(filter) {
+  list:(filter) {
     => client.get(resourceUrl, filter)
   }
 
-  retrieve(id) {
+  retrieve:(id) {
     => client.get(`${resourceUrl}/${id}`)
   }
 
-  create(data) {
+  create:(data) {
     => client.post(resourceUrl, data)
   }
 
-  update(id, data) {
+  update:(id, data) {
     => client.put(`${resourceUrl}/${id}`, data)
   }
 
-  delete(id) {
+  delete:(id) {
     => client.delete(`${resourceUrl}/${id}`)
   }
 
-  uploadImage(categoryId, formData) {
+  uploadImage:(categoryId, formData) {
     => client.postFormData(
       `${resourceUrl}/${categoryId}/image`,
       formData
     )
   }
 
-  deleteImage(id) {
+  deleteImage:(id) {
     => client.delete(`${resourceUrl}/${id}/image`)
   }
 }

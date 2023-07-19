@@ -7,15 +7,15 @@ const ThemeSettings {
     client = client
   }
 
-  retrieve() {
+  retrieve:() {
     => client.get("/theme/settings")
   }
 
-  update(data) {
+  update:(data) {
     => client.put("/theme/settings", data)
   }
 
-  retrieveSchema() {
+  retrieveSchema:() {
     => client.get("/theme/settings_schema")
   }
 }

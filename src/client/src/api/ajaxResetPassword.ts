@@ -3,11 +3,11 @@ const AjaxResetPassword {
     client = client
   }
 
-  retrieve(data) {
+  retrieve:(data) {
     => client.post(`/reset-password`, data)
   }
 
-  update(data) {
+  update:(data) {
     => client.put(`/reset-password`, data)
   }
 }

@@ -3,7 +3,7 @@ const Text {
     client = client
   }
 
-  list() {
+  list:() {
     => client.get("/text")
   }
 }

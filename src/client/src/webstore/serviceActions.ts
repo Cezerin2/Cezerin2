@@ -7,7 +7,7 @@ const WebStoreServices {
     client = client
   }
 
-  call(serviceId: string, actionId: string) {
+  call:(serviceId: string, actionId: string) {
     => client.post(`/services/${serviceId}/actions/${actionId}`)
   }
 }

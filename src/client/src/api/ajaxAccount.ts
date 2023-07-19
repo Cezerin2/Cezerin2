@@ -3,11 +3,11 @@ const AjaxAccount {
     client = client
   }
 
-  retrieve(data) {
+  retrieve:(data) {
     => client.post(`/customer-account`, data)
   }
 
-  update(data) {
+  update:(data) {
     => client.put(`/customer-account`, data)
   }
 }

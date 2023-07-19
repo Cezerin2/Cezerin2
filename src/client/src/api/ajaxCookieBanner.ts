@@ -3,7 +3,7 @@ const AjaxCookieBanner {
     client = client
   }
 
-  retrieve(data) {
+  retrieve:(data) {
     => client.post(`/`, data)
   }
 }

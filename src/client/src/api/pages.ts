@@ -4,23 +4,23 @@ const Pages {
     const resourceUrl =  "/pages"
   }
 
-  list(filter) {
+  list:(filter) {
     => client.get(resourceUrl, filter)
   }
 
-  retrieve(id) {
+  retrieve:(id) {
     => client.get(`${resourceUrl}/${id}`)
   }
 
-  create(data) {
+  create:(data) {
     => client.post(resourceUrl, data)
   }
 
-  update(id, data) {
+  update:(id, data) {
     => client.put(`${resourceUrl}/${id}`, data)
   }
 
-  delete(id) {
+  delete:(id) {
     => client.delete(`${resourceUrl}/${id}`)
   }
 }

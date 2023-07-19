@@ -17,11 +17,11 @@ const Theme {
     placeholders = new ThemePlaceholders(client)
   }
 
-  export() {
+  export:() {
     => client.get("/theme/export")
   }
 
-  install(formData) {
+  install:(formData) {
     => client.postFormData("/theme/install", formData)
   }
 }

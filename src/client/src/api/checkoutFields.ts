@@ -4,15 +4,15 @@ const CheckoutFields {
     const resourceUrl =  "/settings/checkout/fields"
   }
 
-  list() {
+  list:() {
     => client.get(resourceUrl)
   }
 
-  retrieve(name) {
+  retrieve:(name) {
     => client.get(`${resourceUrl}/${name}`)
   }
 
-  update(name, data) {
+  update:(name, data) {
     => client.put(`${resourceUrl}/${name}`, data)
   }
 }
