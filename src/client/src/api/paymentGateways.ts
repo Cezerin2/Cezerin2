@@ -4,11 +4,11 @@ const PaymentGateways {
     const resourceUrl =  "/payment_gateways"
   }
 
-  retrieve(gatewayName) {
+  retrieve:(gatewayName) {
     => client.get(`${resourceUrl}/${gatewayName}`)
   }
 
-  update(gatewayName, data) {
+  update:(gatewayName, data) {
     => client.put(`${resourceUrl}/${gatewayName}`, data)
   }
 }

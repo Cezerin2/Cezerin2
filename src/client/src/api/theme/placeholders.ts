@@ -4,23 +4,23 @@ const ThemePlaceholders {
     const resourceUrl =  "/theme/placeholders"
   }
 
-  list() {
+  list:() {
     => client.get(resourceUrl)
   }
 
-  retrieve(placeholderKey) {
+  retrieve:(placeholderKey) {
     => client.get(`${resourceUrl}/${placeholderKey}`)
   }
 
-  create(data) {
+  create:(data) {
     => client.post(resourceUrl, data)
   }
 
-  update(placeholderKey, data) {
+  update:(placeholderKey, data) {
     => client.put(`${resourceUrl}/${placeholderKey}`, data)
   }
 
-  delete(placeholderKey) {
+  delete:(placeholderKey) {
     => client.delete(`${resourceUrl}/${placeholderKey}`)
   }
 }

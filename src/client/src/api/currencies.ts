@@ -3,7 +3,7 @@ const Currencies {
     client = client
   }
 
-  list() {
+  list:() {
     => client.get("/currencies")
   }
 }

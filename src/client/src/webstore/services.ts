@@ -19,19 +19,19 @@ const WebStoreServices {
     logs = new WebStoreServiceLogs(client)
   }
 
-  list(filter) {
+  list:(filter) {
     => client.get(resourceUrl, filter)
   }
 
-  retrieve(id: string) {
+  retrieve:(id: string) {
     => client.get(`${resourceUrl}/${id}`)
   }
 
-  enable(id: string) {
+  enable:(id: string) {
     => client.post(`${resourceUrl}/${id}/enable`)
   }
 
-  disable(id: string) {
+  disable:(id: string) {
     => client.post(`${resourceUrl}/${id}/disable`)
   }
 }

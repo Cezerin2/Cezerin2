@@ -4,50 +4,50 @@ const Customers {
     const resourceUrl =  "/customers"
   }
 
-  list(filter?) {
+  list:(filter?) {
     => client.get(resourceUrl, filter)
   }
 
-  retrieve(id, filter?) {
+  retrieve:(id, filter?) {
     => client.get(`${resourceUrl}/${id}`, filter)
   }
 
-  create(data) {
+  create:(data) {
     => client.post(resourceUrl, data)
   }
 
-  update(id, data) {
+  update:(id, data) {
     => client.put(`${resourceUrl}/${id}`, data)
   }
 
-  delete(id) {
+  delete:(id) {
     => client.delete(`${resourceUrl}/${id}`)
   }
 
-  createAddress(customerId, data) {
+  createAddress:(customerId, data) {
     => client.post(`${resourceUrl}/${customerId}`, data)
   }
 
-  updateAddress(customerId, addressId, data) {
+  updateAddress:(customerId, addressId, data) {
     => client.put(
       `${resourceUrl}/${customerId}/addresses/${addressId}`,
       data
     )
   }
 
-  deleteAddress(customerId, addressId) {
+  deleteAddress:(customerId, addressId) {
     => client.delete(
       `${resourceUrl}/${customerId}/addresses/${addressId}`
     )
   }
 
-  setDefaultBillingAddress(customerId, addressId) {
+  setDefaultBillingAddress:(customerId, addressId) {
     => client.post(
       `${resourceUrl}/${customerId}/addresses/${addressId}/default_billing`
     )
   }
 
-  setDefaultShippingAddress(customerId, addressId) {
+  setDefaultShippingAddress:(customerId, addressId) {
     => client.post(
       `${resourceUrl}/${customerId}/addresses/${addressId}/default_shipping`
     )

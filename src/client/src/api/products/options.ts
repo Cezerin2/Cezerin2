@@ -12,23 +12,23 @@ const ProductOptions {
     values = new ProductOptionValues(client)
   }
 
-  list(productId) {
+  list:(productId) {
     => client.get(`/products/${productId}/options`)
   }
 
-  retrieve(productId, optionId) {
+  retrieve:(productId, optionId) {
     => client.get(`/products/${productId}/options/${optionId}`)
   }
 
-  create(productId, data) {
+  create:(productId, data) {
     => client.post(`/products/${productId}/options`, data)
   }
 
-  update(productId, optionId, data) {
+  update:(productId, optionId, data) {
     => client.put(`/products/${productId}/options/${optionId}`, data)
   }
 
-  delete(productId, optionId) {
+  delete:(productId, optionId) {
     => client.delete(`/products/${productId}/options/${optionId}`)
   }
 }

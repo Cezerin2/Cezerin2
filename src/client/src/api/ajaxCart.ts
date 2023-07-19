@@ -7,35 +7,35 @@ const AjaxCart {
     client = client
   }
 
-  retrieve(cookie?) {
+  retrieve:(cookie?) {
     => client.get(`/cart`, null, cookie)
   }
 
-  update(data) {
+  update:(data) {
     => client.put(`/cart`, data)
   }
 
-  checkout() {
+  checkout:() {
     => client.put(`/cart/checkout`)
   }
 
-  updateBillingAddress(address) {
+  updateBillingAddress:(address) {
     => client.put(`/cart/billing_address`, address)
   }
 
-  updateShippingAddress(address) {
+  updateShippingAddress:(address) {
     => client.put(`/cart/shipping_address`, address)
   }
 
-  addItem(data) {
+  addItem:(data) {
     => client.post(`/cart/items`, data)
   }
 
-  updateItem(id, data) {
+  updateItem:(id, data) {
     => client.put(`/cart/items/${id}`, data)
   }
 
-  deleteItem(id) {
+  deleteItem:(id) {
     => client.delete(`/cart/items/${id}`)
   }
 }

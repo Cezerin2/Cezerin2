@@ -4,11 +4,11 @@ const AppSettings {
     const resourceUrl =  "/apps"
   }
 
-  retrieve(appKey) {
+  retrieve:(appKey) {
     => client.get(`${resourceUrl}/${appKey}/settings`)
   }
 
-  update(appKey, data) {
+  update:(appKey, data) {
     => client.put(`${resourceUrl}/${appKey}/settings`, data)
   }
 }

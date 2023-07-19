@@ -3,7 +3,7 @@ const Countries {
     client = client
   }
 
-  list() {
+  list:() {
     => client.get("/countries")
   }
 }
