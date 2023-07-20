@@ -10651,7 +10651,7 @@ __metadata:
     sharp: ^0.32.1
     sitemap: ^7.1.1
     slug: ^8.2.2
-    stripe: ^6.7.0
+    stripe: ^12.14.0
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
     typescript: ^4.9.3
@@ -23956,7 +23956,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.11.0, qs@npm:^6.5.2, qs@npm:^6.6.0":
+"qs@npm:6.11.0, qs@npm:^6.5.2":
   version: 6.11.0
   resolution: "qs@npm:6.11.0"
   dependencies:
@@ -26570,7 +26570,7 @@ __metadata:
     query-string: ^7.1.1
     sharp: ^0.32.1
     slug: ^8.2.2
-    stripe: ^12.9.0
+    stripe: ^12.14.0
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
     typescript: ^4.9.3
@@ -27454,7 +27454,7 @@ __metadata:
     sharp: ^0.32.1
     sitemap: ^7.1.1
     slug: ^8.2.2
-    stripe: ^6.7.0
+    stripe: ^12.14.0
     ts-node: ^10.9.1
     ts-node-dev: ^2.0.0
     typescript: ^4.9.3
@@ -27726,25 +27726,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stripe@npm:^12.9.0":
-  version: 12.9.0
-  resolution: "stripe@npm:12.9.0"
+"stripe@npm:^12.14.0":
+  version: 12.14.0
+  resolution: "stripe@npm:12.14.0"
   dependencies:
     "@types/node": ">=8.1.0"
     qs: ^6.11.0
-  checksum: a860736592ec96b4468697c3636591cee781e1483afa963d75be4c2e4d8d413983328129e4b15dab578494ffc5fd22a11eebc74bbdb3b675dd4a99c37c70ab76
-  languageName: node
-  linkType: hard
-
-"stripe@npm:^6.7.0":
-  version: 6.36.0
-  resolution: "stripe@npm:6.36.0"
-  dependencies:
-    lodash.isplainobject: ^4.0.6
-    qs: ^6.6.0
-    safe-buffer: ^5.1.1
-    uuid: ^3.3.2
-  checksum: f82adb98ca66614b964ebe6cbca98ec1dc184c661fb46e0b4e4d04ae3959cb04eed5852ace81b73985f4974c529553dff8badee7e61f7c9d647bcd758ffe6d81
+  checksum: 7b86d75ed572868d6870bfd3a4405306bc9418eb1c1f8d9d650f1121433c6e3de16c523781e61f188e89c351600e80f2372396bca67c9ebfda3098f943c281c3
   languageName: node
   linkType: hard
 
@@ -29454,15 +29442,6 @@ __metadata:
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
   checksum: c81095493225ecfc28add49c106ca4f09cdf56bc66731aa8dabc2edbbccb1e1bfe2de6a115e5c6a380d3ea166d1636410b62ef216bb07b3feb1cfde1d95d5080
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^3.3.2":
-  version: 3.4.0
-  resolution: "uuid@npm:3.4.0"
-  bin:
-    uuid: ./bin/uuid
-  checksum: 58de2feed61c59060b40f8203c0e4ed7fd6f99d42534a499f1741218a1dd0c129f4aa1de797bcf822c8ea5da7e4137aa3673431a96dae729047f7aca7b27866f
   languageName: node
   linkType: hard
 
