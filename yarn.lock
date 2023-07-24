@@ -3343,7 +3343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@date-io/core@npm:^2.11.0, @date-io/core@npm:^2.15.0":
+"@date-io/core@npm:^2.15.0":
   version: 2.15.0
   resolution: "@date-io/core@npm:2.15.0"
   checksum: 5ecb264230a5bbf753177f84c7fa4e778b03d85bafb63709ca9211c373d52dae5decb6884bbe8f0a17bb2f17fc9184e418ca54da147106dfdb83fce6fb96631f
@@ -3357,17 +3357,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@date-io/date-fns@npm:^2.11.0":
-  version: 2.15.0
-  resolution: "@date-io/date-fns@npm:2.15.0"
-  dependencies:
-    "@date-io/core": ^2.15.0
-  peerDependencies:
-    date-fns: ^2.0.0
-  peerDependenciesMeta:
-    date-fns:
-      optional: true
-  checksum: 5aacac0efc50b6ae2d53d78b827a62a64fcf51e61dc4091aefec53db668ceadea0695f3cf878f89955b23a961deae5410dcbc5fd1d9326945c51bbb2f00d7aa9
+"@date-io/core@npm:^2.17.0":
+  version: 2.17.0
+  resolution: "@date-io/core@npm:2.17.0"
+  checksum: 008dfc79eb54256805113d76feca82fe0b08a245ecbfb2d53809e6a129dc201f9dbd053c8ad63512203ab1a13ff7f76de0edc31829588ef507d53307974c29a8
   languageName: node
   linkType: hard
 
@@ -3382,6 +3375,20 @@ __metadata:
     date-fns:
       optional: true
   checksum: aedb23c07da6f1e38a81ffe77ca1cb95167e1a175a3d65561cf244fbd1a5a0b961e84df88fe00b9cfa4bd32eda6d430e6d14567e2b040257198cd12748d5fcc5
+  languageName: node
+  linkType: hard
+
+"@date-io/date-fns@npm:^2.16.0":
+  version: 2.17.0
+  resolution: "@date-io/date-fns@npm:2.17.0"
+  dependencies:
+    "@date-io/core": ^2.17.0
+  peerDependencies:
+    date-fns: ^2.0.0
+  peerDependenciesMeta:
+    date-fns:
+      optional: true
+  checksum: bfab634c985a98dd44fdfc5f982b0348da2886c9ad79a8d71fd7bfa05b740af7f5cf340508cd7ce51d67c141fb8766998c8efdf50653252c68ec078471cd76e6
   languageName: node
   linkType: hard
 
@@ -10618,7 +10625,7 @@ __metadata:
     moment: ^2.29.4
     mongodb: ^3.1.4
     mongoose: ^7.2.2
-    mui-rff: ^6.1.2
+    mui-rff: ^6.2.0
     nodemailer: ^6.9.3
     postcss-loader: ^7.3.2
     prop-types: ^15.8.1
@@ -12490,13 +12497,6 @@ __metadata:
     whatwg-mimetype: ^3.0.0
     whatwg-url: ^11.0.0
   checksum: 033fc3dd0fba6d24bc9a024ddcf9923691dd24f90a3d26f6545d6a2f71ec6956f93462f2cdf2183cc46f10dc01ed3bcb36731a8208456eb1a08147e571fe2a76
-  languageName: node
-  linkType: hard
-
-"date-fns@npm:^2.25.0":
-  version: 2.29.1
-  resolution: "date-fns@npm:2.29.1"
-  checksum: 9d07f77dffc1eb8c213391bde39f2963ffe7c0019d9edde14487882d627224f3a39b963e6e99d0cc58afff220a6a1a7e8864d2789958f4eaa77714de94d4d076
   languageName: node
   linkType: hard
 
@@ -20646,13 +20646,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mui-rff@npm:^6.1.2":
-  version: 6.1.2
-  resolution: "mui-rff@npm:6.1.2"
+"mui-rff@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "mui-rff@npm:6.2.0"
   dependencies:
-    "@date-io/core": ^2.11.0
-    "@date-io/date-fns": ^2.11.0
-    date-fns: ^2.25.0
+    "@date-io/core": ^2.16.0
+    "@date-io/date-fns": ^2.16.0
+    date-fns: ^2.29.3
     yup: ^0.32.11
   peerDependencies:
     "@emotion/react": ^11.10.4
@@ -20672,7 +20672,7 @@ __metadata:
       optional: true
     yup:
       optional: true
-  checksum: a88c1172df45ad27e0a567db7a7c4beccbb661793ba50fcf0c306ed3be19dd7b389f7a676c890a84bfed8aaf866c36aaa7f5ce1f4cff42fe700da142c573da82
+  checksum: c5b1ad4245b281453b0e6b26d92e84459dfbdea02fac7887dce29959402fa62adf4958cd11e0de912cacbb8d146338566245ff7fb4450c2ad8efea4373ea7652
   languageName: node
   linkType: hard
 
@@ -27421,7 +27421,7 @@ __metadata:
     moment: ^2.29.4
     mongodb: ^3.1.4
     mongoose: ^7.2.2
-    mui-rff: ^6.1.2
+    mui-rff: ^6.2.0
     nodemailer: ^6.9.3
     postcss-loader: ^7.3.2
     prop-types: ^15.8.1
