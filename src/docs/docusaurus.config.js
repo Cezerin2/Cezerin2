@@ -131,15 +131,15 @@ const config = {
               },
               {
                 label: "Demo Store - Default Theme",
-                href: "https://cezerin.net",
+                href: "https://demo.chost.ansiglobal.com",
               },
               {
                 label: "Demo Store - Plusha Theme",
-                href: "https://plusha.cezerin.net",
+                href: "https://plusha.demo.chost.ansiglobal.com",
               },
               {
                 label: "Demo Dashboard",
-                href: "https://cezerin.net/admin",
+                href: "https://demo.chost.ansiglobal.com/admin",
               },
             ],
           },

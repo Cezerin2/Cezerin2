@@ -25,9 +25,9 @@ Cezerin - Ecommerce Progressive Web Apps. Complete Solution.
 
 - [GitHub](https://github.com/Cezerin2)
 - [Community Site](https://chost.ansiglobal.com)
-- [Demo Store - Plusha Theme](https://plusha.cezerin.net)
-- [Demo Store - Default Theme](https://cezerin.net)
-- [Demo Dashboard](https://cezerin.net/admin)
+- [Demo Store - Plusha Theme](https://plusha.demo.chost.ansiglobal.com)
+- [Demo Store - Default Theme](https://demo.chost.ansiglobal.com)
+- [Demo Dashboard](https://demo.chost.ansiglobal.com/admin)
 - [Telegram Chat: Cezerin](https://t.me/cezerin)
 - [Forum](https://groups.google.com/g/cezerin)
 - [Docs](https://github.com/Cezerin2/Cezerin2/tree/main/docs)
@@ -40,20 +40,20 @@ Single-Page Application with React server-side rendering.
 
 SEO Friendly. Google Analytics eCommerce Tracking included.
 
-[Online Demo Store - Plusha Theme](https://plusha.cezerin.net)
+[Online Demo Store - Plusha Theme](https://plusha.demo.chost.ansiglobal.com)
 
-[![Cezerin Store Plusha Theme](https://chost.ansiglobal.com/img/cezerin-plusha-theme.png)](https://plusha.cezerin.net)
+[![Cezerin Store Plusha Theme](https://chost.ansiglobal.com/img/cezerin-plusha-theme.png)](https://plusha.demo.chost.ansiglobal.com)
 
-[Online Demo Store - Default Theme](https://cezerin.net)
+[Online Demo Store - Default Theme](https://demo.chost.ansiglobal.com)
 
-[![Cezerin Store Default Theme](https://chost.ansiglobal.com/img/cezerin-default-theme.png)](https://cezerin.net)
-[![Cezerin Store Default Theme](https://chost.ansiglobal.com/img/cezerin-mobile-order-summary.png)](https://cezerin.net)
+[![Cezerin Store Default Theme](https://chost.ansiglobal.com/img/cezerin-default-theme.png)](https://demo.chost.ansiglobal.com)
+[![Cezerin Store Default Theme](https://chost.ansiglobal.com/img/cezerin-mobile-order-summary.png)](https://demo.chost.ansiglobal.com)
 
 ## Dashboard
 
 Client-side dashboard use JSON Web Token (JWT) to access REST API.
 
-[Online Demo Dashboard](https://cezerin.net/admin)
+[Online Demo Dashboard](https://demo.chost.ansiglobal.com/admin)
 
 ![Cezerin Dashboard](https://chost.ansiglobal.com/img/cezerin-dashboard-products.png)
 
