@@ -5,7 +5,7 @@
 Now we need a domain name, to open our store like this
 
 ```
-https://cezerin.net
+https://demo.chost.ansiglobal.com
 ```
 
 not by ip address like:
@@ -16,7 +16,7 @@ https://123.456.789.0
 
 2. You need to register any domain name at any domain registrator.
 
-For example, we have cezerin.net domain and we need to make available cezerin online store on https://cezerin.net
+For example, we have cezerin.net domain and we need to make available cezerin online store on https://demo.chost.ansiglobal.com
 
 3. Ok, we have domain name and we have domain name control panel.
 
