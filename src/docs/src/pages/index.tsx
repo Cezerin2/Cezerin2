@@ -4,9 +4,9 @@ import React from "react"
 
 const links = [
   { title: "GitHub", link: "https://github.com/cezerin2" },
-  { title: "Plusha Theme", link: "https://plusha.cezerin.net" },
-  { title: "Default Theme", link: "https://cezerin.net" },
-  { title: "Dashboard", link: "https://cezerin.net/admin" },
+  { title: "Plusha Theme", link: "https://plusha.demo.chost.ansiglobal.com" },
+  { title: "Default Theme", link: "https://demo.chost.ansiglobal.com" },
+  { title: "Dashboard", link: "https://demo.chost.ansiglobal.com/admin" },
   { title: "Telegram Chat", link: "https://t.me/cezerin" },
   { title: "Docs", link: "/docs" },
   { title: "FAQ", link: "/docs/help/faq" },
@@ -67,13 +67,19 @@ const Home = (): JSX.Element => (
               and increase conversions.
             </p>
             <p>
-              <a href="https://plusha.cezerin.net">Demo Store - Plusha Theme</a>
+              <a href="https://plusha.demo.chost.ansiglobal.com">
+                Demo Store - Plusha Theme
+              </a>
             </p>
             <p>
-              <a href="https://cezerin.net">Demo Store - Default Theme</a>
+              <a href="https://demo.chost.ansiglobal.com">
+                Demo Store - Default Theme
+              </a>
             </p>
             <p>
-              <a href="https://cezerin.net/admin">Demo Store - Dashboard</a>
+              <a href="https://demo.chost.ansiglobal.com/admin">
+                Demo Store - Dashboard
+              </a>
             </p>
           </div>
         </div>
