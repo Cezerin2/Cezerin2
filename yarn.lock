@@ -2915,15 +2915,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.17.2":
-  version: 7.19.4
-  resolution: "@babel/runtime@npm:7.19.4"
-  dependencies:
-    regenerator-runtime: ^0.13.4
-  checksum: 66b7e3c13e9ee1d2c9397ea89144f29a875edee266a0eb2d9971be51b32fdbafc85808c7a45e011e6681899bb804b4e2ee2aed6dc07108dbbd6b11b6cc2afba6
-  languageName: node
-  linkType: hard
-
 "@babel/runtime@npm:^7.19.4":
   version: 7.20.0
   resolution: "@babel/runtime@npm:7.20.0"
@@ -2939,6 +2930,15 @@ __metadata:
   dependencies:
     regenerator-runtime: ^0.13.10
   checksum: 00567a333d3357925742a6f5e39394dcc0af6e6029103fe188158bf7ae8b0b3ee3c6c0f68fccc217f0a6cfa455f6be252298baf56b3f5ff37b34313b170cd9f6
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.22.5":
+  version: 7.22.6
+  resolution: "@babel/runtime@npm:7.22.6"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: e585338287c4514a713babf4fdb8fc2a67adcebab3e7723a739fc62c79cfda875b314c90fd25f827afb150d781af97bc16c85bfdbfa2889f06053879a1ddb597
   languageName: node
   linkType: hard
 
@@ -10595,7 +10595,7 @@ __metadata:
     helmet: ^6.0.0
     html-react-parser: ^3.0.16
     html-webpack-plugin: ^5.5.1
-    i18next: ^22.0.5
+    i18next: ^23.3.0
     i18next-browser-languagedetector: ^7.0.1
     i18next-http-backend: ^2.2.0
     isomorphic-dompurify: ^0.24.0
@@ -16403,12 +16403,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^22.0.5":
-  version: 22.0.5
-  resolution: "i18next@npm:22.0.5"
+"i18next@npm:^23.3.0":
+  version: 23.3.0
+  resolution: "i18next@npm:23.3.0"
   dependencies:
-    "@babel/runtime": ^7.17.2
-  checksum: fb0233ac096456a1a2f85ebeb08dbec26fe9f86056a5c082b8e86b1eb2b4443fd7c582fafddca86afab43583e9e7a92a2c215a29a7ac1e37eb5cb61b1e0c6173
+    "@babel/runtime": ^7.22.5
+  checksum: 4f9d135b0b75f3050c68cfd2a1a50e33c3e7aaa20a08c304b122d8bdfdce5bbef3f4929830d732968145be710af4259da19af990e06bbccc24ba18abbda9a688
   languageName: node
   linkType: hard
 
@@ -27398,7 +27398,7 @@ __metadata:
     helmet: ^6.0.0
     html-react-parser: ^3.0.16
     html-webpack-plugin: ^5.5.1
-    i18next: ^22.0.5
+    i18next: ^23.3.0
     i18next-browser-languagedetector: ^7.0.1
     i18next-http-backend: ^2.2.0
     isomorphic-dompurify: ^0.24.0
