@@ -83,7 +83,7 @@
     "i18next": "^22.0.5",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
-    "isomorphic-dompurify": "^0.24.0",
+    "isomorphic-dompurify": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.14.2",
     "koa-body": "^6.0.1",
