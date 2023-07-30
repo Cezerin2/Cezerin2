@@ -1,20 +1,16 @@
 import Router, { RouterContext } from "@koa/router"
-import bcrypt, { hashSync } from "bcrypt"
 import CezerinClient from "cezerin2-client"
 import handlebars from "handlebars"
 import jwt from "jsonwebtoken"
-import { toSafeInteger } from "lodash"
 import { ObjectID } from "mongodb"
 import { decodeUserLoginAuth, encodeUserLoginAuth } from "./lib/authHeader"
 import { send } from "./lib/mailer"
 import { db } from "./lib/mongo"
 import serverSettings from "./lib/settings"
+import { compare, hash } from "./lib/utils"
 import OrderItemsService from "./services/orders/orderItems"
 import EmailTemplatesService from "./services/settings/emailTemplates"
 import SettingsService from "./services/settings/settings"
-
-// cost factor for hashes
-const { saltRounds } = serverSettings
 
 const ajaxRouter = new Router()
 const TOKEN_PAYLOAD = { email: "store", scopes: ["admin"] }
@@ -131,8 +127,8 @@ ajaxRouter.get("/cart", async ctx => {
 })
 
 ajaxRouter.post("/reset-password", async ctx => {
-  const hash = ctx.request.body?.password
-    ? await bcrypt.hash(ctx.request.body.password, saltRounds)
+  const passwordHash = ctx.request.body?.password
+    ? await hash(ctx.request.body.password)
     : ""
 
   const data = {
@@ -150,7 +146,7 @@ ajaxRouter.post("/reset-password", async ctx => {
     id: userID,
   }
   const customerDraft = {
-    password: hash,
+    password: passwordHash,
   }
 
   // update customer password after checking customer id
@@ -308,7 +304,7 @@ ajaxRouter.post("/login", async ctx => {
   const customerPassword = result.password
   const inputPassword = ctx.request.body.password
 
-  const out = await bcrypt.compare(inputPassword, customerPassword)
+  const out = await compare(inputPassword, customerPassword)
 
   if (out === true) {
     customerData.token = encodeUserLoginAuth(result._id)
@@ -363,50 +359,43 @@ ajaxRouter.post("/register", async ctx => {
       return false
     }
 
-    ;(async () => {
-      // decode token parts and check if valid email is the second part of them
-      const firstName = await decodeUserLoginAuth(requestTokenArray[0]).userID
-      const lastName = await decodeUserLoginAuth(requestTokenArray[1]).userID
-      const eMail = await decodeUserLoginAuth(requestTokenArray[2]).userID
-      const passWord = requestTokenArray[3]
+    // decode token parts and check if valid email is the second part of them
+    const firstName = await decodeUserLoginAuth(requestTokenArray[0]).userID
+    const lastName = await decodeUserLoginAuth(requestTokenArray[1]).userID
+    const eMail = await decodeUserLoginAuth(requestTokenArray[2]).userID
+    const passWord = requestTokenArray[3]
 
-      if (
-        requestTokenArray.length < 1 ||
-        !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-          eMail
-        )
-      ) {
-        data.isRightToken = false
-        ctx.body = data
-        ctx.status = 200
+    if (
+      requestTokenArray.length < 1 ||
+      !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        eMail
+      )
+    ) {
+      data.isRightToken = false
+      ctx.body = data
+      ctx.status = 200
+      return false
+    }
+
+    // check once if customer email is existig in database
+    filter.email = eMail
+    await api.customers.list(filter).then(({ json }) => {
+      if (json.total_count > 0) {
+        data.isCustomerSaved = true
         return false
       }
+    })
 
-      // check once if customer email is existig in database
-      filter.email = eMail
-      await api.customers.list(filter).then(({ json }) => {
-        if (json.total_count > 0) {
-          data.isCustomerSaved = true
-          return false
-        }
-      })
+    const customerDraft = {
+      full_name: `${firstName} ${lastName}`,
+      first_name: firstName,
+      last_name: lastName,
+      email: eMail.toLowerCase(),
+      password: await hash(passWord),
+    }
 
-      // generate password-hash
-      const hashPassword = hashSync(passWord, toSafeInteger(saltRounds)) // TODO: Types are incorrect, found string
-
-      const customerDraft = {
-        full_name: `${firstName} ${lastName}`,
-        first_name: firstName,
-        last_name: lastName,
-        email: eMail.toLowerCase(),
-        password: hashPassword,
-      }
-
-      // create new customer in database
-      await api.customers.create(customerDraft).catch(error => {
-        console.log(error)
-      })
-    })()
+    // create new customer in database
+    await api.customers.create(customerDraft)
 
     data.isCustomerSaved = true
     ctx.body = data
@@ -486,7 +475,7 @@ ajaxRouter.put("/customer-account", async ctx => {
 
   // generate password-hash
   const inputPassword = customerData.password
-  const hashPassword = hashSync(inputPassword, saltRounds)
+  const hashPassword = hash(inputPassword)
 
   // setup objects and filter
   const customerDataObj = {
