@@ -64,7 +64,7 @@
     "@reduxjs/toolkit": "^1.9.0",
     "@sentry/node": "^7.51.2",
     "@sentry/react": "^7.51.2",
-    "@sentry/tracing": "^7.51.2",
+    "@sentry/tracing": "^7.60.1",
     "@stripe/react-stripe-js": "^1.15.0",
     "@stripe/stripe-js": "^1.44.1",
     "@tinymce/tinymce-react": "^4.2.0",
