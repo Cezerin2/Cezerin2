@@ -1,4 +1,3 @@
-import { hashSync } from "bcrypt"
 import handlebars from "handlebars"
 import { escapeRegExp } from "lodash"
 import { ObjectID } from "mongodb"
@@ -7,6 +6,7 @@ import { send } from "../../lib/mailer"
 import { db } from "../../lib/mongo"
 import parse from "../../lib/parse"
 import settings from "../../lib/settings"
+import { hash } from "../../lib/utils"
 import { events, trigger } from "../../lib/webhooks"
 import PaymentGateways from "../../paymentGateways"
 import CustomersService from "../customers/customers"
@@ -16,8 +16,6 @@ import SettingsService from "../settings/settings"
 import OrderStatusesService from "./orderStatuses"
 import PaymentMethodsLightService from "./paymentMethodsLight"
 import ShippingMethodsLightService from "./shippingMethodsLight"
-
-const { saltRounds } = settings
 
 class OrdersService {
   getFilter(params: any = {}) {
@@ -159,48 +157,47 @@ class OrdersService {
     )
   }
 
-  getOrCreateCustomer(orderId) {
-    return this.getSingleOrder(orderId).then(order => {
-      if (!order.customer_id && order.email) {
-        // find customer by email
-        return CustomersService.getCustomers({ email: order.email }).then(
-          customers => {
-            const customerExists =
-              customers && customers.data && customers.data.length > 0
+  async getOrCreateCustomer(orderId) {
+    const order = await this.getSingleOrder(orderId)
 
-            if (customerExists) {
-              // if customer exists - set new customer_id
-              return customers.data[0].id
-            }
-            // if customer not exists - create new customer and set new customer_id
-            const addresses = []
-            if (order.shipping_address) {
-              addresses.push(order.shipping_address)
-            }
+    if (!order.customer_id && order.email) {
+      // find customer by email
+      const customers = await CustomersService.getCustomers({
+        email: order.email,
+      })
 
-            const customerFullName =
-              order.shipping_address && order.shipping_address.full_name
-                ? order.shipping_address.full_name
-                : ""
+      const customerExists =
+        customers && customers.data && customers.data.length > 0
 
-            const hashPassword = hashSync(order.password, saltRounds)
+      // if customer exists - set new customer_id
+      if (customerExists) return customers.data[0].id
 
-            return CustomersService.addCustomer({
-              first_name: order.first_name,
-              last_name: order.last_name,
-              password: hashPassword,
-              email: order.email.toLowerCase(),
-              full_name: `${order.first_name} ${order.last_name}`,
-              mobile: order.mobile,
-              browser: order.browser,
-              // addresses: customer.addresses
-              addresses: order.shipping_address,
-            }).then(customer => customer.id)
-          }
-        )
+      // if customer not exists - create new customer and set new customer_id
+      const addresses = []
+      if (order.shipping_address) {
+        addresses.push(order.shipping_address)
       }
-      return order.customer_id
-    })
+
+      const customerFullName =
+        order.shipping_address && order.shipping_address.full_name
+          ? order.shipping_address.full_name
+          : ""
+
+      const hashPassword = await hash(order.password)
+
+      return CustomersService.addCustomer({
+        first_name: order.first_name,
+        last_name: order.last_name,
+        password: hashPassword,
+        email: order.email.toLowerCase(),
+        full_name: `${order.first_name} ${order.last_name}`,
+        mobile: order.mobile,
+        browser: order.browser,
+        // addresses: customer.addresses
+        addresses: order.shipping_address,
+      }).then(customer => customer.id)
+    }
+    return order.customer_id
   }
 
   async addOrder(data) {
