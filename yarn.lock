@@ -10996,7 +10996,7 @@ __metadata:
     ava: ^4.3.1
     axios: ^0.27.2
     c8: ^7.12.0
-    cross-fetch: ^3.1.5
+    cross-fetch: ^4.0.0
     parcel: ^2.6.2
     query-string: ^6.1.0
     ts-node: ^10.9.1
@@ -11783,6 +11783,15 @@ __metadata:
   dependencies:
     node-fetch: 2.6.7
   checksum: f6b8c6ee3ef993ace6277fd789c71b6acf1b504fd5f5c7128df4ef2f125a429e29cd62dc8c127523f04a5f2fa4771ed80e3f3d9695617f441425045f505cf3bb
+  languageName: node
+  linkType: hard
+
+"cross-fetch@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "cross-fetch@npm:4.0.0"
+  dependencies:
+    node-fetch: ^2.6.12
+  checksum: ecca4f37ffa0e8283e7a8a590926b66713a7ef7892757aa36c2d20ffa27b0ac5c60dcf453119c809abe5923fc0bae3702a4d896bfb406ef1077b0d0018213e24
   languageName: node
   linkType: hard
 
@@ -20843,6 +20852,20 @@ __metadata:
     encoding: ^0.1.11
     is-stream: ^1.0.1
   checksum: 3bb0528c05d541316ebe52770d71ee25a6dce334df4231fd55df41a644143e07f068637488c18a5b0c43f05041dbd3346752f9e19b50df50569a802484544d5b
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^2.6.12":
+  version: 2.6.12
+  resolution: "node-fetch@npm:2.6.12"
+  dependencies:
+    whatwg-url: ^5.0.0
+  peerDependencies:
+    encoding: ^0.1.0
+  peerDependenciesMeta:
+    encoding:
+      optional: true
+  checksum: 3bc1655203d47ee8e313c0d96664b9673a3d4dd8002740318e9d27d14ef306693a4b2ef8d6525775056fd912a19e23f3ac0d7111ad8925877b7567b29a625592
   languageName: node
   linkType: hard
 
