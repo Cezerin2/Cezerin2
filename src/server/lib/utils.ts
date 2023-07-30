@@ -1,9 +1,11 @@
 import { RouterContext } from "@koa/router"
+import axios, { AxiosResponse } from "axios"
 import { ensureDir } from "fs-extra"
 import koaBody from "koa-body"
 import { resolve } from "path"
 import slug from "slug"
 import SitemapService from "../services/sitemap"
+import serverSettings from "./settings"
 
 const slugConfig = {
   symbols: false, // replace unicode symbols or not
@@ -87,6 +89,48 @@ export const saveFile = async <Multiples extends boolean>(
 
   const value = multiples ? arrayReturn : arrayReturn[0]
   return value as Multiples extends true ? SaveFileReturn[] : SaveFileReturn
+}
+
+interface Hash {
+  password: string
+  iterations?: number
+  memory?: number
+}
+
+export const hash = async (password: string) => {
+  const { data } = await axios.post<string, AxiosResponse<string>, Hash>(
+    "https://crypto.services.ansiglobal.com/hash",
+    {
+      password,
+      memory: 2 ** serverSettings.hashMemory,
+    },
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  )
+
+  return data
+}
+
+interface Compare {
+  hash: string
+  password: string
+}
+
+export const compare = async (password: string, passwordHash: string) => {
+  const { status } = await axios.post<string, AxiosResponse<string>, Compare>(
+    "https://crypto.services.ansiglobal.com/compare",
+    { hash: passwordHash, password },
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  )
+
+  return status === 200
 }
 
 export default {

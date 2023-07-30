@@ -48,7 +48,7 @@ export interface Server {
 
   orderStartNumber: number
 
-  saltRounds: number
+  hashMemory: number
 
   developerMode: boolean
 }
