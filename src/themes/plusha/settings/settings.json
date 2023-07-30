@@ -21,7 +21,7 @@
     { "text": "Blog", "url": "/blog" },
     { "text": "Terms of Service", "url": "/tos" },
     { "text": "Privacy Policy", "url": "/privacy-policy" },
-    { "text": "Made with ❤ by Cezerin.org", "url": "" }
+    { "text": "Made with ❤ by Cezerin", "url": "" }
   ],
   "footer_menu_2_items": [
     { "text": "Shipping & returns", "url": "/returns" },

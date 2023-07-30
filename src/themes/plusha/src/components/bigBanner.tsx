@@ -23,7 +23,7 @@ class BigBanner extends Component {
             </picture>
           </div>
           <div className="big-banner__text">
-            Join our community at cezerin.org
+            Join our community at t.me/Cezerin
             <button
               type="button"
               className="big-banner__button button button_gallery"
