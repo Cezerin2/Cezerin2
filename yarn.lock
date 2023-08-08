@@ -10595,7 +10595,7 @@ __metadata:
     redux: ^4.2.0
     redux-form-material-ui: ^4.3.4
     redux-thunk: ^2.4.2
-    regenerator-runtime: ^0.13.10
+    regenerator-runtime: ^0.14.0
     sass: ^1.62.1
     sass-loader: ^13.2.0
     sharp: ^0.32.1
@@ -25235,6 +25235,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "regenerator-runtime@npm:0.14.0"
+  checksum: 1c977ad82a82a4412e4f639d65d22be376d3ebdd30da2c003eeafdaaacd03fc00c2320f18120007ee700900979284fc78a9f00da7fb593f6e6eeebc673fba9a3
+  languageName: node
+  linkType: hard
+
 "regenerator-transform@npm:^0.15.0":
   version: 0.15.0
   resolution: "regenerator-transform@npm:0.15.0"
@@ -27356,7 +27363,7 @@ __metadata:
     redux: ^4.2.0
     redux-form-material-ui: ^4.3.4
     redux-thunk: ^2.4.2
-    regenerator-runtime: ^0.13.10
+    regenerator-runtime: ^0.14.0
     sass: ^1.62.1
     sass-loader: ^13.2.0
     sharp: ^0.32.1
