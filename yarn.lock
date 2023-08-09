@@ -2915,15 +2915,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.17.2":
-  version: 7.19.4
-  resolution: "@babel/runtime@npm:7.19.4"
-  dependencies:
-    regenerator-runtime: ^0.13.4
-  checksum: 66b7e3c13e9ee1d2c9397ea89144f29a875edee266a0eb2d9971be51b32fdbafc85808c7a45e011e6681899bb804b4e2ee2aed6dc07108dbbd6b11b6cc2afba6
-  languageName: node
-  linkType: hard
-
 "@babel/runtime@npm:^7.19.4":
   version: 7.20.0
   resolution: "@babel/runtime@npm:7.20.0"
@@ -2939,6 +2930,15 @@ __metadata:
   dependencies:
     regenerator-runtime: ^0.13.10
   checksum: 00567a333d3357925742a6f5e39394dcc0af6e6029103fe188158bf7ae8b0b3ee3c6c0f68fccc217f0a6cfa455f6be252298baf56b3f5ff37b34313b170cd9f6
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.22.5":
+  version: 7.22.10
+  resolution: "@babel/runtime@npm:7.22.10"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: 524d41517e68953dbc73a4f3616b8475e5813f64e28ba89ff5fca2c044d535c2ea1a3f310df1e5bb06162e1f0b401b5c4af73fe6e2519ca2450d9d8c44cf268d
   languageName: node
   linkType: hard
 
@@ -10545,7 +10545,7 @@ __metadata:
     helmet: ^6.0.0
     html-react-parser: ^3.0.16
     html-webpack-plugin: ^5.5.1
-    i18next: ^22.0.5
+    i18next: ^23.4.4
     i18next-browser-languagedetector: ^7.0.1
     i18next-http-backend: ^2.2.0
     isomorphic-dompurify: ^0.24.0
@@ -16336,12 +16336,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^22.0.5":
-  version: 22.0.5
-  resolution: "i18next@npm:22.0.5"
+"i18next@npm:^23.4.4":
+  version: 23.4.4
+  resolution: "i18next@npm:23.4.4"
   dependencies:
-    "@babel/runtime": ^7.17.2
-  checksum: fb0233ac096456a1a2f85ebeb08dbec26fe9f86056a5c082b8e86b1eb2b4443fd7c582fafddca86afab43583e9e7a92a2c215a29a7ac1e37eb5cb61b1e0c6173
+    "@babel/runtime": ^7.22.5
+  checksum: faa968dcba328528231e3cd140d5a0f4b9b472b75874b7cbf8415e2dbff48397f1cdcc36a739ea6915f6970c367fdd7f985f120e63e1c30a839c53e366d851fd
   languageName: node
   linkType: hard
 
@@ -25235,6 +25235,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "regenerator-runtime@npm:0.14.0"
+  checksum: 1c977ad82a82a4412e4f639d65d22be376d3ebdd30da2c003eeafdaaacd03fc00c2320f18120007ee700900979284fc78a9f00da7fb593f6e6eeebc673fba9a3
+  languageName: node
+  linkType: hard
+
 "regenerator-transform@npm:^0.15.0":
   version: 0.15.0
   resolution: "regenerator-transform@npm:0.15.0"
@@ -27306,7 +27313,7 @@ __metadata:
     helmet: ^6.0.0
     html-react-parser: ^3.0.16
     html-webpack-plugin: ^5.5.1
-    i18next: ^22.0.5
+    i18next: ^23.4.4
     i18next-browser-languagedetector: ^7.0.1
     i18next-http-backend: ^2.2.0
     isomorphic-dompurify: ^0.24.0
