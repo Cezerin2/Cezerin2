@@ -2933,12 +2933,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.20.1":
-  version: 7.20.1
-  resolution: "@babel/runtime@npm:7.20.1"
+"@babel/runtime@npm:^7.22.10":
+  version: 7.22.11
+  resolution: "@babel/runtime@npm:7.22.11"
   dependencies:
-    regenerator-runtime: ^0.13.10
-  checksum: 00567a333d3357925742a6f5e39394dcc0af6e6029103fe188158bf7ae8b0b3ee3c6c0f68fccc217f0a6cfa455f6be252298baf56b3f5ff37b34313b170cd9f6
+    regenerator-runtime: ^0.14.0
+  checksum: a5cd6683a8fcdb8065cb1677f221e22f6c67ec8f15ad1d273b180b93ab3bd86c66da2c48f500d4e72d8d2cfa85ff4872a3f350e5aa3855630036af5da765c001
   languageName: node
   linkType: hard
 
@@ -5077,11 +5077,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/icons-material@npm:^5.10.14":
-  version: 5.10.14
-  resolution: "@mui/icons-material@npm:5.10.14"
+"@mui/icons-material@npm:^5.14.7":
+  version: 5.14.7
+  resolution: "@mui/icons-material@npm:5.14.7"
   dependencies:
-    "@babel/runtime": ^7.20.1
+    "@babel/runtime": ^7.22.10
   peerDependencies:
     "@mui/material": ^5.0.0
     "@types/react": ^17.0.0 || ^18.0.0
@@ -5089,7 +5089,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 306c7da2242914f18c4816e919f3980094d4f9ad4f47f97df535c000d4b9bd01757166747b8f13f77631a842349a41585f2156e47103452d3caa99d9e7c10300
+  checksum: 1596006ac7617f73a0b5f6354431d7f553e2f004c1144ea99ab494771de3a51c209df3ddc8214ec980a1dc519edeae62fe6b519e6a2944776a1344ca7a6def74
   languageName: node
   linkType: hard
 
@@ -10484,7 +10484,7 @@ __metadata:
     "@emotion/styled": ^11.11.0
     "@koa/cors": ^4.0.0
     "@koa/router": ^12.0.0
-    "@mui/icons-material": ^5.10.14
+    "@mui/icons-material": ^5.14.7
     "@mui/material": ^5.13.0
     "@mui/x-date-pickers": ^5.0.8
     "@parcel/transformer-typescript-types": 2.9.3
@@ -25235,6 +25235,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "regenerator-runtime@npm:0.14.0"
+  checksum: 1c977ad82a82a4412e4f639d65d22be376d3ebdd30da2c003eeafdaaacd03fc00c2320f18120007ee700900979284fc78a9f00da7fb593f6e6eeebc673fba9a3
+  languageName: node
+  linkType: hard
+
 "regenerator-transform@npm:^0.15.0":
   version: 0.15.0
   resolution: "regenerator-transform@npm:0.15.0"
@@ -27253,7 +27260,7 @@ __metadata:
     "@emotion/styled": ^11.11.0
     "@koa/cors": ^4.0.0
     "@koa/router": ^12.0.0
-    "@mui/icons-material": ^5.10.14
+    "@mui/icons-material": ^5.14.7
     "@mui/material": ^5.13.0
     "@mui/x-date-pickers": ^5.0.8
     "@reduxjs/toolkit": ^1.9.0
