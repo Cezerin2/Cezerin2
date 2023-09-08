@@ -10576,7 +10576,7 @@ __metadata:
     eslint-plugin-jsx-a11y: ^6.6.1
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-react: ^7.31.10
-    final-form: ^4.20.7
+    final-form: ^4.20.10
     final-form-arrays: ^3.0.2
     fork-ts-checker-webpack-plugin: ^8.0.0
     formidable: ^1.2.1
@@ -12949,7 +12949,7 @@ __metadata:
     "@stripe/stripe-js": ^1.52.1
     "@tsconfig/docusaurus": ^1.0.5
     clsx: ^1.2.1
-    final-form: ^4.20.9
+    final-form: ^4.20.10
     graphql: ^16.6.0
     prettier: ^2.8.8
     prettier-plugin-tailwindcss: ^0.3.0
@@ -14779,21 +14779,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"final-form@npm:^4.20.7":
-  version: 4.20.7
-  resolution: "final-form@npm:4.20.7"
+"final-form@npm:^4.20.10":
+  version: 4.20.10
+  resolution: "final-form@npm:4.20.10"
   dependencies:
     "@babel/runtime": ^7.10.0
-  checksum: 0e2a9a9cf70814e1099da38e8a79ff6dc2862f07217dae041ba70c5a4bcc8284c74b0500f00b4935331f5fbe7dc119f63ca4776495ecc8c486c939daa23598ec
-  languageName: node
-  linkType: hard
-
-"final-form@npm:^4.20.9":
-  version: 4.20.9
-  resolution: "final-form@npm:4.20.9"
-  dependencies:
-    "@babel/runtime": ^7.10.0
-  checksum: 2235a41864e0b8aa24a358b8896a02764735d3660cd8ee30b9cea9e6d3a6239e74d1b6bc5dea0e663a5b90393045783c7714ceea13bceffe10811915c88a8d60
+  checksum: 92491998d7e284ce47453a54ea94e949aa5852d9307fe8875da9107d2eb966542cbca6f73bd306407eddfbd8d5c8d40cbd6d198358439b5cc4b8c8caea6d8e7b
   languageName: node
   linkType: hard
 
@@ -27337,7 +27328,7 @@ __metadata:
     css-loader: ^6.7.2
     cssnano: ^5.1.14
     dompurify: ^3.0.3
-    final-form: ^4.20.7
+    final-form: ^4.20.10
     final-form-arrays: ^3.0.2
     fork-ts-checker-webpack-plugin: ^8.0.0
     formidable: ^1.2.1
