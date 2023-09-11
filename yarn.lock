@@ -10587,7 +10587,7 @@ __metadata:
     html-webpack-plugin: ^5.5.1
     i18next: ^22.0.5
     i18next-browser-languagedetector: ^7.0.1
-    i18next-http-backend: ^2.2.0
+    i18next-http-backend: ^2.2.2
     isomorphic-dompurify: ^0.24.0
     jsonwebtoken: ^8.5.1
     koa: ^2.14.2
@@ -11817,7 +11817,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-fetch@npm:3.1.5, cross-fetch@npm:^3.0.4, cross-fetch@npm:^3.1.5":
+"cross-fetch@npm:3.1.6":
+  version: 3.1.6
+  resolution: "cross-fetch@npm:3.1.6"
+  dependencies:
+    node-fetch: ^2.6.11
+  checksum: 704b3519ab7de488328cc49a52cf1aa14132ec748382be5b9557b22398c33ffa7f8c2530e8a97ed8cb55da52b0a9740a9791d361271c4591910501682d981d9c
+  languageName: node
+  linkType: hard
+
+"cross-fetch@npm:^3.0.4, cross-fetch@npm:^3.1.5":
   version: 3.1.5
   resolution: "cross-fetch@npm:3.1.5"
   dependencies:
@@ -16367,12 +16376,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-http-backend@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "i18next-http-backend@npm:2.2.0"
+"i18next-http-backend@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "i18next-http-backend@npm:2.2.2"
   dependencies:
-    cross-fetch: 3.1.5
-  checksum: 21d22d947a23a1b95f9bb7d4e1071639e4cfd5f6c2bd21eded7fe2df848108a87cdab31586764d9ef9c1ee0fba38a887bfe9c0daadc049f22760d8de0bfb4a4f
+    cross-fetch: 3.1.6
+  checksum: b098cf89e685bf8f2487a3cfd2e792d85218620b8311c91cc0782f2af03420e518c5d8e899cd9011af3472837362556d7468ff38c890aaf98d2721419a901434
   languageName: node
   linkType: hard
 
@@ -20883,6 +20892,20 @@ __metadata:
     encoding: ^0.1.11
     is-stream: ^1.0.1
   checksum: 3bb0528c05d541316ebe52770d71ee25a6dce334df4231fd55df41a644143e07f068637488c18a5b0c43f05041dbd3346752f9e19b50df50569a802484544d5b
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^2.6.11":
+  version: 2.7.0
+  resolution: "node-fetch@npm:2.7.0"
+  dependencies:
+    whatwg-url: ^5.0.0
+  peerDependencies:
+    encoding: ^0.1.0
+  peerDependenciesMeta:
+    encoding:
+      optional: true
+  checksum: d76d2f5edb451a3f05b15115ec89fc6be39de37c6089f1b6368df03b91e1633fd379a7e01b7ab05089a25034b2023d959b47e59759cb38d88341b2459e89d6e5
   languageName: node
   linkType: hard
 
@@ -27348,7 +27371,7 @@ __metadata:
     html-webpack-plugin: ^5.5.1
     i18next: ^22.0.5
     i18next-browser-languagedetector: ^7.0.1
-    i18next-http-backend: ^2.2.0
+    i18next-http-backend: ^2.2.2
     isomorphic-dompurify: ^0.24.0
     jsonwebtoken: ^8.5.1
     koa: ^2.14.2
