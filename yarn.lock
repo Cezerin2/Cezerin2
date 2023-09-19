@@ -10652,7 +10652,7 @@ __metadata:
     webpack-dev-server: ^4.15.0
     winston: ^3.8.2
     workbox-webpack-plugin: ^6.6.1
-    ws: ^8.11.0
+    ws: ^8.14.2
     yaml: ^2.2.2
     yaml-loader: ^0.8.0
     yup: ^0.32.11
@@ -26526,7 +26526,7 @@ __metadata:
     typescript: ^4.9.3
     ua-parser-js: ^1.0.32
     winston: ^3.8.2
-    ws: ^8.11.0
+    ws: ^8.14.2
     yaml: ^2.2.2
     yup: ^0.32.11
   languageName: unknown
@@ -27413,7 +27413,7 @@ __metadata:
     webpack-dev-server: ^4.15.0
     winston: ^3.8.2
     workbox-webpack-plugin: ^6.6.1
-    ws: ^8.11.0
+    ws: ^8.14.2
     yaml: ^2.2.2
     yaml-loader: ^0.8.0
     yup: ^0.32.11
@@ -30689,6 +30689,21 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 53e991bbf928faf5dc6efac9b8eb9ab6497c69feeb94f963d648b7a3530a720b19ec2e0ec037344257e05a4f35bd9ad04d9de6f289615ffb133282031b18c61c
+  languageName: node
+  linkType: hard
+
+"ws@npm:^8.14.2":
+  version: 8.14.2
+  resolution: "ws@npm:8.14.2"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 3ca0dad26e8cc6515ff392b622a1467430814c463b3368b0258e33696b1d4bed7510bc7030f7b72838b9fdeb8dbd8839cbf808367d6aae2e1d668ce741d4308b
   languageName: node
   linkType: hard
 
