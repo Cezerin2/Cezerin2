@@ -3,7 +3,7 @@
   "main": "src/index.tsx",
   "dependencies": {
     "bulma": "^0.9.3",
-    "rc-slider": "^9.7.5",
+    "rc-slider": "^10.3.0",
     "react-image-gallery": "^0.8.7",
     "react-image-lightbox": "^4.6.0",
     "react-input-mask": "^3.0.0-alpha.2",
