@@ -223,14 +223,14 @@ ajaxRouter.post("/forgot-password", async ctx => {
   }
 
   // check if customer exists
-  await api.customers.list(filter).then(({ status, json }) => {
+  await api.customers.list(filter).then(async ({ status, json }) => {
     if (json.total_count < 1) {
       data.status = false
       ctx.body = data
       ctx.status = status
       return false
     }
-    sendEmail(json.data[0].id)
+    await sendEmail(json.data[0].id)
   })
 })
 
@@ -407,11 +407,9 @@ ajaxRouter.post("/register", async ctx => {
   const registerCustomer = async () => {
     if (data.status) {
       const countryCode = undefined
-      const [emailTemp] = await Promise.all([
-        EmailTemplatesService.getEmailTemplate(
-          `register_doi_${serverSettings.language}`
-        ),
-      ])
+      const emailTemp = await EmailTemplatesService.getEmailTemplate(
+        `register_doi_${serverSettings.language}`
+      )
 
       const tokenConcatString = `${encodeUserLoginAuth(
         ctx.request.body.first_name
@@ -434,10 +432,8 @@ ajaxRouter.post("/register", async ctx => {
         )
       })
 
-      const [bodyTemplate, settings] = await Promise.all([
-        handlebars.compile(emailTemp.body),
-        SettingsService.getSettings(),
-      ])
+      const bodyTemplate = handlebars.compile(emailTemp.body)
+      const settings = await SettingsService.getSettings()
 
       await send({
         to: ctx.request.body.email,
@@ -456,14 +452,14 @@ ajaxRouter.post("/register", async ctx => {
 
   // check if customer exist in database
   if (!requestToken) {
-    await api.customers.list(filter).then(({ status, json }) => {
+    await api.customers.list(filter).then(async ({ status, json }) => {
       if (json.total_count > 0) {
         ctx.body = data
         ctx.status = status
         return false
       }
       data.status = true
-      registerCustomer()
+      await registerCustomer()
     })
   }
 })
