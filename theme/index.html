@@ -72,6 +72,21 @@
       window.__APP_STATE__ = {app_state}
     </script>
 
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-X4G66KVFSJ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+
+      gtag("config", "G-X4G66KVFSJ")
+    </script>
+
     {placeholder_body_end}
   </body>
 </html>
