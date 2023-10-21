@@ -12,7 +12,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -24,7 +24,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -36,7 +36,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -48,7 +48,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -60,7 +60,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -72,7 +72,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -84,7 +84,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -96,7 +96,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -108,7 +108,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -120,7 +120,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
@@ -132,7 +132,7 @@ updates:
     commit-message:
       # Prefix all commit messages with "feat"
       prefix: "feat: Package "
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 0
     reviewers:
       - "ValerioBob"
       - "vamcart"
