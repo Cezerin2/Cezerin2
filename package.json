@@ -24,7 +24,7 @@
     "type": "git",
     "url": "https://github.com/Cezerin2/cezerin2"
   },
-  "packageManager": "yarn@3.5.0",
+  "packageManager": "yarn@3.6.4",
   "workspaces": [
     "src/admin",
     "src/client",
