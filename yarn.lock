@@ -31171,9 +31171,9 @@ __metadata:
   linkType: hard
 
 "tinymce@npm:^6.0.0 || ^5.5.1":
-  version: 6.1.2
-  resolution: "tinymce@npm:6.1.2"
-  checksum: 9069dac3f503f36802ac34a91ca8297d433d92543e3a79437cb97ca9742e95582a446a67cbafea8c1a4ac0a4ae4026bdfb522b5fda4a1c15868ef5e25dc63111
+  version: 6.7.1
+  resolution: "tinymce@npm:6.7.1"
+  checksum: f3837122f3f0946b6767babd751c95eb771db047533127d3aa6801d702f3738b6eff211552db86ff2ced85738216f88f61acfab27db872f5e93353b56f4acac8
   languageName: node
   linkType: hard
 
