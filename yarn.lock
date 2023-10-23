@@ -12343,7 +12343,7 @@ __metadata:
     react-lazyload: ^3.2.0
     react-redux: ^8.0.5
     react-router-dom: ^5.3.1
-    react-scroll: ^1.8.8
+    react-scroll: ^1.9.0
     react-sortable-hoc: ^2.0.0
     react-tagsinput: ^3.20.0
     react-use: ^17.4.0
@@ -27451,16 +27451,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-scroll@npm:^1.8.8":
-  version: 1.8.8
-  resolution: "react-scroll@npm:1.8.8"
+"react-scroll@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "react-scroll@npm:1.9.0"
   dependencies:
     lodash.throttle: ^4.1.1
     prop-types: ^15.7.2
   peerDependencies:
     react: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
     react-dom: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 66c86d25e2d8032c3c00fdd4909a188b00d8ddabf4744f5a86829199ac9f100e042199f336442f403332ac1082687213e6966cb0f500e64e4392217f715c6c1a
+  checksum: b84427d090600d9107adb57b93c8c059f9e36dcb4919660cd7d0547a6ce816b179bc54bc2941ff7d2497b2295f1a3e92dd0974c0dcedfde2fa5c93966441271e
   languageName: node
   linkType: hard
 
@@ -30122,7 +30122,7 @@ __metadata:
     react-lazyload: ^3.2.0
     react-redux: ^8.0.5
     react-router-dom: ^5.3.1
-    react-scroll: ^1.8.8
+    react-scroll: ^1.9.0
     react-sortable-hoc: ^2.0.0
     react-tagsinput: ^3.20.0
     react-use: ^17.4.0
