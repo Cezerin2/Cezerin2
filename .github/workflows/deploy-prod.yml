@@ -38,7 +38,17 @@ jobs:
 
       - run: yarn
       # - run: yarn build:admin
-      - run: yarn src/docs build
+
+      - name: Install latest mdbook
+        run: |
+          tag=$(curl 'https://api.github.com/repos/rust-lang/mdbook/releases/latest' | jq -r '.tag_name')
+          url="https://github.com/rust-lang/mdbook/releases/download/${tag}/mdbook-${tag}-x86_64-unknown-linux-gnu.tar.gz"
+          mkdir mdbook
+          curl -sSL $url | tar -xz --directory=./mdbook
+          echo `pwd`/mdbook >> $GITHUB_PATH
+
+      - name: Build Book
+        run: cd src/book && mdbook build
 
       # - uses: FirebaseExtended/action-hosting-deploy@v0
       #   with:
@@ -49,10 +59,10 @@ jobs:
       #     target: admin-f3635
       #     entryPoint: "./src/admin"
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CEZERIN_8FAB8 }}"
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          projectId: cezerin-8fab8
-          channelId: live
-          entryPoint: "./src/docs"
+      # - uses: FirebaseExtended/action-hosting-deploy@v0
+      #   with:
+      #     firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CEZERIN_8FAB8 }}"
+      #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
+      #     projectId: cezerin-8fab8
+      #     channelId: live
+      #     entryPoint: "./src/docs"
