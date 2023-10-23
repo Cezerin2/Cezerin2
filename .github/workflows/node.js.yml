@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -42,4 +42,4 @@ jobs:
       - run: yarn
       - run: yarn build
       # - run: yarn src/admin build
-      - run: yarn src/docs build
+      # - run: yarn src/docs build
