@@ -9740,7 +9740,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.31.0, @typescript-eslint/parser@npm:^5.5.0, @typescript-eslint/parser@npm:^5.59.5":
+"@typescript-eslint/parser@npm:^5.5.0":
   version: 5.62.0
   resolution: "@typescript-eslint/parser@npm:5.62.0"
   dependencies:
@@ -12747,7 +12747,7 @@ __metadata:
     "@parcel/packager-ts": ^2.6.2
     "@parcel/transformer-typescript-types": ^2.9.3
     "@typescript-eslint/eslint-plugin": ^5.31.0
-    "@typescript-eslint/parser": ^5.31.0
+    "@typescript-eslint/parser": ^6.8.0
     ava: ^4.3.1
     axios: ^0.27.2
     c8: ^7.12.0
@@ -30057,7 +30057,7 @@ __metadata:
     "@types/ua-parser-js": ^0.7.36
     "@types/webpack-env": ^1.18.0
     "@typescript-eslint/eslint-plugin": ^5.59.5
-    "@typescript-eslint/parser": ^5.59.5
+    "@typescript-eslint/parser": ^6.8.0
     axios: ^1.4.0
     babel-loader: ^9.1.0
     babel-preset-razzle: ^4.2.18
