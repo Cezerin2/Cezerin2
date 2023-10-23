@@ -22,7 +22,7 @@
     "@stripe/react-stripe-js": "^1.15.0",
     "@stripe/stripe-js": "^1.44.1",
     "@tinymce/tinymce-react": "^4.2.0",
-    "@types/formidable": "1.0.31",
+    "@types/formidable": "3.4.4",
     "axios": "^1.4.0",
     "cezerin2-client": "^0.38.0",
     "chart.js": "^2.7.2",
