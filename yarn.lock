@@ -8019,20 +8019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stripe/react-stripe-js@npm:^1.15.0":
-  version: 1.15.0
-  resolution: "@stripe/react-stripe-js@npm:1.15.0"
-  dependencies:
-    prop-types: ^15.7.2
-  peerDependencies:
-    "@stripe/stripe-js": ^1.44.1
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 29ac46419b7aa3ed44bcfd7f9333e41e83d1bc1ed3e25792a95b88b760b60fb952d44eb5f6b17799f835f275344132dc2f67610a9d48afc4a48f4be35657808c
-  languageName: node
-  linkType: hard
-
-"@stripe/react-stripe-js@npm:^2.1.0":
+"@stripe/react-stripe-js@npm:^2.3.1":
   version: 2.3.1
   resolution: "@stripe/react-stripe-js@npm:2.3.1"
   dependencies:
@@ -12247,7 +12234,7 @@ __metadata:
     "@sentry/node": ^7.65.0
     "@sentry/react": ^7.51.2
     "@sentry/tracing": ^7.51.2
-    "@stripe/react-stripe-js": ^1.15.0
+    "@stripe/react-stripe-js": ^2.3.1
     "@stripe/stripe-js": ^1.44.1
     "@tinymce/tinymce-react": ^4.2.0
     "@types/dompurify": ^3.0.2
@@ -14760,7 +14747,7 @@ __metadata:
     "@docusaurus/module-type-aliases": 2.4.0
     "@docusaurus/preset-classic": 2.4.0
     "@mdx-js/react": ^1.6.22
-    "@stripe/react-stripe-js": ^2.1.0
+    "@stripe/react-stripe-js": ^2.3.1
     "@stripe/stripe-js": ^1.52.1
     "@tsconfig/docusaurus": ^1.0.5
     clsx: ^1.2.1
@@ -30033,7 +30020,7 @@ __metadata:
     "@sentry/node": ^7.65.0
     "@sentry/react": ^7.51.2
     "@sentry/tracing": ^7.51.2
-    "@stripe/react-stripe-js": ^1.15.0
+    "@stripe/react-stripe-js": ^2.3.1
     "@stripe/stripe-js": ^1.44.1
     "@tinymce/tinymce-react": ^4.2.0
     "@types/dompurify": ^3.0.2
