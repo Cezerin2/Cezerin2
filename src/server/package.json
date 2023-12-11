@@ -7,7 +7,7 @@
     "watch": "tsnd --respawn ."
   },
   "dependencies": {
-    "@koa/cors": "^4.0.0",
+    "@koa/cors": "^5.0.0",
     "@koa/router": "^12.0.0",
     "@sentry/node": "^7.65.0",
     "@stripe/stripe-js": "^1.44.1",
