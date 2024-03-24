@@ -154,7 +154,7 @@
     "@types/node": "^20.11.30",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18.2.69",
-    "@types/react-dom": "^18.2.22",
+    "@types/react-dom": "^18.0.9",
     "@types/react-redux": "^7.1.33",
     "@types/react-router-dom": "^5.3.3",
     "@types/sharp": "^0.32.0",
