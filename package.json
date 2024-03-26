@@ -60,7 +60,7 @@
     "@koa/router": "^12.0.1",
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
-    "@mui/x-date-pickers": "^7.0.0",
+    "@mui/x-date-pickers": "^5.0.8",
     "@reduxjs/toolkit": "^2.2.2",
     "@sentry/node": "^7.108.0",
     "@sentry/react": "^7.108.0",
