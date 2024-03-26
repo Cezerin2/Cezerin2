@@ -13368,35 +13368,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.27.2":
-  version: 0.27.2
-  resolution: "axios@npm:0.27.2"
-  dependencies:
-    follow-redirects: "npm:^1.14.9"
-    form-data: "npm:^4.0.0"
-  checksum: 10c0/76d673d2a90629944b44d6f345f01e58e9174690f635115d5ffd4aca495d99bcd8f95c590d5ccb473513f5ebc1d1a6e8934580d0c57cdd0498c3a101313ef771
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "axios@npm:1.4.0"
+"axios@npm:^0.28.0":
+  version: 0.28.0
+  resolution: "axios@npm:0.28.0"
   dependencies:
     follow-redirects: "npm:^1.15.0"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/a925a07590b0ec1d4daf28cd27890f930daab980371558deb3b883af174b881da09e5ba2cb8393a648fda5859e39934982d0b8b092fe89fc84cb6c80a70a1910
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.6.8":
-  version: 1.6.8
-  resolution: "axios@npm:1.6.8"
-  dependencies:
-    follow-redirects: "npm:^1.15.6"
-    form-data: "npm:^4.0.0"
-    proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/0f22da6f490335479a89878bc7d5a1419484fbb437b564a80c34888fc36759ae4f56ea28d55a191695e5ed327f0bad56e7ff60fb6770c14d1be6501505d47ab9
+  checksum: 10c0/661b1ac946df58e9ef8009820f1589ec7a8154ad3b15799ae01b54b5b2e8f09ead4bef40785af58e173e12f17b4e9fbc4c8425166fc3914cf47631507df9c400
   languageName: node
   linkType: hard
 
@@ -14663,7 +14642,7 @@ __metadata:
     "@types/webpack-env": "npm:^1.18.4"
     "@typescript-eslint/eslint-plugin": "npm:^7.4.0"
     "@typescript-eslint/parser": "npm:^7.4.0"
-    axios: "npm:^1.6.8"
+    axios: "npm:^0.28.0"
     babel-loader: "npm:^9.1.3"
     babel-preset-razzle: "npm:^4.2.18"
     cezerin2-client: "npm:^0.38.0"
@@ -15159,7 +15138,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^5.31.0"
     "@typescript-eslint/parser": "npm:^5.31.0"
     ava: "npm:^4.3.1"
-    axios: "npm:^0.27.2"
+    axios: "npm:^0.28.0"
     c8: "npm:^7.12.0"
     cross-fetch: "npm:^3.1.5"
     parcel: "npm:^2.6.2"
@@ -19692,23 +19671,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.14.7, follow-redirects@npm:^1.14.9":
+"follow-redirects@npm:^1.14.7":
   version: 1.15.3
   resolution: "follow-redirects@npm:1.15.3"
   peerDependenciesMeta:
     debug:
       optional: true
   checksum: 10c0/915a2cf22e667bdf47b1a43cc6b7dce14d95039e9bbf9a24d0e739abfbdfa00077dd43c86d4a7a19efefcc7a99af144920a175eedc3888d268af5df67c272ee5
-  languageName: node
-  linkType: hard
-
-"follow-redirects@npm:^1.15.6":
-  version: 1.15.6
-  resolution: "follow-redirects@npm:1.15.6"
-  peerDependenciesMeta:
-    debug:
-      optional: true
-  checksum: 10c0/9ff767f0d7be6aa6870c82ac79cf0368cd73e01bbc00e9eb1c2a16fbb198ec105e3c9b6628bb98e9f3ac66fe29a957b9645bcb9a490bb7aa0d35f908b6b85071
   languageName: node
   linkType: hard
 
@@ -32955,7 +32924,7 @@ __metadata:
     "@types/node": "npm:^20.1.3"
     "@types/nodemailer": "npm:^6.4.8"
     "@types/ua-parser-js": "npm:^0.7.36"
-    axios: "npm:^1.4.0"
+    axios: "npm:^0.28.0"
     cezerin2-client: "npm:^0.38.0"
     formidable: "npm:^1.2.1"
     fs-extra: "npm:^10.1.0"
@@ -33944,7 +33913,7 @@ __metadata:
     "@types/webpack-env": "npm:^1.18.0"
     "@typescript-eslint/eslint-plugin": "npm:^5.59.5"
     "@typescript-eslint/parser": "npm:^5.59.5"
-    axios: "npm:^1.4.0"
+    axios: "npm:^0.28.0"
     babel-loader: "npm:^9.1.0"
     babel-preset-razzle: "npm:^4.2.18"
     cezerin2-client: "npm:^0.38.0"

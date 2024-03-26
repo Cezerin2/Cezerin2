@@ -12,7 +12,7 @@
     "@sentry/node": "^7.65.0",
     "@stripe/stripe-js": "^1.44.1",
     "@types/formidable": "1.0.31",
-    "axios": "^1.4.0",
+    "axios": "^0.28.0",
     "cezerin2-client": "^0.38.0",
     "formidable": "^1.2.1",
     "fs-extra": "^10.1.0",
