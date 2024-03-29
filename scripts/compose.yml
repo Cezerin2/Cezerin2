@@ -6,7 +6,7 @@ services:
     restart: always
 
   mongo-express:
-    build: .
+    build: ./
     restart: always
     ports:
       - 3001:3001
