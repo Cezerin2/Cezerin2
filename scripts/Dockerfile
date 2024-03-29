@@ -8,9 +8,8 @@ FROM node:20
 COPY --from=clone Cezerin2 /var/www/store1
 
 WORKDIR /var/www/store1
-WORKDIR /var/www/store1
 
-RUN yarn workspaces focus --all src/server
+RUN yarn workspaces focus --production src/server
 
 EXPOSE 3001
 
