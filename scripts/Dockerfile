@@ -5,6 +5,9 @@ RUN apt update && apt upgrade -y && apt install git -y
 WORKDIR /var/www/store1
 
 RUN git clone https://github.com/Cezerin2/Cezerin2
+
+WORKDIR /var/www/store1/Cezerin2
+
 RUN cd Cezerin2
 
 RUN git checkout docker
