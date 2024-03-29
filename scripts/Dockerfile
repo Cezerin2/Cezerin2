@@ -1,4 +1,6 @@
-FROM node:20-alpine
+FROM ubuntu
+
+RUN apt install node
 
 WORKDIR ../
 
