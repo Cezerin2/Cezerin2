@@ -1,7 +1,7 @@
 # Config used by server side only
 
 # Database config
-dbHost: ${DB_HOST:"127.0.0.1"}
+dbHost: ${DB_HOST:"mongo"}
 dbPort: ${DB_PORT:27017}
 dbName: ${DB_NAME:"shop"}
 dbUser: ${DB_USER:""}
