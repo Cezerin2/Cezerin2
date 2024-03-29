@@ -3,7 +3,7 @@ FROM ubuntu as clone
 RUN apt update && apt upgrade -y && apt install git -y
 RUN git clone https://github.com/Cezerin2/Cezerin2
 
-FROM node:20-alpine
+FROM node:20
 
 COPY --from=clone Cezerin2 /var/www/store1
 
