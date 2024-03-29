@@ -1,19 +1,22 @@
 FROM ubuntu as clone
 
 RUN apt update && apt upgrade -y && apt install git -y
+
+WORKDIR /var/www/store1
+
 RUN git clone https://github.com/Cezerin2/Cezerin2
+RUN cd Cezerin2
+
 RUN git checkout docker
 
 FROM node:20
 
+WORKDIR /var/www/store1/Cezerin2
+
 RUN yarn -v
 
-COPY --from=clone Cezerin2 /var/www/store1
-
-WORKDIR /var/www/store1
-
-# RUN yarn workspaces focus --all src/server
+RUN yarn workspaces focus --all src/server
 
 EXPOSE 3001
 
-# CMD [ "npm","run","start:server" ]
+CMD [ "npm","run","start:server" ]
