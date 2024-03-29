@@ -5,10 +5,10 @@ RUN git clone https://github.com/Cezerin2/Cezerin2
 
 FROM node:20
 
+RUN yarn -v
+
 COPY --from=clone Cezerin2 /var/www/store1
 
-WORKDIR /var/www/store1
-WORKDIR /var/www/store1
 WORKDIR /var/www/store1
 
 RUN yarn workspaces focus --all src/server
