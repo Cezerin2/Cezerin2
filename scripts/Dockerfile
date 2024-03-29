@@ -11,6 +11,8 @@ RUN git checkout docker
 
 FROM node:20
 
+COPY --from=clone /var/www/store1 /var/www/store1
+
 WORKDIR /var/www/store1/Cezerin2
 
 RUN yarn -v
