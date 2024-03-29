@@ -1,0 +1,12 @@
+version: "3.1"
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+
+  mongo-express:
+    image: .
+    restart: always
+    ports:
+      - 3001:3001
