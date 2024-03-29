@@ -3,6 +3,7 @@ FROM node:20-alpine
 WORKDIR ../
 
 RUN corepack enable 
+RUN yarn -v
 RUN yarn workspaces focus --all src/server
 
 EXPOSE 3001
