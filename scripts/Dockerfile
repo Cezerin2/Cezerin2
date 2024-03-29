@@ -1,5 +1,6 @@
-FROM ubuntu as clone
+FROM alpine as clone
 
+RUN apt update && apt upgrade -y && apt install git
 RUN git clone https://github.com/Cezerin2/Cezerin2
 
 FROM node:20-alpine
