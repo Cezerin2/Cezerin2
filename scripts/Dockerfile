@@ -19,7 +19,7 @@ WORKDIR /var/www/store1/Cezerin2
 
 RUN yarn -v
 
-RUN yarn workspaces focus --production src/server
+RUN yarn
 
 EXPOSE 3001
 
