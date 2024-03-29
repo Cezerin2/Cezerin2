@@ -11,7 +11,7 @@ WORKDIR /var/www/store1/Cezerin2
 
 RUN git checkout docker
 
-FROM node:20
+FROM node:20-alpine
 
 COPY --from=clone /var/www/store1 /var/www/store1
 
