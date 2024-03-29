@@ -1,6 +1,7 @@
 FROM ubuntu
 
-RUN apt install node
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+RUN nvm install 20
 
 WORKDIR ../
 
