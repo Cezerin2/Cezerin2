@@ -14,7 +14,6 @@ WORKDIR /var/www/store1
 
 RUN ls
 
-RUN corepack enable
 # RUN yarn workspaces focus --all src/server
 
 # EXPOSE 3001
