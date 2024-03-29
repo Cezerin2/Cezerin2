@@ -1,12 +1,14 @@
 version: "3.1"
 
 services:
-  mongo:
+  mongodb:
     image: mongo
     restart: always
+    volumes:
+      - /var/www/store1/mongodb:/data/db
 
-  mongo-express:
-    build: ./
+  app:
+    build: .
     restart: always
     ports:
       - 3001:3001
