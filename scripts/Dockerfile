@@ -2,9 +2,17 @@ FROM node:20-alpine
 
 WORKDIR ../
 
+RUN ls
+
 COPY . /var/www/store1
 
+
+RUN ls
+
+
 WORKDIR /var/www/store1
+
+RUN ls
 
 RUN corepack enable
 RUN yarn workspaces focus --all src/server
