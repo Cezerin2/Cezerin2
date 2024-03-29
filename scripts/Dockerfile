@@ -2,6 +2,7 @@ FROM ubuntu as clone
 
 RUN apt update && apt upgrade -y && apt install git -y
 RUN git clone https://github.com/Cezerin2/Cezerin2
+RUN git checkout docker
 
 FROM node:20
 
