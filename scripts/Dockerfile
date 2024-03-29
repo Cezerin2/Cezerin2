@@ -1,14 +1,6 @@
 FROM ubuntu
 
-RUN cd ../
-
-RUN ls
-
-COPY . /var/www/store1
-
-
-RUN ls
-
+COPY ../ /var/www/store1
 
 WORKDIR /var/www/store1
 
