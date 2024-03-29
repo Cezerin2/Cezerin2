@@ -1,6 +1,6 @@
 FROM ubuntu
 
-WORKDIR ../
+RUN cd ../
 
 RUN ls
 
