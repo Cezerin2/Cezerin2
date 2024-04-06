@@ -123,11 +123,7 @@ module.exports = {
 
     return config
   },
-  modifyWebpackConfig({
-    env: { target, dev },
-    webpackConfig,
-    options: { webpackOptions },
-  }) {
+  modifyWebpackConfig({ env: { target, dev }, webpackConfig }) {
     const config = webpackConfig
 
     if (target === "web") {
@@ -136,32 +132,8 @@ module.exports = {
         url: require.resolve("url"),
       }
 
-      if (dev) {
-        // Replacing style-loader with MiniCssExtractPlugin
-        const rules = [...config.module.rules]
-        const { cssOutputFilename, cssOutputChunkFilename } = webpackOptions
-
-        const { use } = rules.find(({ test }) =>
-          test?.source?.includes(".(sa|sc)ss$")
-        )
-
-        const index = use.findIndex(({ loader }) =>
-          loader.includes("style-loader")
-        )
-
-        if (index > -1) use[index] = MiniCssExtractPlugin.loader
-
-        config.plugins.push(
-          new MiniCssExtractPlugin({
-            filename: cssOutputFilename,
-            chunkFilename: cssOutputChunkFilename,
-          })
-        )
-      }
-
       if (!dev) {
         config.plugins.push(plugin)
-        config.devtool = undefined
         config.performance = { hints: false }
       }
     }
