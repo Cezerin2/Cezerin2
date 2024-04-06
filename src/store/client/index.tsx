@@ -1,16 +1,15 @@
+import { configureStore } from "@reduxjs/toolkit"
 import React from "react"
 import { hydrateRoot } from "react-dom/client"
-import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
-import thunkMiddleware from "redux-thunk"
 import { BrowserRouter } from "react-router-dom"
 import { initOnClient } from "theme"
-import clientSettings from "./settings"
-import reducers from "../shared/reducers"
 import locale from "theme/assets/locales/en.json"
 import * as analytics from "../shared/analytics"
 import App from "../shared/app"
+import reducer from "../shared/reducers"
 import api from "./api"
+import clientSettings from "./settings"
 
 declare global {
   interface Window {
@@ -19,21 +18,17 @@ declare global {
   }
 }
 
-const initialState = window.__APP_STATE__
+const preloadedState = window.__APP_STATE__
 const themeText = window.__APP_TEXT__
 
 initOnClient({
-  themeSettings: initialState.app.themeSettings,
+  themeSettings: preloadedState.app.themeSettings,
   text: themeText,
   language: clientSettings.language,
   api: api,
 })
 
-const store = createStore(
-  reducers,
-  initialState,
-  applyMiddleware(thunkMiddleware)
-)
+const store = configureStore({ reducer, preloadedState })
 
 const container = document.getElementById("root")
 hydrateRoot(
@@ -45,7 +40,7 @@ hydrateRoot(
   </Provider>
 )
 
-analytics.onPageLoad({ state: initialState })
+analytics.onPageLoad({ state: preloadedState })
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {

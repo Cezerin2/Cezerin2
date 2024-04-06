@@ -1,4 +1,5 @@
 import { Middleware, RouterContext } from "@koa/router"
+import { configureStore } from "@reduxjs/toolkit"
 import CezerinClient from "cezerin2-client"
 import { SetOption } from "cookies"
 import { readFile } from "fs-extra"
@@ -7,12 +8,10 @@ import { renderToString } from "react-dom/server"
 import Helmet from "react-helmet"
 import { Provider } from "react-redux"
 import { StaticRouter } from "react-router-dom"
-import { applyMiddleware, createStore } from "redux"
-import thunkMiddleware from "redux-thunk"
 import { initOnServer } from "theme"
 import winston from "winston"
 import App from "../shared/app"
-import reducers from "../shared/reducers"
+import reducer from "../shared/reducers"
 import { loadState } from "./loadState"
 import serverSettings from "./settings"
 
@@ -179,16 +178,17 @@ const renderPage = async (
 
 const pageRendering: Middleware = async ctx => {
   try {
-    const { state, themeText, placeholders } = await loadState(
-      ctx,
-      serverSettings.language
-    )
+    const {
+      state: preloadedState,
+      themeText,
+      placeholders,
+    } = await loadState(ctx, serverSettings.language)
     initOnServer({
-      themeSettings: state.app.themeSettings,
+      themeSettings: preloadedState.app.themeSettings,
       text: themeText,
     })
 
-    const store = createStore(reducers, state, applyMiddleware(thunkMiddleware))
+    const store = configureStore({ reducer, preloadedState })
 
     await renderPage(ctx, store, themeText, placeholders)
   } catch (error) {
