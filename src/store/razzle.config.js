@@ -134,6 +134,8 @@ module.exports = {
 
       if (!dev) {
         config.plugins.push(plugin)
+        // Recommit with following
+        config.devtool = undefined
         config.performance = { hints: false }
       }
     }
