@@ -1,4 +1,4 @@
-const APPLICATION_DATA_CURRENCIES = {
+export const currencies = {
   AED: "United Arab Emirates Dirham",
   AFN: "Afghan Afghani",
   ALL: "Albanian Lek",

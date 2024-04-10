@@ -2,6 +2,7 @@ import messages from "./text"
 
 const LOGIN_PATH = "/admin/apps/login"
 const HOME_PATH = "/admin/apps"
+const location = window.location
 
 const getParameterByName = (name, url) => {
   if (!url) url = window.location.href
