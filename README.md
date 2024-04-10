@@ -1,4 +1,5 @@
-# Not a developer? Want a already configured, highly customizable, e-commerce platform? Checkout [CHost](https://chost.ansiglobal.com)
+### For any support, questions, or for anything contact muhammadumar03124701209@gmail.com
+### Not a developer? Want a already configured, highly customizable, e-commerce platform? Contact muhammadumar03124701209@gmail.com
 
 # Cezerin is React and Node.js based eCommerce platform. React Shopping Cart.
 
