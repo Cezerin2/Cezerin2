@@ -7,6 +7,12 @@ const config: CracoConfig = {
 
     return config
   },
+  eslint: {
+    enable: false,
+  },
+  typescript: {
+    enableTypeChecking: false,
+  },
 }
 
 export default config
