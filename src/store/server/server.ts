@@ -66,25 +66,21 @@ app
   .use(router.routes()) // router
   .use(router.allowedMethods()) // router
 
-const mid = async ctx => {
-  const { method, url, headers, request } = ctx
-  const res = await axios({
-    method,
-    url,
-    baseURL: "http://localhost:3001",
-    headers,
-    data: request?.body,
-  })
-
-  ctx.body = res.data
-  const resHeaders: {} = { ...res.headers }
-  ctx.set(resHeaders)
-}
-
 router
-  .get(["/api/(.*)", "/ajax/(.*)", "ws", "wss"], mid)
-  .post(["/api/(.*)", "/ajax/(.*)", "ws", "wss"], mid)
-  .use(["/api/(.*)", "/ajax/(.*)", "ws", "wss"], mid)
+  .all(["/api/(.*)", "/ajax/(.*)", "/ws/(.*)", "/wss/(.*)"], async ctx => {
+    const { method, url, headers, request } = ctx
+    const res = await axios({
+      method,
+      url,
+      baseURL: "http://localhost:3001",
+      headers,
+      data: request?.body,
+    })
+
+    ctx.body = res.data
+    const resHeaders: {} = { ...res.headers }
+    ctx.set(resHeaders)
+  })
   .get("/", pageRendering)
   .get("/images/:entity/:id/:size/:filename", async ctx => {
     const { entity, id, filename, size } = ctx.params

@@ -47,7 +47,6 @@ const dbCred =
 
 const dbURL = dbUrl || `mongodb://${dbCred}${dbHost}:${dbPort}/${dbName}`
 
-export const mongodbConnection =
-  "mongodb://mongo:ekQCYwcEBuyApctMQcOfKGMkEiqmrrDD@roundhouse.proxy.rlwy.net:13184"
+export const mongodbConnection = dbURL
 
 export default config
