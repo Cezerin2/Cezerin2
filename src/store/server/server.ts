@@ -1,9 +1,9 @@
 import cors from "@koa/cors"
 import Router from "@koa/router"
+import axios from "axios"
 import { ensureDir, mkdtempSync, pathExists } from "fs-extra"
 import Koa from "koa"
 import koaBody from "koa-body"
-import compress from "koa-compress"
 import mount from "koa-mount"
 import send from "koa-send"
 import serve from "koa-static"
@@ -11,7 +11,6 @@ import { tmpdir } from "node:os"
 import { basename, extname, join } from "node:path"
 import sharp from "sharp"
 import winston from "winston"
-import { helmetMiddleware } from "./helmet"
 import pageRendering from "./pageRendering"
 import redirects from "./redirects"
 import robotsRendering from "./robotsRendering"
@@ -29,7 +28,6 @@ const staticOptions = {
 const tmpDir = mkdtempSync(join(tmpdir(), "Cezerin-"))
 
 app.keys = settings.cookieSecretKey
-app.maxIpsCount = 1
 
 app
   // logger
@@ -47,20 +45,46 @@ app
     ctx.set("X-Response-Time", `${ms}ms`)
   })
 
-  .use(cors()) // cors
+  .use(
+    cors({
+      origin: "*",
+      allowHeaders:
+        "Origin, X-Requested-With, Content-Type, Accept, Key, Authorization",
+      credentials: true,
+    })
+  ) // cors
   .use(koaBody()) // body parser
-  .use(compress({ threshold: 0 })) // compressor
-  .use(helmetMiddleware) // helmet
   .use(serve(`${publicDir}/content`, staticOptions))
   .use(serve(process.env.RAZZLE_PUBLIC_DIR, staticOptions))
   .use(mount("/assets", serve(`${themeDir}/assets`, staticOptions)))
   .use(
     mount("/admin-assets", serve(`${publicDir}/admin-assets`, staticOptions))
   )
+  .use(
+    mount("/admin-assets", serve(`${publicDir}/admin-assets`, staticOptions))
+  )
   .use(router.routes()) // router
   .use(router.allowedMethods()) // router
 
+const mid = async ctx => {
+  const { method, url, headers, request } = ctx
+  const res = await axios({
+    method,
+    url,
+    baseURL: "http://localhost:3001",
+    headers,
+    data: request?.body,
+  })
+
+  ctx.body = res.data
+  const resHeaders: {} = { ...res.headers }
+  ctx.set(resHeaders)
+}
+
 router
+  .get(["/api/(.*)", "/ajax/(.*)", "ws", "wss"], mid)
+  .post(["/api/(.*)", "/ajax/(.*)", "ws", "wss"], mid)
+  .use(["/api/(.*)", "/ajax/(.*)", "ws", "wss"], mid)
   .get("/", pageRendering)
   .get("/images/:entity/:id/:size/:filename", async ctx => {
     const { entity, id, filename, size } = ctx.params

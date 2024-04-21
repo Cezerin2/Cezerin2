@@ -2,8 +2,6 @@ import cors from "@koa/cors"
 import Router from "@koa/router"
 import Koa from "koa"
 import koaBody from "koa-body"
-import compress from "koa-compress"
-import helmet from "koa-helmet"
 import winston from "winston"
 import ajaxRouter from "./ajaxRouter"
 import apiRouter from "./apiRouter"
@@ -18,7 +16,6 @@ const router = new Router()
 security.applyMiddleware(app)
 
 app.keys = settings.cookieSecretKey
-app.maxIpsCount = 1
 
 app
   // logger
@@ -38,16 +35,13 @@ app
 
   .use(
     cors({
-      origin: security.getAccessControlAllowOrigin(),
-      allowMethods: "GET,PUT,POST,DELETE,OPTIONS",
+      origin: "*",
       allowHeaders:
         "Origin, X-Requested-With, Content-Type, Accept, Key, Authorization",
       credentials: true,
     })
   ) // cors
-  .use(helmet()) // helmet
   .use(koaBody()) // body parser
-  .use(compress({ threshold: 0 })) // compressor
   .use(router.routes()) // router
   .use(router.allowedMethods()) // router
 
