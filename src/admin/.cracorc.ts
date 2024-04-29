@@ -1,4 +1,5 @@
 import { CracoConfig } from "@craco/types"
+import CracoCSSModules from "craco-css-modules"
 import { resolve } from "path"
 
 const config: CracoConfig = {
@@ -7,6 +8,7 @@ const config: CracoConfig = {
 
     return config
   },
+  plugins: [{ plugin: CracoCSSModules }],
   eslint: {
     enable: false,
   },
