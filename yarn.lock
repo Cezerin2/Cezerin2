@@ -6469,6 +6469,7 @@ __metadata:
     axios: "npm:^1.6.8"
     cezerin2-client: "npm:^0.38.0"
     chart.js: "npm:^2.7.2"
+    craco-css-modules: "npm:^1.0.5"
     final-form: "npm:^4.20.10"
     final-form-arrays: "npm:^3.1.0"
     i18next: "npm:^23.10.1"
@@ -7069,6 +7070,20 @@ __metadata:
   dependencies:
     core-js: "npm:^2.5.0"
   checksum: 10c0/a9886d41d757ca90e11404bdf732c8076f6b5c6f5d13decd20084a49eae81206a59555939e987e0734f348652e6babe990f5b8c920031d1e68756a997ce1ee82
+  languageName: node
+  linkType: hard
+
+"auto-css-modules-webpack-plugin@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "auto-css-modules-webpack-plugin@npm:1.1.1"
+  dependencies:
+    acorn-walk: "npm:^8.0.2"
+  peerDependencies:
+    webpack: ^4.46.0 || ^5.20.0
+  peerDependenciesMeta:
+    webpack:
+      optional: true
+  checksum: 10c0/3d1a55e5e1687490dd3d9a7293000af8102cc3e74fe7863ba78df042b7cf1748a8db1f50d59ff978f6d5b2637a37a6cd8c00319667b8e647156c558ea1f25d09
   languageName: node
   linkType: hard
 
@@ -8975,6 +8990,18 @@ __metadata:
     typescript:
       optional: true
   checksum: 10c0/0382a9ed13208f8bfc22ca2f62b364855207dffdb73dc26e150ade78c3093f1cf56172df2dd460c8caf2afa91c0ed4ec8a88c62f8f9cd1cf423d26506aa8797a
+  languageName: node
+  linkType: hard
+
+"craco-css-modules@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "craco-css-modules@npm:1.0.5"
+  dependencies:
+    auto-css-modules-webpack-plugin: "npm:^1.1.1"
+  peerDependencies:
+    "@craco/craco": ">=6.0.0"
+    react-scripts: ">=4.0.0"
+  checksum: 10c0/3556834e9663c7d68f31e4d5cefdafe8c899771474a73e208a81896fb5a74c434bbcac8726545457dab822e6505738139209307f0474b6bb784c2206e46b214e
   languageName: node
   linkType: hard
 
