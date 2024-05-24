@@ -38,8 +38,7 @@ app
 
   .use(
     cors({
-      origin: security.getAccessControlAllowOrigin(),
-      allowMethods: "GET,PUT,POST,DELETE,OPTIONS",
+      origin: "*",
       allowHeaders:
         "Origin, X-Requested-With, Content-Type, Accept, Key, Authorization",
       credentials: true,

@@ -1,3 +1,5 @@
+import api from "lib/api"
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 import {
   blue700,
   cyan700,
@@ -10,10 +12,10 @@ import {
   white,
 } from "material-ui/styles/colors"
 import getMuiTheme from "material-ui/styles/getMuiTheme"
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 import Head from "modules/head"
 import React from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom"
+import { useAsync } from "react-use"
 import Apps from "routes/apps"
 import Customers from "routes/customers"
 import CustomerDetails from "routes/customers/edit"
@@ -33,6 +35,7 @@ import ProductCategories from "routes/products/categories"
 import ProductDetails from "routes/products/edit"
 import ProductImport from "routes/products/import"
 import Settings from "routes/settings"
+import { SettingsForm } from "./settingsForm"
 
 const muiTheme = getMuiTheme({
   fontFamily: "Roboto, sans-serif",
@@ -53,7 +56,7 @@ const muiTheme = getMuiTheme({
   appBar: {},
 })
 
-const App = () => (
+const Routes = () => (
   <Router>
     <MuiThemeProvider muiTheme={muiTheme}>
       <div id="container">
@@ -111,5 +114,17 @@ const App = () => (
     </MuiThemeProvider>
   </Router>
 )
+
+const App = () => {
+  const connected = useAsync(async () => {
+    const response = await api.settings.retrieve()
+
+    return (response?.json?.currency_code as string)?.length > 0
+  }, [])
+
+  if (connected?.value) return <Routes />
+
+  return <SettingsForm />
+}
 
 export default App
