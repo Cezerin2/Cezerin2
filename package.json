@@ -17,7 +17,7 @@
   ],
   "homepage": "https://chost.ansiglobal.com",
   "bugs": "https://github.com/Cezerin2/cezerin2/issues",
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "author": "Restmount <jsonmount@gmail.com> (https://github.com/restmount)",
   "main": "src/server/index.ts",
   "repository": {
