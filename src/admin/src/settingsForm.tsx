@@ -1,6 +1,7 @@
 import { Button, MenuItem } from "@mui/material"
 import { forOwn } from "lodash"
 import { Select, Switches, TextField } from "mui-rff"
+import React from "react"
 import { Form } from "react-final-form"
 
 export const SettingsForm = () => (

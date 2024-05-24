@@ -4,6 +4,8 @@ import { FC, useEffect } from "react"
 const Logout: FC = () => {
   useEffect(() => {
     auth.removeToken()
+
+    localStorage.removeItem("apiBaseUrl")
   }, [])
 
   return null
