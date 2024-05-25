@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "admin-f3635"
+  },
+  "targets": {
+    "admin-f3635": {
+      "hosting": {
+        "admin": [
+          "admin-f3635"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
