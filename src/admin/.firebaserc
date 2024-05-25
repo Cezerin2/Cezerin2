@@ -1,5 +1,16 @@
 {
   "projects": {
     "default": "cezerin-8fab8"
-  }
+  },
+  "targets": {
+    "admin-f3635": {
+      "hosting": {
+        "admin": [
+          "admin-f3635"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
