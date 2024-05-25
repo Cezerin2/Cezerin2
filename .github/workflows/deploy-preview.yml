@@ -54,7 +54,7 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CEZERIN_8FAB8 }}"
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           projectId: cezerin-8fab8
-          target: admin-f3635
+          target: admin
           entryPoint: "./src/admin"
 
       # - uses: FirebaseExtended/action-hosting-deploy@v0
