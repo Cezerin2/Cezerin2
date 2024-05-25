@@ -51,15 +51,13 @@ jobs:
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CEZERIN_8FAB8 }}"
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          projectId: cezerin-8fab8
-          target: admin-f3635
           entryPoint: "./src/admin"
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CEZERIN_8FAB8 }}"
 
       # - uses: FirebaseExtended/action-hosting-deploy@v0
       #   with:
-      #     firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CEZERIN_8FAB8 }}"
-      #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
       #     projectId: cezerin-8fab8
       #     entryPoint: "./src/docs"
+      #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
+      #     firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CEZERIN_8FAB8 }}"
