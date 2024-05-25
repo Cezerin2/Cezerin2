@@ -4,7 +4,7 @@ import { resolve } from "path"
 
 const config: CracoConfig = {
   paths: config => {
-    if (config) config.appBuild = resolve("../../public/admin")
+    if (config) config.appBuild = resolve("./build")
 
     return config
   },
