@@ -45,6 +45,21 @@ const appReducer = (state = initialState, action) => {
     case t.CART_RECEIVE:
       return Object.assign({}, state, { cart: action.cart })
 
+    case t.WISHLIST_REQUEST:
+      return Object.assign({}, state, { loadingWishlist: true })
+
+    case t.WISHLIST_RECEIVE:
+      return Object.assign({}, state, {
+        loadingWishlist: false,
+        wishlist: action.wishlist
+      })
+
+    case t.WISHLIST_ITEM_ADD_REQUEST:
+      return Object.assign({}, state, { addingToWishlist: true })
+
+    case t.WISHLIST_ITEM_DELETE_REQUEST:
+      return Object.assign({}, state, { deletingFromWishlist: true })
+
     case t.REGISTER_PROPERTIES:
       return Object.assign({}, state, { registerProperties: action.data })
 

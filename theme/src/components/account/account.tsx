@@ -1,3 +1,4 @@
+import { sanitize } from "isomorphic-dompurify"
 import Lscache from "lscache"
 import React, { FC, useEffect, useState } from "react"
 import { Field, Form } from "react-final-form"
@@ -16,7 +17,7 @@ const validateEmail = value =>
 const ReadOnlyField = ({ name, value }) => (
   <div className="checkout-field-preview">
     <div className="name">{name}</div>
-    <div className="value">{value}</div>
+    <div className="value">{sanitize(value || "")}</div>
   </div>
 )
 

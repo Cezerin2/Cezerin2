@@ -6,9 +6,9 @@ import Lscache from "lscache"
 const FormattedCurrency = ({ number, settings }) =>
   helper.formatCurrency(number, settings)
 
-const NewAndOldPrices = ({ newPrice, oldPrice, settings }) => (
+const NewAndOldPrices = ({ newPrice, oldPrice, settings, priceStyle }) => (
   <div className="product__price">
-    <span className="product__price_new">
+    <span className="product__price_new" style={priceStyle}>
       <FormattedCurrency settings={settings} number={newPrice} />
     </span>
     <del className="product__price_old">
@@ -51,6 +51,7 @@ const Price = ({ product, variant, isAllOptionsSelected, settings }) => {
         settings={settings}
         newPrice={price}
         oldPrice={oldPrice}
+        priceStyle={priceStyle}
       />
     )
   }

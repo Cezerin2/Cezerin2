@@ -40,7 +40,7 @@ const ItemPrice = ({ product, settings }) => {
             number={product.regular_price}
           />
         </del>
-        <span className="products__price_new product-new-price">
+        <span className="products__price_new product-new-price" style={priceStyle}>
           <FormattedCurrency settings={settings} number={price} />
         </span>
       </div>

@@ -121,6 +121,14 @@ const receiveCart = cart => ({ type: t.CART_RECEIVE, cart })
 
 const receiveCustomer = data => ({ type: t.CUSTOMER_RECEIVE, data })
 
+const requestWishlist = () => ({ type: t.WISHLIST_REQUEST })
+
+const receiveWishlist = wishlist => ({ type: t.WISHLIST_RECEIVE, wishlist })
+
+const requestAddWishlistItem = () => ({ type: t.WISHLIST_ITEM_ADD_REQUEST })
+
+const requestDeleteWishlistItem = () => ({ type: t.WISHLIST_ITEM_DELETE_REQUEST })
+
 export const addCartItem = item => async (dispatch, getState) => {
   dispatch(requestAddCartItem())
   const response = await api.ajax.cart.addItem(item)
@@ -465,4 +473,25 @@ const fetchDataOnCurrentPageChange = currentPage => (dispatch, getState) => {
       }
       break
   }
+}
+
+export const fetchWishlist = () => async (dispatch, getState) => {
+  dispatch(requestWishlist())
+  const response = await api.ajax.wishlist.retrieve()
+  const wishlist = response.json
+  dispatch(receiveWishlist(wishlist))
+}
+
+export const addWishlistItem = item => async (dispatch, getState) => {
+  dispatch(requestAddWishlistItem())
+  const response = await api.ajax.wishlist.addItem(item)
+  // Refresh wishlist to get updated list
+  dispatch(fetchWishlist())
+}
+
+export const deleteWishlistItem = itemId => async (dispatch, getState) => {
+  dispatch(requestDeleteWishlistItem())
+  const response = await api.ajax.wishlist.deleteItem(itemId)
+  // Refresh wishlist to get updated list
+  dispatch(fetchWishlist())
 }

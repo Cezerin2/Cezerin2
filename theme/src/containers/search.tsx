@@ -1,3 +1,4 @@
+import { sanitize } from "isomorphic-dompurify"
 import PropTypes from "prop-types"
 import React from "react"
 import MetaTags from "../components/metaTags"
@@ -11,11 +12,12 @@ const SearchContainer = props => {
     state: { products, settings, productFilter, productsHasMore },
   } = props
   const searchNotEmpty = productFilter.search && productFilter.search !== ""
+  const sanitizedSearch = searchNotEmpty ? sanitize(productFilter.search) : ""
   const searchDescription = searchNotEmpty
-    ? `${text.resultsFor} "${productFilter.search}"`
+    ? `${text.resultsFor} "${sanitizedSearch}"`
     : text.search
   const title = searchNotEmpty
-    ? `${productFilter.search} - ${text.search}`
+    ? `${sanitizedSearch} - ${text.search}`
     : text.search
 
   return (

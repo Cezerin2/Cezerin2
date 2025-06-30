@@ -9,6 +9,7 @@ import CheckoutContainer from "./containers/checkout"
 import CheckoutSuccessContainer from "./containers/checkoutSuccess"
 import ForgotPasswordContainer from "./containers/forgotPassword"
 import IndexContainer from "./containers/index"
+import WishlistContainer from "./containers/wishlist"
 import LoginContainer from "./containers/login"
 import NotFoundContainer from "./containers/notfound"
 import PageContainer from "./containers/page"
@@ -35,6 +36,7 @@ const SwitchContainers: FC<Props> = props => {
     { path: "/login", component: <LoginContainer /> },
     { path: "/register", component: <RegisterContainer /> },
     { path: "/customer-account", component: <AccountContainer /> },
+    { path: "/wishlist", component: <WishlistContainer /> },
     {
       path: "/forgot-password",
       component: <ForgotPasswordContainer />,
