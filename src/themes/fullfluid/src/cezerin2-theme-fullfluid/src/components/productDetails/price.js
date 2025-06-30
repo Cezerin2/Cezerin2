@@ -5,9 +5,9 @@ import { themeSettings, text } from '../../lib/settings';
 const FormattedCurrency = ({ number, settings }) =>
 	helper.formatCurrency(number, settings);
 
-const NewAndOldPrices = ({ newPrice, oldPrice, settings }) => (
+const NewAndOldPrices = ({ newPrice, oldPrice, settings, priceStyle }) => (
 	<div className="product-price">
-		<span className="product-new-price">
+		<span className="product-new-price" style={priceStyle}>
 			<FormattedCurrency settings={settings} number={newPrice} />
 		</span>
 		<del className="product-old-price">
@@ -50,6 +50,7 @@ const Price = ({ product, variant, isAllOptionsSelected, settings }) => {
 				settings={settings}
 				newPrice={price}
 				oldPrice={oldPrice}
+				priceStyle={priceStyle}
 			/>
 		);
 	} else {

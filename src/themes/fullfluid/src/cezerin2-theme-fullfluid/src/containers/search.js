@@ -4,6 +4,17 @@ import { text } from '../lib/settings';
 import MetaTags from '../components/metaTags';
 import ProductList from '../components/productList';
 
+// Simple HTML escape function to prevent XSS
+const escapeHtml = (text) => {
+	if (!text) return '';
+	return text
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#x27;');
+};
+
 const SearchContainer = props => {
 	const {
 		addCartItem,
@@ -11,11 +22,12 @@ const SearchContainer = props => {
 		state: { products, settings, productFilter, productsHasMore }
 	} = props;
 	const searchNotEmpty = productFilter.search && productFilter.search !== '';
+	const escapedSearch = searchNotEmpty ? escapeHtml(productFilter.search) : '';
 	const searchDescription = searchNotEmpty
-		? `${text.resultsFor} "${productFilter.search}"`
+		? `${text.resultsFor} "${escapedSearch}"`
 		: text.search;
 	const title = searchNotEmpty
-		? `${productFilter.search} - ${text.search}`
+		? `${escapedSearch} - ${text.search}`
 		: text.search;
 
 	return (

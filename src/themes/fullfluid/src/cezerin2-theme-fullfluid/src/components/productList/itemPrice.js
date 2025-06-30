@@ -26,7 +26,7 @@ const ItemPrice = ({ product, settings }) => {
 	if (product.on_sale) {
 		return (
 			<div className="product-price">
-				<span className="product-new-price">
+				<span className="product-new-price" style={priceStyle}>
 					<FormattedCurrency settings={settings} number={product.price} />
 				</span>
 				<del className="product-old-price">

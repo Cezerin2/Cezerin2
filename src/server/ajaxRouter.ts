@@ -807,4 +807,61 @@ ajaxRouter.get("/payment_form_settings", async ctx => {
   }
 })
 
+// Wishlist endpoints
+ajaxRouter.get("/wishlist", async ctx => {
+  const sessionID = ctx.cookies.get("session_id") || ctx.cookies.get("order_id")
+  const customerID = ctx.cookies.get("customer_id")
+
+  const params: any = {}
+  if (customerID) {
+    params.customer_id = customerID
+  } else if (sessionID) {
+    params.session_id = sessionID
+  }
+
+  if (params.customer_id || params.session_id) {
+    const { status, json } = await api.wishlist.retrieve(params)
+    ctx.body = json
+    ctx.status = status
+  } else {
+    ctx.body = { items: [] }
+    ctx.status = 200
+  }
+})
+
+ajaxRouter.post("/wishlist/items", async ctx => {
+  const sessionID = ctx.cookies.get("session_id") || ctx.cookies.get("order_id")
+  const customerID = ctx.cookies.get("customer_id")
+  const item = ctx.request.body
+
+  if (customerID) {
+    item.customer_id = customerID
+  } else if (sessionID) {
+    item.session_id = sessionID
+  } else {
+    // Create a new session ID if none exists
+    const newSessionID = new Date().getTime().toString()
+    ctx.cookies.set(
+      "session_id",
+      newSessionID,
+      getCartCookieOptions(ctx.secure)
+    )
+    item.session_id = newSessionID
+  }
+
+  const { status, json } = await api.wishlist.addItem(item)
+  ctx.body = json
+  ctx.status = status
+})
+
+ajaxRouter.delete("/wishlist/items/:item_id", async ctx => {
+  const { item_id: itemID } = ctx.params
+
+  if (itemID) {
+    const { status, json } = await api.wishlist.deleteItem(itemID)
+    ctx.body = json
+    ctx.status = status
+  }
+})
+
 export default ajaxRouter

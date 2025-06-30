@@ -9,6 +9,7 @@ import AjaxPaymentMethods from "./api/ajaxPaymentMethods"
 import AjaxRegister from "./api/ajaxRegister"
 import AjaxResetPassword from "./api/ajaxResetPassword"
 import AjaxShippingMethods from "./api/ajaxShippingMethods"
+import AjaxWishlist from "./api/ajaxWishlist"
 import AppSettings from "./api/apps/settings"
 import CheckoutFields from "./api/checkoutFields"
 import Countries from "./api/countries"
@@ -31,6 +32,7 @@ import Text from "./api/text"
 import Theme from "./api/theme/theme"
 import Tokens from "./api/tokens"
 import Webhooks from "./api/webhooks"
+import Wishlist from "./api/wishlist"
 import ApiClient from "./apiClient"
 import { Options } from "./types"
 import WebStoreAccount from "./webstore/account"
@@ -75,6 +77,7 @@ export const Client = (options: Options) => {
     redirects: Redirects(apiClient),
     webhooks: Webhooks(apiClient),
     files: Files(apiClient),
+    wishlist: Wishlist(apiClient),
     apps: { settings: AppSettings(apiClient) },
 
     ajax: {
@@ -93,6 +96,7 @@ export const Client = (options: Options) => {
       paymentMethods: AjaxPaymentMethods(ajaxClient),
       paymentFormSettings: AjaxPaymentFormSettings(ajaxClient),
       pages: Pages(ajaxClient),
+      wishlist: AjaxWishlist(ajaxClient),
     },
 
     webstore: {

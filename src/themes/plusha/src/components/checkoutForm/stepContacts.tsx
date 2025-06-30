@@ -1,6 +1,7 @@
 import React from "react"
 import { Field, reduxForm } from "redux-form"
 import Lscache from "lscache"
+import { sanitize } from "isomorphic-dompurify"
 import { themeSettings, text } from "../../lib/settings"
 import { formatCurrency } from "../../lib/helper"
 import InputField from "./inputField"
@@ -24,7 +25,7 @@ const ReadOnlyField = ({ step, name, value }) => {
       }
     >
       <div className="field-preview__name">{name}</div>
-      <div className="field-preview__value">{value}</div>
+      <div className="field-preview__value">{sanitize(value || "")}</div>
     </div>
   )
 }

@@ -13,6 +13,7 @@ import Price from "./price"
 import Quantity from "./quantity"
 import RelatedProducts from "./relatedProducts"
 import Tags from "./tags"
+import WishlistButton from "../wishlistButton"
 
 const Description = ({ description }) => (
   <div className="product-content">{parse(sanitize(description))}</div>
@@ -23,6 +24,9 @@ interface Props {
   settings
   categories
   addCartItem
+  addWishlistItem
+  deleteWishlistItem
+  wishlist
 }
 
 const ProductDetails: FC<Props> = props => {
@@ -31,7 +35,7 @@ const ProductDetails: FC<Props> = props => {
   const [isAllOptionsSelected, setIsAllOptionsSelected] = useState(false)
   const [quantity, setQuantity] = useState(1)
 
-  const { product, settings, categories, addCartItem } = props
+  const { product, settings, categories, addCartItem, addWishlistItem, deleteWishlistItem, wishlist } = props
 
   const onOptionChange = (optionId, valueId) => {
     if (valueId === "") {
@@ -122,6 +126,14 @@ const ProductDetails: FC<Props> = props => {
                     variant={selectedVariant}
                     addCartItem={addToCart}
                     isAllOptionsSelected={isAllOptionsSelected}
+                  />
+                  <WishlistButton
+                    product={product}
+                    variant_id={selectedVariant?.id}
+                    addWishlistItem={addWishlistItem}
+                    deleteWishlistItem={deleteWishlistItem}
+                    wishlist={wishlist}
+                    className="button is-light wishlist-button"
                   />
                 </div>
               </div>

@@ -1,3 +1,4 @@
+import { sanitize } from "isomorphic-dompurify"
 import Lscache from "lscache"
 import React, { FC, useState } from "react"
 import { Field, Form } from "react-final-form"

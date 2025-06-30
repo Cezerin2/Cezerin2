@@ -18,6 +18,9 @@ import {
   cartLayerInitialized,
   forgotPassword,
   resetPassword,
+  fetchWishlist,
+  addWishlistItem,
+  deleteWishlistItem,
 } from "./actions"
 
 const setQuery = (history, query) => {
@@ -71,6 +74,15 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
     },
     resetPassword: (data, callback) => {
       dispatch(resetPassword(data, callback))
+    },
+    fetchWishlist: () => {
+      dispatch(fetchWishlist())
+    },
+    addWishlistItem: item => {
+      dispatch(addWishlistItem(item))
+    },
+    deleteWishlistItem: itemId => {
+      dispatch(deleteWishlistItem(itemId))
     },
     checkout: data => {
       dispatch(checkout(data, ownProps.history))

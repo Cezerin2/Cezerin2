@@ -19,6 +19,7 @@ import StatusRoute from "./routes/status"
 import ThemeRoute from "./routes/theme"
 import SecurityTokensRoute from "./routes/tokens"
 import WebhooksRoute from "./routes/webhooks"
+import WishlistRoute from "./routes/wishlist"
 
 const apiRouter = new Router()
 
@@ -42,6 +43,7 @@ apiRouter
   .use(FilesRoute.routes())
   .use(AppsRoute.routes())
   .use(WebhooksRoute.routes())
+  .use(WishlistRoute.routes())
   .use(StatusRoute.routes())
 
 export default apiRouter

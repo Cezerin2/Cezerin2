@@ -17,7 +17,7 @@ const ReadOnlyField = ({ step, name, value }) => {
 	return (
 		<div className={step > 1 ? "checkout-field-preview" : "checkout-field-preview checkout-field-preview--stepcontacts"}>
 			<div className="name">{name}</div>
-			<div className="value">{value}</div>
+			<div className="value">{escapeHtml(value || "")}</div>
 		</div>
 	);
 };

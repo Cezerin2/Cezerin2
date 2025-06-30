@@ -4,11 +4,15 @@ import { themeSettings } from "../../lib/settings"
 import ItemImage from "./itemImage"
 import ItemPrice from "./itemPrice"
 import ItemTags from "./itemTags"
+import WishlistButton from "../wishlistButton"
 
 const Item = ({
   product,
   addCartItem,
   settings,
+  addWishlistItem,
+  deleteWishlistItem,
+  wishlist,
   columnCountOnMobile = 2,
   columnCountOnTablet = 3,
   columnCountOnDesktop = 4,
@@ -41,6 +45,15 @@ const Item = ({
       <NavLink to={product.path}>
         <figure className="image" style={{ height: imageHeight }}>
           <ItemTags tags={product.tags} />
+          <div className="wishlist-overlay">
+            <WishlistButton
+              product={product}
+              addWishlistItem={addWishlistItem}
+              deleteWishlistItem={deleteWishlistItem}
+              wishlist={wishlist}
+              className="wishlist-button-overlay"
+            />
+          </div>
           <ItemImage
             images={product.images}
             productName={product.name}
